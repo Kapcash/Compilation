@@ -1,0 +1,100 @@
+grammar org.xtext.Compilation with org.eclipse.xtext.common.Terminals
+
+generate compilation "http://www.xtext.org/Compilation"
+
+Model:
+	While+=Program;
+
+/* --- Head of program --- */
+
+Program:
+	(Function SEP)*
+;
+
+Function:
+	'function' SEP SYMBOL ':' SEP Definition
+;
+//Global form of a WHILE program	
+Definition:
+	'read' SEP Input '%' Commands '%' 'write' SEP Output
+;
+	
+Input:
+	(VARIABLE ',' Input) | VARIABLE
+;	
+Output:
+	(VARIABLE ',' Output) | VARIABLE
+;
+	
+/* --- Body of program --- */
+
+Commands:
+	=>(Command ';' SEP Commands) | Command
+;
+	
+Command:
+	'nop' | (Vars ':=' Exprs) | 
+	('while' SEP Expr SEP 'do' SEP Commands SEP 'od') |
+	('for' SEP Expr SEP 'do' SEP Commands SEP 'od') |
+	('if' SEP Expr SEP 'then' SEP Commands SEP ('fi' | ('else' SEP Commands SEP 'fi')) ) |
+	('foreach' SEP Expr SEP 'in' SEP Expr SEP 'do' SEP Commands SEP 'od')
+;
+
+Expr: 
+	=>ExprSimple | ExprAnd
+;	
+// AND
+ExprAnd:
+	=>(ExprOr SEP '&&' SEP ExprAnd) | ExprOr
+;
+// OR
+ExprOr:
+	=>(ExprNot SEP '||' SEP ExprOr) | ExprNot
+;
+// NOT
+ExprNot:
+	('!' SEP ExprEq) | ExprEq
+;
+// =?
+ExprEq:
+	(ExprSimple'=?'ExprSimple) | '('Expr')'
+;
+
+Exprs:
+	=>(Expr ',' Exprs) | Expr
+;
+	
+ExprSimple:
+	'nil' | VARIABLE | SYMBOL |
+	'(' 'cons' Lexpr ')' | '(' 'list' Lexpr ')' |
+	'(' 'hd' SEP Expr ')' | '(' 'tl' SEP Expr ')' |
+	'(' SYMBOL SEP Lexpr ')'
+;
+
+Lexpr:
+	=>SEP Expr Lexpr | SEP Expr
+;
+
+Vars:
+	(VARIABLE ',' Vars) | VARIABLE
+;	
+
+/* --- TERMINAUX --- */
+
+terminal VARIABLE:
+	'A'..'Z'('A'..'Z'|'a'..'z'|'0'..'9')*
+	((('-'|'+'|'.'|'/'|'_'|'&')|"->")('A'..'Z'|'a'..'z'|'0'..'9')+)*
+	('!'|'?')?
+;
+	
+terminal SYMBOL:
+	'a'..'z'('A'..'Z'|'a'..'z'|'0'..'9')*
+	((('-'|'+'|'.'|'/'|'_'|'&')|"->")('A'..'Z'|'a'..'z'|'0'..'9')+)*
+	('!'|'?')?
+;
+
+terminal SEP:
+	' ' | '\r\n' | '	'| '\n'
+;	
+
+

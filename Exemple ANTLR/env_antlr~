@@ -1,0 +1,10 @@
+#########################################
+#
+#  Pour permettre l'utilisation de ANTLR 
+#
+#  cmd: source env_antlr
+#
+#########################################
+
+DIR_ANTLR=/home/gaelle/Bureau/TP2-decouverte
+export CLASSPATH=$DIR_ANTLR/antlr-3.1.3.jar:$CLASSPATH

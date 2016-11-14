@@ -1,0 +1,16 @@
+ce que fait notre programme :
+
+-verifie lors d'une impression, que l'élément à imprimer n'est pas un nom de tableau, idem pour la lecture
+-vérifie lors d'une affectation, que l'élément affecté est de type INT et que l'élément à affecter n'est pas de type ARRAY
+-détecte les doubles déclarations de variable au sein d'une fonction ou d'un prototype (au sein d'un même "scope" de la table des symboles)
+-détecte les doubles déclarations de prototypes et de fonctions(selon leur nom)
+-vérifie qu'une fonction a été définie ou prototypée avant son utilisation
+-vérifie, lorsqu'une fonction a été prototypée, que sa définition est conforme à son prototype
+-vérifie le nombre et les types des paramètres lors de l'utilisation d'une fonction
+-vérifie que le type de retour de la fonction est INT lorsqu'elle est affectée (cas i:=f(a,b), f est une expression)
+-vérifie, lors de l'utilisation d'un ident, qu'il a été déclaré préalablement
+
+
+ce qui n'est pas fait :
+-pas de vérification de dépassement de borne d'un tableau
+-...

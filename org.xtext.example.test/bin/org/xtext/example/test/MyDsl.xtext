@@ -1,0 +1,15 @@
+grammar org.xtext.example.test.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/test/MyDsl"
+
+Model:
+	classes+=Classe*;
+	
+Classe:
+	'Class' name=ID '{'
+		attributs += Attribut*
+		'}'
+		;
+Attribut:
+	type=('int'|'float'|'boolean'|'char'|'String') name=ID ';'
+;

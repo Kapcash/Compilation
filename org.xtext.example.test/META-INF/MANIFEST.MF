@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.example.test
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.example.test; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.xtext.example.test.parser.antlr.internal,
+ org.xtext.example.test.scoping,
+ org.xtext.example.test.myDsl.impl,
+ org.xtext.example.test,
+ org.xtext.example.test.validation,
+ org.xtext.example.test.myDsl,
+ org.xtext.example.test.serializer,
+ org.xtext.example.test.generator,
+ org.xtext.example.test.myDsl.util,
+ org.xtext.example.test.services,
+ org.xtext.example.test.parser.antlr
+Import-Package: org.apache.log4j

@@ -6,8 +6,27 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.11">
   <genPackages prefix="Compilation" basePackage="org.xtext" disposableProviderFactory="true"
       fileExtensions="wh" ecorePackage="Compilation.ecore#/">
-    <genClasses ecoreClass="Compilation.ecore#//Model">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Compilation.ecore#//Model/While"/>
+    <genClasses ecoreClass="Compilation.ecore#//Program">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Compilation.ecore#//Program/functions"/>
+    </genClasses>
+    <genClasses ecoreClass="Compilation.ecore#//Function">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Compilation.ecore#//Function/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Compilation.ecore#//Function/reads"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Compilation.ecore#//Function/commands"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Compilation.ecore#//Function/writes"/>
+    </genClasses>
+    <genClasses ecoreClass="Compilation.ecore#//Read">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Compilation.ecore#//Read/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Compilation.ecore#//Write">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Compilation.ecore#//Write/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Compilation.ecore#//Command">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Compilation.ecore#//Command/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Compilation.ecore#//Nop"/>
+    <genClasses ecoreClass="Compilation.ecore#//Affectation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Compilation.ecore#//Affectation/valeur"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

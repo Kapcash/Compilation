@@ -35,51 +35,25 @@ public class CompilationParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getInputAccess().getAlternatives(), "rule__Input__Alternatives");
-					put(grammarAccess.getOutputAccess().getAlternatives(), "rule__Output__Alternatives");
-					put(grammarAccess.getCommandsAccess().getAlternatives(), "rule__Commands__Alternatives");
 					put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
-					put(grammarAccess.getCommandAccess().getAlternatives_4_8(), "rule__Command__Alternatives_4_8");
-					put(grammarAccess.getExprAccess().getAlternatives(), "rule__Expr__Alternatives");
-					put(grammarAccess.getExprAndAccess().getAlternatives(), "rule__ExprAnd__Alternatives");
-					put(grammarAccess.getExprOrAccess().getAlternatives(), "rule__ExprOr__Alternatives");
-					put(grammarAccess.getExprNotAccess().getAlternatives(), "rule__ExprNot__Alternatives");
-					put(grammarAccess.getExprEqAccess().getAlternatives(), "rule__ExprEq__Alternatives");
-					put(grammarAccess.getExprsAccess().getAlternatives(), "rule__Exprs__Alternatives");
-					put(grammarAccess.getExprSimpleAccess().getAlternatives(), "rule__ExprSimple__Alternatives");
-					put(grammarAccess.getLexprAccess().getAlternatives(), "rule__Lexpr__Alternatives");
-					put(grammarAccess.getVarsAccess().getAlternatives(), "rule__Vars__Alternatives");
-					put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 					put(grammarAccess.getFunctionAccess().getGroup(), "rule__Function__Group__0");
-					put(grammarAccess.getDefinitionAccess().getGroup(), "rule__Definition__Group__0");
-					put(grammarAccess.getInputAccess().getGroup_0(), "rule__Input__Group_0__0");
-					put(grammarAccess.getOutputAccess().getGroup_0(), "rule__Output__Group_0__0");
-					put(grammarAccess.getCommandsAccess().getGroup_0(), "rule__Commands__Group_0__0");
-					put(grammarAccess.getCommandsAccess().getGroup_0_0(), "rule__Commands__Group_0_0__0");
-					put(grammarAccess.getCommandAccess().getGroup_1(), "rule__Command__Group_1__0");
-					put(grammarAccess.getCommandAccess().getGroup_2(), "rule__Command__Group_2__0");
-					put(grammarAccess.getCommandAccess().getGroup_3(), "rule__Command__Group_3__0");
-					put(grammarAccess.getCommandAccess().getGroup_4(), "rule__Command__Group_4__0");
-					put(grammarAccess.getCommandAccess().getGroup_4_8_1(), "rule__Command__Group_4_8_1__0");
-					put(grammarAccess.getCommandAccess().getGroup_5(), "rule__Command__Group_5__0");
-					put(grammarAccess.getExprAndAccess().getGroup_0(), "rule__ExprAnd__Group_0__0");
-					put(grammarAccess.getExprAndAccess().getGroup_0_0(), "rule__ExprAnd__Group_0_0__0");
-					put(grammarAccess.getExprOrAccess().getGroup_0(), "rule__ExprOr__Group_0__0");
-					put(grammarAccess.getExprOrAccess().getGroup_0_0(), "rule__ExprOr__Group_0_0__0");
-					put(grammarAccess.getExprNotAccess().getGroup_0(), "rule__ExprNot__Group_0__0");
-					put(grammarAccess.getExprEqAccess().getGroup_0(), "rule__ExprEq__Group_0__0");
-					put(grammarAccess.getExprEqAccess().getGroup_1(), "rule__ExprEq__Group_1__0");
-					put(grammarAccess.getExprsAccess().getGroup_0(), "rule__Exprs__Group_0__0");
-					put(grammarAccess.getExprsAccess().getGroup_0_0(), "rule__Exprs__Group_0_0__0");
-					put(grammarAccess.getExprSimpleAccess().getGroup_3(), "rule__ExprSimple__Group_3__0");
-					put(grammarAccess.getExprSimpleAccess().getGroup_4(), "rule__ExprSimple__Group_4__0");
-					put(grammarAccess.getExprSimpleAccess().getGroup_5(), "rule__ExprSimple__Group_5__0");
-					put(grammarAccess.getExprSimpleAccess().getGroup_6(), "rule__ExprSimple__Group_6__0");
-					put(grammarAccess.getExprSimpleAccess().getGroup_7(), "rule__ExprSimple__Group_7__0");
-					put(grammarAccess.getLexprAccess().getGroup_0(), "rule__Lexpr__Group_0__0");
-					put(grammarAccess.getLexprAccess().getGroup_1(), "rule__Lexpr__Group_1__0");
-					put(grammarAccess.getVarsAccess().getGroup_0(), "rule__Vars__Group_0__0");
-					put(grammarAccess.getModelAccess().getWhileAssignment(), "rule__Model__WhileAssignment");
+					put(grammarAccess.getReadAccess().getGroup(), "rule__Read__Group__0");
+					put(grammarAccess.getReadAccess().getGroup_2(), "rule__Read__Group_2__0");
+					put(grammarAccess.getWriteAccess().getGroup(), "rule__Write__Group__0");
+					put(grammarAccess.getWriteAccess().getGroup_2(), "rule__Write__Group_2__0");
+					put(grammarAccess.getAffectationAccess().getGroup(), "rule__Affectation__Group__0");
+					put(grammarAccess.getProgramAccess().getFunctionsAssignment(), "rule__Program__FunctionsAssignment");
+					put(grammarAccess.getFunctionAccess().getNameAssignment_1(), "rule__Function__NameAssignment_1");
+					put(grammarAccess.getFunctionAccess().getReadsAssignment_3(), "rule__Function__ReadsAssignment_3");
+					put(grammarAccess.getFunctionAccess().getCommandsAssignment_5(), "rule__Function__CommandsAssignment_5");
+					put(grammarAccess.getFunctionAccess().getWritesAssignment_7(), "rule__Function__WritesAssignment_7");
+					put(grammarAccess.getReadAccess().getNameAssignment_1(), "rule__Read__NameAssignment_1");
+					put(grammarAccess.getReadAccess().getNameAssignment_2_1(), "rule__Read__NameAssignment_2_1");
+					put(grammarAccess.getWriteAccess().getNameAssignment_1(), "rule__Write__NameAssignment_1");
+					put(grammarAccess.getWriteAccess().getNameAssignment_2_1(), "rule__Write__NameAssignment_2_1");
+					put(grammarAccess.getNopAccess().getNameAssignment(), "rule__Nop__NameAssignment");
+					put(grammarAccess.getAffectationAccess().getNameAssignment_0(), "rule__Affectation__NameAssignment_0");
+					put(grammarAccess.getAffectationAccess().getValeurAssignment_2(), "rule__Affectation__ValeurAssignment_2");
 				}
 			};
 		}
@@ -90,7 +64,7 @@ public class CompilationParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			InternalCompilationParser typedParser = (InternalCompilationParser) parser;
-			typedParser.entryRuleModel();
+			typedParser.entryRuleProgram();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);

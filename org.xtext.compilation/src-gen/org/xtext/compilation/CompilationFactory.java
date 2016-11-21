@@ -24,13 +24,67 @@ public interface CompilationFactory extends EFactory
   CompilationFactory eINSTANCE = org.xtext.compilation.impl.CompilationFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Model</em>'.
+   * Returns a new object of class '<em>Program</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model</em>'.
+   * @return a new object of class '<em>Program</em>'.
    * @generated
    */
-  Model createModel();
+  Program createProgram();
+
+  /**
+   * Returns a new object of class '<em>Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function</em>'.
+   * @generated
+   */
+  Function createFunction();
+
+  /**
+   * Returns a new object of class '<em>Read</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Read</em>'.
+   * @generated
+   */
+  Read createRead();
+
+  /**
+   * Returns a new object of class '<em>Write</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Write</em>'.
+   * @generated
+   */
+  Write createWrite();
+
+  /**
+   * Returns a new object of class '<em>Command</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Command</em>'.
+   * @generated
+   */
+  Command createCommand();
+
+  /**
+   * Returns a new object of class '<em>Nop</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Nop</em>'.
+   * @generated
+   */
+  Nop createNop();
+
+  /**
+   * Returns a new object of class '<em>Affectation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Affectation</em>'.
+   * @generated
+   */
+  Affectation createAffectation();
 
   /**
    * Returns the package supported by this factory.

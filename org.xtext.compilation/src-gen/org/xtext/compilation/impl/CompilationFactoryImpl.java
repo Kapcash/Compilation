@@ -65,7 +65,13 @@ public class CompilationFactoryImpl extends EFactoryImpl implements CompilationF
   {
     switch (eClass.getClassifierID())
     {
-      case CompilationPackage.MODEL: return createModel();
+      case CompilationPackage.PROGRAM: return createProgram();
+      case CompilationPackage.FUNCTION: return createFunction();
+      case CompilationPackage.READ: return createRead();
+      case CompilationPackage.WRITE: return createWrite();
+      case CompilationPackage.COMMAND: return createCommand();
+      case CompilationPackage.NOP: return createNop();
+      case CompilationPackage.AFFECTATION: return createAffectation();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -76,10 +82,76 @@ public class CompilationFactoryImpl extends EFactoryImpl implements CompilationF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Model createModel()
+  public Program createProgram()
   {
-    ModelImpl model = new ModelImpl();
-    return model;
+    ProgramImpl program = new ProgramImpl();
+    return program;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Function createFunction()
+  {
+    FunctionImpl function = new FunctionImpl();
+    return function;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Read createRead()
+  {
+    ReadImpl read = new ReadImpl();
+    return read;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Write createWrite()
+  {
+    WriteImpl write = new WriteImpl();
+    return write;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Command createCommand()
+  {
+    CommandImpl command = new CommandImpl();
+    return command;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Nop createNop()
+  {
+    NopImpl nop = new NopImpl();
+    return nop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Affectation createAffectation()
+  {
+    AffectationImpl affectation = new AffectationImpl();
+    return affectation;
   }
 
   /**

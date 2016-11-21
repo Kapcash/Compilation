@@ -2,99 +2,118 @@ grammar org.xtext.Compilation with org.eclipse.xtext.common.Terminals
 
 generate compilation "http://www.xtext.org/Compilation"
 
-Model:
-	While+=Program;
-
-/* --- Head of program --- */
-
 Program:
-	(Function SEP)*
-;
-
+	functions+=Function*;
+	
 Function:
-	'function' SEP SYMBOL ':' SEP Definition
-;
-//Global form of a WHILE program	
-Definition:
-	'read' SEP Input '%' Commands '%' 'write' SEP Output
-;
-	
-Input:
-	(VARIABLE ',' Input) | VARIABLE
-;	
-Output:
-	(VARIABLE ',' Output) | VARIABLE
-;
-	
-/* --- Body of program --- */
+	'function' name=ID ':'
+	reads += Read
+	'%'
+	commands+=Command*
+	'%'
+	writes+=Write
+		;
 
-Commands:
-	=>(Command ';' SEP Commands) | Command
+Read :
+	'read' name+=ID (',' name+=ID)*
 ;
-	
+Write :
+	'write' name+=ID (',' name+=ID)*
+;
 Command:
-	'nop' | (Vars ':=' Exprs) | 
-	('while' SEP Expr SEP 'do' SEP Commands SEP 'od') |
-	('for' SEP Expr SEP 'do' SEP Commands SEP 'od') |
-	('if' SEP Expr SEP 'then' SEP Commands SEP ('fi' | ('else' SEP Commands SEP 'fi')) ) |
-	('foreach' SEP Expr SEP 'in' SEP Expr SEP 'do' SEP Commands SEP 'od')
+	Nop | Affectation 
 ;
-
-Expr: 
-	=>ExprSimple | ExprAnd
-;	
-// AND
-ExprAnd:
-	=>(ExprOr SEP '&&' SEP ExprAnd) | ExprOr
+Nop:
+	name='nop'
 ;
-// OR
-ExprOr:
-	=>(ExprNot SEP '||' SEP ExprOr) | ExprNot
+Affectation:
+	(name=ID ':=' valeur=INT) 
 ;
-// NOT
-ExprNot:
-	('!' SEP ExprEq) | ExprEq
-;
-// =?
-ExprEq:
-	(ExprSimple'=?'ExprSimple) | '('Expr')'
-;
-
-Exprs:
-	=>(Expr ',' Exprs) | Expr
-;
-	
-ExprSimple:
-	'nil' | VARIABLE | SYMBOL |
-	'(' 'cons' Lexpr ')' | '(' 'list' Lexpr ')' |
-	'(' 'hd' SEP Expr ')' | '(' 'tl' SEP Expr ')' |
-	'(' SYMBOL SEP Lexpr ')'
-;
-
-Lexpr:
-	=>SEP Expr Lexpr | SEP Expr
-;
-
-Vars:
-	(VARIABLE ',' Vars) | VARIABLE
-;	
-
-/* --- TERMINAUX --- */
-
-terminal VARIABLE:
-	'A'..'Z'('A'..'Z'|'a'..'z'|'0'..'9')*
-	((('-'|'+'|'.'|'/'|'_'|'&')|"->")('A'..'Z'|'a'..'z'|'0'..'9')+)*
-	('!'|'?')?
-;
-	
-terminal SYMBOL:
-	'a'..'z'('A'..'Z'|'a'..'z'|'0'..'9')*
-	((('-'|'+'|'.'|'/'|'_'|'&')|"->")('A'..'Z'|'a'..'z'|'0'..'9')+)*
-	('!'|'?')?
-;
-
-terminal SEP:
-	' ' | '\r\n' | '	'| '\n'
-;	
-
-
+//
+//Input:
+//	(variable=VARIABLE ',' input=Input) | variable=VARIABLE
+//;	
+//
+//Output:
+//	(variable=VARIABLE ',' output=Output) | variable=VARIABLE
+//;
+//	
+//Commands:
+//	=>(command=Command ';' commands=Commands) | command=Command
+//;
+//	
+//Command:
+//	=>nop=Nop | affectation=Affectation | 
+//	('while' expr=Expr 'do' commands=Commands 'od') |
+//	('for' expr=Expr 'do' commands=Commands 'od') |
+//	('if' expr=Expr 'then' commands1=Commands 'else' commands2=Commands 'fi') |
+//	('foreach' expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od') 
+//	//('if' SEP Expr SEP 'then' SEP Commands SEP 'fi') 
+//;
+//
+//Expr: 
+//	=>exprsimple=ExprSimple | exprAnd=ExprAnd
+//;	
+//
+//ExprAnd:
+//	=>(exprOr=ExprOr '&&' exprAnd=ExprAnd) | exprOr=ExprOr
+//;
+//
+//ExprOr:
+//	=>(exprNot=ExprNot '||' exprOr=ExprOr) | exprNot=ExprNot
+//;
+//
+//ExprNot:
+//	('!' exprEq=ExprEq) | exprEq=ExprEq
+//;
+//
+//ExprEq:
+//	(exprSimple1=ExprSimple'=?'exprSimple2=ExprSimple) | '('expr=Expr')'
+//;
+//
+//Vars:
+//	(variable=VARIABLE ',' vars=Vars) | variable=VARIABLE
+//;	
+//Exprs:
+//	=>(expr=Expr ',' exprs=Exprs) | expr=Expr
+//;
+//	
+//ExprSimple:
+//	nil=Nil | variable=VARIABLE | symbol=SYMBOL |
+//	'(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' |
+//	'(' hd=Hd expr=Expr ')' | '(' tl=Tl expr=Expr ')' |
+//	'(' symbol=SYMBOL lexpr=Lexpr ')'
+//;
+//
+//Cons:
+//	cons='cons'
+//;
+//
+//List:
+//	list='list'
+//;
+//
+//Hd:
+//	hd='hd'
+//;
+//
+//Tl:
+//	tl='tl'
+//;
+//Lexpr:
+//	expr=Expr lexpr=Lexpr
+//;
+//
+//terminal VARIABLE:
+//	'A'..'Z'('A'..'Z'|'a'..'z')*
+//;
+//	
+//terminal SYMBOL:
+//	'a'..'z'('A'..'Z'|'a'..'z'|'0'..'9')*
+//	((('-'|'+'|'.'|'/'|'_'|'&')|"->")('A'..'Z'|'a'..'z'|'0'..'9')+)*
+//	('!'|'?')?
+//;
+//
+//terminal NOMBRE:
+//	('1'..'9')('0'..'9')*
+//;

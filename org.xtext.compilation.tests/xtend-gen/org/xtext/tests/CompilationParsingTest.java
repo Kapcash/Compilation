@@ -12,7 +12,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.xtext.compilation.Model;
+import org.xtext.compilation.Program;
 import org.xtext.tests.CompilationInjectorProvider;
 
 @RunWith(XtextRunner.class)
@@ -20,7 +20,7 @@ import org.xtext.tests.CompilationInjectorProvider;
 @SuppressWarnings("all")
 public class CompilationParsingTest {
   @Inject
-  private ParseHelper<Model> parseHelper;
+  private ParseHelper<Program> parseHelper;
   
   @Test
   public void loadModel() {
@@ -28,7 +28,7 @@ public class CompilationParsingTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Hello Xtext!");
       _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
+      final Program result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

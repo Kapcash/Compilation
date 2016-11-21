@@ -27,7 +27,7 @@ public class CompilationParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "Program";
 	}
 
 	public CompilationGrammarAccess getGrammarAccess() {

@@ -1,0 +1,11 @@
+function personne:
+read taille
+%
+%
+write age
+
+function groupe:
+read nom
+%
+%
+write coucou

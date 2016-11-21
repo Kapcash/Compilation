@@ -9,6 +9,6 @@ Require-Bundle: org.xtext.compilation,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.ide.contentassist.antlr.internal,
- org.xtext.ide.contentassist.antlr
+Export-Package: org.xtext.compilation.ide.contentassist.antlr.internal,
+ org.xtext.compilation.ide.contentassist.antlr
 

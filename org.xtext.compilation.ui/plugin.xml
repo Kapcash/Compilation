@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="wh"
-			id="org.xtext.Compilation"
-			name="Compilation Editor">
+			id="org.xtext.compilation.WhileComp"
+			name="WhileComp Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.Compilation.Editor.opened">
+					definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="org.xtext.Compilation.validate">
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="org.xtext.compilation.WhileComp.validate">
 		<activeWhen>
 			<reference
-					definitionId="org.xtext.Compilation.Editor.opened">
+					definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 			</reference>
 		</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="org.xtext.Compilation.Editor.opened" />
+				<reference definitionId="org.xtext.compilation.WhileComp.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="org.xtext.Compilation.XtextEditor.opened" />
+					<reference definitionId="org.xtext.compilation.WhileComp.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="org.xtext.Compilation.Editor.opened">
+		<definition id="org.xtext.compilation.WhileComp.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.xtext.Compilation" 
+						value="org.xtext.compilation.WhileComp" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
 		</definition>
-		<definition id="org.xtext.Compilation.XtextEditor.opened">
+		<definition id="org.xtext.compilation.WhileComp.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.xtext.Compilation" 
+						value="org.xtext.compilation.WhileComp" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
@@ -78,33 +78,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.xtext.Compilation"
-			name="Compilation">
-			<keywordReference id="org.xtext.ui.keyword_Compilation"/>
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.xtext.compilation.WhileComp"
+			name="WhileComp">
+			<keywordReference id="org.xtext.compilation.ui.keyword_WhileComp"/>
 		</page>
 		<page
-			category="org.xtext.Compilation"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="org.xtext.Compilation.coloring"
+			category="org.xtext.compilation.WhileComp"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="org.xtext.compilation.WhileComp.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="org.xtext.ui.keyword_Compilation"/>
+			<keywordReference id="org.xtext.compilation.ui.keyword_WhileComp"/>
 		</page>
 		<page
-			category="org.xtext.Compilation"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="org.xtext.Compilation.templates"
+			category="org.xtext.compilation.WhileComp"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="org.xtext.compilation.WhileComp.templates"
 			name="Templates">
-			<keywordReference id="org.xtext.ui.keyword_Compilation"/>
+			<keywordReference id="org.xtext.compilation.ui.keyword_WhileComp"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.xtext.Compilation"
-			name="Compilation">
-			<keywordReference id="org.xtext.ui.keyword_Compilation"/>
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.xtext.compilation.WhileComp"
+			name="WhileComp">
+			<keywordReference id="org.xtext.compilation.ui.keyword_WhileComp"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,14 +114,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="org.xtext.ui.keyword_Compilation"
-			label="Compilation"/>
+			id="org.xtext.compilation.ui.keyword_WhileComp"
+			label="WhileComp"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 	<command
 			description="Trigger expensive validation"
-			id="org.xtext.Compilation.validate"
+			id="org.xtext.compilation.WhileComp.validate"
 			name="Validate">
 	</command>
 	<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			 <command
-				 commandId="org.xtext.Compilation.validate"
+				 commandId="org.xtext.compilation.WhileComp.validate"
 				 style="push"
 				 tooltip="Trigger expensive validation">
 			<visibleWhen checkEnabled="false">
 				<reference
-					definitionId="org.xtext.Compilation.Editor.opened">
+					definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 				</reference>
 			</visibleWhen>
 		</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.Compilation.Editor.opened" />
+					<reference definitionId="org.xtext.compilation.WhileComp.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.Compilation.Editor.opened" />
+					<reference definitionId="org.xtext.compilation.WhileComp.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="org.xtext.Compilation.XtextEditor.opened" />
+						<reference definitionId="org.xtext.compilation.WhileComp.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.Compilation.Editor.opened">
+					<reference definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.Compilation.Editor.opened">
+					definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -208,59 +208,59 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="wh">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="wh">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for org.xtext.Compilation -->
+	<!-- marker definitions for org.xtext.compilation.WhileComp -->
 	<extension
-			id="compilation.check.fast"
-			name="Compilation Problem"
+			id="whilecomp.check.fast"
+			name="WhileComp Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.fast"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="compilation.check.normal"
-			name="Compilation Problem"
+			id="whilecomp.check.normal"
+			name="WhileComp Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.normal"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="compilation.check.expensive"
-			name="Compilation Problem"
+			id="whilecomp.check.expensive"
+			name="WhileComp Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
 			fileExtensions="wh"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.xtext.Compilation"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.xtext.Compilation.compiler.preferencePage"
+			category="org.xtext.compilation.WhileComp"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.xtext.compilation.WhileComp.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="org.xtext.ui.keyword_Compilation"/>
+			<keywordReference id="org.xtext.compilation.ui.keyword_WhileComp"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="org.xtext.Compilation"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.xtext.Compilation.compiler.propertyPage"
+			category="org.xtext.compilation.WhileComp"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.xtext.compilation.WhileComp.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="org.xtext.ui.keyword_Compilation"/>
+			<keywordReference id="org.xtext.compilation.ui.keyword_WhileComp"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -271,20 +271,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.xtext.Compilation.OpenGeneratedCode"
+				id="org.xtext.compilation.WhileComp.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.Compilation.Editor.opened" />
+					<reference definitionId="org.xtext.compilation.WhileComp.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="org.xtext.Compilation.Editor.opened" />
+				<reference definitionId="org.xtext.compilation.WhileComp.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -292,11 +292,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.Compilation.Editor.opened">
+					definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -316,33 +316,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.xtext.Compilation.Editor.opened"/>
+					<reference definitionId="org.xtext.compilation.WhileComp.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for org.xtext.Compilation -->
+	<!-- quickfix marker resolution generator for org.xtext.compilation.WhileComp -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.xtext.compilation.ui.compilation.check.fast">
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.xtext.compilation.ui.whilecomp.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.xtext.compilation.ui.compilation.check.normal">
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.xtext.compilation.ui.whilecomp.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.xtext.compilation.ui.compilation.check.expensive">
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.xtext.compilation.ui.whilecomp.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
@@ -352,11 +352,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.xtext.Compilation.Editor.opened">
+					definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -368,7 +368,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="org.xtext.Compilation.Editor.opened">
+						definitionId="org.xtext.compilation.WhileComp.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -376,28 +376,28 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.xtext.Compilation"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="org.xtext.Compilation.refactoring"
+			category="org.xtext.compilation.WhileComp"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="org.xtext.compilation.WhileComp.refactoring"
 			name="Refactoring">
-			<keywordReference id="org.xtext.ui.keyword_Compilation"/>
+			<keywordReference id="org.xtext.compilation.ui.keyword_WhileComp"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="org.xtext.Compilation.compare.contentViewers"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="org.xtext.compilation.WhileComp.compare.contentViewers"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="wh">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="org.xtext.Compilation.compare.contentMergeViewers"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="wh" label="Compilation Compare">
+		<viewer id="org.xtext.compilation.WhileComp.compare.contentMergeViewers"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="wh" label="WhileComp Compare">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="org.xtext.Compilation.editors.documentProviders"
-			class="org.xtext.ui.CompilationExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+		<provider id="org.xtext.compilation.WhileComp.editors.documentProviders"
+			class="org.xtext.compilation.ui.WhileCompExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
 			extensions="wh">
 		</provider>
 	</extension>

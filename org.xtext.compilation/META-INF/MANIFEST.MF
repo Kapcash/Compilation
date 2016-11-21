@@ -15,15 +15,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.parser.antlr.internal,
- org.xtext.generator,
- org.xtext.validation,
- org.xtext.serializer,
+Export-Package: org.xtext.compilation.whileComp,
+ org.xtext.compilation.whileComp.util,
+ org.xtext.compilation.services,
+ org.xtext.compilation.parser.antlr,
  org.xtext.compilation,
- org.xtext.compilation.impl,
- org.xtext.parser.antlr,
- org.xtext.services,
- org.xtext.scoping,
- org.xtext.compilation.util,
- org.xtext
+ org.xtext.compilation.whileComp.impl,
+ org.xtext.compilation.scoping,
+ org.xtext.compilation.serializer,
+ org.xtext.compilation.parser.antlr.internal,
+ org.xtext.compilation.validation,
+ org.xtext.compilation.generator
 Import-Package: org.apache.log4j

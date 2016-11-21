@@ -19,7 +19,7 @@ Require-Bundle: org.xtext.compilation,
  org.eclipse.xtext.xbase.lib
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.xtext.ui.quickfix,
- org.xtext.ui.contentassist,
+Export-Package: org.xtext.compilation.ui.quickfix,
+ org.xtext.compilation.ui.contentassist,
  org.xtext.compilation.ui.internal
 Bundle-Activator: org.xtext.compilation.ui.internal.CompilationActivator

@@ -14,8 +14,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
 import org.osgi.framework.BundleContext;
-import org.xtext.CompilationRuntimeModule;
-import org.xtext.ui.CompilationUiModule;
+import org.xtext.compilation.WhileCompRuntimeModule;
+import org.xtext.compilation.ui.WhileCompUiModule;
 
 /**
  * This class was generated. Customizations should only happen in a newly
@@ -23,7 +23,7 @@ import org.xtext.ui.CompilationUiModule;
  */
 public class CompilationActivator extends AbstractUIPlugin {
 
-	public static final String ORG_XTEXT_COMPILATION = "org.xtext.Compilation";
+	public static final String ORG_XTEXT_COMPILATION_WHILECOMP = "org.xtext.compilation.WhileComp";
 	
 	private static final Logger logger = Logger.getLogger(CompilationActivator.class);
 	
@@ -73,15 +73,15 @@ public class CompilationActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getRuntimeModule(String grammar) {
-		if (ORG_XTEXT_COMPILATION.equals(grammar)) {
-			return new CompilationRuntimeModule();
+		if (ORG_XTEXT_COMPILATION_WHILECOMP.equals(grammar)) {
+			return new WhileCompRuntimeModule();
 		}
 		throw new IllegalArgumentException(grammar);
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (ORG_XTEXT_COMPILATION.equals(grammar)) {
-			return new CompilationUiModule(this);
+		if (ORG_XTEXT_COMPILATION_WHILECOMP.equals(grammar)) {
+			return new WhileCompUiModule(this);
 		}
 		throw new IllegalArgumentException(grammar);
 	}

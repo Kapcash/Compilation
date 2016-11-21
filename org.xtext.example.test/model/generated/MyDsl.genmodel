@@ -7,15 +7,26 @@
   <genPackages prefix="MyDsl" basePackage="org.xtext.example.test" disposableProviderFactory="true"
       fileExtensions="test" ecorePackage="MyDsl.ecore#/">
     <genClasses ecoreClass="MyDsl.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Model/classes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Model/functions"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Classe">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Classe/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Classe/attributs"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Function">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Function/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Function/reads"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Function/commands"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Function/writes"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Attribut">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Attribut/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Attribut/name"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Read">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Read/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Write">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Write/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Command">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Command/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Nop"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Affectation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Affectation/valeur"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

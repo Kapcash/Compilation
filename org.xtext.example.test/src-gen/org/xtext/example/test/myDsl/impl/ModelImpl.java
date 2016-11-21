@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.test.myDsl.Classe;
+import org.xtext.example.test.myDsl.Function;
 import org.xtext.example.test.myDsl.Model;
 import org.xtext.example.test.myDsl.MyDslPackage;
 
@@ -29,7 +29,7 @@ import org.xtext.example.test.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.test.myDsl.impl.ModelImpl#getClasses <em>Classes</em>}</li>
+ *   <li>{@link org.xtext.example.test.myDsl.impl.ModelImpl#getFunctions <em>Functions</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,14 +37,14 @@ import org.xtext.example.test.myDsl.MyDslPackage;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
+   * The cached value of the '{@link #getFunctions() <em>Functions</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getClasses()
+   * @see #getFunctions()
    * @generated
    * @ordered
    */
-  protected EList<Classe> classes;
+  protected EList<Function> functions;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,13 +72,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Classe> getClasses()
+  public EList<Function> getFunctions()
   {
-    if (classes == null)
+    if (functions == null)
     {
-      classes = new EObjectContainmentEList<Classe>(Classe.class, this, MyDslPackage.MODEL__CLASSES);
+      functions = new EObjectContainmentEList<Function>(Function.class, this, MyDslPackage.MODEL__FUNCTIONS);
     }
-    return classes;
+    return functions;
   }
 
   /**
@@ -91,8 +91,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__CLASSES:
-        return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.MODEL__FUNCTIONS:
+        return ((InternalEList<?>)getFunctions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -107,8 +107,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__CLASSES:
-        return getClasses();
+      case MyDslPackage.MODEL__FUNCTIONS:
+        return getFunctions();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,9 +124,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__CLASSES:
-        getClasses().clear();
-        getClasses().addAll((Collection<? extends Classe>)newValue);
+      case MyDslPackage.MODEL__FUNCTIONS:
+        getFunctions().clear();
+        getFunctions().addAll((Collection<? extends Function>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +142,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__CLASSES:
-        getClasses().clear();
+      case MyDslPackage.MODEL__FUNCTIONS:
+        getFunctions().clear();
         return;
     }
     super.eUnset(featureID);
@@ -159,8 +159,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case MyDslPackage.MODEL__CLASSES:
-        return classes != null && !classes.isEmpty();
+      case MyDslPackage.MODEL__FUNCTIONS:
+        return functions != null && !functions.isEmpty();
     }
     return super.eIsSet(featureID);
   }

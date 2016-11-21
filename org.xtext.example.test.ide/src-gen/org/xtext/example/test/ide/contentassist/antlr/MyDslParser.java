@@ -35,14 +35,25 @@ public class MyDslParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getAttributAccess().getTypeAlternatives_0_0(), "rule__Attribut__TypeAlternatives_0_0");
-					put(grammarAccess.getClasseAccess().getGroup(), "rule__Classe__Group__0");
-					put(grammarAccess.getAttributAccess().getGroup(), "rule__Attribut__Group__0");
-					put(grammarAccess.getModelAccess().getClassesAssignment(), "rule__Model__ClassesAssignment");
-					put(grammarAccess.getClasseAccess().getNameAssignment_1(), "rule__Classe__NameAssignment_1");
-					put(grammarAccess.getClasseAccess().getAttributsAssignment_3(), "rule__Classe__AttributsAssignment_3");
-					put(grammarAccess.getAttributAccess().getTypeAssignment_0(), "rule__Attribut__TypeAssignment_0");
-					put(grammarAccess.getAttributAccess().getNameAssignment_1(), "rule__Attribut__NameAssignment_1");
+					put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
+					put(grammarAccess.getFunctionAccess().getGroup(), "rule__Function__Group__0");
+					put(grammarAccess.getReadAccess().getGroup(), "rule__Read__Group__0");
+					put(grammarAccess.getReadAccess().getGroup_2(), "rule__Read__Group_2__0");
+					put(grammarAccess.getWriteAccess().getGroup(), "rule__Write__Group__0");
+					put(grammarAccess.getWriteAccess().getGroup_2(), "rule__Write__Group_2__0");
+					put(grammarAccess.getAffectationAccess().getGroup(), "rule__Affectation__Group__0");
+					put(grammarAccess.getModelAccess().getFunctionsAssignment(), "rule__Model__FunctionsAssignment");
+					put(grammarAccess.getFunctionAccess().getNameAssignment_1(), "rule__Function__NameAssignment_1");
+					put(grammarAccess.getFunctionAccess().getReadsAssignment_3(), "rule__Function__ReadsAssignment_3");
+					put(grammarAccess.getFunctionAccess().getCommandsAssignment_5(), "rule__Function__CommandsAssignment_5");
+					put(grammarAccess.getFunctionAccess().getWritesAssignment_7(), "rule__Function__WritesAssignment_7");
+					put(grammarAccess.getReadAccess().getNameAssignment_1(), "rule__Read__NameAssignment_1");
+					put(grammarAccess.getReadAccess().getNameAssignment_2_1(), "rule__Read__NameAssignment_2_1");
+					put(grammarAccess.getWriteAccess().getNameAssignment_1(), "rule__Write__NameAssignment_1");
+					put(grammarAccess.getWriteAccess().getNameAssignment_2_1(), "rule__Write__NameAssignment_2_1");
+					put(grammarAccess.getNopAccess().getNameAssignment(), "rule__Nop__NameAssignment");
+					put(grammarAccess.getAffectationAccess().getNameAssignment_0(), "rule__Affectation__NameAssignment_0");
+					put(grammarAccess.getAffectationAccess().getValeurAssignment_2(), "rule__Affectation__ValeurAssignment_2");
 				}
 			};
 		}

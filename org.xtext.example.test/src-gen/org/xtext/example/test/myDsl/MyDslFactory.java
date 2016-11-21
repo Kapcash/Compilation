@@ -33,22 +33,58 @@ public interface MyDslFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Classe</em>'.
+   * Returns a new object of class '<em>Function</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Classe</em>'.
+   * @return a new object of class '<em>Function</em>'.
    * @generated
    */
-  Classe createClasse();
+  Function createFunction();
 
   /**
-   * Returns a new object of class '<em>Attribut</em>'.
+   * Returns a new object of class '<em>Read</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Attribut</em>'.
+   * @return a new object of class '<em>Read</em>'.
    * @generated
    */
-  Attribut createAttribut();
+  Read createRead();
+
+  /**
+   * Returns a new object of class '<em>Write</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Write</em>'.
+   * @generated
+   */
+  Write createWrite();
+
+  /**
+   * Returns a new object of class '<em>Command</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Command</em>'.
+   * @generated
+   */
+  Command createCommand();
+
+  /**
+   * Returns a new object of class '<em>Nop</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Nop</em>'.
+   * @generated
+   */
+  Nop createNop();
+
+  /**
+   * Returns a new object of class '<em>Affectation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Affectation</em>'.
+   * @generated
+   */
+  Affectation createAffectation();
 
   /**
    * Returns the package supported by this factory.

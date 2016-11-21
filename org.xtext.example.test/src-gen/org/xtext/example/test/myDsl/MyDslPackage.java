@@ -68,13 +68,13 @@ public interface MyDslPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Classes</b></em>' containment reference list.
+   * The feature id for the '<em><b>Functions</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__CLASSES = 0;
+  int MODEL__FUNCTIONS = 0;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -86,14 +86,14 @@ public interface MyDslPackage extends EPackage
   int MODEL_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.ClasseImpl <em>Classe</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.FunctionImpl <em>Function</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.test.myDsl.impl.ClasseImpl
-   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getClasse()
+   * @see org.xtext.example.test.myDsl.impl.FunctionImpl
+   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getFunction()
    * @generated
    */
-  int CLASSE = 1;
+  int FUNCTION = 1;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -102,44 +102,109 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASSE__NAME = 0;
+  int FUNCTION__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Attributs</b></em>' containment reference list.
+   * The feature id for the '<em><b>Reads</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASSE__ATTRIBUTS = 1;
+  int FUNCTION__READS = 1;
 
   /**
-   * The number of structural features of the '<em>Classe</em>' class.
+   * The feature id for the '<em><b>Commands</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASSE_FEATURE_COUNT = 2;
+  int FUNCTION__COMMANDS = 2;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.AttributImpl <em>Attribut</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.test.myDsl.impl.AttributImpl
-   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getAttribut()
-   * @generated
-   */
-  int ATTRIBUT = 2;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Writes</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUT__TYPE = 0;
+  int FUNCTION__WRITES = 3;
+
+  /**
+   * The number of structural features of the '<em>Function</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.ReadImpl <em>Read</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.test.myDsl.impl.ReadImpl
+   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getRead()
+   * @generated
+   */
+  int READ = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int READ__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Read</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int READ_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.WriteImpl <em>Write</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.test.myDsl.impl.WriteImpl
+   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getWrite()
+   * @generated
+   */
+  int WRITE = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WRITE__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Write</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WRITE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.CommandImpl <em>Command</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.test.myDsl.impl.CommandImpl
+   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getCommand()
+   * @generated
+   */
+  int COMMAND = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -148,16 +213,81 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUT__NAME = 1;
+  int COMMAND__NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Attribut</em>' class.
+   * The number of structural features of the '<em>Command</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUT_FEATURE_COUNT = 2;
+  int COMMAND_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.NopImpl <em>Nop</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.test.myDsl.impl.NopImpl
+   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getNop()
+   * @generated
+   */
+  int NOP = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NOP__NAME = COMMAND__NAME;
+
+  /**
+   * The number of structural features of the '<em>Nop</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NOP_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.test.myDsl.impl.AffectationImpl <em>Affectation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.test.myDsl.impl.AffectationImpl
+   * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getAffectation()
+   * @generated
+   */
+  int AFFECTATION = 6;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AFFECTATION__NAME = COMMAND__NAME;
+
+  /**
+   * The feature id for the '<em><b>Valeur</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AFFECTATION__VALEUR = COMMAND_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Affectation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AFFECTATION_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
 
 
   /**
@@ -171,79 +301,163 @@ public interface MyDslPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.test.myDsl.Model#getClasses <em>Classes</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.test.myDsl.Model#getFunctions <em>Functions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Classes</em>'.
-   * @see org.xtext.example.test.myDsl.Model#getClasses()
+   * @return the meta object for the containment reference list '<em>Functions</em>'.
+   * @see org.xtext.example.test.myDsl.Model#getFunctions()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Classes();
+  EReference getModel_Functions();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Classe <em>Classe</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Function <em>Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Classe</em>'.
-   * @see org.xtext.example.test.myDsl.Classe
+   * @return the meta object for class '<em>Function</em>'.
+   * @see org.xtext.example.test.myDsl.Function
    * @generated
    */
-  EClass getClasse();
+  EClass getFunction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.test.myDsl.Classe#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.test.myDsl.Classe#getName()
-   * @see #getClasse()
-   * @generated
-   */
-  EAttribute getClasse_Name();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.test.myDsl.Classe#getAttributs <em>Attributs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Attributs</em>'.
-   * @see org.xtext.example.test.myDsl.Classe#getAttributs()
-   * @see #getClasse()
-   * @generated
-   */
-  EReference getClasse_Attributs();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Attribut <em>Attribut</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Attribut</em>'.
-   * @see org.xtext.example.test.myDsl.Attribut
-   * @generated
-   */
-  EClass getAttribut();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.test.myDsl.Attribut#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
-   * @see org.xtext.example.test.myDsl.Attribut#getType()
-   * @see #getAttribut()
-   * @generated
-   */
-  EAttribute getAttribut_Type();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.test.myDsl.Attribut#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.test.myDsl.Function#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.example.test.myDsl.Attribut#getName()
-   * @see #getAttribut()
+   * @see org.xtext.example.test.myDsl.Function#getName()
+   * @see #getFunction()
    * @generated
    */
-  EAttribute getAttribut_Name();
+  EAttribute getFunction_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.test.myDsl.Function#getReads <em>Reads</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Reads</em>'.
+   * @see org.xtext.example.test.myDsl.Function#getReads()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_Reads();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.test.myDsl.Function#getCommands <em>Commands</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Commands</em>'.
+   * @see org.xtext.example.test.myDsl.Function#getCommands()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_Commands();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.test.myDsl.Function#getWrites <em>Writes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Writes</em>'.
+   * @see org.xtext.example.test.myDsl.Function#getWrites()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_Writes();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Read <em>Read</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Read</em>'.
+   * @see org.xtext.example.test.myDsl.Read
+   * @generated
+   */
+  EClass getRead();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.test.myDsl.Read#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Name</em>'.
+   * @see org.xtext.example.test.myDsl.Read#getName()
+   * @see #getRead()
+   * @generated
+   */
+  EAttribute getRead_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Write <em>Write</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Write</em>'.
+   * @see org.xtext.example.test.myDsl.Write
+   * @generated
+   */
+  EClass getWrite();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.test.myDsl.Write#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Name</em>'.
+   * @see org.xtext.example.test.myDsl.Write#getName()
+   * @see #getWrite()
+   * @generated
+   */
+  EAttribute getWrite_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Command <em>Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Command</em>'.
+   * @see org.xtext.example.test.myDsl.Command
+   * @generated
+   */
+  EClass getCommand();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.test.myDsl.Command#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.test.myDsl.Command#getName()
+   * @see #getCommand()
+   * @generated
+   */
+  EAttribute getCommand_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Nop <em>Nop</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Nop</em>'.
+   * @see org.xtext.example.test.myDsl.Nop
+   * @generated
+   */
+  EClass getNop();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.test.myDsl.Affectation <em>Affectation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Affectation</em>'.
+   * @see org.xtext.example.test.myDsl.Affectation
+   * @generated
+   */
+  EClass getAffectation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.test.myDsl.Affectation#getValeur <em>Valeur</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Valeur</em>'.
+   * @see org.xtext.example.test.myDsl.Affectation#getValeur()
+   * @see #getAffectation()
+   * @generated
+   */
+  EAttribute getAffectation_Valeur();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -279,56 +493,22 @@ public interface MyDslPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Functions</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__CLASSES = eINSTANCE.getModel_Classes();
+    EReference MODEL__FUNCTIONS = eINSTANCE.getModel_Functions();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.ClasseImpl <em>Classe</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.FunctionImpl <em>Function</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.test.myDsl.impl.ClasseImpl
-     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getClasse()
+     * @see org.xtext.example.test.myDsl.impl.FunctionImpl
+     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getFunction()
      * @generated
      */
-    EClass CLASSE = eINSTANCE.getClasse();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CLASSE__NAME = eINSTANCE.getClasse_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Attributs</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CLASSE__ATTRIBUTS = eINSTANCE.getClasse_Attributs();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.AttributImpl <em>Attribut</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.test.myDsl.impl.AttributImpl
-     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getAttribut()
-     * @generated
-     */
-    EClass ATTRIBUT = eINSTANCE.getAttribut();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ATTRIBUT__TYPE = eINSTANCE.getAttribut_Type();
+    EClass FUNCTION = eINSTANCE.getFunction();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -336,7 +516,113 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ATTRIBUT__NAME = eINSTANCE.getAttribut_Name();
+    EAttribute FUNCTION__NAME = eINSTANCE.getFunction_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Reads</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__READS = eINSTANCE.getFunction_Reads();
+
+    /**
+     * The meta object literal for the '<em><b>Commands</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__COMMANDS = eINSTANCE.getFunction_Commands();
+
+    /**
+     * The meta object literal for the '<em><b>Writes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__WRITES = eINSTANCE.getFunction_Writes();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.ReadImpl <em>Read</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.test.myDsl.impl.ReadImpl
+     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getRead()
+     * @generated
+     */
+    EClass READ = eINSTANCE.getRead();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute READ__NAME = eINSTANCE.getRead_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.WriteImpl <em>Write</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.test.myDsl.impl.WriteImpl
+     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getWrite()
+     * @generated
+     */
+    EClass WRITE = eINSTANCE.getWrite();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute WRITE__NAME = eINSTANCE.getWrite_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.CommandImpl <em>Command</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.test.myDsl.impl.CommandImpl
+     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getCommand()
+     * @generated
+     */
+    EClass COMMAND = eINSTANCE.getCommand();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMMAND__NAME = eINSTANCE.getCommand_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.NopImpl <em>Nop</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.test.myDsl.impl.NopImpl
+     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getNop()
+     * @generated
+     */
+    EClass NOP = eINSTANCE.getNop();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.test.myDsl.impl.AffectationImpl <em>Affectation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.test.myDsl.impl.AffectationImpl
+     * @see org.xtext.example.test.myDsl.impl.MyDslPackageImpl#getAffectation()
+     * @generated
+     */
+    EClass AFFECTATION = eINSTANCE.getAffectation();
+
+    /**
+     * The meta object literal for the '<em><b>Valeur</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AFFECTATION__VALEUR = eINSTANCE.getAffectation_Valeur();
 
   }
 

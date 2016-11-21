@@ -11,11 +11,16 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
-import org.xtext.example.test.myDsl.Attribut;
-import org.xtext.example.test.myDsl.Classe;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.xtext.example.test.myDsl.Affectation;
+import org.xtext.example.test.myDsl.Function;
 import org.xtext.example.test.myDsl.Model;
 import org.xtext.example.test.myDsl.MyDslPackage;
+import org.xtext.example.test.myDsl.Nop;
+import org.xtext.example.test.myDsl.Read;
+import org.xtext.example.test.myDsl.Write;
 import org.xtext.example.test.services.MyDslGrammarAccess;
 
 @SuppressWarnings("all")
@@ -32,14 +37,23 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == MyDslPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case MyDslPackage.ATTRIBUT:
-				sequence_Attribut(context, (Attribut) semanticObject); 
+			case MyDslPackage.AFFECTATION:
+				sequence_Affectation(context, (Affectation) semanticObject); 
 				return; 
-			case MyDslPackage.CLASSE:
-				sequence_Classe(context, (Classe) semanticObject); 
+			case MyDslPackage.FUNCTION:
+				sequence_Function(context, (Function) semanticObject); 
 				return; 
 			case MyDslPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case MyDslPackage.NOP:
+				sequence_Nop(context, (Nop) semanticObject); 
+				return; 
+			case MyDslPackage.READ:
+				sequence_Read(context, (Read) semanticObject); 
+				return; 
+			case MyDslPackage.WRITE:
+				sequence_Write(context, (Write) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -48,24 +62,34 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Attribut returns Attribut
+	 *     Command returns Affectation
+	 *     Affectation returns Affectation
 	 *
 	 * Constraint:
-	 *     ((type='int' | type='float' | type='boolean' | type='char' | type='String') name=ID)
+	 *     (name=ID valeur=INT)
 	 */
-	protected void sequence_Attribut(ISerializationContext context, Attribut semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_Affectation(ISerializationContext context, Affectation semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.COMMAND__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.COMMAND__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.AFFECTATION__VALEUR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.AFFECTATION__VALEUR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAffectationAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getAffectationAccess().getValeurINTTerminalRuleCall_2_0(), semanticObject.getValeur());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Classe returns Classe
+	 *     Function returns Function
 	 *
 	 * Constraint:
-	 *     (name=ID attributs+=Attribut*)
+	 *     (name=ID reads+=Read commands+=Command* writes+=Write)
 	 */
-	protected void sequence_Classe(ISerializationContext context, Classe semanticObject) {
+	protected void sequence_Function(ISerializationContext context, Function semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -75,9 +99,52 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     classes+=Classe+
+	 *     functions+=Function+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Command returns Nop
+	 *     Nop returns Nop
+	 *
+	 * Constraint:
+	 *     name='nop'
+	 */
+	protected void sequence_Nop(ISerializationContext context, Nop semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.COMMAND__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.COMMAND__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNopAccess().getNameNopKeyword_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Read returns Read
+	 *
+	 * Constraint:
+	 *     (name+=ID name+=ID*)
+	 */
+	protected void sequence_Read(ISerializationContext context, Read semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Write returns Write
+	 *
+	 * Constraint:
+	 *     (name+=ID name+=ID*)
+	 */
+	protected void sequence_Write(ISerializationContext context, Write semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

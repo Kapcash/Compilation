@@ -3,13 +3,29 @@ grammar org.xtext.example.test.MyDsl with org.eclipse.xtext.common.Terminals
 generate myDsl "http://www.xtext.org/example/test/MyDsl"
 
 Model:
-	classes+=Classe*;
+	functions+=Function*;
 	
-Classe:
-	'Class' name=ID '{'
-		attributs += Attribut*
-		'}'
+Function:
+	'function' name=ID ':'
+	reads += Read
+	'%'
+	commands+=Command*
+	'%'
+	writes+=Write
 		;
-Attribut:
-	type=('int'|'float'|'boolean'|'char'|'String') name=ID ';'
+
+Read :
+	'read' name+=ID (',' name+=ID)*
+;
+Write :
+	'write' name+=ID (',' name+=ID)*
+;
+Command:
+	Nop | Affectation 
+;
+Nop:
+	name='nop'
+;
+Affectation:
+	(name=ID ':=' valeur=INT) 
 ;

@@ -1,12 +1,11 @@
-';'=19
-'Class'=16
-'String'=15
-'boolean'=13
-'char'=14
-'float'=12
-'int'=11
-'{'=17
-'}'=18
+'%'=13
+','=15
+':'=12
+':='=17
+'function'=11
+'nop'=18
+'read'=14
+'write'=16
 RULE_ANY_OTHER=10
 RULE_ID=4
 RULE_INT=5
@@ -22,4 +21,3 @@ T__15=15
 T__16=16
 T__17=17
 T__18=18
-T__19=19

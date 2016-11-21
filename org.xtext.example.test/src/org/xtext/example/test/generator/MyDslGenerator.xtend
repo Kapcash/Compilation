@@ -7,7 +7,9 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import org.xtext.example.test.myDsl.Classe
+import org.xtext.example.test.myDsl.Function
+import org.xtext.example.test.myDsl.Affectation
+import org.xtext.example.test.myDsl.Nop
 
 /**
  * Generates code from your model files on save.
@@ -17,20 +19,30 @@ import org.xtext.example.test.myDsl.Classe
 class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-	for (e : resource.allContents.toIterable.filter(typeof(Classe))){
+	for (e : resource.allContents.toIterable.filter(typeof(Function))){
 		fsa.generateFile(
-		"entities/" + e.name + ".java",
+		"entities/" + e.name + ".test",
 		e.compile)
 }
 	}
-	def compile (Classe c){'''
-		public interface «c.name» {
-			«FOR f : c.attributs»
-				void set «f.name»;
-				«f.name» get«f.name.toFirstUpper»();
-			«ENDFOR»
-		}
-	'''
-		
+	def compile (Function c){'''
+		function «c.name» :
+		«FOR f : c.reads»
+		read«FOR param: f.name SEPARATOR ','» «param»«ENDFOR»
+		«ENDFOR»
+		%
+		«FOR f : c.commands»
+		«IF f instanceof Affectation»
+			«"	"»«f.name» :=«f.valeur»
+		«ENDIF»
+		«IF f instanceof Nop»
+			«"	"»nop
+		«ENDIF»
+		«ENDFOR»
+		%
+		«FOR f : c.writes»
+		write«FOR param: f.name SEPARATOR ','» «param»«ENDFOR»
+		«ENDFOR»
+	'''	
 	}
 }

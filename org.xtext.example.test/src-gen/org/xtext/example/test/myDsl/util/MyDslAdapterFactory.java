@@ -81,14 +81,34 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-      public Adapter caseClasse(Classe object)
+      public Adapter caseFunction(Function object)
       {
-        return createClasseAdapter();
+        return createFunctionAdapter();
       }
       @Override
-      public Adapter caseAttribut(Attribut object)
+      public Adapter caseRead(Read object)
       {
-        return createAttributAdapter();
+        return createReadAdapter();
+      }
+      @Override
+      public Adapter caseWrite(Write object)
+      {
+        return createWriteAdapter();
+      }
+      @Override
+      public Adapter caseCommand(Command object)
+      {
+        return createCommandAdapter();
+      }
+      @Override
+      public Adapter caseNop(Nop object)
+      {
+        return createNopAdapter();
+      }
+      @Override
+      public Adapter caseAffectation(Affectation object)
+      {
+        return createAffectationAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -128,31 +148,91 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Classe <em>Classe</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Function <em>Function</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.test.myDsl.Classe
+   * @see org.xtext.example.test.myDsl.Function
    * @generated
    */
-  public Adapter createClasseAdapter()
+  public Adapter createFunctionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Attribut <em>Attribut</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Read <em>Read</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.test.myDsl.Attribut
+   * @see org.xtext.example.test.myDsl.Read
    * @generated
    */
-  public Adapter createAttributAdapter()
+  public Adapter createReadAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Write <em>Write</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.test.myDsl.Write
+   * @generated
+   */
+  public Adapter createWriteAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Command <em>Command</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.test.myDsl.Command
+   * @generated
+   */
+  public Adapter createCommandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Nop <em>Nop</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.test.myDsl.Nop
+   * @generated
+   */
+  public Adapter createNopAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.test.myDsl.Affectation <em>Affectation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.test.myDsl.Affectation
+   * @generated
+   */
+  public Adapter createAffectationAdapter()
   {
     return null;
   }

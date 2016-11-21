@@ -66,8 +66,12 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
     switch (eClass.getClassifierID())
     {
       case MyDslPackage.MODEL: return createModel();
-      case MyDslPackage.CLASSE: return createClasse();
-      case MyDslPackage.ATTRIBUT: return createAttribut();
+      case MyDslPackage.FUNCTION: return createFunction();
+      case MyDslPackage.READ: return createRead();
+      case MyDslPackage.WRITE: return createWrite();
+      case MyDslPackage.COMMAND: return createCommand();
+      case MyDslPackage.NOP: return createNop();
+      case MyDslPackage.AFFECTATION: return createAffectation();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -89,10 +93,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Classe createClasse()
+  public Function createFunction()
   {
-    ClasseImpl classe = new ClasseImpl();
-    return classe;
+    FunctionImpl function = new FunctionImpl();
+    return function;
   }
 
   /**
@@ -100,10 +104,54 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Attribut createAttribut()
+  public Read createRead()
   {
-    AttributImpl attribut = new AttributImpl();
-    return attribut;
+    ReadImpl read = new ReadImpl();
+    return read;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Write createWrite()
+  {
+    WriteImpl write = new WriteImpl();
+    return write;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Command createCommand()
+  {
+    CommandImpl command = new CommandImpl();
+    return command;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Nop createNop()
+  {
+    NopImpl nop = new NopImpl();
+    return nop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Affectation createAffectation()
+  {
+    AffectationImpl affectation = new AffectationImpl();
+    return affectation;
   }
 
   /**

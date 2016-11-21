@@ -24,41 +24,49 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Model");
-		private final Assignment cClassesAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cClassesClasseParserRuleCall_0 = (RuleCall)cClassesAssignment.eContents().get(0);
+		private final Assignment cFunctionsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cFunctionsFunctionParserRuleCall_0 = (RuleCall)cFunctionsAssignment.eContents().get(0);
 		
 		//Model:
-		//	classes+=Classe*;
+		//	functions+=Function*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//classes+=Classe*
-		public Assignment getClassesAssignment() { return cClassesAssignment; }
+		//functions+=Function*
+		public Assignment getFunctionsAssignment() { return cFunctionsAssignment; }
 		
-		//Classe
-		public RuleCall getClassesClasseParserRuleCall_0() { return cClassesClasseParserRuleCall_0; }
+		//Function
+		public RuleCall getFunctionsFunctionParserRuleCall_0() { return cFunctionsFunctionParserRuleCall_0; }
 	}
-	public class ClasseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Classe");
+	public class FunctionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Function");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cClassKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cFunctionKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cAttributsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cAttributsAttributParserRuleCall_3_0 = (RuleCall)cAttributsAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cReadsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cReadsReadParserRuleCall_3_0 = (RuleCall)cReadsAssignment_3.eContents().get(0);
+		private final Keyword cPercentSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cCommandsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cCommandsCommandParserRuleCall_5_0 = (RuleCall)cCommandsAssignment_5.eContents().get(0);
+		private final Keyword cPercentSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cWritesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cWritesWriteParserRuleCall_7_0 = (RuleCall)cWritesAssignment_7.eContents().get(0);
 		
-		//Classe:
-		//	'Class' name=ID '{'
-		//	attributs+=Attribut*
-		//	'}';
+		//Function:
+		//	'function' name=ID ':'
+		//	reads+=Read
+		//	'%'
+		//	commands+=Command*
+		//	'%'
+		//	writes+=Write;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Class' name=ID '{' attributs+=Attribut* '}'
+		//'function' name=ID ':' reads+=Read '%' commands+=Command* '%' writes+=Write
 		public Group getGroup() { return cGroup; }
 		
-		//'Class'
-		public Keyword getClassKeyword_0() { return cClassKeyword_0; }
+		//'function'
+		public Keyword getFunctionKeyword_0() { return cFunctionKeyword_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -66,74 +74,185 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
-		//attributs+=Attribut*
-		public Assignment getAttributsAssignment_3() { return cAttributsAssignment_3; }
+		//reads+=Read
+		public Assignment getReadsAssignment_3() { return cReadsAssignment_3; }
 		
-		//Attribut
-		public RuleCall getAttributsAttributParserRuleCall_3_0() { return cAttributsAttributParserRuleCall_3_0; }
+		//Read
+		public RuleCall getReadsReadParserRuleCall_3_0() { return cReadsReadParserRuleCall_3_0; }
 		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		//'%'
+		public Keyword getPercentSignKeyword_4() { return cPercentSignKeyword_4; }
+		
+		//commands+=Command*
+		public Assignment getCommandsAssignment_5() { return cCommandsAssignment_5; }
+		
+		//Command
+		public RuleCall getCommandsCommandParserRuleCall_5_0() { return cCommandsCommandParserRuleCall_5_0; }
+		
+		//'%'
+		public Keyword getPercentSignKeyword_6() { return cPercentSignKeyword_6; }
+		
+		//writes+=Write
+		public Assignment getWritesAssignment_7() { return cWritesAssignment_7; }
+		
+		//Write
+		public RuleCall getWritesWriteParserRuleCall_7_0() { return cWritesWriteParserRuleCall_7_0; }
 	}
-	public class AttributElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Attribut");
+	public class ReadElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Read");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Alternatives cTypeAlternatives_0_0 = (Alternatives)cTypeAssignment_0.eContents().get(0);
-		private final Keyword cTypeIntKeyword_0_0_0 = (Keyword)cTypeAlternatives_0_0.eContents().get(0);
-		private final Keyword cTypeFloatKeyword_0_0_1 = (Keyword)cTypeAlternatives_0_0.eContents().get(1);
-		private final Keyword cTypeBooleanKeyword_0_0_2 = (Keyword)cTypeAlternatives_0_0.eContents().get(2);
-		private final Keyword cTypeCharKeyword_0_0_3 = (Keyword)cTypeAlternatives_0_0.eContents().get(3);
-		private final Keyword cTypeStringKeyword_0_0_4 = (Keyword)cTypeAlternatives_0_0.eContents().get(4);
+		private final Keyword cReadKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
 		
-		//Attribut:
-		//	type=('int' | 'float' | 'boolean' | 'char' | 'String') name=ID ';';
+		//Read:
+		//	'read' name+=ID (',' name+=ID)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=('int' | 'float' | 'boolean' | 'char' | 'String') name=ID ';'
+		//'read' name+=ID (',' name+=ID)*
 		public Group getGroup() { return cGroup; }
 		
-		//type=('int' | 'float' | 'boolean' | 'char' | 'String')
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//'read'
+		public Keyword getReadKeyword_0() { return cReadKeyword_0; }
 		
-		//('int' | 'float' | 'boolean' | 'char' | 'String')
-		public Alternatives getTypeAlternatives_0_0() { return cTypeAlternatives_0_0; }
-		
-		//'int'
-		public Keyword getTypeIntKeyword_0_0_0() { return cTypeIntKeyword_0_0_0; }
-		
-		//'float'
-		public Keyword getTypeFloatKeyword_0_0_1() { return cTypeFloatKeyword_0_0_1; }
-		
-		//'boolean'
-		public Keyword getTypeBooleanKeyword_0_0_2() { return cTypeBooleanKeyword_0_0_2; }
-		
-		//'char'
-		public Keyword getTypeCharKeyword_0_0_3() { return cTypeCharKeyword_0_0_3; }
-		
-		//'String'
-		public Keyword getTypeStringKeyword_0_0_4() { return cTypeStringKeyword_0_0_4; }
-		
-		//name=ID
+		//name+=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//';'
-		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+		//(',' name+=ID)*
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		
+		//name+=ID
+		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_1_0() { return cNameIDTerminalRuleCall_2_1_0; }
+	}
+	public class WriteElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Write");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cWriteKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
+		
+		//Write:
+		//	'write' name+=ID (',' name+=ID)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'write' name+=ID (',' name+=ID)*
+		public Group getGroup() { return cGroup; }
+		
+		//'write'
+		public Keyword getWriteKeyword_0() { return cWriteKeyword_0; }
+		
+		//name+=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//(',' name+=ID)*
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		
+		//name+=ID
+		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_1_0() { return cNameIDTerminalRuleCall_2_1_0; }
+	}
+	public class CommandElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Command");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNopParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAffectationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Command:
+		//	Nop | Affectation;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Nop | Affectation
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Nop
+		public RuleCall getNopParserRuleCall_0() { return cNopParserRuleCall_0; }
+		
+		//Affectation
+		public RuleCall getAffectationParserRuleCall_1() { return cAffectationParserRuleCall_1; }
+	}
+	public class NopElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Nop");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cNameNopKeyword_0 = (Keyword)cNameAssignment.eContents().get(0);
+		
+		//Nop:
+		//	name='nop';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name='nop'
+		public Assignment getNameAssignment() { return cNameAssignment; }
+		
+		//'nop'
+		public Keyword getNameNopKeyword_0() { return cNameNopKeyword_0; }
+	}
+	public class AffectationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.test.MyDsl.Affectation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cValeurAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValeurINTTerminalRuleCall_2_0 = (RuleCall)cValeurAssignment_2.eContents().get(0);
+		
+		//Affectation:
+		//	name=ID ':=' valeur=INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ID ':=' valeur=INT
+		public Group getGroup() { return cGroup; }
+		
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		
+		//':='
+		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
+		
+		//valeur=INT
+		public Assignment getValeurAssignment_2() { return cValeurAssignment_2; }
+		
+		//INT
+		public RuleCall getValeurINTTerminalRuleCall_2_0() { return cValeurINTTerminalRuleCall_2_0; }
 	}
 	
 	
 	private final ModelElements pModel;
-	private final ClasseElements pClasse;
-	private final AttributElements pAttribut;
+	private final FunctionElements pFunction;
+	private final ReadElements pRead;
+	private final WriteElements pWrite;
+	private final CommandElements pCommand;
+	private final NopElements pNop;
+	private final AffectationElements pAffectation;
 	
 	private final Grammar grammar;
 	
@@ -145,8 +264,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
-		this.pClasse = new ClasseElements();
-		this.pAttribut = new AttributElements();
+		this.pFunction = new FunctionElements();
+		this.pRead = new ReadElements();
+		this.pWrite = new WriteElements();
+		this.pCommand = new CommandElements();
+		this.pNop = new NopElements();
+		this.pAffectation = new AffectationElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -177,7 +300,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	classes+=Classe*;
+	//	functions+=Function*;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -186,26 +309,69 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 	
-	//Classe:
-	//	'Class' name=ID '{'
-	//	attributs+=Attribut*
-	//	'}';
-	public ClasseElements getClasseAccess() {
-		return pClasse;
+	//Function:
+	//	'function' name=ID ':'
+	//	reads+=Read
+	//	'%'
+	//	commands+=Command*
+	//	'%'
+	//	writes+=Write;
+	public FunctionElements getFunctionAccess() {
+		return pFunction;
 	}
 	
-	public ParserRule getClasseRule() {
-		return getClasseAccess().getRule();
+	public ParserRule getFunctionRule() {
+		return getFunctionAccess().getRule();
 	}
 	
-	//Attribut:
-	//	type=('int' | 'float' | 'boolean' | 'char' | 'String') name=ID ';';
-	public AttributElements getAttributAccess() {
-		return pAttribut;
+	//Read:
+	//	'read' name+=ID (',' name+=ID)*;
+	public ReadElements getReadAccess() {
+		return pRead;
 	}
 	
-	public ParserRule getAttributRule() {
-		return getAttributAccess().getRule();
+	public ParserRule getReadRule() {
+		return getReadAccess().getRule();
+	}
+	
+	//Write:
+	//	'write' name+=ID (',' name+=ID)*;
+	public WriteElements getWriteAccess() {
+		return pWrite;
+	}
+	
+	public ParserRule getWriteRule() {
+		return getWriteAccess().getRule();
+	}
+	
+	//Command:
+	//	Nop | Affectation;
+	public CommandElements getCommandAccess() {
+		return pCommand;
+	}
+	
+	public ParserRule getCommandRule() {
+		return getCommandAccess().getRule();
+	}
+	
+	//Nop:
+	//	name='nop';
+	public NopElements getNopAccess() {
+		return pNop;
+	}
+	
+	public ParserRule getNopRule() {
+		return getNopAccess().getRule();
+	}
+	
+	//Affectation:
+	//	name=ID ':=' valeur=INT;
+	public AffectationElements getAffectationAccess() {
+		return pAffectation;
+	}
+	
+	public ParserRule getAffectationRule() {
+		return getAffectationAccess().getRule();
 	}
 	
 	//terminal ID:

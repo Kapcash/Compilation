@@ -13,9 +13,12 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.xtext.example.test.myDsl.Attribut;
-import org.xtext.example.test.myDsl.Classe;
+import org.xtext.example.test.myDsl.Affectation;
+import org.xtext.example.test.myDsl.Command;
+import org.xtext.example.test.myDsl.Function;
+import org.xtext.example.test.myDsl.Nop;
+import org.xtext.example.test.myDsl.Read;
+import org.xtext.example.test.myDsl.Write;
 
 /**
  * Generates code from your model files on save.
@@ -28,45 +31,90 @@ public class MyDslGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
-    Iterable<Classe> _filter = Iterables.<Classe>filter(_iterable, Classe.class);
-    for (final Classe e : _filter) {
+    Iterable<Function> _filter = Iterables.<Function>filter(_iterable, Function.class);
+    for (final Function e : _filter) {
       String _name = e.getName();
       String _plus = ("entities/" + _name);
-      String _plus_1 = (_plus + ".java");
+      String _plus_1 = (_plus + ".test");
       CharSequence _compile = this.compile(e);
       fsa.generateFile(_plus_1, _compile);
     }
   }
   
-  public CharSequence compile(final Classe c) {
+  public CharSequence compile(final Function c) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public interface ");
+    _builder.append("function ");
     String _name = c.getName();
     _builder.append(_name, "");
-    _builder.append(" {");
+    _builder.append(" :");
     _builder.newLineIfNotEmpty();
     {
-      EList<Attribut> _attributs = c.getAttributs();
-      for(final Attribut f : _attributs) {
-        _builder.append("\t");
-        _builder.append("void set ");
-        String _name_1 = f.getName();
-        _builder.append(_name_1, "\t");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        String _name_2 = f.getName();
-        _builder.append(_name_2, "\t");
-        _builder.append(" get");
-        String _name_3 = f.getName();
-        String _firstUpper = StringExtensions.toFirstUpper(_name_3);
-        _builder.append(_firstUpper, "\t");
-        _builder.append("();");
+      EList<Read> _reads = c.getReads();
+      for(final Read f : _reads) {
+        _builder.append("read");
+        {
+          EList<String> _name_1 = f.getName();
+          boolean _hasElements = false;
+          for(final String param : _name_1) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate(",", "");
+            }
+            _builder.append(" ");
+            _builder.append(param, "");
+          }
+        }
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("}");
+    _builder.append("%");
     _builder.newLine();
+    {
+      EList<Command> _commands = c.getCommands();
+      for(final Command f_1 : _commands) {
+        {
+          if ((f_1 instanceof Affectation)) {
+            _builder.append("\t", "");
+            String _name_2 = ((Affectation)f_1).getName();
+            _builder.append(_name_2, "");
+            _builder.append(" :=");
+            int _valeur = ((Affectation)f_1).getValeur();
+            _builder.append(_valeur, "");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          if ((f_1 instanceof Nop)) {
+            _builder.append("\t", "");
+            _builder.append("nop");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("%");
+    _builder.newLine();
+    {
+      EList<Write> _writes = c.getWrites();
+      for(final Write f_2 : _writes) {
+        _builder.append("write");
+        {
+          EList<String> _name_3 = f_2.getName();
+          boolean _hasElements_1 = false;
+          for(final String param_1 : _name_3) {
+            if (!_hasElements_1) {
+              _hasElements_1 = true;
+            } else {
+              _builder.appendImmediate(",", "");
+            }
+            _builder.append(" ");
+            _builder.append(param_1, "");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
 }

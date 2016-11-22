@@ -96,40 +96,22 @@ public interface WhileCompPackage extends EPackage
   int FUNCTION = 1;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Function</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION__NAME = 0;
+  int FUNCTION__FUNCTION = 0;
 
   /**
-   * The feature id for the '<em><b>Reads</b></em>' containment reference list.
+   * The feature id for the '<em><b>Definition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION__READS = 1;
-
-  /**
-   * The feature id for the '<em><b>Commands</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION__COMMANDS = 2;
-
-  /**
-   * The feature id for the '<em><b>Writes</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION__WRITES = 3;
+  int FUNCTION__DEFINITION = 1;
 
   /**
    * The number of structural features of the '<em>Function</em>' class.
@@ -138,7 +120,53 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_FEATURE_COUNT = 4;
+  int FUNCTION_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.DefinitionImpl <em>Definition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.DefinitionImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getDefinition()
+   * @generated
+   */
+  int DEFINITION = 2;
+
+  /**
+   * The feature id for the '<em><b>Reads</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINITION__READS = 0;
+
+  /**
+   * The feature id for the '<em><b>Commands</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINITION__COMMANDS = 1;
+
+  /**
+   * The feature id for the '<em><b>Writes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINITION__WRITES = 2;
+
+  /**
+   * The number of structural features of the '<em>Definition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINITION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ReadImpl <em>Read</em>}' class.
@@ -148,16 +176,16 @@ public interface WhileCompPackage extends EPackage
    * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getRead()
    * @generated
    */
-  int READ = 2;
+  int READ = 3;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute list.
+   * The feature id for the '<em><b>Variable</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int READ__NAME = 0;
+  int READ__VARIABLE = 0;
 
   /**
    * The number of structural features of the '<em>Read</em>' class.
@@ -176,16 +204,16 @@ public interface WhileCompPackage extends EPackage
    * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getWrite()
    * @generated
    */
-  int WRITE = 3;
+  int WRITE = 4;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute list.
+   * The feature id for the '<em><b>Variable</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int WRITE__NAME = 0;
+  int WRITE__VARIABLE = 0;
 
   /**
    * The number of structural features of the '<em>Write</em>' class.
@@ -195,34 +223,6 @@ public interface WhileCompPackage extends EPackage
    * @ordered
    */
   int WRITE_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.CommandImpl <em>Command</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.compilation.whileComp.impl.CommandImpl
-   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCommand()
-   * @generated
-   */
-  int COMMAND = 4;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMMAND__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Command</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMMAND_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.NopImpl <em>Nop</em>}' class.
@@ -235,13 +235,13 @@ public interface WhileCompPackage extends EPackage
   int NOP = 5;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Nop</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NOP__NAME = COMMAND__NAME;
+  int NOP__NOP = 0;
 
   /**
    * The number of structural features of the '<em>Nop</em>' class.
@@ -250,7 +250,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NOP_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 0;
+  int NOP_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.AffectationImpl <em>Affectation</em>}' class.
@@ -263,13 +263,13 @@ public interface WhileCompPackage extends EPackage
   int AFFECTATION = 6;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Affectation</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AFFECTATION__NAME = COMMAND__NAME;
+  int AFFECTATION__AFFECTATION = 0;
 
   /**
    * The feature id for the '<em><b>Valeur</b></em>' attribute.
@@ -278,7 +278,16 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AFFECTATION__VALEUR = COMMAND_FEATURE_COUNT + 0;
+  int AFFECTATION__VALEUR = 1;
+
+  /**
+   * The feature id for the '<em><b>Nil</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AFFECTATION__NIL = 2;
 
   /**
    * The number of structural features of the '<em>Affectation</em>' class.
@@ -287,7 +296,736 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AFFECTATION_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
+  int AFFECTATION_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.Nil2Impl <em>Nil2</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.Nil2Impl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getNil2()
+   * @generated
+   */
+  int NIL2 = 7;
+
+  /**
+   * The feature id for the '<em><b>Nil</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NIL2__NIL = 0;
+
+  /**
+   * The number of structural features of the '<em>Nil2</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NIL2_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.InputImpl <em>Input</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.InputImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getInput()
+   * @generated
+   */
+  int INPUT = 8;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INPUT__VARIABLE = 0;
+
+  /**
+   * The feature id for the '<em><b>Input</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INPUT__INPUT = 1;
+
+  /**
+   * The number of structural features of the '<em>Input</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INPUT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.OutputImpl <em>Output</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.OutputImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getOutput()
+   * @generated
+   */
+  int OUTPUT = 9;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OUTPUT__VARIABLE = 0;
+
+  /**
+   * The feature id for the '<em><b>Output</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OUTPUT__OUTPUT = 1;
+
+  /**
+   * The number of structural features of the '<em>Output</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OUTPUT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.CommandsImpl <em>Commands</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.CommandsImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCommands()
+   * @generated
+   */
+  int COMMANDS = 10;
+
+  /**
+   * The feature id for the '<em><b>Command</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMANDS__COMMAND = 0;
+
+  /**
+   * The feature id for the '<em><b>Commands</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMANDS__COMMANDS = 1;
+
+  /**
+   * The number of structural features of the '<em>Commands</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMANDS_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.CommandImpl <em>Command</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.CommandImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCommand()
+   * @generated
+   */
+  int COMMAND = 11;
+
+  /**
+   * The feature id for the '<em><b>Command</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND__COMMAND = 0;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND__EXPR = 1;
+
+  /**
+   * The feature id for the '<em><b>Commands</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND__COMMANDS = 2;
+
+  /**
+   * The feature id for the '<em><b>Commands1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND__COMMANDS1 = 3;
+
+  /**
+   * The feature id for the '<em><b>Commands2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND__COMMANDS2 = 4;
+
+  /**
+   * The feature id for the '<em><b>Expr1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND__EXPR1 = 5;
+
+  /**
+   * The feature id for the '<em><b>Expr2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND__EXPR2 = 6;
+
+  /**
+   * The number of structural features of the '<em>Command</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMAND_FEATURE_COUNT = 7;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ExprImpl <em>Expr</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ExprImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExpr()
+   * @generated
+   */
+  int EXPR = 12;
+
+  /**
+   * The feature id for the '<em><b>Exprsimple</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR__EXPRSIMPLE = 0;
+
+  /**
+   * The feature id for the '<em><b>Expr And</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR__EXPR_AND = 1;
+
+  /**
+   * The number of structural features of the '<em>Expr</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ExprAndImpl <em>Expr And</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ExprAndImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprAnd()
+   * @generated
+   */
+  int EXPR_AND = 13;
+
+  /**
+   * The feature id for the '<em><b>Expr Or</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_AND__EXPR_OR = 0;
+
+  /**
+   * The feature id for the '<em><b>Expr And</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_AND__EXPR_AND = 1;
+
+  /**
+   * The number of structural features of the '<em>Expr And</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_AND_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ExprOrImpl <em>Expr Or</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ExprOrImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprOr()
+   * @generated
+   */
+  int EXPR_OR = 14;
+
+  /**
+   * The feature id for the '<em><b>Expr Not</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_OR__EXPR_NOT = 0;
+
+  /**
+   * The feature id for the '<em><b>Expr Or</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_OR__EXPR_OR = 1;
+
+  /**
+   * The number of structural features of the '<em>Expr Or</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_OR_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ExprNotImpl <em>Expr Not</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ExprNotImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprNot()
+   * @generated
+   */
+  int EXPR_NOT = 15;
+
+  /**
+   * The feature id for the '<em><b>Expr Eq</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_NOT__EXPR_EQ = 0;
+
+  /**
+   * The number of structural features of the '<em>Expr Not</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_NOT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ExprEqImpl <em>Expr Eq</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ExprEqImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprEq()
+   * @generated
+   */
+  int EXPR_EQ = 16;
+
+  /**
+   * The feature id for the '<em><b>Expr Simple1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_EQ__EXPR_SIMPLE1 = 0;
+
+  /**
+   * The feature id for the '<em><b>Expr Simple2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_EQ__EXPR_SIMPLE2 = 1;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_EQ__EXPR = 2;
+
+  /**
+   * The number of structural features of the '<em>Expr Eq</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_EQ_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.VarsImpl <em>Vars</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.VarsImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getVars()
+   * @generated
+   */
+  int VARS = 17;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARS__VARIABLE = 0;
+
+  /**
+   * The feature id for the '<em><b>Vars</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARS__VARS = 1;
+
+  /**
+   * The number of structural features of the '<em>Vars</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARS_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ExprsImpl <em>Exprs</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ExprsImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprs()
+   * @generated
+   */
+  int EXPRS = 18;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRS__EXPR = 0;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRS__EXPRS = 1;
+
+  /**
+   * The number of structural features of the '<em>Exprs</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRS_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ExprSimpleImpl <em>Expr Simple</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ExprSimpleImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprSimple()
+   * @generated
+   */
+  int EXPR_SIMPLE = 19;
+
+  /**
+   * The feature id for the '<em><b>Nil</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__NIL = 0;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__VARIABLE = 1;
+
+  /**
+   * The feature id for the '<em><b>Symbol</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__SYMBOL = 2;
+
+  /**
+   * The feature id for the '<em><b>Cons</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__CONS = 3;
+
+  /**
+   * The feature id for the '<em><b>Lexpr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__LEXPR = 4;
+
+  /**
+   * The feature id for the '<em><b>List</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__LIST = 5;
+
+  /**
+   * The feature id for the '<em><b>Hd</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__HD = 6;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__EXPR = 7;
+
+  /**
+   * The feature id for the '<em><b>Tl</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__TL = 8;
+
+  /**
+   * The number of structural features of the '<em>Expr Simple</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE_FEATURE_COUNT = 9;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ConsImpl <em>Cons</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ConsImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCons()
+   * @generated
+   */
+  int CONS = 20;
+
+  /**
+   * The feature id for the '<em><b>Cons</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS__CONS = 0;
+
+  /**
+   * The number of structural features of the '<em>Cons</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.ListImpl <em>List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.ListImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getList()
+   * @generated
+   */
+  int LIST = 21;
+
+  /**
+   * The feature id for the '<em><b>List</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST__LIST = 0;
+
+  /**
+   * The number of structural features of the '<em>List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.HdImpl <em>Hd</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.HdImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getHd()
+   * @generated
+   */
+  int HD = 22;
+
+  /**
+   * The feature id for the '<em><b>Hd</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HD__HD = 0;
+
+  /**
+   * The number of structural features of the '<em>Hd</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HD_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.TlImpl <em>Tl</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.TlImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getTl()
+   * @generated
+   */
+  int TL = 23;
+
+  /**
+   * The feature id for the '<em><b>Tl</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TL__TL = 0;
+
+  /**
+   * The number of structural features of the '<em>Tl</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TL_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.compilation.whileComp.impl.LexprImpl <em>Lexpr</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.compilation.whileComp.impl.LexprImpl
+   * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getLexpr()
+   * @generated
+   */
+  int LEXPR = 24;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEXPR__EXPR = 0;
+
+  /**
+   * The feature id for the '<em><b>Lexpr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEXPR__LEXPR = 1;
+
+  /**
+   * The number of structural features of the '<em>Lexpr</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEXPR_FEATURE_COUNT = 2;
 
 
   /**
@@ -322,48 +1060,69 @@ public interface WhileCompPackage extends EPackage
   EClass getFunction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Function#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Function#getFunction <em>Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.compilation.whileComp.Function#getName()
+   * @return the meta object for the attribute '<em>Function</em>'.
+   * @see org.xtext.compilation.whileComp.Function#getFunction()
    * @see #getFunction()
    * @generated
    */
-  EAttribute getFunction_Name();
+  EAttribute getFunction_Function();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.compilation.whileComp.Function#getReads <em>Reads</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Function#getDefinition <em>Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Definition</em>'.
+   * @see org.xtext.compilation.whileComp.Function#getDefinition()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_Definition();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Definition <em>Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Definition</em>'.
+   * @see org.xtext.compilation.whileComp.Definition
+   * @generated
+   */
+  EClass getDefinition();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.compilation.whileComp.Definition#getReads <em>Reads</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Reads</em>'.
-   * @see org.xtext.compilation.whileComp.Function#getReads()
-   * @see #getFunction()
+   * @see org.xtext.compilation.whileComp.Definition#getReads()
+   * @see #getDefinition()
    * @generated
    */
-  EReference getFunction_Reads();
+  EReference getDefinition_Reads();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.compilation.whileComp.Function#getCommands <em>Commands</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.compilation.whileComp.Definition#getCommands <em>Commands</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Commands</em>'.
-   * @see org.xtext.compilation.whileComp.Function#getCommands()
-   * @see #getFunction()
+   * @see org.xtext.compilation.whileComp.Definition#getCommands()
+   * @see #getDefinition()
    * @generated
    */
-  EReference getFunction_Commands();
+  EReference getDefinition_Commands();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.compilation.whileComp.Function#getWrites <em>Writes</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.compilation.whileComp.Definition#getWrites <em>Writes</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Writes</em>'.
-   * @see org.xtext.compilation.whileComp.Function#getWrites()
-   * @see #getFunction()
+   * @see org.xtext.compilation.whileComp.Definition#getWrites()
+   * @see #getDefinition()
    * @generated
    */
-  EReference getFunction_Writes();
+  EReference getDefinition_Writes();
 
   /**
    * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Read <em>Read</em>}'.
@@ -376,15 +1135,15 @@ public interface WhileCompPackage extends EPackage
   EClass getRead();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.compilation.whileComp.Read#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute list '{@link org.xtext.compilation.whileComp.Read#getVariable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Name</em>'.
-   * @see org.xtext.compilation.whileComp.Read#getName()
+   * @return the meta object for the attribute list '<em>Variable</em>'.
+   * @see org.xtext.compilation.whileComp.Read#getVariable()
    * @see #getRead()
    * @generated
    */
-  EAttribute getRead_Name();
+  EAttribute getRead_Variable();
 
   /**
    * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Write <em>Write</em>}'.
@@ -397,36 +1156,15 @@ public interface WhileCompPackage extends EPackage
   EClass getWrite();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.compilation.whileComp.Write#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute list '{@link org.xtext.compilation.whileComp.Write#getVariable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Name</em>'.
-   * @see org.xtext.compilation.whileComp.Write#getName()
+   * @return the meta object for the attribute list '<em>Variable</em>'.
+   * @see org.xtext.compilation.whileComp.Write#getVariable()
    * @see #getWrite()
    * @generated
    */
-  EAttribute getWrite_Name();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Command <em>Command</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Command</em>'.
-   * @see org.xtext.compilation.whileComp.Command
-   * @generated
-   */
-  EClass getCommand();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Command#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.compilation.whileComp.Command#getName()
-   * @see #getCommand()
-   * @generated
-   */
-  EAttribute getCommand_Name();
+  EAttribute getWrite_Variable();
 
   /**
    * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Nop <em>Nop</em>}'.
@@ -439,6 +1177,17 @@ public interface WhileCompPackage extends EPackage
   EClass getNop();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Nop#getNop <em>Nop</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nop</em>'.
+   * @see org.xtext.compilation.whileComp.Nop#getNop()
+   * @see #getNop()
+   * @generated
+   */
+  EAttribute getNop_Nop();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Affectation <em>Affectation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -447,6 +1196,17 @@ public interface WhileCompPackage extends EPackage
    * @generated
    */
   EClass getAffectation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Affectation#getAffectation <em>Affectation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Affectation</em>'.
+   * @see org.xtext.compilation.whileComp.Affectation#getAffectation()
+   * @see #getAffectation()
+   * @generated
+   */
+  EAttribute getAffectation_Affectation();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Affectation#getValeur <em>Valeur</em>}'.
@@ -458,6 +1218,670 @@ public interface WhileCompPackage extends EPackage
    * @generated
    */
   EAttribute getAffectation_Valeur();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Affectation#getNil <em>Nil</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Nil</em>'.
+   * @see org.xtext.compilation.whileComp.Affectation#getNil()
+   * @see #getAffectation()
+   * @generated
+   */
+  EReference getAffectation_Nil();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Nil2 <em>Nil2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Nil2</em>'.
+   * @see org.xtext.compilation.whileComp.Nil2
+   * @generated
+   */
+  EClass getNil2();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Nil2#getNil <em>Nil</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nil</em>'.
+   * @see org.xtext.compilation.whileComp.Nil2#getNil()
+   * @see #getNil2()
+   * @generated
+   */
+  EAttribute getNil2_Nil();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Input <em>Input</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Input</em>'.
+   * @see org.xtext.compilation.whileComp.Input
+   * @generated
+   */
+  EClass getInput();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Input#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Variable</em>'.
+   * @see org.xtext.compilation.whileComp.Input#getVariable()
+   * @see #getInput()
+   * @generated
+   */
+  EAttribute getInput_Variable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Input#getInput <em>Input</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Input</em>'.
+   * @see org.xtext.compilation.whileComp.Input#getInput()
+   * @see #getInput()
+   * @generated
+   */
+  EReference getInput_Input();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Output <em>Output</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Output</em>'.
+   * @see org.xtext.compilation.whileComp.Output
+   * @generated
+   */
+  EClass getOutput();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Output#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Variable</em>'.
+   * @see org.xtext.compilation.whileComp.Output#getVariable()
+   * @see #getOutput()
+   * @generated
+   */
+  EAttribute getOutput_Variable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Output#getOutput <em>Output</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Output</em>'.
+   * @see org.xtext.compilation.whileComp.Output#getOutput()
+   * @see #getOutput()
+   * @generated
+   */
+  EReference getOutput_Output();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Commands <em>Commands</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Commands</em>'.
+   * @see org.xtext.compilation.whileComp.Commands
+   * @generated
+   */
+  EClass getCommands();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Commands#getCommand <em>Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Command</em>'.
+   * @see org.xtext.compilation.whileComp.Commands#getCommand()
+   * @see #getCommands()
+   * @generated
+   */
+  EReference getCommands_Command();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Commands#getCommands <em>Commands</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Commands</em>'.
+   * @see org.xtext.compilation.whileComp.Commands#getCommands()
+   * @see #getCommands()
+   * @generated
+   */
+  EReference getCommands_Commands();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Command <em>Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Command</em>'.
+   * @see org.xtext.compilation.whileComp.Command
+   * @generated
+   */
+  EClass getCommand();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Command#getCommand <em>Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Command</em>'.
+   * @see org.xtext.compilation.whileComp.Command#getCommand()
+   * @see #getCommand()
+   * @generated
+   */
+  EReference getCommand_Command();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Command#getExpr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr</em>'.
+   * @see org.xtext.compilation.whileComp.Command#getExpr()
+   * @see #getCommand()
+   * @generated
+   */
+  EReference getCommand_Expr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Command#getCommands <em>Commands</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Commands</em>'.
+   * @see org.xtext.compilation.whileComp.Command#getCommands()
+   * @see #getCommand()
+   * @generated
+   */
+  EReference getCommand_Commands();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Command#getCommands1 <em>Commands1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Commands1</em>'.
+   * @see org.xtext.compilation.whileComp.Command#getCommands1()
+   * @see #getCommand()
+   * @generated
+   */
+  EReference getCommand_Commands1();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Command#getCommands2 <em>Commands2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Commands2</em>'.
+   * @see org.xtext.compilation.whileComp.Command#getCommands2()
+   * @see #getCommand()
+   * @generated
+   */
+  EReference getCommand_Commands2();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Command#getExpr1 <em>Expr1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr1</em>'.
+   * @see org.xtext.compilation.whileComp.Command#getExpr1()
+   * @see #getCommand()
+   * @generated
+   */
+  EReference getCommand_Expr1();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Command#getExpr2 <em>Expr2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr2</em>'.
+   * @see org.xtext.compilation.whileComp.Command#getExpr2()
+   * @see #getCommand()
+   * @generated
+   */
+  EReference getCommand_Expr2();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Expr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr</em>'.
+   * @see org.xtext.compilation.whileComp.Expr
+   * @generated
+   */
+  EClass getExpr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Expr#getExprsimple <em>Exprsimple</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exprsimple</em>'.
+   * @see org.xtext.compilation.whileComp.Expr#getExprsimple()
+   * @see #getExpr()
+   * @generated
+   */
+  EReference getExpr_Exprsimple();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Expr#getExprAnd <em>Expr And</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr And</em>'.
+   * @see org.xtext.compilation.whileComp.Expr#getExprAnd()
+   * @see #getExpr()
+   * @generated
+   */
+  EReference getExpr_ExprAnd();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.ExprAnd <em>Expr And</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr And</em>'.
+   * @see org.xtext.compilation.whileComp.ExprAnd
+   * @generated
+   */
+  EClass getExprAnd();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprAnd#getExprOr <em>Expr Or</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Or</em>'.
+   * @see org.xtext.compilation.whileComp.ExprAnd#getExprOr()
+   * @see #getExprAnd()
+   * @generated
+   */
+  EReference getExprAnd_ExprOr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprAnd#getExprAnd <em>Expr And</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr And</em>'.
+   * @see org.xtext.compilation.whileComp.ExprAnd#getExprAnd()
+   * @see #getExprAnd()
+   * @generated
+   */
+  EReference getExprAnd_ExprAnd();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.ExprOr <em>Expr Or</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr Or</em>'.
+   * @see org.xtext.compilation.whileComp.ExprOr
+   * @generated
+   */
+  EClass getExprOr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprOr#getExprNot <em>Expr Not</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Not</em>'.
+   * @see org.xtext.compilation.whileComp.ExprOr#getExprNot()
+   * @see #getExprOr()
+   * @generated
+   */
+  EReference getExprOr_ExprNot();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprOr#getExprOr <em>Expr Or</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Or</em>'.
+   * @see org.xtext.compilation.whileComp.ExprOr#getExprOr()
+   * @see #getExprOr()
+   * @generated
+   */
+  EReference getExprOr_ExprOr();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.ExprNot <em>Expr Not</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr Not</em>'.
+   * @see org.xtext.compilation.whileComp.ExprNot
+   * @generated
+   */
+  EClass getExprNot();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprNot#getExprEq <em>Expr Eq</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Eq</em>'.
+   * @see org.xtext.compilation.whileComp.ExprNot#getExprEq()
+   * @see #getExprNot()
+   * @generated
+   */
+  EReference getExprNot_ExprEq();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.ExprEq <em>Expr Eq</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr Eq</em>'.
+   * @see org.xtext.compilation.whileComp.ExprEq
+   * @generated
+   */
+  EClass getExprEq();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprEq#getExprSimple1 <em>Expr Simple1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Simple1</em>'.
+   * @see org.xtext.compilation.whileComp.ExprEq#getExprSimple1()
+   * @see #getExprEq()
+   * @generated
+   */
+  EReference getExprEq_ExprSimple1();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprEq#getExprSimple2 <em>Expr Simple2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Simple2</em>'.
+   * @see org.xtext.compilation.whileComp.ExprEq#getExprSimple2()
+   * @see #getExprEq()
+   * @generated
+   */
+  EReference getExprEq_ExprSimple2();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprEq#getExpr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr</em>'.
+   * @see org.xtext.compilation.whileComp.ExprEq#getExpr()
+   * @see #getExprEq()
+   * @generated
+   */
+  EReference getExprEq_Expr();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Vars <em>Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Vars</em>'.
+   * @see org.xtext.compilation.whileComp.Vars
+   * @generated
+   */
+  EClass getVars();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Vars#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Variable</em>'.
+   * @see org.xtext.compilation.whileComp.Vars#getVariable()
+   * @see #getVars()
+   * @generated
+   */
+  EAttribute getVars_Variable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Vars#getVars <em>Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Vars</em>'.
+   * @see org.xtext.compilation.whileComp.Vars#getVars()
+   * @see #getVars()
+   * @generated
+   */
+  EReference getVars_Vars();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Exprs <em>Exprs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Exprs</em>'.
+   * @see org.xtext.compilation.whileComp.Exprs
+   * @generated
+   */
+  EClass getExprs();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Exprs#getExpr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr</em>'.
+   * @see org.xtext.compilation.whileComp.Exprs#getExpr()
+   * @see #getExprs()
+   * @generated
+   */
+  EReference getExprs_Expr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Exprs#getExprs <em>Exprs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exprs</em>'.
+   * @see org.xtext.compilation.whileComp.Exprs#getExprs()
+   * @see #getExprs()
+   * @generated
+   */
+  EReference getExprs_Exprs();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.ExprSimple <em>Expr Simple</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expr Simple</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple
+   * @generated
+   */
+  EClass getExprSimple();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Nil</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getNil()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EAttribute getExprSimple_Nil();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.ExprSimple#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Variable</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getVariable()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EAttribute getExprSimple_Variable();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.ExprSimple#getSymbol <em>Symbol</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Symbol</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getSymbol()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EAttribute getExprSimple_Symbol();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprSimple#getCons <em>Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Cons</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getCons()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EReference getExprSimple_Cons();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Lexpr</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getLexpr()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EReference getExprSimple_Lexpr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprSimple#getList <em>List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>List</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getList()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EReference getExprSimple_List();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprSimple#getHd <em>Hd</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Hd</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getHd()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EReference getExprSimple_Hd();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprSimple#getExpr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getExpr()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EReference getExprSimple_Expr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprSimple#getTl <em>Tl</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Tl</em>'.
+   * @see org.xtext.compilation.whileComp.ExprSimple#getTl()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EReference getExprSimple_Tl();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Cons <em>Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Cons</em>'.
+   * @see org.xtext.compilation.whileComp.Cons
+   * @generated
+   */
+  EClass getCons();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Cons#getCons <em>Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Cons</em>'.
+   * @see org.xtext.compilation.whileComp.Cons#getCons()
+   * @see #getCons()
+   * @generated
+   */
+  EAttribute getCons_Cons();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.List <em>List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List</em>'.
+   * @see org.xtext.compilation.whileComp.List
+   * @generated
+   */
+  EClass getList();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.List#getList <em>List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>List</em>'.
+   * @see org.xtext.compilation.whileComp.List#getList()
+   * @see #getList()
+   * @generated
+   */
+  EAttribute getList_List();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Hd <em>Hd</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Hd</em>'.
+   * @see org.xtext.compilation.whileComp.Hd
+   * @generated
+   */
+  EClass getHd();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Hd#getHd <em>Hd</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Hd</em>'.
+   * @see org.xtext.compilation.whileComp.Hd#getHd()
+   * @see #getHd()
+   * @generated
+   */
+  EAttribute getHd_Hd();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Tl <em>Tl</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Tl</em>'.
+   * @see org.xtext.compilation.whileComp.Tl
+   * @generated
+   */
+  EClass getTl();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.Tl#getTl <em>Tl</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Tl</em>'.
+   * @see org.xtext.compilation.whileComp.Tl#getTl()
+   * @see #getTl()
+   * @generated
+   */
+  EAttribute getTl_Tl();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.compilation.whileComp.Lexpr <em>Lexpr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Lexpr</em>'.
+   * @see org.xtext.compilation.whileComp.Lexpr
+   * @generated
+   */
+  EClass getLexpr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Lexpr#getExpr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr</em>'.
+   * @see org.xtext.compilation.whileComp.Lexpr#getExpr()
+   * @see #getLexpr()
+   * @generated
+   */
+  EReference getLexpr_Expr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.Lexpr#getLexpr <em>Lexpr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Lexpr</em>'.
+   * @see org.xtext.compilation.whileComp.Lexpr#getLexpr()
+   * @see #getLexpr()
+   * @generated
+   */
+  EReference getLexpr_Lexpr();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -511,12 +1935,30 @@ public interface WhileCompPackage extends EPackage
     EClass FUNCTION = eINSTANCE.getFunction();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Function</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FUNCTION__NAME = eINSTANCE.getFunction_Name();
+    EAttribute FUNCTION__FUNCTION = eINSTANCE.getFunction_Function();
+
+    /**
+     * The meta object literal for the '<em><b>Definition</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__DEFINITION = eINSTANCE.getFunction_Definition();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.DefinitionImpl <em>Definition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.DefinitionImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getDefinition()
+     * @generated
+     */
+    EClass DEFINITION = eINSTANCE.getDefinition();
 
     /**
      * The meta object literal for the '<em><b>Reads</b></em>' containment reference list feature.
@@ -524,7 +1966,7 @@ public interface WhileCompPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNCTION__READS = eINSTANCE.getFunction_Reads();
+    EReference DEFINITION__READS = eINSTANCE.getDefinition_Reads();
 
     /**
      * The meta object literal for the '<em><b>Commands</b></em>' containment reference list feature.
@@ -532,7 +1974,7 @@ public interface WhileCompPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNCTION__COMMANDS = eINSTANCE.getFunction_Commands();
+    EReference DEFINITION__COMMANDS = eINSTANCE.getDefinition_Commands();
 
     /**
      * The meta object literal for the '<em><b>Writes</b></em>' containment reference list feature.
@@ -540,7 +1982,7 @@ public interface WhileCompPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FUNCTION__WRITES = eINSTANCE.getFunction_Writes();
+    EReference DEFINITION__WRITES = eINSTANCE.getDefinition_Writes();
 
     /**
      * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ReadImpl <em>Read</em>}' class.
@@ -553,12 +1995,12 @@ public interface WhileCompPackage extends EPackage
     EClass READ = eINSTANCE.getRead();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Variable</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute READ__NAME = eINSTANCE.getRead_Name();
+    EAttribute READ__VARIABLE = eINSTANCE.getRead_Variable();
 
     /**
      * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.WriteImpl <em>Write</em>}' class.
@@ -571,30 +2013,12 @@ public interface WhileCompPackage extends EPackage
     EClass WRITE = eINSTANCE.getWrite();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Variable</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute WRITE__NAME = eINSTANCE.getWrite_Name();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.CommandImpl <em>Command</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.compilation.whileComp.impl.CommandImpl
-     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCommand()
-     * @generated
-     */
-    EClass COMMAND = eINSTANCE.getCommand();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COMMAND__NAME = eINSTANCE.getCommand_Name();
+    EAttribute WRITE__VARIABLE = eINSTANCE.getWrite_Variable();
 
     /**
      * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.NopImpl <em>Nop</em>}' class.
@@ -607,6 +2031,14 @@ public interface WhileCompPackage extends EPackage
     EClass NOP = eINSTANCE.getNop();
 
     /**
+     * The meta object literal for the '<em><b>Nop</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NOP__NOP = eINSTANCE.getNop_Nop();
+
+    /**
      * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.AffectationImpl <em>Affectation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -617,12 +2049,552 @@ public interface WhileCompPackage extends EPackage
     EClass AFFECTATION = eINSTANCE.getAffectation();
 
     /**
+     * The meta object literal for the '<em><b>Affectation</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AFFECTATION__AFFECTATION = eINSTANCE.getAffectation_Affectation();
+
+    /**
      * The meta object literal for the '<em><b>Valeur</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute AFFECTATION__VALEUR = eINSTANCE.getAffectation_Valeur();
+
+    /**
+     * The meta object literal for the '<em><b>Nil</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AFFECTATION__NIL = eINSTANCE.getAffectation_Nil();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.Nil2Impl <em>Nil2</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.Nil2Impl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getNil2()
+     * @generated
+     */
+    EClass NIL2 = eINSTANCE.getNil2();
+
+    /**
+     * The meta object literal for the '<em><b>Nil</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NIL2__NIL = eINSTANCE.getNil2_Nil();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.InputImpl <em>Input</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.InputImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getInput()
+     * @generated
+     */
+    EClass INPUT = eINSTANCE.getInput();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INPUT__VARIABLE = eINSTANCE.getInput_Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Input</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INPUT__INPUT = eINSTANCE.getInput_Input();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.OutputImpl <em>Output</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.OutputImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getOutput()
+     * @generated
+     */
+    EClass OUTPUT = eINSTANCE.getOutput();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OUTPUT__VARIABLE = eINSTANCE.getOutput_Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Output</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OUTPUT__OUTPUT = eINSTANCE.getOutput_Output();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.CommandsImpl <em>Commands</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.CommandsImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCommands()
+     * @generated
+     */
+    EClass COMMANDS = eINSTANCE.getCommands();
+
+    /**
+     * The meta object literal for the '<em><b>Command</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMANDS__COMMAND = eINSTANCE.getCommands_Command();
+
+    /**
+     * The meta object literal for the '<em><b>Commands</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMANDS__COMMANDS = eINSTANCE.getCommands_Commands();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.CommandImpl <em>Command</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.CommandImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCommand()
+     * @generated
+     */
+    EClass COMMAND = eINSTANCE.getCommand();
+
+    /**
+     * The meta object literal for the '<em><b>Command</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMAND__COMMAND = eINSTANCE.getCommand_Command();
+
+    /**
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMAND__EXPR = eINSTANCE.getCommand_Expr();
+
+    /**
+     * The meta object literal for the '<em><b>Commands</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMAND__COMMANDS = eINSTANCE.getCommand_Commands();
+
+    /**
+     * The meta object literal for the '<em><b>Commands1</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMAND__COMMANDS1 = eINSTANCE.getCommand_Commands1();
+
+    /**
+     * The meta object literal for the '<em><b>Commands2</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMAND__COMMANDS2 = eINSTANCE.getCommand_Commands2();
+
+    /**
+     * The meta object literal for the '<em><b>Expr1</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMAND__EXPR1 = eINSTANCE.getCommand_Expr1();
+
+    /**
+     * The meta object literal for the '<em><b>Expr2</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMAND__EXPR2 = eINSTANCE.getCommand_Expr2();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ExprImpl <em>Expr</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ExprImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExpr()
+     * @generated
+     */
+    EClass EXPR = eINSTANCE.getExpr();
+
+    /**
+     * The meta object literal for the '<em><b>Exprsimple</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR__EXPRSIMPLE = eINSTANCE.getExpr_Exprsimple();
+
+    /**
+     * The meta object literal for the '<em><b>Expr And</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR__EXPR_AND = eINSTANCE.getExpr_ExprAnd();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ExprAndImpl <em>Expr And</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ExprAndImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprAnd()
+     * @generated
+     */
+    EClass EXPR_AND = eINSTANCE.getExprAnd();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Or</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_AND__EXPR_OR = eINSTANCE.getExprAnd_ExprOr();
+
+    /**
+     * The meta object literal for the '<em><b>Expr And</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_AND__EXPR_AND = eINSTANCE.getExprAnd_ExprAnd();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ExprOrImpl <em>Expr Or</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ExprOrImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprOr()
+     * @generated
+     */
+    EClass EXPR_OR = eINSTANCE.getExprOr();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Not</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_OR__EXPR_NOT = eINSTANCE.getExprOr_ExprNot();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Or</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_OR__EXPR_OR = eINSTANCE.getExprOr_ExprOr();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ExprNotImpl <em>Expr Not</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ExprNotImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprNot()
+     * @generated
+     */
+    EClass EXPR_NOT = eINSTANCE.getExprNot();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Eq</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_NOT__EXPR_EQ = eINSTANCE.getExprNot_ExprEq();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ExprEqImpl <em>Expr Eq</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ExprEqImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprEq()
+     * @generated
+     */
+    EClass EXPR_EQ = eINSTANCE.getExprEq();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Simple1</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_EQ__EXPR_SIMPLE1 = eINSTANCE.getExprEq_ExprSimple1();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Simple2</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_EQ__EXPR_SIMPLE2 = eINSTANCE.getExprEq_ExprSimple2();
+
+    /**
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_EQ__EXPR = eINSTANCE.getExprEq_Expr();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.VarsImpl <em>Vars</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.VarsImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getVars()
+     * @generated
+     */
+    EClass VARS = eINSTANCE.getVars();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VARS__VARIABLE = eINSTANCE.getVars_Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Vars</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VARS__VARS = eINSTANCE.getVars_Vars();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ExprsImpl <em>Exprs</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ExprsImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprs()
+     * @generated
+     */
+    EClass EXPRS = eINSTANCE.getExprs();
+
+    /**
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRS__EXPR = eINSTANCE.getExprs_Expr();
+
+    /**
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRS__EXPRS = eINSTANCE.getExprs_Exprs();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ExprSimpleImpl <em>Expr Simple</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ExprSimpleImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getExprSimple()
+     * @generated
+     */
+    EClass EXPR_SIMPLE = eINSTANCE.getExprSimple();
+
+    /**
+     * The meta object literal for the '<em><b>Nil</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPR_SIMPLE__NIL = eINSTANCE.getExprSimple_Nil();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPR_SIMPLE__VARIABLE = eINSTANCE.getExprSimple_Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPR_SIMPLE__SYMBOL = eINSTANCE.getExprSimple_Symbol();
+
+    /**
+     * The meta object literal for the '<em><b>Cons</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_SIMPLE__CONS = eINSTANCE.getExprSimple_Cons();
+
+    /**
+     * The meta object literal for the '<em><b>Lexpr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_SIMPLE__LEXPR = eINSTANCE.getExprSimple_Lexpr();
+
+    /**
+     * The meta object literal for the '<em><b>List</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_SIMPLE__LIST = eINSTANCE.getExprSimple_List();
+
+    /**
+     * The meta object literal for the '<em><b>Hd</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_SIMPLE__HD = eINSTANCE.getExprSimple_Hd();
+
+    /**
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_SIMPLE__EXPR = eINSTANCE.getExprSimple_Expr();
+
+    /**
+     * The meta object literal for the '<em><b>Tl</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPR_SIMPLE__TL = eINSTANCE.getExprSimple_Tl();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ConsImpl <em>Cons</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ConsImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getCons()
+     * @generated
+     */
+    EClass CONS = eINSTANCE.getCons();
+
+    /**
+     * The meta object literal for the '<em><b>Cons</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONS__CONS = eINSTANCE.getCons_Cons();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.ListImpl <em>List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.ListImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getList()
+     * @generated
+     */
+    EClass LIST = eINSTANCE.getList();
+
+    /**
+     * The meta object literal for the '<em><b>List</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LIST__LIST = eINSTANCE.getList_List();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.HdImpl <em>Hd</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.HdImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getHd()
+     * @generated
+     */
+    EClass HD = eINSTANCE.getHd();
+
+    /**
+     * The meta object literal for the '<em><b>Hd</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute HD__HD = eINSTANCE.getHd_Hd();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.TlImpl <em>Tl</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.TlImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getTl()
+     * @generated
+     */
+    EClass TL = eINSTANCE.getTl();
+
+    /**
+     * The meta object literal for the '<em><b>Tl</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TL__TL = eINSTANCE.getTl_Tl();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.compilation.whileComp.impl.LexprImpl <em>Lexpr</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.compilation.whileComp.impl.LexprImpl
+     * @see org.xtext.compilation.whileComp.impl.WhileCompPackageImpl#getLexpr()
+     * @generated
+     */
+    EClass LEXPR = eINSTANCE.getLexpr();
+
+    /**
+     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LEXPR__EXPR = eINSTANCE.getLexpr_Expr();
+
+    /**
+     * The meta object literal for the '<em><b>Lexpr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LEXPR__LEXPR = eINSTANCE.getLexpr_Lexpr();
 
   }
 

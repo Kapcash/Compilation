@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.Write#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Write#getVariable <em>Variable</em>}</li>
  * </ul>
  *
  * @see org.xtext.compilation.whileComp.WhileCompPackage#getWrite()
@@ -26,19 +26,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface Write extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute list.
+   * Returns the value of the '<em><b>Variable</b></em>' attribute list.
    * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Variable</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute list.
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getWrite_Name()
+   * @return the value of the '<em>Variable</em>' attribute list.
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getWrite_Variable()
    * @model unique="false"
    * @generated
    */
-  EList<String> getName();
+  EList<String> getVariable();
 
 } // Write

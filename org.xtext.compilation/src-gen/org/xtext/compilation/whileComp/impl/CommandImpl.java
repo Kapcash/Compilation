@@ -4,13 +4,18 @@
 package org.xtext.compilation.whileComp.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.compilation.whileComp.Command;
+import org.xtext.compilation.whileComp.Commands;
+import org.xtext.compilation.whileComp.Expr;
 import org.xtext.compilation.whileComp.WhileCompPackage;
 
 /**
@@ -21,7 +26,13 @@ import org.xtext.compilation.whileComp.WhileCompPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getCommand <em>Command</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getCommands <em>Commands</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getCommands1 <em>Commands1</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getCommands2 <em>Commands2</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getExpr1 <em>Expr1</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.CommandImpl#getExpr2 <em>Expr2</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +40,74 @@ import org.xtext.compilation.whileComp.WhileCompPackage;
 public class CommandImpl extends MinimalEObjectImpl.Container implements Command
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getCommand() <em>Command</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getCommand()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected EObject command;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getExpr()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected Expr expr;
+
+  /**
+   * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCommands()
+   * @generated
+   * @ordered
+   */
+  protected Commands commands;
+
+  /**
+   * The cached value of the '{@link #getCommands1() <em>Commands1</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCommands1()
+   * @generated
+   * @ordered
+   */
+  protected Commands commands1;
+
+  /**
+   * The cached value of the '{@link #getCommands2() <em>Commands2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCommands2()
+   * @generated
+   * @ordered
+   */
+  protected Commands commands2;
+
+  /**
+   * The cached value of the '{@link #getExpr1() <em>Expr1</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExpr1()
+   * @generated
+   * @ordered
+   */
+  protected Expr expr1;
+
+  /**
+   * The cached value of the '{@link #getExpr2() <em>Expr2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExpr2()
+   * @generated
+   * @ordered
+   */
+  protected Expr expr2;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +135,9 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public EObject getCommand()
   {
-    return name;
+    return command;
   }
 
   /**
@@ -84,12 +145,353 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public NotificationChain basicSetCommand(EObject newCommand, NotificationChain msgs)
   {
-    String oldName = name;
-    name = newName;
+    EObject oldCommand = command;
+    command = newCommand;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__NAME, oldName, name));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMAND, oldCommand, newCommand);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCommand(EObject newCommand)
+  {
+    if (newCommand != command)
+    {
+      NotificationChain msgs = null;
+      if (command != null)
+        msgs = ((InternalEObject)command).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMAND, null, msgs);
+      if (newCommand != null)
+        msgs = ((InternalEObject)newCommand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMAND, null, msgs);
+      msgs = basicSetCommand(newCommand, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMAND, newCommand, newCommand));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr getExpr()
+  {
+    return expr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs)
+  {
+    Expr oldExpr = expr;
+    expr = newExpr;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__EXPR, oldExpr, newExpr);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpr(Expr newExpr)
+  {
+    if (newExpr != expr)
+    {
+      NotificationChain msgs = null;
+      if (expr != null)
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__EXPR, null, msgs);
+      if (newExpr != null)
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__EXPR, null, msgs);
+      msgs = basicSetExpr(newExpr, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__EXPR, newExpr, newExpr));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Commands getCommands()
+  {
+    return commands;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCommands(Commands newCommands, NotificationChain msgs)
+  {
+    Commands oldCommands = commands;
+    commands = newCommands;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMANDS, oldCommands, newCommands);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCommands(Commands newCommands)
+  {
+    if (newCommands != commands)
+    {
+      NotificationChain msgs = null;
+      if (commands != null)
+        msgs = ((InternalEObject)commands).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMANDS, null, msgs);
+      if (newCommands != null)
+        msgs = ((InternalEObject)newCommands).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMANDS, null, msgs);
+      msgs = basicSetCommands(newCommands, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMANDS, newCommands, newCommands));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Commands getCommands1()
+  {
+    return commands1;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCommands1(Commands newCommands1, NotificationChain msgs)
+  {
+    Commands oldCommands1 = commands1;
+    commands1 = newCommands1;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMANDS1, oldCommands1, newCommands1);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCommands1(Commands newCommands1)
+  {
+    if (newCommands1 != commands1)
+    {
+      NotificationChain msgs = null;
+      if (commands1 != null)
+        msgs = ((InternalEObject)commands1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMANDS1, null, msgs);
+      if (newCommands1 != null)
+        msgs = ((InternalEObject)newCommands1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMANDS1, null, msgs);
+      msgs = basicSetCommands1(newCommands1, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMANDS1, newCommands1, newCommands1));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Commands getCommands2()
+  {
+    return commands2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCommands2(Commands newCommands2, NotificationChain msgs)
+  {
+    Commands oldCommands2 = commands2;
+    commands2 = newCommands2;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMANDS2, oldCommands2, newCommands2);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCommands2(Commands newCommands2)
+  {
+    if (newCommands2 != commands2)
+    {
+      NotificationChain msgs = null;
+      if (commands2 != null)
+        msgs = ((InternalEObject)commands2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMANDS2, null, msgs);
+      if (newCommands2 != null)
+        msgs = ((InternalEObject)newCommands2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__COMMANDS2, null, msgs);
+      msgs = basicSetCommands2(newCommands2, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__COMMANDS2, newCommands2, newCommands2));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr getExpr1()
+  {
+    return expr1;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpr1(Expr newExpr1, NotificationChain msgs)
+  {
+    Expr oldExpr1 = expr1;
+    expr1 = newExpr1;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__EXPR1, oldExpr1, newExpr1);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpr1(Expr newExpr1)
+  {
+    if (newExpr1 != expr1)
+    {
+      NotificationChain msgs = null;
+      if (expr1 != null)
+        msgs = ((InternalEObject)expr1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__EXPR1, null, msgs);
+      if (newExpr1 != null)
+        msgs = ((InternalEObject)newExpr1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__EXPR1, null, msgs);
+      msgs = basicSetExpr1(newExpr1, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__EXPR1, newExpr1, newExpr1));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr getExpr2()
+  {
+    return expr2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpr2(Expr newExpr2, NotificationChain msgs)
+  {
+    Expr oldExpr2 = expr2;
+    expr2 = newExpr2;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__EXPR2, oldExpr2, newExpr2);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpr2(Expr newExpr2)
+  {
+    if (newExpr2 != expr2)
+    {
+      NotificationChain msgs = null;
+      if (expr2 != null)
+        msgs = ((InternalEObject)expr2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__EXPR2, null, msgs);
+      if (newExpr2 != null)
+        msgs = ((InternalEObject)newExpr2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.COMMAND__EXPR2, null, msgs);
+      msgs = basicSetExpr2(newExpr2, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.COMMAND__EXPR2, newExpr2, newExpr2));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case WhileCompPackage.COMMAND__COMMAND:
+        return basicSetCommand(null, msgs);
+      case WhileCompPackage.COMMAND__EXPR:
+        return basicSetExpr(null, msgs);
+      case WhileCompPackage.COMMAND__COMMANDS:
+        return basicSetCommands(null, msgs);
+      case WhileCompPackage.COMMAND__COMMANDS1:
+        return basicSetCommands1(null, msgs);
+      case WhileCompPackage.COMMAND__COMMANDS2:
+        return basicSetCommands2(null, msgs);
+      case WhileCompPackage.COMMAND__EXPR1:
+        return basicSetExpr1(null, msgs);
+      case WhileCompPackage.COMMAND__EXPR2:
+        return basicSetExpr2(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -102,8 +504,20 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
   {
     switch (featureID)
     {
-      case WhileCompPackage.COMMAND__NAME:
-        return getName();
+      case WhileCompPackage.COMMAND__COMMAND:
+        return getCommand();
+      case WhileCompPackage.COMMAND__EXPR:
+        return getExpr();
+      case WhileCompPackage.COMMAND__COMMANDS:
+        return getCommands();
+      case WhileCompPackage.COMMAND__COMMANDS1:
+        return getCommands1();
+      case WhileCompPackage.COMMAND__COMMANDS2:
+        return getCommands2();
+      case WhileCompPackage.COMMAND__EXPR1:
+        return getExpr1();
+      case WhileCompPackage.COMMAND__EXPR2:
+        return getExpr2();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,8 +532,26 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
   {
     switch (featureID)
     {
-      case WhileCompPackage.COMMAND__NAME:
-        setName((String)newValue);
+      case WhileCompPackage.COMMAND__COMMAND:
+        setCommand((EObject)newValue);
+        return;
+      case WhileCompPackage.COMMAND__EXPR:
+        setExpr((Expr)newValue);
+        return;
+      case WhileCompPackage.COMMAND__COMMANDS:
+        setCommands((Commands)newValue);
+        return;
+      case WhileCompPackage.COMMAND__COMMANDS1:
+        setCommands1((Commands)newValue);
+        return;
+      case WhileCompPackage.COMMAND__COMMANDS2:
+        setCommands2((Commands)newValue);
+        return;
+      case WhileCompPackage.COMMAND__EXPR1:
+        setExpr1((Expr)newValue);
+        return;
+      case WhileCompPackage.COMMAND__EXPR2:
+        setExpr2((Expr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,8 +567,26 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
   {
     switch (featureID)
     {
-      case WhileCompPackage.COMMAND__NAME:
-        setName(NAME_EDEFAULT);
+      case WhileCompPackage.COMMAND__COMMAND:
+        setCommand((EObject)null);
+        return;
+      case WhileCompPackage.COMMAND__EXPR:
+        setExpr((Expr)null);
+        return;
+      case WhileCompPackage.COMMAND__COMMANDS:
+        setCommands((Commands)null);
+        return;
+      case WhileCompPackage.COMMAND__COMMANDS1:
+        setCommands1((Commands)null);
+        return;
+      case WhileCompPackage.COMMAND__COMMANDS2:
+        setCommands2((Commands)null);
+        return;
+      case WhileCompPackage.COMMAND__EXPR1:
+        setExpr1((Expr)null);
+        return;
+      case WhileCompPackage.COMMAND__EXPR2:
+        setExpr2((Expr)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,27 +602,22 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
   {
     switch (featureID)
     {
-      case WhileCompPackage.COMMAND__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case WhileCompPackage.COMMAND__COMMAND:
+        return command != null;
+      case WhileCompPackage.COMMAND__EXPR:
+        return expr != null;
+      case WhileCompPackage.COMMAND__COMMANDS:
+        return commands != null;
+      case WhileCompPackage.COMMAND__COMMANDS1:
+        return commands1 != null;
+      case WhileCompPackage.COMMAND__COMMANDS2:
+        return commands2 != null;
+      case WhileCompPackage.COMMAND__EXPR1:
+        return expr1 != null;
+      case WhileCompPackage.COMMAND__EXPR2:
+        return expr2 != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //CommandImpl

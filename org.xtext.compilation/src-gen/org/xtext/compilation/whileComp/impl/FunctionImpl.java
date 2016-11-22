@@ -3,12 +3,8 @@
  */
 package org.xtext.compilation.whileComp.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -16,14 +12,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.xtext.compilation.whileComp.Command;
+import org.xtext.compilation.whileComp.Definition;
 import org.xtext.compilation.whileComp.Function;
-import org.xtext.compilation.whileComp.Read;
 import org.xtext.compilation.whileComp.WhileCompPackage;
-import org.xtext.compilation.whileComp.Write;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,10 +24,8 @@ import org.xtext.compilation.whileComp.Write;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.impl.FunctionImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.impl.FunctionImpl#getReads <em>Reads</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.impl.FunctionImpl#getCommands <em>Commands</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.impl.FunctionImpl#getWrites <em>Writes</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.FunctionImpl#getFunction <em>Function</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.FunctionImpl#getDefinition <em>Definition</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,54 +33,34 @@ import org.xtext.compilation.whileComp.Write;
 public class FunctionImpl extends MinimalEObjectImpl.Container implements Function
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getFunction() <em>Function</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getFunction()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String FUNCTION_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getFunction() <em>Function</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getFunction()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String function = FUNCTION_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getReads() <em>Reads</em>}' containment reference list.
+   * The cached value of the '{@link #getDefinition() <em>Definition</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getReads()
+   * @see #getDefinition()
    * @generated
    * @ordered
    */
-  protected EList<Read> reads;
-
-  /**
-   * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCommands()
-   * @generated
-   * @ordered
-   */
-  protected EList<Command> commands;
-
-  /**
-   * The cached value of the '{@link #getWrites() <em>Writes</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getWrites()
-   * @generated
-   * @ordered
-   */
-  protected EList<Write> writes;
+  protected Definition definition;
 
   /**
    * <!-- begin-user-doc -->
@@ -119,9 +88,9 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public String getFunction()
   {
-    return name;
+    return function;
   }
 
   /**
@@ -129,12 +98,12 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setFunction(String newFunction)
   {
-    String oldName = name;
-    name = newName;
+    String oldFunction = function;
+    function = newFunction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.FUNCTION__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.FUNCTION__FUNCTION, oldFunction, function));
   }
 
   /**
@@ -142,13 +111,9 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Read> getReads()
+  public Definition getDefinition()
   {
-    if (reads == null)
-    {
-      reads = new EObjectContainmentEList<Read>(Read.class, this, WhileCompPackage.FUNCTION__READS);
-    }
-    return reads;
+    return definition;
   }
 
   /**
@@ -156,13 +121,16 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Command> getCommands()
+  public NotificationChain basicSetDefinition(Definition newDefinition, NotificationChain msgs)
   {
-    if (commands == null)
+    Definition oldDefinition = definition;
+    definition = newDefinition;
+    if (eNotificationRequired())
     {
-      commands = new EObjectContainmentEList<Command>(Command.class, this, WhileCompPackage.FUNCTION__COMMANDS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.FUNCTION__DEFINITION, oldDefinition, newDefinition);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return commands;
+    return msgs;
   }
 
   /**
@@ -170,13 +138,20 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Write> getWrites()
+  public void setDefinition(Definition newDefinition)
   {
-    if (writes == null)
+    if (newDefinition != definition)
     {
-      writes = new EObjectContainmentEList<Write>(Write.class, this, WhileCompPackage.FUNCTION__WRITES);
+      NotificationChain msgs = null;
+      if (definition != null)
+        msgs = ((InternalEObject)definition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.FUNCTION__DEFINITION, null, msgs);
+      if (newDefinition != null)
+        msgs = ((InternalEObject)newDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.FUNCTION__DEFINITION, null, msgs);
+      msgs = basicSetDefinition(newDefinition, msgs);
+      if (msgs != null) msgs.dispatch();
     }
-    return writes;
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.FUNCTION__DEFINITION, newDefinition, newDefinition));
   }
 
   /**
@@ -189,12 +164,8 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
   {
     switch (featureID)
     {
-      case WhileCompPackage.FUNCTION__READS:
-        return ((InternalEList<?>)getReads()).basicRemove(otherEnd, msgs);
-      case WhileCompPackage.FUNCTION__COMMANDS:
-        return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
-      case WhileCompPackage.FUNCTION__WRITES:
-        return ((InternalEList<?>)getWrites()).basicRemove(otherEnd, msgs);
+      case WhileCompPackage.FUNCTION__DEFINITION:
+        return basicSetDefinition(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -209,14 +180,10 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
   {
     switch (featureID)
     {
-      case WhileCompPackage.FUNCTION__NAME:
-        return getName();
-      case WhileCompPackage.FUNCTION__READS:
-        return getReads();
-      case WhileCompPackage.FUNCTION__COMMANDS:
-        return getCommands();
-      case WhileCompPackage.FUNCTION__WRITES:
-        return getWrites();
+      case WhileCompPackage.FUNCTION__FUNCTION:
+        return getFunction();
+      case WhileCompPackage.FUNCTION__DEFINITION:
+        return getDefinition();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -226,26 +193,16 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case WhileCompPackage.FUNCTION__NAME:
-        setName((String)newValue);
+      case WhileCompPackage.FUNCTION__FUNCTION:
+        setFunction((String)newValue);
         return;
-      case WhileCompPackage.FUNCTION__READS:
-        getReads().clear();
-        getReads().addAll((Collection<? extends Read>)newValue);
-        return;
-      case WhileCompPackage.FUNCTION__COMMANDS:
-        getCommands().clear();
-        getCommands().addAll((Collection<? extends Command>)newValue);
-        return;
-      case WhileCompPackage.FUNCTION__WRITES:
-        getWrites().clear();
-        getWrites().addAll((Collection<? extends Write>)newValue);
+      case WhileCompPackage.FUNCTION__DEFINITION:
+        setDefinition((Definition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -261,17 +218,11 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
   {
     switch (featureID)
     {
-      case WhileCompPackage.FUNCTION__NAME:
-        setName(NAME_EDEFAULT);
+      case WhileCompPackage.FUNCTION__FUNCTION:
+        setFunction(FUNCTION_EDEFAULT);
         return;
-      case WhileCompPackage.FUNCTION__READS:
-        getReads().clear();
-        return;
-      case WhileCompPackage.FUNCTION__COMMANDS:
-        getCommands().clear();
-        return;
-      case WhileCompPackage.FUNCTION__WRITES:
-        getWrites().clear();
+      case WhileCompPackage.FUNCTION__DEFINITION:
+        setDefinition((Definition)null);
         return;
     }
     super.eUnset(featureID);
@@ -287,14 +238,10 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
   {
     switch (featureID)
     {
-      case WhileCompPackage.FUNCTION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case WhileCompPackage.FUNCTION__READS:
-        return reads != null && !reads.isEmpty();
-      case WhileCompPackage.FUNCTION__COMMANDS:
-        return commands != null && !commands.isEmpty();
-      case WhileCompPackage.FUNCTION__WRITES:
-        return writes != null && !writes.isEmpty();
+      case WhileCompPackage.FUNCTION__FUNCTION:
+        return FUNCTION_EDEFAULT == null ? function != null : !FUNCTION_EDEFAULT.equals(function);
+      case WhileCompPackage.FUNCTION__DEFINITION:
+        return definition != null;
     }
     return super.eIsSet(featureID);
   }
@@ -310,8 +257,8 @@ public class FunctionImpl extends MinimalEObjectImpl.Container implements Functi
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (function: ");
+    result.append(function);
     result.append(')');
     return result.toString();
   }

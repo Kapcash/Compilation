@@ -42,6 +42,15 @@ public interface WhileCompFactory extends EFactory
   Function createFunction();
 
   /**
+   * Returns a new object of class '<em>Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Definition</em>'.
+   * @generated
+   */
+  Definition createDefinition();
+
+  /**
    * Returns a new object of class '<em>Read</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -60,15 +69,6 @@ public interface WhileCompFactory extends EFactory
   Write createWrite();
 
   /**
-   * Returns a new object of class '<em>Command</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Command</em>'.
-   * @generated
-   */
-  Command createCommand();
-
-  /**
    * Returns a new object of class '<em>Nop</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -85,6 +85,168 @@ public interface WhileCompFactory extends EFactory
    * @generated
    */
   Affectation createAffectation();
+
+  /**
+   * Returns a new object of class '<em>Nil2</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Nil2</em>'.
+   * @generated
+   */
+  Nil2 createNil2();
+
+  /**
+   * Returns a new object of class '<em>Input</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Input</em>'.
+   * @generated
+   */
+  Input createInput();
+
+  /**
+   * Returns a new object of class '<em>Output</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Output</em>'.
+   * @generated
+   */
+  Output createOutput();
+
+  /**
+   * Returns a new object of class '<em>Commands</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Commands</em>'.
+   * @generated
+   */
+  Commands createCommands();
+
+  /**
+   * Returns a new object of class '<em>Command</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Command</em>'.
+   * @generated
+   */
+  Command createCommand();
+
+  /**
+   * Returns a new object of class '<em>Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr</em>'.
+   * @generated
+   */
+  Expr createExpr();
+
+  /**
+   * Returns a new object of class '<em>Expr And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr And</em>'.
+   * @generated
+   */
+  ExprAnd createExprAnd();
+
+  /**
+   * Returns a new object of class '<em>Expr Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Or</em>'.
+   * @generated
+   */
+  ExprOr createExprOr();
+
+  /**
+   * Returns a new object of class '<em>Expr Not</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Not</em>'.
+   * @generated
+   */
+  ExprNot createExprNot();
+
+  /**
+   * Returns a new object of class '<em>Expr Eq</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Eq</em>'.
+   * @generated
+   */
+  ExprEq createExprEq();
+
+  /**
+   * Returns a new object of class '<em>Vars</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Vars</em>'.
+   * @generated
+   */
+  Vars createVars();
+
+  /**
+   * Returns a new object of class '<em>Exprs</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Exprs</em>'.
+   * @generated
+   */
+  Exprs createExprs();
+
+  /**
+   * Returns a new object of class '<em>Expr Simple</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expr Simple</em>'.
+   * @generated
+   */
+  ExprSimple createExprSimple();
+
+  /**
+   * Returns a new object of class '<em>Cons</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cons</em>'.
+   * @generated
+   */
+  Cons createCons();
+
+  /**
+   * Returns a new object of class '<em>List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List</em>'.
+   * @generated
+   */
+  List createList();
+
+  /**
+   * Returns a new object of class '<em>Hd</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Hd</em>'.
+   * @generated
+   */
+  Hd createHd();
+
+  /**
+   * Returns a new object of class '<em>Tl</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tl</em>'.
+   * @generated
+   */
+  Tl createTl();
+
+  /**
+   * Returns a new object of class '<em>Lexpr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lexpr</em>'.
+   * @generated
+   */
+  Lexpr createLexpr();
 
   /**
    * Returns the package supported by this factory.

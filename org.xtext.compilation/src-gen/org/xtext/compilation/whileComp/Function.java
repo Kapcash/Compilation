@@ -3,8 +3,6 @@
  */
 package org.xtext.compilation.whileComp;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,10 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.Function#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.Function#getReads <em>Reads</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.Function#getCommands <em>Commands</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.Function#getWrites <em>Writes</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Function#getFunction <em>Function</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Function#getDefinition <em>Definition</em>}</li>
  * </ul>
  *
  * @see org.xtext.compilation.whileComp.WhileCompPackage#getFunction()
@@ -29,77 +25,55 @@ import org.eclipse.emf.ecore.EObject;
 public interface Function extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Function</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Function</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getFunction_Name()
+   * @return the value of the '<em>Function</em>' attribute.
+   * @see #setFunction(String)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getFunction_Function()
    * @model
    * @generated
    */
-  String getName();
+  String getFunction();
 
   /**
-   * Sets the value of the '{@link org.xtext.compilation.whileComp.Function#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Function#getFunction <em>Function</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Function</em>' attribute.
+   * @see #getFunction()
    * @generated
    */
-  void setName(String value);
+  void setFunction(String value);
 
   /**
-   * Returns the value of the '<em><b>Reads</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.compilation.whileComp.Read}.
+   * Returns the value of the '<em><b>Definition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Reads</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Definition</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Reads</em>' containment reference list.
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getFunction_Reads()
+   * @return the value of the '<em>Definition</em>' containment reference.
+   * @see #setDefinition(Definition)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getFunction_Definition()
    * @model containment="true"
    * @generated
    */
-  EList<Read> getReads();
+  Definition getDefinition();
 
   /**
-   * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.compilation.whileComp.Command}.
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Function#getDefinition <em>Definition</em>}' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Commands</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Commands</em>' containment reference list.
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getFunction_Commands()
-   * @model containment="true"
+   * @param value the new value of the '<em>Definition</em>' containment reference.
+   * @see #getDefinition()
    * @generated
    */
-  EList<Command> getCommands();
-
-  /**
-   * Returns the value of the '<em><b>Writes</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.compilation.whileComp.Write}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Writes</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Writes</em>' containment reference list.
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getFunction_Writes()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Write> getWrites();
+  void setDefinition(Definition value);
 
 } // Function

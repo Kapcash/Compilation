@@ -24,7 +24,7 @@ import org.xtext.compilation.whileComp.Write;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.impl.WriteImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.WriteImpl#getVariable <em>Variable</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +32,14 @@ import org.xtext.compilation.whileComp.Write;
 public class WriteImpl extends MinimalEObjectImpl.Container implements Write
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getVariable()
    * @generated
    * @ordered
    */
-  protected EList<String> name;
+  protected EList<String> variable;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,13 +67,13 @@ public class WriteImpl extends MinimalEObjectImpl.Container implements Write
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getName()
+  public EList<String> getVariable()
   {
-    if (name == null)
+    if (variable == null)
     {
-      name = new EDataTypeEList<String>(String.class, this, WhileCompPackage.WRITE__NAME);
+      variable = new EDataTypeEList<String>(String.class, this, WhileCompPackage.WRITE__VARIABLE);
     }
-    return name;
+    return variable;
   }
 
   /**
@@ -86,8 +86,8 @@ public class WriteImpl extends MinimalEObjectImpl.Container implements Write
   {
     switch (featureID)
     {
-      case WhileCompPackage.WRITE__NAME:
-        return getName();
+      case WhileCompPackage.WRITE__VARIABLE:
+        return getVariable();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -103,9 +103,9 @@ public class WriteImpl extends MinimalEObjectImpl.Container implements Write
   {
     switch (featureID)
     {
-      case WhileCompPackage.WRITE__NAME:
-        getName().clear();
-        getName().addAll((Collection<? extends String>)newValue);
+      case WhileCompPackage.WRITE__VARIABLE:
+        getVariable().clear();
+        getVariable().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -121,8 +121,8 @@ public class WriteImpl extends MinimalEObjectImpl.Container implements Write
   {
     switch (featureID)
     {
-      case WhileCompPackage.WRITE__NAME:
-        getName().clear();
+      case WhileCompPackage.WRITE__VARIABLE:
+        getVariable().clear();
         return;
     }
     super.eUnset(featureID);
@@ -138,8 +138,8 @@ public class WriteImpl extends MinimalEObjectImpl.Container implements Write
   {
     switch (featureID)
     {
-      case WhileCompPackage.WRITE__NAME:
-        return name != null && !name.isEmpty();
+      case WhileCompPackage.WRITE__VARIABLE:
+        return variable != null && !variable.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -155,8 +155,8 @@ public class WriteImpl extends MinimalEObjectImpl.Container implements Write
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (variable: ");
+    result.append(variable);
     result.append(')');
     return result.toString();
   }

@@ -15,8 +15,11 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.compilation.whileComp.Affectation;
 import org.xtext.compilation.whileComp.Command;
+import org.xtext.compilation.whileComp.Definition;
 import org.xtext.compilation.whileComp.Function;
+import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Nop;
+import org.xtext.compilation.whileComp.Program;
 import org.xtext.compilation.whileComp.Read;
 import org.xtext.compilation.whileComp.Write;
 
@@ -33,28 +36,36 @@ public class WhileCompGenerator extends AbstractGenerator {
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     Iterable<Function> _filter = Iterables.<Function>filter(_iterable, Function.class);
     for (final Function e : _filter) {
-      String _name = e.getName();
-      String _plus = (_name + ".whpp");
+      String _function = e.getFunction();
+      String _plus = (_function + "output.whpp");
       CharSequence _compile = this.compile(e);
       fsa.generateFile(_plus, _compile);
+    }
+  }
+  
+  public void compile(final Program p) {
+    EList<Function> _functions = p.getFunctions();
+    for (final Function f : _functions) {
+      this.compile(f);
     }
   }
   
   public CharSequence compile(final Function c) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("function ");
-    String _name = c.getName();
-    _builder.append(_name, "");
+    String _function = c.getFunction();
+    _builder.append(_function, "");
     _builder.append(" :");
     _builder.newLineIfNotEmpty();
     {
-      EList<Read> _reads = c.getReads();
+      Definition _definition = c.getDefinition();
+      EList<Read> _reads = _definition.getReads();
       for(final Read f : _reads) {
         _builder.append("read");
         {
-          EList<String> _name_1 = f.getName();
+          EList<String> _variable = f.getVariable();
           boolean _hasElements = false;
-          for(final String param : _name_1) {
+          for(final String param : _variable) {
             if (!_hasElements) {
               _hasElements = true;
             } else {
@@ -70,21 +81,43 @@ public class WhileCompGenerator extends AbstractGenerator {
     _builder.append("%");
     _builder.newLine();
     {
-      EList<Command> _commands = c.getCommands();
+      Definition _definition_1 = c.getDefinition();
+      EList<Command> _commands = _definition_1.getCommands();
       for(final Command f_1 : _commands) {
         {
-          if ((f_1 instanceof Affectation)) {
-            _builder.append("\t", "");
-            String _name_2 = ((Affectation)f_1).getName();
-            _builder.append(_name_2, "");
-            _builder.append(" :=");
-            int _valeur = ((Affectation)f_1).getValeur();
-            _builder.append(_valeur, "");
-            _builder.newLineIfNotEmpty();
+          EObject _command = f_1.getCommand();
+          if ((_command instanceof Affectation)) {
+            {
+              EObject _command_1 = f_1.getCommand();
+              Nil2 _nil = ((Affectation) _command_1).getNil();
+              if ((_nil instanceof Nil2)) {
+                _builder.append("\t", "");
+                EObject _command_2 = f_1.getCommand();
+                String _affectation = ((Affectation) _command_2).getAffectation();
+                _builder.append(_affectation, "");
+                _builder.append(" :=");
+                EObject _command_3 = f_1.getCommand();
+                Nil2 _nil_1 = ((Affectation) _command_3).getNil();
+                String _nil_2 = _nil_1.getNil();
+                _builder.append(_nil_2, "");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t", "");
+                EObject _command_4 = f_1.getCommand();
+                String _affectation_1 = ((Affectation) _command_4).getAffectation();
+                _builder.append(_affectation_1, "");
+                _builder.append(" :=");
+                EObject _command_5 = f_1.getCommand();
+                String _valeur = ((Affectation) _command_5).getValeur();
+                _builder.append(_valeur, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
           }
         }
         {
-          if ((f_1 instanceof Nop)) {
+          EObject _command_6 = f_1.getCommand();
+          if ((_command_6 instanceof Nop)) {
             _builder.append("\t", "");
             _builder.append("nop");
             _builder.newLineIfNotEmpty();
@@ -95,13 +128,14 @@ public class WhileCompGenerator extends AbstractGenerator {
     _builder.append("%");
     _builder.newLine();
     {
-      EList<Write> _writes = c.getWrites();
+      Definition _definition_2 = c.getDefinition();
+      EList<Write> _writes = _definition_2.getWrites();
       for(final Write f_2 : _writes) {
         _builder.append("write");
         {
-          EList<String> _name_3 = f_2.getName();
+          EList<String> _variable_1 = f_2.getVariable();
           boolean _hasElements_1 = false;
-          for(final String param_1 : _name_3) {
+          for(final String param_1 : _variable_1) {
             if (!_hasElements_1) {
               _hasElements_1 = true;
             } else {

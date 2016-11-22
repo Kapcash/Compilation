@@ -24,7 +24,7 @@ import org.xtext.compilation.whileComp.WhileCompPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.impl.ReadImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.ReadImpl#getVariable <em>Variable</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +32,14 @@ import org.xtext.compilation.whileComp.WhileCompPackage;
 public class ReadImpl extends MinimalEObjectImpl.Container implements Read
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getVariable()
    * @generated
    * @ordered
    */
-  protected EList<String> name;
+  protected EList<String> variable;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,13 +67,13 @@ public class ReadImpl extends MinimalEObjectImpl.Container implements Read
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getName()
+  public EList<String> getVariable()
   {
-    if (name == null)
+    if (variable == null)
     {
-      name = new EDataTypeEList<String>(String.class, this, WhileCompPackage.READ__NAME);
+      variable = new EDataTypeEList<String>(String.class, this, WhileCompPackage.READ__VARIABLE);
     }
-    return name;
+    return variable;
   }
 
   /**
@@ -86,8 +86,8 @@ public class ReadImpl extends MinimalEObjectImpl.Container implements Read
   {
     switch (featureID)
     {
-      case WhileCompPackage.READ__NAME:
-        return getName();
+      case WhileCompPackage.READ__VARIABLE:
+        return getVariable();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -103,9 +103,9 @@ public class ReadImpl extends MinimalEObjectImpl.Container implements Read
   {
     switch (featureID)
     {
-      case WhileCompPackage.READ__NAME:
-        getName().clear();
-        getName().addAll((Collection<? extends String>)newValue);
+      case WhileCompPackage.READ__VARIABLE:
+        getVariable().clear();
+        getVariable().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -121,8 +121,8 @@ public class ReadImpl extends MinimalEObjectImpl.Container implements Read
   {
     switch (featureID)
     {
-      case WhileCompPackage.READ__NAME:
-        getName().clear();
+      case WhileCompPackage.READ__VARIABLE:
+        getVariable().clear();
         return;
     }
     super.eUnset(featureID);
@@ -138,8 +138,8 @@ public class ReadImpl extends MinimalEObjectImpl.Container implements Read
   {
     switch (featureID)
     {
-      case WhileCompPackage.READ__NAME:
-        return name != null && !name.isEmpty();
+      case WhileCompPackage.READ__VARIABLE:
+        return variable != null && !variable.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -155,8 +155,8 @@ public class ReadImpl extends MinimalEObjectImpl.Container implements Read
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (variable: ");
+    result.append(variable);
     result.append(')');
     return result.toString();
   }

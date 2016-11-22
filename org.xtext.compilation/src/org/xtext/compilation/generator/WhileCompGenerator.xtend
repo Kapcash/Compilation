@@ -9,7 +9,9 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.compilation.whileComp.Affectation
 import org.xtext.compilation.whileComp.Function
+import org.xtext.compilation.whileComp.Nil2
 import org.xtext.compilation.whileComp.Nop
+import org.xtext.compilation.whileComp.Program
 
 /**
  * Generates code from your model files on save.
@@ -20,26 +22,37 @@ class WhileCompGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (e : resource.allContents.toIterable.filter(typeof(Function))){
-			fsa.generateFile( e.name + ".whpp",	e.compile)
+			fsa.generateFile(e.function + "output.whpp",	e.compile)
 		}
 	}
+	
+	def compile (Program p){
+		for (f : p.functions){
+			f.compile
+		}
+	}
+	
 	def compile (Function c){'''
-		function «c.name» :
-		«FOR f : c.reads»
-		read«FOR param: f.name SEPARATOR ','» «param»«ENDFOR»
+		function «c.function» :
+		«FOR f : c.definition.reads»
+		read«FOR param: f.variable SEPARATOR ','» «param»«ENDFOR»
 		«ENDFOR»
 		%
-		«FOR f : c.commands»
-		«IF f instanceof Affectation»
-			«"	"»«f.name» :=«f.valeur»
-		«ENDIF»
-		«IF f instanceof Nop»
-			«"	"»nop
-		«ENDIF»
+		«FOR f : c.definition.commands»
+			«IF f.command instanceof Affectation»
+				«IF (f.command as Affectation).nil instanceof Nil2»
+					«"	"»«(f.command as Affectation).affectation» :=«(f.command as Affectation).nil.nil»
+				«ELSE»
+				«"	"»«(f.command as Affectation).affectation» :=«(f.command as Affectation).valeur»
+				«ENDIF»
+			«ENDIF»
+			«IF f.command instanceof Nop»
+				«"	"»nop
+			«ENDIF»
 		«ENDFOR»
 		%
-		«FOR f : c.writes»
-		write«FOR param: f.name SEPARATOR ','» «param»«ENDFOR»
+		«FOR f : c.definition.writes»
+		write«FOR param: f.variable SEPARATOR ','» «param»«ENDFOR»
 		«ENDFOR»
 	'''	
 	}

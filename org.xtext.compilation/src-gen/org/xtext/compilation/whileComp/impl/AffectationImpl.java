@@ -4,12 +4,16 @@
 package org.xtext.compilation.whileComp.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.compilation.whileComp.Affectation;
+import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.WhileCompPackage;
 
 /**
@@ -20,13 +24,35 @@ import org.xtext.compilation.whileComp.WhileCompPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.AffectationImpl#getAffectation <em>Affectation</em>}</li>
  *   <li>{@link org.xtext.compilation.whileComp.impl.AffectationImpl#getValeur <em>Valeur</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.AffectationImpl#getNil <em>Nil</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AffectationImpl extends CommandImpl implements Affectation
+public class AffectationImpl extends MinimalEObjectImpl.Container implements Affectation
 {
+  /**
+   * The default value of the '{@link #getAffectation() <em>Affectation</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAffectation()
+   * @generated
+   * @ordered
+   */
+  protected static final String AFFECTATION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getAffectation() <em>Affectation</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAffectation()
+   * @generated
+   * @ordered
+   */
+  protected String affectation = AFFECTATION_EDEFAULT;
+
   /**
    * The default value of the '{@link #getValeur() <em>Valeur</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -35,7 +61,7 @@ public class AffectationImpl extends CommandImpl implements Affectation
    * @generated
    * @ordered
    */
-  protected static final int VALEUR_EDEFAULT = 0;
+  protected static final String VALEUR_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getValeur() <em>Valeur</em>}' attribute.
@@ -45,7 +71,17 @@ public class AffectationImpl extends CommandImpl implements Affectation
    * @generated
    * @ordered
    */
-  protected int valeur = VALEUR_EDEFAULT;
+  protected String valeur = VALEUR_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getNil() <em>Nil</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNil()
+   * @generated
+   * @ordered
+   */
+  protected Nil2 nil;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +109,30 @@ public class AffectationImpl extends CommandImpl implements Affectation
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getValeur()
+  public String getAffectation()
+  {
+    return affectation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAffectation(String newAffectation)
+  {
+    String oldAffectation = affectation;
+    affectation = newAffectation;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__AFFECTATION, oldAffectation, affectation));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getValeur()
   {
     return valeur;
   }
@@ -83,12 +142,76 @@ public class AffectationImpl extends CommandImpl implements Affectation
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValeur(int newValeur)
+  public void setValeur(String newValeur)
   {
-    int oldValeur = valeur;
+    String oldValeur = valeur;
     valeur = newValeur;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__VALEUR, oldValeur, valeur));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Nil2 getNil()
+  {
+    return nil;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetNil(Nil2 newNil, NotificationChain msgs)
+  {
+    Nil2 oldNil = nil;
+    nil = newNil;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__NIL, oldNil, newNil);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNil(Nil2 newNil)
+  {
+    if (newNil != nil)
+    {
+      NotificationChain msgs = null;
+      if (nil != null)
+        msgs = ((InternalEObject)nil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.AFFECTATION__NIL, null, msgs);
+      if (newNil != null)
+        msgs = ((InternalEObject)newNil).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.AFFECTATION__NIL, null, msgs);
+      msgs = basicSetNil(newNil, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__NIL, newNil, newNil));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case WhileCompPackage.AFFECTATION__NIL:
+        return basicSetNil(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -101,8 +224,12 @@ public class AffectationImpl extends CommandImpl implements Affectation
   {
     switch (featureID)
     {
+      case WhileCompPackage.AFFECTATION__AFFECTATION:
+        return getAffectation();
       case WhileCompPackage.AFFECTATION__VALEUR:
         return getValeur();
+      case WhileCompPackage.AFFECTATION__NIL:
+        return getNil();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +244,14 @@ public class AffectationImpl extends CommandImpl implements Affectation
   {
     switch (featureID)
     {
+      case WhileCompPackage.AFFECTATION__AFFECTATION:
+        setAffectation((String)newValue);
+        return;
       case WhileCompPackage.AFFECTATION__VALEUR:
-        setValeur((Integer)newValue);
+        setValeur((String)newValue);
+        return;
+      case WhileCompPackage.AFFECTATION__NIL:
+        setNil((Nil2)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +267,14 @@ public class AffectationImpl extends CommandImpl implements Affectation
   {
     switch (featureID)
     {
+      case WhileCompPackage.AFFECTATION__AFFECTATION:
+        setAffectation(AFFECTATION_EDEFAULT);
+        return;
       case WhileCompPackage.AFFECTATION__VALEUR:
         setValeur(VALEUR_EDEFAULT);
+        return;
+      case WhileCompPackage.AFFECTATION__NIL:
+        setNil((Nil2)null);
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +290,12 @@ public class AffectationImpl extends CommandImpl implements Affectation
   {
     switch (featureID)
     {
+      case WhileCompPackage.AFFECTATION__AFFECTATION:
+        return AFFECTATION_EDEFAULT == null ? affectation != null : !AFFECTATION_EDEFAULT.equals(affectation);
       case WhileCompPackage.AFFECTATION__VALEUR:
-        return valeur != VALEUR_EDEFAULT;
+        return VALEUR_EDEFAULT == null ? valeur != null : !VALEUR_EDEFAULT.equals(valeur);
+      case WhileCompPackage.AFFECTATION__NIL:
+        return nil != null;
     }
     return super.eIsSet(featureID);
   }
@@ -168,7 +311,9 @@ public class AffectationImpl extends CommandImpl implements Affectation
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (valeur: ");
+    result.append(" (affectation: ");
+    result.append(affectation);
+    result.append(", valeur: ");
     result.append(valeur);
     result.append(')');
     return result.toString();

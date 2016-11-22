@@ -14,7 +14,13 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.Command#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Command#getCommand <em>Command</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Command#getExpr <em>Expr</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Command#getCommands <em>Commands</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Command#getCommands1 <em>Commands1</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Command#getCommands2 <em>Commands2</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Command#getExpr1 <em>Expr1</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Command#getExpr2 <em>Expr2</em>}</li>
  * </ul>
  *
  * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand()
@@ -24,29 +30,185 @@ import org.eclipse.emf.ecore.EObject;
 public interface Command extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Command</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Command</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Name()
-   * @model
+   * @return the value of the '<em>Command</em>' containment reference.
+   * @see #setCommand(EObject)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Command()
+   * @model containment="true"
    * @generated
    */
-  String getName();
+  EObject getCommand();
 
   /**
-   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getCommand <em>Command</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Command</em>' containment reference.
+   * @see #getCommand()
    * @generated
    */
-  void setName(String value);
+  void setCommand(EObject value);
+
+  /**
+   * Returns the value of the '<em><b>Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Expr</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Expr</em>' containment reference.
+   * @see #setExpr(Expr)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Expr()
+   * @model containment="true"
+   * @generated
+   */
+  Expr getExpr();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getExpr <em>Expr</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expr</em>' containment reference.
+   * @see #getExpr()
+   * @generated
+   */
+  void setExpr(Expr value);
+
+  /**
+   * Returns the value of the '<em><b>Commands</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Commands</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Commands</em>' containment reference.
+   * @see #setCommands(Commands)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Commands()
+   * @model containment="true"
+   * @generated
+   */
+  Commands getCommands();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getCommands <em>Commands</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Commands</em>' containment reference.
+   * @see #getCommands()
+   * @generated
+   */
+  void setCommands(Commands value);
+
+  /**
+   * Returns the value of the '<em><b>Commands1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Commands1</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Commands1</em>' containment reference.
+   * @see #setCommands1(Commands)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Commands1()
+   * @model containment="true"
+   * @generated
+   */
+  Commands getCommands1();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getCommands1 <em>Commands1</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Commands1</em>' containment reference.
+   * @see #getCommands1()
+   * @generated
+   */
+  void setCommands1(Commands value);
+
+  /**
+   * Returns the value of the '<em><b>Commands2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Commands2</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Commands2</em>' containment reference.
+   * @see #setCommands2(Commands)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Commands2()
+   * @model containment="true"
+   * @generated
+   */
+  Commands getCommands2();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getCommands2 <em>Commands2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Commands2</em>' containment reference.
+   * @see #getCommands2()
+   * @generated
+   */
+  void setCommands2(Commands value);
+
+  /**
+   * Returns the value of the '<em><b>Expr1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Expr1</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Expr1</em>' containment reference.
+   * @see #setExpr1(Expr)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Expr1()
+   * @model containment="true"
+   * @generated
+   */
+  Expr getExpr1();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getExpr1 <em>Expr1</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expr1</em>' containment reference.
+   * @see #getExpr1()
+   * @generated
+   */
+  void setExpr1(Expr value);
+
+  /**
+   * Returns the value of the '<em><b>Expr2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Expr2</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Expr2</em>' containment reference.
+   * @see #setExpr2(Expr)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommand_Expr2()
+   * @model containment="true"
+   * @generated
+   */
+  Expr getExpr2();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Command#getExpr2 <em>Expr2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Expr2</em>' containment reference.
+   * @see #getExpr2()
+   * @generated
+   */
+  void setExpr2(Expr value);
 
 } // Command

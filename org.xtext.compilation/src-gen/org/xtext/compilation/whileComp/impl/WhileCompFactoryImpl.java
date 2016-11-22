@@ -67,11 +67,29 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
     {
       case WhileCompPackage.PROGRAM: return createProgram();
       case WhileCompPackage.FUNCTION: return createFunction();
+      case WhileCompPackage.DEFINITION: return createDefinition();
       case WhileCompPackage.READ: return createRead();
       case WhileCompPackage.WRITE: return createWrite();
-      case WhileCompPackage.COMMAND: return createCommand();
       case WhileCompPackage.NOP: return createNop();
       case WhileCompPackage.AFFECTATION: return createAffectation();
+      case WhileCompPackage.NIL2: return createNil2();
+      case WhileCompPackage.INPUT: return createInput();
+      case WhileCompPackage.OUTPUT: return createOutput();
+      case WhileCompPackage.COMMANDS: return createCommands();
+      case WhileCompPackage.COMMAND: return createCommand();
+      case WhileCompPackage.EXPR: return createExpr();
+      case WhileCompPackage.EXPR_AND: return createExprAnd();
+      case WhileCompPackage.EXPR_OR: return createExprOr();
+      case WhileCompPackage.EXPR_NOT: return createExprNot();
+      case WhileCompPackage.EXPR_EQ: return createExprEq();
+      case WhileCompPackage.VARS: return createVars();
+      case WhileCompPackage.EXPRS: return createExprs();
+      case WhileCompPackage.EXPR_SIMPLE: return createExprSimple();
+      case WhileCompPackage.CONS: return createCons();
+      case WhileCompPackage.LIST: return createList();
+      case WhileCompPackage.HD: return createHd();
+      case WhileCompPackage.TL: return createTl();
+      case WhileCompPackage.LEXPR: return createLexpr();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -104,6 +122,17 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
    * <!-- end-user-doc -->
    * @generated
    */
+  public Definition createDefinition()
+  {
+    DefinitionImpl definition = new DefinitionImpl();
+    return definition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Read createRead()
   {
     ReadImpl read = new ReadImpl();
@@ -126,17 +155,6 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public Command createCommand()
-  {
-    CommandImpl command = new CommandImpl();
-    return command;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Nop createNop()
   {
     NopImpl nop = new NopImpl();
@@ -152,6 +170,204 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
   {
     AffectationImpl affectation = new AffectationImpl();
     return affectation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Nil2 createNil2()
+  {
+    Nil2Impl nil2 = new Nil2Impl();
+    return nil2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Input createInput()
+  {
+    InputImpl input = new InputImpl();
+    return input;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Output createOutput()
+  {
+    OutputImpl output = new OutputImpl();
+    return output;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Commands createCommands()
+  {
+    CommandsImpl commands = new CommandsImpl();
+    return commands;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Command createCommand()
+  {
+    CommandImpl command = new CommandImpl();
+    return command;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr createExpr()
+  {
+    ExprImpl expr = new ExprImpl();
+    return expr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprAnd createExprAnd()
+  {
+    ExprAndImpl exprAnd = new ExprAndImpl();
+    return exprAnd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprOr createExprOr()
+  {
+    ExprOrImpl exprOr = new ExprOrImpl();
+    return exprOr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprNot createExprNot()
+  {
+    ExprNotImpl exprNot = new ExprNotImpl();
+    return exprNot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprEq createExprEq()
+  {
+    ExprEqImpl exprEq = new ExprEqImpl();
+    return exprEq;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Vars createVars()
+  {
+    VarsImpl vars = new VarsImpl();
+    return vars;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Exprs createExprs()
+  {
+    ExprsImpl exprs = new ExprsImpl();
+    return exprs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExprSimple createExprSimple()
+  {
+    ExprSimpleImpl exprSimple = new ExprSimpleImpl();
+    return exprSimple;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Cons createCons()
+  {
+    ConsImpl cons = new ConsImpl();
+    return cons;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public List createList()
+  {
+    ListImpl list = new ListImpl();
+    return list;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Hd createHd()
+  {
+    HdImpl hd = new HdImpl();
+    return hd;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Tl createTl()
+  {
+    TlImpl tl = new TlImpl();
+    return tl;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Lexpr createLexpr()
+  {
+    LexprImpl lexpr = new LexprImpl();
+    return lexpr;
   }
 
   /**

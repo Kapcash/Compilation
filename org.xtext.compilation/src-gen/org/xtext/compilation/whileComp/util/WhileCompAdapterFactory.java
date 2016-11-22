@@ -86,6 +86,11 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
         return createFunctionAdapter();
       }
       @Override
+      public Adapter caseDefinition(Definition object)
+      {
+        return createDefinitionAdapter();
+      }
+      @Override
       public Adapter caseRead(Read object)
       {
         return createReadAdapter();
@@ -96,11 +101,6 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
         return createWriteAdapter();
       }
       @Override
-      public Adapter caseCommand(Command object)
-      {
-        return createCommandAdapter();
-      }
-      @Override
       public Adapter caseNop(Nop object)
       {
         return createNopAdapter();
@@ -109,6 +109,96 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAffectation(Affectation object)
       {
         return createAffectationAdapter();
+      }
+      @Override
+      public Adapter caseNil2(Nil2 object)
+      {
+        return createNil2Adapter();
+      }
+      @Override
+      public Adapter caseInput(Input object)
+      {
+        return createInputAdapter();
+      }
+      @Override
+      public Adapter caseOutput(Output object)
+      {
+        return createOutputAdapter();
+      }
+      @Override
+      public Adapter caseCommands(Commands object)
+      {
+        return createCommandsAdapter();
+      }
+      @Override
+      public Adapter caseCommand(Command object)
+      {
+        return createCommandAdapter();
+      }
+      @Override
+      public Adapter caseExpr(Expr object)
+      {
+        return createExprAdapter();
+      }
+      @Override
+      public Adapter caseExprAnd(ExprAnd object)
+      {
+        return createExprAndAdapter();
+      }
+      @Override
+      public Adapter caseExprOr(ExprOr object)
+      {
+        return createExprOrAdapter();
+      }
+      @Override
+      public Adapter caseExprNot(ExprNot object)
+      {
+        return createExprNotAdapter();
+      }
+      @Override
+      public Adapter caseExprEq(ExprEq object)
+      {
+        return createExprEqAdapter();
+      }
+      @Override
+      public Adapter caseVars(Vars object)
+      {
+        return createVarsAdapter();
+      }
+      @Override
+      public Adapter caseExprs(Exprs object)
+      {
+        return createExprsAdapter();
+      }
+      @Override
+      public Adapter caseExprSimple(ExprSimple object)
+      {
+        return createExprSimpleAdapter();
+      }
+      @Override
+      public Adapter caseCons(Cons object)
+      {
+        return createConsAdapter();
+      }
+      @Override
+      public Adapter caseList(List object)
+      {
+        return createListAdapter();
+      }
+      @Override
+      public Adapter caseHd(Hd object)
+      {
+        return createHdAdapter();
+      }
+      @Override
+      public Adapter caseTl(Tl object)
+      {
+        return createTlAdapter();
+      }
+      @Override
+      public Adapter caseLexpr(Lexpr object)
+      {
+        return createLexprAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -163,6 +253,21 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Definition <em>Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Definition
+   * @generated
+   */
+  public Adapter createDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Read <em>Read</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -193,21 +298,6 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Command <em>Command</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.compilation.whileComp.Command
-   * @generated
-   */
-  public Adapter createCommandAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Nop <em>Nop</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -233,6 +323,276 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAffectationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Nil2 <em>Nil2</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Nil2
+   * @generated
+   */
+  public Adapter createNil2Adapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Input <em>Input</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Input
+   * @generated
+   */
+  public Adapter createInputAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Output <em>Output</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Output
+   * @generated
+   */
+  public Adapter createOutputAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Commands <em>Commands</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Commands
+   * @generated
+   */
+  public Adapter createCommandsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Command <em>Command</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Command
+   * @generated
+   */
+  public Adapter createCommandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Expr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Expr
+   * @generated
+   */
+  public Adapter createExprAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.ExprAnd <em>Expr And</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.ExprAnd
+   * @generated
+   */
+  public Adapter createExprAndAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.ExprOr <em>Expr Or</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.ExprOr
+   * @generated
+   */
+  public Adapter createExprOrAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.ExprNot <em>Expr Not</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.ExprNot
+   * @generated
+   */
+  public Adapter createExprNotAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.ExprEq <em>Expr Eq</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.ExprEq
+   * @generated
+   */
+  public Adapter createExprEqAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Vars <em>Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Vars
+   * @generated
+   */
+  public Adapter createVarsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Exprs <em>Exprs</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Exprs
+   * @generated
+   */
+  public Adapter createExprsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.ExprSimple <em>Expr Simple</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.ExprSimple
+   * @generated
+   */
+  public Adapter createExprSimpleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Cons <em>Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Cons
+   * @generated
+   */
+  public Adapter createConsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.List <em>List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.List
+   * @generated
+   */
+  public Adapter createListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Hd <em>Hd</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Hd
+   * @generated
+   */
+  public Adapter createHdAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Tl <em>Tl</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Tl
+   * @generated
+   */
+  public Adapter createTlAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Lexpr <em>Lexpr</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Lexpr
+   * @generated
+   */
+  public Adapter createLexprAdapter()
   {
     return null;
   }

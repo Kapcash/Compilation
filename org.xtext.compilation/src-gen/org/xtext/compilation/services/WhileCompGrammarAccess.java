@@ -282,7 +282,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cVariableAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cVariableVARIABLETerminalRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
 		
-		/// * A VIRER * / Input:
+		/// * A RETIRER * / Input:
 		//	variable=VARIABLE ',' input=Input | variable=VARIABLE;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1343,7 +1343,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		return getNil2Access().getRule();
 	}
 	
-	/// * A VIRER * / Input:
+	/// * A RETIRER * / Input:
 	//	variable=VARIABLE ',' input=Input | variable=VARIABLE;
 	public InputElements getInputAccess() {
 		return pInput;

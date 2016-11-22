@@ -1,0 +1,14 @@
+function id:
+
+	read Ab
+	%
+		X:= Y
+		nop
+		while Var
+			do 
+	Ret:=A;
+			while Test do Ret:=UiUiUi od
+		od
+%
+		write 
+			Ab

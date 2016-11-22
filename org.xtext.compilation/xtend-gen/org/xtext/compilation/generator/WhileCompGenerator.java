@@ -46,7 +46,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
     for (final Program e : _filter) {
       CharSequence _compile = this.compile(e);
-      fsa.generateFile("Resultat_output.whpp", _compile);
+      fsa.generateFile("Result_output.whpp", _compile);
     }
   }
   
@@ -199,7 +199,7 @@ public class WhileCompGenerator extends AbstractGenerator {
         Expr _expr = ((While) _command_8).getExpr();
         CharSequence _compile = this.compile(_expr);
         _builder.append(_compile, "");
-        _builder.append(" do", "");
+        _builder.append("\tdo");
         _builder.newLineIfNotEmpty();
         EObject _command_9 = c.getCommand();
         Commands _commands = ((While) _command_9).getCommands();

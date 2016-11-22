@@ -35,7 +35,7 @@ Affectation:
 Nil2:
 	nil='nil'
 ;
-/* A VIRER */
+/* A RETIRER */
 Input:
 	(variable=VARIABLE ',' input=Input) | variable=VARIABLE
 ;	

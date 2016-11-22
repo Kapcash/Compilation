@@ -31,7 +31,7 @@ class WhileCompGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (e : resource.allContents.toIterable.filter(typeof(Program))){
-			fsa.generateFile("Resultat_output.whpp",	e.compile)
+			fsa.generateFile("Result_output.whpp",	e.compile)
 		}
 	}
 	
@@ -80,7 +80,7 @@ class WhileCompGenerator extends AbstractGenerator {
 			«"	"»nop
 		«ENDIF»
 		«IF c.command instanceof While»
-			«"	"»while «(c.command as While).expr.compile»«" do"»
+			«"	"»while «(c.command as While).expr.compile»	do
 			«(c.command as While).commands.compile»
 			«"	"»od
 		«ENDIF»

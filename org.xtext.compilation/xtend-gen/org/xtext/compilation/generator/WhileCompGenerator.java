@@ -84,45 +84,10 @@ public class WhileCompGenerator extends AbstractGenerator {
       Definition _definition_1 = c.getDefinition();
       EList<Command> _commands = _definition_1.getCommands();
       for(final Command f_1 : _commands) {
-        {
-          EObject _command = f_1.getCommand();
-          if ((_command instanceof Affectation)) {
-            {
-              EObject _command_1 = f_1.getCommand();
-              Nil2 _nil = ((Affectation) _command_1).getNil();
-              if ((_nil instanceof Nil2)) {
-                _builder.append("\t", "");
-                EObject _command_2 = f_1.getCommand();
-                String _affectation = ((Affectation) _command_2).getAffectation();
-                _builder.append(_affectation, "");
-                _builder.append(" :=");
-                EObject _command_3 = f_1.getCommand();
-                Nil2 _nil_1 = ((Affectation) _command_3).getNil();
-                String _nil_2 = _nil_1.getNil();
-                _builder.append(_nil_2, "");
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\t", "");
-                EObject _command_4 = f_1.getCommand();
-                String _affectation_1 = ((Affectation) _command_4).getAffectation();
-                _builder.append(_affectation_1, "");
-                _builder.append(" :=");
-                EObject _command_5 = f_1.getCommand();
-                String _valeur = ((Affectation) _command_5).getValeur();
-                _builder.append(_valeur, "");
-                _builder.newLineIfNotEmpty();
-              }
-            }
-          }
-        }
-        {
-          EObject _command_6 = f_1.getCommand();
-          if ((_command_6 instanceof Nop)) {
-            _builder.append("\t", "");
-            _builder.append("nop");
-            _builder.newLineIfNotEmpty();
-          }
-        }
+        EObject _command = f_1.getCommand();
+        CharSequence _compile = this.compile(((Command) _command));
+        _builder.append(_compile, "");
+        _builder.newLineIfNotEmpty();
       }
     }
     _builder.append("%");
@@ -145,6 +110,43 @@ public class WhileCompGenerator extends AbstractGenerator {
             _builder.append(param_1, "");
           }
         }
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compile(final Command c) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((c instanceof Affectation)) {
+        {
+          Nil2 _nil = ((Affectation) c).getNil();
+          if ((_nil instanceof Nil2)) {
+            _builder.append("\t", "");
+            String _affectation = ((Affectation) c).getAffectation();
+            _builder.append(_affectation, "");
+            _builder.append(" :=");
+            Nil2 _nil_1 = ((Affectation) c).getNil();
+            String _nil_2 = _nil_1.getNil();
+            _builder.append(_nil_2, "");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t", "");
+            String _affectation_1 = ((Affectation) c).getAffectation();
+            _builder.append(_affectation_1, "");
+            _builder.append(" :=");
+            String _valeur = ((Affectation) c).getValeur();
+            _builder.append(_valeur, "");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      if ((c instanceof Nop)) {
+        _builder.append("\t", "");
+        _builder.append("nop");
         _builder.newLineIfNotEmpty();
       }
     }

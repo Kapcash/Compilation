@@ -433,10 +433,11 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cThenKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		private final Assignment cCommands1Assignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
 		private final RuleCall cCommands1CommandsParserRuleCall_4_3_0 = (RuleCall)cCommands1Assignment_4_3.eContents().get(0);
-		private final Keyword cElseKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
-		private final Assignment cCommands2Assignment_4_5 = (Assignment)cGroup_4.eContents().get(5);
-		private final RuleCall cCommands2CommandsParserRuleCall_4_5_0 = (RuleCall)cCommands2Assignment_4_5.eContents().get(0);
-		private final Keyword cFiKeyword_4_6 = (Keyword)cGroup_4.eContents().get(6);
+		private final Group cGroup_4_4 = (Group)cGroup_4.eContents().get(4);
+		private final Keyword cElseKeyword_4_4_0 = (Keyword)cGroup_4_4.eContents().get(0);
+		private final Assignment cCommands2Assignment_4_4_1 = (Assignment)cGroup_4_4.eContents().get(1);
+		private final RuleCall cCommands2CommandsParserRuleCall_4_4_1_0 = (RuleCall)cCommands2Assignment_4_4_1.eContents().get(0);
+		private final Keyword cFiKeyword_4_5 = (Keyword)cGroup_4.eContents().get(5);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Keyword cForeachKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cExpr1Assignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
@@ -450,17 +451,17 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOdKeyword_5_6 = (Keyword)cGroup_5.eContents().get(6);
 		
 		//Command:
-		//	command=Nop | command=Affectation | 'while' expr=Expr 'do' commands=Commands 'od' | 'for' expr=Expr 'do'
-		//	commands=Commands 'od' | 'if' expr=Expr 'then' commands1=Commands 'else' commands2=Commands 'fi' | 'foreach'
+		//	=> command=Nop | command=Affectation | 'while' expr=Expr 'do' commands=Commands 'od' | 'for' expr=Expr 'do'
+		//	commands=Commands 'od' | 'if' expr=Expr 'then' commands1=Commands ('else' commands2=Commands)? 'fi' | 'foreach'
 		//	expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//command=Nop | command=Affectation | 'while' expr=Expr 'do' commands=Commands 'od' | 'for' expr=Expr 'do'
-		//commands=Commands 'od' | 'if' expr=Expr 'then' commands1=Commands 'else' commands2=Commands 'fi' | 'foreach'
+		//=> command=Nop | command=Affectation | 'while' expr=Expr 'do' commands=Commands 'od' | 'for' expr=Expr 'do'
+		//commands=Commands 'od' | 'if' expr=Expr 'then' commands1=Commands ('else' commands2=Commands)? 'fi' | 'foreach'
 		//expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//command=Nop
+		//=> command=Nop
 		public Assignment getCommandAssignment_0() { return cCommandAssignment_0; }
 		
 		//Nop
@@ -520,7 +521,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//'od'
 		public Keyword getOdKeyword_3_4() { return cOdKeyword_3_4; }
 		
-		//'if' expr=Expr 'then' commands1=Commands 'else' commands2=Commands 'fi'
+		//'if' expr=Expr 'then' commands1=Commands ('else' commands2=Commands)? 'fi'
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//'if'
@@ -541,17 +542,20 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//Commands
 		public RuleCall getCommands1CommandsParserRuleCall_4_3_0() { return cCommands1CommandsParserRuleCall_4_3_0; }
 		
+		//('else' commands2=Commands)?
+		public Group getGroup_4_4() { return cGroup_4_4; }
+		
 		//'else'
-		public Keyword getElseKeyword_4_4() { return cElseKeyword_4_4; }
+		public Keyword getElseKeyword_4_4_0() { return cElseKeyword_4_4_0; }
 		
 		//commands2=Commands
-		public Assignment getCommands2Assignment_4_5() { return cCommands2Assignment_4_5; }
+		public Assignment getCommands2Assignment_4_4_1() { return cCommands2Assignment_4_4_1; }
 		
 		//Commands
-		public RuleCall getCommands2CommandsParserRuleCall_4_5_0() { return cCommands2CommandsParserRuleCall_4_5_0; }
+		public RuleCall getCommands2CommandsParserRuleCall_4_4_1_0() { return cCommands2CommandsParserRuleCall_4_4_1_0; }
 		
 		//'fi'
-		public Keyword getFiKeyword_4_6() { return cFiKeyword_4_6; }
+		public Keyword getFiKeyword_4_5() { return cFiKeyword_4_5; }
 		
 		//'foreach' expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od'
 		public Group getGroup_5() { return cGroup_5; }
@@ -1365,8 +1369,8 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Command:
-	//	command=Nop | command=Affectation | 'while' expr=Expr 'do' commands=Commands 'od' | 'for' expr=Expr 'do'
-	//	commands=Commands 'od' | 'if' expr=Expr 'then' commands1=Commands 'else' commands2=Commands 'fi' | 'foreach'
+	//	=> command=Nop | command=Affectation | 'while' expr=Expr 'do' commands=Commands 'od' | 'for' expr=Expr 'do'
+	//	commands=Commands 'od' | 'if' expr=Expr 'then' commands1=Commands ('else' commands2=Commands)? 'fi' | 'foreach'
 	//	expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od';
 	public CommandElements getCommandAccess() {
 		return pCommand;

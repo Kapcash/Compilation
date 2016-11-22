@@ -158,7 +158,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         command=Affectation | 
 	 *         (expr=Expr commands=Commands) | 
 	 *         (expr=Expr commands=Commands) | 
-	 *         (expr=Expr commands1=Commands commands2=Commands) | 
+	 *         (expr=Expr commands1=Commands commands2=Commands?) | 
 	 *         (expr1=Expr expr2=Expr commands=Commands)
 	 *     )
 	 */

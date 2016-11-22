@@ -10,8 +10,8 @@
 '=?'=35
 'cons'=40
 'do'=23
-'else'=28
-'fi'=29
+'else'=29
+'fi'=28
 'for'=25
 'foreach'=30
 'function'=14

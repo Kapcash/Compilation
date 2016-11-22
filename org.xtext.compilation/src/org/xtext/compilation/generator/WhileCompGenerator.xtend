@@ -8,6 +8,7 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.compilation.whileComp.Affectation
+import org.xtext.compilation.whileComp.Command
 import org.xtext.compilation.whileComp.Function
 import org.xtext.compilation.whileComp.Nil2
 import org.xtext.compilation.whileComp.Nop
@@ -39,21 +40,27 @@ class WhileCompGenerator extends AbstractGenerator {
 		«ENDFOR»
 		%
 		«FOR f : c.definition.commands»
-			«IF f.command instanceof Affectation»
-				«IF (f.command as Affectation).nil instanceof Nil2»
-					«"	"»«(f.command as Affectation).affectation» :=«(f.command as Affectation).nil.nil»
-				«ELSE»
-				«"	"»«(f.command as Affectation).affectation» :=«(f.command as Affectation).valeur»
-				«ENDIF»
-			«ENDIF»
-			«IF f.command instanceof Nop»
-				«"	"»nop
-			«ENDIF»
+			«(f.command as Command).compile»
 		«ENDFOR»
 		%
 		«FOR f : c.definition.writes»
 		write«FOR param: f.variable SEPARATOR ','» «param»«ENDFOR»
 		«ENDFOR»
 	'''	
+	}
+	
+	def compile(Command c){
+		'''
+		«IF c instanceof Affectation»
+			«IF (c as Affectation).nil instanceof Nil2»
+				«"	"»«(c as Affectation).affectation» :=«(c as Affectation).nil.nil»
+			«ELSE»
+				«"	"»«(c as Affectation).affectation» :=«(c as Affectation).valeur»
+			«ENDIF»
+		«ENDIF»
+		«IF c instanceof Nop»
+			«"	"»nop
+		«ENDIF»
+		'''
 	}
 }

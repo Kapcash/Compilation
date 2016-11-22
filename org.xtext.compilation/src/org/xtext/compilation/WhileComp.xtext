@@ -49,12 +49,11 @@ Commands:
 ;
 	
 Command:
-	command=Nop | command=Affectation | 
+	=>command=Nop | command=Affectation | 
 	('while' expr=Expr 'do' commands=Commands 'od') |
 	('for' expr=Expr 'do' commands=Commands 'od') |
-	('if' expr=Expr 'then' commands1=Commands 'else' commands2=Commands 'fi') |
-	('foreach' expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od') 
-	//('if' SEP Expr SEP 'then' SEP Commands SEP 'fi') 
+	('if' expr=Expr 'then' commands1=Commands ('else' commands2=Commands)? 'fi') |
+	('foreach' expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od')
 ;
 
 Expr: 

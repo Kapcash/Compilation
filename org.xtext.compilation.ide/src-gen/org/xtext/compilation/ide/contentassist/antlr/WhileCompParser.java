@@ -62,6 +62,7 @@ public class WhileCompParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCommandAccess().getGroup_2(), "rule__Command__Group_2__0");
 					put(grammarAccess.getCommandAccess().getGroup_3(), "rule__Command__Group_3__0");
 					put(grammarAccess.getCommandAccess().getGroup_4(), "rule__Command__Group_4__0");
+					put(grammarAccess.getCommandAccess().getGroup_4_4(), "rule__Command__Group_4_4__0");
 					put(grammarAccess.getCommandAccess().getGroup_5(), "rule__Command__Group_5__0");
 					put(grammarAccess.getExprAndAccess().getGroup_0(), "rule__ExprAnd__Group_0__0");
 					put(grammarAccess.getExprAndAccess().getGroup_0_0(), "rule__ExprAnd__Group_0_0__0");
@@ -111,7 +112,7 @@ public class WhileCompParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCommandAccess().getCommandsAssignment_3_3(), "rule__Command__CommandsAssignment_3_3");
 					put(grammarAccess.getCommandAccess().getExprAssignment_4_1(), "rule__Command__ExprAssignment_4_1");
 					put(grammarAccess.getCommandAccess().getCommands1Assignment_4_3(), "rule__Command__Commands1Assignment_4_3");
-					put(grammarAccess.getCommandAccess().getCommands2Assignment_4_5(), "rule__Command__Commands2Assignment_4_5");
+					put(grammarAccess.getCommandAccess().getCommands2Assignment_4_4_1(), "rule__Command__Commands2Assignment_4_4_1");
 					put(grammarAccess.getCommandAccess().getExpr1Assignment_5_1(), "rule__Command__Expr1Assignment_5_1");
 					put(grammarAccess.getCommandAccess().getExpr2Assignment_5_3(), "rule__Command__Expr2Assignment_5_3");
 					put(grammarAccess.getCommandAccess().getCommandsAssignment_5_5(), "rule__Command__CommandsAssignment_5_5");

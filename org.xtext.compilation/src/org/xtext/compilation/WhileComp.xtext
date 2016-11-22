@@ -48,7 +48,7 @@ Output:
 Commands:
 	command=Command (';' commands+=Command)*
 ;
-	
+
 Command:
 	command=Nop | command=Affectation | 
 	command=While|
@@ -89,7 +89,7 @@ Exprs:
 ;
 	
 ExprSimple:
-	nil='nil' | variable=VARIABLE | symbol=SYMBOL |
+	nil=Nil2 | variable=VARIABLE | symbol=SYMBOL |
 	'(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' |
 	'(' hd=Hd expr=Expr ')' | '(' tl=Tl expr=Expr ')' |
 	'(' symbol=SYMBOL lexpr=Lexpr ')'

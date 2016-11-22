@@ -18,6 +18,7 @@ import org.xtext.compilation.whileComp.ExprSimple;
 import org.xtext.compilation.whileComp.Hd;
 import org.xtext.compilation.whileComp.Lexpr;
 import org.xtext.compilation.whileComp.List;
+import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Tl;
 import org.xtext.compilation.whileComp.WhileCompPackage;
 
@@ -45,24 +46,14 @@ import org.xtext.compilation.whileComp.WhileCompPackage;
 public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements ExprSimple
 {
   /**
-   * The default value of the '{@link #getNil() <em>Nil</em>}' attribute.
+   * The cached value of the '{@link #getNil() <em>Nil</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getNil()
    * @generated
    * @ordered
    */
-  protected static final String NIL_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getNil() <em>Nil</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNil()
-   * @generated
-   * @ordered
-   */
-  protected String nil = NIL_EDEFAULT;
+  protected Nil2 nil;
 
   /**
    * The default value of the '{@link #getVariable() <em>Variable</em>}' attribute.
@@ -190,7 +181,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getNil()
+  public Nil2 getNil()
   {
     return nil;
   }
@@ -200,12 +191,37 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNil(String newNil)
+  public NotificationChain basicSetNil(Nil2 newNil, NotificationChain msgs)
   {
-    String oldNil = nil;
+    Nil2 oldNil = nil;
     nil = newNil;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__NIL, oldNil, nil));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__NIL, oldNil, newNil);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNil(Nil2 newNil)
+  {
+    if (newNil != nil)
+    {
+      NotificationChain msgs = null;
+      if (nil != null)
+        msgs = ((InternalEObject)nil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__NIL, null, msgs);
+      if (newNil != null)
+        msgs = ((InternalEObject)newNil).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__NIL, null, msgs);
+      msgs = basicSetNil(newNil, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__NIL, newNil, newNil));
   }
 
   /**
@@ -552,6 +568,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
+      case WhileCompPackage.EXPR_SIMPLE__NIL:
+        return basicSetNil(null, msgs);
       case WhileCompPackage.EXPR_SIMPLE__CONS:
         return basicSetCons(null, msgs);
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
@@ -611,7 +629,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case WhileCompPackage.EXPR_SIMPLE__NIL:
-        setNil((String)newValue);
+        setNil((Nil2)newValue);
         return;
       case WhileCompPackage.EXPR_SIMPLE__VARIABLE:
         setVariable((String)newValue);
@@ -652,7 +670,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case WhileCompPackage.EXPR_SIMPLE__NIL:
-        setNil(NIL_EDEFAULT);
+        setNil((Nil2)null);
         return;
       case WhileCompPackage.EXPR_SIMPLE__VARIABLE:
         setVariable(VARIABLE_EDEFAULT);
@@ -693,7 +711,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case WhileCompPackage.EXPR_SIMPLE__NIL:
-        return NIL_EDEFAULT == null ? nil != null : !NIL_EDEFAULT.equals(nil);
+        return nil != null;
       case WhileCompPackage.EXPR_SIMPLE__VARIABLE:
         return VARIABLE_EDEFAULT == null ? variable != null : !VARIABLE_EDEFAULT.equals(variable);
       case WhileCompPackage.EXPR_SIMPLE__SYMBOL:
@@ -725,9 +743,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (nil: ");
-    result.append(nil);
-    result.append(", variable: ");
+    result.append(" (variable: ");
     result.append(variable);
     result.append(", symbol: ");
     result.append(symbol);

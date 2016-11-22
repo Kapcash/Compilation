@@ -1714,15 +1714,20 @@ ruleExprSimple returns [EObject current=null]
 	(
 		(
 			(
-				lv_nil_0_0='nil'
 				{
-					newLeafNode(lv_nil_0_0, grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0());
+					newCompositeNode(grammarAccess.getExprSimpleAccess().getNilNil2ParserRuleCall_0_0());
 				}
+				lv_nil_0_0=ruleNil2
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getExprSimpleRule());
+						$current = createModelElementForParent(grammarAccess.getExprSimpleRule());
 					}
-					setWithLastConsumed($current, "nil", lv_nil_0_0, "nil");
+					set(
+						$current,
+						"nil",
+						lv_nil_0_0,
+						"org.xtext.compilation.WhileComp.Nil2");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)

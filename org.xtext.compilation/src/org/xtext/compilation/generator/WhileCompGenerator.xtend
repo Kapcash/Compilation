@@ -16,6 +16,11 @@ import org.xtext.compilation.whileComp.Nil2
 import org.xtext.compilation.whileComp.Nop
 import org.xtext.compilation.whileComp.Program
 import org.xtext.compilation.whileComp.While
+import org.xtext.compilation.whileComp.ExprAnd
+import org.xtext.compilation.whileComp.ExprOr
+import org.xtext.compilation.whileComp.ExprNot
+import org.xtext.compilation.whileComp.ExprEq
+import org.xtext.compilation.whileComp.ExprSimple
 
 /**
  * Generates code from your model files on save.
@@ -25,15 +30,16 @@ import org.xtext.compilation.whileComp.While
 class WhileCompGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		for (e : resource.allContents.toIterable.filter(typeof(Function))){
-			fsa.generateFile(e.function + "output.whpp",	e.compile)
+		for (e : resource.allContents.toIterable.filter(typeof(Program))){
+			fsa.generateFile("Resultat_output.whpp",	e.compile)
 		}
 	}
 	
-	def compile (Program p){
-		for (f : p.functions){	
-			f.compile
-		}
+	def compile (Program p){'''
+		«FOR f : p.functions»
+		«f.compile»
+		«ENDFOR»
+		'''
 	}
 	
 	def compile (Function c){'''
@@ -74,7 +80,7 @@ class WhileCompGenerator extends AbstractGenerator {
 			«"	"»nop
 		«ENDIF»
 		«IF c.command instanceof While»
-			«"	"»while «(c.command as While).expr.compile» do
+			«"	"»while «(c.command as While).expr.compile»«" do"»
 			«(c.command as While).commands.compile»
 			«"	"»od
 		«ENDIF»
@@ -82,6 +88,49 @@ class WhileCompGenerator extends AbstractGenerator {
 	}
 	
 	def compile(Expr expr){
+	'''
+	«IF expr instanceof ExprAnd»
+	«(expr as ExprAnd).compile»
+	«ENDIF»
+	«IF expr.exprsimple != null»
+	«expr.exprsimple.compile»
+	«ENDIF»
+	'''
+	}
+	
+	def compile(ExprAnd expr){
+	'''
+	«IF expr.exprAnd == null»
+	«expr.exprOr.compile»
+	«ELSE»
+	«expr.exprOr.compile» && «(expr.exprAnd as ExprAnd).compile»
+	«ENDIF»
+	'''
+	}
+	
+	def compile(ExprOr expr){
 	'''TODO'''
+	}
+	
+	def compile(ExprNot expr){
+	'''TODO'''
+	}
+	
+	def compile(ExprEq expr){
+	'''TODO'''
+	}
+	
+	def compile(ExprSimple expr){
+	'''
+	«IF expr instanceof Nil2»
+	nil
+	«ENDIF»
+	«IF expr.variable != null»
+	«expr.variable»
+	«ENDIF»
+	«IF expr.symbol != null && expr.lexpr == null»
+	«expr.symbol»
+	«ENDIF»
+	'''
 	}
 }

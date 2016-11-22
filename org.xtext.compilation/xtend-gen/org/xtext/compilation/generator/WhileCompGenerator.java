@@ -3,6 +3,7 @@
  */
 package org.xtext.compilation.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -18,6 +19,11 @@ import org.xtext.compilation.whileComp.Command;
 import org.xtext.compilation.whileComp.Commands;
 import org.xtext.compilation.whileComp.Definition;
 import org.xtext.compilation.whileComp.Expr;
+import org.xtext.compilation.whileComp.ExprAnd;
+import org.xtext.compilation.whileComp.ExprEq;
+import org.xtext.compilation.whileComp.ExprNot;
+import org.xtext.compilation.whileComp.ExprOr;
+import org.xtext.compilation.whileComp.ExprSimple;
 import org.xtext.compilation.whileComp.Function;
 import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Nop;
@@ -37,20 +43,24 @@ public class WhileCompGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
-    Iterable<Function> _filter = Iterables.<Function>filter(_iterable, Function.class);
-    for (final Function e : _filter) {
-      String _function = e.getFunction();
-      String _plus = (_function + "output.whpp");
+    Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
+    for (final Program e : _filter) {
       CharSequence _compile = this.compile(e);
-      fsa.generateFile(_plus, _compile);
+      fsa.generateFile("Resultat_output.whpp", _compile);
     }
   }
   
-  public void compile(final Program p) {
-    EList<Function> _functions = p.getFunctions();
-    for (final Function f : _functions) {
-      this.compile(f);
+  public CharSequence compile(final Program p) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<Function> _functions = p.getFunctions();
+      for(final Function f : _functions) {
+        CharSequence _compile = this.compile(f);
+        _builder.append(_compile, "");
+        _builder.newLineIfNotEmpty();
+      }
     }
+    return _builder;
   }
   
   public CharSequence compile(final Function c) {
@@ -189,7 +199,7 @@ public class WhileCompGenerator extends AbstractGenerator {
         Expr _expr = ((While) _command_8).getExpr();
         CharSequence _compile = this.compile(_expr);
         _builder.append(_compile, "");
-        _builder.append(" do");
+        _builder.append(" do", "");
         _builder.newLineIfNotEmpty();
         EObject _command_9 = c.getCommand();
         Commands _commands = ((While) _command_9).getCommands();
@@ -206,7 +216,92 @@ public class WhileCompGenerator extends AbstractGenerator {
   
   public CharSequence compile(final Expr expr) {
     StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((expr instanceof ExprAnd)) {
+        CharSequence _compile = this.compile(((ExprAnd) expr));
+        _builder.append(_compile, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      ExprSimple _exprsimple = expr.getExprsimple();
+      boolean _notEquals = (!Objects.equal(_exprsimple, null));
+      if (_notEquals) {
+        ExprSimple _exprsimple_1 = expr.getExprsimple();
+        CharSequence _compile_1 = this.compile(_exprsimple_1);
+        _builder.append(_compile_1, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compile(final ExprAnd expr) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      ExprAnd _exprAnd = expr.getExprAnd();
+      boolean _equals = Objects.equal(_exprAnd, null);
+      if (_equals) {
+        ExprOr _exprOr = expr.getExprOr();
+        CharSequence _compile = this.compile(_exprOr);
+        _builder.append(_compile, "");
+        _builder.newLineIfNotEmpty();
+      } else {
+        ExprOr _exprOr_1 = expr.getExprOr();
+        CharSequence _compile_1 = this.compile(_exprOr_1);
+        _builder.append(_compile_1, "");
+        _builder.append(" && ");
+        ExprAnd _exprAnd_1 = expr.getExprAnd();
+        Object _compile_2 = this.compile(((ExprAnd) _exprAnd_1));
+        _builder.append(_compile_2, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compile(final ExprOr expr) {
+    StringConcatenation _builder = new StringConcatenation();
     _builder.append("TODO");
+    return _builder;
+  }
+  
+  public CharSequence compile(final ExprNot expr) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("TODO");
+    return _builder;
+  }
+  
+  public CharSequence compile(final ExprEq expr) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("TODO");
+    return _builder;
+  }
+  
+  public CharSequence compile(final ExprSimple expr) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((expr instanceof Nil2)) {
+        _builder.append("nil");
+        _builder.newLine();
+      }
+    }
+    {
+      String _variable = expr.getVariable();
+      boolean _notEquals = (!Objects.equal(_variable, null));
+      if (_notEquals) {
+        String _variable_1 = expr.getVariable();
+        _builder.append(_variable_1, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      if (((!Objects.equal(expr.getSymbol(), null)) && Objects.equal(expr.getLexpr(), null))) {
+        String _symbol = expr.getSymbol();
+        _builder.append(_symbol, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
 }

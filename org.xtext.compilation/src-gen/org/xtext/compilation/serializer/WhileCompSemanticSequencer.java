@@ -267,7 +267,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         nil='nil' | 
+	 *         nil=Nil2 | 
 	 *         variable=VARIABLE | 
 	 *         symbol=SYMBOL | 
 	 *         (cons=Cons lexpr=Lexpr) | 

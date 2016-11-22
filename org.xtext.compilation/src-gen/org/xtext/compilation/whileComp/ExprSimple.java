@@ -32,30 +32,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface ExprSimple extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Nil</b></em>' attribute.
+   * Returns the value of the '<em><b>Nil</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Nil</em>' attribute isn't clear,
+   * If the meaning of the '<em>Nil</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Nil</em>' attribute.
-   * @see #setNil(String)
+   * @return the value of the '<em>Nil</em>' containment reference.
+   * @see #setNil(Nil2)
    * @see org.xtext.compilation.whileComp.WhileCompPackage#getExprSimple_Nil()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getNil();
+  Nil2 getNil();
 
   /**
-   * Sets the value of the '{@link org.xtext.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Nil</em>' attribute.
+   * @param value the new value of the '<em>Nil</em>' containment reference.
    * @see #getNil()
    * @generated
    */
-  void setNil(String value);
+  void setNil(Nil2 value);
 
   /**
    * Returns the value of the '<em><b>Variable</b></em>' attribute.

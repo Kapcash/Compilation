@@ -826,7 +826,7 @@ public interface WhileCompPackage extends EPackage
   int EXPR_SIMPLE = 20;
 
   /**
-   * The feature id for the '<em><b>Nil</b></em>' attribute.
+   * The feature id for the '<em><b>Nil</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1738,15 +1738,15 @@ public interface WhileCompPackage extends EPackage
   EClass getExprSimple();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Nil</em>'.
+   * @return the meta object for the containment reference '<em>Nil</em>'.
    * @see org.xtext.compilation.whileComp.ExprSimple#getNil()
    * @see #getExprSimple()
    * @generated
    */
-  EAttribute getExprSimple_Nil();
+  EReference getExprSimple_Nil();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.compilation.whileComp.ExprSimple#getVariable <em>Variable</em>}'.
@@ -2522,12 +2522,12 @@ public interface WhileCompPackage extends EPackage
     EClass EXPR_SIMPLE = eINSTANCE.getExprSimple();
 
     /**
-     * The meta object literal for the '<em><b>Nil</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Nil</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXPR_SIMPLE__NIL = eINSTANCE.getExprSimple_Nil();
+    EReference EXPR_SIMPLE__NIL = eINSTANCE.getExprSimple_Nil();
 
     /**
      * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.

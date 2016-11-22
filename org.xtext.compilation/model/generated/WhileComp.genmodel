@@ -89,7 +89,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Exprs/exprs"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//ExprSimple">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/nil"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/nil"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/variable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/symbol"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/cons"/>

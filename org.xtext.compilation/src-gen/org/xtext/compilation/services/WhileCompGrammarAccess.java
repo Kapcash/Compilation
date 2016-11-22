@@ -898,7 +898,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.compilation.WhileComp.ExprSimple");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cNilAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final Keyword cNilNilKeyword_0_0 = (Keyword)cNilAssignment_0.eContents().get(0);
+		private final RuleCall cNilNil2ParserRuleCall_0_0 = (RuleCall)cNilAssignment_0.eContents().get(0);
 		private final Assignment cVariableAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cVariableVARIABLETerminalRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
 		private final Assignment cSymbolAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
@@ -940,21 +940,21 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
 		
 		//ExprSimple:
-		//	nil='nil' | variable=VARIABLE | symbol=SYMBOL |
+		//	nil=Nil2 | variable=VARIABLE | symbol=SYMBOL |
 		//	'(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' |
 		//	'(' hd=Hd expr=Expr ')' | '(' tl=Tl expr=Expr ')' |
 		//	'(' symbol=SYMBOL lexpr=Lexpr ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//nil='nil' | variable=VARIABLE | symbol=SYMBOL | '(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' | '('
-		//hd=Hd expr=Expr ')' | '(' tl=Tl expr=Expr ')' | '(' symbol=SYMBOL lexpr=Lexpr ')'
+		//nil=Nil2 | variable=VARIABLE | symbol=SYMBOL | '(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' | '(' hd=Hd
+		//expr=Expr ')' | '(' tl=Tl expr=Expr ')' | '(' symbol=SYMBOL lexpr=Lexpr ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//nil='nil'
+		//nil=Nil2
 		public Assignment getNilAssignment_0() { return cNilAssignment_0; }
 		
-		//'nil'
-		public Keyword getNilNilKeyword_0_0() { return cNilNilKeyword_0_0; }
+		//Nil2
+		public RuleCall getNilNil2ParserRuleCall_0_0() { return cNilNil2ParserRuleCall_0_0; }
 		
 		//variable=VARIABLE
 		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
@@ -1466,7 +1466,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExprSimple:
-	//	nil='nil' | variable=VARIABLE | symbol=SYMBOL |
+	//	nil=Nil2 | variable=VARIABLE | symbol=SYMBOL |
 	//	'(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' |
 	//	'(' hd=Hd expr=Expr ')' | '(' tl=Tl expr=Expr ')' |
 	//	'(' symbol=SYMBOL lexpr=Lexpr ')';

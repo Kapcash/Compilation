@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
-		main.runGenerator(args[0]);
+		main.runGenerator(args[0],args[1]);
 	}
 
 	@Inject
@@ -41,7 +41,7 @@ public class Main {
 	@Inject 
 	private JavaIoFileSystemAccess fileAccess;
 
-	protected void runGenerator(String string) {
+	protected void runGenerator(String string,String sortie) {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
@@ -56,7 +56,7 @@ public class Main {
 		}
 
 		// Configure and start the generator
-		fileAccess.setOutputPath("result/");
+		fileAccess.setOutputPath(sortie);
 		GeneratorContext context = new GeneratorContext();
 		context.setCancelIndicator(CancelIndicator.NullImpl);
 		generator.generate(resource, fileAccess, context);

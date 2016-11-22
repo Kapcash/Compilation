@@ -927,9 +927,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExprSimple_Nil()
+  public EReference getExprSimple_Nil()
   {
-    return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(0);
+    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1235,7 +1235,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     createEReference(exprsEClass, EXPRS__EXPRS);
 
     exprSimpleEClass = createEClass(EXPR_SIMPLE);
-    createEAttribute(exprSimpleEClass, EXPR_SIMPLE__NIL);
+    createEReference(exprSimpleEClass, EXPR_SIMPLE__NIL);
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__VARIABLE);
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__SYMBOL);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__CONS);
@@ -1376,7 +1376,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEReference(getExprs_Exprs(), this.getExprs(), null, "exprs", null, 0, 1, Exprs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprSimpleEClass, ExprSimple.class, "ExprSimple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExprSimple_Nil(), ecorePackage.getEString(), "nil", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprSimple_Nil(), this.getNil2(), null, "nil", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprSimple_Variable(), ecorePackage.getEString(), "variable", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprSimple_Symbol(), ecorePackage.getEString(), "symbol", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_Cons(), this.getCons(), null, "cons", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

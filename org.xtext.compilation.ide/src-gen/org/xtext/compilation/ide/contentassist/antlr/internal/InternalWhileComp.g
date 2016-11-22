@@ -4605,13 +4605,9 @@ rule__ExprSimple__NilAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0()); }
-		(
-			{ before(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0()); }
-			'nil'
-			{ after(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0()); }
-		)
-		{ after(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0()); }
+		{ before(grammarAccess.getExprSimpleAccess().getNilNil2ParserRuleCall_0_0()); }
+		ruleNil2
+		{ after(grammarAccess.getExprSimpleAccess().getNilNil2ParserRuleCall_0_0()); }
 	)
 ;
 finally {

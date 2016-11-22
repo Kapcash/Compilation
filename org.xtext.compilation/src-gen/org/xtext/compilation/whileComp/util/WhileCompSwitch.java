@@ -157,6 +157,13 @@ public class WhileCompSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case WhileCompPackage.WHILE:
+      {
+        While while_ = (While)theEObject;
+        T result = caseWhile(while_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case WhileCompPackage.EXPR:
       {
         Expr expr = (Expr)theEObject;
@@ -440,6 +447,22 @@ public class WhileCompSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCommand(Command object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>While</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>While</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseWhile(While object)
   {
     return null;
   }

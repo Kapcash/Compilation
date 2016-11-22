@@ -15,12 +15,15 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.compilation.whileComp.Affectation;
 import org.xtext.compilation.whileComp.Command;
+import org.xtext.compilation.whileComp.Commands;
 import org.xtext.compilation.whileComp.Definition;
+import org.xtext.compilation.whileComp.Expr;
 import org.xtext.compilation.whileComp.Function;
 import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Nop;
 import org.xtext.compilation.whileComp.Program;
 import org.xtext.compilation.whileComp.Read;
+import org.xtext.compilation.whileComp.While;
 import org.xtext.compilation.whileComp.Write;
 
 /**
@@ -55,7 +58,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     _builder.append("function ");
     String _function = c.getFunction();
     _builder.append(_function, "");
-    _builder.append(" :");
+    _builder.append(": ");
     _builder.newLineIfNotEmpty();
     {
       Definition _definition = c.getDefinition();
@@ -84,8 +87,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       Definition _definition_1 = c.getDefinition();
       EList<Command> _commands = _definition_1.getCommands();
       for(final Command f_1 : _commands) {
-        EObject _command = f_1.getCommand();
-        CharSequence _compile = this.compile(((Command) _command));
+        CharSequence _compile = this.compile(((Command) f_1));
         _builder.append(_compile, "");
         _builder.newLineIfNotEmpty();
       }
@@ -116,27 +118,54 @@ public class WhileCompGenerator extends AbstractGenerator {
     return _builder;
   }
   
+  public CharSequence compile(final Commands coms) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t", "");
+    Command _command = coms.getCommand();
+    Object _compile = this.compile(_command);
+    _builder.append(_compile, "");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Command> _commands = coms.getCommands();
+      for(final Command c : _commands) {
+        _builder.append(" ;");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        Object _compile_1 = this.compile(c);
+        _builder.append(_compile_1, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
   public CharSequence compile(final Command c) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      if ((c instanceof Affectation)) {
+      EObject _command = c.getCommand();
+      if ((_command instanceof Affectation)) {
         {
-          Nil2 _nil = ((Affectation) c).getNil();
+          EObject _command_1 = c.getCommand();
+          Nil2 _nil = ((Affectation) _command_1).getNil();
           if ((_nil instanceof Nil2)) {
             _builder.append("\t", "");
-            String _affectation = ((Affectation) c).getAffectation();
+            EObject _command_2 = c.getCommand();
+            String _affectation = ((Affectation) _command_2).getAffectation();
             _builder.append(_affectation, "");
-            _builder.append(" :=");
-            Nil2 _nil_1 = ((Affectation) c).getNil();
+            _builder.append(" := ");
+            EObject _command_3 = c.getCommand();
+            Nil2 _nil_1 = ((Affectation) _command_3).getNil();
             String _nil_2 = _nil_1.getNil();
             _builder.append(_nil_2, "");
             _builder.newLineIfNotEmpty();
           } else {
             _builder.append("\t", "");
-            String _affectation_1 = ((Affectation) c).getAffectation();
+            EObject _command_4 = c.getCommand();
+            String _affectation_1 = ((Affectation) _command_4).getAffectation();
             _builder.append(_affectation_1, "");
-            _builder.append(" :=");
-            String _valeur = ((Affectation) c).getValeur();
+            _builder.append(" := ");
+            EObject _command_5 = c.getCommand();
+            String _valeur = ((Affectation) _command_5).getValeur();
             _builder.append(_valeur, "");
             _builder.newLineIfNotEmpty();
           }
@@ -144,12 +173,40 @@ public class WhileCompGenerator extends AbstractGenerator {
       }
     }
     {
-      if ((c instanceof Nop)) {
+      EObject _command_6 = c.getCommand();
+      if ((_command_6 instanceof Nop)) {
         _builder.append("\t", "");
         _builder.append("nop");
         _builder.newLineIfNotEmpty();
       }
     }
+    {
+      EObject _command_7 = c.getCommand();
+      if ((_command_7 instanceof While)) {
+        _builder.append("\t", "");
+        _builder.append("while ");
+        EObject _command_8 = c.getCommand();
+        Expr _expr = ((While) _command_8).getExpr();
+        CharSequence _compile = this.compile(_expr);
+        _builder.append(_compile, "");
+        _builder.append(" do");
+        _builder.newLineIfNotEmpty();
+        EObject _command_9 = c.getCommand();
+        Commands _commands = ((While) _command_9).getCommands();
+        CharSequence _compile_1 = this.compile(_commands);
+        _builder.append(_compile_1, "");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t", "");
+        _builder.append("od");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compile(final Expr expr) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("TODO");
     return _builder;
   }
 }

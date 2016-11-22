@@ -51,8 +51,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Commands">
     <eStructuralFeatures xsi:type="ecore:EReference" name="command" eType="#//Command"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" eType="#//Commands"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
+        eType="#//Command" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Command">
     <eStructuralFeatures xsi:type="ecore:EReference" name="command" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
@@ -67,6 +67,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr1" eType="#//Expr"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr2" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="While">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" eType="#//Commands"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expr">

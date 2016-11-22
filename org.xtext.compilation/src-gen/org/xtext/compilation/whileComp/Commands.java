@@ -3,6 +3,8 @@
  */
 package org.xtext.compilation.whileComp;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -51,29 +53,19 @@ public interface Commands extends EObject
   void setCommand(Command value);
 
   /**
-   * Returns the value of the '<em><b>Commands</b></em>' containment reference.
+   * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.compilation.whileComp.Command}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Commands</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Commands</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Commands</em>' containment reference.
-   * @see #setCommands(Commands)
+   * @return the value of the '<em>Commands</em>' containment reference list.
    * @see org.xtext.compilation.whileComp.WhileCompPackage#getCommands_Commands()
    * @model containment="true"
    * @generated
    */
-  Commands getCommands();
-
-  /**
-   * Sets the value of the '{@link org.xtext.compilation.whileComp.Commands#getCommands <em>Commands</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Commands</em>' containment reference.
-   * @see #getCommands()
-   * @generated
-   */
-  void setCommands(Commands value);
+  EList<Command> getCommands();
 
 } // Commands

@@ -77,6 +77,7 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
       case WhileCompPackage.OUTPUT: return createOutput();
       case WhileCompPackage.COMMANDS: return createCommands();
       case WhileCompPackage.COMMAND: return createCommand();
+      case WhileCompPackage.WHILE: return createWhile();
       case WhileCompPackage.EXPR: return createExpr();
       case WhileCompPackage.EXPR_AND: return createExprAnd();
       case WhileCompPackage.EXPR_OR: return createExprOr();
@@ -225,6 +226,17 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
   {
     CommandImpl command = new CommandImpl();
     return command;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public While createWhile()
+  {
+    WhileImpl while_ = new WhileImpl();
+    return while_;
   }
 
   /**

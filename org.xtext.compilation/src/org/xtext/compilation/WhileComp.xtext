@@ -29,13 +29,13 @@ Nop:
 	nop='nop'
 ;
 Affectation:
-	(affectation=VARIABLE ':=' (valeur=VARIABLE|nil=Nil2)) 
+	(affectation=VARIABLE ':=' (valeur=VARIABLE|nil=Nil2)) /* Ajouter ExprSimple */
 ;
 
 Nil2:
 	nil='nil'
 ;
-
+/* A VIRER */
 Input:
 	(variable=VARIABLE ',' input=Input) | variable=VARIABLE
 ;	
@@ -43,17 +43,22 @@ Input:
 Output:
 	(variable=VARIABLE ',' output=Output) | variable=VARIABLE
 ;
+/* PEUT-ÊTRE */
 	
 Commands:
-	=>(command=Command ';' commands=Commands) | command=Command
+	command=Command (';' commands+=Command)*
 ;
 	
 Command:
-	=>command=Nop | command=Affectation | 
-	('while' expr=Expr 'do' commands=Commands 'od') |
+	command=Nop | command=Affectation | 
+	command=While|
 	('for' expr=Expr 'do' commands=Commands 'od') |
-	('if' expr=Expr 'then' commands1=Commands ('else' commands2=Commands)? 'fi') |
+	('if' expr=Expr 'then' commands1=Commands (=>'else' commands2=Commands)? 'fi') |
 	('foreach' expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od')
+;
+
+While:
+	('while' expr=Expr 'do' commands=Commands 'od')
 ;
 
 Expr: 

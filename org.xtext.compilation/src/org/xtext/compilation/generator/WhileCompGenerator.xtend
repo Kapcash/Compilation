@@ -9,10 +9,13 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.compilation.whileComp.Affectation
 import org.xtext.compilation.whileComp.Command
+import org.xtext.compilation.whileComp.Commands
+import org.xtext.compilation.whileComp.Expr
 import org.xtext.compilation.whileComp.Function
 import org.xtext.compilation.whileComp.Nil2
 import org.xtext.compilation.whileComp.Nop
 import org.xtext.compilation.whileComp.Program
+import org.xtext.compilation.whileComp.While
 
 /**
  * Generates code from your model files on save.
@@ -28,19 +31,19 @@ class WhileCompGenerator extends AbstractGenerator {
 	}
 	
 	def compile (Program p){
-		for (f : p.functions){
+		for (f : p.functions){	
 			f.compile
 		}
 	}
 	
 	def compile (Function c){'''
-		function «c.function» :
+		function «c.function»: 
 		«FOR f : c.definition.reads»
 		read«FOR param: f.variable SEPARATOR ','» «param»«ENDFOR»
 		«ENDFOR»
 		%
 		«FOR f : c.definition.commands»
-			«(f.command as Command).compile»
+			«(f as Command).compile»
 		«ENDFOR»
 		%
 		«FOR f : c.definition.writes»
@@ -49,18 +52,36 @@ class WhileCompGenerator extends AbstractGenerator {
 	'''	
 	}
 	
+	def compile(Commands coms){
+	'''
+		«"	"»«coms.command.compile»
+		«FOR c: (coms.commands)» ;
+			«c.compile»
+		«ENDFOR»
+	'''	
+	}
+	
 	def compile(Command c){
 		'''
-		«IF c instanceof Affectation»
-			«IF (c as Affectation).nil instanceof Nil2»
-				«"	"»«(c as Affectation).affectation» :=«(c as Affectation).nil.nil»
+		«IF c.command instanceof Affectation»
+			«IF (c.command as Affectation).nil instanceof Nil2»
+				«"	"»«(c.command as Affectation).affectation» := «(c.command as Affectation).nil.nil»
 			«ELSE»
-				«"	"»«(c as Affectation).affectation» :=«(c as Affectation).valeur»
+				«"	"»«(c.command as Affectation).affectation» := «(c.command as Affectation).valeur»
 			«ENDIF»
 		«ENDIF»
-		«IF c instanceof Nop»
+		«IF c.command instanceof Nop»
 			«"	"»nop
 		«ENDIF»
+		«IF c.command instanceof While»
+			«"	"»while «(c.command as While).expr.compile» do
+			«(c.command as While).commands.compile»
+			«"	"»od
+		«ENDIF»
 		'''
+	}
+	
+	def compile(Expr expr){
+	'''TODO'''
 	}
 }

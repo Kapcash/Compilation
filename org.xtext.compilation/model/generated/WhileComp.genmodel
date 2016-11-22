@@ -56,6 +56,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/expr1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/expr2"/>
     </genClasses>
+    <genClasses ecoreClass="WhileComp.ecore#//While">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//While/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//While/commands"/>
+    </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Expr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Expr/exprsimple"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Expr/exprAnd"/>

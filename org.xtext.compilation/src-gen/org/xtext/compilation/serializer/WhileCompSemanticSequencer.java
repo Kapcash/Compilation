@@ -39,6 +39,7 @@ import org.xtext.compilation.whileComp.Program;
 import org.xtext.compilation.whileComp.Read;
 import org.xtext.compilation.whileComp.Tl;
 import org.xtext.compilation.whileComp.Vars;
+import org.xtext.compilation.whileComp.While;
 import org.xtext.compilation.whileComp.WhileCompPackage;
 import org.xtext.compilation.whileComp.Write;
 
@@ -128,6 +129,9 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case WhileCompPackage.VARS:
 				sequence_Vars(context, (Vars) semanticObject); 
 				return; 
+			case WhileCompPackage.WHILE:
+				sequence_While(context, (While) semanticObject); 
+				return; 
 			case WhileCompPackage.WRITE:
 				sequence_Write(context, (Write) semanticObject); 
 				return; 
@@ -156,7 +160,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         command=Nop | 
 	 *         command=Affectation | 
-	 *         (expr=Expr commands=Commands) | 
+	 *         command=While | 
 	 *         (expr=Expr commands=Commands) | 
 	 *         (expr=Expr commands1=Commands commands2=Commands?) | 
 	 *         (expr1=Expr expr2=Expr commands=Commands)
@@ -172,7 +176,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Commands returns Commands
 	 *
 	 * Constraint:
-	 *     ((command=Command commands=Commands) | command=Command)
+	 *     (command=Command commands+=Command*)
 	 */
 	protected void sequence_Commands(ISerializationContext context, Commands semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -491,6 +495,27 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Vars(ISerializationContext context, Vars semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     While returns While
+	 *
+	 * Constraint:
+	 *     (expr=Expr commands=Commands)
+	 */
+	protected void sequence_While(ISerializationContext context, While semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.WHILE__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.WHILE__EXPR));
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.WHILE__COMMANDS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.WHILE__COMMANDS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getWhileAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getWhileAccess().getCommandsCommandsParserRuleCall_3_0(), semanticObject.getCommands());
+		feeder.finish();
 	}
 	
 	

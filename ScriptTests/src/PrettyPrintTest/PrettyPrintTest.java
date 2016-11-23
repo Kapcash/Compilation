@@ -15,12 +15,14 @@ public class PrettyPrintTest {
 		String  filepath1 = "Fichier_Test_Original/Test1.wh.txt";
 		String  filepath2 ="Fichier_Test_Attendu/Test1.wh.txt";
 
-		sameFileTest(filepath1, filepath2);
+		
+		
+		assertSameFileTest(filepath1, filepath2);
 	}
 
 	/*Utilitaire*/
 
-	public void sameFileTest(String filepath1, String filepath2) {
+	public void assertSameFileTest(String filepath1, String filepath2) {
 		File file1 = new File(filepath1);
 		File file2 = new File(filepath2);
 

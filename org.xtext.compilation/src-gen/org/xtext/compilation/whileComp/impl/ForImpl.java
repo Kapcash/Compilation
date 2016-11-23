@@ -12,53 +12,53 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.compilation.whileComp.ExprEq;
-import org.xtext.compilation.whileComp.ExprNot;
-import org.xtext.compilation.whileComp.Not;
+import org.xtext.compilation.whileComp.Commands;
+import org.xtext.compilation.whileComp.Expr;
+import org.xtext.compilation.whileComp.For;
 import org.xtext.compilation.whileComp.WhileCompPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expr Not</b></em>'.
+ * An implementation of the model object '<em><b>For</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.impl.ExprNotImpl#getNot <em>Not</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.impl.ExprNotImpl#getExprEq <em>Expr Eq</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.ForImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.ForImpl#getCommands <em>Commands</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
+public class ForImpl extends MinimalEObjectImpl.Container implements For
 {
   /**
-   * The cached value of the '{@link #getNot() <em>Not</em>}' containment reference.
+   * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNot()
+   * @see #getExpr()
    * @generated
    * @ordered
    */
-  protected Not not;
+  protected Expr expr;
 
   /**
-   * The cached value of the '{@link #getExprEq() <em>Expr Eq</em>}' containment reference.
+   * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExprEq()
+   * @see #getCommands()
    * @generated
    * @ordered
    */
-  protected ExprEq exprEq;
+  protected Commands commands;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprNotImpl()
+  protected ForImpl()
   {
     super();
   }
@@ -71,7 +71,7 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
   @Override
   protected EClass eStaticClass()
   {
-    return WhileCompPackage.Literals.EXPR_NOT;
+    return WhileCompPackage.Literals.FOR;
   }
 
   /**
@@ -79,9 +79,9 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
    * <!-- end-user-doc -->
    * @generated
    */
-  public Not getNot()
+  public Expr getExpr()
   {
-    return not;
+    return expr;
   }
 
   /**
@@ -89,13 +89,13 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetNot(Not newNot, NotificationChain msgs)
+  public NotificationChain basicSetExpr(Expr newExpr, NotificationChain msgs)
   {
-    Not oldNot = not;
-    not = newNot;
+    Expr oldExpr = expr;
+    expr = newExpr;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_NOT__NOT, oldNot, newNot);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.FOR__EXPR, oldExpr, newExpr);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -106,20 +106,20 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNot(Not newNot)
+  public void setExpr(Expr newExpr)
   {
-    if (newNot != not)
+    if (newExpr != expr)
     {
       NotificationChain msgs = null;
-      if (not != null)
-        msgs = ((InternalEObject)not).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_NOT__NOT, null, msgs);
-      if (newNot != null)
-        msgs = ((InternalEObject)newNot).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_NOT__NOT, null, msgs);
-      msgs = basicSetNot(newNot, msgs);
+      if (expr != null)
+        msgs = ((InternalEObject)expr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.FOR__EXPR, null, msgs);
+      if (newExpr != null)
+        msgs = ((InternalEObject)newExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.FOR__EXPR, null, msgs);
+      msgs = basicSetExpr(newExpr, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_NOT__NOT, newNot, newNot));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.FOR__EXPR, newExpr, newExpr));
   }
 
   /**
@@ -127,9 +127,9 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprEq getExprEq()
+  public Commands getCommands()
   {
-    return exprEq;
+    return commands;
   }
 
   /**
@@ -137,13 +137,13 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExprEq(ExprEq newExprEq, NotificationChain msgs)
+  public NotificationChain basicSetCommands(Commands newCommands, NotificationChain msgs)
   {
-    ExprEq oldExprEq = exprEq;
-    exprEq = newExprEq;
+    Commands oldCommands = commands;
+    commands = newCommands;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_NOT__EXPR_EQ, oldExprEq, newExprEq);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.FOR__COMMANDS, oldCommands, newCommands);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -154,20 +154,20 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExprEq(ExprEq newExprEq)
+  public void setCommands(Commands newCommands)
   {
-    if (newExprEq != exprEq)
+    if (newCommands != commands)
     {
       NotificationChain msgs = null;
-      if (exprEq != null)
-        msgs = ((InternalEObject)exprEq).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_NOT__EXPR_EQ, null, msgs);
-      if (newExprEq != null)
-        msgs = ((InternalEObject)newExprEq).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_NOT__EXPR_EQ, null, msgs);
-      msgs = basicSetExprEq(newExprEq, msgs);
+      if (commands != null)
+        msgs = ((InternalEObject)commands).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.FOR__COMMANDS, null, msgs);
+      if (newCommands != null)
+        msgs = ((InternalEObject)newCommands).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.FOR__COMMANDS, null, msgs);
+      msgs = basicSetCommands(newCommands, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_NOT__EXPR_EQ, newExprEq, newExprEq));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.FOR__COMMANDS, newCommands, newCommands));
   }
 
   /**
@@ -180,10 +180,10 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_NOT__NOT:
-        return basicSetNot(null, msgs);
-      case WhileCompPackage.EXPR_NOT__EXPR_EQ:
-        return basicSetExprEq(null, msgs);
+      case WhileCompPackage.FOR__EXPR:
+        return basicSetExpr(null, msgs);
+      case WhileCompPackage.FOR__COMMANDS:
+        return basicSetCommands(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -198,10 +198,10 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_NOT__NOT:
-        return getNot();
-      case WhileCompPackage.EXPR_NOT__EXPR_EQ:
-        return getExprEq();
+      case WhileCompPackage.FOR__EXPR:
+        return getExpr();
+      case WhileCompPackage.FOR__COMMANDS:
+        return getCommands();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -216,11 +216,11 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_NOT__NOT:
-        setNot((Not)newValue);
+      case WhileCompPackage.FOR__EXPR:
+        setExpr((Expr)newValue);
         return;
-      case WhileCompPackage.EXPR_NOT__EXPR_EQ:
-        setExprEq((ExprEq)newValue);
+      case WhileCompPackage.FOR__COMMANDS:
+        setCommands((Commands)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -236,11 +236,11 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_NOT__NOT:
-        setNot((Not)null);
+      case WhileCompPackage.FOR__EXPR:
+        setExpr((Expr)null);
         return;
-      case WhileCompPackage.EXPR_NOT__EXPR_EQ:
-        setExprEq((ExprEq)null);
+      case WhileCompPackage.FOR__COMMANDS:
+        setCommands((Commands)null);
         return;
     }
     super.eUnset(featureID);
@@ -256,12 +256,12 @@ public class ExprNotImpl extends MinimalEObjectImpl.Container implements ExprNot
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_NOT__NOT:
-        return not != null;
-      case WhileCompPackage.EXPR_NOT__EXPR_EQ:
-        return exprEq != null;
+      case WhileCompPackage.FOR__EXPR:
+        return expr != null;
+      case WhileCompPackage.FOR__COMMANDS:
+        return commands != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExprNotImpl
+} //ForImpl

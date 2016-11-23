@@ -136,6 +136,21 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
         return createCommandAdapter();
       }
       @Override
+      public Adapter caseForeach(Foreach object)
+      {
+        return createForeachAdapter();
+      }
+      @Override
+      public Adapter caseIf(If object)
+      {
+        return createIfAdapter();
+      }
+      @Override
+      public Adapter caseFor(For object)
+      {
+        return createForAdapter();
+      }
+      @Override
       public Adapter caseWhile(While object)
       {
         return createWhileAdapter();
@@ -179,6 +194,11 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
       public Adapter caseExprSimple(ExprSimple object)
       {
         return createExprSimpleAdapter();
+      }
+      @Override
+      public Adapter caseNot(Not object)
+      {
+        return createNotAdapter();
       }
       @Override
       public Adapter caseCons(Cons object)
@@ -408,6 +428,51 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Foreach <em>Foreach</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Foreach
+   * @generated
+   */
+  public Adapter createForeachAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.If <em>If</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.If
+   * @generated
+   */
+  public Adapter createIfAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.For <em>For</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.For
+   * @generated
+   */
+  public Adapter createForAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.While <em>While</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -538,6 +603,21 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprSimpleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.compilation.whileComp.Not <em>Not</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.compilation.whileComp.Not
+   * @generated
+   */
+  public Adapter createNotAdapter()
   {
     return null;
   }

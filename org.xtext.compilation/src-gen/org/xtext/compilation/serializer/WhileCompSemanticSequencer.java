@@ -27,13 +27,17 @@ import org.xtext.compilation.whileComp.ExprNot;
 import org.xtext.compilation.whileComp.ExprOr;
 import org.xtext.compilation.whileComp.ExprSimple;
 import org.xtext.compilation.whileComp.Exprs;
+import org.xtext.compilation.whileComp.For;
+import org.xtext.compilation.whileComp.Foreach;
 import org.xtext.compilation.whileComp.Function;
 import org.xtext.compilation.whileComp.Hd;
+import org.xtext.compilation.whileComp.If;
 import org.xtext.compilation.whileComp.Input;
 import org.xtext.compilation.whileComp.Lexpr;
 import org.xtext.compilation.whileComp.List;
 import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Nop;
+import org.xtext.compilation.whileComp.Not;
 import org.xtext.compilation.whileComp.Output;
 import org.xtext.compilation.whileComp.Program;
 import org.xtext.compilation.whileComp.Read;
@@ -93,11 +97,20 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case WhileCompPackage.EXPRS:
 				sequence_Exprs(context, (Exprs) semanticObject); 
 				return; 
+			case WhileCompPackage.FOR:
+				sequence_For(context, (For) semanticObject); 
+				return; 
+			case WhileCompPackage.FOREACH:
+				sequence_Foreach(context, (Foreach) semanticObject); 
+				return; 
 			case WhileCompPackage.FUNCTION:
 				sequence_Function(context, (Function) semanticObject); 
 				return; 
 			case WhileCompPackage.HD:
 				sequence_Hd(context, (Hd) semanticObject); 
+				return; 
+			case WhileCompPackage.IF:
+				sequence_If(context, (If) semanticObject); 
 				return; 
 			case WhileCompPackage.INPUT:
 				sequence_Input(context, (Input) semanticObject); 
@@ -113,6 +126,9 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case WhileCompPackage.NOP:
 				sequence_Nop(context, (Nop) semanticObject); 
+				return; 
+			case WhileCompPackage.NOT:
+				sequence_Not(context, (Not) semanticObject); 
 				return; 
 			case WhileCompPackage.OUTPUT:
 				sequence_Output(context, (Output) semanticObject); 
@@ -161,9 +177,9 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         command=Nop | 
 	 *         command=Affectation | 
 	 *         command=While | 
-	 *         (expr=Expr commands=Commands) | 
-	 *         (expr=Expr commands1=Commands commands2=Commands?) | 
-	 *         (expr1=Expr expr2=Expr commands=Commands)
+	 *         command=For | 
+	 *         command=If | 
+	 *         command=Foreach
 	 *     )
 	 */
 	protected void sequence_Command(ISerializationContext context, Command semanticObject) {
@@ -242,7 +258,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ExprNot returns ExprNot
 	 *
 	 * Constraint:
-	 *     (exprEq=ExprEq | exprEq=ExprEq)
+	 *     ((not=Not exprEq=ExprEq) | exprEq=ExprEq)
 	 */
 	protected void sequence_ExprNot(ISerializationContext context, ExprNot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -308,6 +324,51 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     For returns For
+	 *
+	 * Constraint:
+	 *     (expr=Expr commands=Commands)
+	 */
+	protected void sequence_For(ISerializationContext context, For semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.FOR__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.FOR__EXPR));
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.FOR__COMMANDS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.FOR__COMMANDS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getForAccess().getExprExprParserRuleCall_1_0(), semanticObject.getExpr());
+		feeder.accept(grammarAccess.getForAccess().getCommandsCommandsParserRuleCall_3_0(), semanticObject.getCommands());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Foreach returns Foreach
+	 *
+	 * Constraint:
+	 *     (expr1=Expr expr2=Expr commands=Commands)
+	 */
+	protected void sequence_Foreach(ISerializationContext context, Foreach semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.FOREACH__EXPR1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.FOREACH__EXPR1));
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.FOREACH__EXPR2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.FOREACH__EXPR2));
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.FOREACH__COMMANDS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.FOREACH__COMMANDS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getForeachAccess().getExpr1ExprParserRuleCall_1_0(), semanticObject.getExpr1());
+		feeder.accept(grammarAccess.getForeachAccess().getExpr2ExprParserRuleCall_3_0(), semanticObject.getExpr2());
+		feeder.accept(grammarAccess.getForeachAccess().getCommandsCommandsParserRuleCall_5_0(), semanticObject.getCommands());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Function returns Function
 	 *
 	 * Constraint:
@@ -342,6 +403,18 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getHdAccess().getHdHdKeyword_0(), semanticObject.getHd());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     If returns If
+	 *
+	 * Constraint:
+	 *     (expr=Expr commands1=Commands commands2=Commands?)
+	 */
+	protected void sequence_If(ISerializationContext context, If semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -428,6 +501,24 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getNopAccess().getNopNopKeyword_0(), semanticObject.getNop());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Not returns Not
+	 *
+	 * Constraint:
+	 *     not='!'
+	 */
+	protected void sequence_Not(ISerializationContext context, Not semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.NOT__NOT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.NOT__NOT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNotAccess().getNotExclamationMarkKeyword_0(), semanticObject.getNot());
 		feeder.finish();
 	}
 	

@@ -49,12 +49,20 @@
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Command">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/command"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/expr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/commands"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/commands1"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/commands2"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/expr1"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Command/expr2"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileComp.ecore#//Foreach">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Foreach/expr1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Foreach/expr2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Foreach/commands"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileComp.ecore#//If">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//If/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//If/commands1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//If/commands2"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileComp.ecore#//For">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//For/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//For/commands"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//While">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//While/expr"/>
@@ -73,6 +81,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprOr/exprOr"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//ExprNot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprNot/not"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprNot/exprEq"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//ExprEq">
@@ -98,6 +107,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/hd"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/expr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/tl"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileComp.ecore#//Not">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Not/not"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Cons">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Cons/cons"/>

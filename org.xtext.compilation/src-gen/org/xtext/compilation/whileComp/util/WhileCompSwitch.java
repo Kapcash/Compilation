@@ -157,6 +157,27 @@ public class WhileCompSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case WhileCompPackage.FOREACH:
+      {
+        Foreach foreach = (Foreach)theEObject;
+        T result = caseForeach(foreach);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileCompPackage.IF:
+      {
+        If if_ = (If)theEObject;
+        T result = caseIf(if_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileCompPackage.FOR:
+      {
+        For for_ = (For)theEObject;
+        T result = caseFor(for_);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case WhileCompPackage.WHILE:
       {
         While while_ = (While)theEObject;
@@ -217,6 +238,13 @@ public class WhileCompSwitch<T> extends Switch<T>
       {
         ExprSimple exprSimple = (ExprSimple)theEObject;
         T result = caseExprSimple(exprSimple);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileCompPackage.NOT:
+      {
+        Not not = (Not)theEObject;
+        T result = caseNot(not);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -452,6 +480,54 @@ public class WhileCompSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Foreach</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Foreach</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseForeach(Foreach object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>If</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>If</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIf(If object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>For</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>For</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFor(For object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>While</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -591,6 +667,22 @@ public class WhileCompSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprSimple(ExprSimple object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Not</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Not</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNot(Not object)
   {
     return null;
   }

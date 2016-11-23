@@ -132,6 +132,33 @@ public interface WhileCompFactory extends EFactory
   Command createCommand();
 
   /**
+   * Returns a new object of class '<em>Foreach</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Foreach</em>'.
+   * @generated
+   */
+  Foreach createForeach();
+
+  /**
+   * Returns a new object of class '<em>If</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>If</em>'.
+   * @generated
+   */
+  If createIf();
+
+  /**
+   * Returns a new object of class '<em>For</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>For</em>'.
+   * @generated
+   */
+  For createFor();
+
+  /**
    * Returns a new object of class '<em>While</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -211,6 +238,15 @@ public interface WhileCompFactory extends EFactory
    * @generated
    */
   ExprSimple createExprSimple();
+
+  /**
+   * Returns a new object of class '<em>Not</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Not</em>'.
+   * @generated
+   */
+  Not createNot();
 
   /**
    * Returns a new object of class '<em>Cons</em>'.

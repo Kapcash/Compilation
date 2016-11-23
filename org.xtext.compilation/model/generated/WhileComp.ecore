@@ -57,16 +57,25 @@
   <eClassifiers xsi:type="ecore:EClass" name="Command">
     <eStructuralFeatures xsi:type="ecore:EReference" name="command" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Foreach">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr1" eType="#//Expr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr2" eType="#//Expr"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" eType="#//Commands"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="If">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands1" eType="#//Commands"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands2" eType="#//Commands"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr1" eType="#//Expr"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr2" eType="#//Expr"
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="For">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" eType="#//Commands"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="While">
@@ -93,6 +102,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprNot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="not" eType="#//Not" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprEq" eType="#//ExprEq"
         containment="true"/>
   </eClassifiers>
@@ -123,6 +133,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="hd" eType="#//Hd" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tl" eType="#//Tl" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Not">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cons">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cons" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

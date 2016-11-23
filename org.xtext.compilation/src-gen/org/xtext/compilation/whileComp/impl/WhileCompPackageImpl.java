@@ -22,13 +22,17 @@ import org.xtext.compilation.whileComp.ExprNot;
 import org.xtext.compilation.whileComp.ExprOr;
 import org.xtext.compilation.whileComp.ExprSimple;
 import org.xtext.compilation.whileComp.Exprs;
+import org.xtext.compilation.whileComp.For;
+import org.xtext.compilation.whileComp.Foreach;
 import org.xtext.compilation.whileComp.Function;
 import org.xtext.compilation.whileComp.Hd;
+import org.xtext.compilation.whileComp.If;
 import org.xtext.compilation.whileComp.Input;
 import org.xtext.compilation.whileComp.Lexpr;
 import org.xtext.compilation.whileComp.List;
 import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Nop;
+import org.xtext.compilation.whileComp.Not;
 import org.xtext.compilation.whileComp.Output;
 import org.xtext.compilation.whileComp.Program;
 import org.xtext.compilation.whileComp.Read;
@@ -136,6 +140,27 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass foreachEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ifEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass forEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass whileEClass = null;
 
   /**
@@ -193,6 +218,13 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * @generated
    */
   private EClass exprSimpleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass notEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -617,9 +649,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommand_Expr()
+  public EClass getForeach()
   {
-    return (EReference)commandEClass.getEStructuralFeatures().get(1);
+    return foreachEClass;
   }
 
   /**
@@ -627,9 +659,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommand_Commands()
+  public EReference getForeach_Expr1()
   {
-    return (EReference)commandEClass.getEStructuralFeatures().get(2);
+    return (EReference)foreachEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -637,9 +669,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommand_Commands1()
+  public EReference getForeach_Expr2()
   {
-    return (EReference)commandEClass.getEStructuralFeatures().get(3);
+    return (EReference)foreachEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -647,9 +679,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommand_Commands2()
+  public EReference getForeach_Commands()
   {
-    return (EReference)commandEClass.getEStructuralFeatures().get(4);
+    return (EReference)foreachEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -657,9 +689,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommand_Expr1()
+  public EClass getIf()
   {
-    return (EReference)commandEClass.getEStructuralFeatures().get(5);
+    return ifEClass;
   }
 
   /**
@@ -667,9 +699,59 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCommand_Expr2()
+  public EReference getIf_Expr()
   {
-    return (EReference)commandEClass.getEStructuralFeatures().get(6);
+    return (EReference)ifEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIf_Commands1()
+  {
+    return (EReference)ifEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIf_Commands2()
+  {
+    return (EReference)ifEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFor()
+  {
+    return forEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFor_Expr()
+  {
+    return (EReference)forEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFor_Commands()
+  {
+    return (EReference)forEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -807,9 +889,19 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprNot_ExprEq()
+  public EReference getExprNot_Not()
   {
     return (EReference)exprNotEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprNot_ExprEq()
+  {
+    return (EReference)exprNotEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1017,6 +1109,26 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getNot()
+  {
+    return notEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNot_Not()
+  {
+    return (EAttribute)notEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getCons()
   {
     return consEClass;
@@ -1195,12 +1307,20 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
 
     commandEClass = createEClass(COMMAND);
     createEReference(commandEClass, COMMAND__COMMAND);
-    createEReference(commandEClass, COMMAND__EXPR);
-    createEReference(commandEClass, COMMAND__COMMANDS);
-    createEReference(commandEClass, COMMAND__COMMANDS1);
-    createEReference(commandEClass, COMMAND__COMMANDS2);
-    createEReference(commandEClass, COMMAND__EXPR1);
-    createEReference(commandEClass, COMMAND__EXPR2);
+
+    foreachEClass = createEClass(FOREACH);
+    createEReference(foreachEClass, FOREACH__EXPR1);
+    createEReference(foreachEClass, FOREACH__EXPR2);
+    createEReference(foreachEClass, FOREACH__COMMANDS);
+
+    ifEClass = createEClass(IF);
+    createEReference(ifEClass, IF__EXPR);
+    createEReference(ifEClass, IF__COMMANDS1);
+    createEReference(ifEClass, IF__COMMANDS2);
+
+    forEClass = createEClass(FOR);
+    createEReference(forEClass, FOR__EXPR);
+    createEReference(forEClass, FOR__COMMANDS);
 
     whileEClass = createEClass(WHILE);
     createEReference(whileEClass, WHILE__EXPR);
@@ -1219,6 +1339,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     createEReference(exprOrEClass, EXPR_OR__EXPR_OR);
 
     exprNotEClass = createEClass(EXPR_NOT);
+    createEReference(exprNotEClass, EXPR_NOT__NOT);
     createEReference(exprNotEClass, EXPR_NOT__EXPR_EQ);
 
     exprEqEClass = createEClass(EXPR_EQ);
@@ -1244,6 +1365,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     createEReference(exprSimpleEClass, EXPR_SIMPLE__HD);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__TL);
+
+    notEClass = createEClass(NOT);
+    createEAttribute(notEClass, NOT__NOT);
 
     consEClass = createEClass(CONS);
     createEAttribute(consEClass, CONS__CONS);
@@ -1336,12 +1460,20 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
 
     initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCommand_Command(), ecorePackage.getEObject(), null, "command", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommand_Expr(), this.getExpr(), null, "expr", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommand_Commands(), this.getCommands(), null, "commands", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommand_Commands1(), this.getCommands(), null, "commands1", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommand_Commands2(), this.getCommands(), null, "commands2", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommand_Expr1(), this.getExpr(), null, "expr1", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCommand_Expr2(), this.getExpr(), null, "expr2", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(foreachEClass, Foreach.class, "Foreach", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getForeach_Expr1(), this.getExpr(), null, "expr1", null, 0, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getForeach_Expr2(), this.getExpr(), null, "expr2", null, 0, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getForeach_Commands(), this.getCommands(), null, "commands", null, 0, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ifEClass, If.class, "If", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIf_Expr(), this.getExpr(), null, "expr", null, 0, 1, If.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIf_Commands1(), this.getCommands(), null, "commands1", null, 0, 1, If.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIf_Commands2(), this.getCommands(), null, "commands2", null, 0, 1, If.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(forEClass, For.class, "For", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFor_Expr(), this.getExpr(), null, "expr", null, 0, 1, For.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFor_Commands(), this.getCommands(), null, "commands", null, 0, 1, For.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(whileEClass, While.class, "While", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getWhile_Expr(), this.getExpr(), null, "expr", null, 0, 1, While.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1360,6 +1492,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEReference(getExprOr_ExprOr(), this.getExprOr(), null, "exprOr", null, 0, 1, ExprOr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprNotEClass, ExprNot.class, "ExprNot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExprNot_Not(), this.getNot(), null, "not", null, 0, 1, ExprNot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprNot_ExprEq(), this.getExprEq(), null, "exprEq", null, 0, 1, ExprNot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprEqEClass, ExprEq.class, "ExprEq", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1385,6 +1518,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEReference(getExprSimple_Hd(), this.getHd(), null, "hd", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_Tl(), this.getTl(), null, "tl", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(notEClass, Not.class, "Not", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNot_Not(), ecorePackage.getEString(), "not", null, 0, 1, Not.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(consEClass, Cons.class, "Cons", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCons_Cons(), ecorePackage.getEString(), "cons", null, 0, 1, Cons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

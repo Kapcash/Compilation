@@ -89,8 +89,8 @@ class WhileCompGenerator extends AbstractGenerator {
 	
 	def compile(Expr expr){
 	'''
-	«IF expr instanceof ExprAnd»
-	«(expr as ExprAnd).compile»
+	«IF expr.exprAnd != null»
+	«expr.exprAnd.compile»
 	«ENDIF»
 	«IF expr.exprsimple != null»
 	«expr.exprsimple.compile»
@@ -103,26 +103,44 @@ class WhileCompGenerator extends AbstractGenerator {
 	«IF expr.exprAnd == null»
 	«expr.exprOr.compile»
 	«ELSE»
-	«expr.exprOr.compile» && «(expr.exprAnd as ExprAnd).compile»
+	«expr.exprOr.compile» && «expr.exprAnd.compile»
 	«ENDIF»
 	'''
 	}
 	
 	def compile(ExprOr expr){
-	'''TODO'''
+	'''
+	«IF expr.exprOr == null»
+	«expr.exprNot.compile»
+	«ELSE»
+	«expr.exprNot.compile» || «expr.exprOr.compile»
+	«ENDIF»
+	'''
 	}
 	
 	def compile(ExprNot expr){
-	'''TODO'''
+	'''
+	«IF expr.not != null»
+	!«expr.exprEq.compile»
+	«ELSE»
+	!«expr.exprEq.compile»
+	«ENDIF»
+	'''
 	}
 	
 	def compile(ExprEq expr){
-	'''TODO'''
+	'''
+	«IF expr.expr != null»
+	(«expr.expr.compile»)
+	«ELSE»
+	«expr.exprSimple1.compile» =? «expr.exprSimple2.compile»
+	«ENDIF»
+	'''
 	}
 	
 	def compile(ExprSimple expr){
 	'''
-	«IF expr instanceof Nil2»
+	«IF expr.nil != null»
 	nil
 	«ENDIF»
 	«IF expr.variable != null»

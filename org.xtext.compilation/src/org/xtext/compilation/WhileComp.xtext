@@ -52,9 +52,21 @@ Commands:
 Command:
 	command=Nop | command=Affectation | 
 	command=While|
-	('for' expr=Expr 'do' commands=Commands 'od') |
-	('if' expr=Expr 'then' commands1=Commands (=>'else' commands2=Commands)? 'fi') |
+	command=For|
+	command=If|
+	command=Foreach	
+;
+
+Foreach:
 	('foreach' expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od')
+;
+
+If:
+	('if' expr=Expr 'then' commands1=Commands (=>'else' commands2=Commands)? 'fi') 	
+;
+
+For:
+	('for' expr=Expr 'do' commands=Commands 'od') 
 ;
 
 While:
@@ -74,7 +86,7 @@ ExprOr:
 ;
 
 ExprNot:
-	('!' exprEq=ExprEq) | exprEq=ExprEq
+	(not=Not exprEq=ExprEq) | exprEq=ExprEq
 ;
 
 ExprEq:
@@ -93,6 +105,10 @@ ExprSimple:
 	'(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' |
 	'(' hd=Hd expr=Expr ')' | '(' tl=Tl expr=Expr ')' |
 	'(' symbol=SYMBOL lexpr=Lexpr ')'
+;
+
+Not:
+	not = '!'
 ;
 
 Cons:

@@ -77,6 +77,9 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
       case WhileCompPackage.OUTPUT: return createOutput();
       case WhileCompPackage.COMMANDS: return createCommands();
       case WhileCompPackage.COMMAND: return createCommand();
+      case WhileCompPackage.FOREACH: return createForeach();
+      case WhileCompPackage.IF: return createIf();
+      case WhileCompPackage.FOR: return createFor();
       case WhileCompPackage.WHILE: return createWhile();
       case WhileCompPackage.EXPR: return createExpr();
       case WhileCompPackage.EXPR_AND: return createExprAnd();
@@ -86,6 +89,7 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
       case WhileCompPackage.VARS: return createVars();
       case WhileCompPackage.EXPRS: return createExprs();
       case WhileCompPackage.EXPR_SIMPLE: return createExprSimple();
+      case WhileCompPackage.NOT: return createNot();
       case WhileCompPackage.CONS: return createCons();
       case WhileCompPackage.LIST: return createList();
       case WhileCompPackage.HD: return createHd();
@@ -233,6 +237,39 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
    * <!-- end-user-doc -->
    * @generated
    */
+  public Foreach createForeach()
+  {
+    ForeachImpl foreach = new ForeachImpl();
+    return foreach;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public If createIf()
+  {
+    IfImpl if_ = new IfImpl();
+    return if_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public For createFor()
+  {
+    ForImpl for_ = new ForImpl();
+    return for_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public While createWhile()
   {
     WhileImpl while_ = new WhileImpl();
@@ -325,6 +362,17 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
   {
     ExprSimpleImpl exprSimple = new ExprSimpleImpl();
     return exprSimple;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Not createNot()
+  {
+    NotImpl not = new NotImpl();
+    return not;
   }
 
   /**

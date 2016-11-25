@@ -7,7 +7,10 @@ function id:
 		while Var
 			do 
 	Ret:=A;
-			while Test do Ret:=UiUiUi od
+			while Test do Ret:=UiUiUi od;
+			Ret:=A;
+			while Test do Ret:=A;
+			while Test do Ret:=UiUiUi od od
 		od
 %
 		write 

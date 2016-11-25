@@ -11,16 +11,16 @@ import org.xtext.compilation.whileComp.Affectation
 import org.xtext.compilation.whileComp.Command
 import org.xtext.compilation.whileComp.Commands
 import org.xtext.compilation.whileComp.Expr
+import org.xtext.compilation.whileComp.ExprAnd
+import org.xtext.compilation.whileComp.ExprEq
+import org.xtext.compilation.whileComp.ExprNot
+import org.xtext.compilation.whileComp.ExprOr
+import org.xtext.compilation.whileComp.ExprSimple
 import org.xtext.compilation.whileComp.Function
 import org.xtext.compilation.whileComp.Nil2
 import org.xtext.compilation.whileComp.Nop
 import org.xtext.compilation.whileComp.Program
 import org.xtext.compilation.whileComp.While
-import org.xtext.compilation.whileComp.ExprAnd
-import org.xtext.compilation.whileComp.ExprOr
-import org.xtext.compilation.whileComp.ExprNot
-import org.xtext.compilation.whileComp.ExprEq
-import org.xtext.compilation.whileComp.ExprSimple
 
 /**
  * Generates code from your model files on save.
@@ -64,7 +64,7 @@ class WhileCompGenerator extends AbstractGenerator {
 		«FOR c: (coms.commands)» ;
 			«c.compile»
 		«ENDFOR»
-	'''	
+	'''
 	}
 	
 	def compile(Command c){

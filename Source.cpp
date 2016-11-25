@@ -88,5 +88,10 @@ int main(int argc, char *argv[]) {
 	
 	int status = system(cmdLine.c_str());
 
+	int result;
+	char oldname[] = "Result_output.whpp";
+	result = rename(oldname, arg_fileDest.c_str());
+	if (result != 0)
+
 	return 0;
 }

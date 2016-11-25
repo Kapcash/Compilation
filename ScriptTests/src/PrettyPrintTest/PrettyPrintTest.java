@@ -8,14 +8,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.Test;
 
-public class PrettyPrintTest {
+public class PrettyPrintTest{
 	
 	@Test
-	public void doubleApplicationTest() {
-		String  filepath1 = "Fichier_Test_Original/Test1.wh.txt";
-		String  filepath2 ="Fichier_Test_Attendu/Test1.wh.txt";
-
+	public void testDoubleTraitement() {
+		try {
+			Runtime.getRuntime().exec("whpp Fichier_Test_Original/Test1.wh -o Fichier_Test_Resultat/TestDT1.whpp");
+			Runtime.getRuntime().exec("whpp Fichier_Test_Resultat/TestDT1.whpp -o Fichier_Test_Resultat/TestDT2.whpp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+		}
 		
+		String  filepath1 = "Fichier_Test_Resultat/TestDT1.whpp";
+		String  filepath2 ="Fichier_Test_Resultat/TestDT2.whpp";
 		
 		assertSameFileTest(filepath1, filepath2);
 	}

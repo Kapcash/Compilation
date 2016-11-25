@@ -12,23 +12,42 @@ public class PrettyPrintTest{
 	
 	@Test
 	public void testDoubleTraitement() {
-		try {
-			Runtime.getRuntime().exec("whpp Fichier_Test_Original/Test1.wh -o Fichier_Test_Resultat/TestDT1.whpp");
-			Runtime.getRuntime().exec("whpp Fichier_Test_Resultat/TestDT1.whpp -o Fichier_Test_Resultat/TestDT2.whpp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.toString());
-		}
 		
 		String  filepath1 = "Fichier_Test_Resultat/TestDT1.whpp";
 		String  filepath2 ="Fichier_Test_Resultat/TestDT2.whpp";
 		
-		assertSameFileTest(filepath1, filepath2);
+		try {
+			Process p1 = Runtime.getRuntime().exec("whpp Fichier_Test_Original/Test1.wh -o "+ filepath1);
+			p1.waitFor();
+			
+			File tempFile = new File(filepath1+"/Result_output.whpp");
+			File rename = new File(filepath1+"/Result_output.wh");
+
+			boolean isRename = tempFile.renameTo(rename);
+			assertTrue("Le renommage du fichier n'a pas fonctionne", isRename);
+			
+			Process p2 = Runtime.getRuntime().exec("whpp "+filepath1+"/Result_output.wh -o Fichier_Test_Resultat/TestDT2.whpp");
+			p2.waitFor();
+			
+		} catch (IOException e) {System.out.println(e.toString());
+		} catch (InterruptedException e) {System.out.println(e.toString());
+		}	
+		
+		filepath1 = "Fichier_Test_Resultat/TestDT1.whpp/Result_output.wh";
+		filepath2 ="Fichier_Test_Resultat/TestDT2.whpp/Result_output.whpp";
+		
+		assertTrue("Le double traitement amène des fichiers differents", assertSameFileTest(filepath1, filepath2));
+		
+		File fileA = new File(filepath1);
+		File fileB = new File(filepath2);
+
+		System.out.println(fileA.delete());
+		System.out.println(fileB.delete());
 	}
 
 	/*Utilitaire*/
 
-	public void assertSameFileTest(String filepath1, String filepath2) {
+	public boolean assertSameFileTest(String filepath1, String filepath2) {
 		File file1 = new File(filepath1);
 		File file2 = new File(filepath2);
 
@@ -67,6 +86,7 @@ public class PrettyPrintTest{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return true;
 	}
 	
 }

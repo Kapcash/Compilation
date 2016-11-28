@@ -1,13 +1,27 @@
-function id:
-
-	read Ab
-	%
-		X:= Y
-		nop
-		while Var
-			do 
-	Ret:=A
-		od
+function symboles: 
+read A ,B ,C
 %
-		write 
-			Ab
+	A ,C := B ,nil ;
+	C := B ;
+	nop ;
+	while Var
+	do
+		while A
+		do
+			nop ;
+			while C
+			do
+				For nil
+				do
+					if nil
+					then 
+						nop
+					else 
+						nop
+					fi
+				od
+			od
+		od
+	od
+%
+write A ,B

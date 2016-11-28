@@ -12,14 +12,17 @@ public class DefFun{
 		vars = new HashMap<String,String>();
 	}
 	
-	public void addVar(String var,String val){
-		
+	public void updateVar(String var,String val){
 		vars.put(var,(val ==null)? "nil" : val);
+	}
+	
+	public boolean alreadyExisting(String var){
+		return vars.keySet().contains(var);
 	}
 	
 	@Override
 	public String toString() {
-		return "Input = "+in+", Output = "+out+"Vars : "+vars.toString();
+		return "Input:"+in+", Output:"+out+"\nVars : "+vars.toString();
 	}
 	
 	/* GETTERS & SETTERS */

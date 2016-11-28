@@ -103,7 +103,7 @@ class WhileCompGenerator extends AbstractGenerator {
 		'''
 	}
 	
-	def compile(Affectation aff){ // Bug avec les nil
+	def compile(Affectation aff){
 		'''
 		«FOR v: aff.affectations SEPARATOR ' ,'»«v»«ENDFOR» := «FOR v: aff.valeurs SEPARATOR ' ,'»«v»«ENDFOR»
 		'''	

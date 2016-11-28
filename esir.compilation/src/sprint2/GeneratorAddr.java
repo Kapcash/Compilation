@@ -4,6 +4,7 @@ package sprint2;
  */
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,7 +13,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -27,35 +27,42 @@ import esir.compilation.whileComp.Affectation;
 import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Definition;
+import esir.compilation.whileComp.For;
+import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
+import esir.compilation.whileComp.If;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
+import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
 
 public class GeneratorAddr {
 
+// MAIN //
 	public static void main(String[] args) {
+		System.out.println("Constructing symbole table.");
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try{
-			main.runGenerator("../exemple.wh","./");
-		} catch(Exception e){
-			System.out.println(e.getMessage());
+			main.createSymTable("../exemple2.wh","./");
+		} catch(SymTableException e){
+			System.out.println("[ERROR] : "+e.getMessage());
 		}
 	}
-
+// ---- //
+	
 	@Inject
 	private Provider<ResourceSet> resourceSetProvider;
-
+	
 	@Inject
 	private IResourceValidator validator;
-
-	@Inject 
-	private JavaIoFileSystemAccess fileAccess;
-
-	HashMap<String,DefFun> map;
 	
-	protected void runGenerator(String string,String sortie) throws Exception{
+	/**
+	 * List of declared functions in the Program
+	 */
+	HashMap<String,DefFun> funList = new HashMap<String,DefFun>();;
+	
+	private void createSymTable(String string,String sortie) throws SymTableException{
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
@@ -68,9 +75,6 @@ public class GeneratorAddr {
 			}
 			return;
 		}
-
-		// Configure and start the generator
-		fileAccess.setOutputPath(sortie);
 		
 		TreeIterator<EObject> tree = resource.getAllContents();
 		while(tree.hasNext()){
@@ -79,53 +83,59 @@ public class GeneratorAddr {
 				iterateAST((Program)next); //Parcours l'AST du 'Program'
 		}
 		
-		System.out.println("Code generation finished.");
+		System.out.println("Symboles Table correctly generated.");
 	}
 	
-	private void iterateAST(Program prog)throws Exception{
-		map = new HashMap<String,DefFun>();
+//Program	
+	private void iterateAST(Program prog)throws SymTableException{
 		for (Function f : prog.getFunctions()){
 			iterateAST(f);
-			/*
-			 * System.out.println(fun+":");
-			Definition def = f.getDefinition();
-			*/
 		}
-		System.out.println(map);
+		System.out.println("Symboles Table :\n"+funList);
 	}
 	
-	public void iterateAST(Function f) throws Exception{
+//Function	
+	private void iterateAST(Function f) throws SymTableException{
 		String fName = f.getFunction();
-		boolean fun = map.keySet().contains(f);
+		boolean fun = funList.keySet().contains(f);
 		if(fun){ //Function already existing
-			throw new Exception("Function "+fName+" already declared !");
-		}else{
+			throw new SymTableException("Function "+fName+" already declared !");
+		} else {
 			DefFun function = new DefFun();
-			map.put(fName, function); //Adding a new blank function (DefFun)
+			funList.put(fName, function); //Adding a new blank function (DefFun)
 			iterateAST(f.getDefinition(),function);
 		}
 	}
 	
-	public void iterateAST(Definition def, DefFun f){
+//Definition	
+	private void iterateAST(Definition def, DefFun f){
 		//Inputs
-		Read reads = def.getRead();
-		EList<String> varsR = reads.getVariable();
-		f.setIn(varsR.size());
-		for(String v : varsR){
-			f.addVar(v,null);
-		}
+		iterateAST(def.getRead(), f);
 		//Commands
 		iterateAST(def.getCommands(), f);
-		
 		//Outputs
-		Write writes = def.getWrite();
-		EList<String> varsW = writes.getVariable();
-		f.setIn(varsW.size());
-		for(String v : varsW){
-			f.addVar(v,null);
+		iterateAST(def.getWrite(), f);
+	}
+	
+//Read
+	public void iterateAST(Read read, DefFun f){
+		EList<String> varsR = read.getVariable();
+		f.setIn(varsR.size());
+		for(String v : varsR){
+			f.updateVar(v,null);
 		}
 	}
 	
+//Write
+	private void iterateAST(Write write, DefFun f){
+		EList<String> varsW = write.getVariable();
+		f.setOut(varsW.size());
+		for(String v : varsW){
+			f.updateVar(v,null);
+		}
+	}
+	
+//Commands	
 	public void iterateAST(Commands coms, DefFun f){
 		Command com = coms.getCommand();
 		iterateAST(com, f); //First command of definition
@@ -134,15 +144,62 @@ public class GeneratorAddr {
 		}
 	}
 	
-	public void iterateAST(Command com, DefFun f){
-		if(com instanceof Affectation){
-			iterateAST((Affectation) com);
+//Command	
+	private void iterateAST(Command com, DefFun f){
+		EObject obj = com.getCommand();
+		if(obj instanceof Affectation){		//Affectation
+			iterateAST((Affectation) obj, f);
+		} else if(obj instanceof While){	//While
+			iterateAST((While) obj, f);
+		} else if(obj instanceof For){		//For
+			iterateAST((For) obj, f);
+		} else if(obj instanceof Foreach){	//Foreach
+			iterateAST((Foreach) obj, f);
+		} else if(obj instanceof If){		//If
+			iterateAST((If) obj, f);
+		} else {
 		}
 	}
 	
-	public void iterateAST(Affectation aff){
-		EList<String> affs = aff.getAffectations();
-		EList<String> vals = aff.getValeurs();
+//Affectation	
+	private void iterateAST(Affectation affCmd, DefFun f){
+		EList<String> affs = affCmd.getAffectations();
+		EList<String> vals = affCmd.getValeurs();
+		Iterator<String> itAff = affs.iterator();
+		Iterator<String> itVal = vals.iterator();
+		
+		while(itAff.hasNext() && itVal.hasNext()){
+			String var = itAff.next();
+			String val = itVal.next();
+			System.out.println("UPDATE "+var+":"+val);
+			f.updateVar(var, val);
+		}
 	}
 	
+//While	
+	private void iterateAST(While whCmd, DefFun f){
+		System.out.println("WHILE");
+		Commands cmds = whCmd.getCommands();
+		iterateAST(cmds ,f);
+	}
+	
+//For	
+	private void iterateAST(For forCmd, DefFun f){
+		Commands cmds = forCmd.getCommands();
+		iterateAST(cmds ,f);
+	}
+	
+//Foreach	
+	private void iterateAST(Foreach forEachCmd, DefFun f){
+		Commands cmds = forEachCmd.getCommands();
+		iterateAST(cmds ,f);
+	}
+	
+//If	
+	private void iterateAST(If ifCmd, DefFun f){
+		Commands cmds1 = ifCmd.getCommands1();
+		Commands cmds2 = ifCmd.getCommands2();
+		iterateAST(cmds1 ,f);
+		iterateAST(cmds2 ,f);
+	}
 }

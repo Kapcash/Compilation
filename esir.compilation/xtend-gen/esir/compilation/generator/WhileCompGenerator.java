@@ -71,7 +71,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     _builder.append(_function, "");
     _builder.append(": ");
     _builder.newLineIfNotEmpty();
-    _builder.append("read");
+    _builder.append("read ");
     {
       Definition _definition = c.getDefinition();
       Read _read = _definition.getRead();
@@ -81,28 +81,22 @@ public class WhileCompGenerator extends AbstractGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(",", "");
+          _builder.appendImmediate(" ,", "");
         }
-        _builder.append(" ");
         _builder.append(param, "");
       }
     }
     _builder.newLineIfNotEmpty();
     _builder.append("%");
     _builder.newLine();
-    {
-      Definition _definition_1 = c.getDefinition();
-      Commands _commands = _definition_1.getCommands();
-      EList<Command> _commands_1 = _commands.getCommands();
-      for(final Command f : _commands_1) {
-        CharSequence _compile = this.compile(((Command) f));
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
+    Definition _definition_1 = c.getDefinition();
+    Commands _commands = _definition_1.getCommands();
+    CharSequence _compile = this.compile(_commands);
+    _builder.append(_compile, "");
+    _builder.newLineIfNotEmpty();
     _builder.append("%");
     _builder.newLine();
-    _builder.append("write");
+    _builder.append("write ");
     {
       Definition _definition_2 = c.getDefinition();
       Write _write = _definition_2.getWrite();
@@ -112,9 +106,8 @@ public class WhileCompGenerator extends AbstractGenerator {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(",", "");
+          _builder.appendImmediate(" ,", "");
         }
-        _builder.append(" ");
         _builder.append(param_1, "");
       }
     }
@@ -123,24 +116,37 @@ public class WhileCompGenerator extends AbstractGenerator {
   }
   
   public CharSequence compile(final Commands coms) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t", "");
-    Command _command = coms.getCommand();
-    Object _compile = this.compile(_command);
-    _builder.append(_compile, "");
-    _builder.newLineIfNotEmpty();
+    CharSequence _xblockexpression = null;
     {
       EList<Command> _commands = coms.getCommands();
-      for(final Command c : _commands) {
-        _builder.append(" ;");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        Object _compile_1 = this.compile(c);
-        _builder.append(_compile_1, "\t");
-        _builder.newLineIfNotEmpty();
+      boolean _notEquals = (!Objects.equal(_commands, null));
+      if (_notEquals) {
+        EList<Command> _commands_1 = coms.getCommands();
+        Command _command = coms.getCommand();
+        _commands_1.add(0, _command);
+      } else {
+        Command _command_1 = coms.getCommand();
+        this.compile(_command_1);
       }
+      StringConcatenation _builder = new StringConcatenation();
+      {
+        EList<Command> _commands_2 = coms.getCommands();
+        boolean _hasElements = false;
+        for(final Command c : _commands_2) {
+          if (!_hasElements) {
+            _hasElements = true;
+          } else {
+            _builder.appendImmediate(" ;", "");
+          }
+          _builder.append("\t", "");
+          CharSequence _compile = this.compile(c);
+          _builder.append(_compile, "");
+        }
+      }
+      _builder.newLineIfNotEmpty();
+      _xblockexpression = _builder;
     }
-    return _builder;
+    return _xblockexpression;
   }
   
   public CharSequence compile(final Command c) {
@@ -148,63 +154,71 @@ public class WhileCompGenerator extends AbstractGenerator {
     {
       EObject _command = c.getCommand();
       if ((_command instanceof Affectation)) {
-        {
-          EObject _command_1 = c.getCommand();
-          Nil2 _nil = ((Affectation) _command_1).getNil();
-          if ((_nil instanceof Nil2)) {
-            _builder.append("\t", "");
-            EObject _command_2 = c.getCommand();
-            String _affectation = ((Affectation) _command_2).getAffectation();
-            _builder.append(_affectation, "");
-            _builder.append(" := ");
-            EObject _command_3 = c.getCommand();
-            Nil2 _nil_1 = ((Affectation) _command_3).getNil();
-            String _nil_2 = _nil_1.getNil();
-            _builder.append(_nil_2, "");
-            _builder.newLineIfNotEmpty();
-          } else {
-            _builder.append("\t", "");
-            EObject _command_4 = c.getCommand();
-            String _affectation_1 = ((Affectation) _command_4).getAffectation();
-            _builder.append(_affectation_1, "");
-            _builder.append(" := ");
-            EObject _command_5 = c.getCommand();
-            String _valeur = ((Affectation) _command_5).getValeur();
-            _builder.append(_valeur, "");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    {
-      EObject _command_6 = c.getCommand();
-      if ((_command_6 instanceof Nop)) {
-        _builder.append("\t", "");
-        _builder.append("nop");
+        EObject _command_1 = c.getCommand();
+        CharSequence _compile = this.compile(((Affectation) _command_1));
+        _builder.append(_compile, "");
         _builder.newLineIfNotEmpty();
       }
     }
     {
-      EObject _command_7 = c.getCommand();
-      if ((_command_7 instanceof While)) {
-        _builder.append("\t", "");
+      EObject _command_2 = c.getCommand();
+      if ((_command_2 instanceof Nop)) {
+        _builder.append("nop");
+        _builder.newLine();
+      }
+    }
+    {
+      EObject _command_3 = c.getCommand();
+      if ((_command_3 instanceof While)) {
         _builder.append("while ");
-        EObject _command_8 = c.getCommand();
-        Expr _expr = ((While) _command_8).getExpr();
-        CharSequence _compile = this.compile(_expr);
-        _builder.append(_compile, "");
+        EObject _command_4 = c.getCommand();
+        Expr _expr = ((While) _command_4).getExpr();
+        CharSequence _compile_1 = this.compile(_expr);
+        _builder.append(_compile_1, "");
         _builder.append("\tdo");
         _builder.newLineIfNotEmpty();
-        EObject _command_9 = c.getCommand();
-        Commands _commands = ((While) _command_9).getCommands();
-        CharSequence _compile_1 = this.compile(_commands);
-        _builder.append(_compile_1, "");
+        _builder.append("\t");
+        EObject _command_5 = c.getCommand();
+        Commands _commands = ((While) _command_5).getCommands();
+        Object _compile_2 = this.compile(_commands);
+        _builder.append(_compile_2, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t", "");
         _builder.append("od");
         _builder.newLineIfNotEmpty();
       }
     }
+    return _builder;
+  }
+  
+  public CharSequence compile(final Affectation aff) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<String> _affectations = aff.getAffectations();
+      boolean _hasElements = false;
+      for(final String v : _affectations) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(" ,", "");
+        }
+        _builder.append(v, "");
+      }
+    }
+    _builder.append(" := ");
+    {
+      EList<String> _valeurs = aff.getValeurs();
+      boolean _hasElements_1 = false;
+      for(final String v_1 : _valeurs) {
+        if (!_hasElements_1) {
+          _hasElements_1 = true;
+        } else {
+          _builder.appendImmediate(" ,", "");
+        }
+        _builder.append(v_1, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   

@@ -29,7 +29,7 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class WhileCompGenerator extends AbstractGenerator {
 
-override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (e : resource.allContents.toIterable.filter(typeof(Program))){
 			fsa.generateFile("Result_output.whpp",	e.compile)
 		}
@@ -44,107 +44,110 @@ override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorCo
 	
 	def compile (Function c){'''
 		function «c.function»: 
-		read«FOR param: c.definition.read.variable SEPARATOR ','» «param»«ENDFOR»
+		read «FOR param: c.definition.read.variable SEPARATOR ' ,'»«param»«ENDFOR»
 		%
-		«FOR f : c.definition.commands.commands»
-			«(f as Command).compile»
-		«ENDFOR»
+		«c.definition.commands.compile»
 		%
-		write«FOR param: c.definition.write.variable SEPARATOR ','» «param»«ENDFOR»
-	'''	
+		write «FOR param: c.definition.write.variable SEPARATOR ' ,'»«param»«ENDFOR»
+		'''	
 	}
 	
 	def compile(Commands coms){
-	'''
-		«"	"»«coms.command.compile»
-		«FOR c: (coms.commands)» ;
-			«c.compile»
-		«ENDFOR»
-	'''
+		if(coms.commands != null){
+			coms.commands.add(0,coms.command)
+		}
+		else{
+			coms.command.compile()
+		}
+		'''
+		«FOR c: (coms.commands) SEPARATOR ' ;'»«"	"»«c.compile»«ENDFOR»
+		'''
 	}
 	
 	def compile(Command c){
 		'''
 		«IF c.command instanceof Affectation»
-			«IF ((c.command as Affectation).nil instanceof Nil2)»
-				«"	"»«(c.command as Affectation).affectation» := «(c.command as Affectation).nil.nil»
-			«ELSE»
-				«"	"»«(c.command as Affectation).affectation» := «(c.command as Affectation).valeur»
-			«ENDIF»
+			«(c.command as Affectation).compile»
 		«ENDIF»
 		«IF c.command instanceof Nop»
-			«"	"»nop
+			nop
 		«ENDIF»
 		«IF c.command instanceof While»
-			«"	"»while «(c.command as While).expr.compile»	do
-			«(c.command as While).commands.compile»
+			while «(c.command as While).expr.compile»	do
+				«(c.command as While).commands.compile»
 			«"	"»od
 		«ENDIF»
 		'''
 	}
 	
+	def compile(Affectation aff){
+		'''
+		«FOR v: aff.affectations SEPARATOR ' ,'»«v»«ENDFOR» := «FOR v: aff.valeurs SEPARATOR ' ,'»«v»«ENDFOR»
+		'''	
+	}
+	
 	def compile(Expr expr){
-	'''
-	«IF expr.exprAnd != null»
-	«expr.exprAnd.compile»
-	«ENDIF»
-	«IF expr.exprsimple != null»
-	«expr.exprsimple.compile»
-	«ENDIF»
-	'''
+		'''
+		«IF expr.exprAnd != null»
+		«expr.exprAnd.compile»
+		«ENDIF»
+		«IF expr.exprsimple != null»
+		«expr.exprsimple.compile»
+		«ENDIF»
+		'''
 	}
 	
 	def compile(ExprAnd expr){
-	'''
-	«IF expr.exprAnd == null»
-	«expr.exprOr.compile»
-	«ELSE»
-	«expr.exprOr.compile» && «expr.exprAnd.compile»
-	«ENDIF»
-	'''
+		'''
+		«IF expr.exprAnd == null»
+		«expr.exprOr.compile»
+		«ELSE»
+		«expr.exprOr.compile» && «expr.exprAnd.compile»
+		«ENDIF»
+		'''
 	}
 	
 	def compile(ExprOr expr){
-	'''
-	«IF expr.exprOr == null»
-	«expr.exprNot.compile»
-	«ELSE»
-	«expr.exprNot.compile» || «expr.exprOr.compile»
-	«ENDIF»
-	'''
+		'''
+		«IF expr.exprOr == null»
+		«expr.exprNot.compile»
+		«ELSE»
+		«expr.exprNot.compile» || «expr.exprOr.compile»
+		«ENDIF»
+		'''
 	}
 	
 	def compile(ExprNot expr){
-	'''
-	«IF expr.not != null»
-	!«expr.exprEq.compile»
-	«ELSE»
-	!«expr.exprEq.compile»
-	«ENDIF»
-	'''
+		'''
+		«IF expr.not != null»
+		!«expr.exprEq.compile»
+		«ELSE»
+		!«expr.exprEq.compile»
+		«ENDIF»
+		'''
 	}
 	
 	def compile(ExprEq expr){
-	'''
-	«IF expr.expr != null»
-	(«expr.expr.compile»)
-	«ELSE»
-	«expr.exprSimple1.compile» =? «expr.exprSimple2.compile»
-	«ENDIF»
-	'''
+		'''
+		«IF expr.expr != null»
+		(«expr.expr.compile»)
+		«ELSE»
+		«expr.exprSimple1.compile» =? «expr.exprSimple2.compile»
+		«ENDIF»
+		'''
 	}
 	
 	def compile(ExprSimple expr){
-	'''
-	«IF expr.nil != null»
-	nil
-	«ENDIF»
-	«IF expr.variable != null»
-	«expr.variable»
-	«ENDIF»
-	«IF expr.symbol != null && expr.lexpr == null»
-	«expr.symbol»
-	«ENDIF»
-	'''
+		'''
+		«IF expr.nil != null»
+		nil
+		«ENDIF»
+		«IF expr.variable != null»
+		«expr.variable»
+		«ENDIF»
+		«IF expr.symbol != null && expr.lexpr == null»
+		«expr.symbol»
+		«ENDIF»
+		'''
 	}
 }

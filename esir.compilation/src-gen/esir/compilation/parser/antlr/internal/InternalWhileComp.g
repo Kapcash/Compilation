@@ -392,41 +392,65 @@ ruleAffectation returns [EObject current=null]
 	(
 		(
 			(
-				lv_affectation_0_0=RULE_VARIABLE
+				lv_affectations_0_0=RULE_VARIABLE
 				{
-					newLeafNode(lv_affectation_0_0, grammarAccess.getAffectationAccess().getAffectationVARIABLETerminalRuleCall_0_0());
+					newLeafNode(lv_affectations_0_0, grammarAccess.getAffectationAccess().getAffectationsVARIABLETerminalRuleCall_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getAffectationRule());
 					}
-					setWithLastConsumed(
+					addWithLastConsumed(
 						$current,
-						"affectation",
-						lv_affectation_0_0,
+						"affectations",
+						lv_affectations_0_0,
 						"esir.compilation.WhileComp.VARIABLE");
 				}
 			)
 		)
-		otherlv_1=':='
-		{
-			newLeafNode(otherlv_1, grammarAccess.getAffectationAccess().getColonEqualsSignKeyword_1());
-		}
 		(
+			otherlv_1=','
+			{
+				newLeafNode(otherlv_1, grammarAccess.getAffectationAccess().getCommaKeyword_1_0());
+			}
 			(
 				(
-					lv_valeur_2_0=RULE_VARIABLE
+					lv_affectations_2_0=RULE_VARIABLE
 					{
-						newLeafNode(lv_valeur_2_0, grammarAccess.getAffectationAccess().getValeurVARIABLETerminalRuleCall_2_0_0());
+						newLeafNode(lv_affectations_2_0, grammarAccess.getAffectationAccess().getAffectationsVARIABLETerminalRuleCall_1_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getAffectationRule());
 						}
-						setWithLastConsumed(
+						addWithLastConsumed(
 							$current,
-							"valeur",
-							lv_valeur_2_0,
+							"affectations",
+							lv_affectations_2_0,
+							"esir.compilation.WhileComp.VARIABLE");
+					}
+				)
+			)
+		)*
+		otherlv_3=':='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getAffectationAccess().getColonEqualsSignKeyword_2());
+		}
+		(
+			(
+				(
+					lv_valeurs_4_0=RULE_VARIABLE
+					{
+						newLeafNode(lv_valeurs_4_0, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAffectationRule());
+						}
+						addWithLastConsumed(
+							$current,
+							"valeurs",
+							lv_valeurs_4_0,
 							"esir.compilation.WhileComp.VARIABLE");
 					}
 				)
@@ -435,23 +459,69 @@ ruleAffectation returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_3_1_0());
 					}
-					lv_nil_3_0=ruleNil2
+					lv_nil_5_0=ruleNil2
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAffectationRule());
 						}
-						set(
+						add(
 							$current,
 							"nil",
-							lv_nil_3_0,
+							lv_nil_5_0,
 							"esir.compilation.WhileComp.Nil2");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
+		(
+			otherlv_6=','
+			{
+				newLeafNode(otherlv_6, grammarAccess.getAffectationAccess().getCommaKeyword_4_0());
+			}
+			(
+				(
+					(
+						lv_valeurs_7_0=RULE_VARIABLE
+						{
+							newLeafNode(lv_valeurs_7_0, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_4_1_0_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getAffectationRule());
+							}
+							addWithLastConsumed(
+								$current,
+								"valeurs",
+								lv_valeurs_7_0,
+								"esir.compilation.WhileComp.VARIABLE");
+						}
+					)
+				)
+				    |
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_4_1_1_0());
+						}
+						lv_nil_8_0=ruleNil2
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAffectationRule());
+							}
+							add(
+								$current,
+								"nil",
+								lv_nil_8_0,
+								"esir.compilation.WhileComp.Nil2");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+		)*
 	)
 ;
 

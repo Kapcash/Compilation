@@ -3,6 +3,8 @@
  */
 package esir.compilation.whileComp;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link esir.compilation.whileComp.Affectation#getAffectation <em>Affectation</em>}</li>
- *   <li>{@link esir.compilation.whileComp.Affectation#getValeur <em>Valeur</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.Affectation#getAffectations <em>Affectations</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.Affectation#getValeurs <em>Valeurs</em>}</li>
  *   <li>{@link esir.compilation.whileComp.Affectation#getNil <em>Nil</em>}</li>
  * </ul>
  *
@@ -26,81 +28,51 @@ import org.eclipse.emf.ecore.EObject;
 public interface Affectation extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Affectation</b></em>' attribute.
+   * Returns the value of the '<em><b>Affectations</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Affectation</em>' attribute isn't clear,
+   * If the meaning of the '<em>Affectations</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Affectation</em>' attribute.
-   * @see #setAffectation(String)
-   * @see esir.compilation.whileComp.WhileCompPackage#getAffectation_Affectation()
-   * @model
+   * @return the value of the '<em>Affectations</em>' attribute list.
+   * @see esir.compilation.whileComp.WhileCompPackage#getAffectation_Affectations()
+   * @model unique="false"
    * @generated
    */
-  String getAffectation();
+  EList<String> getAffectations();
 
   /**
-   * Sets the value of the '{@link esir.compilation.whileComp.Affectation#getAffectation <em>Affectation</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Affectation</em>' attribute.
-   * @see #getAffectation()
-   * @generated
-   */
-  void setAffectation(String value);
-
-  /**
-   * Returns the value of the '<em><b>Valeur</b></em>' attribute.
+   * Returns the value of the '<em><b>Valeurs</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Valeur</em>' attribute isn't clear,
+   * If the meaning of the '<em>Valeurs</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Valeur</em>' attribute.
-   * @see #setValeur(String)
-   * @see esir.compilation.whileComp.WhileCompPackage#getAffectation_Valeur()
-   * @model
+   * @return the value of the '<em>Valeurs</em>' attribute list.
+   * @see esir.compilation.whileComp.WhileCompPackage#getAffectation_Valeurs()
+   * @model unique="false"
    * @generated
    */
-  String getValeur();
+  EList<String> getValeurs();
 
   /**
-   * Sets the value of the '{@link esir.compilation.whileComp.Affectation#getValeur <em>Valeur</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Valeur</em>' attribute.
-   * @see #getValeur()
-   * @generated
-   */
-  void setValeur(String value);
-
-  /**
-   * Returns the value of the '<em><b>Nil</b></em>' containment reference.
+   * Returns the value of the '<em><b>Nil</b></em>' containment reference list.
+   * The list contents are of type {@link esir.compilation.whileComp.Nil2}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Nil</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Nil</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Nil</em>' containment reference.
-   * @see #setNil(Nil2)
+   * @return the value of the '<em>Nil</em>' containment reference list.
    * @see esir.compilation.whileComp.WhileCompPackage#getAffectation_Nil()
    * @model containment="true"
    * @generated
    */
-  Nil2 getNil();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.Affectation#getNil <em>Nil</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Nil</em>' containment reference.
-   * @see #getNil()
-   * @generated
-   */
-  void setNil(Nil2 value);
+  EList<Nil2> getNil();
 
 } // Affectation

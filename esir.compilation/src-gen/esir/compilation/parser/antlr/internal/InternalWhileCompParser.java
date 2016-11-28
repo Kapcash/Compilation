@@ -1002,36 +1002,42 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAffectation"
-    // InternalWhileComp.g:385:1: ruleAffectation returns [EObject current=null] : ( ( (lv_affectation_0_0= RULE_VARIABLE ) ) otherlv_1= ':=' ( ( (lv_valeur_2_0= RULE_VARIABLE ) ) | ( (lv_nil_3_0= ruleNil2 ) ) ) ) ;
+    // InternalWhileComp.g:385:1: ruleAffectation returns [EObject current=null] : ( ( (lv_affectations_0_0= RULE_VARIABLE ) ) (otherlv_1= ',' ( (lv_affectations_2_0= RULE_VARIABLE ) ) )* otherlv_3= ':=' ( ( (lv_valeurs_4_0= RULE_VARIABLE ) ) | ( (lv_nil_5_0= ruleNil2 ) ) ) (otherlv_6= ',' ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) ) )* ) ;
     public final EObject ruleAffectation() throws RecognitionException {
         EObject current = null;
 
-        Token lv_affectation_0_0=null;
+        Token lv_affectations_0_0=null;
         Token otherlv_1=null;
-        Token lv_valeur_2_0=null;
-        EObject lv_nil_3_0 = null;
+        Token lv_affectations_2_0=null;
+        Token otherlv_3=null;
+        Token lv_valeurs_4_0=null;
+        Token otherlv_6=null;
+        Token lv_valeurs_7_0=null;
+        EObject lv_nil_5_0 = null;
+
+        EObject lv_nil_8_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalWhileComp.g:391:2: ( ( ( (lv_affectation_0_0= RULE_VARIABLE ) ) otherlv_1= ':=' ( ( (lv_valeur_2_0= RULE_VARIABLE ) ) | ( (lv_nil_3_0= ruleNil2 ) ) ) ) )
-            // InternalWhileComp.g:392:2: ( ( (lv_affectation_0_0= RULE_VARIABLE ) ) otherlv_1= ':=' ( ( (lv_valeur_2_0= RULE_VARIABLE ) ) | ( (lv_nil_3_0= ruleNil2 ) ) ) )
+            // InternalWhileComp.g:391:2: ( ( ( (lv_affectations_0_0= RULE_VARIABLE ) ) (otherlv_1= ',' ( (lv_affectations_2_0= RULE_VARIABLE ) ) )* otherlv_3= ':=' ( ( (lv_valeurs_4_0= RULE_VARIABLE ) ) | ( (lv_nil_5_0= ruleNil2 ) ) ) (otherlv_6= ',' ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) ) )* ) )
+            // InternalWhileComp.g:392:2: ( ( (lv_affectations_0_0= RULE_VARIABLE ) ) (otherlv_1= ',' ( (lv_affectations_2_0= RULE_VARIABLE ) ) )* otherlv_3= ':=' ( ( (lv_valeurs_4_0= RULE_VARIABLE ) ) | ( (lv_nil_5_0= ruleNil2 ) ) ) (otherlv_6= ',' ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) ) )* )
             {
-            // InternalWhileComp.g:392:2: ( ( (lv_affectation_0_0= RULE_VARIABLE ) ) otherlv_1= ':=' ( ( (lv_valeur_2_0= RULE_VARIABLE ) ) | ( (lv_nil_3_0= ruleNil2 ) ) ) )
-            // InternalWhileComp.g:393:3: ( (lv_affectation_0_0= RULE_VARIABLE ) ) otherlv_1= ':=' ( ( (lv_valeur_2_0= RULE_VARIABLE ) ) | ( (lv_nil_3_0= ruleNil2 ) ) )
+            // InternalWhileComp.g:392:2: ( ( (lv_affectations_0_0= RULE_VARIABLE ) ) (otherlv_1= ',' ( (lv_affectations_2_0= RULE_VARIABLE ) ) )* otherlv_3= ':=' ( ( (lv_valeurs_4_0= RULE_VARIABLE ) ) | ( (lv_nil_5_0= ruleNil2 ) ) ) (otherlv_6= ',' ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) ) )* )
+            // InternalWhileComp.g:393:3: ( (lv_affectations_0_0= RULE_VARIABLE ) ) (otherlv_1= ',' ( (lv_affectations_2_0= RULE_VARIABLE ) ) )* otherlv_3= ':=' ( ( (lv_valeurs_4_0= RULE_VARIABLE ) ) | ( (lv_nil_5_0= ruleNil2 ) ) ) (otherlv_6= ',' ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) ) )*
             {
-            // InternalWhileComp.g:393:3: ( (lv_affectation_0_0= RULE_VARIABLE ) )
-            // InternalWhileComp.g:394:4: (lv_affectation_0_0= RULE_VARIABLE )
+            // InternalWhileComp.g:393:3: ( (lv_affectations_0_0= RULE_VARIABLE ) )
+            // InternalWhileComp.g:394:4: (lv_affectations_0_0= RULE_VARIABLE )
             {
-            // InternalWhileComp.g:394:4: (lv_affectation_0_0= RULE_VARIABLE )
-            // InternalWhileComp.g:395:5: lv_affectation_0_0= RULE_VARIABLE
+            // InternalWhileComp.g:394:4: (lv_affectations_0_0= RULE_VARIABLE )
+            // InternalWhileComp.g:395:5: lv_affectations_0_0= RULE_VARIABLE
             {
-            lv_affectation_0_0=(Token)match(input,RULE_VARIABLE,FOLLOW_12); if (state.failed) return current;
+            lv_affectations_0_0=(Token)match(input,RULE_VARIABLE,FOLLOW_12); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              					newLeafNode(lv_affectation_0_0, grammarAccess.getAffectationAccess().getAffectationVARIABLETerminalRuleCall_0_0());
+              					newLeafNode(lv_affectations_0_0, grammarAccess.getAffectationAccess().getAffectationsVARIABLETerminalRuleCall_0_0());
               				
             }
             if ( state.backtracking==0 ) {
@@ -1039,10 +1045,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               					if (current==null) {
               						current = createModelElement(grammarAccess.getAffectationRule());
               					}
-              					setWithLastConsumed(
+              					addWithLastConsumed(
               						current,
-              						"affectation",
-              						lv_affectation_0_0,
+              						"affectations",
+              						lv_affectations_0_0,
               						"esir.compilation.WhileComp.VARIABLE");
               				
             }
@@ -1052,43 +1058,103 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,20,FOLLOW_13); if (state.failed) return current;
+            // InternalWhileComp.g:411:3: (otherlv_1= ',' ( (lv_affectations_2_0= RULE_VARIABLE ) ) )*
+            loop4:
+            do {
+                int alt4=2;
+                int LA4_0 = input.LA(1);
+
+                if ( (LA4_0==18) ) {
+                    alt4=1;
+                }
+
+
+                switch (alt4) {
+            	case 1 :
+            	    // InternalWhileComp.g:412:4: otherlv_1= ',' ( (lv_affectations_2_0= RULE_VARIABLE ) )
+            	    {
+            	    otherlv_1=(Token)match(input,18,FOLLOW_10); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      				newLeafNode(otherlv_1, grammarAccess.getAffectationAccess().getCommaKeyword_1_0());
+            	      			
+            	    }
+            	    // InternalWhileComp.g:416:4: ( (lv_affectations_2_0= RULE_VARIABLE ) )
+            	    // InternalWhileComp.g:417:5: (lv_affectations_2_0= RULE_VARIABLE )
+            	    {
+            	    // InternalWhileComp.g:417:5: (lv_affectations_2_0= RULE_VARIABLE )
+            	    // InternalWhileComp.g:418:6: lv_affectations_2_0= RULE_VARIABLE
+            	    {
+            	    lv_affectations_2_0=(Token)match(input,RULE_VARIABLE,FOLLOW_12); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      						newLeafNode(lv_affectations_2_0, grammarAccess.getAffectationAccess().getAffectationsVARIABLETerminalRuleCall_1_1_0());
+            	      					
+            	    }
+            	    if ( state.backtracking==0 ) {
+
+            	      						if (current==null) {
+            	      							current = createModelElement(grammarAccess.getAffectationRule());
+            	      						}
+            	      						addWithLastConsumed(
+            	      							current,
+            	      							"affectations",
+            	      							lv_affectations_2_0,
+            	      							"esir.compilation.WhileComp.VARIABLE");
+            	      					
+            	    }
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop4;
+                }
+            } while (true);
+
+            otherlv_3=(Token)match(input,20,FOLLOW_13); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			newLeafNode(otherlv_1, grammarAccess.getAffectationAccess().getColonEqualsSignKeyword_1());
+              			newLeafNode(otherlv_3, grammarAccess.getAffectationAccess().getColonEqualsSignKeyword_2());
               		
             }
-            // InternalWhileComp.g:415:3: ( ( (lv_valeur_2_0= RULE_VARIABLE ) ) | ( (lv_nil_3_0= ruleNil2 ) ) )
-            int alt4=2;
-            int LA4_0 = input.LA(1);
+            // InternalWhileComp.g:439:3: ( ( (lv_valeurs_4_0= RULE_VARIABLE ) ) | ( (lv_nil_5_0= ruleNil2 ) ) )
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-            if ( (LA4_0==RULE_VARIABLE) ) {
-                alt4=1;
+            if ( (LA5_0==RULE_VARIABLE) ) {
+                alt5=1;
             }
-            else if ( (LA4_0==43) ) {
-                alt4=2;
+            else if ( (LA5_0==43) ) {
+                alt5=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 4, 0, input);
+                    new NoViableAltException("", 5, 0, input);
 
                 throw nvae;
             }
-            switch (alt4) {
+            switch (alt5) {
                 case 1 :
-                    // InternalWhileComp.g:416:4: ( (lv_valeur_2_0= RULE_VARIABLE ) )
+                    // InternalWhileComp.g:440:4: ( (lv_valeurs_4_0= RULE_VARIABLE ) )
                     {
-                    // InternalWhileComp.g:416:4: ( (lv_valeur_2_0= RULE_VARIABLE ) )
-                    // InternalWhileComp.g:417:5: (lv_valeur_2_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:440:4: ( (lv_valeurs_4_0= RULE_VARIABLE ) )
+                    // InternalWhileComp.g:441:5: (lv_valeurs_4_0= RULE_VARIABLE )
                     {
-                    // InternalWhileComp.g:417:5: (lv_valeur_2_0= RULE_VARIABLE )
-                    // InternalWhileComp.g:418:6: lv_valeur_2_0= RULE_VARIABLE
+                    // InternalWhileComp.g:441:5: (lv_valeurs_4_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:442:6: lv_valeurs_4_0= RULE_VARIABLE
                     {
-                    lv_valeur_2_0=(Token)match(input,RULE_VARIABLE,FOLLOW_2); if (state.failed) return current;
+                    lv_valeurs_4_0=(Token)match(input,RULE_VARIABLE,FOLLOW_11); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      						newLeafNode(lv_valeur_2_0, grammarAccess.getAffectationAccess().getValeurVARIABLETerminalRuleCall_2_0_0());
+                      						newLeafNode(lv_valeurs_4_0, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_3_0_0());
                       					
                     }
                     if ( state.backtracking==0 ) {
@@ -1096,10 +1162,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       						if (current==null) {
                       							current = createModelElement(grammarAccess.getAffectationRule());
                       						}
-                      						setWithLastConsumed(
+                      						addWithLastConsumed(
                       							current,
-                      							"valeur",
-                      							lv_valeur_2_0,
+                      							"valeurs",
+                      							lv_valeurs_4_0,
                       							"esir.compilation.WhileComp.VARIABLE");
                       					
                     }
@@ -1113,21 +1179,21 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:435:4: ( (lv_nil_3_0= ruleNil2 ) )
+                    // InternalWhileComp.g:459:4: ( (lv_nil_5_0= ruleNil2 ) )
                     {
-                    // InternalWhileComp.g:435:4: ( (lv_nil_3_0= ruleNil2 ) )
-                    // InternalWhileComp.g:436:5: (lv_nil_3_0= ruleNil2 )
+                    // InternalWhileComp.g:459:4: ( (lv_nil_5_0= ruleNil2 ) )
+                    // InternalWhileComp.g:460:5: (lv_nil_5_0= ruleNil2 )
                     {
-                    // InternalWhileComp.g:436:5: (lv_nil_3_0= ruleNil2 )
-                    // InternalWhileComp.g:437:6: lv_nil_3_0= ruleNil2
+                    // InternalWhileComp.g:460:5: (lv_nil_5_0= ruleNil2 )
+                    // InternalWhileComp.g:461:6: lv_nil_5_0= ruleNil2
                     {
                     if ( state.backtracking==0 ) {
 
-                      						newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_2_1_0());
+                      						newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_3_1_0());
                       					
                     }
-                    pushFollow(FOLLOW_2);
-                    lv_nil_3_0=ruleNil2();
+                    pushFollow(FOLLOW_11);
+                    lv_nil_5_0=ruleNil2();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -1136,10 +1202,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       						if (current==null) {
                       							current = createModelElementForParent(grammarAccess.getAffectationRule());
                       						}
-                      						set(
+                      						add(
                       							current,
                       							"nil",
-                      							lv_nil_3_0,
+                      							lv_nil_5_0,
                       							"esir.compilation.WhileComp.Nil2");
                       						afterParserOrEnumRuleCall();
                       					
@@ -1155,6 +1221,134 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     break;
 
             }
+
+            // InternalWhileComp.g:479:3: (otherlv_6= ',' ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) ) )*
+            loop7:
+            do {
+                int alt7=2;
+                int LA7_0 = input.LA(1);
+
+                if ( (LA7_0==18) ) {
+                    alt7=1;
+                }
+
+
+                switch (alt7) {
+            	case 1 :
+            	    // InternalWhileComp.g:480:4: otherlv_6= ',' ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) )
+            	    {
+            	    otherlv_6=(Token)match(input,18,FOLLOW_13); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      				newLeafNode(otherlv_6, grammarAccess.getAffectationAccess().getCommaKeyword_4_0());
+            	      			
+            	    }
+            	    // InternalWhileComp.g:484:4: ( ( (lv_valeurs_7_0= RULE_VARIABLE ) ) | ( (lv_nil_8_0= ruleNil2 ) ) )
+            	    int alt6=2;
+            	    int LA6_0 = input.LA(1);
+
+            	    if ( (LA6_0==RULE_VARIABLE) ) {
+            	        alt6=1;
+            	    }
+            	    else if ( (LA6_0==43) ) {
+            	        alt6=2;
+            	    }
+            	    else {
+            	        if (state.backtracking>0) {state.failed=true; return current;}
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("", 6, 0, input);
+
+            	        throw nvae;
+            	    }
+            	    switch (alt6) {
+            	        case 1 :
+            	            // InternalWhileComp.g:485:5: ( (lv_valeurs_7_0= RULE_VARIABLE ) )
+            	            {
+            	            // InternalWhileComp.g:485:5: ( (lv_valeurs_7_0= RULE_VARIABLE ) )
+            	            // InternalWhileComp.g:486:6: (lv_valeurs_7_0= RULE_VARIABLE )
+            	            {
+            	            // InternalWhileComp.g:486:6: (lv_valeurs_7_0= RULE_VARIABLE )
+            	            // InternalWhileComp.g:487:7: lv_valeurs_7_0= RULE_VARIABLE
+            	            {
+            	            lv_valeurs_7_0=(Token)match(input,RULE_VARIABLE,FOLLOW_11); if (state.failed) return current;
+            	            if ( state.backtracking==0 ) {
+
+            	              							newLeafNode(lv_valeurs_7_0, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_4_1_0_0());
+            	              						
+            	            }
+            	            if ( state.backtracking==0 ) {
+
+            	              							if (current==null) {
+            	              								current = createModelElement(grammarAccess.getAffectationRule());
+            	              							}
+            	              							addWithLastConsumed(
+            	              								current,
+            	              								"valeurs",
+            	              								lv_valeurs_7_0,
+            	              								"esir.compilation.WhileComp.VARIABLE");
+            	              						
+            	            }
+
+            	            }
+
+
+            	            }
+
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            // InternalWhileComp.g:504:5: ( (lv_nil_8_0= ruleNil2 ) )
+            	            {
+            	            // InternalWhileComp.g:504:5: ( (lv_nil_8_0= ruleNil2 ) )
+            	            // InternalWhileComp.g:505:6: (lv_nil_8_0= ruleNil2 )
+            	            {
+            	            // InternalWhileComp.g:505:6: (lv_nil_8_0= ruleNil2 )
+            	            // InternalWhileComp.g:506:7: lv_nil_8_0= ruleNil2
+            	            {
+            	            if ( state.backtracking==0 ) {
+
+            	              							newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_4_1_1_0());
+            	              						
+            	            }
+            	            pushFollow(FOLLOW_11);
+            	            lv_nil_8_0=ruleNil2();
+
+            	            state._fsp--;
+            	            if (state.failed) return current;
+            	            if ( state.backtracking==0 ) {
+
+            	              							if (current==null) {
+            	              								current = createModelElementForParent(grammarAccess.getAffectationRule());
+            	              							}
+            	              							add(
+            	              								current,
+            	              								"nil",
+            	              								lv_nil_8_0,
+            	              								"esir.compilation.WhileComp.Nil2");
+            	              							afterParserOrEnumRuleCall();
+            	              						
+            	            }
+
+            	            }
+
+
+            	            }
+
+
+            	            }
+            	            break;
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop7;
+                }
+            } while (true);
 
 
             }
@@ -1181,7 +1375,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNop"
-    // InternalWhileComp.g:459:1: entryRuleNop returns [EObject current=null] : iv_ruleNop= ruleNop EOF ;
+    // InternalWhileComp.g:529:1: entryRuleNop returns [EObject current=null] : iv_ruleNop= ruleNop EOF ;
     public final EObject entryRuleNop() throws RecognitionException {
         EObject current = null;
 
@@ -1189,8 +1383,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:459:44: (iv_ruleNop= ruleNop EOF )
-            // InternalWhileComp.g:460:2: iv_ruleNop= ruleNop EOF
+            // InternalWhileComp.g:529:44: (iv_ruleNop= ruleNop EOF )
+            // InternalWhileComp.g:530:2: iv_ruleNop= ruleNop EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNopRule()); 
@@ -1221,7 +1415,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNop"
-    // InternalWhileComp.g:466:1: ruleNop returns [EObject current=null] : ( (lv_nop_0_0= 'nop' ) ) ;
+    // InternalWhileComp.g:536:1: ruleNop returns [EObject current=null] : ( (lv_nop_0_0= 'nop' ) ) ;
     public final EObject ruleNop() throws RecognitionException {
         EObject current = null;
 
@@ -1231,14 +1425,14 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:472:2: ( ( (lv_nop_0_0= 'nop' ) ) )
-            // InternalWhileComp.g:473:2: ( (lv_nop_0_0= 'nop' ) )
+            // InternalWhileComp.g:542:2: ( ( (lv_nop_0_0= 'nop' ) ) )
+            // InternalWhileComp.g:543:2: ( (lv_nop_0_0= 'nop' ) )
             {
-            // InternalWhileComp.g:473:2: ( (lv_nop_0_0= 'nop' ) )
-            // InternalWhileComp.g:474:3: (lv_nop_0_0= 'nop' )
+            // InternalWhileComp.g:543:2: ( (lv_nop_0_0= 'nop' ) )
+            // InternalWhileComp.g:544:3: (lv_nop_0_0= 'nop' )
             {
-            // InternalWhileComp.g:474:3: (lv_nop_0_0= 'nop' )
-            // InternalWhileComp.g:475:4: lv_nop_0_0= 'nop'
+            // InternalWhileComp.g:544:3: (lv_nop_0_0= 'nop' )
+            // InternalWhileComp.g:545:4: lv_nop_0_0= 'nop'
             {
             lv_nop_0_0=(Token)match(input,21,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -1282,7 +1476,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCommands"
-    // InternalWhileComp.g:490:1: entryRuleCommands returns [EObject current=null] : iv_ruleCommands= ruleCommands EOF ;
+    // InternalWhileComp.g:560:1: entryRuleCommands returns [EObject current=null] : iv_ruleCommands= ruleCommands EOF ;
     public final EObject entryRuleCommands() throws RecognitionException {
         EObject current = null;
 
@@ -1290,8 +1484,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:490:49: (iv_ruleCommands= ruleCommands EOF )
-            // InternalWhileComp.g:491:2: iv_ruleCommands= ruleCommands EOF
+            // InternalWhileComp.g:560:49: (iv_ruleCommands= ruleCommands EOF )
+            // InternalWhileComp.g:561:2: iv_ruleCommands= ruleCommands EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getCommandsRule()); 
@@ -1322,7 +1516,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCommands"
-    // InternalWhileComp.g:497:1: ruleCommands returns [EObject current=null] : ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* ) ;
+    // InternalWhileComp.g:567:1: ruleCommands returns [EObject current=null] : ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* ) ;
     public final EObject ruleCommands() throws RecognitionException {
         EObject current = null;
 
@@ -1336,17 +1530,17 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:503:2: ( ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* ) )
-            // InternalWhileComp.g:504:2: ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* )
+            // InternalWhileComp.g:573:2: ( ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* ) )
+            // InternalWhileComp.g:574:2: ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* )
             {
-            // InternalWhileComp.g:504:2: ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* )
-            // InternalWhileComp.g:505:3: ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )*
+            // InternalWhileComp.g:574:2: ( ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )* )
+            // InternalWhileComp.g:575:3: ( (lv_command_0_0= ruleCommand ) ) (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )*
             {
-            // InternalWhileComp.g:505:3: ( (lv_command_0_0= ruleCommand ) )
-            // InternalWhileComp.g:506:4: (lv_command_0_0= ruleCommand )
+            // InternalWhileComp.g:575:3: ( (lv_command_0_0= ruleCommand ) )
+            // InternalWhileComp.g:576:4: (lv_command_0_0= ruleCommand )
             {
-            // InternalWhileComp.g:506:4: (lv_command_0_0= ruleCommand )
-            // InternalWhileComp.g:507:5: lv_command_0_0= ruleCommand
+            // InternalWhileComp.g:576:4: (lv_command_0_0= ruleCommand )
+            // InternalWhileComp.g:577:5: lv_command_0_0= ruleCommand
             {
             if ( state.backtracking==0 ) {
 
@@ -1377,20 +1571,20 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalWhileComp.g:524:3: (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )*
-            loop5:
+            // InternalWhileComp.g:594:3: (otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) ) )*
+            loop8:
             do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( (LA5_0==22) ) {
-                    alt5=1;
+                if ( (LA8_0==22) ) {
+                    alt8=1;
                 }
 
 
-                switch (alt5) {
+                switch (alt8) {
             	case 1 :
-            	    // InternalWhileComp.g:525:4: otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) )
+            	    // InternalWhileComp.g:595:4: otherlv_1= ';' ( (lv_commands_2_0= ruleCommand ) )
             	    {
             	    otherlv_1=(Token)match(input,22,FOLLOW_8); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -1398,11 +1592,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             	      				newLeafNode(otherlv_1, grammarAccess.getCommandsAccess().getSemicolonKeyword_1_0());
             	      			
             	    }
-            	    // InternalWhileComp.g:529:4: ( (lv_commands_2_0= ruleCommand ) )
-            	    // InternalWhileComp.g:530:5: (lv_commands_2_0= ruleCommand )
+            	    // InternalWhileComp.g:599:4: ( (lv_commands_2_0= ruleCommand ) )
+            	    // InternalWhileComp.g:600:5: (lv_commands_2_0= ruleCommand )
             	    {
-            	    // InternalWhileComp.g:530:5: (lv_commands_2_0= ruleCommand )
-            	    // InternalWhileComp.g:531:6: lv_commands_2_0= ruleCommand
+            	    // InternalWhileComp.g:600:5: (lv_commands_2_0= ruleCommand )
+            	    // InternalWhileComp.g:601:6: lv_commands_2_0= ruleCommand
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -1438,7 +1632,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop5;
+            	    break loop8;
                 }
             } while (true);
 
@@ -1467,7 +1661,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCommand"
-    // InternalWhileComp.g:553:1: entryRuleCommand returns [EObject current=null] : iv_ruleCommand= ruleCommand EOF ;
+    // InternalWhileComp.g:623:1: entryRuleCommand returns [EObject current=null] : iv_ruleCommand= ruleCommand EOF ;
     public final EObject entryRuleCommand() throws RecognitionException {
         EObject current = null;
 
@@ -1475,8 +1669,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:553:48: (iv_ruleCommand= ruleCommand EOF )
-            // InternalWhileComp.g:554:2: iv_ruleCommand= ruleCommand EOF
+            // InternalWhileComp.g:623:48: (iv_ruleCommand= ruleCommand EOF )
+            // InternalWhileComp.g:624:2: iv_ruleCommand= ruleCommand EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getCommandRule()); 
@@ -1507,7 +1701,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCommand"
-    // InternalWhileComp.g:560:1: ruleCommand returns [EObject current=null] : ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) ) ;
+    // InternalWhileComp.g:630:1: ruleCommand returns [EObject current=null] : ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) ) ;
     public final EObject ruleCommand() throws RecognitionException {
         EObject current = null;
 
@@ -1528,59 +1722,59 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:566:2: ( ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) ) )
-            // InternalWhileComp.g:567:2: ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) )
+            // InternalWhileComp.g:636:2: ( ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) ) )
+            // InternalWhileComp.g:637:2: ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) )
             {
-            // InternalWhileComp.g:567:2: ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) )
-            int alt6=6;
+            // InternalWhileComp.g:637:2: ( ( (lv_command_0_0= ruleNop ) ) | ( (lv_command_1_0= ruleAffectation ) ) | ( (lv_command_2_0= ruleWhile ) ) | ( (lv_command_3_0= ruleFor ) ) | ( (lv_command_4_0= ruleIf ) ) | ( (lv_command_5_0= ruleForeach ) ) )
+            int alt9=6;
             switch ( input.LA(1) ) {
             case 21:
                 {
-                alt6=1;
+                alt9=1;
                 }
                 break;
             case RULE_VARIABLE:
                 {
-                alt6=2;
+                alt9=2;
                 }
                 break;
             case 32:
                 {
-                alt6=3;
+                alt9=3;
                 }
                 break;
             case 31:
                 {
-                alt6=4;
+                alt9=4;
                 }
                 break;
             case 27:
                 {
-                alt6=5;
+                alt9=5;
                 }
                 break;
             case 23:
                 {
-                alt6=6;
+                alt9=6;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
+                    new NoViableAltException("", 9, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt6) {
+            switch (alt9) {
                 case 1 :
-                    // InternalWhileComp.g:568:3: ( (lv_command_0_0= ruleNop ) )
+                    // InternalWhileComp.g:638:3: ( (lv_command_0_0= ruleNop ) )
                     {
-                    // InternalWhileComp.g:568:3: ( (lv_command_0_0= ruleNop ) )
-                    // InternalWhileComp.g:569:4: (lv_command_0_0= ruleNop )
+                    // InternalWhileComp.g:638:3: ( (lv_command_0_0= ruleNop ) )
+                    // InternalWhileComp.g:639:4: (lv_command_0_0= ruleNop )
                     {
-                    // InternalWhileComp.g:569:4: (lv_command_0_0= ruleNop )
-                    // InternalWhileComp.g:570:5: lv_command_0_0= ruleNop
+                    // InternalWhileComp.g:639:4: (lv_command_0_0= ruleNop )
+                    // InternalWhileComp.g:640:5: lv_command_0_0= ruleNop
                     {
                     if ( state.backtracking==0 ) {
 
@@ -1615,13 +1809,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:588:3: ( (lv_command_1_0= ruleAffectation ) )
+                    // InternalWhileComp.g:658:3: ( (lv_command_1_0= ruleAffectation ) )
                     {
-                    // InternalWhileComp.g:588:3: ( (lv_command_1_0= ruleAffectation ) )
-                    // InternalWhileComp.g:589:4: (lv_command_1_0= ruleAffectation )
+                    // InternalWhileComp.g:658:3: ( (lv_command_1_0= ruleAffectation ) )
+                    // InternalWhileComp.g:659:4: (lv_command_1_0= ruleAffectation )
                     {
-                    // InternalWhileComp.g:589:4: (lv_command_1_0= ruleAffectation )
-                    // InternalWhileComp.g:590:5: lv_command_1_0= ruleAffectation
+                    // InternalWhileComp.g:659:4: (lv_command_1_0= ruleAffectation )
+                    // InternalWhileComp.g:660:5: lv_command_1_0= ruleAffectation
                     {
                     if ( state.backtracking==0 ) {
 
@@ -1656,13 +1850,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalWhileComp.g:608:3: ( (lv_command_2_0= ruleWhile ) )
+                    // InternalWhileComp.g:678:3: ( (lv_command_2_0= ruleWhile ) )
                     {
-                    // InternalWhileComp.g:608:3: ( (lv_command_2_0= ruleWhile ) )
-                    // InternalWhileComp.g:609:4: (lv_command_2_0= ruleWhile )
+                    // InternalWhileComp.g:678:3: ( (lv_command_2_0= ruleWhile ) )
+                    // InternalWhileComp.g:679:4: (lv_command_2_0= ruleWhile )
                     {
-                    // InternalWhileComp.g:609:4: (lv_command_2_0= ruleWhile )
-                    // InternalWhileComp.g:610:5: lv_command_2_0= ruleWhile
+                    // InternalWhileComp.g:679:4: (lv_command_2_0= ruleWhile )
+                    // InternalWhileComp.g:680:5: lv_command_2_0= ruleWhile
                     {
                     if ( state.backtracking==0 ) {
 
@@ -1697,13 +1891,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalWhileComp.g:628:3: ( (lv_command_3_0= ruleFor ) )
+                    // InternalWhileComp.g:698:3: ( (lv_command_3_0= ruleFor ) )
                     {
-                    // InternalWhileComp.g:628:3: ( (lv_command_3_0= ruleFor ) )
-                    // InternalWhileComp.g:629:4: (lv_command_3_0= ruleFor )
+                    // InternalWhileComp.g:698:3: ( (lv_command_3_0= ruleFor ) )
+                    // InternalWhileComp.g:699:4: (lv_command_3_0= ruleFor )
                     {
-                    // InternalWhileComp.g:629:4: (lv_command_3_0= ruleFor )
-                    // InternalWhileComp.g:630:5: lv_command_3_0= ruleFor
+                    // InternalWhileComp.g:699:4: (lv_command_3_0= ruleFor )
+                    // InternalWhileComp.g:700:5: lv_command_3_0= ruleFor
                     {
                     if ( state.backtracking==0 ) {
 
@@ -1738,13 +1932,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalWhileComp.g:648:3: ( (lv_command_4_0= ruleIf ) )
+                    // InternalWhileComp.g:718:3: ( (lv_command_4_0= ruleIf ) )
                     {
-                    // InternalWhileComp.g:648:3: ( (lv_command_4_0= ruleIf ) )
-                    // InternalWhileComp.g:649:4: (lv_command_4_0= ruleIf )
+                    // InternalWhileComp.g:718:3: ( (lv_command_4_0= ruleIf ) )
+                    // InternalWhileComp.g:719:4: (lv_command_4_0= ruleIf )
                     {
-                    // InternalWhileComp.g:649:4: (lv_command_4_0= ruleIf )
-                    // InternalWhileComp.g:650:5: lv_command_4_0= ruleIf
+                    // InternalWhileComp.g:719:4: (lv_command_4_0= ruleIf )
+                    // InternalWhileComp.g:720:5: lv_command_4_0= ruleIf
                     {
                     if ( state.backtracking==0 ) {
 
@@ -1779,13 +1973,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalWhileComp.g:668:3: ( (lv_command_5_0= ruleForeach ) )
+                    // InternalWhileComp.g:738:3: ( (lv_command_5_0= ruleForeach ) )
                     {
-                    // InternalWhileComp.g:668:3: ( (lv_command_5_0= ruleForeach ) )
-                    // InternalWhileComp.g:669:4: (lv_command_5_0= ruleForeach )
+                    // InternalWhileComp.g:738:3: ( (lv_command_5_0= ruleForeach ) )
+                    // InternalWhileComp.g:739:4: (lv_command_5_0= ruleForeach )
                     {
-                    // InternalWhileComp.g:669:4: (lv_command_5_0= ruleForeach )
-                    // InternalWhileComp.g:670:5: lv_command_5_0= ruleForeach
+                    // InternalWhileComp.g:739:4: (lv_command_5_0= ruleForeach )
+                    // InternalWhileComp.g:740:5: lv_command_5_0= ruleForeach
                     {
                     if ( state.backtracking==0 ) {
 
@@ -1844,7 +2038,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleForeach"
-    // InternalWhileComp.g:691:1: entryRuleForeach returns [EObject current=null] : iv_ruleForeach= ruleForeach EOF ;
+    // InternalWhileComp.g:761:1: entryRuleForeach returns [EObject current=null] : iv_ruleForeach= ruleForeach EOF ;
     public final EObject entryRuleForeach() throws RecognitionException {
         EObject current = null;
 
@@ -1852,8 +2046,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:691:48: (iv_ruleForeach= ruleForeach EOF )
-            // InternalWhileComp.g:692:2: iv_ruleForeach= ruleForeach EOF
+            // InternalWhileComp.g:761:48: (iv_ruleForeach= ruleForeach EOF )
+            // InternalWhileComp.g:762:2: iv_ruleForeach= ruleForeach EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getForeachRule()); 
@@ -1884,7 +2078,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleForeach"
-    // InternalWhileComp.g:698:1: ruleForeach returns [EObject current=null] : (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' ) ;
+    // InternalWhileComp.g:768:1: ruleForeach returns [EObject current=null] : (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' ) ;
     public final EObject ruleForeach() throws RecognitionException {
         EObject current = null;
 
@@ -1903,11 +2097,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:704:2: ( (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' ) )
-            // InternalWhileComp.g:705:2: (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' )
+            // InternalWhileComp.g:774:2: ( (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' ) )
+            // InternalWhileComp.g:775:2: (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' )
             {
-            // InternalWhileComp.g:705:2: (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' )
-            // InternalWhileComp.g:706:3: otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od'
+            // InternalWhileComp.g:775:2: (otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od' )
+            // InternalWhileComp.g:776:3: otherlv_0= 'foreach' ( (lv_expr1_1_0= ruleExpr ) ) otherlv_2= 'in' ( (lv_expr2_3_0= ruleExpr ) ) otherlv_4= 'do' ( (lv_commands_5_0= ruleCommands ) ) otherlv_6= 'od'
             {
             otherlv_0=(Token)match(input,23,FOLLOW_15); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -1915,11 +2109,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getForeachAccess().getForeachKeyword_0());
               		
             }
-            // InternalWhileComp.g:710:3: ( (lv_expr1_1_0= ruleExpr ) )
-            // InternalWhileComp.g:711:4: (lv_expr1_1_0= ruleExpr )
+            // InternalWhileComp.g:780:3: ( (lv_expr1_1_0= ruleExpr ) )
+            // InternalWhileComp.g:781:4: (lv_expr1_1_0= ruleExpr )
             {
-            // InternalWhileComp.g:711:4: (lv_expr1_1_0= ruleExpr )
-            // InternalWhileComp.g:712:5: lv_expr1_1_0= ruleExpr
+            // InternalWhileComp.g:781:4: (lv_expr1_1_0= ruleExpr )
+            // InternalWhileComp.g:782:5: lv_expr1_1_0= ruleExpr
             {
             if ( state.backtracking==0 ) {
 
@@ -1956,11 +2150,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_2, grammarAccess.getForeachAccess().getInKeyword_2());
               		
             }
-            // InternalWhileComp.g:733:3: ( (lv_expr2_3_0= ruleExpr ) )
-            // InternalWhileComp.g:734:4: (lv_expr2_3_0= ruleExpr )
+            // InternalWhileComp.g:803:3: ( (lv_expr2_3_0= ruleExpr ) )
+            // InternalWhileComp.g:804:4: (lv_expr2_3_0= ruleExpr )
             {
-            // InternalWhileComp.g:734:4: (lv_expr2_3_0= ruleExpr )
-            // InternalWhileComp.g:735:5: lv_expr2_3_0= ruleExpr
+            // InternalWhileComp.g:804:4: (lv_expr2_3_0= ruleExpr )
+            // InternalWhileComp.g:805:5: lv_expr2_3_0= ruleExpr
             {
             if ( state.backtracking==0 ) {
 
@@ -1997,11 +2191,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_4, grammarAccess.getForeachAccess().getDoKeyword_4());
               		
             }
-            // InternalWhileComp.g:756:3: ( (lv_commands_5_0= ruleCommands ) )
-            // InternalWhileComp.g:757:4: (lv_commands_5_0= ruleCommands )
+            // InternalWhileComp.g:826:3: ( (lv_commands_5_0= ruleCommands ) )
+            // InternalWhileComp.g:827:4: (lv_commands_5_0= ruleCommands )
             {
-            // InternalWhileComp.g:757:4: (lv_commands_5_0= ruleCommands )
-            // InternalWhileComp.g:758:5: lv_commands_5_0= ruleCommands
+            // InternalWhileComp.g:827:4: (lv_commands_5_0= ruleCommands )
+            // InternalWhileComp.g:828:5: lv_commands_5_0= ruleCommands
             {
             if ( state.backtracking==0 ) {
 
@@ -2063,7 +2257,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIf"
-    // InternalWhileComp.g:783:1: entryRuleIf returns [EObject current=null] : iv_ruleIf= ruleIf EOF ;
+    // InternalWhileComp.g:853:1: entryRuleIf returns [EObject current=null] : iv_ruleIf= ruleIf EOF ;
     public final EObject entryRuleIf() throws RecognitionException {
         EObject current = null;
 
@@ -2071,8 +2265,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:783:43: (iv_ruleIf= ruleIf EOF )
-            // InternalWhileComp.g:784:2: iv_ruleIf= ruleIf EOF
+            // InternalWhileComp.g:853:43: (iv_ruleIf= ruleIf EOF )
+            // InternalWhileComp.g:854:2: iv_ruleIf= ruleIf EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getIfRule()); 
@@ -2103,7 +2297,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIf"
-    // InternalWhileComp.g:790:1: ruleIf returns [EObject current=null] : (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' ) ;
+    // InternalWhileComp.g:860:1: ruleIf returns [EObject current=null] : (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' ) ;
     public final EObject ruleIf() throws RecognitionException {
         EObject current = null;
 
@@ -2122,11 +2316,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:796:2: ( (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' ) )
-            // InternalWhileComp.g:797:2: (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' )
+            // InternalWhileComp.g:866:2: ( (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' ) )
+            // InternalWhileComp.g:867:2: (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' )
             {
-            // InternalWhileComp.g:797:2: (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' )
-            // InternalWhileComp.g:798:3: otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi'
+            // InternalWhileComp.g:867:2: (otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi' )
+            // InternalWhileComp.g:868:3: otherlv_0= 'if' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'then' ( (lv_commands1_3_0= ruleCommands ) ) ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )? otherlv_6= 'fi'
             {
             otherlv_0=(Token)match(input,27,FOLLOW_15); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -2134,11 +2328,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getIfAccess().getIfKeyword_0());
               		
             }
-            // InternalWhileComp.g:802:3: ( (lv_expr_1_0= ruleExpr ) )
-            // InternalWhileComp.g:803:4: (lv_expr_1_0= ruleExpr )
+            // InternalWhileComp.g:872:3: ( (lv_expr_1_0= ruleExpr ) )
+            // InternalWhileComp.g:873:4: (lv_expr_1_0= ruleExpr )
             {
-            // InternalWhileComp.g:803:4: (lv_expr_1_0= ruleExpr )
-            // InternalWhileComp.g:804:5: lv_expr_1_0= ruleExpr
+            // InternalWhileComp.g:873:4: (lv_expr_1_0= ruleExpr )
+            // InternalWhileComp.g:874:5: lv_expr_1_0= ruleExpr
             {
             if ( state.backtracking==0 ) {
 
@@ -2175,11 +2369,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_2, grammarAccess.getIfAccess().getThenKeyword_2());
               		
             }
-            // InternalWhileComp.g:825:3: ( (lv_commands1_3_0= ruleCommands ) )
-            // InternalWhileComp.g:826:4: (lv_commands1_3_0= ruleCommands )
+            // InternalWhileComp.g:895:3: ( (lv_commands1_3_0= ruleCommands ) )
+            // InternalWhileComp.g:896:4: (lv_commands1_3_0= ruleCommands )
             {
-            // InternalWhileComp.g:826:4: (lv_commands1_3_0= ruleCommands )
-            // InternalWhileComp.g:827:5: lv_commands1_3_0= ruleCommands
+            // InternalWhileComp.g:896:4: (lv_commands1_3_0= ruleCommands )
+            // InternalWhileComp.g:897:5: lv_commands1_3_0= ruleCommands
             {
             if ( state.backtracking==0 ) {
 
@@ -2210,19 +2404,19 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalWhileComp.g:844:3: ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )?
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // InternalWhileComp.g:914:3: ( ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) ) )?
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA7_0==29) && (synpred1_InternalWhileComp())) {
-                alt7=1;
+            if ( (LA10_0==29) && (synpred1_InternalWhileComp())) {
+                alt10=1;
             }
-            switch (alt7) {
+            switch (alt10) {
                 case 1 :
-                    // InternalWhileComp.g:845:4: ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) )
+                    // InternalWhileComp.g:915:4: ( ( 'else' )=>otherlv_4= 'else' ) ( (lv_commands2_5_0= ruleCommands ) )
                     {
-                    // InternalWhileComp.g:845:4: ( ( 'else' )=>otherlv_4= 'else' )
-                    // InternalWhileComp.g:846:5: ( 'else' )=>otherlv_4= 'else'
+                    // InternalWhileComp.g:915:4: ( ( 'else' )=>otherlv_4= 'else' )
+                    // InternalWhileComp.g:916:5: ( 'else' )=>otherlv_4= 'else'
                     {
                     otherlv_4=(Token)match(input,29,FOLLOW_8); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -2233,11 +2427,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:852:4: ( (lv_commands2_5_0= ruleCommands ) )
-                    // InternalWhileComp.g:853:5: (lv_commands2_5_0= ruleCommands )
+                    // InternalWhileComp.g:922:4: ( (lv_commands2_5_0= ruleCommands ) )
+                    // InternalWhileComp.g:923:5: (lv_commands2_5_0= ruleCommands )
                     {
-                    // InternalWhileComp.g:853:5: (lv_commands2_5_0= ruleCommands )
-                    // InternalWhileComp.g:854:6: lv_commands2_5_0= ruleCommands
+                    // InternalWhileComp.g:923:5: (lv_commands2_5_0= ruleCommands )
+                    // InternalWhileComp.g:924:6: lv_commands2_5_0= ruleCommands
                     {
                     if ( state.backtracking==0 ) {
 
@@ -2305,7 +2499,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFor"
-    // InternalWhileComp.g:880:1: entryRuleFor returns [EObject current=null] : iv_ruleFor= ruleFor EOF ;
+    // InternalWhileComp.g:950:1: entryRuleFor returns [EObject current=null] : iv_ruleFor= ruleFor EOF ;
     public final EObject entryRuleFor() throws RecognitionException {
         EObject current = null;
 
@@ -2313,8 +2507,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:880:44: (iv_ruleFor= ruleFor EOF )
-            // InternalWhileComp.g:881:2: iv_ruleFor= ruleFor EOF
+            // InternalWhileComp.g:950:44: (iv_ruleFor= ruleFor EOF )
+            // InternalWhileComp.g:951:2: iv_ruleFor= ruleFor EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getForRule()); 
@@ -2345,7 +2539,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFor"
-    // InternalWhileComp.g:887:1: ruleFor returns [EObject current=null] : (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) ;
+    // InternalWhileComp.g:957:1: ruleFor returns [EObject current=null] : (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) ;
     public final EObject ruleFor() throws RecognitionException {
         EObject current = null;
 
@@ -2361,11 +2555,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:893:2: ( (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) )
-            // InternalWhileComp.g:894:2: (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
+            // InternalWhileComp.g:963:2: ( (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) )
+            // InternalWhileComp.g:964:2: (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
             {
-            // InternalWhileComp.g:894:2: (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
-            // InternalWhileComp.g:895:3: otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od'
+            // InternalWhileComp.g:964:2: (otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
+            // InternalWhileComp.g:965:3: otherlv_0= 'for' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od'
             {
             otherlv_0=(Token)match(input,31,FOLLOW_15); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -2373,11 +2567,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getForAccess().getForKeyword_0());
               		
             }
-            // InternalWhileComp.g:899:3: ( (lv_expr_1_0= ruleExpr ) )
-            // InternalWhileComp.g:900:4: (lv_expr_1_0= ruleExpr )
+            // InternalWhileComp.g:969:3: ( (lv_expr_1_0= ruleExpr ) )
+            // InternalWhileComp.g:970:4: (lv_expr_1_0= ruleExpr )
             {
-            // InternalWhileComp.g:900:4: (lv_expr_1_0= ruleExpr )
-            // InternalWhileComp.g:901:5: lv_expr_1_0= ruleExpr
+            // InternalWhileComp.g:970:4: (lv_expr_1_0= ruleExpr )
+            // InternalWhileComp.g:971:5: lv_expr_1_0= ruleExpr
             {
             if ( state.backtracking==0 ) {
 
@@ -2414,11 +2608,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_2, grammarAccess.getForAccess().getDoKeyword_2());
               		
             }
-            // InternalWhileComp.g:922:3: ( (lv_commands_3_0= ruleCommands ) )
-            // InternalWhileComp.g:923:4: (lv_commands_3_0= ruleCommands )
+            // InternalWhileComp.g:992:3: ( (lv_commands_3_0= ruleCommands ) )
+            // InternalWhileComp.g:993:4: (lv_commands_3_0= ruleCommands )
             {
-            // InternalWhileComp.g:923:4: (lv_commands_3_0= ruleCommands )
-            // InternalWhileComp.g:924:5: lv_commands_3_0= ruleCommands
+            // InternalWhileComp.g:993:4: (lv_commands_3_0= ruleCommands )
+            // InternalWhileComp.g:994:5: lv_commands_3_0= ruleCommands
             {
             if ( state.backtracking==0 ) {
 
@@ -2480,7 +2674,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleWhile"
-    // InternalWhileComp.g:949:1: entryRuleWhile returns [EObject current=null] : iv_ruleWhile= ruleWhile EOF ;
+    // InternalWhileComp.g:1019:1: entryRuleWhile returns [EObject current=null] : iv_ruleWhile= ruleWhile EOF ;
     public final EObject entryRuleWhile() throws RecognitionException {
         EObject current = null;
 
@@ -2488,8 +2682,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:949:46: (iv_ruleWhile= ruleWhile EOF )
-            // InternalWhileComp.g:950:2: iv_ruleWhile= ruleWhile EOF
+            // InternalWhileComp.g:1019:46: (iv_ruleWhile= ruleWhile EOF )
+            // InternalWhileComp.g:1020:2: iv_ruleWhile= ruleWhile EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getWhileRule()); 
@@ -2520,7 +2714,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWhile"
-    // InternalWhileComp.g:956:1: ruleWhile returns [EObject current=null] : (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) ;
+    // InternalWhileComp.g:1026:1: ruleWhile returns [EObject current=null] : (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) ;
     public final EObject ruleWhile() throws RecognitionException {
         EObject current = null;
 
@@ -2536,11 +2730,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:962:2: ( (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) )
-            // InternalWhileComp.g:963:2: (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
+            // InternalWhileComp.g:1032:2: ( (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' ) )
+            // InternalWhileComp.g:1033:2: (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
             {
-            // InternalWhileComp.g:963:2: (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
-            // InternalWhileComp.g:964:3: otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od'
+            // InternalWhileComp.g:1033:2: (otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od' )
+            // InternalWhileComp.g:1034:3: otherlv_0= 'while' ( (lv_expr_1_0= ruleExpr ) ) otherlv_2= 'do' ( (lv_commands_3_0= ruleCommands ) ) otherlv_4= 'od'
             {
             otherlv_0=(Token)match(input,32,FOLLOW_15); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -2548,11 +2742,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getWhileAccess().getWhileKeyword_0());
               		
             }
-            // InternalWhileComp.g:968:3: ( (lv_expr_1_0= ruleExpr ) )
-            // InternalWhileComp.g:969:4: (lv_expr_1_0= ruleExpr )
+            // InternalWhileComp.g:1038:3: ( (lv_expr_1_0= ruleExpr ) )
+            // InternalWhileComp.g:1039:4: (lv_expr_1_0= ruleExpr )
             {
-            // InternalWhileComp.g:969:4: (lv_expr_1_0= ruleExpr )
-            // InternalWhileComp.g:970:5: lv_expr_1_0= ruleExpr
+            // InternalWhileComp.g:1039:4: (lv_expr_1_0= ruleExpr )
+            // InternalWhileComp.g:1040:5: lv_expr_1_0= ruleExpr
             {
             if ( state.backtracking==0 ) {
 
@@ -2589,11 +2783,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_2, grammarAccess.getWhileAccess().getDoKeyword_2());
               		
             }
-            // InternalWhileComp.g:991:3: ( (lv_commands_3_0= ruleCommands ) )
-            // InternalWhileComp.g:992:4: (lv_commands_3_0= ruleCommands )
+            // InternalWhileComp.g:1061:3: ( (lv_commands_3_0= ruleCommands ) )
+            // InternalWhileComp.g:1062:4: (lv_commands_3_0= ruleCommands )
             {
-            // InternalWhileComp.g:992:4: (lv_commands_3_0= ruleCommands )
-            // InternalWhileComp.g:993:5: lv_commands_3_0= ruleCommands
+            // InternalWhileComp.g:1062:4: (lv_commands_3_0= ruleCommands )
+            // InternalWhileComp.g:1063:5: lv_commands_3_0= ruleCommands
             {
             if ( state.backtracking==0 ) {
 
@@ -2655,7 +2849,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpr"
-    // InternalWhileComp.g:1018:1: entryRuleExpr returns [EObject current=null] : iv_ruleExpr= ruleExpr EOF ;
+    // InternalWhileComp.g:1088:1: entryRuleExpr returns [EObject current=null] : iv_ruleExpr= ruleExpr EOF ;
     public final EObject entryRuleExpr() throws RecognitionException {
         EObject current = null;
 
@@ -2663,8 +2857,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1018:45: (iv_ruleExpr= ruleExpr EOF )
-            // InternalWhileComp.g:1019:2: iv_ruleExpr= ruleExpr EOF
+            // InternalWhileComp.g:1088:45: (iv_ruleExpr= ruleExpr EOF )
+            // InternalWhileComp.g:1089:2: iv_ruleExpr= ruleExpr EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExprRule()); 
@@ -2695,7 +2889,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpr"
-    // InternalWhileComp.g:1025:1: ruleExpr returns [EObject current=null] : ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) ) ;
+    // InternalWhileComp.g:1095:1: ruleExpr returns [EObject current=null] : ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) ) ;
     public final EObject ruleExpr() throws RecognitionException {
         EObject current = null;
 
@@ -2708,26 +2902,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1031:2: ( ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) ) )
-            // InternalWhileComp.g:1032:2: ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) )
+            // InternalWhileComp.g:1101:2: ( ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) ) )
+            // InternalWhileComp.g:1102:2: ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) )
             {
-            // InternalWhileComp.g:1032:2: ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) )
-            int alt8=2;
+            // InternalWhileComp.g:1102:2: ( ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) ) | ( (lv_exprAnd_1_0= ruleExprAnd ) ) )
+            int alt11=2;
             switch ( input.LA(1) ) {
             case 43:
                 {
-                int LA8_1 = input.LA(2);
+                int LA11_1 = input.LA(2);
 
                 if ( (synpred2_InternalWhileComp()) ) {
-                    alt8=1;
+                    alt11=1;
                 }
                 else if ( (true) ) {
-                    alt8=2;
+                    alt11=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 8, 1, input);
+                        new NoViableAltException("", 11, 1, input);
 
                     throw nvae;
                 }
@@ -2735,18 +2929,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_VARIABLE:
                 {
-                int LA8_2 = input.LA(2);
+                int LA11_2 = input.LA(2);
 
                 if ( (synpred2_InternalWhileComp()) ) {
-                    alt8=1;
+                    alt11=1;
                 }
                 else if ( (true) ) {
-                    alt8=2;
+                    alt11=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 8, 2, input);
+                        new NoViableAltException("", 11, 2, input);
 
                     throw nvae;
                 }
@@ -2754,18 +2948,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_SYMBOL:
                 {
-                int LA8_3 = input.LA(2);
+                int LA11_3 = input.LA(2);
 
                 if ( (synpred2_InternalWhileComp()) ) {
-                    alt8=1;
+                    alt11=1;
                 }
                 else if ( (true) ) {
-                    alt8=2;
+                    alt11=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 8, 3, input);
+                        new NoViableAltException("", 11, 3, input);
 
                     throw nvae;
                 }
@@ -2773,18 +2967,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 36:
                 {
-                int LA8_4 = input.LA(2);
+                int LA11_4 = input.LA(2);
 
                 if ( (synpred2_InternalWhileComp()) ) {
-                    alt8=1;
+                    alt11=1;
                 }
                 else if ( (true) ) {
-                    alt8=2;
+                    alt11=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 8, 4, input);
+                        new NoViableAltException("", 11, 4, input);
 
                     throw nvae;
                 }
@@ -2792,26 +2986,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 38:
                 {
-                alt8=2;
+                alt11=2;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt8) {
+            switch (alt11) {
                 case 1 :
-                    // InternalWhileComp.g:1033:3: ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) )
+                    // InternalWhileComp.g:1103:3: ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) )
                     {
-                    // InternalWhileComp.g:1033:3: ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) )
-                    // InternalWhileComp.g:1034:4: ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple )
+                    // InternalWhileComp.g:1103:3: ( ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple ) )
+                    // InternalWhileComp.g:1104:4: ( ( ruleExprSimple ) )=> (lv_exprsimple_0_0= ruleExprSimple )
                     {
-                    // InternalWhileComp.g:1038:4: (lv_exprsimple_0_0= ruleExprSimple )
-                    // InternalWhileComp.g:1039:5: lv_exprsimple_0_0= ruleExprSimple
+                    // InternalWhileComp.g:1108:4: (lv_exprsimple_0_0= ruleExprSimple )
+                    // InternalWhileComp.g:1109:5: lv_exprsimple_0_0= ruleExprSimple
                     {
                     if ( state.backtracking==0 ) {
 
@@ -2846,13 +3040,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1057:3: ( (lv_exprAnd_1_0= ruleExprAnd ) )
+                    // InternalWhileComp.g:1127:3: ( (lv_exprAnd_1_0= ruleExprAnd ) )
                     {
-                    // InternalWhileComp.g:1057:3: ( (lv_exprAnd_1_0= ruleExprAnd ) )
-                    // InternalWhileComp.g:1058:4: (lv_exprAnd_1_0= ruleExprAnd )
+                    // InternalWhileComp.g:1127:3: ( (lv_exprAnd_1_0= ruleExprAnd ) )
+                    // InternalWhileComp.g:1128:4: (lv_exprAnd_1_0= ruleExprAnd )
                     {
-                    // InternalWhileComp.g:1058:4: (lv_exprAnd_1_0= ruleExprAnd )
-                    // InternalWhileComp.g:1059:5: lv_exprAnd_1_0= ruleExprAnd
+                    // InternalWhileComp.g:1128:4: (lv_exprAnd_1_0= ruleExprAnd )
+                    // InternalWhileComp.g:1129:5: lv_exprAnd_1_0= ruleExprAnd
                     {
                     if ( state.backtracking==0 ) {
 
@@ -2911,7 +3105,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExprAnd"
-    // InternalWhileComp.g:1080:1: entryRuleExprAnd returns [EObject current=null] : iv_ruleExprAnd= ruleExprAnd EOF ;
+    // InternalWhileComp.g:1150:1: entryRuleExprAnd returns [EObject current=null] : iv_ruleExprAnd= ruleExprAnd EOF ;
     public final EObject entryRuleExprAnd() throws RecognitionException {
         EObject current = null;
 
@@ -2919,8 +3113,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1080:48: (iv_ruleExprAnd= ruleExprAnd EOF )
-            // InternalWhileComp.g:1081:2: iv_ruleExprAnd= ruleExprAnd EOF
+            // InternalWhileComp.g:1150:48: (iv_ruleExprAnd= ruleExprAnd EOF )
+            // InternalWhileComp.g:1151:2: iv_ruleExprAnd= ruleExprAnd EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExprAndRule()); 
@@ -2951,7 +3145,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExprAnd"
-    // InternalWhileComp.g:1087:1: ruleExprAnd returns [EObject current=null] : ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) ) ;
+    // InternalWhileComp.g:1157:1: ruleExprAnd returns [EObject current=null] : ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) ) ;
     public final EObject ruleExprAnd() throws RecognitionException {
         EObject current = null;
 
@@ -2967,26 +3161,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1093:2: ( ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) ) )
-            // InternalWhileComp.g:1094:2: ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) )
+            // InternalWhileComp.g:1163:2: ( ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) ) )
+            // InternalWhileComp.g:1164:2: ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) )
             {
-            // InternalWhileComp.g:1094:2: ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) )
-            int alt9=2;
+            // InternalWhileComp.g:1164:2: ( ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) ) | ( (lv_exprOr_3_0= ruleExprOr ) ) )
+            int alt12=2;
             switch ( input.LA(1) ) {
             case 38:
                 {
-                int LA9_1 = input.LA(2);
+                int LA12_1 = input.LA(2);
 
                 if ( (synpred3_InternalWhileComp()) ) {
-                    alt9=1;
+                    alt12=1;
                 }
                 else if ( (true) ) {
-                    alt9=2;
+                    alt12=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 9, 1, input);
+                        new NoViableAltException("", 12, 1, input);
 
                     throw nvae;
                 }
@@ -2994,18 +3188,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 43:
                 {
-                int LA9_2 = input.LA(2);
+                int LA12_2 = input.LA(2);
 
                 if ( (synpred3_InternalWhileComp()) ) {
-                    alt9=1;
+                    alt12=1;
                 }
                 else if ( (true) ) {
-                    alt9=2;
+                    alt12=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 9, 2, input);
+                        new NoViableAltException("", 12, 2, input);
 
                     throw nvae;
                 }
@@ -3013,18 +3207,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_VARIABLE:
                 {
-                int LA9_3 = input.LA(2);
+                int LA12_3 = input.LA(2);
 
                 if ( (synpred3_InternalWhileComp()) ) {
-                    alt9=1;
+                    alt12=1;
                 }
                 else if ( (true) ) {
-                    alt9=2;
+                    alt12=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 9, 3, input);
+                        new NoViableAltException("", 12, 3, input);
 
                     throw nvae;
                 }
@@ -3032,18 +3226,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_SYMBOL:
                 {
-                int LA9_4 = input.LA(2);
+                int LA12_4 = input.LA(2);
 
                 if ( (synpred3_InternalWhileComp()) ) {
-                    alt9=1;
+                    alt12=1;
                 }
                 else if ( (true) ) {
-                    alt9=2;
+                    alt12=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 9, 4, input);
+                        new NoViableAltException("", 12, 4, input);
 
                     throw nvae;
                 }
@@ -3051,18 +3245,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 36:
                 {
-                int LA9_5 = input.LA(2);
+                int LA12_5 = input.LA(2);
 
                 if ( (synpred3_InternalWhileComp()) ) {
-                    alt9=1;
+                    alt12=1;
                 }
                 else if ( (true) ) {
-                    alt9=2;
+                    alt12=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 9, 5, input);
+                        new NoViableAltException("", 12, 5, input);
 
                     throw nvae;
                 }
@@ -3071,26 +3265,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt9) {
+            switch (alt12) {
                 case 1 :
-                    // InternalWhileComp.g:1095:3: ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) )
+                    // InternalWhileComp.g:1165:3: ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) )
                     {
-                    // InternalWhileComp.g:1095:3: ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) )
-                    // InternalWhileComp.g:1096:4: ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) )
+                    // InternalWhileComp.g:1165:3: ( ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) ) )
+                    // InternalWhileComp.g:1166:4: ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )=> ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) )
                     {
-                    // InternalWhileComp.g:1110:4: ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) )
-                    // InternalWhileComp.g:1111:5: ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) )
+                    // InternalWhileComp.g:1180:4: ( ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) ) )
+                    // InternalWhileComp.g:1181:5: ( (lv_exprOr_0_0= ruleExprOr ) ) otherlv_1= '&&' ( (lv_exprAnd_2_0= ruleExprAnd ) )
                     {
-                    // InternalWhileComp.g:1111:5: ( (lv_exprOr_0_0= ruleExprOr ) )
-                    // InternalWhileComp.g:1112:6: (lv_exprOr_0_0= ruleExprOr )
+                    // InternalWhileComp.g:1181:5: ( (lv_exprOr_0_0= ruleExprOr ) )
+                    // InternalWhileComp.g:1182:6: (lv_exprOr_0_0= ruleExprOr )
                     {
-                    // InternalWhileComp.g:1112:6: (lv_exprOr_0_0= ruleExprOr )
-                    // InternalWhileComp.g:1113:7: lv_exprOr_0_0= ruleExprOr
+                    // InternalWhileComp.g:1182:6: (lv_exprOr_0_0= ruleExprOr )
+                    // InternalWhileComp.g:1183:7: lv_exprOr_0_0= ruleExprOr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3127,11 +3321,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_1, grammarAccess.getExprAndAccess().getAmpersandAmpersandKeyword_0_0_1());
                       				
                     }
-                    // InternalWhileComp.g:1134:5: ( (lv_exprAnd_2_0= ruleExprAnd ) )
-                    // InternalWhileComp.g:1135:6: (lv_exprAnd_2_0= ruleExprAnd )
+                    // InternalWhileComp.g:1204:5: ( (lv_exprAnd_2_0= ruleExprAnd ) )
+                    // InternalWhileComp.g:1205:6: (lv_exprAnd_2_0= ruleExprAnd )
                     {
-                    // InternalWhileComp.g:1135:6: (lv_exprAnd_2_0= ruleExprAnd )
-                    // InternalWhileComp.g:1136:7: lv_exprAnd_2_0= ruleExprAnd
+                    // InternalWhileComp.g:1205:6: (lv_exprAnd_2_0= ruleExprAnd )
+                    // InternalWhileComp.g:1206:7: lv_exprAnd_2_0= ruleExprAnd
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3172,13 +3366,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1156:3: ( (lv_exprOr_3_0= ruleExprOr ) )
+                    // InternalWhileComp.g:1226:3: ( (lv_exprOr_3_0= ruleExprOr ) )
                     {
-                    // InternalWhileComp.g:1156:3: ( (lv_exprOr_3_0= ruleExprOr ) )
-                    // InternalWhileComp.g:1157:4: (lv_exprOr_3_0= ruleExprOr )
+                    // InternalWhileComp.g:1226:3: ( (lv_exprOr_3_0= ruleExprOr ) )
+                    // InternalWhileComp.g:1227:4: (lv_exprOr_3_0= ruleExprOr )
                     {
-                    // InternalWhileComp.g:1157:4: (lv_exprOr_3_0= ruleExprOr )
-                    // InternalWhileComp.g:1158:5: lv_exprOr_3_0= ruleExprOr
+                    // InternalWhileComp.g:1227:4: (lv_exprOr_3_0= ruleExprOr )
+                    // InternalWhileComp.g:1228:5: lv_exprOr_3_0= ruleExprOr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3237,7 +3431,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExprOr"
-    // InternalWhileComp.g:1179:1: entryRuleExprOr returns [EObject current=null] : iv_ruleExprOr= ruleExprOr EOF ;
+    // InternalWhileComp.g:1249:1: entryRuleExprOr returns [EObject current=null] : iv_ruleExprOr= ruleExprOr EOF ;
     public final EObject entryRuleExprOr() throws RecognitionException {
         EObject current = null;
 
@@ -3245,8 +3439,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1179:47: (iv_ruleExprOr= ruleExprOr EOF )
-            // InternalWhileComp.g:1180:2: iv_ruleExprOr= ruleExprOr EOF
+            // InternalWhileComp.g:1249:47: (iv_ruleExprOr= ruleExprOr EOF )
+            // InternalWhileComp.g:1250:2: iv_ruleExprOr= ruleExprOr EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExprOrRule()); 
@@ -3277,7 +3471,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExprOr"
-    // InternalWhileComp.g:1186:1: ruleExprOr returns [EObject current=null] : ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) ) ;
+    // InternalWhileComp.g:1256:1: ruleExprOr returns [EObject current=null] : ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) ) ;
     public final EObject ruleExprOr() throws RecognitionException {
         EObject current = null;
 
@@ -3293,26 +3487,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1192:2: ( ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) ) )
-            // InternalWhileComp.g:1193:2: ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) )
+            // InternalWhileComp.g:1262:2: ( ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) ) )
+            // InternalWhileComp.g:1263:2: ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) )
             {
-            // InternalWhileComp.g:1193:2: ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) )
-            int alt10=2;
+            // InternalWhileComp.g:1263:2: ( ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) ) | ( (lv_exprNot_3_0= ruleExprNot ) ) )
+            int alt13=2;
             switch ( input.LA(1) ) {
             case 38:
                 {
-                int LA10_1 = input.LA(2);
+                int LA13_1 = input.LA(2);
 
                 if ( (synpred4_InternalWhileComp()) ) {
-                    alt10=1;
+                    alt13=1;
                 }
                 else if ( (true) ) {
-                    alt10=2;
+                    alt13=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 10, 1, input);
+                        new NoViableAltException("", 13, 1, input);
 
                     throw nvae;
                 }
@@ -3320,18 +3514,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 43:
                 {
-                int LA10_2 = input.LA(2);
+                int LA13_2 = input.LA(2);
 
                 if ( (synpred4_InternalWhileComp()) ) {
-                    alt10=1;
+                    alt13=1;
                 }
                 else if ( (true) ) {
-                    alt10=2;
+                    alt13=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 10, 2, input);
+                        new NoViableAltException("", 13, 2, input);
 
                     throw nvae;
                 }
@@ -3339,18 +3533,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_VARIABLE:
                 {
-                int LA10_3 = input.LA(2);
+                int LA13_3 = input.LA(2);
 
                 if ( (synpred4_InternalWhileComp()) ) {
-                    alt10=1;
+                    alt13=1;
                 }
                 else if ( (true) ) {
-                    alt10=2;
+                    alt13=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 10, 3, input);
+                        new NoViableAltException("", 13, 3, input);
 
                     throw nvae;
                 }
@@ -3358,18 +3552,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_SYMBOL:
                 {
-                int LA10_4 = input.LA(2);
+                int LA13_4 = input.LA(2);
 
                 if ( (synpred4_InternalWhileComp()) ) {
-                    alt10=1;
+                    alt13=1;
                 }
                 else if ( (true) ) {
-                    alt10=2;
+                    alt13=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 10, 4, input);
+                        new NoViableAltException("", 13, 4, input);
 
                     throw nvae;
                 }
@@ -3377,18 +3571,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 36:
                 {
-                int LA10_5 = input.LA(2);
+                int LA13_5 = input.LA(2);
 
                 if ( (synpred4_InternalWhileComp()) ) {
-                    alt10=1;
+                    alt13=1;
                 }
                 else if ( (true) ) {
-                    alt10=2;
+                    alt13=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 10, 5, input);
+                        new NoViableAltException("", 13, 5, input);
 
                     throw nvae;
                 }
@@ -3397,26 +3591,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 10, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt10) {
+            switch (alt13) {
                 case 1 :
-                    // InternalWhileComp.g:1194:3: ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) )
+                    // InternalWhileComp.g:1264:3: ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) )
                     {
-                    // InternalWhileComp.g:1194:3: ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) )
-                    // InternalWhileComp.g:1195:4: ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) )
+                    // InternalWhileComp.g:1264:3: ( ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) ) )
+                    // InternalWhileComp.g:1265:4: ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )=> ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) )
                     {
-                    // InternalWhileComp.g:1209:4: ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) )
-                    // InternalWhileComp.g:1210:5: ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) )
+                    // InternalWhileComp.g:1279:4: ( ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) ) )
+                    // InternalWhileComp.g:1280:5: ( (lv_exprNot_0_0= ruleExprNot ) ) otherlv_1= '||' ( (lv_exprOr_2_0= ruleExprOr ) )
                     {
-                    // InternalWhileComp.g:1210:5: ( (lv_exprNot_0_0= ruleExprNot ) )
-                    // InternalWhileComp.g:1211:6: (lv_exprNot_0_0= ruleExprNot )
+                    // InternalWhileComp.g:1280:5: ( (lv_exprNot_0_0= ruleExprNot ) )
+                    // InternalWhileComp.g:1281:6: (lv_exprNot_0_0= ruleExprNot )
                     {
-                    // InternalWhileComp.g:1211:6: (lv_exprNot_0_0= ruleExprNot )
-                    // InternalWhileComp.g:1212:7: lv_exprNot_0_0= ruleExprNot
+                    // InternalWhileComp.g:1281:6: (lv_exprNot_0_0= ruleExprNot )
+                    // InternalWhileComp.g:1282:7: lv_exprNot_0_0= ruleExprNot
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3453,11 +3647,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_1, grammarAccess.getExprOrAccess().getVerticalLineVerticalLineKeyword_0_0_1());
                       				
                     }
-                    // InternalWhileComp.g:1233:5: ( (lv_exprOr_2_0= ruleExprOr ) )
-                    // InternalWhileComp.g:1234:6: (lv_exprOr_2_0= ruleExprOr )
+                    // InternalWhileComp.g:1303:5: ( (lv_exprOr_2_0= ruleExprOr ) )
+                    // InternalWhileComp.g:1304:6: (lv_exprOr_2_0= ruleExprOr )
                     {
-                    // InternalWhileComp.g:1234:6: (lv_exprOr_2_0= ruleExprOr )
-                    // InternalWhileComp.g:1235:7: lv_exprOr_2_0= ruleExprOr
+                    // InternalWhileComp.g:1304:6: (lv_exprOr_2_0= ruleExprOr )
+                    // InternalWhileComp.g:1305:7: lv_exprOr_2_0= ruleExprOr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3498,13 +3692,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1255:3: ( (lv_exprNot_3_0= ruleExprNot ) )
+                    // InternalWhileComp.g:1325:3: ( (lv_exprNot_3_0= ruleExprNot ) )
                     {
-                    // InternalWhileComp.g:1255:3: ( (lv_exprNot_3_0= ruleExprNot ) )
-                    // InternalWhileComp.g:1256:4: (lv_exprNot_3_0= ruleExprNot )
+                    // InternalWhileComp.g:1325:3: ( (lv_exprNot_3_0= ruleExprNot ) )
+                    // InternalWhileComp.g:1326:4: (lv_exprNot_3_0= ruleExprNot )
                     {
-                    // InternalWhileComp.g:1256:4: (lv_exprNot_3_0= ruleExprNot )
-                    // InternalWhileComp.g:1257:5: lv_exprNot_3_0= ruleExprNot
+                    // InternalWhileComp.g:1326:4: (lv_exprNot_3_0= ruleExprNot )
+                    // InternalWhileComp.g:1327:5: lv_exprNot_3_0= ruleExprNot
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3563,7 +3757,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExprNot"
-    // InternalWhileComp.g:1278:1: entryRuleExprNot returns [EObject current=null] : iv_ruleExprNot= ruleExprNot EOF ;
+    // InternalWhileComp.g:1348:1: entryRuleExprNot returns [EObject current=null] : iv_ruleExprNot= ruleExprNot EOF ;
     public final EObject entryRuleExprNot() throws RecognitionException {
         EObject current = null;
 
@@ -3571,8 +3765,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1278:48: (iv_ruleExprNot= ruleExprNot EOF )
-            // InternalWhileComp.g:1279:2: iv_ruleExprNot= ruleExprNot EOF
+            // InternalWhileComp.g:1348:48: (iv_ruleExprNot= ruleExprNot EOF )
+            // InternalWhileComp.g:1349:2: iv_ruleExprNot= ruleExprNot EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExprNotRule()); 
@@ -3603,7 +3797,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExprNot"
-    // InternalWhileComp.g:1285:1: ruleExprNot returns [EObject current=null] : ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) ) ;
+    // InternalWhileComp.g:1355:1: ruleExprNot returns [EObject current=null] : ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) ) ;
     public final EObject ruleExprNot() throws RecognitionException {
         EObject current = null;
 
@@ -3618,38 +3812,38 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1291:2: ( ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) ) )
-            // InternalWhileComp.g:1292:2: ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) )
+            // InternalWhileComp.g:1361:2: ( ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) ) )
+            // InternalWhileComp.g:1362:2: ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) )
             {
-            // InternalWhileComp.g:1292:2: ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) )
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // InternalWhileComp.g:1362:2: ( ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) ) | ( (lv_exprEq_2_0= ruleExprEq ) ) )
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA11_0==38) ) {
-                alt11=1;
+            if ( (LA14_0==38) ) {
+                alt14=1;
             }
-            else if ( ((LA11_0>=RULE_SYMBOL && LA11_0<=RULE_VARIABLE)||LA11_0==36||LA11_0==43) ) {
-                alt11=2;
+            else if ( ((LA14_0>=RULE_SYMBOL && LA14_0<=RULE_VARIABLE)||LA14_0==36||LA14_0==43) ) {
+                alt14=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
-            switch (alt11) {
+            switch (alt14) {
                 case 1 :
-                    // InternalWhileComp.g:1293:3: ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) )
+                    // InternalWhileComp.g:1363:3: ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) )
                     {
-                    // InternalWhileComp.g:1293:3: ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) )
-                    // InternalWhileComp.g:1294:4: ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) )
+                    // InternalWhileComp.g:1363:3: ( ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) ) )
+                    // InternalWhileComp.g:1364:4: ( (lv_not_0_0= ruleNot ) ) ( (lv_exprEq_1_0= ruleExprEq ) )
                     {
-                    // InternalWhileComp.g:1294:4: ( (lv_not_0_0= ruleNot ) )
-                    // InternalWhileComp.g:1295:5: (lv_not_0_0= ruleNot )
+                    // InternalWhileComp.g:1364:4: ( (lv_not_0_0= ruleNot ) )
+                    // InternalWhileComp.g:1365:5: (lv_not_0_0= ruleNot )
                     {
-                    // InternalWhileComp.g:1295:5: (lv_not_0_0= ruleNot )
-                    // InternalWhileComp.g:1296:6: lv_not_0_0= ruleNot
+                    // InternalWhileComp.g:1365:5: (lv_not_0_0= ruleNot )
+                    // InternalWhileComp.g:1366:6: lv_not_0_0= ruleNot
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3680,11 +3874,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:1313:4: ( (lv_exprEq_1_0= ruleExprEq ) )
-                    // InternalWhileComp.g:1314:5: (lv_exprEq_1_0= ruleExprEq )
+                    // InternalWhileComp.g:1383:4: ( (lv_exprEq_1_0= ruleExprEq ) )
+                    // InternalWhileComp.g:1384:5: (lv_exprEq_1_0= ruleExprEq )
                     {
-                    // InternalWhileComp.g:1314:5: (lv_exprEq_1_0= ruleExprEq )
-                    // InternalWhileComp.g:1315:6: lv_exprEq_1_0= ruleExprEq
+                    // InternalWhileComp.g:1384:5: (lv_exprEq_1_0= ruleExprEq )
+                    // InternalWhileComp.g:1385:6: lv_exprEq_1_0= ruleExprEq
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3722,13 +3916,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1334:3: ( (lv_exprEq_2_0= ruleExprEq ) )
+                    // InternalWhileComp.g:1404:3: ( (lv_exprEq_2_0= ruleExprEq ) )
                     {
-                    // InternalWhileComp.g:1334:3: ( (lv_exprEq_2_0= ruleExprEq ) )
-                    // InternalWhileComp.g:1335:4: (lv_exprEq_2_0= ruleExprEq )
+                    // InternalWhileComp.g:1404:3: ( (lv_exprEq_2_0= ruleExprEq ) )
+                    // InternalWhileComp.g:1405:4: (lv_exprEq_2_0= ruleExprEq )
                     {
-                    // InternalWhileComp.g:1335:4: (lv_exprEq_2_0= ruleExprEq )
-                    // InternalWhileComp.g:1336:5: lv_exprEq_2_0= ruleExprEq
+                    // InternalWhileComp.g:1405:4: (lv_exprEq_2_0= ruleExprEq )
+                    // InternalWhileComp.g:1406:5: lv_exprEq_2_0= ruleExprEq
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3787,7 +3981,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExprEq"
-    // InternalWhileComp.g:1357:1: entryRuleExprEq returns [EObject current=null] : iv_ruleExprEq= ruleExprEq EOF ;
+    // InternalWhileComp.g:1427:1: entryRuleExprEq returns [EObject current=null] : iv_ruleExprEq= ruleExprEq EOF ;
     public final EObject entryRuleExprEq() throws RecognitionException {
         EObject current = null;
 
@@ -3795,8 +3989,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1357:47: (iv_ruleExprEq= ruleExprEq EOF )
-            // InternalWhileComp.g:1358:2: iv_ruleExprEq= ruleExprEq EOF
+            // InternalWhileComp.g:1427:47: (iv_ruleExprEq= ruleExprEq EOF )
+            // InternalWhileComp.g:1428:2: iv_ruleExprEq= ruleExprEq EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExprEqRule()); 
@@ -3827,7 +4021,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExprEq"
-    // InternalWhileComp.g:1364:1: ruleExprEq returns [EObject current=null] : ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) ) ;
+    // InternalWhileComp.g:1434:1: ruleExprEq returns [EObject current=null] : ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) ) ;
     public final EObject ruleExprEq() throws RecognitionException {
         EObject current = null;
 
@@ -3845,43 +4039,24 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1370:2: ( ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) ) )
-            // InternalWhileComp.g:1371:2: ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) )
+            // InternalWhileComp.g:1440:2: ( ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) ) )
+            // InternalWhileComp.g:1441:2: ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) )
             {
-            // InternalWhileComp.g:1371:2: ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) )
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // InternalWhileComp.g:1441:2: ( ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) ) | (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' ) )
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( ((LA12_0>=RULE_SYMBOL && LA12_0<=RULE_VARIABLE)||LA12_0==43) ) {
-                alt12=1;
+            if ( ((LA15_0>=RULE_SYMBOL && LA15_0<=RULE_VARIABLE)||LA15_0==43) ) {
+                alt15=1;
             }
-            else if ( (LA12_0==36) ) {
+            else if ( (LA15_0==36) ) {
                 switch ( input.LA(2) ) {
-                case RULE_SYMBOL:
-                    {
-                    int LA12_3 = input.LA(3);
-
-                    if ( (LA12_3==35||LA12_3==37) ) {
-                        alt12=2;
-                    }
-                    else if ( ((LA12_3>=RULE_SYMBOL && LA12_3<=RULE_VARIABLE)||LA12_3==36||LA12_3==38||LA12_3==43) ) {
-                        alt12=1;
-                    }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return current;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 12, 3, input);
-
-                        throw nvae;
-                    }
-                    }
-                    break;
                 case 39:
                 case 40:
                 case 41:
                 case 42:
                     {
-                    alt12=1;
+                    alt15=1;
                     }
                     break;
                 case RULE_VARIABLE:
@@ -3889,13 +4064,32 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 case 38:
                 case 43:
                     {
-                    alt12=2;
+                    alt15=2;
+                    }
+                    break;
+                case RULE_SYMBOL:
+                    {
+                    int LA15_4 = input.LA(3);
+
+                    if ( (LA15_4==35||LA15_4==37) ) {
+                        alt15=2;
+                    }
+                    else if ( ((LA15_4>=RULE_SYMBOL && LA15_4<=RULE_VARIABLE)||LA15_4==36||LA15_4==38||LA15_4==43) ) {
+                        alt15=1;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return current;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 15, 4, input);
+
+                        throw nvae;
+                    }
                     }
                     break;
                 default:
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 12, 2, input);
+                        new NoViableAltException("", 15, 2, input);
 
                     throw nvae;
                 }
@@ -3904,22 +4098,22 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
-            switch (alt12) {
+            switch (alt15) {
                 case 1 :
-                    // InternalWhileComp.g:1372:3: ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) )
+                    // InternalWhileComp.g:1442:3: ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) )
                     {
-                    // InternalWhileComp.g:1372:3: ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) )
-                    // InternalWhileComp.g:1373:4: ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) )
+                    // InternalWhileComp.g:1442:3: ( ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) ) )
+                    // InternalWhileComp.g:1443:4: ( (lv_exprSimple1_0_0= ruleExprSimple ) ) otherlv_1= '=?' ( (lv_exprSimple2_2_0= ruleExprSimple ) )
                     {
-                    // InternalWhileComp.g:1373:4: ( (lv_exprSimple1_0_0= ruleExprSimple ) )
-                    // InternalWhileComp.g:1374:5: (lv_exprSimple1_0_0= ruleExprSimple )
+                    // InternalWhileComp.g:1443:4: ( (lv_exprSimple1_0_0= ruleExprSimple ) )
+                    // InternalWhileComp.g:1444:5: (lv_exprSimple1_0_0= ruleExprSimple )
                     {
-                    // InternalWhileComp.g:1374:5: (lv_exprSimple1_0_0= ruleExprSimple )
-                    // InternalWhileComp.g:1375:6: lv_exprSimple1_0_0= ruleExprSimple
+                    // InternalWhileComp.g:1444:5: (lv_exprSimple1_0_0= ruleExprSimple )
+                    // InternalWhileComp.g:1445:6: lv_exprSimple1_0_0= ruleExprSimple
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3956,11 +4150,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_1, grammarAccess.getExprEqAccess().getEqualsSignQuestionMarkKeyword_0_1());
                       			
                     }
-                    // InternalWhileComp.g:1396:4: ( (lv_exprSimple2_2_0= ruleExprSimple ) )
-                    // InternalWhileComp.g:1397:5: (lv_exprSimple2_2_0= ruleExprSimple )
+                    // InternalWhileComp.g:1466:4: ( (lv_exprSimple2_2_0= ruleExprSimple ) )
+                    // InternalWhileComp.g:1467:5: (lv_exprSimple2_2_0= ruleExprSimple )
                     {
-                    // InternalWhileComp.g:1397:5: (lv_exprSimple2_2_0= ruleExprSimple )
-                    // InternalWhileComp.g:1398:6: lv_exprSimple2_2_0= ruleExprSimple
+                    // InternalWhileComp.g:1467:5: (lv_exprSimple2_2_0= ruleExprSimple )
+                    // InternalWhileComp.g:1468:6: lv_exprSimple2_2_0= ruleExprSimple
                     {
                     if ( state.backtracking==0 ) {
 
@@ -3998,10 +4192,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1417:3: (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' )
+                    // InternalWhileComp.g:1487:3: (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' )
                     {
-                    // InternalWhileComp.g:1417:3: (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' )
-                    // InternalWhileComp.g:1418:4: otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')'
+                    // InternalWhileComp.g:1487:3: (otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')' )
+                    // InternalWhileComp.g:1488:4: otherlv_3= '(' ( (lv_expr_4_0= ruleExpr ) ) otherlv_5= ')'
                     {
                     otherlv_3=(Token)match(input,36,FOLLOW_15); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -4009,11 +4203,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_3, grammarAccess.getExprEqAccess().getLeftParenthesisKeyword_1_0());
                       			
                     }
-                    // InternalWhileComp.g:1422:4: ( (lv_expr_4_0= ruleExpr ) )
-                    // InternalWhileComp.g:1423:5: (lv_expr_4_0= ruleExpr )
+                    // InternalWhileComp.g:1492:4: ( (lv_expr_4_0= ruleExpr ) )
+                    // InternalWhileComp.g:1493:5: (lv_expr_4_0= ruleExpr )
                     {
-                    // InternalWhileComp.g:1423:5: (lv_expr_4_0= ruleExpr )
-                    // InternalWhileComp.g:1424:6: lv_expr_4_0= ruleExpr
+                    // InternalWhileComp.g:1493:5: (lv_expr_4_0= ruleExpr )
+                    // InternalWhileComp.g:1494:6: lv_expr_4_0= ruleExpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4081,7 +4275,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVars"
-    // InternalWhileComp.g:1450:1: entryRuleVars returns [EObject current=null] : iv_ruleVars= ruleVars EOF ;
+    // InternalWhileComp.g:1520:1: entryRuleVars returns [EObject current=null] : iv_ruleVars= ruleVars EOF ;
     public final EObject entryRuleVars() throws RecognitionException {
         EObject current = null;
 
@@ -4089,8 +4283,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1450:45: (iv_ruleVars= ruleVars EOF )
-            // InternalWhileComp.g:1451:2: iv_ruleVars= ruleVars EOF
+            // InternalWhileComp.g:1520:45: (iv_ruleVars= ruleVars EOF )
+            // InternalWhileComp.g:1521:2: iv_ruleVars= ruleVars EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getVarsRule()); 
@@ -4121,7 +4315,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVars"
-    // InternalWhileComp.g:1457:1: ruleVars returns [EObject current=null] : ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) ) ;
+    // InternalWhileComp.g:1527:1: ruleVars returns [EObject current=null] : ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) ) ;
     public final EObject ruleVars() throws RecognitionException {
         EObject current = null;
 
@@ -4135,26 +4329,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1463:2: ( ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) ) )
-            // InternalWhileComp.g:1464:2: ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) )
+            // InternalWhileComp.g:1533:2: ( ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) ) )
+            // InternalWhileComp.g:1534:2: ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) )
             {
-            // InternalWhileComp.g:1464:2: ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) )
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalWhileComp.g:1534:2: ( ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) ) | ( (lv_variable_3_0= RULE_VARIABLE ) ) )
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA13_0==RULE_VARIABLE) ) {
-                int LA13_1 = input.LA(2);
+            if ( (LA16_0==RULE_VARIABLE) ) {
+                int LA16_1 = input.LA(2);
 
-                if ( (LA13_1==18) ) {
-                    alt13=1;
+                if ( (LA16_1==18) ) {
+                    alt16=1;
                 }
-                else if ( (LA13_1==EOF) ) {
-                    alt13=2;
+                else if ( (LA16_1==EOF) ) {
+                    alt16=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 13, 1, input);
+                        new NoViableAltException("", 16, 1, input);
 
                     throw nvae;
                 }
@@ -4162,22 +4356,22 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
-            switch (alt13) {
+            switch (alt16) {
                 case 1 :
-                    // InternalWhileComp.g:1465:3: ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) )
+                    // InternalWhileComp.g:1535:3: ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) )
                     {
-                    // InternalWhileComp.g:1465:3: ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) )
-                    // InternalWhileComp.g:1466:4: ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) )
+                    // InternalWhileComp.g:1535:3: ( ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) ) )
+                    // InternalWhileComp.g:1536:4: ( (lv_variable_0_0= RULE_VARIABLE ) ) otherlv_1= ',' ( (lv_vars_2_0= ruleVars ) )
                     {
-                    // InternalWhileComp.g:1466:4: ( (lv_variable_0_0= RULE_VARIABLE ) )
-                    // InternalWhileComp.g:1467:5: (lv_variable_0_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:1536:4: ( (lv_variable_0_0= RULE_VARIABLE ) )
+                    // InternalWhileComp.g:1537:5: (lv_variable_0_0= RULE_VARIABLE )
                     {
-                    // InternalWhileComp.g:1467:5: (lv_variable_0_0= RULE_VARIABLE )
-                    // InternalWhileComp.g:1468:6: lv_variable_0_0= RULE_VARIABLE
+                    // InternalWhileComp.g:1537:5: (lv_variable_0_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:1538:6: lv_variable_0_0= RULE_VARIABLE
                     {
                     lv_variable_0_0=(Token)match(input,RULE_VARIABLE,FOLLOW_27); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -4209,11 +4403,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_1, grammarAccess.getVarsAccess().getCommaKeyword_0_1());
                       			
                     }
-                    // InternalWhileComp.g:1488:4: ( (lv_vars_2_0= ruleVars ) )
-                    // InternalWhileComp.g:1489:5: (lv_vars_2_0= ruleVars )
+                    // InternalWhileComp.g:1558:4: ( (lv_vars_2_0= ruleVars ) )
+                    // InternalWhileComp.g:1559:5: (lv_vars_2_0= ruleVars )
                     {
-                    // InternalWhileComp.g:1489:5: (lv_vars_2_0= ruleVars )
-                    // InternalWhileComp.g:1490:6: lv_vars_2_0= ruleVars
+                    // InternalWhileComp.g:1559:5: (lv_vars_2_0= ruleVars )
+                    // InternalWhileComp.g:1560:6: lv_vars_2_0= ruleVars
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4251,13 +4445,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1509:3: ( (lv_variable_3_0= RULE_VARIABLE ) )
+                    // InternalWhileComp.g:1579:3: ( (lv_variable_3_0= RULE_VARIABLE ) )
                     {
-                    // InternalWhileComp.g:1509:3: ( (lv_variable_3_0= RULE_VARIABLE ) )
-                    // InternalWhileComp.g:1510:4: (lv_variable_3_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:1579:3: ( (lv_variable_3_0= RULE_VARIABLE ) )
+                    // InternalWhileComp.g:1580:4: (lv_variable_3_0= RULE_VARIABLE )
                     {
-                    // InternalWhileComp.g:1510:4: (lv_variable_3_0= RULE_VARIABLE )
-                    // InternalWhileComp.g:1511:5: lv_variable_3_0= RULE_VARIABLE
+                    // InternalWhileComp.g:1580:4: (lv_variable_3_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:1581:5: lv_variable_3_0= RULE_VARIABLE
                     {
                     lv_variable_3_0=(Token)match(input,RULE_VARIABLE,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -4311,7 +4505,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExprs"
-    // InternalWhileComp.g:1531:1: entryRuleExprs returns [EObject current=null] : iv_ruleExprs= ruleExprs EOF ;
+    // InternalWhileComp.g:1601:1: entryRuleExprs returns [EObject current=null] : iv_ruleExprs= ruleExprs EOF ;
     public final EObject entryRuleExprs() throws RecognitionException {
         EObject current = null;
 
@@ -4319,8 +4513,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1531:46: (iv_ruleExprs= ruleExprs EOF )
-            // InternalWhileComp.g:1532:2: iv_ruleExprs= ruleExprs EOF
+            // InternalWhileComp.g:1601:46: (iv_ruleExprs= ruleExprs EOF )
+            // InternalWhileComp.g:1602:2: iv_ruleExprs= ruleExprs EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExprsRule()); 
@@ -4351,7 +4545,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExprs"
-    // InternalWhileComp.g:1538:1: ruleExprs returns [EObject current=null] : ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) ) ;
+    // InternalWhileComp.g:1608:1: ruleExprs returns [EObject current=null] : ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) ) ;
     public final EObject ruleExprs() throws RecognitionException {
         EObject current = null;
 
@@ -4367,26 +4561,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1544:2: ( ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) ) )
-            // InternalWhileComp.g:1545:2: ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) )
+            // InternalWhileComp.g:1614:2: ( ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) ) )
+            // InternalWhileComp.g:1615:2: ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) )
             {
-            // InternalWhileComp.g:1545:2: ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) )
-            int alt14=2;
+            // InternalWhileComp.g:1615:2: ( ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) ) | ( (lv_expr_3_0= ruleExpr ) ) )
+            int alt17=2;
             switch ( input.LA(1) ) {
             case 43:
                 {
-                int LA14_1 = input.LA(2);
+                int LA17_1 = input.LA(2);
 
                 if ( (synpred5_InternalWhileComp()) ) {
-                    alt14=1;
+                    alt17=1;
                 }
                 else if ( (true) ) {
-                    alt14=2;
+                    alt17=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 1, input);
+                        new NoViableAltException("", 17, 1, input);
 
                     throw nvae;
                 }
@@ -4394,18 +4588,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_VARIABLE:
                 {
-                int LA14_2 = input.LA(2);
+                int LA17_2 = input.LA(2);
 
                 if ( (synpred5_InternalWhileComp()) ) {
-                    alt14=1;
+                    alt17=1;
                 }
                 else if ( (true) ) {
-                    alt14=2;
+                    alt17=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 2, input);
+                        new NoViableAltException("", 17, 2, input);
 
                     throw nvae;
                 }
@@ -4413,18 +4607,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_SYMBOL:
                 {
-                int LA14_3 = input.LA(2);
+                int LA17_3 = input.LA(2);
 
                 if ( (synpred5_InternalWhileComp()) ) {
-                    alt14=1;
+                    alt17=1;
                 }
                 else if ( (true) ) {
-                    alt14=2;
+                    alt17=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 3, input);
+                        new NoViableAltException("", 17, 3, input);
 
                     throw nvae;
                 }
@@ -4432,18 +4626,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 36:
                 {
-                int LA14_4 = input.LA(2);
+                int LA17_4 = input.LA(2);
 
                 if ( (synpred5_InternalWhileComp()) ) {
-                    alt14=1;
+                    alt17=1;
                 }
                 else if ( (true) ) {
-                    alt14=2;
+                    alt17=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 4, input);
+                        new NoViableAltException("", 17, 4, input);
 
                     throw nvae;
                 }
@@ -4451,18 +4645,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 38:
                 {
-                int LA14_5 = input.LA(2);
+                int LA17_5 = input.LA(2);
 
                 if ( (synpred5_InternalWhileComp()) ) {
-                    alt14=1;
+                    alt17=1;
                 }
                 else if ( (true) ) {
-                    alt14=2;
+                    alt17=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 5, input);
+                        new NoViableAltException("", 17, 5, input);
 
                     throw nvae;
                 }
@@ -4471,26 +4665,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
+                    new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt14) {
+            switch (alt17) {
                 case 1 :
-                    // InternalWhileComp.g:1546:3: ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) )
+                    // InternalWhileComp.g:1616:3: ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) )
                     {
-                    // InternalWhileComp.g:1546:3: ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) )
-                    // InternalWhileComp.g:1547:4: ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) )
+                    // InternalWhileComp.g:1616:3: ( ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) ) )
+                    // InternalWhileComp.g:1617:4: ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) )
                     {
-                    // InternalWhileComp.g:1561:4: ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) )
-                    // InternalWhileComp.g:1562:5: ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) )
+                    // InternalWhileComp.g:1631:4: ( ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) ) )
+                    // InternalWhileComp.g:1632:5: ( (lv_expr_0_0= ruleExpr ) ) otherlv_1= ',' ( (lv_exprs_2_0= ruleExprs ) )
                     {
-                    // InternalWhileComp.g:1562:5: ( (lv_expr_0_0= ruleExpr ) )
-                    // InternalWhileComp.g:1563:6: (lv_expr_0_0= ruleExpr )
+                    // InternalWhileComp.g:1632:5: ( (lv_expr_0_0= ruleExpr ) )
+                    // InternalWhileComp.g:1633:6: (lv_expr_0_0= ruleExpr )
                     {
-                    // InternalWhileComp.g:1563:6: (lv_expr_0_0= ruleExpr )
-                    // InternalWhileComp.g:1564:7: lv_expr_0_0= ruleExpr
+                    // InternalWhileComp.g:1633:6: (lv_expr_0_0= ruleExpr )
+                    // InternalWhileComp.g:1634:7: lv_expr_0_0= ruleExpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4527,11 +4721,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_1, grammarAccess.getExprsAccess().getCommaKeyword_0_0_1());
                       				
                     }
-                    // InternalWhileComp.g:1585:5: ( (lv_exprs_2_0= ruleExprs ) )
-                    // InternalWhileComp.g:1586:6: (lv_exprs_2_0= ruleExprs )
+                    // InternalWhileComp.g:1655:5: ( (lv_exprs_2_0= ruleExprs ) )
+                    // InternalWhileComp.g:1656:6: (lv_exprs_2_0= ruleExprs )
                     {
-                    // InternalWhileComp.g:1586:6: (lv_exprs_2_0= ruleExprs )
-                    // InternalWhileComp.g:1587:7: lv_exprs_2_0= ruleExprs
+                    // InternalWhileComp.g:1656:6: (lv_exprs_2_0= ruleExprs )
+                    // InternalWhileComp.g:1657:7: lv_exprs_2_0= ruleExprs
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4572,13 +4766,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1607:3: ( (lv_expr_3_0= ruleExpr ) )
+                    // InternalWhileComp.g:1677:3: ( (lv_expr_3_0= ruleExpr ) )
                     {
-                    // InternalWhileComp.g:1607:3: ( (lv_expr_3_0= ruleExpr ) )
-                    // InternalWhileComp.g:1608:4: (lv_expr_3_0= ruleExpr )
+                    // InternalWhileComp.g:1677:3: ( (lv_expr_3_0= ruleExpr ) )
+                    // InternalWhileComp.g:1678:4: (lv_expr_3_0= ruleExpr )
                     {
-                    // InternalWhileComp.g:1608:4: (lv_expr_3_0= ruleExpr )
-                    // InternalWhileComp.g:1609:5: lv_expr_3_0= ruleExpr
+                    // InternalWhileComp.g:1678:4: (lv_expr_3_0= ruleExpr )
+                    // InternalWhileComp.g:1679:5: lv_expr_3_0= ruleExpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4637,7 +4831,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExprSimple"
-    // InternalWhileComp.g:1630:1: entryRuleExprSimple returns [EObject current=null] : iv_ruleExprSimple= ruleExprSimple EOF ;
+    // InternalWhileComp.g:1700:1: entryRuleExprSimple returns [EObject current=null] : iv_ruleExprSimple= ruleExprSimple EOF ;
     public final EObject entryRuleExprSimple() throws RecognitionException {
         EObject current = null;
 
@@ -4645,8 +4839,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1630:51: (iv_ruleExprSimple= ruleExprSimple EOF )
-            // InternalWhileComp.g:1631:2: iv_ruleExprSimple= ruleExprSimple EOF
+            // InternalWhileComp.g:1700:51: (iv_ruleExprSimple= ruleExprSimple EOF )
+            // InternalWhileComp.g:1701:2: iv_ruleExprSimple= ruleExprSimple EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExprSimpleRule()); 
@@ -4677,7 +4871,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExprSimple"
-    // InternalWhileComp.g:1637:1: ruleExprSimple returns [EObject current=null] : ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) ) ;
+    // InternalWhileComp.g:1707:1: ruleExprSimple returns [EObject current=null] : ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) ) ;
     public final EObject ruleExprSimple() throws RecognitionException {
         EObject current = null;
 
@@ -4719,21 +4913,21 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1643:2: ( ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) ) )
-            // InternalWhileComp.g:1644:2: ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) )
+            // InternalWhileComp.g:1713:2: ( ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) ) )
+            // InternalWhileComp.g:1714:2: ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) )
             {
-            // InternalWhileComp.g:1644:2: ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) )
-            int alt15=8;
-            alt15 = dfa15.predict(input);
-            switch (alt15) {
+            // InternalWhileComp.g:1714:2: ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) )
+            int alt18=8;
+            alt18 = dfa18.predict(input);
+            switch (alt18) {
                 case 1 :
-                    // InternalWhileComp.g:1645:3: ( (lv_nil_0_0= ruleNil2 ) )
+                    // InternalWhileComp.g:1715:3: ( (lv_nil_0_0= ruleNil2 ) )
                     {
-                    // InternalWhileComp.g:1645:3: ( (lv_nil_0_0= ruleNil2 ) )
-                    // InternalWhileComp.g:1646:4: (lv_nil_0_0= ruleNil2 )
+                    // InternalWhileComp.g:1715:3: ( (lv_nil_0_0= ruleNil2 ) )
+                    // InternalWhileComp.g:1716:4: (lv_nil_0_0= ruleNil2 )
                     {
-                    // InternalWhileComp.g:1646:4: (lv_nil_0_0= ruleNil2 )
-                    // InternalWhileComp.g:1647:5: lv_nil_0_0= ruleNil2
+                    // InternalWhileComp.g:1716:4: (lv_nil_0_0= ruleNil2 )
+                    // InternalWhileComp.g:1717:5: lv_nil_0_0= ruleNil2
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4768,13 +4962,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:1665:3: ( (lv_variable_1_0= RULE_VARIABLE ) )
+                    // InternalWhileComp.g:1735:3: ( (lv_variable_1_0= RULE_VARIABLE ) )
                     {
-                    // InternalWhileComp.g:1665:3: ( (lv_variable_1_0= RULE_VARIABLE ) )
-                    // InternalWhileComp.g:1666:4: (lv_variable_1_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:1735:3: ( (lv_variable_1_0= RULE_VARIABLE ) )
+                    // InternalWhileComp.g:1736:4: (lv_variable_1_0= RULE_VARIABLE )
                     {
-                    // InternalWhileComp.g:1666:4: (lv_variable_1_0= RULE_VARIABLE )
-                    // InternalWhileComp.g:1667:5: lv_variable_1_0= RULE_VARIABLE
+                    // InternalWhileComp.g:1736:4: (lv_variable_1_0= RULE_VARIABLE )
+                    // InternalWhileComp.g:1737:5: lv_variable_1_0= RULE_VARIABLE
                     {
                     lv_variable_1_0=(Token)match(input,RULE_VARIABLE,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -4804,13 +4998,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalWhileComp.g:1684:3: ( (lv_symbol_2_0= RULE_SYMBOL ) )
+                    // InternalWhileComp.g:1754:3: ( (lv_symbol_2_0= RULE_SYMBOL ) )
                     {
-                    // InternalWhileComp.g:1684:3: ( (lv_symbol_2_0= RULE_SYMBOL ) )
-                    // InternalWhileComp.g:1685:4: (lv_symbol_2_0= RULE_SYMBOL )
+                    // InternalWhileComp.g:1754:3: ( (lv_symbol_2_0= RULE_SYMBOL ) )
+                    // InternalWhileComp.g:1755:4: (lv_symbol_2_0= RULE_SYMBOL )
                     {
-                    // InternalWhileComp.g:1685:4: (lv_symbol_2_0= RULE_SYMBOL )
-                    // InternalWhileComp.g:1686:5: lv_symbol_2_0= RULE_SYMBOL
+                    // InternalWhileComp.g:1755:4: (lv_symbol_2_0= RULE_SYMBOL )
+                    // InternalWhileComp.g:1756:5: lv_symbol_2_0= RULE_SYMBOL
                     {
                     lv_symbol_2_0=(Token)match(input,RULE_SYMBOL,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -4840,10 +5034,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalWhileComp.g:1703:3: (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' )
+                    // InternalWhileComp.g:1773:3: (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' )
                     {
-                    // InternalWhileComp.g:1703:3: (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' )
-                    // InternalWhileComp.g:1704:4: otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')'
+                    // InternalWhileComp.g:1773:3: (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' )
+                    // InternalWhileComp.g:1774:4: otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')'
                     {
                     otherlv_3=(Token)match(input,36,FOLLOW_28); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -4851,11 +5045,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_3, grammarAccess.getExprSimpleAccess().getLeftParenthesisKeyword_3_0());
                       			
                     }
-                    // InternalWhileComp.g:1708:4: ( (lv_cons_4_0= ruleCons ) )
-                    // InternalWhileComp.g:1709:5: (lv_cons_4_0= ruleCons )
+                    // InternalWhileComp.g:1778:4: ( (lv_cons_4_0= ruleCons ) )
+                    // InternalWhileComp.g:1779:5: (lv_cons_4_0= ruleCons )
                     {
-                    // InternalWhileComp.g:1709:5: (lv_cons_4_0= ruleCons )
-                    // InternalWhileComp.g:1710:6: lv_cons_4_0= ruleCons
+                    // InternalWhileComp.g:1779:5: (lv_cons_4_0= ruleCons )
+                    // InternalWhileComp.g:1780:6: lv_cons_4_0= ruleCons
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4886,11 +5080,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:1727:4: ( (lv_lexpr_5_0= ruleLexpr ) )
-                    // InternalWhileComp.g:1728:5: (lv_lexpr_5_0= ruleLexpr )
+                    // InternalWhileComp.g:1797:4: ( (lv_lexpr_5_0= ruleLexpr ) )
+                    // InternalWhileComp.g:1798:5: (lv_lexpr_5_0= ruleLexpr )
                     {
-                    // InternalWhileComp.g:1728:5: (lv_lexpr_5_0= ruleLexpr )
-                    // InternalWhileComp.g:1729:6: lv_lexpr_5_0= ruleLexpr
+                    // InternalWhileComp.g:1798:5: (lv_lexpr_5_0= ruleLexpr )
+                    // InternalWhileComp.g:1799:6: lv_lexpr_5_0= ruleLexpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4934,10 +5128,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalWhileComp.g:1752:3: (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' )
+                    // InternalWhileComp.g:1822:3: (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' )
                     {
-                    // InternalWhileComp.g:1752:3: (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' )
-                    // InternalWhileComp.g:1753:4: otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')'
+                    // InternalWhileComp.g:1822:3: (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' )
+                    // InternalWhileComp.g:1823:4: otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')'
                     {
                     otherlv_7=(Token)match(input,36,FOLLOW_29); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -4945,11 +5139,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_7, grammarAccess.getExprSimpleAccess().getLeftParenthesisKeyword_4_0());
                       			
                     }
-                    // InternalWhileComp.g:1757:4: ( (lv_list_8_0= ruleList ) )
-                    // InternalWhileComp.g:1758:5: (lv_list_8_0= ruleList )
+                    // InternalWhileComp.g:1827:4: ( (lv_list_8_0= ruleList ) )
+                    // InternalWhileComp.g:1828:5: (lv_list_8_0= ruleList )
                     {
-                    // InternalWhileComp.g:1758:5: (lv_list_8_0= ruleList )
-                    // InternalWhileComp.g:1759:6: lv_list_8_0= ruleList
+                    // InternalWhileComp.g:1828:5: (lv_list_8_0= ruleList )
+                    // InternalWhileComp.g:1829:6: lv_list_8_0= ruleList
                     {
                     if ( state.backtracking==0 ) {
 
@@ -4980,11 +5174,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:1776:4: ( (lv_lexpr_9_0= ruleLexpr ) )
-                    // InternalWhileComp.g:1777:5: (lv_lexpr_9_0= ruleLexpr )
+                    // InternalWhileComp.g:1846:4: ( (lv_lexpr_9_0= ruleLexpr ) )
+                    // InternalWhileComp.g:1847:5: (lv_lexpr_9_0= ruleLexpr )
                     {
-                    // InternalWhileComp.g:1777:5: (lv_lexpr_9_0= ruleLexpr )
-                    // InternalWhileComp.g:1778:6: lv_lexpr_9_0= ruleLexpr
+                    // InternalWhileComp.g:1847:5: (lv_lexpr_9_0= ruleLexpr )
+                    // InternalWhileComp.g:1848:6: lv_lexpr_9_0= ruleLexpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5028,10 +5222,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalWhileComp.g:1801:3: (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' )
+                    // InternalWhileComp.g:1871:3: (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' )
                     {
-                    // InternalWhileComp.g:1801:3: (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' )
-                    // InternalWhileComp.g:1802:4: otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')'
+                    // InternalWhileComp.g:1871:3: (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' )
+                    // InternalWhileComp.g:1872:4: otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')'
                     {
                     otherlv_11=(Token)match(input,36,FOLLOW_30); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -5039,11 +5233,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_11, grammarAccess.getExprSimpleAccess().getLeftParenthesisKeyword_5_0());
                       			
                     }
-                    // InternalWhileComp.g:1806:4: ( (lv_hd_12_0= ruleHd ) )
-                    // InternalWhileComp.g:1807:5: (lv_hd_12_0= ruleHd )
+                    // InternalWhileComp.g:1876:4: ( (lv_hd_12_0= ruleHd ) )
+                    // InternalWhileComp.g:1877:5: (lv_hd_12_0= ruleHd )
                     {
-                    // InternalWhileComp.g:1807:5: (lv_hd_12_0= ruleHd )
-                    // InternalWhileComp.g:1808:6: lv_hd_12_0= ruleHd
+                    // InternalWhileComp.g:1877:5: (lv_hd_12_0= ruleHd )
+                    // InternalWhileComp.g:1878:6: lv_hd_12_0= ruleHd
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5074,11 +5268,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:1825:4: ( (lv_expr_13_0= ruleExpr ) )
-                    // InternalWhileComp.g:1826:5: (lv_expr_13_0= ruleExpr )
+                    // InternalWhileComp.g:1895:4: ( (lv_expr_13_0= ruleExpr ) )
+                    // InternalWhileComp.g:1896:5: (lv_expr_13_0= ruleExpr )
                     {
-                    // InternalWhileComp.g:1826:5: (lv_expr_13_0= ruleExpr )
-                    // InternalWhileComp.g:1827:6: lv_expr_13_0= ruleExpr
+                    // InternalWhileComp.g:1896:5: (lv_expr_13_0= ruleExpr )
+                    // InternalWhileComp.g:1897:6: lv_expr_13_0= ruleExpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5122,10 +5316,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalWhileComp.g:1850:3: (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' )
+                    // InternalWhileComp.g:1920:3: (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' )
                     {
-                    // InternalWhileComp.g:1850:3: (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' )
-                    // InternalWhileComp.g:1851:4: otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')'
+                    // InternalWhileComp.g:1920:3: (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' )
+                    // InternalWhileComp.g:1921:4: otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')'
                     {
                     otherlv_15=(Token)match(input,36,FOLLOW_31); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -5133,11 +5327,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_15, grammarAccess.getExprSimpleAccess().getLeftParenthesisKeyword_6_0());
                       			
                     }
-                    // InternalWhileComp.g:1855:4: ( (lv_tl_16_0= ruleTl ) )
-                    // InternalWhileComp.g:1856:5: (lv_tl_16_0= ruleTl )
+                    // InternalWhileComp.g:1925:4: ( (lv_tl_16_0= ruleTl ) )
+                    // InternalWhileComp.g:1926:5: (lv_tl_16_0= ruleTl )
                     {
-                    // InternalWhileComp.g:1856:5: (lv_tl_16_0= ruleTl )
-                    // InternalWhileComp.g:1857:6: lv_tl_16_0= ruleTl
+                    // InternalWhileComp.g:1926:5: (lv_tl_16_0= ruleTl )
+                    // InternalWhileComp.g:1927:6: lv_tl_16_0= ruleTl
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5168,11 +5362,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:1874:4: ( (lv_expr_17_0= ruleExpr ) )
-                    // InternalWhileComp.g:1875:5: (lv_expr_17_0= ruleExpr )
+                    // InternalWhileComp.g:1944:4: ( (lv_expr_17_0= ruleExpr ) )
+                    // InternalWhileComp.g:1945:5: (lv_expr_17_0= ruleExpr )
                     {
-                    // InternalWhileComp.g:1875:5: (lv_expr_17_0= ruleExpr )
-                    // InternalWhileComp.g:1876:6: lv_expr_17_0= ruleExpr
+                    // InternalWhileComp.g:1945:5: (lv_expr_17_0= ruleExpr )
+                    // InternalWhileComp.g:1946:6: lv_expr_17_0= ruleExpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5216,10 +5410,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalWhileComp.g:1899:3: (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' )
+                    // InternalWhileComp.g:1969:3: (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' )
                     {
-                    // InternalWhileComp.g:1899:3: (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' )
-                    // InternalWhileComp.g:1900:4: otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')'
+                    // InternalWhileComp.g:1969:3: (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' )
+                    // InternalWhileComp.g:1970:4: otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')'
                     {
                     otherlv_19=(Token)match(input,36,FOLLOW_4); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -5227,11 +5421,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_19, grammarAccess.getExprSimpleAccess().getLeftParenthesisKeyword_7_0());
                       			
                     }
-                    // InternalWhileComp.g:1904:4: ( (lv_symbol_20_0= RULE_SYMBOL ) )
-                    // InternalWhileComp.g:1905:5: (lv_symbol_20_0= RULE_SYMBOL )
+                    // InternalWhileComp.g:1974:4: ( (lv_symbol_20_0= RULE_SYMBOL ) )
+                    // InternalWhileComp.g:1975:5: (lv_symbol_20_0= RULE_SYMBOL )
                     {
-                    // InternalWhileComp.g:1905:5: (lv_symbol_20_0= RULE_SYMBOL )
-                    // InternalWhileComp.g:1906:6: lv_symbol_20_0= RULE_SYMBOL
+                    // InternalWhileComp.g:1975:5: (lv_symbol_20_0= RULE_SYMBOL )
+                    // InternalWhileComp.g:1976:6: lv_symbol_20_0= RULE_SYMBOL
                     {
                     lv_symbol_20_0=(Token)match(input,RULE_SYMBOL,FOLLOW_15); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -5257,11 +5451,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:1922:4: ( (lv_lexpr_21_0= ruleLexpr ) )
-                    // InternalWhileComp.g:1923:5: (lv_lexpr_21_0= ruleLexpr )
+                    // InternalWhileComp.g:1992:4: ( (lv_lexpr_21_0= ruleLexpr ) )
+                    // InternalWhileComp.g:1993:5: (lv_lexpr_21_0= ruleLexpr )
                     {
-                    // InternalWhileComp.g:1923:5: (lv_lexpr_21_0= ruleLexpr )
-                    // InternalWhileComp.g:1924:6: lv_lexpr_21_0= ruleLexpr
+                    // InternalWhileComp.g:1993:5: (lv_lexpr_21_0= ruleLexpr )
+                    // InternalWhileComp.g:1994:6: lv_lexpr_21_0= ruleLexpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5329,7 +5523,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLexpr"
-    // InternalWhileComp.g:1950:1: entryRuleLexpr returns [EObject current=null] : iv_ruleLexpr= ruleLexpr EOF ;
+    // InternalWhileComp.g:2020:1: entryRuleLexpr returns [EObject current=null] : iv_ruleLexpr= ruleLexpr EOF ;
     public final EObject entryRuleLexpr() throws RecognitionException {
         EObject current = null;
 
@@ -5337,8 +5531,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:1950:46: (iv_ruleLexpr= ruleLexpr EOF )
-            // InternalWhileComp.g:1951:2: iv_ruleLexpr= ruleLexpr EOF
+            // InternalWhileComp.g:2020:46: (iv_ruleLexpr= ruleLexpr EOF )
+            // InternalWhileComp.g:2021:2: iv_ruleLexpr= ruleLexpr EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLexprRule()); 
@@ -5369,7 +5563,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLexpr"
-    // InternalWhileComp.g:1957:1: ruleLexpr returns [EObject current=null] : ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) ) ;
+    // InternalWhileComp.g:2027:1: ruleLexpr returns [EObject current=null] : ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) ) ;
     public final EObject ruleLexpr() throws RecognitionException {
         EObject current = null;
 
@@ -5384,26 +5578,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1963:2: ( ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) ) )
-            // InternalWhileComp.g:1964:2: ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) )
+            // InternalWhileComp.g:2033:2: ( ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) ) )
+            // InternalWhileComp.g:2034:2: ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) )
             {
-            // InternalWhileComp.g:1964:2: ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) )
-            int alt16=2;
+            // InternalWhileComp.g:2034:2: ( ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) ) | ( (lv_expr_2_0= ruleExpr ) ) )
+            int alt19=2;
             switch ( input.LA(1) ) {
             case 43:
                 {
-                int LA16_1 = input.LA(2);
+                int LA19_1 = input.LA(2);
 
                 if ( (synpred6_InternalWhileComp()) ) {
-                    alt16=1;
+                    alt19=1;
                 }
                 else if ( (true) ) {
-                    alt16=2;
+                    alt19=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 16, 1, input);
+                        new NoViableAltException("", 19, 1, input);
 
                     throw nvae;
                 }
@@ -5411,18 +5605,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_VARIABLE:
                 {
-                int LA16_2 = input.LA(2);
+                int LA19_2 = input.LA(2);
 
                 if ( (synpred6_InternalWhileComp()) ) {
-                    alt16=1;
+                    alt19=1;
                 }
                 else if ( (true) ) {
-                    alt16=2;
+                    alt19=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 16, 2, input);
+                        new NoViableAltException("", 19, 2, input);
 
                     throw nvae;
                 }
@@ -5430,18 +5624,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case RULE_SYMBOL:
                 {
-                int LA16_3 = input.LA(2);
+                int LA19_3 = input.LA(2);
 
                 if ( (synpred6_InternalWhileComp()) ) {
-                    alt16=1;
+                    alt19=1;
                 }
                 else if ( (true) ) {
-                    alt16=2;
+                    alt19=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 16, 3, input);
+                        new NoViableAltException("", 19, 3, input);
 
                     throw nvae;
                 }
@@ -5449,18 +5643,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 36:
                 {
-                int LA16_4 = input.LA(2);
+                int LA19_4 = input.LA(2);
 
                 if ( (synpred6_InternalWhileComp()) ) {
-                    alt16=1;
+                    alt19=1;
                 }
                 else if ( (true) ) {
-                    alt16=2;
+                    alt19=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 16, 4, input);
+                        new NoViableAltException("", 19, 4, input);
 
                     throw nvae;
                 }
@@ -5468,18 +5662,18 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                 break;
             case 38:
                 {
-                int LA16_5 = input.LA(2);
+                int LA19_5 = input.LA(2);
 
                 if ( (synpred6_InternalWhileComp()) ) {
-                    alt16=1;
+                    alt19=1;
                 }
                 else if ( (true) ) {
-                    alt16=2;
+                    alt19=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 16, 5, input);
+                        new NoViableAltException("", 19, 5, input);
 
                     throw nvae;
                 }
@@ -5488,26 +5682,26 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 16, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt16) {
+            switch (alt19) {
                 case 1 :
-                    // InternalWhileComp.g:1965:3: ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) )
+                    // InternalWhileComp.g:2035:3: ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) )
                     {
-                    // InternalWhileComp.g:1965:3: ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) )
-                    // InternalWhileComp.g:1966:4: ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) )
+                    // InternalWhileComp.g:2035:3: ( ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) ) )
+                    // InternalWhileComp.g:2036:4: ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )=> ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) )
                     {
-                    // InternalWhileComp.g:1979:4: ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) )
-                    // InternalWhileComp.g:1980:5: ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) )
+                    // InternalWhileComp.g:2049:4: ( ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) ) )
+                    // InternalWhileComp.g:2050:5: ( (lv_expr_0_0= ruleExpr ) ) ( (lv_lexpr_1_0= ruleLexpr ) )
                     {
-                    // InternalWhileComp.g:1980:5: ( (lv_expr_0_0= ruleExpr ) )
-                    // InternalWhileComp.g:1981:6: (lv_expr_0_0= ruleExpr )
+                    // InternalWhileComp.g:2050:5: ( (lv_expr_0_0= ruleExpr ) )
+                    // InternalWhileComp.g:2051:6: (lv_expr_0_0= ruleExpr )
                     {
-                    // InternalWhileComp.g:1981:6: (lv_expr_0_0= ruleExpr )
-                    // InternalWhileComp.g:1982:7: lv_expr_0_0= ruleExpr
+                    // InternalWhileComp.g:2051:6: (lv_expr_0_0= ruleExpr )
+                    // InternalWhileComp.g:2052:7: lv_expr_0_0= ruleExpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5538,11 +5732,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalWhileComp.g:1999:5: ( (lv_lexpr_1_0= ruleLexpr ) )
-                    // InternalWhileComp.g:2000:6: (lv_lexpr_1_0= ruleLexpr )
+                    // InternalWhileComp.g:2069:5: ( (lv_lexpr_1_0= ruleLexpr ) )
+                    // InternalWhileComp.g:2070:6: (lv_lexpr_1_0= ruleLexpr )
                     {
-                    // InternalWhileComp.g:2000:6: (lv_lexpr_1_0= ruleLexpr )
-                    // InternalWhileComp.g:2001:7: lv_lexpr_1_0= ruleLexpr
+                    // InternalWhileComp.g:2070:6: (lv_lexpr_1_0= ruleLexpr )
+                    // InternalWhileComp.g:2071:7: lv_lexpr_1_0= ruleLexpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5583,13 +5777,13 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalWhileComp.g:2021:3: ( (lv_expr_2_0= ruleExpr ) )
+                    // InternalWhileComp.g:2091:3: ( (lv_expr_2_0= ruleExpr ) )
                     {
-                    // InternalWhileComp.g:2021:3: ( (lv_expr_2_0= ruleExpr ) )
-                    // InternalWhileComp.g:2022:4: (lv_expr_2_0= ruleExpr )
+                    // InternalWhileComp.g:2091:3: ( (lv_expr_2_0= ruleExpr ) )
+                    // InternalWhileComp.g:2092:4: (lv_expr_2_0= ruleExpr )
                     {
-                    // InternalWhileComp.g:2022:4: (lv_expr_2_0= ruleExpr )
-                    // InternalWhileComp.g:2023:5: lv_expr_2_0= ruleExpr
+                    // InternalWhileComp.g:2092:4: (lv_expr_2_0= ruleExpr )
+                    // InternalWhileComp.g:2093:5: lv_expr_2_0= ruleExpr
                     {
                     if ( state.backtracking==0 ) {
 
@@ -5648,7 +5842,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNot"
-    // InternalWhileComp.g:2044:1: entryRuleNot returns [EObject current=null] : iv_ruleNot= ruleNot EOF ;
+    // InternalWhileComp.g:2114:1: entryRuleNot returns [EObject current=null] : iv_ruleNot= ruleNot EOF ;
     public final EObject entryRuleNot() throws RecognitionException {
         EObject current = null;
 
@@ -5656,8 +5850,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:2044:44: (iv_ruleNot= ruleNot EOF )
-            // InternalWhileComp.g:2045:2: iv_ruleNot= ruleNot EOF
+            // InternalWhileComp.g:2114:44: (iv_ruleNot= ruleNot EOF )
+            // InternalWhileComp.g:2115:2: iv_ruleNot= ruleNot EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNotRule()); 
@@ -5688,7 +5882,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNot"
-    // InternalWhileComp.g:2051:1: ruleNot returns [EObject current=null] : ( (lv_not_0_0= '!' ) ) ;
+    // InternalWhileComp.g:2121:1: ruleNot returns [EObject current=null] : ( (lv_not_0_0= '!' ) ) ;
     public final EObject ruleNot() throws RecognitionException {
         EObject current = null;
 
@@ -5698,14 +5892,14 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:2057:2: ( ( (lv_not_0_0= '!' ) ) )
-            // InternalWhileComp.g:2058:2: ( (lv_not_0_0= '!' ) )
+            // InternalWhileComp.g:2127:2: ( ( (lv_not_0_0= '!' ) ) )
+            // InternalWhileComp.g:2128:2: ( (lv_not_0_0= '!' ) )
             {
-            // InternalWhileComp.g:2058:2: ( (lv_not_0_0= '!' ) )
-            // InternalWhileComp.g:2059:3: (lv_not_0_0= '!' )
+            // InternalWhileComp.g:2128:2: ( (lv_not_0_0= '!' ) )
+            // InternalWhileComp.g:2129:3: (lv_not_0_0= '!' )
             {
-            // InternalWhileComp.g:2059:3: (lv_not_0_0= '!' )
-            // InternalWhileComp.g:2060:4: lv_not_0_0= '!'
+            // InternalWhileComp.g:2129:3: (lv_not_0_0= '!' )
+            // InternalWhileComp.g:2130:4: lv_not_0_0= '!'
             {
             lv_not_0_0=(Token)match(input,38,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -5749,7 +5943,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCons"
-    // InternalWhileComp.g:2075:1: entryRuleCons returns [EObject current=null] : iv_ruleCons= ruleCons EOF ;
+    // InternalWhileComp.g:2145:1: entryRuleCons returns [EObject current=null] : iv_ruleCons= ruleCons EOF ;
     public final EObject entryRuleCons() throws RecognitionException {
         EObject current = null;
 
@@ -5757,8 +5951,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:2075:45: (iv_ruleCons= ruleCons EOF )
-            // InternalWhileComp.g:2076:2: iv_ruleCons= ruleCons EOF
+            // InternalWhileComp.g:2145:45: (iv_ruleCons= ruleCons EOF )
+            // InternalWhileComp.g:2146:2: iv_ruleCons= ruleCons EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getConsRule()); 
@@ -5789,7 +5983,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCons"
-    // InternalWhileComp.g:2082:1: ruleCons returns [EObject current=null] : ( (lv_cons_0_0= 'cons' ) ) ;
+    // InternalWhileComp.g:2152:1: ruleCons returns [EObject current=null] : ( (lv_cons_0_0= 'cons' ) ) ;
     public final EObject ruleCons() throws RecognitionException {
         EObject current = null;
 
@@ -5799,14 +5993,14 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:2088:2: ( ( (lv_cons_0_0= 'cons' ) ) )
-            // InternalWhileComp.g:2089:2: ( (lv_cons_0_0= 'cons' ) )
+            // InternalWhileComp.g:2158:2: ( ( (lv_cons_0_0= 'cons' ) ) )
+            // InternalWhileComp.g:2159:2: ( (lv_cons_0_0= 'cons' ) )
             {
-            // InternalWhileComp.g:2089:2: ( (lv_cons_0_0= 'cons' ) )
-            // InternalWhileComp.g:2090:3: (lv_cons_0_0= 'cons' )
+            // InternalWhileComp.g:2159:2: ( (lv_cons_0_0= 'cons' ) )
+            // InternalWhileComp.g:2160:3: (lv_cons_0_0= 'cons' )
             {
-            // InternalWhileComp.g:2090:3: (lv_cons_0_0= 'cons' )
-            // InternalWhileComp.g:2091:4: lv_cons_0_0= 'cons'
+            // InternalWhileComp.g:2160:3: (lv_cons_0_0= 'cons' )
+            // InternalWhileComp.g:2161:4: lv_cons_0_0= 'cons'
             {
             lv_cons_0_0=(Token)match(input,39,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -5850,7 +6044,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleList"
-    // InternalWhileComp.g:2106:1: entryRuleList returns [EObject current=null] : iv_ruleList= ruleList EOF ;
+    // InternalWhileComp.g:2176:1: entryRuleList returns [EObject current=null] : iv_ruleList= ruleList EOF ;
     public final EObject entryRuleList() throws RecognitionException {
         EObject current = null;
 
@@ -5858,8 +6052,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:2106:45: (iv_ruleList= ruleList EOF )
-            // InternalWhileComp.g:2107:2: iv_ruleList= ruleList EOF
+            // InternalWhileComp.g:2176:45: (iv_ruleList= ruleList EOF )
+            // InternalWhileComp.g:2177:2: iv_ruleList= ruleList EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getListRule()); 
@@ -5890,7 +6084,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleList"
-    // InternalWhileComp.g:2113:1: ruleList returns [EObject current=null] : ( (lv_list_0_0= 'list' ) ) ;
+    // InternalWhileComp.g:2183:1: ruleList returns [EObject current=null] : ( (lv_list_0_0= 'list' ) ) ;
     public final EObject ruleList() throws RecognitionException {
         EObject current = null;
 
@@ -5900,14 +6094,14 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:2119:2: ( ( (lv_list_0_0= 'list' ) ) )
-            // InternalWhileComp.g:2120:2: ( (lv_list_0_0= 'list' ) )
+            // InternalWhileComp.g:2189:2: ( ( (lv_list_0_0= 'list' ) ) )
+            // InternalWhileComp.g:2190:2: ( (lv_list_0_0= 'list' ) )
             {
-            // InternalWhileComp.g:2120:2: ( (lv_list_0_0= 'list' ) )
-            // InternalWhileComp.g:2121:3: (lv_list_0_0= 'list' )
+            // InternalWhileComp.g:2190:2: ( (lv_list_0_0= 'list' ) )
+            // InternalWhileComp.g:2191:3: (lv_list_0_0= 'list' )
             {
-            // InternalWhileComp.g:2121:3: (lv_list_0_0= 'list' )
-            // InternalWhileComp.g:2122:4: lv_list_0_0= 'list'
+            // InternalWhileComp.g:2191:3: (lv_list_0_0= 'list' )
+            // InternalWhileComp.g:2192:4: lv_list_0_0= 'list'
             {
             lv_list_0_0=(Token)match(input,40,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -5951,7 +6145,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleHd"
-    // InternalWhileComp.g:2137:1: entryRuleHd returns [EObject current=null] : iv_ruleHd= ruleHd EOF ;
+    // InternalWhileComp.g:2207:1: entryRuleHd returns [EObject current=null] : iv_ruleHd= ruleHd EOF ;
     public final EObject entryRuleHd() throws RecognitionException {
         EObject current = null;
 
@@ -5959,8 +6153,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:2137:43: (iv_ruleHd= ruleHd EOF )
-            // InternalWhileComp.g:2138:2: iv_ruleHd= ruleHd EOF
+            // InternalWhileComp.g:2207:43: (iv_ruleHd= ruleHd EOF )
+            // InternalWhileComp.g:2208:2: iv_ruleHd= ruleHd EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getHdRule()); 
@@ -5991,7 +6185,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleHd"
-    // InternalWhileComp.g:2144:1: ruleHd returns [EObject current=null] : ( (lv_hd_0_0= 'hd' ) ) ;
+    // InternalWhileComp.g:2214:1: ruleHd returns [EObject current=null] : ( (lv_hd_0_0= 'hd' ) ) ;
     public final EObject ruleHd() throws RecognitionException {
         EObject current = null;
 
@@ -6001,14 +6195,14 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:2150:2: ( ( (lv_hd_0_0= 'hd' ) ) )
-            // InternalWhileComp.g:2151:2: ( (lv_hd_0_0= 'hd' ) )
+            // InternalWhileComp.g:2220:2: ( ( (lv_hd_0_0= 'hd' ) ) )
+            // InternalWhileComp.g:2221:2: ( (lv_hd_0_0= 'hd' ) )
             {
-            // InternalWhileComp.g:2151:2: ( (lv_hd_0_0= 'hd' ) )
-            // InternalWhileComp.g:2152:3: (lv_hd_0_0= 'hd' )
+            // InternalWhileComp.g:2221:2: ( (lv_hd_0_0= 'hd' ) )
+            // InternalWhileComp.g:2222:3: (lv_hd_0_0= 'hd' )
             {
-            // InternalWhileComp.g:2152:3: (lv_hd_0_0= 'hd' )
-            // InternalWhileComp.g:2153:4: lv_hd_0_0= 'hd'
+            // InternalWhileComp.g:2222:3: (lv_hd_0_0= 'hd' )
+            // InternalWhileComp.g:2223:4: lv_hd_0_0= 'hd'
             {
             lv_hd_0_0=(Token)match(input,41,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -6052,7 +6246,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTl"
-    // InternalWhileComp.g:2168:1: entryRuleTl returns [EObject current=null] : iv_ruleTl= ruleTl EOF ;
+    // InternalWhileComp.g:2238:1: entryRuleTl returns [EObject current=null] : iv_ruleTl= ruleTl EOF ;
     public final EObject entryRuleTl() throws RecognitionException {
         EObject current = null;
 
@@ -6060,8 +6254,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:2168:43: (iv_ruleTl= ruleTl EOF )
-            // InternalWhileComp.g:2169:2: iv_ruleTl= ruleTl EOF
+            // InternalWhileComp.g:2238:43: (iv_ruleTl= ruleTl EOF )
+            // InternalWhileComp.g:2239:2: iv_ruleTl= ruleTl EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getTlRule()); 
@@ -6092,7 +6286,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTl"
-    // InternalWhileComp.g:2175:1: ruleTl returns [EObject current=null] : ( (lv_tl_0_0= 'tl' ) ) ;
+    // InternalWhileComp.g:2245:1: ruleTl returns [EObject current=null] : ( (lv_tl_0_0= 'tl' ) ) ;
     public final EObject ruleTl() throws RecognitionException {
         EObject current = null;
 
@@ -6102,14 +6296,14 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:2181:2: ( ( (lv_tl_0_0= 'tl' ) ) )
-            // InternalWhileComp.g:2182:2: ( (lv_tl_0_0= 'tl' ) )
+            // InternalWhileComp.g:2251:2: ( ( (lv_tl_0_0= 'tl' ) ) )
+            // InternalWhileComp.g:2252:2: ( (lv_tl_0_0= 'tl' ) )
             {
-            // InternalWhileComp.g:2182:2: ( (lv_tl_0_0= 'tl' ) )
-            // InternalWhileComp.g:2183:3: (lv_tl_0_0= 'tl' )
+            // InternalWhileComp.g:2252:2: ( (lv_tl_0_0= 'tl' ) )
+            // InternalWhileComp.g:2253:3: (lv_tl_0_0= 'tl' )
             {
-            // InternalWhileComp.g:2183:3: (lv_tl_0_0= 'tl' )
-            // InternalWhileComp.g:2184:4: lv_tl_0_0= 'tl'
+            // InternalWhileComp.g:2253:3: (lv_tl_0_0= 'tl' )
+            // InternalWhileComp.g:2254:4: lv_tl_0_0= 'tl'
             {
             lv_tl_0_0=(Token)match(input,42,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -6153,7 +6347,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNil2"
-    // InternalWhileComp.g:2199:1: entryRuleNil2 returns [EObject current=null] : iv_ruleNil2= ruleNil2 EOF ;
+    // InternalWhileComp.g:2269:1: entryRuleNil2 returns [EObject current=null] : iv_ruleNil2= ruleNil2 EOF ;
     public final EObject entryRuleNil2() throws RecognitionException {
         EObject current = null;
 
@@ -6161,8 +6355,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalWhileComp.g:2199:45: (iv_ruleNil2= ruleNil2 EOF )
-            // InternalWhileComp.g:2200:2: iv_ruleNil2= ruleNil2 EOF
+            // InternalWhileComp.g:2269:45: (iv_ruleNil2= ruleNil2 EOF )
+            // InternalWhileComp.g:2270:2: iv_ruleNil2= ruleNil2 EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNil2Rule()); 
@@ -6193,7 +6387,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNil2"
-    // InternalWhileComp.g:2206:1: ruleNil2 returns [EObject current=null] : ( (lv_nil_0_0= 'nil' ) ) ;
+    // InternalWhileComp.g:2276:1: ruleNil2 returns [EObject current=null] : ( (lv_nil_0_0= 'nil' ) ) ;
     public final EObject ruleNil2() throws RecognitionException {
         EObject current = null;
 
@@ -6203,14 +6397,14 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:2212:2: ( ( (lv_nil_0_0= 'nil' ) ) )
-            // InternalWhileComp.g:2213:2: ( (lv_nil_0_0= 'nil' ) )
+            // InternalWhileComp.g:2282:2: ( ( (lv_nil_0_0= 'nil' ) ) )
+            // InternalWhileComp.g:2283:2: ( (lv_nil_0_0= 'nil' ) )
             {
-            // InternalWhileComp.g:2213:2: ( (lv_nil_0_0= 'nil' ) )
-            // InternalWhileComp.g:2214:3: (lv_nil_0_0= 'nil' )
+            // InternalWhileComp.g:2283:2: ( (lv_nil_0_0= 'nil' ) )
+            // InternalWhileComp.g:2284:3: (lv_nil_0_0= 'nil' )
             {
-            // InternalWhileComp.g:2214:3: (lv_nil_0_0= 'nil' )
-            // InternalWhileComp.g:2215:4: lv_nil_0_0= 'nil'
+            // InternalWhileComp.g:2284:3: (lv_nil_0_0= 'nil' )
+            // InternalWhileComp.g:2285:4: lv_nil_0_0= 'nil'
             {
             lv_nil_0_0=(Token)match(input,43,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -6254,8 +6448,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred1_InternalWhileComp
     public final void synpred1_InternalWhileComp_fragment() throws RecognitionException {   
-        // InternalWhileComp.g:846:5: ( 'else' )
-        // InternalWhileComp.g:846:6: 'else'
+        // InternalWhileComp.g:916:5: ( 'else' )
+        // InternalWhileComp.g:916:6: 'else'
         {
         match(input,29,FOLLOW_2); if (state.failed) return ;
 
@@ -6265,11 +6459,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred2_InternalWhileComp
     public final void synpred2_InternalWhileComp_fragment() throws RecognitionException {   
-        // InternalWhileComp.g:1034:4: ( ( ruleExprSimple ) )
-        // InternalWhileComp.g:1034:5: ( ruleExprSimple )
+        // InternalWhileComp.g:1104:4: ( ( ruleExprSimple ) )
+        // InternalWhileComp.g:1104:5: ( ruleExprSimple )
         {
-        // InternalWhileComp.g:1034:5: ( ruleExprSimple )
-        // InternalWhileComp.g:1035:5: ruleExprSimple
+        // InternalWhileComp.g:1104:5: ( ruleExprSimple )
+        // InternalWhileComp.g:1105:5: ruleExprSimple
         {
         pushFollow(FOLLOW_2);
         ruleExprSimple();
@@ -6286,17 +6480,17 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred3_InternalWhileComp
     public final void synpred3_InternalWhileComp_fragment() throws RecognitionException {   
-        // InternalWhileComp.g:1096:4: ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )
-        // InternalWhileComp.g:1096:5: ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) )
+        // InternalWhileComp.g:1166:4: ( ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) ) )
+        // InternalWhileComp.g:1166:5: ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) )
         {
-        // InternalWhileComp.g:1096:5: ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) )
-        // InternalWhileComp.g:1097:5: ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) )
+        // InternalWhileComp.g:1166:5: ( ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) ) )
+        // InternalWhileComp.g:1167:5: ( ( ruleExprOr ) ) '&&' ( ( ruleExprAnd ) )
         {
-        // InternalWhileComp.g:1097:5: ( ( ruleExprOr ) )
-        // InternalWhileComp.g:1098:6: ( ruleExprOr )
+        // InternalWhileComp.g:1167:5: ( ( ruleExprOr ) )
+        // InternalWhileComp.g:1168:6: ( ruleExprOr )
         {
-        // InternalWhileComp.g:1098:6: ( ruleExprOr )
-        // InternalWhileComp.g:1099:7: ruleExprOr
+        // InternalWhileComp.g:1168:6: ( ruleExprOr )
+        // InternalWhileComp.g:1169:7: ruleExprOr
         {
         pushFollow(FOLLOW_22);
         ruleExprOr();
@@ -6310,11 +6504,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         }
 
         match(input,33,FOLLOW_15); if (state.failed) return ;
-        // InternalWhileComp.g:1103:5: ( ( ruleExprAnd ) )
-        // InternalWhileComp.g:1104:6: ( ruleExprAnd )
+        // InternalWhileComp.g:1173:5: ( ( ruleExprAnd ) )
+        // InternalWhileComp.g:1174:6: ( ruleExprAnd )
         {
-        // InternalWhileComp.g:1104:6: ( ruleExprAnd )
-        // InternalWhileComp.g:1105:7: ruleExprAnd
+        // InternalWhileComp.g:1174:6: ( ruleExprAnd )
+        // InternalWhileComp.g:1175:7: ruleExprAnd
         {
         pushFollow(FOLLOW_2);
         ruleExprAnd();
@@ -6337,17 +6531,17 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred4_InternalWhileComp
     public final void synpred4_InternalWhileComp_fragment() throws RecognitionException {   
-        // InternalWhileComp.g:1195:4: ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )
-        // InternalWhileComp.g:1195:5: ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) )
+        // InternalWhileComp.g:1265:4: ( ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) ) )
+        // InternalWhileComp.g:1265:5: ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) )
         {
-        // InternalWhileComp.g:1195:5: ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) )
-        // InternalWhileComp.g:1196:5: ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) )
+        // InternalWhileComp.g:1265:5: ( ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) ) )
+        // InternalWhileComp.g:1266:5: ( ( ruleExprNot ) ) '||' ( ( ruleExprOr ) )
         {
-        // InternalWhileComp.g:1196:5: ( ( ruleExprNot ) )
-        // InternalWhileComp.g:1197:6: ( ruleExprNot )
+        // InternalWhileComp.g:1266:5: ( ( ruleExprNot ) )
+        // InternalWhileComp.g:1267:6: ( ruleExprNot )
         {
-        // InternalWhileComp.g:1197:6: ( ruleExprNot )
-        // InternalWhileComp.g:1198:7: ruleExprNot
+        // InternalWhileComp.g:1267:6: ( ruleExprNot )
+        // InternalWhileComp.g:1268:7: ruleExprNot
         {
         pushFollow(FOLLOW_23);
         ruleExprNot();
@@ -6361,11 +6555,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         }
 
         match(input,34,FOLLOW_15); if (state.failed) return ;
-        // InternalWhileComp.g:1202:5: ( ( ruleExprOr ) )
-        // InternalWhileComp.g:1203:6: ( ruleExprOr )
+        // InternalWhileComp.g:1272:5: ( ( ruleExprOr ) )
+        // InternalWhileComp.g:1273:6: ( ruleExprOr )
         {
-        // InternalWhileComp.g:1203:6: ( ruleExprOr )
-        // InternalWhileComp.g:1204:7: ruleExprOr
+        // InternalWhileComp.g:1273:6: ( ruleExprOr )
+        // InternalWhileComp.g:1274:7: ruleExprOr
         {
         pushFollow(FOLLOW_2);
         ruleExprOr();
@@ -6388,17 +6582,17 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred5_InternalWhileComp
     public final void synpred5_InternalWhileComp_fragment() throws RecognitionException {   
-        // InternalWhileComp.g:1547:4: ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )
-        // InternalWhileComp.g:1547:5: ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) )
+        // InternalWhileComp.g:1617:4: ( ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) ) )
+        // InternalWhileComp.g:1617:5: ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) )
         {
-        // InternalWhileComp.g:1547:5: ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) )
-        // InternalWhileComp.g:1548:5: ( ( ruleExpr ) ) ',' ( ( ruleExprs ) )
+        // InternalWhileComp.g:1617:5: ( ( ( ruleExpr ) ) ',' ( ( ruleExprs ) ) )
+        // InternalWhileComp.g:1618:5: ( ( ruleExpr ) ) ',' ( ( ruleExprs ) )
         {
-        // InternalWhileComp.g:1548:5: ( ( ruleExpr ) )
-        // InternalWhileComp.g:1549:6: ( ruleExpr )
+        // InternalWhileComp.g:1618:5: ( ( ruleExpr ) )
+        // InternalWhileComp.g:1619:6: ( ruleExpr )
         {
-        // InternalWhileComp.g:1549:6: ( ruleExpr )
-        // InternalWhileComp.g:1550:7: ruleExpr
+        // InternalWhileComp.g:1619:6: ( ruleExpr )
+        // InternalWhileComp.g:1620:7: ruleExpr
         {
         pushFollow(FOLLOW_27);
         ruleExpr();
@@ -6412,11 +6606,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         }
 
         match(input,18,FOLLOW_15); if (state.failed) return ;
-        // InternalWhileComp.g:1554:5: ( ( ruleExprs ) )
-        // InternalWhileComp.g:1555:6: ( ruleExprs )
+        // InternalWhileComp.g:1624:5: ( ( ruleExprs ) )
+        // InternalWhileComp.g:1625:6: ( ruleExprs )
         {
-        // InternalWhileComp.g:1555:6: ( ruleExprs )
-        // InternalWhileComp.g:1556:7: ruleExprs
+        // InternalWhileComp.g:1625:6: ( ruleExprs )
+        // InternalWhileComp.g:1626:7: ruleExprs
         {
         pushFollow(FOLLOW_2);
         ruleExprs();
@@ -6439,17 +6633,17 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred6_InternalWhileComp
     public final void synpred6_InternalWhileComp_fragment() throws RecognitionException {   
-        // InternalWhileComp.g:1966:4: ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )
-        // InternalWhileComp.g:1966:5: ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) )
+        // InternalWhileComp.g:2036:4: ( ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) ) )
+        // InternalWhileComp.g:2036:5: ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) )
         {
-        // InternalWhileComp.g:1966:5: ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) )
-        // InternalWhileComp.g:1967:5: ( ( ruleExpr ) ) ( ( ruleLexpr ) )
+        // InternalWhileComp.g:2036:5: ( ( ( ruleExpr ) ) ( ( ruleLexpr ) ) )
+        // InternalWhileComp.g:2037:5: ( ( ruleExpr ) ) ( ( ruleLexpr ) )
         {
-        // InternalWhileComp.g:1967:5: ( ( ruleExpr ) )
-        // InternalWhileComp.g:1968:6: ( ruleExpr )
+        // InternalWhileComp.g:2037:5: ( ( ruleExpr ) )
+        // InternalWhileComp.g:2038:6: ( ruleExpr )
         {
-        // InternalWhileComp.g:1968:6: ( ruleExpr )
-        // InternalWhileComp.g:1969:7: ruleExpr
+        // InternalWhileComp.g:2038:6: ( ruleExpr )
+        // InternalWhileComp.g:2039:7: ruleExpr
         {
         pushFollow(FOLLOW_15);
         ruleExpr();
@@ -6462,11 +6656,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
         }
 
-        // InternalWhileComp.g:1972:5: ( ( ruleLexpr ) )
-        // InternalWhileComp.g:1973:6: ( ruleLexpr )
+        // InternalWhileComp.g:2042:5: ( ( ruleLexpr ) )
+        // InternalWhileComp.g:2043:6: ( ruleLexpr )
         {
-        // InternalWhileComp.g:1973:6: ( ruleLexpr )
-        // InternalWhileComp.g:1974:7: ruleLexpr
+        // InternalWhileComp.g:2043:6: ( ruleLexpr )
+        // InternalWhileComp.g:2044:7: ruleLexpr
         {
         pushFollow(FOLLOW_2);
         ruleLexpr();
@@ -6575,7 +6769,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
     }
 
 
-    protected DFA15 dfa15 = new DFA15(this);
+    protected DFA18 dfa18 = new DFA18(this);
     static final String dfa_1s = "\12\uffff";
     static final String dfa_2s = "\1\4\3\uffff\1\4\5\uffff";
     static final String dfa_3s = "\1\53\3\uffff\1\52\5\uffff";
@@ -6601,11 +6795,11 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
     static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
     static final short[][] dfa_6 = unpackEncodedStringArray(dfa_6s);
 
-    class DFA15 extends DFA {
+    class DFA18 extends DFA {
 
-        public DFA15(BaseRecognizer recognizer) {
+        public DFA18(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 15;
+            this.decisionNumber = 18;
             this.eot = dfa_1;
             this.eof = dfa_1;
             this.min = dfa_2;
@@ -6615,7 +6809,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             this.transition = dfa_6;
         }
         public String getDescription() {
-            return "1644:2: ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) )";
+            return "1714:2: ( ( (lv_nil_0_0= ruleNil2 ) ) | ( (lv_variable_1_0= RULE_VARIABLE ) ) | ( (lv_symbol_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_cons_4_0= ruleCons ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_list_8_0= ruleList ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_hd_12_0= ruleHd ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_tl_16_0= ruleTl ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_symbol_20_0= RULE_SYMBOL ) ) ( (lv_lexpr_21_0= ruleLexpr ) ) otherlv_22= ')' ) )";
         }
     }
  
@@ -6631,7 +6825,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000140000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000080000000020L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000085000000030L});

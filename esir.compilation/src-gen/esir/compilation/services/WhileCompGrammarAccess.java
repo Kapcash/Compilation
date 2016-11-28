@@ -200,45 +200,91 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	public class AffectationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "esir.compilation.WhileComp.Affectation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cAffectationAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cAffectationVARIABLETerminalRuleCall_0_0 = (RuleCall)cAffectationAssignment_0.eContents().get(0);
-		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cValeurAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final RuleCall cValeurVARIABLETerminalRuleCall_2_0_0 = (RuleCall)cValeurAssignment_2_0.eContents().get(0);
-		private final Assignment cNilAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cNilNil2ParserRuleCall_2_1_0 = (RuleCall)cNilAssignment_2_1.eContents().get(0);
+		private final Assignment cAffectationsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cAffectationsVARIABLETerminalRuleCall_0_0 = (RuleCall)cAffectationsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cAffectationsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cAffectationsVARIABLETerminalRuleCall_1_1_0 = (RuleCall)cAffectationsAssignment_1_1.eContents().get(0);
+		private final Keyword cColonEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cValeursAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cValeursVARIABLETerminalRuleCall_3_0_0 = (RuleCall)cValeursAssignment_3_0.eContents().get(0);
+		private final Assignment cNilAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cNilNil2ParserRuleCall_3_1_0 = (RuleCall)cNilAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Alternatives cAlternatives_4_1 = (Alternatives)cGroup_4.eContents().get(1);
+		private final Assignment cValeursAssignment_4_1_0 = (Assignment)cAlternatives_4_1.eContents().get(0);
+		private final RuleCall cValeursVARIABLETerminalRuleCall_4_1_0_0 = (RuleCall)cValeursAssignment_4_1_0.eContents().get(0);
+		private final Assignment cNilAssignment_4_1_1 = (Assignment)cAlternatives_4_1.eContents().get(1);
+		private final RuleCall cNilNil2ParserRuleCall_4_1_1_0 = (RuleCall)cNilAssignment_4_1_1.eContents().get(0);
 		
 		/// * Commandes * / Affectation:
-		//	affectation=VARIABLE ':=' (valeur=VARIABLE | nil=Nil2);
+		//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' (valeurs+=VARIABLE | nil+=Nil2) (',' (valeurs+=VARIABLE |
+		//	nil+=Nil2))* / * Ajouter ExprSimple * /;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//affectation=VARIABLE ':=' (valeur=VARIABLE | nil=Nil2)
+		//affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' (valeurs+=VARIABLE | nil+=Nil2) (',' (valeurs+=VARIABLE |
+		//nil+=Nil2))*
 		public Group getGroup() { return cGroup; }
 		
-		//affectation=VARIABLE
-		public Assignment getAffectationAssignment_0() { return cAffectationAssignment_0; }
+		//affectations+=VARIABLE
+		public Assignment getAffectationsAssignment_0() { return cAffectationsAssignment_0; }
 		
 		//VARIABLE
-		public RuleCall getAffectationVARIABLETerminalRuleCall_0_0() { return cAffectationVARIABLETerminalRuleCall_0_0; }
+		public RuleCall getAffectationsVARIABLETerminalRuleCall_0_0() { return cAffectationsVARIABLETerminalRuleCall_0_0; }
+		
+		//(',' affectations+=VARIABLE)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//','
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		
+		//affectations+=VARIABLE
+		public Assignment getAffectationsAssignment_1_1() { return cAffectationsAssignment_1_1; }
+		
+		//VARIABLE
+		public RuleCall getAffectationsVARIABLETerminalRuleCall_1_1_0() { return cAffectationsVARIABLETerminalRuleCall_1_1_0; }
 		
 		//':='
-		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
+		public Keyword getColonEqualsSignKeyword_2() { return cColonEqualsSignKeyword_2; }
 		
-		//(valeur=VARIABLE | nil=Nil2)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		//(valeurs+=VARIABLE | nil+=Nil2)
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
-		//valeur=VARIABLE
-		public Assignment getValeurAssignment_2_0() { return cValeurAssignment_2_0; }
+		//valeurs+=VARIABLE
+		public Assignment getValeursAssignment_3_0() { return cValeursAssignment_3_0; }
 		
 		//VARIABLE
-		public RuleCall getValeurVARIABLETerminalRuleCall_2_0_0() { return cValeurVARIABLETerminalRuleCall_2_0_0; }
+		public RuleCall getValeursVARIABLETerminalRuleCall_3_0_0() { return cValeursVARIABLETerminalRuleCall_3_0_0; }
 		
-		//nil=Nil2
-		public Assignment getNilAssignment_2_1() { return cNilAssignment_2_1; }
+		//nil+=Nil2
+		public Assignment getNilAssignment_3_1() { return cNilAssignment_3_1; }
 		
 		//Nil2
-		public RuleCall getNilNil2ParserRuleCall_2_1_0() { return cNilNil2ParserRuleCall_2_1_0; }
+		public RuleCall getNilNil2ParserRuleCall_3_1_0() { return cNilNil2ParserRuleCall_3_1_0; }
+		
+		//(',' (valeurs+=VARIABLE | nil+=Nil2))*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//','
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//(valeurs+=VARIABLE | nil+=Nil2)
+		public Alternatives getAlternatives_4_1() { return cAlternatives_4_1; }
+		
+		//valeurs+=VARIABLE
+		public Assignment getValeursAssignment_4_1_0() { return cValeursAssignment_4_1_0; }
+		
+		//VARIABLE
+		public RuleCall getValeursVARIABLETerminalRuleCall_4_1_0_0() { return cValeursVARIABLETerminalRuleCall_4_1_0_0; }
+		
+		//nil+=Nil2
+		public Assignment getNilAssignment_4_1_1() { return cNilAssignment_4_1_1; }
+		
+		//Nil2
+		public RuleCall getNilNil2ParserRuleCall_4_1_1_0() { return cNilNil2ParserRuleCall_4_1_1_0; }
 	}
 	public class NopElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "esir.compilation.WhileComp.Nop");
@@ -1308,7 +1354,8 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	/// * Commandes * / Affectation:
-	//	affectation=VARIABLE ':=' (valeur=VARIABLE | nil=Nil2);
+	//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' (valeurs+=VARIABLE | nil+=Nil2) (',' (valeurs+=VARIABLE |
+	//	nil+=Nil2))* / * Ajouter ExprSimple * /;
 	public AffectationElements getAffectationAccess() {
 		return pAffectation;
 	}

@@ -7,14 +7,20 @@ import esir.compilation.whileComp.Affectation;
 import esir.compilation.whileComp.Nil2;
 import esir.compilation.whileComp.WhileCompPackage;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,8 +30,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getAffectation <em>Affectation</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getValeur <em>Valeur</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getAffectations <em>Affectations</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getValeurs <em>Valeurs</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getNil <em>Nil</em>}</li>
  * </ul>
  *
@@ -34,54 +40,34 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class AffectationImpl extends MinimalEObjectImpl.Container implements Affectation
 {
   /**
-   * The default value of the '{@link #getAffectation() <em>Affectation</em>}' attribute.
+   * The cached value of the '{@link #getAffectations() <em>Affectations</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAffectation()
+   * @see #getAffectations()
    * @generated
    * @ordered
    */
-  protected static final String AFFECTATION_EDEFAULT = null;
+  protected EList<String> affectations;
 
   /**
-   * The cached value of the '{@link #getAffectation() <em>Affectation</em>}' attribute.
+   * The cached value of the '{@link #getValeurs() <em>Valeurs</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAffectation()
+   * @see #getValeurs()
    * @generated
    * @ordered
    */
-  protected String affectation = AFFECTATION_EDEFAULT;
+  protected EList<String> valeurs;
 
   /**
-   * The default value of the '{@link #getValeur() <em>Valeur</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValeur()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALEUR_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValeur() <em>Valeur</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValeur()
-   * @generated
-   * @ordered
-   */
-  protected String valeur = VALEUR_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getNil() <em>Nil</em>}' containment reference.
+   * The cached value of the '{@link #getNil() <em>Nil</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getNil()
    * @generated
    * @ordered
    */
-  protected Nil2 nil;
+  protected EList<Nil2> nil;
 
   /**
    * <!-- begin-user-doc -->
@@ -109,9 +95,13 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getAffectation()
+  public EList<String> getAffectations()
   {
-    return affectation;
+    if (affectations == null)
+    {
+      affectations = new EDataTypeEList<String>(String.class, this, WhileCompPackage.AFFECTATION__AFFECTATIONS);
+    }
+    return affectations;
   }
 
   /**
@@ -119,12 +109,13 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAffectation(String newAffectation)
+  public EList<String> getValeurs()
   {
-    String oldAffectation = affectation;
-    affectation = newAffectation;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__AFFECTATION, oldAffectation, affectation));
+    if (valeurs == null)
+    {
+      valeurs = new EDataTypeEList<String>(String.class, this, WhileCompPackage.AFFECTATION__VALEURS);
+    }
+    return valeurs;
   }
 
   /**
@@ -132,70 +123,13 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValeur()
+  public EList<Nil2> getNil()
   {
-    return valeur;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setValeur(String newValeur)
-  {
-    String oldValeur = valeur;
-    valeur = newValeur;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__VALEUR, oldValeur, valeur));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Nil2 getNil()
-  {
+    if (nil == null)
+    {
+      nil = new EObjectContainmentEList<Nil2>(Nil2.class, this, WhileCompPackage.AFFECTATION__NIL);
+    }
     return nil;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetNil(Nil2 newNil, NotificationChain msgs)
-  {
-    Nil2 oldNil = nil;
-    nil = newNil;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__NIL, oldNil, newNil);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNil(Nil2 newNil)
-  {
-    if (newNil != nil)
-    {
-      NotificationChain msgs = null;
-      if (nil != null)
-        msgs = ((InternalEObject)nil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.AFFECTATION__NIL, null, msgs);
-      if (newNil != null)
-        msgs = ((InternalEObject)newNil).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.AFFECTATION__NIL, null, msgs);
-      msgs = basicSetNil(newNil, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.AFFECTATION__NIL, newNil, newNil));
   }
 
   /**
@@ -209,7 +143,7 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
     switch (featureID)
     {
       case WhileCompPackage.AFFECTATION__NIL:
-        return basicSetNil(null, msgs);
+        return ((InternalEList<?>)getNil()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -224,10 +158,10 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
   {
     switch (featureID)
     {
-      case WhileCompPackage.AFFECTATION__AFFECTATION:
-        return getAffectation();
-      case WhileCompPackage.AFFECTATION__VALEUR:
-        return getValeur();
+      case WhileCompPackage.AFFECTATION__AFFECTATIONS:
+        return getAffectations();
+      case WhileCompPackage.AFFECTATION__VALEURS:
+        return getValeurs();
       case WhileCompPackage.AFFECTATION__NIL:
         return getNil();
     }
@@ -239,19 +173,23 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case WhileCompPackage.AFFECTATION__AFFECTATION:
-        setAffectation((String)newValue);
+      case WhileCompPackage.AFFECTATION__AFFECTATIONS:
+        getAffectations().clear();
+        getAffectations().addAll((Collection<? extends String>)newValue);
         return;
-      case WhileCompPackage.AFFECTATION__VALEUR:
-        setValeur((String)newValue);
+      case WhileCompPackage.AFFECTATION__VALEURS:
+        getValeurs().clear();
+        getValeurs().addAll((Collection<? extends String>)newValue);
         return;
       case WhileCompPackage.AFFECTATION__NIL:
-        setNil((Nil2)newValue);
+        getNil().clear();
+        getNil().addAll((Collection<? extends Nil2>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -267,14 +205,14 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
   {
     switch (featureID)
     {
-      case WhileCompPackage.AFFECTATION__AFFECTATION:
-        setAffectation(AFFECTATION_EDEFAULT);
+      case WhileCompPackage.AFFECTATION__AFFECTATIONS:
+        getAffectations().clear();
         return;
-      case WhileCompPackage.AFFECTATION__VALEUR:
-        setValeur(VALEUR_EDEFAULT);
+      case WhileCompPackage.AFFECTATION__VALEURS:
+        getValeurs().clear();
         return;
       case WhileCompPackage.AFFECTATION__NIL:
-        setNil((Nil2)null);
+        getNil().clear();
         return;
     }
     super.eUnset(featureID);
@@ -290,12 +228,12 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
   {
     switch (featureID)
     {
-      case WhileCompPackage.AFFECTATION__AFFECTATION:
-        return AFFECTATION_EDEFAULT == null ? affectation != null : !AFFECTATION_EDEFAULT.equals(affectation);
-      case WhileCompPackage.AFFECTATION__VALEUR:
-        return VALEUR_EDEFAULT == null ? valeur != null : !VALEUR_EDEFAULT.equals(valeur);
+      case WhileCompPackage.AFFECTATION__AFFECTATIONS:
+        return affectations != null && !affectations.isEmpty();
+      case WhileCompPackage.AFFECTATION__VALEURS:
+        return valeurs != null && !valeurs.isEmpty();
       case WhileCompPackage.AFFECTATION__NIL:
-        return nil != null;
+        return nil != null && !nil.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -311,10 +249,10 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (affectation: ");
-    result.append(affectation);
-    result.append(", valeur: ");
-    result.append(valeur);
+    result.append(" (affectations: ");
+    result.append(affectations);
+    result.append(", valeurs: ");
+    result.append(valeurs);
     result.append(')');
     return result.toString();
   }

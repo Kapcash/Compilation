@@ -235,25 +235,25 @@ public interface WhileCompPackage extends EPackage
   int AFFECTATION = 5;
 
   /**
-   * The feature id for the '<em><b>Affectation</b></em>' attribute.
+   * The feature id for the '<em><b>Affectations</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AFFECTATION__AFFECTATION = 0;
+  int AFFECTATION__AFFECTATIONS = 0;
 
   /**
-   * The feature id for the '<em><b>Valeur</b></em>' attribute.
+   * The feature id for the '<em><b>Valeurs</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AFFECTATION__VALEUR = 1;
+  int AFFECTATION__VALEURS = 1;
 
   /**
-   * The feature id for the '<em><b>Nil</b></em>' containment reference.
+   * The feature id for the '<em><b>Nil</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1252,32 +1252,32 @@ public interface WhileCompPackage extends EPackage
   EClass getAffectation();
 
   /**
-   * Returns the meta object for the attribute '{@link esir.compilation.whileComp.Affectation#getAffectation <em>Affectation</em>}'.
+   * Returns the meta object for the attribute list '{@link esir.compilation.whileComp.Affectation#getAffectations <em>Affectations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Affectation</em>'.
-   * @see esir.compilation.whileComp.Affectation#getAffectation()
+   * @return the meta object for the attribute list '<em>Affectations</em>'.
+   * @see esir.compilation.whileComp.Affectation#getAffectations()
    * @see #getAffectation()
    * @generated
    */
-  EAttribute getAffectation_Affectation();
+  EAttribute getAffectation_Affectations();
 
   /**
-   * Returns the meta object for the attribute '{@link esir.compilation.whileComp.Affectation#getValeur <em>Valeur</em>}'.
+   * Returns the meta object for the attribute list '{@link esir.compilation.whileComp.Affectation#getValeurs <em>Valeurs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Valeur</em>'.
-   * @see esir.compilation.whileComp.Affectation#getValeur()
+   * @return the meta object for the attribute list '<em>Valeurs</em>'.
+   * @see esir.compilation.whileComp.Affectation#getValeurs()
    * @see #getAffectation()
    * @generated
    */
-  EAttribute getAffectation_Valeur();
+  EAttribute getAffectation_Valeurs();
 
   /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.Affectation#getNil <em>Nil</em>}'.
+   * Returns the meta object for the containment reference list '{@link esir.compilation.whileComp.Affectation#getNil <em>Nil</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Nil</em>'.
+   * @return the meta object for the containment reference list '<em>Nil</em>'.
    * @see esir.compilation.whileComp.Affectation#getNil()
    * @see #getAffectation()
    * @generated
@@ -2158,23 +2158,23 @@ public interface WhileCompPackage extends EPackage
     EClass AFFECTATION = eINSTANCE.getAffectation();
 
     /**
-     * The meta object literal for the '<em><b>Affectation</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Affectations</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute AFFECTATION__AFFECTATION = eINSTANCE.getAffectation_Affectation();
+    EAttribute AFFECTATION__AFFECTATIONS = eINSTANCE.getAffectation_Affectations();
 
     /**
-     * The meta object literal for the '<em><b>Valeur</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Valeurs</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute AFFECTATION__VALEUR = eINSTANCE.getAffectation_Valeur();
+    EAttribute AFFECTATION__VALEURS = eINSTANCE.getAffectation_Valeurs();
 
     /**
-     * The meta object literal for the '<em><b>Nil</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Nil</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

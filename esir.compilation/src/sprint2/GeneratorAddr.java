@@ -23,6 +23,7 @@ import com.google.inject.Injector;
 import com.google.inject.Provider;
 
 import esir.compilation.WhileCompStandaloneSetup;
+import esir.compilation.whileComp.Affectation;
 import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Definition;
@@ -100,7 +101,7 @@ public class GeneratorAddr {
 			throw new Exception("Function "+fName+" already declared !");
 		}else{
 			DefFun function = new DefFun();
-			map.put(fName, function); //Adding a new blank function
+			map.put(fName, function); //Adding a new blank function (DefFun)
 			iterateAST(f.getDefinition(),function);
 		}
 	}
@@ -114,7 +115,7 @@ public class GeneratorAddr {
 			f.addVar(v,null);
 		}
 		//Commands
-		Commands commands = def.getCommands();
+		iterateAST(def.getCommands(), f);
 		
 		//Outputs
 		Write writes = def.getWrite();
@@ -125,15 +126,21 @@ public class GeneratorAddr {
 		}
 	}
 	
-	public void iterateAST(Commands coms){
+	public void iterateAST(Commands coms, DefFun f){
 		Command com = coms.getCommand();
-		iterateAST(com); //First command of definition
+		iterateAST(com, f); //First command of definition
 		for(Command c : coms.getCommands()){ //Eventually other commands
-			iterateAST(c);
+			iterateAST(c, f);
 		}
 	}
 	
-	public void iterateAST(Command com){
+	public void iterateAST(Command com, DefFun f){
+		if(com instanceof Affectation){
+			iterateAST((Affectation) com);
+		}
+	}
+	
+	public void iterateAST(Affectation aff){
 		
 	}
 	

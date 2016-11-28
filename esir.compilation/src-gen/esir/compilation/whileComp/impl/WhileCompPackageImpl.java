@@ -453,7 +453,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAffectation_Affectation()
+  public EAttribute getAffectation_Affectations()
   {
     return (EAttribute)affectationEClass.getEStructuralFeatures().get(0);
   }
@@ -463,7 +463,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAffectation_Valeur()
+  public EAttribute getAffectation_Valeurs()
   {
     return (EAttribute)affectationEClass.getEStructuralFeatures().get(1);
   }
@@ -1207,8 +1207,8 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     createEAttribute(writeEClass, WRITE__VARIABLE);
 
     affectationEClass = createEClass(AFFECTATION);
-    createEAttribute(affectationEClass, AFFECTATION__AFFECTATION);
-    createEAttribute(affectationEClass, AFFECTATION__VALEUR);
+    createEAttribute(affectationEClass, AFFECTATION__AFFECTATIONS);
+    createEAttribute(affectationEClass, AFFECTATION__VALEURS);
     createEReference(affectationEClass, AFFECTATION__NIL);
 
     nopEClass = createEClass(NOP);
@@ -1352,9 +1352,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEAttribute(getWrite_Variable(), ecorePackage.getEString(), "variable", null, 0, -1, Write.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(affectationEClass, Affectation.class, "Affectation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAffectation_Affectation(), ecorePackage.getEString(), "affectation", null, 0, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAffectation_Valeur(), ecorePackage.getEString(), "valeur", null, 0, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAffectation_Nil(), this.getNil2(), null, "nil", null, 0, 1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAffectation_Affectations(), ecorePackage.getEString(), "affectations", null, 0, -1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAffectation_Valeurs(), ecorePackage.getEString(), "valeurs", null, 0, -1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAffectation_Nil(), this.getNil2(), null, "nil", null, 0, -1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(nopEClass, Nop.class, "Nop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNop_Nop(), ecorePackage.getEString(), "nop", null, 0, 1, Nop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

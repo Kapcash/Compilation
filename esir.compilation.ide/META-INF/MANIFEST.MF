@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: esir.compilation.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: esir.compilation.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: esir.compilation,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: esir.compilation.ide.contentassist.antlr.internal,
+ esir.compilation.ide.contentassist.antlr
+

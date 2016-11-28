@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: esir.compilation
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: esir.compilation; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: esir.compilation.serializer,
+ esir.compilation.generator,
+ esir.compilation.scoping,
+ esir.compilation.whileComp.util,
+ esir.compilation.validation,
+ esir.compilation.whileComp,
+ esir.compilation.services,
+ esir.compilation.whileComp.impl,
+ esir.compilation,
+ esir.compilation.parser.antlr.internal,
+ esir.compilation.parser.antlr
+Import-Package: org.apache.log4j

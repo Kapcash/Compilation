@@ -1,0 +1,147 @@
+grammar esir.compilation.WhileComp with org.eclipse.xtext.common.Terminals
+
+generate whileComp "http://www.compilation.esir/WhileComp"
+
+/* HEAD */
+Program:
+	(functions+=Function)*
+;
+	
+Function:
+	'function' function=SYMBOL ':' definition=Definition
+;
+
+Definition:
+	read = Read
+	'%'
+	commands=Commands
+	'%'
+	write = Write
+;
+
+/* Input & Output */
+
+Read :
+	'read' variable+=VARIABLE (',' variable+=VARIABLE)*
+;
+Write :
+	'write' variable+=VARIABLE (',' variable+=VARIABLE)*
+;
+
+
+/* Commandes */
+
+Affectation:
+	(affectation=VARIABLE ':=' (valeur=VARIABLE|nil=Nil2)) /* Ajouter ExprSimple */
+;
+
+Nop:
+	nop='nop'
+;
+
+Commands:
+	command=Command (';' commands+=Command)*
+;
+
+Command:
+	command=Nop | 
+	command=Affectation | 
+	command=While|
+	command=For|
+	command=If|
+	command=Foreach	
+;
+
+Foreach:
+	('foreach' expr1=Expr 'in' expr2=Expr 'do' commands=Commands 'od')
+;
+
+If:
+	('if' expr=Expr 'then' commands1=Commands (=>'else' commands2=Commands)? 'fi') 	
+;
+
+For:
+	('for' expr=Expr 'do' commands=Commands 'od') 
+;
+
+While:
+	('while' expr=Expr 'do' commands=Commands 'od')
+;
+
+Expr: 
+	=>exprsimple=ExprSimple | exprAnd=ExprAnd
+;	
+
+ExprAnd:
+	=>(exprOr=ExprOr '&&' exprAnd=ExprAnd) | exprOr=ExprOr
+;
+
+ExprOr:
+	=>(exprNot=ExprNot '||' exprOr=ExprOr) | exprNot=ExprNot
+;
+
+ExprNot:
+	(not=Not exprEq=ExprEq) | exprEq=ExprEq
+;
+
+ExprEq:
+	(exprSimple1=ExprSimple '=?' exprSimple2=ExprSimple) | '('expr=Expr')'
+;
+
+Vars:
+	(variable=VARIABLE ',' vars=Vars) | variable=VARIABLE
+;	
+Exprs:
+	=>(expr=Expr ',' exprs=Exprs) | expr=Expr
+;
+	
+ExprSimple:
+	nil=Nil2 | variable=VARIABLE | symbol=SYMBOL |
+	'(' cons=Cons lexpr=Lexpr ')' | '(' list=List lexpr=Lexpr ')' |
+	'(' hd=Hd expr=Expr ')' | '(' tl=Tl expr=Expr ')' |
+	'(' symbol=SYMBOL lexpr=Lexpr ')'
+;
+
+Lexpr:
+	=>(expr=Expr lexpr=Lexpr) | expr=Expr
+;
+
+Not:
+	not = '!'
+;
+
+Cons:
+	cons='cons'
+;
+
+List:
+	list='list'
+;
+
+Hd:
+	hd='hd'
+;
+
+Tl:
+	tl='tl'
+;
+
+Nil2:
+	nil='nil'
+;
+
+
+terminal VARIABLE:
+	'A'..'Z'('A'..'Z'|'a'..'z')*
+;
+	
+terminal SYMBOL:
+	'a'..'z'('A'..'Z'|'a'..'z'|'0'..'9')*
+	((('-'|'+'|'.'|'/'|'_'|'&')|"->")('A'..'Z'|'a'..'z'|'0'..'9')+)*
+	('!'|'?')?
+;
+
+terminal NOMBRE:
+	('1'..'9')('0'..'9')*
+;
+

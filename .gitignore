@@ -1,4 +1,4 @@
 .metadata
 .recommanders
-.esir.compilation.ide
-.esir.compilation.ui
+esir.compilation.ide
+esir.compilation.ui

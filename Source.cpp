@@ -91,7 +91,9 @@ int main(int argc, char *argv[]) {
 	int result;
 	char oldname[] = "Result_output.whpp";
 	result = rename(oldname, arg_fileDest.c_str());
-	if (result != 0)
-
+	if (result != 0) {
+		std::cout << "Erreur" << std::endl;
+	}
+		
 	return 0;
 }

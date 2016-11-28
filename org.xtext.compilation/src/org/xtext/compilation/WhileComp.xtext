@@ -127,7 +127,7 @@ Tl:
 	tl='tl'
 ;
 Lexpr:
-	expr=Expr lexpr=Lexpr
+	expr=Expr lexpr=Lexpr?
 ;
 
 terminal VARIABLE:

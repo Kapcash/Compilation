@@ -21,6 +21,10 @@ import org.xtext.compilation.whileComp.ExprOr
 import org.xtext.compilation.whileComp.ExprNot
 import org.xtext.compilation.whileComp.ExprEq
 import org.xtext.compilation.whileComp.ExprSimple
+import org.xtext.compilation.whileComp.For
+import org.xtext.compilation.whileComp.Foreach
+import org.xtext.compilation.whileComp.If
+import org.xtext.compilation.whileComp.Lexpr
 
 /**
  * Generates code from your model files on save.
@@ -84,6 +88,26 @@ class WhileCompGenerator extends AbstractGenerator {
 			«(c.command as While).commands.compile»
 			«"	"»od
 		«ENDIF»
+		«IF c.command instanceof For»
+			«"	"»For «(c.command as For).expr.compile»	do
+			«(c.command as For).commands.compile»
+			«"	"»od
+		«ENDIF»
+		«IF c.command instanceof Foreach»
+			«"	"»foreach «(c.command as Foreach).expr1.compile» in «(c.command as Foreach).expr2.compile»	do
+			«(c.command as Foreach).commands.compile»
+			«"	"»od
+		«ENDIF»
+		«IF c.command instanceof If»
+			«"	"»if «(c.command as If).expr.compile» 
+			«"	"»then 
+			«(c.command as If).commands1.compile»
+			«IF (c.command as If).commands2 != null» 
+			«"	"»else 
+			«(c.command as If).commands2.compile»
+			«ENDIF»
+			«"	"»fi
+		«ENDIF»
 		'''
 	}
 	
@@ -123,7 +147,7 @@ class WhileCompGenerator extends AbstractGenerator {
 	«IF expr.not != null»
 	!«expr.exprEq.compile»
 	«ELSE»
-	!«expr.exprEq.compile»
+	«expr.exprEq.compile»
 	«ENDIF»
 	'''
 	}
@@ -148,6 +172,30 @@ class WhileCompGenerator extends AbstractGenerator {
 	«ENDIF»
 	«IF expr.symbol != null && expr.lexpr == null»
 	«expr.symbol»
+	«ENDIF»
+	«IF expr.cons != null»
+	(cons «expr.lexpr.compile»)
+	«ENDIF»
+	«IF expr.list != null»
+	(list «expr.lexpr.compile»)
+	«ENDIF»
+	«IF expr.hd != null»
+	(hd «expr.expr.compile»)
+	«ENDIF»
+	«IF expr.tl != null»
+	(tl «expr.expr.compile»)
+	«ENDIF»
+	«IF expr.symbol != null»
+	(«expr.symbol» «expr.lexpr.compile»)
+	«ENDIF»
+	'''
+	}
+	
+	def compile(Lexpr expr){
+	'''
+	«expr.expr.compile»
+	«IF expr.lexpr != null»
+	«expr.lexpr.compile»
 	«ENDIF»
 	'''
 	}

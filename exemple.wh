@@ -10,7 +10,7 @@ function id:
 			while Test do Ret:=UiUiUi od;
 			Ret:=A;
 			while Test do Ret:=A;
-			while Test do Ret:=UiUiUi od od
+			while Test do for Condition do nop od od od
 		od
 %
 		write 

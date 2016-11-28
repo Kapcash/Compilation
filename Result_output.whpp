@@ -20,7 +20,10 @@ read Ab
 	 ;
 			while Test
 			do
-				Ret := UiUiUi
+				For Condition
+			do
+				nop
+			od
 			od
 		od
 	od

@@ -439,9 +439,9 @@ ruleAffectation returns [EObject current=null]
 		(
 			(
 				(
-					lv_valeurs_4_0=RULE_VARIABLE
+					lv_valeurs_4_1=RULE_VARIABLE
 					{
-						newLeafNode(lv_valeurs_4_0, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_3_0_0());
+						newLeafNode(lv_valeurs_4_1, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_3_0_0());
 					}
 					{
 						if ($current==null) {
@@ -450,43 +450,34 @@ ruleAffectation returns [EObject current=null]
 						addWithLastConsumed(
 							$current,
 							"valeurs",
-							lv_valeurs_4_0,
+							lv_valeurs_4_1,
 							"esir.compilation.WhileComp.VARIABLE");
 					}
-				)
-			)
-			    |
-			(
-				(
+					    |
+					lv_valeurs_4_2='nil'
 					{
-						newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_3_1_0());
+						newLeafNode(lv_valeurs_4_2, grammarAccess.getAffectationAccess().getValeursNilKeyword_3_0_1());
 					}
-					lv_nil_5_0=ruleNil2
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getAffectationRule());
+							$current = createModelElement(grammarAccess.getAffectationRule());
 						}
-						add(
-							$current,
-							"nil",
-							lv_nil_5_0,
-							"esir.compilation.WhileComp.Nil2");
-						afterParserOrEnumRuleCall();
+						addWithLastConsumed($current, "valeurs", lv_valeurs_4_2, null);
 					}
 				)
 			)
 		)
 		(
-			otherlv_6=','
+			otherlv_5=','
 			{
-				newLeafNode(otherlv_6, grammarAccess.getAffectationAccess().getCommaKeyword_4_0());
+				newLeafNode(otherlv_5, grammarAccess.getAffectationAccess().getCommaKeyword_4_0());
 			}
 			(
 				(
 					(
-						lv_valeurs_7_0=RULE_VARIABLE
+						lv_valeurs_6_1=RULE_VARIABLE
 						{
-							newLeafNode(lv_valeurs_7_0, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_4_1_0_0());
+							newLeafNode(lv_valeurs_6_1, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_4_1_0_0());
 						}
 						{
 							if ($current==null) {
@@ -495,28 +486,19 @@ ruleAffectation returns [EObject current=null]
 							addWithLastConsumed(
 								$current,
 								"valeurs",
-								lv_valeurs_7_0,
+								lv_valeurs_6_1,
 								"esir.compilation.WhileComp.VARIABLE");
 						}
-					)
-				)
-				    |
-				(
-					(
+						    |
+						lv_valeurs_6_2='nil'
 						{
-							newCompositeNode(grammarAccess.getAffectationAccess().getNilNil2ParserRuleCall_4_1_1_0());
+							newLeafNode(lv_valeurs_6_2, grammarAccess.getAffectationAccess().getValeursNilKeyword_4_1_0_1());
 						}
-						lv_nil_8_0=ruleNil2
 						{
 							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getAffectationRule());
+								$current = createModelElement(grammarAccess.getAffectationRule());
 							}
-							add(
-								$current,
-								"nil",
-								lv_nil_8_0,
-								"esir.compilation.WhileComp.Nil2");
-							afterParserOrEnumRuleCall();
+							addWithLastConsumed($current, "valeurs", lv_valeurs_6_2, null);
 						}
 					)
 				)

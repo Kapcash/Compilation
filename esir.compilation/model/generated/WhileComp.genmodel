@@ -27,7 +27,6 @@
     <genClasses ecoreClass="WhileComp.ecore#//Affectation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Affectation/affectations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Affectation/valeurs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Affectation/nil"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Nop">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Nop/nop"/>

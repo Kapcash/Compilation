@@ -207,26 +207,23 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAffectationsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cAffectationsVARIABLETerminalRuleCall_1_1_0 = (RuleCall)cAffectationsAssignment_1_1.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
-		private final Assignment cValeursAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
-		private final RuleCall cValeursVARIABLETerminalRuleCall_3_0_0 = (RuleCall)cValeursAssignment_3_0.eContents().get(0);
-		private final Assignment cNilAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
-		private final RuleCall cNilNil2ParserRuleCall_3_1_0 = (RuleCall)cNilAssignment_3_1.eContents().get(0);
+		private final Assignment cValeursAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Alternatives cValeursAlternatives_3_0 = (Alternatives)cValeursAssignment_3.eContents().get(0);
+		private final RuleCall cValeursVARIABLETerminalRuleCall_3_0_0 = (RuleCall)cValeursAlternatives_3_0.eContents().get(0);
+		private final Keyword cValeursNilKeyword_3_0_1 = (Keyword)cValeursAlternatives_3_0.eContents().get(1);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Alternatives cAlternatives_4_1 = (Alternatives)cGroup_4.eContents().get(1);
-		private final Assignment cValeursAssignment_4_1_0 = (Assignment)cAlternatives_4_1.eContents().get(0);
-		private final RuleCall cValeursVARIABLETerminalRuleCall_4_1_0_0 = (RuleCall)cValeursAssignment_4_1_0.eContents().get(0);
-		private final Assignment cNilAssignment_4_1_1 = (Assignment)cAlternatives_4_1.eContents().get(1);
-		private final RuleCall cNilNil2ParserRuleCall_4_1_1_0 = (RuleCall)cNilAssignment_4_1_1.eContents().get(0);
+		private final Assignment cValeursAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final Alternatives cValeursAlternatives_4_1_0 = (Alternatives)cValeursAssignment_4_1.eContents().get(0);
+		private final RuleCall cValeursVARIABLETerminalRuleCall_4_1_0_0 = (RuleCall)cValeursAlternatives_4_1_0.eContents().get(0);
+		private final Keyword cValeursNilKeyword_4_1_0_1 = (Keyword)cValeursAlternatives_4_1_0.eContents().get(1);
 		
 		/// * Commandes * / Affectation:
-		//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' (valeurs+=VARIABLE | nil+=Nil2) (',' (valeurs+=VARIABLE |
-		//	nil+=Nil2))* / * Ajouter ExprSimple * /;
+		//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=(VARIABLE | 'nil') (',' valeurs+=(VARIABLE |
+		//	'nil'))* / * Ajouter ExprSimple * /;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' (valeurs+=VARIABLE | nil+=Nil2) (',' (valeurs+=VARIABLE |
-		//nil+=Nil2))*
+		//affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=(VARIABLE | 'nil') (',' valeurs+=(VARIABLE | 'nil'))*
 		public Group getGroup() { return cGroup; }
 		
 		//affectations+=VARIABLE
@@ -250,41 +247,35 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//':='
 		public Keyword getColonEqualsSignKeyword_2() { return cColonEqualsSignKeyword_2; }
 		
-		//(valeurs+=VARIABLE | nil+=Nil2)
-		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		//valeurs+=(VARIABLE | 'nil')
+		public Assignment getValeursAssignment_3() { return cValeursAssignment_3; }
 		
-		//valeurs+=VARIABLE
-		public Assignment getValeursAssignment_3_0() { return cValeursAssignment_3_0; }
+		//(VARIABLE | 'nil')
+		public Alternatives getValeursAlternatives_3_0() { return cValeursAlternatives_3_0; }
 		
 		//VARIABLE
 		public RuleCall getValeursVARIABLETerminalRuleCall_3_0_0() { return cValeursVARIABLETerminalRuleCall_3_0_0; }
 		
-		//nil+=Nil2
-		public Assignment getNilAssignment_3_1() { return cNilAssignment_3_1; }
+		//'nil'
+		public Keyword getValeursNilKeyword_3_0_1() { return cValeursNilKeyword_3_0_1; }
 		
-		//Nil2
-		public RuleCall getNilNil2ParserRuleCall_3_1_0() { return cNilNil2ParserRuleCall_3_1_0; }
-		
-		//(',' (valeurs+=VARIABLE | nil+=Nil2))*
+		//(',' valeurs+=(VARIABLE | 'nil'))*
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//','
 		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
 		
-		//(valeurs+=VARIABLE | nil+=Nil2)
-		public Alternatives getAlternatives_4_1() { return cAlternatives_4_1; }
+		//valeurs+=(VARIABLE | 'nil')
+		public Assignment getValeursAssignment_4_1() { return cValeursAssignment_4_1; }
 		
-		//valeurs+=VARIABLE
-		public Assignment getValeursAssignment_4_1_0() { return cValeursAssignment_4_1_0; }
+		//(VARIABLE | 'nil')
+		public Alternatives getValeursAlternatives_4_1_0() { return cValeursAlternatives_4_1_0; }
 		
 		//VARIABLE
 		public RuleCall getValeursVARIABLETerminalRuleCall_4_1_0_0() { return cValeursVARIABLETerminalRuleCall_4_1_0_0; }
 		
-		//nil+=Nil2
-		public Assignment getNilAssignment_4_1_1() { return cNilAssignment_4_1_1; }
-		
-		//Nil2
-		public RuleCall getNilNil2ParserRuleCall_4_1_1_0() { return cNilNil2ParserRuleCall_4_1_1_0; }
+		//'nil'
+		public Keyword getValeursNilKeyword_4_1_0_1() { return cValeursNilKeyword_4_1_0_1; }
 	}
 	public class NopElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "esir.compilation.WhileComp.Nop");
@@ -1354,8 +1345,8 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	/// * Commandes * / Affectation:
-	//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' (valeurs+=VARIABLE | nil+=Nil2) (',' (valeurs+=VARIABLE |
-	//	nil+=Nil2))* / * Ajouter ExprSimple * /;
+	//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=(VARIABLE | 'nil') (',' valeurs+=(VARIABLE |
+	//	'nil'))* / * Ajouter ExprSimple * /;
 	public AffectationElements getAffectationAccess() {
 		return pAffectation;
 	}

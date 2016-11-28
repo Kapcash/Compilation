@@ -35,8 +35,8 @@ public class WhileCompParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getAffectationAccess().getAlternatives_3(), "rule__Affectation__Alternatives_3");
-					put(grammarAccess.getAffectationAccess().getAlternatives_4_1(), "rule__Affectation__Alternatives_4_1");
+					put(grammarAccess.getAffectationAccess().getValeursAlternatives_3_0(), "rule__Affectation__ValeursAlternatives_3_0");
+					put(grammarAccess.getAffectationAccess().getValeursAlternatives_4_1_0(), "rule__Affectation__ValeursAlternatives_4_1_0");
 					put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
 					put(grammarAccess.getExprAccess().getAlternatives(), "rule__Expr__Alternatives");
 					put(grammarAccess.getExprAndAccess().getAlternatives(), "rule__ExprAnd__Alternatives");
@@ -92,10 +92,8 @@ public class WhileCompParser extends AbstractContentAssistParser {
 					put(grammarAccess.getWriteAccess().getVariableAssignment_2_1(), "rule__Write__VariableAssignment_2_1");
 					put(grammarAccess.getAffectationAccess().getAffectationsAssignment_0(), "rule__Affectation__AffectationsAssignment_0");
 					put(grammarAccess.getAffectationAccess().getAffectationsAssignment_1_1(), "rule__Affectation__AffectationsAssignment_1_1");
-					put(grammarAccess.getAffectationAccess().getValeursAssignment_3_0(), "rule__Affectation__ValeursAssignment_3_0");
-					put(grammarAccess.getAffectationAccess().getNilAssignment_3_1(), "rule__Affectation__NilAssignment_3_1");
-					put(grammarAccess.getAffectationAccess().getValeursAssignment_4_1_0(), "rule__Affectation__ValeursAssignment_4_1_0");
-					put(grammarAccess.getAffectationAccess().getNilAssignment_4_1_1(), "rule__Affectation__NilAssignment_4_1_1");
+					put(grammarAccess.getAffectationAccess().getValeursAssignment_3(), "rule__Affectation__ValeursAssignment_3");
+					put(grammarAccess.getAffectationAccess().getValeursAssignment_4_1(), "rule__Affectation__ValeursAssignment_4_1");
 					put(grammarAccess.getNopAccess().getNopAssignment(), "rule__Nop__NopAssignment");
 					put(grammarAccess.getCommandsAccess().getCommandAssignment_0(), "rule__Commands__CommandAssignment_0");
 					put(grammarAccess.getCommandsAccess().getCommandsAssignment_1_1(), "rule__Commands__CommandsAssignment_1_1");

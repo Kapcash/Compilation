@@ -153,7 +153,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Affectation returns Affectation
 	 *
 	 * Constraint:
-	 *     (affectations+=VARIABLE affectations+=VARIABLE* (valeurs+=VARIABLE | nil+=Nil2) valeurs+=VARIABLE? (nil+=Nil2? valeurs+=VARIABLE?)*)
+	 *     (affectations+=VARIABLE affectations+=VARIABLE* (valeurs+=VARIABLE | valeurs+='nil') valeurs+=VARIABLE? (valeurs+='nil'? valeurs+=VARIABLE?)*)
 	 */
 	protected void sequence_Affectation(ISerializationContext context, Affectation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

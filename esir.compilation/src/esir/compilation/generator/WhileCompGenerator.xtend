@@ -82,28 +82,28 @@ class WhileCompGenerator extends AbstractGenerator {
 		«ENDIF»
 		«IF c.command instanceof For»
 			For «(c.command as For).expr.compile»	do
-			«(c.command as For).commands.compile»
+				«(c.command as For).commands.compile»
 			«"	"»od
 		«ENDIF»
 		«IF c.command instanceof Foreach»
 			foreach «(c.command as Foreach).expr1.compile» in «(c.command as Foreach).expr2.compile»	do
-			«(c.command as Foreach).commands.compile»
+				«(c.command as Foreach).commands.compile»
 			«"	"»od
 		«ENDIF»
 		«IF c.command instanceof If»
 			if «(c.command as If).expr.compile» 
-			then 
-			«(c.command as If).commands1.compile»
+			«"	"»then 
+				«(c.command as If).commands1.compile»
 			«IF (c.command as If).commands2 != null» 
 			«"	"»else 
-			«(c.command as If).commands2.compile»
+				«(c.command as If).commands2.compile»
 			«ENDIF»
 			«"	"»fi
  		«ENDIF»
 		'''
 	}
 	
-	def compile(Affectation aff){
+	def compile(Affectation aff){ // Bug avec les nil
 		'''
 		«FOR v: aff.affectations SEPARATOR ' ,'»«v»«ENDFOR» := «FOR v: aff.valeurs SEPARATOR ' ,'»«v»«ENDFOR»
 		'''	

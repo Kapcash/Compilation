@@ -473,16 +473,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAffectation_Nil()
-  {
-    return (EReference)affectationEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getNop()
   {
     return nopEClass;
@@ -1209,7 +1199,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     affectationEClass = createEClass(AFFECTATION);
     createEAttribute(affectationEClass, AFFECTATION__AFFECTATIONS);
     createEAttribute(affectationEClass, AFFECTATION__VALEURS);
-    createEReference(affectationEClass, AFFECTATION__NIL);
 
     nopEClass = createEClass(NOP);
     createEAttribute(nopEClass, NOP__NOP);
@@ -1354,7 +1343,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEClass(affectationEClass, Affectation.class, "Affectation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAffectation_Affectations(), ecorePackage.getEString(), "affectations", null, 0, -1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAffectation_Valeurs(), ecorePackage.getEString(), "valeurs", null, 0, -1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAffectation_Nil(), this.getNil2(), null, "nil", null, 0, -1, Affectation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(nopEClass, Nop.class, "Nop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNop_Nop(), ecorePackage.getEString(), "nop", null, 0, 1, Nop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

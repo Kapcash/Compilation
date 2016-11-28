@@ -253,22 +253,13 @@ public interface WhileCompPackage extends EPackage
   int AFFECTATION__VALEURS = 1;
 
   /**
-   * The feature id for the '<em><b>Nil</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AFFECTATION__NIL = 2;
-
-  /**
    * The number of structural features of the '<em>Affectation</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AFFECTATION_FEATURE_COUNT = 3;
+  int AFFECTATION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link esir.compilation.whileComp.impl.NopImpl <em>Nop</em>}' class.
@@ -1274,17 +1265,6 @@ public interface WhileCompPackage extends EPackage
   EAttribute getAffectation_Valeurs();
 
   /**
-   * Returns the meta object for the containment reference list '{@link esir.compilation.whileComp.Affectation#getNil <em>Nil</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Nil</em>'.
-   * @see esir.compilation.whileComp.Affectation#getNil()
-   * @see #getAffectation()
-   * @generated
-   */
-  EReference getAffectation_Nil();
-
-  /**
    * Returns the meta object for class '{@link esir.compilation.whileComp.Nop <em>Nop</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2172,14 +2152,6 @@ public interface WhileCompPackage extends EPackage
      * @generated
      */
     EAttribute AFFECTATION__VALEURS = eINSTANCE.getAffectation_Valeurs();
-
-    /**
-     * The meta object literal for the '<em><b>Nil</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AFFECTATION__NIL = eINSTANCE.getAffectation_Nil();
 
     /**
      * The meta object literal for the '{@link esir.compilation.whileComp.impl.NopImpl <em>Nop</em>}' class.

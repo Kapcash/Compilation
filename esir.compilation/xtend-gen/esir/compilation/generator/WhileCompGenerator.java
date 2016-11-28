@@ -206,10 +206,11 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append(_compile_3, "");
         _builder.append("\tdo");
         _builder.newLineIfNotEmpty();
+        _builder.append("\t");
         EObject _command_8 = c.getCommand();
         Commands _commands_1 = ((For) _command_8).getCommands();
         Object _compile_4 = this.compile(_commands_1);
-        _builder.append(_compile_4, "");
+        _builder.append(_compile_4, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t", "");
         _builder.append("od");
@@ -231,10 +232,11 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append(_compile_6, "");
         _builder.append("\tdo");
         _builder.newLineIfNotEmpty();
+        _builder.append("\t");
         EObject _command_12 = c.getCommand();
         Commands _commands_2 = ((Foreach) _command_12).getCommands();
         Object _compile_7 = this.compile(_commands_2);
-        _builder.append(_compile_7, "");
+        _builder.append(_compile_7, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t", "");
         _builder.append("od");
@@ -251,12 +253,14 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append(_compile_8, "");
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
+        _builder.append("\t", "");
         _builder.append("then ");
-        _builder.newLine();
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
         EObject _command_15 = c.getCommand();
         Commands _commands1 = ((If) _command_15).getCommands1();
         Object _compile_9 = this.compile(_commands1);
-        _builder.append(_compile_9, "");
+        _builder.append(_compile_9, "\t");
         _builder.newLineIfNotEmpty();
         {
           EObject _command_16 = c.getCommand();
@@ -266,10 +270,11 @@ public class WhileCompGenerator extends AbstractGenerator {
             _builder.append("\t", "");
             _builder.append("else ");
             _builder.newLineIfNotEmpty();
+            _builder.append("\t");
             EObject _command_17 = c.getCommand();
             Commands _commands2_1 = ((If) _command_17).getCommands2();
             Object _compile_10 = this.compile(_commands2_1);
-            _builder.append(_compile_10, "");
+            _builder.append(_compile_10, "\t");
             _builder.newLineIfNotEmpty();
           }
         }

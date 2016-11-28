@@ -4,23 +4,17 @@
 package esir.compilation.whileComp.impl;
 
 import esir.compilation.whileComp.Affectation;
-import esir.compilation.whileComp.Nil2;
 import esir.compilation.whileComp.WhileCompPackage;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +26,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getAffectations <em>Affectations</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getValeurs <em>Valeurs</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getNil <em>Nil</em>}</li>
  * </ul>
  *
  * @generated
@@ -58,16 +51,6 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * @ordered
    */
   protected EList<String> valeurs;
-
-  /**
-   * The cached value of the '{@link #getNil() <em>Nil</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getNil()
-   * @generated
-   * @ordered
-   */
-  protected EList<Nil2> nil;
 
   /**
    * <!-- begin-user-doc -->
@@ -123,36 +106,6 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Nil2> getNil()
-  {
-    if (nil == null)
-    {
-      nil = new EObjectContainmentEList<Nil2>(Nil2.class, this, WhileCompPackage.AFFECTATION__NIL);
-    }
-    return nil;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case WhileCompPackage.AFFECTATION__NIL:
-        return ((InternalEList<?>)getNil()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -162,8 +115,6 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
         return getAffectations();
       case WhileCompPackage.AFFECTATION__VALEURS:
         return getValeurs();
-      case WhileCompPackage.AFFECTATION__NIL:
-        return getNil();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -187,10 +138,6 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
         getValeurs().clear();
         getValeurs().addAll((Collection<? extends String>)newValue);
         return;
-      case WhileCompPackage.AFFECTATION__NIL:
-        getNil().clear();
-        getNil().addAll((Collection<? extends Nil2>)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -211,9 +158,6 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
       case WhileCompPackage.AFFECTATION__VALEURS:
         getValeurs().clear();
         return;
-      case WhileCompPackage.AFFECTATION__NIL:
-        getNil().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -232,8 +176,6 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
         return affectations != null && !affectations.isEmpty();
       case WhileCompPackage.AFFECTATION__VALEURS:
         return valeurs != null && !valeurs.isEmpty();
-      case WhileCompPackage.AFFECTATION__NIL:
-        return nil != null && !nil.isEmpty();
     }
     return super.eIsSet(featureID);
   }

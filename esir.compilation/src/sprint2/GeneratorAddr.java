@@ -141,7 +141,8 @@ public class GeneratorAddr {
 	}
 	
 	public void iterateAST(Affectation aff){
-		
+		EList<String> affs = aff.getAffectations();
+		EList<String> vals = aff.getValeurs();
 	}
 	
 }

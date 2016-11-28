@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link esir.compilation.whileComp.Affectation#getAffectations <em>Affectations</em>}</li>
  *   <li>{@link esir.compilation.whileComp.Affectation#getValeurs <em>Valeurs</em>}</li>
- *   <li>{@link esir.compilation.whileComp.Affectation#getNil <em>Nil</em>}</li>
  * </ul>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getAffectation()
@@ -58,21 +57,5 @@ public interface Affectation extends EObject
    * @generated
    */
   EList<String> getValeurs();
-
-  /**
-   * Returns the value of the '<em><b>Nil</b></em>' containment reference list.
-   * The list contents are of type {@link esir.compilation.whileComp.Nil2}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Nil</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Nil</em>' containment reference list.
-   * @see esir.compilation.whileComp.WhileCompPackage#getAffectation_Nil()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Nil2> getNil();
 
 } // Affectation

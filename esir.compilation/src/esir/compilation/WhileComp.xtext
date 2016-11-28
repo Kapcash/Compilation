@@ -32,7 +32,7 @@ Write :
 /* Commandes */
 
 Affectation:
-	affectations += VARIABLE (',' affectations += VARIABLE)* ':=' (valeurs += VARIABLE | nil += Nil2) (',' (valeurs += VARIABLE | nil += Nil2))* /* Ajouter ExprSimple */
+	affectations += VARIABLE (',' affectations += VARIABLE)* ':=' valeurs += (VARIABLE|'nil') (',' valeurs += (VARIABLE|'nil'))* /* Ajouter ExprSimple */
 ;
 
 Nop:

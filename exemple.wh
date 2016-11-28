@@ -6,11 +6,7 @@ function id:
 		nop
 		while Var
 			do 
-	Ret:=A;
-			while Test do Ret:=UiUiUi od;
-			Ret:=A;
-			while Test do Ret:=A;
-			while Test do for Condition do nop od od od
+	Ret:=A
 		od
 %
 		write 

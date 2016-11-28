@@ -179,17 +179,17 @@ ruleDefinition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDefinitionAccess().getReadsReadParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDefinitionAccess().getReadReadParserRuleCall_0_0());
 				}
-				lv_reads_0_0=ruleRead
+				lv_read_0_0=ruleRead
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDefinitionRule());
 					}
-					add(
+					set(
 						$current,
-						"reads",
-						lv_reads_0_0,
+						"read",
+						lv_read_0_0,
 						"org.xtext.compilation.WhileComp.Read");
 					afterParserOrEnumRuleCall();
 				}
@@ -225,17 +225,17 @@ ruleDefinition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDefinitionAccess().getWritesWriteParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getDefinitionAccess().getWriteWriteParserRuleCall_4_0());
 				}
-				lv_writes_4_0=ruleWrite
+				lv_write_4_0=ruleWrite
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDefinitionRule());
 					}
-					add(
+					set(
 						$current,
-						"writes",
-						lv_writes_4_0,
+						"write",
+						lv_write_4_0,
 						"org.xtext.compilation.WhileComp.Write");
 					afterParserOrEnumRuleCall();
 				}
@@ -513,168 +513,6 @@ ruleNil2 returns [EObject current=null]
 				}
 				setWithLastConsumed($current, "nil", lv_nil_0_0, "nil");
 			}
-		)
-	)
-;
-
-// Entry rule entryRuleInput
-entryRuleInput returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInputRule()); }
-	iv_ruleInput=ruleInput
-	{ $current=$iv_ruleInput.current; }
-	EOF;
-
-// Rule Input
-ruleInput returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				(
-					lv_variable_0_0=RULE_VARIABLE
-					{
-						newLeafNode(lv_variable_0_0, grammarAccess.getInputAccess().getVariableVARIABLETerminalRuleCall_0_0_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getInputRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"variable",
-							lv_variable_0_0,
-							"org.xtext.compilation.WhileComp.VARIABLE");
-					}
-				)
-			)
-			otherlv_1=','
-			{
-				newLeafNode(otherlv_1, grammarAccess.getInputAccess().getCommaKeyword_0_1());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getInputAccess().getInputInputParserRuleCall_0_2_0());
-					}
-					lv_input_2_0=ruleInput
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getInputRule());
-						}
-						set(
-							$current,
-							"input",
-							lv_input_2_0,
-							"org.xtext.compilation.WhileComp.Input");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)
-		    |
-		(
-			(
-				lv_variable_3_0=RULE_VARIABLE
-				{
-					newLeafNode(lv_variable_3_0, grammarAccess.getInputAccess().getVariableVARIABLETerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getInputRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"variable",
-						lv_variable_3_0,
-						"org.xtext.compilation.WhileComp.VARIABLE");
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleOutput
-entryRuleOutput returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOutputRule()); }
-	iv_ruleOutput=ruleOutput
-	{ $current=$iv_ruleOutput.current; }
-	EOF;
-
-// Rule Output
-ruleOutput returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				(
-					lv_variable_0_0=RULE_VARIABLE
-					{
-						newLeafNode(lv_variable_0_0, grammarAccess.getOutputAccess().getVariableVARIABLETerminalRuleCall_0_0_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getOutputRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"variable",
-							lv_variable_0_0,
-							"org.xtext.compilation.WhileComp.VARIABLE");
-					}
-				)
-			)
-			otherlv_1=','
-			{
-				newLeafNode(otherlv_1, grammarAccess.getOutputAccess().getCommaKeyword_0_1());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getOutputAccess().getOutputOutputParserRuleCall_0_2_0());
-					}
-					lv_output_2_0=ruleOutput
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getOutputRule());
-						}
-						set(
-							$current,
-							"output",
-							lv_output_2_0,
-							"org.xtext.compilation.WhileComp.Output");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)
-		    |
-		(
-			(
-				lv_variable_3_0=RULE_VARIABLE
-				{
-					newLeafNode(lv_variable_3_0, grammarAccess.getOutputAccess().getVariableVARIABLETerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOutputRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"variable",
-						lv_variable_3_0,
-						"org.xtext.compilation.WhileComp.VARIABLE");
-				}
-			)
 		)
 	)
 ;

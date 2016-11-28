@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.Definition#getReads <em>Reads</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Definition#getRead <em>Read</em>}</li>
  *   <li>{@link org.xtext.compilation.whileComp.Definition#getCommands <em>Commands</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.Definition#getWrites <em>Writes</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.Definition#getWrite <em>Write</em>}</li>
  * </ul>
  *
  * @see org.xtext.compilation.whileComp.WhileCompPackage#getDefinition()
@@ -28,20 +28,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface Definition extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Reads</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.compilation.whileComp.Read}.
+   * Returns the value of the '<em><b>Read</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Reads</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Read</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Reads</em>' containment reference list.
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getDefinition_Reads()
+   * @return the value of the '<em>Read</em>' containment reference.
+   * @see #setRead(Read)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getDefinition_Read()
    * @model containment="true"
    * @generated
    */
-  EList<Read> getReads();
+  Read getRead();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Definition#getRead <em>Read</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Read</em>' containment reference.
+   * @see #getRead()
+   * @generated
+   */
+  void setRead(Read value);
 
   /**
    * Returns the value of the '<em><b>Commands</b></em>' containment reference list.
@@ -60,19 +70,29 @@ public interface Definition extends EObject
   EList<Command> getCommands();
 
   /**
-   * Returns the value of the '<em><b>Writes</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.compilation.whileComp.Write}.
+   * Returns the value of the '<em><b>Write</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Writes</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Write</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Writes</em>' containment reference list.
-   * @see org.xtext.compilation.whileComp.WhileCompPackage#getDefinition_Writes()
+   * @return the value of the '<em>Write</em>' containment reference.
+   * @see #setWrite(Write)
+   * @see org.xtext.compilation.whileComp.WhileCompPackage#getDefinition_Write()
    * @model containment="true"
    * @generated
    */
-  EList<Write> getWrites();
+  Write getWrite();
+
+  /**
+   * Sets the value of the '{@link org.xtext.compilation.whileComp.Definition#getWrite <em>Write</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Write</em>' containment reference.
+   * @see #getWrite()
+   * @generated
+   */
+  void setWrite(Write value);
 
 } // Definition

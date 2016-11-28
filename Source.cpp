@@ -88,12 +88,13 @@ int main(int argc, char *argv[]) {
 	
 	int status = system(cmdLine.c_str());
 
+<<<<<<< .merge_file_a07068
+=======
 	int result;
 	char oldname[] = "Result_output.whpp";
 	result = rename(oldname, arg_fileDest.c_str());
-	if (result != 0) {
-		std::cout << "Erreur" << std::endl;
-	}
-		
+	if (result != 0)
+
+>>>>>>> .merge_file_a07060
 	return 0;
 }

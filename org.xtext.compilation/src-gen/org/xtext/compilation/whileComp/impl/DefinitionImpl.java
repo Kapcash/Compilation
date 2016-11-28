@@ -5,6 +5,7 @@ package org.xtext.compilation.whileComp.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -31,9 +33,9 @@ import org.xtext.compilation.whileComp.Write;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.compilation.whileComp.impl.DefinitionImpl#getReads <em>Reads</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.DefinitionImpl#getRead <em>Read</em>}</li>
  *   <li>{@link org.xtext.compilation.whileComp.impl.DefinitionImpl#getCommands <em>Commands</em>}</li>
- *   <li>{@link org.xtext.compilation.whileComp.impl.DefinitionImpl#getWrites <em>Writes</em>}</li>
+ *   <li>{@link org.xtext.compilation.whileComp.impl.DefinitionImpl#getWrite <em>Write</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,14 +43,14 @@ import org.xtext.compilation.whileComp.Write;
 public class DefinitionImpl extends MinimalEObjectImpl.Container implements Definition
 {
   /**
-   * The cached value of the '{@link #getReads() <em>Reads</em>}' containment reference list.
+   * The cached value of the '{@link #getRead() <em>Read</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getReads()
+   * @see #getRead()
    * @generated
    * @ordered
    */
-  protected EList<Read> reads;
+  protected Read read;
 
   /**
    * The cached value of the '{@link #getCommands() <em>Commands</em>}' containment reference list.
@@ -61,14 +63,14 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   protected EList<Command> commands;
 
   /**
-   * The cached value of the '{@link #getWrites() <em>Writes</em>}' containment reference list.
+   * The cached value of the '{@link #getWrite() <em>Write</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getWrites()
+   * @see #getWrite()
    * @generated
    * @ordered
    */
-  protected EList<Write> writes;
+  protected Write write;
 
   /**
    * <!-- begin-user-doc -->
@@ -96,13 +98,47 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Read> getReads()
+  public Read getRead()
   {
-    if (reads == null)
+    return read;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetRead(Read newRead, NotificationChain msgs)
+  {
+    Read oldRead = read;
+    read = newRead;
+    if (eNotificationRequired())
     {
-      reads = new EObjectContainmentEList<Read>(Read.class, this, WhileCompPackage.DEFINITION__READS);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.DEFINITION__READ, oldRead, newRead);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return reads;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRead(Read newRead)
+  {
+    if (newRead != read)
+    {
+      NotificationChain msgs = null;
+      if (read != null)
+        msgs = ((InternalEObject)read).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.DEFINITION__READ, null, msgs);
+      if (newRead != null)
+        msgs = ((InternalEObject)newRead).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.DEFINITION__READ, null, msgs);
+      msgs = basicSetRead(newRead, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.DEFINITION__READ, newRead, newRead));
   }
 
   /**
@@ -124,13 +160,47 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Write> getWrites()
+  public Write getWrite()
   {
-    if (writes == null)
+    return write;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetWrite(Write newWrite, NotificationChain msgs)
+  {
+    Write oldWrite = write;
+    write = newWrite;
+    if (eNotificationRequired())
     {
-      writes = new EObjectContainmentEList<Write>(Write.class, this, WhileCompPackage.DEFINITION__WRITES);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.DEFINITION__WRITE, oldWrite, newWrite);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return writes;
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setWrite(Write newWrite)
+  {
+    if (newWrite != write)
+    {
+      NotificationChain msgs = null;
+      if (write != null)
+        msgs = ((InternalEObject)write).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.DEFINITION__WRITE, null, msgs);
+      if (newWrite != null)
+        msgs = ((InternalEObject)newWrite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.DEFINITION__WRITE, null, msgs);
+      msgs = basicSetWrite(newWrite, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.DEFINITION__WRITE, newWrite, newWrite));
   }
 
   /**
@@ -143,12 +213,12 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case WhileCompPackage.DEFINITION__READS:
-        return ((InternalEList<?>)getReads()).basicRemove(otherEnd, msgs);
+      case WhileCompPackage.DEFINITION__READ:
+        return basicSetRead(null, msgs);
       case WhileCompPackage.DEFINITION__COMMANDS:
         return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
-      case WhileCompPackage.DEFINITION__WRITES:
-        return ((InternalEList<?>)getWrites()).basicRemove(otherEnd, msgs);
+      case WhileCompPackage.DEFINITION__WRITE:
+        return basicSetWrite(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -163,12 +233,12 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case WhileCompPackage.DEFINITION__READS:
-        return getReads();
+      case WhileCompPackage.DEFINITION__READ:
+        return getRead();
       case WhileCompPackage.DEFINITION__COMMANDS:
         return getCommands();
-      case WhileCompPackage.DEFINITION__WRITES:
-        return getWrites();
+      case WhileCompPackage.DEFINITION__WRITE:
+        return getWrite();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -184,17 +254,15 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case WhileCompPackage.DEFINITION__READS:
-        getReads().clear();
-        getReads().addAll((Collection<? extends Read>)newValue);
+      case WhileCompPackage.DEFINITION__READ:
+        setRead((Read)newValue);
         return;
       case WhileCompPackage.DEFINITION__COMMANDS:
         getCommands().clear();
         getCommands().addAll((Collection<? extends Command>)newValue);
         return;
-      case WhileCompPackage.DEFINITION__WRITES:
-        getWrites().clear();
-        getWrites().addAll((Collection<? extends Write>)newValue);
+      case WhileCompPackage.DEFINITION__WRITE:
+        setWrite((Write)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -210,14 +278,14 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case WhileCompPackage.DEFINITION__READS:
-        getReads().clear();
+      case WhileCompPackage.DEFINITION__READ:
+        setRead((Read)null);
         return;
       case WhileCompPackage.DEFINITION__COMMANDS:
         getCommands().clear();
         return;
-      case WhileCompPackage.DEFINITION__WRITES:
-        getWrites().clear();
+      case WhileCompPackage.DEFINITION__WRITE:
+        setWrite((Write)null);
         return;
     }
     super.eUnset(featureID);
@@ -233,12 +301,12 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case WhileCompPackage.DEFINITION__READS:
-        return reads != null && !reads.isEmpty();
+      case WhileCompPackage.DEFINITION__READ:
+        return read != null;
       case WhileCompPackage.DEFINITION__COMMANDS:
         return commands != null && !commands.isEmpty();
-      case WhileCompPackage.DEFINITION__WRITES:
-        return writes != null && !writes.isEmpty();
+      case WhileCompPackage.DEFINITION__WRITE:
+        return write != null;
     }
     return super.eIsSet(featureID);
   }

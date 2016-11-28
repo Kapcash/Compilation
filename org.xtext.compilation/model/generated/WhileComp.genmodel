@@ -14,9 +14,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Function/definition"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Definition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Definition/reads"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Definition/read"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Definition/commands"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Definition/writes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Definition/write"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Read">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Read/variable"/>
@@ -34,14 +34,6 @@
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Nil2">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Nil2/nil"/>
-    </genClasses>
-    <genClasses ecoreClass="WhileComp.ecore#//Input">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Input/variable"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Input/input"/>
-    </genClasses>
-    <genClasses ecoreClass="WhileComp.ecore#//Output">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Output/variable"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Output/output"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Commands">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Commands/command"/>

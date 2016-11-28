@@ -75,31 +75,31 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	public class DefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.compilation.WhileComp.Definition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cReadsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cReadsReadParserRuleCall_0_0 = (RuleCall)cReadsAssignment_0.eContents().get(0);
+		private final Assignment cReadAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cReadReadParserRuleCall_0_0 = (RuleCall)cReadAssignment_0.eContents().get(0);
 		private final Keyword cPercentSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cCommandsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCommandsCommandParserRuleCall_2_0 = (RuleCall)cCommandsAssignment_2.eContents().get(0);
 		private final Keyword cPercentSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cWritesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cWritesWriteParserRuleCall_4_0 = (RuleCall)cWritesAssignment_4.eContents().get(0);
+		private final Assignment cWriteAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cWriteWriteParserRuleCall_4_0 = (RuleCall)cWriteAssignment_4.eContents().get(0);
 		
 		//Definition:
-		//	reads+=Read
+		//	read=Read
 		//	'%'
 		//	commands+=Command*
 		//	'%'
-		//	writes+=Write;
+		//	write=Write;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//reads+=Read '%' commands+=Command* '%' writes+=Write
+		//read=Read '%' commands+=Command* '%' write=Write
 		public Group getGroup() { return cGroup; }
 		
-		//reads+=Read
-		public Assignment getReadsAssignment_0() { return cReadsAssignment_0; }
+		//read=Read
+		public Assignment getReadAssignment_0() { return cReadAssignment_0; }
 		
 		//Read
-		public RuleCall getReadsReadParserRuleCall_0_0() { return cReadsReadParserRuleCall_0_0; }
+		public RuleCall getReadReadParserRuleCall_0_0() { return cReadReadParserRuleCall_0_0; }
 		
 		//'%'
 		public Keyword getPercentSignKeyword_1() { return cPercentSignKeyword_1; }
@@ -113,11 +113,11 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//'%'
 		public Keyword getPercentSignKeyword_3() { return cPercentSignKeyword_3; }
 		
-		//writes+=Write
-		public Assignment getWritesAssignment_4() { return cWritesAssignment_4; }
+		//write=Write
+		public Assignment getWriteAssignment_4() { return cWriteAssignment_4; }
 		
 		//Write
-		public RuleCall getWritesWriteParserRuleCall_4_0() { return cWritesWriteParserRuleCall_4_0; }
+		public RuleCall getWriteWriteParserRuleCall_4_0() { return cWriteWriteParserRuleCall_4_0; }
 	}
 	public class ReadElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.compilation.WhileComp.Read");
@@ -270,92 +270,6 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//'nil'
 		public Keyword getNilNilKeyword_0() { return cNilNilKeyword_0; }
 	}
-	public class InputElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.compilation.WhileComp.Input");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cVariableAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cVariableVARIABLETerminalRuleCall_0_0_0 = (RuleCall)cVariableAssignment_0_0.eContents().get(0);
-		private final Keyword cCommaKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cInputAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cInputInputParserRuleCall_0_2_0 = (RuleCall)cInputAssignment_0_2.eContents().get(0);
-		private final Assignment cVariableAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cVariableVARIABLETerminalRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
-		
-		/// * A RETIRER * / Input:
-		//	variable=VARIABLE ',' input=Input | variable=VARIABLE;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//variable=VARIABLE ',' input=Input | variable=VARIABLE
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//variable=VARIABLE ',' input=Input
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//variable=VARIABLE
-		public Assignment getVariableAssignment_0_0() { return cVariableAssignment_0_0; }
-		
-		//VARIABLE
-		public RuleCall getVariableVARIABLETerminalRuleCall_0_0_0() { return cVariableVARIABLETerminalRuleCall_0_0_0; }
-		
-		//','
-		public Keyword getCommaKeyword_0_1() { return cCommaKeyword_0_1; }
-		
-		//input=Input
-		public Assignment getInputAssignment_0_2() { return cInputAssignment_0_2; }
-		
-		//Input
-		public RuleCall getInputInputParserRuleCall_0_2_0() { return cInputInputParserRuleCall_0_2_0; }
-		
-		//variable=VARIABLE
-		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
-		
-		//VARIABLE
-		public RuleCall getVariableVARIABLETerminalRuleCall_1_0() { return cVariableVARIABLETerminalRuleCall_1_0; }
-	}
-	public class OutputElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.compilation.WhileComp.Output");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cVariableAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cVariableVARIABLETerminalRuleCall_0_0_0 = (RuleCall)cVariableAssignment_0_0.eContents().get(0);
-		private final Keyword cCommaKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cOutputAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cOutputOutputParserRuleCall_0_2_0 = (RuleCall)cOutputAssignment_0_2.eContents().get(0);
-		private final Assignment cVariableAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cVariableVARIABLETerminalRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
-		
-		//Output:
-		//	variable=VARIABLE ',' output=Output | variable=VARIABLE;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//variable=VARIABLE ',' output=Output | variable=VARIABLE
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//variable=VARIABLE ',' output=Output
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//variable=VARIABLE
-		public Assignment getVariableAssignment_0_0() { return cVariableAssignment_0_0; }
-		
-		//VARIABLE
-		public RuleCall getVariableVARIABLETerminalRuleCall_0_0_0() { return cVariableVARIABLETerminalRuleCall_0_0_0; }
-		
-		//','
-		public Keyword getCommaKeyword_0_1() { return cCommaKeyword_0_1; }
-		
-		//output=Output
-		public Assignment getOutputAssignment_0_2() { return cOutputAssignment_0_2; }
-		
-		//Output
-		public RuleCall getOutputOutputParserRuleCall_0_2_0() { return cOutputOutputParserRuleCall_0_2_0; }
-		
-		//variable=VARIABLE
-		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
-		
-		//VARIABLE
-		public RuleCall getVariableVARIABLETerminalRuleCall_1_0() { return cVariableVARIABLETerminalRuleCall_1_0; }
-	}
 	public class CommandsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.compilation.WhileComp.Commands");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -366,7 +280,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCommandsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cCommandsCommandParserRuleCall_1_1_0 = (RuleCall)cCommandsAssignment_1_1.eContents().get(0);
 		
-		/// * PEUT-ÊTRE * / Commands:
+		//Commands:
 		//	command=Command (';' commands+=Command)*;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1230,8 +1144,6 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	private final NopElements pNop;
 	private final AffectationElements pAffectation;
 	private final Nil2Elements pNil2;
-	private final InputElements pInput;
-	private final OutputElements pOutput;
 	private final CommandsElements pCommands;
 	private final CommandElements pCommand;
 	private final ForeachElements pForeach;
@@ -1273,8 +1185,6 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		this.pNop = new NopElements();
 		this.pAffectation = new AffectationElements();
 		this.pNil2 = new Nil2Elements();
-		this.pInput = new InputElements();
-		this.pOutput = new OutputElements();
 		this.pCommands = new CommandsElements();
 		this.pCommand = new CommandElements();
 		this.pForeach = new ForeachElements();
@@ -1348,11 +1258,11 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Definition:
-	//	reads+=Read
+	//	read=Read
 	//	'%'
 	//	commands+=Command*
 	//	'%'
-	//	writes+=Write;
+	//	write=Write;
 	public DefinitionElements getDefinitionAccess() {
 		return pDefinition;
 	}
@@ -1411,27 +1321,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		return getNil2Access().getRule();
 	}
 	
-	/// * A RETIRER * / Input:
-	//	variable=VARIABLE ',' input=Input | variable=VARIABLE;
-	public InputElements getInputAccess() {
-		return pInput;
-	}
-	
-	public ParserRule getInputRule() {
-		return getInputAccess().getRule();
-	}
-	
-	//Output:
-	//	variable=VARIABLE ',' output=Output | variable=VARIABLE;
-	public OutputElements getOutputAccess() {
-		return pOutput;
-	}
-	
-	public ParserRule getOutputRule() {
-		return getOutputAccess().getRule();
-	}
-	
-	/// * PEUT-ÊTRE * / Commands:
+	//Commands:
 	//	command=Command (';' commands+=Command)*;
 	public CommandsElements getCommandsAccess() {
 		return pCommands;

@@ -11,11 +11,11 @@ Function:
 ;
 
 Definition:
-	reads += Read
+	read = Read
 	'%'
 	commands+=Command*
 	'%'
-	writes+=Write
+	write = Write
 ;
 
 Read :
@@ -35,15 +35,6 @@ Affectation:
 Nil2:
 	nil='nil'
 ;
-/* A RETIRER */
-Input:
-	(variable=VARIABLE ',' input=Input) | variable=VARIABLE
-;	
-
-Output:
-	(variable=VARIABLE ',' output=Output) | variable=VARIABLE
-;
-/* PEUT-ÊTRE */
 	
 Commands:
 	command=Command (';' commands+=Command)*
@@ -127,7 +118,7 @@ Tl:
 	tl='tl'
 ;
 Lexpr:
-	expr=Expr lexpr=Lexpr?
+	expr=Expr lexpr=Lexpr
 ;
 
 terminal VARIABLE:

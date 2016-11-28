@@ -27,13 +27,11 @@ import org.xtext.compilation.whileComp.Foreach;
 import org.xtext.compilation.whileComp.Function;
 import org.xtext.compilation.whileComp.Hd;
 import org.xtext.compilation.whileComp.If;
-import org.xtext.compilation.whileComp.Input;
 import org.xtext.compilation.whileComp.Lexpr;
 import org.xtext.compilation.whileComp.List;
 import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Nop;
 import org.xtext.compilation.whileComp.Not;
-import org.xtext.compilation.whileComp.Output;
 import org.xtext.compilation.whileComp.Program;
 import org.xtext.compilation.whileComp.Read;
 import org.xtext.compilation.whileComp.Tl;
@@ -106,20 +104,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * @generated
    */
   private EClass nil2EClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass inputEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass outputEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -389,7 +373,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDefinition_Reads()
+  public EReference getDefinition_Read()
   {
     return (EReference)definitionEClass.getEStructuralFeatures().get(0);
   }
@@ -409,7 +393,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDefinition_Writes()
+  public EReference getDefinition_Write()
   {
     return (EReference)definitionEClass.getEStructuralFeatures().get(2);
   }
@@ -532,66 +516,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
   public EAttribute getNil2_Nil()
   {
     return (EAttribute)nil2EClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getInput()
-  {
-    return inputEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getInput_Variable()
-  {
-    return (EAttribute)inputEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getInput_Input()
-  {
-    return (EReference)inputEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getOutput()
-  {
-    return outputEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getOutput_Variable()
-  {
-    return (EAttribute)outputEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getOutput_Output()
-  {
-    return (EReference)outputEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1272,9 +1196,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     createEReference(functionEClass, FUNCTION__DEFINITION);
 
     definitionEClass = createEClass(DEFINITION);
-    createEReference(definitionEClass, DEFINITION__READS);
+    createEReference(definitionEClass, DEFINITION__READ);
     createEReference(definitionEClass, DEFINITION__COMMANDS);
-    createEReference(definitionEClass, DEFINITION__WRITES);
+    createEReference(definitionEClass, DEFINITION__WRITE);
 
     readEClass = createEClass(READ);
     createEAttribute(readEClass, READ__VARIABLE);
@@ -1292,14 +1216,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
 
     nil2EClass = createEClass(NIL2);
     createEAttribute(nil2EClass, NIL2__NIL);
-
-    inputEClass = createEClass(INPUT);
-    createEAttribute(inputEClass, INPUT__VARIABLE);
-    createEReference(inputEClass, INPUT__INPUT);
-
-    outputEClass = createEClass(OUTPUT);
-    createEAttribute(outputEClass, OUTPUT__VARIABLE);
-    createEReference(outputEClass, OUTPUT__OUTPUT);
 
     commandsEClass = createEClass(COMMANDS);
     createEReference(commandsEClass, COMMANDS__COMMAND);
@@ -1425,9 +1341,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEReference(getFunction_Definition(), this.getDefinition(), null, "definition", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDefinition_Reads(), this.getRead(), null, "reads", null, 0, -1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDefinition_Read(), this.getRead(), null, "read", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDefinition_Commands(), this.getCommand(), null, "commands", null, 0, -1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDefinition_Writes(), this.getWrite(), null, "writes", null, 0, -1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDefinition_Write(), this.getWrite(), null, "write", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(readEClass, Read.class, "Read", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRead_Variable(), ecorePackage.getEString(), "variable", null, 0, -1, Read.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1445,14 +1361,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
 
     initEClass(nil2EClass, Nil2.class, "Nil2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNil2_Nil(), ecorePackage.getEString(), "nil", null, 0, 1, Nil2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInput_Variable(), ecorePackage.getEString(), "variable", null, 0, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInput_Input(), this.getInput(), null, "input", null, 0, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(outputEClass, Output.class, "Output", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getOutput_Variable(), ecorePackage.getEString(), "variable", null, 0, 1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getOutput_Output(), this.getOutput(), null, "output", null, 0, 1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commandsEClass, Commands.class, "Commands", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCommands_Command(), this.getCommand(), null, "command", null, 0, 1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

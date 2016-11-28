@@ -12,12 +12,11 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reads" upperBound="-1"
-        eType="#//Read" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="read" eType="#//Read" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
         eType="#//Command" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="writes" upperBound="-1"
-        eType="#//Write" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="write" eType="#//Write"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Read">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" unique="false"
@@ -37,16 +36,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Nil2">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nil" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Input">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="#//Input"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Output">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="output" eType="#//Output"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Commands">
     <eStructuralFeatures xsi:type="ecore:EReference" name="command" eType="#//Command"

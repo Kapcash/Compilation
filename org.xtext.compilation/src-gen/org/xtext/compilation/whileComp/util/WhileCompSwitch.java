@@ -129,20 +129,6 @@ public class WhileCompSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileCompPackage.INPUT:
-      {
-        Input input = (Input)theEObject;
-        T result = caseInput(input);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case WhileCompPackage.OUTPUT:
-      {
-        Output output = (Output)theEObject;
-        T result = caseOutput(output);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case WhileCompPackage.COMMANDS:
       {
         Commands commands = (Commands)theEObject;
@@ -411,38 +397,6 @@ public class WhileCompSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNil2(Nil2 object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Input</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Input</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInput(Input object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Output</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Output</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseOutput(Output object)
   {
     return null;
   }

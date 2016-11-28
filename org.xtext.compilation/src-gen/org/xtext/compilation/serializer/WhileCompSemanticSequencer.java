@@ -32,13 +32,11 @@ import org.xtext.compilation.whileComp.Foreach;
 import org.xtext.compilation.whileComp.Function;
 import org.xtext.compilation.whileComp.Hd;
 import org.xtext.compilation.whileComp.If;
-import org.xtext.compilation.whileComp.Input;
 import org.xtext.compilation.whileComp.Lexpr;
 import org.xtext.compilation.whileComp.List;
 import org.xtext.compilation.whileComp.Nil2;
 import org.xtext.compilation.whileComp.Nop;
 import org.xtext.compilation.whileComp.Not;
-import org.xtext.compilation.whileComp.Output;
 import org.xtext.compilation.whileComp.Program;
 import org.xtext.compilation.whileComp.Read;
 import org.xtext.compilation.whileComp.Tl;
@@ -112,9 +110,6 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case WhileCompPackage.IF:
 				sequence_If(context, (If) semanticObject); 
 				return; 
-			case WhileCompPackage.INPUT:
-				sequence_Input(context, (Input) semanticObject); 
-				return; 
 			case WhileCompPackage.LEXPR:
 				sequence_Lexpr(context, (Lexpr) semanticObject); 
 				return; 
@@ -129,9 +124,6 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case WhileCompPackage.NOT:
 				sequence_Not(context, (Not) semanticObject); 
-				return; 
-			case WhileCompPackage.OUTPUT:
-				sequence_Output(context, (Output) semanticObject); 
 				return; 
 			case WhileCompPackage.PROGRAM:
 				sequence_Program(context, (Program) semanticObject); 
@@ -222,7 +214,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Definition returns Definition
 	 *
 	 * Constraint:
-	 *     (reads+=Read commands+=Command* writes+=Write)
+	 *     (read=Read commands+=Command* write=Write)
 	 */
 	protected void sequence_Definition(ISerializationContext context, Definition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -420,18 +412,6 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     Input returns Input
-	 *
-	 * Constraint:
-	 *     ((variable=VARIABLE input=Input) | variable=VARIABLE)
-	 */
-	protected void sequence_Input(ISerializationContext context, Input semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Lexpr returns Lexpr
 	 *
 	 * Constraint:
@@ -520,18 +500,6 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getNotAccess().getNotExclamationMarkKeyword_0(), semanticObject.getNot());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Output returns Output
-	 *
-	 * Constraint:
-	 *     ((variable=VARIABLE output=Output) | variable=VARIABLE)
-	 */
-	protected void sequence_Output(ISerializationContext context, Output semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

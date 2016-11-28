@@ -73,8 +73,6 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
       case WhileCompPackage.NOP: return createNop();
       case WhileCompPackage.AFFECTATION: return createAffectation();
       case WhileCompPackage.NIL2: return createNil2();
-      case WhileCompPackage.INPUT: return createInput();
-      case WhileCompPackage.OUTPUT: return createOutput();
       case WhileCompPackage.COMMANDS: return createCommands();
       case WhileCompPackage.COMMAND: return createCommand();
       case WhileCompPackage.FOREACH: return createForeach();
@@ -186,28 +184,6 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
   {
     Nil2Impl nil2 = new Nil2Impl();
     return nil2;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Input createInput()
-  {
-    InputImpl input = new InputImpl();
-    return input;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Output createOutput()
-  {
-    OutputImpl output = new OutputImpl();
-    return output;
   }
 
   /**

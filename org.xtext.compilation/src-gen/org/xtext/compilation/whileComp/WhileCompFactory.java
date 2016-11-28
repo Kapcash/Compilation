@@ -96,24 +96,6 @@ public interface WhileCompFactory extends EFactory
   Nil2 createNil2();
 
   /**
-   * Returns a new object of class '<em>Input</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Input</em>'.
-   * @generated
-   */
-  Input createInput();
-
-  /**
-   * Returns a new object of class '<em>Output</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Output</em>'.
-   * @generated
-   */
-  Output createOutput();
-
-  /**
    * Returns a new object of class '<em>Commands</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

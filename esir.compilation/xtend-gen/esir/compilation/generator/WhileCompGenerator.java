@@ -8,6 +8,7 @@ import com.google.common.collect.Iterables;
 import esir.compilation.whileComp.Affectation;
 import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
+import esir.compilation.whileComp.Cons;
 import esir.compilation.whileComp.Definition;
 import esir.compilation.whileComp.Expr;
 import esir.compilation.whileComp.ExprAnd;
@@ -15,12 +16,19 @@ import esir.compilation.whileComp.ExprEq;
 import esir.compilation.whileComp.ExprNot;
 import esir.compilation.whileComp.ExprOr;
 import esir.compilation.whileComp.ExprSimple;
+import esir.compilation.whileComp.For;
+import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
+import esir.compilation.whileComp.Hd;
+import esir.compilation.whileComp.If;
+import esir.compilation.whileComp.Lexpr;
+import esir.compilation.whileComp.List;
 import esir.compilation.whileComp.Nil2;
 import esir.compilation.whileComp.Nop;
 import esir.compilation.whileComp.Not;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
+import esir.compilation.whileComp.Tl;
 import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
 import org.eclipse.emf.common.util.EList;
@@ -188,6 +196,88 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    {
+      EObject _command_6 = c.getCommand();
+      if ((_command_6 instanceof For)) {
+        _builder.append("For ");
+        EObject _command_7 = c.getCommand();
+        Expr _expr_1 = ((For) _command_7).getExpr();
+        CharSequence _compile_3 = this.compile(_expr_1);
+        _builder.append(_compile_3, "");
+        _builder.append("\tdo");
+        _builder.newLineIfNotEmpty();
+        EObject _command_8 = c.getCommand();
+        Commands _commands_1 = ((For) _command_8).getCommands();
+        Object _compile_4 = this.compile(_commands_1);
+        _builder.append(_compile_4, "");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t", "");
+        _builder.append("od");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EObject _command_9 = c.getCommand();
+      if ((_command_9 instanceof Foreach)) {
+        _builder.append("foreach ");
+        EObject _command_10 = c.getCommand();
+        Expr _expr1 = ((Foreach) _command_10).getExpr1();
+        CharSequence _compile_5 = this.compile(_expr1);
+        _builder.append(_compile_5, "");
+        _builder.append(" in ");
+        EObject _command_11 = c.getCommand();
+        Expr _expr2 = ((Foreach) _command_11).getExpr2();
+        CharSequence _compile_6 = this.compile(_expr2);
+        _builder.append(_compile_6, "");
+        _builder.append("\tdo");
+        _builder.newLineIfNotEmpty();
+        EObject _command_12 = c.getCommand();
+        Commands _commands_2 = ((Foreach) _command_12).getCommands();
+        Object _compile_7 = this.compile(_commands_2);
+        _builder.append(_compile_7, "");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t", "");
+        _builder.append("od");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EObject _command_13 = c.getCommand();
+      if ((_command_13 instanceof If)) {
+        _builder.append("if ");
+        EObject _command_14 = c.getCommand();
+        Expr _expr_2 = ((If) _command_14).getExpr();
+        CharSequence _compile_8 = this.compile(_expr_2);
+        _builder.append(_compile_8, "");
+        _builder.append(" ");
+        _builder.newLineIfNotEmpty();
+        _builder.append("then ");
+        _builder.newLine();
+        EObject _command_15 = c.getCommand();
+        Commands _commands1 = ((If) _command_15).getCommands1();
+        Object _compile_9 = this.compile(_commands1);
+        _builder.append(_compile_9, "");
+        _builder.newLineIfNotEmpty();
+        {
+          EObject _command_16 = c.getCommand();
+          Commands _commands2 = ((If) _command_16).getCommands2();
+          boolean _notEquals = (!Objects.equal(_commands2, null));
+          if (_notEquals) {
+            _builder.append("\t", "");
+            _builder.append("else ");
+            _builder.newLineIfNotEmpty();
+            EObject _command_17 = c.getCommand();
+            Commands _commands2_1 = ((If) _command_17).getCommands2();
+            Object _compile_10 = this.compile(_commands2_1);
+            _builder.append(_compile_10, "");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("\t", "");
+        _builder.append("fi");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
@@ -307,7 +397,6 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append(_compile, "");
         _builder.newLineIfNotEmpty();
       } else {
-        _builder.append("!");
         ExprEq _exprEq_1 = expr.getExprEq();
         CharSequence _compile_1 = this.compile(_exprEq_1);
         _builder.append(_compile_1, "");
@@ -366,6 +455,88 @@ public class WhileCompGenerator extends AbstractGenerator {
       if (((!Objects.equal(expr.getSymbol(), null)) && Objects.equal(expr.getLexpr(), null))) {
         String _symbol = expr.getSymbol();
         _builder.append(_symbol, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      Cons _cons = expr.getCons();
+      boolean _notEquals_2 = (!Objects.equal(_cons, null));
+      if (_notEquals_2) {
+        _builder.append("(cons ");
+        Lexpr _lexpr = expr.getLexpr();
+        CharSequence _compile = this.compile(_lexpr);
+        _builder.append(_compile, "");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      List _list = expr.getList();
+      boolean _notEquals_3 = (!Objects.equal(_list, null));
+      if (_notEquals_3) {
+        _builder.append("(list ");
+        Lexpr _lexpr_1 = expr.getLexpr();
+        CharSequence _compile_1 = this.compile(_lexpr_1);
+        _builder.append(_compile_1, "");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      Hd _hd = expr.getHd();
+      boolean _notEquals_4 = (!Objects.equal(_hd, null));
+      if (_notEquals_4) {
+        _builder.append("(hd ");
+        Expr _expr = expr.getExpr();
+        Object _compile_2 = this.compile(_expr);
+        _builder.append(_compile_2, "");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      Tl _tl = expr.getTl();
+      boolean _notEquals_5 = (!Objects.equal(_tl, null));
+      if (_notEquals_5) {
+        _builder.append("(tl ");
+        Expr _expr_1 = expr.getExpr();
+        Object _compile_3 = this.compile(_expr_1);
+        _builder.append(_compile_3, "");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      String _symbol_1 = expr.getSymbol();
+      boolean _notEquals_6 = (!Objects.equal(_symbol_1, null));
+      if (_notEquals_6) {
+        _builder.append("(");
+        String _symbol_2 = expr.getSymbol();
+        _builder.append(_symbol_2, "");
+        _builder.append(" ");
+        Lexpr _lexpr_2 = expr.getLexpr();
+        CharSequence _compile_4 = this.compile(_lexpr_2);
+        _builder.append(_compile_4, "");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compile(final Lexpr expr) {
+    StringConcatenation _builder = new StringConcatenation();
+    Expr _expr = expr.getExpr();
+    Object _compile = this.compile(_expr);
+    _builder.append(_compile, "");
+    _builder.newLineIfNotEmpty();
+    {
+      Lexpr _lexpr = expr.getLexpr();
+      boolean _notEquals = (!Objects.equal(_lexpr, null));
+      if (_notEquals) {
+        Lexpr _lexpr_1 = expr.getLexpr();
+        Object _compile_1 = this.compile(_lexpr_1);
+        _builder.append(_compile_1, "");
         _builder.newLineIfNotEmpty();
       }
     }

@@ -81,7 +81,7 @@ class WhileCompGenerator extends AbstractGenerator {
 			«"	"»od
 		«ENDIF»
 		«IF c.command instanceof For»
-			For «(c.command as For).expr.compile» do
+			for «(c.command as For).expr.compile» do
 				«(c.command as For).commands.compile»
 			«"	"»od
 		«ENDIF»

@@ -1,13 +1,16 @@
 function symbolesFunction: 
-read A ,B, A
+read A ,B ,A
 %
 	A ,C := B ,nil ;
-	C := B;
-	while nil do D := A od;
-	for nil do E := Z od
+	C := B ;
+	while nil do
+		D := A
+	od ;
+	for nil do
+		E := Z
+	od
 %
 write A ,B ,C
-
 function fun2: 
 read VarUn ,VarDeux
 %

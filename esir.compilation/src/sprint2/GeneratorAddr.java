@@ -5,6 +5,7 @@ package sprint2;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -61,6 +62,9 @@ public class GeneratorAddr {
 	 * List of declared functions in the Program
 	 */
 	HashMap<String,DefFun> funList = new HashMap<String,DefFun>();;
+	HashMap<String, LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>> code3Addr = new HashMap<String,LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>>();
+
+	private String etiquetteEnCours;
 	
 	private void createSymTable(String string,String sortie) throws SymTableException{
 		// Load the resource
@@ -98,6 +102,7 @@ public class GeneratorAddr {
 		System.out.println();
 		for(String f : funList.keySet()){
 			System.out.println(f+" : "+funList.get(f)+"\n");
+			System.out.println("Code 3 Addr :\n" + code3Addr);
 		}
 	}
 	
@@ -179,18 +184,26 @@ public class GeneratorAddr {
 			String var = itAff.next();
 			String val = itVal.next();
 			//System.out.println("UPDATE "+var+":"+val);
+			addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(
+					new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			f.updateVar(var, val);
 		}
 	}
 	
 //While	
 	private void iterateAST(While whCmd, DefFun f){
+		changementEtiquette();
+		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(
+				new OPCode<OP, String>(OP.WHILE, ""), "TODO", "", ""));
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds ,f);
 	}
 	
 //For	
 	private void iterateAST(For forCmd, DefFun f){
+		changementEtiquette();
+		addIn3Addr( new Quadruplet<OPCode<OP, String>, String, String, String>(
+				new OPCode<OP, String>(OP.FOR, ""), "TODO", "", ""));
 		Commands cmds = forCmd.getCommands();
 		iterateAST(cmds ,f);
 	}
@@ -203,9 +216,31 @@ public class GeneratorAddr {
 	
 //If	
 	private void iterateAST(If ifCmd, DefFun f){
+		changementEtiquette();
+		addIn3Addr( new Quadruplet<OPCode<OP, String>, String, String, String>(
+				new OPCode<OP, String>(OP.IF, ""), "TODO", "", ""));
+		
 		Commands cmds1 = ifCmd.getCommands1();
 		Commands cmds2 = ifCmd.getCommands2();
 		iterateAST(cmds1 ,f);
 		iterateAST(cmds2 ,f);
+	}
+	
+	private void addIn3Addr(Quadruplet<OPCode<OP, String>, String, String, String> q){
+		if(etiquetteEnCours==null){
+			etiquetteEnCours = "L"+code3Addr.size();
+		}
+		LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>> l = code3Addr.get(etiquetteEnCours);
+		if(l==null){
+			l = new LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>();
+			l.add(q);
+			code3Addr.put(etiquetteEnCours, l);
+		}else{
+			l.add(q);
+		}
+	}
+	
+	private void changementEtiquette() {
+		etiquetteEnCours=null;		
 	}
 }

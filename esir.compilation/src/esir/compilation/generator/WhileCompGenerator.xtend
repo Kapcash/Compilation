@@ -76,23 +76,22 @@ class WhileCompGenerator extends AbstractGenerator {
 			nop
 		«ENDIF»
 		«IF c.command instanceof While»
-			while «(c.command as While).expr.compile»	do
+			while «(c.command as While).expr.compile» do
 				«(c.command as While).commands.compile»
 			«"	"»od
 		«ENDIF»
 		«IF c.command instanceof For»
-			For «(c.command as For).expr.compile»	do
+			For «(c.command as For).expr.compile» do
 				«(c.command as For).commands.compile»
 			«"	"»od
 		«ENDIF»
 		«IF c.command instanceof Foreach»
-			foreach «(c.command as Foreach).expr1.compile» in «(c.command as Foreach).expr2.compile»	do
+			foreach «(c.command as Foreach).expr1.compile» in «(c.command as Foreach).expr2.compile» do
 				«(c.command as Foreach).commands.compile»
 			«"	"»od
 		«ENDIF»
 		«IF c.command instanceof If»
-			if «(c.command as If).expr.compile» 
-			«"	"»then 
+			if «(c.command as If).expr.compile» then 
 				«(c.command as If).commands1.compile»
 			«IF (c.command as If).commands2 != null» 
 			«"	"»else 
@@ -110,91 +109,77 @@ class WhileCompGenerator extends AbstractGenerator {
 	}
 	
 	def compile(Expr expr){
-		'''
-		«IF expr.exprAnd != null»
-		«expr.exprAnd.compile»
-		«ENDIF»
-		«IF expr.exprsimple != null»
-		«expr.exprsimple.compile»
-		«ENDIF»
-		'''
+	if (expr.exprAnd != null){
+			return (expr.exprAnd.compile)
+		}else{
+			return (expr.exprsimple.compile)
+		}
 	}
 	
 	def compile(ExprAnd expr){
-		'''
-		«IF expr.exprAnd == null»
-		«expr.exprOr.compile»
-		«ELSE»
-		«expr.exprOr.compile» && «expr.exprAnd.compile»
-		«ENDIF»
-		'''
+	if (expr.exprAnd == null){
+			return (expr.exprOr.compile)
+		}else{
+			return (expr.exprOr.compile + " && " + expr.exprAnd.compile)
+		}
 	}
 	
 	def compile(ExprOr expr){
-		'''
-		«IF expr.exprOr == null»
-		«expr.exprNot.compile»
-		«ELSE»
-		«expr.exprNot.compile» || «expr.exprOr.compile»
-		«ENDIF»
-		'''
+		if (expr.exprOr == null){
+			return (expr.exprNot.compile)
+		}else{
+			return (expr.exprNot.compile + " || " + expr.exprOr.compile)
+		}
 	}
 	
 	def compile(ExprNot expr){
-		'''
-		«IF expr.not != null»
-		!«expr.exprEq.compile»
-		«ELSE»
-		«expr.exprEq.compile»
-		«ENDIF»
-		'''
+		if (expr.not != null){
+			return ("!" + expr.exprEq.compile)
+		}else{
+			return (expr.exprEq.compile)
+		}
 	}
 	
 	def compile(ExprEq expr){
-		'''
-		«IF expr.expr != null»
-		(«expr.expr.compile»)
-		«ELSE»
-		«expr.exprSimple1.compile» =? «expr.exprSimple2.compile»
-		«ENDIF»
-		'''
+		if (expr.expr != null){
+			return (expr.expr.compile())
+		}else{
+			return (expr.exprSimple1.compile + "=?" +expr.exprSimple2.compile)
+		}
 	}
 	
 	def compile(ExprSimple expr){
-		'''
-		«IF expr.nil != null»
-		nil
-		«ENDIF»
-		«IF expr.variable != null»
-		«expr.variable»
-		«ENDIF»
-		«IF expr.symbol != null && expr.lexpr == null»
-		«expr.symbol»
-		«ENDIF»
-		«IF expr.cons != null»
-			(cons «expr.lexpr.compile»)
-		«ENDIF»
-		«IF expr.list != null»
-			(list «expr.lexpr.compile»)
-		«ENDIF»
-		«IF expr.hd != null»
-			(hd «expr.expr.compile»)
-		«ENDIF»
-		«IF expr.tl != null»
-			(tl «expr.expr.compile»)
-		«ENDIF»
-		«IF expr.symbol != null»
-			(«expr.symbol» «expr.lexpr.compile»)
-		«ENDIF»
-		'''
+		if(expr.nil != null){
+			return "nil"
+		}
+		if (expr.variable != null){
+			return (expr.variable)
+		}
+		if(expr.symbol != null && expr.lexpr == null){
+			return (expr.symbol)
+		}
+		if (expr.cons != null){
+			return ("(cons " + expr.lexpr.compile +")")
+		}
+		if (expr.list != null){
+			return ("(list " + expr.lexpr.compile +")")
+		}
+		if (expr.hd != null){
+			return ("(hd " + expr.expr.compile +")")
+		}
+		if (expr.tl != null){
+			return ("(tl " + expr.expr.compile +")")
+		}
+		if (expr.symbol != null){
+			return ("( "+expr.symbol + expr.lexpr.compile +")")
+		}
 		}
 		 	
 		def compile(Lexpr expr){
-		 	'''
-		 	«expr.expr.compile»
-		 	«IF expr.lexpr != null»
-				«expr.lexpr.compile»
-		 	«ENDIF»
-			'''
+		if (expr.lexpr != null){
+			return (expr.expr.compile() +" " +expr.lexpr.compile())
+		}else{
+			return (expr.expr.compile())
+		}
 		}
 }

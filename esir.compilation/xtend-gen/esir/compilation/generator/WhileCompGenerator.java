@@ -181,9 +181,9 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append("while ");
         EObject _command_4 = c.getCommand();
         Expr _expr = ((While) _command_4).getExpr();
-        CharSequence _compile_1 = this.compile(_expr);
+        Object _compile_1 = this.compile(_expr);
         _builder.append(_compile_1, "");
-        _builder.append("\tdo");
+        _builder.append(" do");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         EObject _command_5 = c.getCommand();
@@ -202,9 +202,9 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append("For ");
         EObject _command_7 = c.getCommand();
         Expr _expr_1 = ((For) _command_7).getExpr();
-        CharSequence _compile_3 = this.compile(_expr_1);
+        Object _compile_3 = this.compile(_expr_1);
         _builder.append(_compile_3, "");
-        _builder.append("\tdo");
+        _builder.append(" do");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         EObject _command_8 = c.getCommand();
@@ -223,14 +223,14 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append("foreach ");
         EObject _command_10 = c.getCommand();
         Expr _expr1 = ((Foreach) _command_10).getExpr1();
-        CharSequence _compile_5 = this.compile(_expr1);
+        Object _compile_5 = this.compile(_expr1);
         _builder.append(_compile_5, "");
         _builder.append(" in ");
         EObject _command_11 = c.getCommand();
         Expr _expr2 = ((Foreach) _command_11).getExpr2();
-        CharSequence _compile_6 = this.compile(_expr2);
+        Object _compile_6 = this.compile(_expr2);
         _builder.append(_compile_6, "");
-        _builder.append("\tdo");
+        _builder.append(" do");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         EObject _command_12 = c.getCommand();
@@ -249,12 +249,9 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append("if ");
         EObject _command_14 = c.getCommand();
         Expr _expr_2 = ((If) _command_14).getExpr();
-        CharSequence _compile_8 = this.compile(_expr_2);
+        Object _compile_8 = this.compile(_expr_2);
         _builder.append(_compile_8, "");
-        _builder.append(" ");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t", "");
-        _builder.append("then ");
+        _builder.append(" then ");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         EObject _command_15 = c.getCommand();
@@ -317,234 +314,151 @@ public class WhileCompGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Expr expr) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      ExprAnd _exprAnd = expr.getExprAnd();
-      boolean _notEquals = (!Objects.equal(_exprAnd, null));
-      if (_notEquals) {
-        ExprAnd _exprAnd_1 = expr.getExprAnd();
-        CharSequence _compile = this.compile(_exprAnd_1);
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
+  public Object compile(final Expr expr) {
+    ExprAnd _exprAnd = expr.getExprAnd();
+    boolean _notEquals = (!Objects.equal(_exprAnd, null));
+    if (_notEquals) {
+      ExprAnd _exprAnd_1 = expr.getExprAnd();
+      return this.compile(_exprAnd_1);
+    } else {
       ExprSimple _exprsimple = expr.getExprsimple();
-      boolean _notEquals_1 = (!Objects.equal(_exprsimple, null));
-      if (_notEquals_1) {
-        ExprSimple _exprsimple_1 = expr.getExprsimple();
-        CharSequence _compile_1 = this.compile(_exprsimple_1);
-        _builder.append(_compile_1, "");
-        _builder.newLineIfNotEmpty();
-      }
+      return this.compile(_exprsimple);
     }
-    return _builder;
   }
   
-  public CharSequence compile(final ExprAnd expr) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      ExprAnd _exprAnd = expr.getExprAnd();
-      boolean _equals = Objects.equal(_exprAnd, null);
-      if (_equals) {
-        ExprOr _exprOr = expr.getExprOr();
-        CharSequence _compile = this.compile(_exprOr);
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-      } else {
-        ExprOr _exprOr_1 = expr.getExprOr();
-        CharSequence _compile_1 = this.compile(_exprOr_1);
-        _builder.append(_compile_1, "");
-        _builder.append(" && ");
-        ExprAnd _exprAnd_1 = expr.getExprAnd();
-        Object _compile_2 = this.compile(_exprAnd_1);
-        _builder.append(_compile_2, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence compile(final ExprOr expr) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
+  public Object compile(final ExprAnd expr) {
+    ExprAnd _exprAnd = expr.getExprAnd();
+    boolean _equals = Objects.equal(_exprAnd, null);
+    if (_equals) {
       ExprOr _exprOr = expr.getExprOr();
-      boolean _equals = Objects.equal(_exprOr, null);
-      if (_equals) {
-        ExprNot _exprNot = expr.getExprNot();
-        CharSequence _compile = this.compile(_exprNot);
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-      } else {
-        ExprNot _exprNot_1 = expr.getExprNot();
-        CharSequence _compile_1 = this.compile(_exprNot_1);
-        _builder.append(_compile_1, "");
-        _builder.append(" || ");
-        ExprOr _exprOr_1 = expr.getExprOr();
-        Object _compile_2 = this.compile(_exprOr_1);
-        _builder.append(_compile_2, "");
-        _builder.newLineIfNotEmpty();
-      }
+      return this.compile(_exprOr);
+    } else {
+      ExprOr _exprOr_1 = expr.getExprOr();
+      Object _compile = this.compile(_exprOr_1);
+      String _plus = (_compile + " && ");
+      ExprAnd _exprAnd_1 = expr.getExprAnd();
+      Object _compile_1 = this.compile(_exprAnd_1);
+      return (_plus + _compile_1);
     }
-    return _builder;
   }
   
-  public CharSequence compile(final ExprNot expr) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      Not _not = expr.getNot();
-      boolean _notEquals = (!Objects.equal(_not, null));
-      if (_notEquals) {
-        _builder.append("!");
-        ExprEq _exprEq = expr.getExprEq();
-        CharSequence _compile = this.compile(_exprEq);
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-      } else {
-        ExprEq _exprEq_1 = expr.getExprEq();
-        CharSequence _compile_1 = this.compile(_exprEq_1);
-        _builder.append(_compile_1, "");
-        _builder.newLineIfNotEmpty();
-      }
+  public Object compile(final ExprOr expr) {
+    ExprOr _exprOr = expr.getExprOr();
+    boolean _equals = Objects.equal(_exprOr, null);
+    if (_equals) {
+      ExprNot _exprNot = expr.getExprNot();
+      return this.compile(_exprNot);
+    } else {
+      ExprNot _exprNot_1 = expr.getExprNot();
+      Object _compile = this.compile(_exprNot_1);
+      String _plus = (_compile + " || ");
+      ExprOr _exprOr_1 = expr.getExprOr();
+      Object _compile_1 = this.compile(_exprOr_1);
+      return (_plus + _compile_1);
     }
-    return _builder;
   }
   
-  public CharSequence compile(final ExprEq expr) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      Expr _expr = expr.getExpr();
-      boolean _notEquals = (!Objects.equal(_expr, null));
-      if (_notEquals) {
-        _builder.append("(");
-        Expr _expr_1 = expr.getExpr();
-        Object _compile = this.compile(_expr_1);
-        _builder.append(_compile, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      } else {
-        ExprSimple _exprSimple1 = expr.getExprSimple1();
-        CharSequence _compile_1 = this.compile(_exprSimple1);
-        _builder.append(_compile_1, "");
-        _builder.append(" =? ");
-        ExprSimple _exprSimple2 = expr.getExprSimple2();
-        CharSequence _compile_2 = this.compile(_exprSimple2);
-        _builder.append(_compile_2, "");
-        _builder.newLineIfNotEmpty();
-      }
+  public Object compile(final ExprNot expr) {
+    Not _not = expr.getNot();
+    boolean _notEquals = (!Objects.equal(_not, null));
+    if (_notEquals) {
+      ExprEq _exprEq = expr.getExprEq();
+      Object _compile = this.compile(_exprEq);
+      return ("!" + _compile);
+    } else {
+      ExprEq _exprEq_1 = expr.getExprEq();
+      return this.compile(_exprEq_1);
     }
-    return _builder;
   }
   
-  public CharSequence compile(final ExprSimple expr) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      Nil2 _nil = expr.getNil();
-      boolean _notEquals = (!Objects.equal(_nil, null));
-      if (_notEquals) {
-        _builder.append("nil");
-        _builder.newLine();
-      }
-    }
-    {
-      String _variable = expr.getVariable();
-      boolean _notEquals_1 = (!Objects.equal(_variable, null));
-      if (_notEquals_1) {
-        String _variable_1 = expr.getVariable();
-        _builder.append(_variable_1, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      if (((!Objects.equal(expr.getSymbol(), null)) && Objects.equal(expr.getLexpr(), null))) {
-        String _symbol = expr.getSymbol();
-        _builder.append(_symbol, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      Cons _cons = expr.getCons();
-      boolean _notEquals_2 = (!Objects.equal(_cons, null));
-      if (_notEquals_2) {
-        _builder.append("(cons ");
-        Lexpr _lexpr = expr.getLexpr();
-        CharSequence _compile = this.compile(_lexpr);
-        _builder.append(_compile, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      List _list = expr.getList();
-      boolean _notEquals_3 = (!Objects.equal(_list, null));
-      if (_notEquals_3) {
-        _builder.append("(list ");
-        Lexpr _lexpr_1 = expr.getLexpr();
-        CharSequence _compile_1 = this.compile(_lexpr_1);
-        _builder.append(_compile_1, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      Hd _hd = expr.getHd();
-      boolean _notEquals_4 = (!Objects.equal(_hd, null));
-      if (_notEquals_4) {
-        _builder.append("(hd ");
-        Expr _expr = expr.getExpr();
-        Object _compile_2 = this.compile(_expr);
-        _builder.append(_compile_2, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      Tl _tl = expr.getTl();
-      boolean _notEquals_5 = (!Objects.equal(_tl, null));
-      if (_notEquals_5) {
-        _builder.append("(tl ");
-        Expr _expr_1 = expr.getExpr();
-        Object _compile_3 = this.compile(_expr_1);
-        _builder.append(_compile_3, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      String _symbol_1 = expr.getSymbol();
-      boolean _notEquals_6 = (!Objects.equal(_symbol_1, null));
-      if (_notEquals_6) {
-        _builder.append("(");
-        String _symbol_2 = expr.getSymbol();
-        _builder.append(_symbol_2, "");
-        _builder.append(" ");
-        Lexpr _lexpr_2 = expr.getLexpr();
-        CharSequence _compile_4 = this.compile(_lexpr_2);
-        _builder.append(_compile_4, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence compile(final Lexpr expr) {
-    StringConcatenation _builder = new StringConcatenation();
+  public Object compile(final ExprEq expr) {
     Expr _expr = expr.getExpr();
-    Object _compile = this.compile(_expr);
-    _builder.append(_compile, "");
-    _builder.newLineIfNotEmpty();
-    {
-      Lexpr _lexpr = expr.getLexpr();
-      boolean _notEquals = (!Objects.equal(_lexpr, null));
-      if (_notEquals) {
-        Lexpr _lexpr_1 = expr.getLexpr();
-        Object _compile_1 = this.compile(_lexpr_1);
-        _builder.append(_compile_1, "");
-        _builder.newLineIfNotEmpty();
-      }
+    boolean _notEquals = (!Objects.equal(_expr, null));
+    if (_notEquals) {
+      Expr _expr_1 = expr.getExpr();
+      return this.compile(_expr_1);
+    } else {
+      ExprSimple _exprSimple1 = expr.getExprSimple1();
+      String _compile = this.compile(_exprSimple1);
+      String _plus = (_compile + "=?");
+      ExprSimple _exprSimple2 = expr.getExprSimple2();
+      String _compile_1 = this.compile(_exprSimple2);
+      return (_plus + _compile_1);
     }
-    return _builder;
+  }
+  
+  public String compile(final ExprSimple expr) {
+    Nil2 _nil = expr.getNil();
+    boolean _notEquals = (!Objects.equal(_nil, null));
+    if (_notEquals) {
+      return "nil";
+    }
+    String _variable = expr.getVariable();
+    boolean _notEquals_1 = (!Objects.equal(_variable, null));
+    if (_notEquals_1) {
+      return expr.getVariable();
+    }
+    if (((!Objects.equal(expr.getSymbol(), null)) && Objects.equal(expr.getLexpr(), null))) {
+      return expr.getSymbol();
+    }
+    Cons _cons = expr.getCons();
+    boolean _notEquals_2 = (!Objects.equal(_cons, null));
+    if (_notEquals_2) {
+      Lexpr _lexpr = expr.getLexpr();
+      Object _compile = this.compile(_lexpr);
+      String _plus = ("(cons " + _compile);
+      return (_plus + ")");
+    }
+    List _list = expr.getList();
+    boolean _notEquals_3 = (!Objects.equal(_list, null));
+    if (_notEquals_3) {
+      Lexpr _lexpr_1 = expr.getLexpr();
+      Object _compile_1 = this.compile(_lexpr_1);
+      String _plus_1 = ("(list " + _compile_1);
+      return (_plus_1 + ")");
+    }
+    Hd _hd = expr.getHd();
+    boolean _notEquals_4 = (!Objects.equal(_hd, null));
+    if (_notEquals_4) {
+      Expr _expr = expr.getExpr();
+      Object _compile_2 = this.compile(_expr);
+      String _plus_2 = ("(hd " + _compile_2);
+      return (_plus_2 + ")");
+    }
+    Tl _tl = expr.getTl();
+    boolean _notEquals_5 = (!Objects.equal(_tl, null));
+    if (_notEquals_5) {
+      Expr _expr_1 = expr.getExpr();
+      Object _compile_3 = this.compile(_expr_1);
+      String _plus_3 = ("(tl " + _compile_3);
+      return (_plus_3 + ")");
+    }
+    String _symbol = expr.getSymbol();
+    boolean _notEquals_6 = (!Objects.equal(_symbol, null));
+    if (_notEquals_6) {
+      String _symbol_1 = expr.getSymbol();
+      String _plus_4 = ("( " + _symbol_1);
+      Lexpr _lexpr_2 = expr.getLexpr();
+      Object _compile_4 = this.compile(_lexpr_2);
+      String _plus_5 = (_plus_4 + _compile_4);
+      return (_plus_5 + ")");
+    }
+    return null;
+  }
+  
+  public Object compile(final Lexpr expr) {
+    Lexpr _lexpr = expr.getLexpr();
+    boolean _notEquals = (!Objects.equal(_lexpr, null));
+    if (_notEquals) {
+      Expr _expr = expr.getExpr();
+      Object _compile = this.compile(_expr);
+      String _plus = (_compile + " ");
+      Lexpr _lexpr_1 = expr.getLexpr();
+      Object _compile_1 = this.compile(_lexpr_1);
+      return (_plus + _compile_1);
+    } else {
+      Expr _expr_1 = expr.getExpr();
+      return this.compile(_expr_1);
+    }
   }
 }

@@ -31,8 +31,8 @@ public class PrettyPrintTest{
 
 			/*Premier traitement*/
 			// On execute le PrettyPrint sur le fichier original "Test1.wh"
-			//Process p1 = Runtime.getRuntime().exec("whpp "+fileO1Path+" -o "+ fileR1Path);
-			Process p1 = Runtime.getRuntime().exec("java -jar whilepp2.jar "+fileO1Path+" "+ fileR1Path);
+			Process p1 = Runtime.getRuntime().exec("whpp "+fileO1Path+" -o "+ fileR1Path);
+
 			// On attend que le traitement soit réalisé
 			p1.waitFor();
 			// On renomme le fichier pour modifier l'extension et réeffectuer le traitement une deuxième fois

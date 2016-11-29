@@ -91,15 +91,14 @@ public class GeneratorAddr {
 		for (Function f : prog.getFunctions()){
 			iterateAST(f);
 		}
-		System.out.println(displaySymTable());
+		displaySymTable();
 	}
 	
-	private String displaySymTable(){
-		String ret = "";
+	private void displaySymTable(){
+		System.out.println();
 		for(String f : funList.keySet()){
-			ret += (f+" : "+funList.get(f)+"\n");
+			System.out.println(f+" : "+funList.get(f)+"\n");
 		}
-		return ret;
 	}
 	
 //Function	

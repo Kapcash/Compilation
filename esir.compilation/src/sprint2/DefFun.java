@@ -22,7 +22,7 @@ public class DefFun{
 	
 	@Override
 	public String toString() {
-		return "Input:"+in+", Output:"+out+"\nVars : "+vars.toString();
+		return "Input:"+in+", Output:"+out+"\n"+vars.toString();
 	}
 	
 	/* GETTERS & SETTERS */

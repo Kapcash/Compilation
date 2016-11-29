@@ -7,3 +7,10 @@ read A ,B, A
 	for nil do E := Z od
 %
 write A ,B ,C
+
+function fun2: 
+read VarUn ,VarDeux
+%
+	Out := VarUn
+%
+write Out

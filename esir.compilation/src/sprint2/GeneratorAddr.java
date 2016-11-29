@@ -91,7 +91,15 @@ public class GeneratorAddr {
 		for (Function f : prog.getFunctions()){
 			iterateAST(f);
 		}
-		System.out.println("Symboles Table :\n"+funList);
+		System.out.println(displaySymTable());
+	}
+	
+	private String displaySymTable(){
+		String ret = "";
+		for(String f : funList.keySet()){
+			ret += (f+" : "+funList.get(f)+"\n");
+		}
+		return ret;
 	}
 	
 //Function	
@@ -171,14 +179,13 @@ public class GeneratorAddr {
 		while(itAff.hasNext() && itVal.hasNext()){
 			String var = itAff.next();
 			String val = itVal.next();
-			System.out.println("UPDATE "+var+":"+val);
+			//System.out.println("UPDATE "+var+":"+val);
 			f.updateVar(var, val);
 		}
 	}
 	
 //While	
 	private void iterateAST(While whCmd, DefFun f){
-		System.out.println("WHILE");
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds ,f);
 	}

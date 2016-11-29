@@ -55,7 +55,17 @@ public class WhileCompGenerator extends AbstractGenerator {
     Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
     for (final Program e : _filter) {
       CharSequence _compile = this.compile(e);
-      fsa.generateFile("Result_output.whpp", _compile);
+      fsa.generateFile("result_output.whpp", _compile);
+    }
+  }
+  
+  public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context, final String sortie) {
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
+    for (final Program e : _filter) {
+      CharSequence _compile = this.compile(e);
+      fsa.generateFile(sortie, _compile);
     }
   }
   

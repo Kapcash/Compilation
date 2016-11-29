@@ -34,7 +34,12 @@ class WhileCompGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (e : resource.allContents.toIterable.filter(typeof(Program))){
-			fsa.generateFile("Result_output.whpp",	e.compile)
+			fsa.generateFile("result_output.whpp",	e.compile)
+		}
+	}
+	def doGenerate (Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context, String sortie) {
+		for (e : resource.allContents.toIterable.filter(typeof(Program))){
+			fsa.generateFile(sortie,	e.compile)
 		}
 	}
 	

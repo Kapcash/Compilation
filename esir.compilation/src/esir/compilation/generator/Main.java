@@ -37,7 +37,7 @@ public class Main {
 	private IResourceValidator validator;
 
 	@Inject
-	private GeneratorDelegate generator;
+	private WhileCompGenerator generator;
 
 	@Inject 
 	private JavaIoFileSystemAccess fileAccess;
@@ -57,10 +57,10 @@ public class Main {
 		}
 
 		// Configure and start the generator
-		fileAccess.setOutputPath(sortie);
+		fileAccess.setOutputPath("./");
 		GeneratorContext context = new GeneratorContext();
 		context.setCancelIndicator(CancelIndicator.NullImpl);
-		generator.generate(resource, fileAccess, context);
+		generator.doGenerate(resource, fileAccess, context, sortie);
 
 		System.out.println("Code generation finished.");
 	}

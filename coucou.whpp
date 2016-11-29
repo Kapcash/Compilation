@@ -1,20 +1,15 @@
 function symboles: 
 read A ,B ,C
 %
-	A ,C := B;
+	A ,C := B ;
 	C := B ;
 	nop ;
-	while Var
-	do
-		while A
-		do
+	while Var do
+		while A do
 			nop ;
-			while C
-			do
-				for A
-				do
-					if nil
-					then 
+			while C do
+				For A do
+					if nil then 
 						nop
 					else 
 						nop

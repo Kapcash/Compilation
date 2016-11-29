@@ -97,9 +97,7 @@ public class PrettyPrintTest{
 
 	public boolean assertSameFileTest(String filepath1, String filepath2) {
 		File file1 = new File(filepath1);
-		System.out.println(file1);
 		File file2 = new File(filepath2);
-		System.out.println(file2);
 
 		assertTrue("Le fichier numero un n'existe pas", file1.exists());
 		assertTrue("Le fichier numero deux n'existe pas", file2.exists());

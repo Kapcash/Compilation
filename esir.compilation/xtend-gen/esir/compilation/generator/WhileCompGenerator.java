@@ -209,7 +209,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     {
       EObject _command_6 = c.getCommand();
       if ((_command_6 instanceof For)) {
-        _builder.append("For ");
+        _builder.append("for ");
         EObject _command_7 = c.getCommand();
         Expr _expr_1 = ((For) _command_7).getExpr();
         Object _compile_3 = this.compile(_expr_1);

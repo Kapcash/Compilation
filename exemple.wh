@@ -6,12 +6,16 @@ read A ,B ,C
 	nop ;
 	while Var
 	do
-		while A
+		while (cons nil A)
 		do
 			nop ;
 			while C
 			do
+<<<<<<< HEAD
 				for A
+=======
+				for nil
+>>>>>>> a2ff905ea07c78f12b0376cc7d6b2bfce37b6294
 				do
 					if nil
 					then 

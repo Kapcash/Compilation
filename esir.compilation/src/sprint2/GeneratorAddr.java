@@ -96,19 +96,21 @@ public class GeneratorAddr {
 			iterateAST(f);
 		}
 		displaySymTable();
+		System.out.println("Code 3 Addr :\n" + code3Addr);
 	}
 	
 	private void displaySymTable(){
 		System.out.println();
 		for(String f : funList.keySet()){
 			System.out.println(f+" : "+funList.get(f)+"\n");
-			System.out.println("Code 3 Addr :\n" + code3Addr);
 		}
+		
 	}
 	
 //Function	
 	private void iterateAST(Function f) throws SymTableException{
 		String fName = f.getFunction();
+		changementEtiquette();
 		boolean fun = funList.keySet().contains(f);
 		if(fun){ //Function already existing
 			throw new SymTableException("Function "+fName+" already declared !");

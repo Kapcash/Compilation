@@ -1,0 +1,15 @@
+function 		testStructBase2
+
+
+:
+
+read 
+A, B
+, C
+%
+
+
+
+			%
+write 
+X

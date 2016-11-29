@@ -1,0 +1,10 @@
+function testIf2:
+read A
+%
+	if Cond then
+		nop
+	else
+		nop
+	fi
+%
+write X

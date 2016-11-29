@@ -1,0 +1,7 @@
+function testAffect2:
+read A
+%
+	X := nil ;
+	Y := A ;
+%
+write X

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Stack;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -39,34 +41,36 @@ import esir.compilation.whileComp.Write;
 
 public class GeneratorAddr {
 
-// MAIN //
+	// MAIN //
 	public static void main(String[] args) {
 		System.out.println("Constructing symbole table.");
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
-		try{
-			main.createSymTable("../exemple2.wh","./");
-		} catch(SymTableException e){
-			System.out.println("[ERROR] : "+e.getMessage());
+		try {
+			main.createSymTable("../exemple2.wh", "./");
+		} catch (SymTableException e) {
+			System.out.println("[ERROR] : " + e.getMessage());
 		}
 	}
-// ---- //
-	
+	// ---- //
+
 	@Inject
 	private Provider<ResourceSet> resourceSetProvider;
-	
+
 	@Inject
 	private IResourceValidator validator;
-	
+
 	/**
 	 * List of declared functions in the Program
 	 */
-	HashMap<String,DefFun> funList = new HashMap<String,DefFun>();;
-	HashMap<String, LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>> code3Addr = new HashMap<String,LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>>();
+	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();;
+	HashMap<String, LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>> code3Addr = new HashMap<String, LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>>();
 
 	private String etiquetteEnCours;
-	
-	private void createSymTable(String string,String sortie) throws SymTableException{
+
+	private Stack<String> stack = new Stack<String>();
+
+	private void createSymTable(String string, String sortie) throws SymTableException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
@@ -79,170 +83,194 @@ public class GeneratorAddr {
 			}
 			return;
 		}
-		
+
 		TreeIterator<EObject> tree = resource.getAllContents();
-		while(tree.hasNext()){
+		while (tree.hasNext()) {
 			EObject next = tree.next();
-			if(next instanceof Program)
-				iterateAST((Program)next); //Parcours l'AST du 'Program'
+			if (next instanceof Program)
+				iterateAST((Program) next); // Parcours l'AST du 'Program'
 		}
-		
+
 		System.out.println("Symboles Table correctly generated.");
 	}
-	
-//Program	
-	private void iterateAST(Program prog)throws SymTableException{
-		for (Function f : prog.getFunctions()){
+
+	// Program
+	private void iterateAST(Program prog) throws SymTableException {
+		for (Function f : prog.getFunctions()) {
 			iterateAST(f);
 		}
 		displaySymTable();
-		System.out.println("Code 3 Addr :\n" + code3Addr);
+		display3Addr();
 	}
-	
-	private void displaySymTable(){
+
+	private void displaySymTable() {
 		System.out.println();
-		for(String f : funList.keySet()){
-			System.out.println(f+" : "+funList.get(f)+"\n");
+		for (String f : funList.keySet()) {
+			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
-		
+
 	}
-	
-//Function	
-	private void iterateAST(Function f) throws SymTableException{
+
+	// Function
+	private void iterateAST(Function f) throws SymTableException {
 		String fName = f.getFunction();
-		changementEtiquette();
+		empilerEtiquette();
 		boolean fun = funList.keySet().contains(f);
-		if(fun){ //Function already existing
-			throw new SymTableException("Function "+fName+" already declared !");
+		if (fun) { // Function already existing
+			throw new SymTableException("Function " + fName + " already declared !");
 		} else {
 			DefFun function = new DefFun();
-			funList.put(fName, function); //Adding a new blank function (DefFun)
-			iterateAST(f.getDefinition(),function);
+			funList.put(fName, function); // Adding a new blank function
+											// (DefFun)
+			iterateAST(f.getDefinition(), function);
 		}
 	}
-	
-//Definition	
-	private void iterateAST(Definition def, DefFun f){
-		//Inputs
+
+	// Definition
+	private void iterateAST(Definition def, DefFun f) {
+		// Inputs
 		iterateAST(def.getRead(), f);
-		//Commands
+		// Commands
 		iterateAST(def.getCommands(), f);
-		//Outputs
+		// Outputs
 		iterateAST(def.getWrite(), f);
 	}
-	
-//Read
-	public void iterateAST(Read read, DefFun f){
+
+	// Read
+	public void iterateAST(Read read, DefFun f) {
 		EList<String> varsR = read.getVariable();
 		f.setIn(varsR.size());
-		for(String v : varsR){
-			f.updateVar(v,null);
+		for (String v : varsR) {
+			f.updateVar(v, null);
 		}
 	}
-	
-//Write
-	private void iterateAST(Write write, DefFun f){
+
+	// Write
+	private void iterateAST(Write write, DefFun f) {
 		EList<String> varsW = write.getVariable();
 		f.setOut(varsW.size());
-		for(String v : varsW){
-			f.updateVar(v,null);
+		for (String v : varsW) {
+			f.updateVar(v, null);
 		}
 	}
-	
-//Commands	
-	public void iterateAST(Commands coms, DefFun f){
+
+	// Commands
+	public void iterateAST(Commands coms, DefFun f) {
 		Command com = coms.getCommand();
-		iterateAST(com, f); //First command of definition
-		for(Command c : coms.getCommands()){ //Eventually other commands
+		iterateAST(com, f); // First command of definition
+		for (Command c : coms.getCommands()) { // Eventually other commands
 			iterateAST(c, f);
 		}
 	}
-	
-//Command	
-	private void iterateAST(Command com, DefFun f){
+
+	// Command
+	private void iterateAST(Command com, DefFun f) {
 		EObject obj = com.getCommand();
-		if(obj instanceof Affectation){		//Affectation
+		if (obj instanceof Affectation) { // Affectation
 			iterateAST((Affectation) obj, f);
-		} else if(obj instanceof While){	//While
-			iterateAST((While) obj, f);
-		} else if(obj instanceof For){		//For
-			iterateAST((For) obj, f);
-		} else if(obj instanceof Foreach){	//Foreach
-			iterateAST((Foreach) obj, f);
-		} else if(obj instanceof If){		//If
-			iterateAST((If) obj, f);
 		} else {
+
+			if (obj instanceof While) { // While
+				iterateAST((While) obj, f);
+			} else if (obj instanceof For) { // For
+				iterateAST((For) obj, f);
+			} else if (obj instanceof Foreach) { // Foreach
+				iterateAST((Foreach) obj, f);
+			} else if (obj instanceof If) { // If
+				iterateAST((If) obj, f);
+			} else {
+			}
+			depilerEtiquette();
 		}
 	}
-	
-//Affectation	
-	private void iterateAST(Affectation affCmd, DefFun f){
+
+	// Affectation
+	private void iterateAST(Affectation affCmd, DefFun f) {
 		EList<String> affs = affCmd.getAffectations();
 		EList<String> vals = affCmd.getValeurs();
 		Iterator<String> itAff = affs.iterator();
 		Iterator<String> itVal = vals.iterator();
-		
-		while(itAff.hasNext() && itVal.hasNext()){
+
+		while (itAff.hasNext() && itVal.hasNext()) {
 			String var = itAff.next();
 			String val = itVal.next();
-			//System.out.println("UPDATE "+var+":"+val);
-			addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(
-					new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
+			// System.out.println("UPDATE "+var+":"+val);
+			addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.AFF, ""),
+					var, val, ""));
 			f.updateVar(var, val);
 		}
 	}
-	
-//While	
-	private void iterateAST(While whCmd, DefFun f){
-		changementEtiquette();
-		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(
-				new OPCode<OP, String>(OP.WHILE, ""), "TODO", "", ""));
+
+	// While
+	private void iterateAST(While whCmd, DefFun f) {
+		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.WHILE, ""), "",
+				getFutureEtiquette(), ""));
+		empilerEtiquette();
 		Commands cmds = whCmd.getCommands();
-		iterateAST(cmds ,f);
+		iterateAST(cmds, f);
 	}
-	
-//For	
-	private void iterateAST(For forCmd, DefFun f){
-		changementEtiquette();
-		addIn3Addr( new Quadruplet<OPCode<OP, String>, String, String, String>(
-				new OPCode<OP, String>(OP.FOR, ""), "TODO", "", ""));
+
+	// For
+	private void iterateAST(For forCmd, DefFun f) {
+		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.FOR, ""), "",
+				getFutureEtiquette(), ""));
+		empilerEtiquette();
 		Commands cmds = forCmd.getCommands();
-		iterateAST(cmds ,f);
+		iterateAST(cmds, f);
 	}
-	
-//Foreach	
-	private void iterateAST(Foreach forEachCmd, DefFun f){
+
+	// Foreach
+	private void iterateAST(Foreach forEachCmd, DefFun f) {
 		Commands cmds = forEachCmd.getCommands();
-		iterateAST(cmds ,f);
+		iterateAST(cmds, f);
 	}
-	
-//If	
-	private void iterateAST(If ifCmd, DefFun f){
-		changementEtiquette();
-		addIn3Addr( new Quadruplet<OPCode<OP, String>, String, String, String>(
-				new OPCode<OP, String>(OP.IF, ""), "TODO", "", ""));
-		
+
+	// If
+	private void iterateAST(If ifCmd, DefFun f) {
+		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.IF, ""), "TODO",
+				getFutureEtiquette(), ""));
+
 		Commands cmds1 = ifCmd.getCommands1();
 		Commands cmds2 = ifCmd.getCommands2();
-		iterateAST(cmds1 ,f);
-		iterateAST(cmds2 ,f);
+		iterateAST(cmds1, f);
+		iterateAST(cmds2, f);
 	}
-	
-	private void addIn3Addr(Quadruplet<OPCode<OP, String>, String, String, String> q){
-		if(etiquetteEnCours==null){
-			etiquetteEnCours = "L"+code3Addr.size();
-		}
+
+	private void addIn3Addr(Quadruplet<OPCode<OP, String>, String, String, String> q) {
+		etiquetteEnCours = stack.lastElement();
 		LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>> l = code3Addr.get(etiquetteEnCours);
-		if(l==null){
+		if (l == null) {
 			l = new LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>();
 			l.add(q);
 			code3Addr.put(etiquetteEnCours, l);
-		}else{
+		} else {
 			l.add(q);
 		}
 	}
-	
-	private void changementEtiquette() {
-		etiquetteEnCours=null;		
+
+	private String getFutureEtiquette() {
+		return "L" + code3Addr.size();
+	}
+
+	private void empilerEtiquette() {
+		stack.push("L" + code3Addr.size());
+	}
+
+	private void depilerEtiquette() {
+		stack.pop();
+	}
+
+	private void display3Addr() {
+		StringBuilder sb = new StringBuilder();
+		Iterator<Entry<String, LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>>> iter = code3Addr.entrySet().iterator();
+		while (iter.hasNext()) {
+			Entry<String, LinkedList<Quadruplet<OPCode<OP, String>, String, String, String>>> entry = iter.next();
+			sb.append(entry.getKey());
+			sb.append(entry.getValue());
+			if (iter.hasNext()) {
+				sb.append('\n');
+			}
+		}
+		System.out.println(sb.toString());
 	}
 }

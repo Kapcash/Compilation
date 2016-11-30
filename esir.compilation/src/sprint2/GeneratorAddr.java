@@ -127,7 +127,7 @@ public class GeneratorAddr {
 	}
 
 	// Definition
-	private void iterateAST(Definition def, DefFun f) {
+	private void iterateAST(Definition def, DefFun f) throws SymTableException {
 		// Inputs
 		iterateAST(def.getRead(), f);
 		// Commands
@@ -155,7 +155,7 @@ public class GeneratorAddr {
 	}
 
 	// Commands
-	public void iterateAST(Commands coms, DefFun f) {
+	public void iterateAST(Commands coms, DefFun f) throws SymTableException {
 		Command com = coms.getCommand();
 		iterateAST(com, f); // First command of definition
 		for (Command c : coms.getCommands()) { // Eventually other commands
@@ -164,7 +164,7 @@ public class GeneratorAddr {
 	}
 
 	// Command
-	private void iterateAST(Command com, DefFun f) {
+	private void iterateAST(Command com, DefFun f) throws SymTableException {
 		EObject obj = com.getCommand();
 		if (obj instanceof Affectation) { // Affectation
 			iterateAST((Affectation) obj, f);
@@ -185,24 +185,40 @@ public class GeneratorAddr {
 	}
 
 	// Affectation
-	private void iterateAST(Affectation affCmd, DefFun f) {
+	private void iterateAST(Affectation affCmd, DefFun f) throws SymTableException {
 		EList<String> affs = affCmd.getAffectations();
 		EList<String> vals = affCmd.getValeurs();
+		
+		if(vals.size()!=affs.size())
+			throw new SymTableException("Affectation error !"); //TODO
+		
 		Iterator<String> itAff = affs.iterator();
 		Iterator<String> itVal = vals.iterator();
-
-		while (itAff.hasNext() && itVal.hasNext()) {
-			String var = itAff.next();
-			String val = itVal.next();
-			// System.out.println("UPDATE "+var+":"+val);
+		
+		int i = 0;
+		String val;
+		String var;
+		
+		while (itVal.hasNext()) {
+			val = itVal.next();
+			var = "X"+i++;
 			addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.AFF, ""),
 					var, val, ""));
 			f.updateVar(var, val);
 		}
+		
+		i=0;
+		while (itAff.hasNext()) {
+			var = itAff.next();
+			val = "X"+i++;
+			addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.AFF, ""),
+					var, val, ""));
+			f.updateVar(var, val);
+		} 
 	}
 
 	// While
-	private void iterateAST(While whCmd, DefFun f) {
+	private void iterateAST(While whCmd, DefFun f) throws SymTableException {
 		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.WHILE, ""), "",
 				getFutureEtiquette(), ""));
 		empilerEtiquette();
@@ -211,7 +227,7 @@ public class GeneratorAddr {
 	}
 
 	// For
-	private void iterateAST(For forCmd, DefFun f) {
+	private void iterateAST(For forCmd, DefFun f) throws SymTableException {
 		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.FOR, ""), "",
 				getFutureEtiquette(), ""));
 		empilerEtiquette();
@@ -220,13 +236,13 @@ public class GeneratorAddr {
 	}
 
 	// Foreach
-	private void iterateAST(Foreach forEachCmd, DefFun f) {
+	private void iterateAST(Foreach forEachCmd, DefFun f) throws SymTableException {
 		Commands cmds = forEachCmd.getCommands();
 		iterateAST(cmds, f);
 	}
 
 	// If
-	private void iterateAST(If ifCmd, DefFun f) {
+	private void iterateAST(If ifCmd, DefFun f) throws SymTableException {
 		addIn3Addr(new Quadruplet<OPCode<OP, String>, String, String, String>(new OPCode<OP, String>(OP.IF, ""), "TODO",
 				getFutureEtiquette(), ""));
 

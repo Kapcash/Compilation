@@ -1,5 +1,13 @@
 package sprint2;
 
 public enum OP {
-	NOP, IF, WHILE, FOR, AFF
+	NOP, 
+	//Structure de controle
+	IF, ELSE, 
+	//Boucle
+	WHILE, FOR, 
+	//Affectation
+	AFF,
+	//Definition fonction
+	FUN, READ, WRITE
 }

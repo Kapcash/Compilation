@@ -66,8 +66,7 @@ public class GeneratorAddr {
 	 * List of declared functions in the Program
 	 */
 	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();;
-	// HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String,
-	// LinkedList<QuadImp>>();
+	HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String,LinkedList<QuadImp>>();
 
 	private Stack<LinkedList> stack = new Stack<LinkedList>();
 	private LinkedList<LinkedList<QuadImp>> list3Addr = new LinkedList<LinkedList<QuadImp>>();
@@ -249,16 +248,29 @@ public class GeneratorAddr {
 
 	// If
 	private void iterateAST(If ifCmd, DefFun f) throws SymTableException {
-		addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.IF, ""), "TODO", "", ""));
+		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, ""), ifCmd.getExpr().toString(), getFutureEtiquette(), "");
+		addIn3Addr(q);
 		empilerEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
 		iterateAST(cmds1, f);
 
 		depilerEtiquette();
-		addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.ELSE, ""), "TODO", "", ""));
+		q.setArg2(getFutureEtiquette());
 		empilerEtiquette();
 		Commands cmds2 = ifCmd.getCommands2();
 		iterateAST(cmds2, f);
+	}
+	
+	private String getEtiquetteName(int i){
+		return "L"+i;
+	}
+	
+	private String getEtiquette(){
+		return getEtiquetteName(code3Addr.size());
+	}
+	
+	private String getFutureEtiquette(){
+		return getEtiquetteName(code3Addr.size()+1);
 	}
 
 	private void addIn3Addr(QuadImp q) {
@@ -270,17 +282,31 @@ public class GeneratorAddr {
 	}
 
 	private void depilerEtiquette() {
-		list3Addr.addFirst(stack.pop());
+		//list3Addr.addFirst(stack.pop());
+		code3Addr.put(getEtiquette(), stack.pop());
 	}
 
 	private void display3Addr() {
 		StringBuilder sb = new StringBuilder();
-		Iterator<LinkedList<QuadImp>> iter = list3Addr.iterator();
+		//Iterator<LinkedList<QuadImp>> iter = list3Addr.iterator();
+		Iterator<Entry<String,LinkedList<QuadImp>>> iter = code3Addr.entrySet().iterator();
+		int i = 0;
 		while (iter.hasNext()) {
-			sb.append(iter.next().toString());
+			Entry<String,LinkedList<QuadImp>> entry = iter.next();
+			
+			sb.append(entry.getKey()+":\t");
+			Iterator<QuadImp> iter2 = entry.getValue().iterator();
+			if(iter2.hasNext()){
+				sb.append(iter2.next()+"\n");
+			}
+			while (iter2.hasNext()) {
+				sb.append("\t"+iter2.next().toString()+"\n");
+			}
+			
 			if (iter.hasNext()) {
 				sb.append('\n');
 			}
+			i++;
 		}
 		System.out.println(sb.toString());
 	}

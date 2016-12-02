@@ -12,6 +12,6 @@ read A
 	
 	Ya 
 	:= 	(		list C 
-	D) ;
+	D)
 %
 write X

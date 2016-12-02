@@ -5,6 +5,6 @@ read A
 	Y := A ;
 	Z := symb ;
 	Xa := (cons A B) ;
-	Ya := (list C D) ;
+	Ya := (list C D)
 %
 write X

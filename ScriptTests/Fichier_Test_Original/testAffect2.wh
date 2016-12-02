@@ -1,4 +1,4 @@
 			function testAffect2			:read A%
 X := nil ;
-				Y := A ;
+				Y := A
 %write X

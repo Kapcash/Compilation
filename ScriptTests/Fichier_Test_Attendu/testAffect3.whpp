@@ -3,6 +3,6 @@ read A
 %
 	X := nil ;
 	Y := A ;
-	Z := symb ;
+	Z := symb
 %
 write X

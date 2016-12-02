@@ -11,6 +11,8 @@ read A ,B ,A
 	od
 %
 write A ,B ,C
+
+
 function fun2: 
 read VarUn ,VarDeux
 %

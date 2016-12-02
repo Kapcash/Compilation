@@ -1,0 +1,17 @@
+function symbolesFunction: 
+read A ,B ,A
+%
+	A ,C := B ,nil ;
+	C := B ;
+	if Cond then
+		while nil do
+			D := A
+		od
+	else
+		for nil do
+			E := Z
+		od
+	fi
+	
+%
+write A ,B ,C

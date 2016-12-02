@@ -61,10 +61,70 @@ public class PrettyPrintTest{
 		assertTrue(fileR2.getPath() +" n'a pas ete correctement supprime !", isDelete2);
 	}
 
-	/*@Test
-	public void testExemple() {
-		testerPrettyPrint("name");
-	}*/
+	@Test
+	public void testAffect1() {
+		testerPrettyPrint("testAffect1");
+	}
+	
+	@Test
+	public void testAffect2() {
+		testerPrettyPrint("testAffect2");
+	}
+	
+	@Test
+	public void testAffect3() {
+		testerPrettyPrint("testAffect3");
+	}
+	
+	@Test
+	public void testAffect4() {
+		testerPrettyPrint("testAffect4");
+	}
+	
+	@Test
+	public void testAffect5() {
+		testerPrettyPrint("testAffect5");
+	}
+	
+	@Test
+	public void testIf1() {
+		testerPrettyPrint("testIf1");
+	}
+	
+	@Test
+	public void testIf2() {
+		testerPrettyPrint("testIf2");
+	}
+	
+	@Test
+	public void testNop() {
+		testerPrettyPrint("testNop");
+	}
+	
+	@Test
+	public void testStructBase1() {
+		testerPrettyPrint("testStructBase1");
+	}
+	
+	@Test
+	public void testStructBase2() {
+		testerPrettyPrint("testStructBase2");
+	}
+	
+	@Test
+	public void testStructBase3() {
+		testerPrettyPrint("testStructBase3");
+	}
+	
+	@Test
+	public void testWhile1() {
+		testerPrettyPrint("testWhile1");
+	}
+	
+	@Test
+	public void testWhile2() {
+		testerPrettyPrint("testWhile2");
+	}
 
 	/*Utilitaire*/
 

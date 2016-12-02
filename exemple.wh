@@ -1,31 +1,19 @@
 function symboles: 
 read A ,B ,C
 %
-	A ,C := B;
-	C := B ;
-	nop ;
-	while Var
-	do
-		while (cons nil A)
-		do
-			nop ;
-			while C
-			do
-<<<<<<< HEAD
-				for A
-=======
-				for nil
->>>>>>> a2ff905ea07c78f12b0376cc7d6b2bfce37b6294
-				do
-					if nil
-					then 
-						nop
-					else 
-						nop
-					fi
-				od
-			od
-		od
+	A := B;
+	while condition do
+	while conditionbis do
+	while conditiontrois do
+	for conditionquatre do
+	if conditioncinq then
+	nop
+	else
+	nop
+	fi
+	od
+	od
+	od
 	od
 %
 write A ,B

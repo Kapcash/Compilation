@@ -39,6 +39,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 /**
@@ -54,27 +55,27 @@ public class WhileCompGenerator extends AbstractGenerator {
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
     for (final Program e : _filter) {
-      CharSequence _compile = this.compile(e);
+      CharSequence _compile = this.compile(e, 1, 0, 0, 0, 0, 0);
       fsa.generateFile("result_output.whpp", _compile);
     }
   }
   
-  public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context, final String sortie) {
+  public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context, final String sortie, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
     for (final Program e : _filter) {
-      CharSequence _compile = this.compile(e);
+      CharSequence _compile = this.compile(e, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
       fsa.generateFile(sortie, _compile);
     }
   }
   
-  public CharSequence compile(final Program p) {
+  public CharSequence compile(final Program p, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<Function> _functions = p.getFunctions();
       for(final Function f : _functions) {
-        CharSequence _compile = this.compile(f);
+        CharSequence _compile = this.compile(f, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
         _builder.append(_compile, "");
         _builder.newLineIfNotEmpty();
       }
@@ -82,12 +83,12 @@ public class WhileCompGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Function c) {
+  public CharSequence compile(final Function c, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("function ");
     String _function = c.getFunction();
     _builder.append(_function, "");
-    _builder.append(": ");
+    _builder.append(":");
     _builder.newLineIfNotEmpty();
     _builder.append("read ");
     {
@@ -109,7 +110,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     _builder.newLine();
     Definition _definition_1 = c.getDefinition();
     Commands _commands = _definition_1.getCommands();
-    CharSequence _compile = this.compile(_commands);
+    String _compile = this.compile(_commands, indentAll, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
     _builder.append(_compile, "");
     _builder.newLineIfNotEmpty();
     _builder.append("%");
@@ -129,199 +130,277 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append(param_1, "");
       }
     }
-    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
-  public CharSequence compile(final Commands coms) {
-    CharSequence _xblockexpression = null;
-    {
-      EList<Command> _commands = coms.getCommands();
-      boolean _notEquals = (!Objects.equal(_commands, null));
-      if (_notEquals) {
-        EList<Command> _commands_1 = coms.getCommands();
-        Command _command = coms.getCommand();
-        _commands_1.add(0, _command);
-      } else {
-        Command _command_1 = coms.getCommand();
-        this.compile(_command_1);
-      }
-      StringConcatenation _builder = new StringConcatenation();
-      {
-        EList<Command> _commands_2 = coms.getCommands();
-        boolean _hasElements = false;
-        for(final Command c : _commands_2) {
-          if (!_hasElements) {
-            _hasElements = true;
-          } else {
-            _builder.appendImmediate(" ;", "");
-          }
-          _builder.append("\t", "");
-          CharSequence _compile = this.compile(c);
-          _builder.append(_compile, "");
+  public String compile(final Commands coms, final int indentBase, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {
+    EList<Command> _commands = coms.getCommands();
+    int _size = _commands.size();
+    boolean _notEquals = (_size != 0);
+    if (_notEquals) {
+      Command _command = coms.getCommand();
+      String _compile = this.compile(_command, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
+      String res = (_compile + ";\n");
+      EList<Command> _commands_1 = coms.getCommands();
+      int size = _commands_1.size();
+      InputOutput.<Integer>println(Integer.valueOf(size));
+      int i = 0;
+      EList<Command> _commands_2 = coms.getCommands();
+      for (final Command c : _commands_2) {
+        if ((i == (size - 1))) {
+          String _compile_1 = this.compile(c, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
+          String _plus = (res + _compile_1);
+          res = _plus;
+        } else {
+          String _compile_2 = this.compile(c, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
+          String _plus_1 = (res + _compile_2);
+          String _plus_2 = (_plus_1 + ";\n");
+          res = _plus_2;
+          i = (i + 1);
         }
       }
-      _builder.newLineIfNotEmpty();
-      _xblockexpression = _builder;
+      return res;
+    } else {
+      Command _command_1 = coms.getCommand();
+      String _compile_3 = this.compile(_command_1, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
+      String res_1 = (_compile_3 + "");
+      return res_1;
     }
-    return _xblockexpression;
   }
   
-  public CharSequence compile(final Command c) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      EObject _command = c.getCommand();
-      if ((_command instanceof Affectation)) {
-        EObject _command_1 = c.getCommand();
-        CharSequence _compile = this.compile(((Affectation) _command_1));
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EObject _command_2 = c.getCommand();
-      if ((_command_2 instanceof Nop)) {
-        _builder.append("nop");
-        _builder.newLine();
-      }
-    }
-    {
-      EObject _command_3 = c.getCommand();
-      if ((_command_3 instanceof While)) {
-        _builder.append("while ");
-        EObject _command_4 = c.getCommand();
-        Expr _expr = ((While) _command_4).getExpr();
-        Object _compile_1 = this.compile(_expr);
-        _builder.append(_compile_1, "");
-        _builder.append(" do");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        EObject _command_5 = c.getCommand();
-        Commands _commands = ((While) _command_5).getCommands();
-        Object _compile_2 = this.compile(_commands);
-        _builder.append(_compile_2, "\t");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t", "");
-        _builder.append("od");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EObject _command_6 = c.getCommand();
-      if ((_command_6 instanceof For)) {
-        _builder.append("for ");
-        EObject _command_7 = c.getCommand();
-        Expr _expr_1 = ((For) _command_7).getExpr();
-        Object _compile_3 = this.compile(_expr_1);
-        _builder.append(_compile_3, "");
-        _builder.append(" do");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        EObject _command_8 = c.getCommand();
-        Commands _commands_1 = ((For) _command_8).getCommands();
-        Object _compile_4 = this.compile(_commands_1);
-        _builder.append(_compile_4, "\t");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t", "");
-        _builder.append("od");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EObject _command_9 = c.getCommand();
-      if ((_command_9 instanceof Foreach)) {
-        _builder.append("foreach ");
-        EObject _command_10 = c.getCommand();
-        Expr _expr1 = ((Foreach) _command_10).getExpr1();
-        Object _compile_5 = this.compile(_expr1);
-        _builder.append(_compile_5, "");
-        _builder.append(" in ");
-        EObject _command_11 = c.getCommand();
-        Expr _expr2 = ((Foreach) _command_11).getExpr2();
-        Object _compile_6 = this.compile(_expr2);
-        _builder.append(_compile_6, "");
-        _builder.append(" do");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        EObject _command_12 = c.getCommand();
-        Commands _commands_2 = ((Foreach) _command_12).getCommands();
-        Object _compile_7 = this.compile(_commands_2);
-        _builder.append(_compile_7, "\t");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t", "");
-        _builder.append("od");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EObject _command_13 = c.getCommand();
-      if ((_command_13 instanceof If)) {
-        _builder.append("if ");
-        EObject _command_14 = c.getCommand();
-        Expr _expr_2 = ((If) _command_14).getExpr();
-        Object _compile_8 = this.compile(_expr_2);
-        _builder.append(_compile_8, "");
-        _builder.append(" then ");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        EObject _command_15 = c.getCommand();
-        Commands _commands1 = ((If) _command_15).getCommands1();
-        Object _compile_9 = this.compile(_commands1);
-        _builder.append(_compile_9, "\t");
-        _builder.newLineIfNotEmpty();
+  public String compile(final Command c, final int indentBase, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {
+    EObject _command = c.getCommand();
+    if ((_command instanceof Affectation)) {
+      String decal = "";
+      int i = 0;
+      while ((i < indentAll)) {
         {
-          EObject _command_16 = c.getCommand();
-          Commands _commands2 = ((If) _command_16).getCommands2();
-          boolean _notEquals = (!Objects.equal(_commands2, null));
-          if (_notEquals) {
-            _builder.append("\t", "");
-            _builder.append("else ");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            EObject _command_17 = c.getCommand();
-            Commands _commands2_1 = ((If) _command_17).getCommands2();
-            Object _compile_10 = this.compile(_commands2_1);
-            _builder.append(_compile_10, "\t");
-            _builder.newLineIfNotEmpty();
-          }
+          decal = (decal + "\t");
+          i = (i + 1);
         }
-        _builder.append("\t", "");
-        _builder.append("fi");
-        _builder.newLineIfNotEmpty();
+      }
+      i = 0;
+      while ((i < indentAff)) {
+        {
+          decal = (decal + "\t");
+          i = (i + 1);
+        }
+      }
+      EObject _command_1 = c.getCommand();
+      String _compile = this.compile(((Affectation) _command_1));
+      return (decal + _compile);
+    }
+    EObject _command_2 = c.getCommand();
+    if ((_command_2 instanceof Nop)) {
+      String decal_1 = "";
+      int i_1 = 0;
+      while ((i_1 < indentAll)) {
+        {
+          decal_1 = (decal_1 + "\t");
+          i_1 = (i_1 + 1);
+        }
+      }
+      return (decal_1 + "nop\n");
+    }
+    EObject _command_3 = c.getCommand();
+    if ((_command_3 instanceof While)) {
+      String decal_2 = "";
+      int i_2 = 0;
+      String _plus = (Integer.valueOf(indentAll) + " tab");
+      InputOutput.<String>println(_plus);
+      while ((i_2 < indentAll)) {
+        {
+          decal_2 = (decal_2 + "\t");
+          i_2 = (i_2 + 1);
+        }
+      }
+      i_2 = 0;
+      while ((i_2 < indentWhile)) {
+        {
+          decal_2 = (decal_2 + "\t");
+          i_2 = (i_2 + 1);
+        }
+      }
+      EObject _command_4 = c.getCommand();
+      Expr _expr = ((While) _command_4).getExpr();
+      Object _compile_1 = this.compile(_expr);
+      String _plus_1 = ((decal_2 + "while ") + _compile_1);
+      String _plus_2 = (_plus_1 + " do\n");
+      EObject _command_5 = c.getCommand();
+      Commands _commands = ((While) _command_5).getCommands();
+      Object _compile_2 = this.compile(_commands, indentBase, ((indentAll + indentBase) + indentWhile), indentFor, indentWhile, indentIf, indentForeach, indentAff);
+      String _plus_3 = (_plus_2 + _compile_2);
+      String _plus_4 = (_plus_3 + decal_2);
+      return (_plus_4 + "od\n");
+    }
+    EObject _command_6 = c.getCommand();
+    if ((_command_6 instanceof For)) {
+      String decal_3 = "";
+      int i_3 = 0;
+      while ((i_3 < indentAll)) {
+        {
+          decal_3 = (decal_3 + "\t");
+          i_3 = (i_3 + 1);
+        }
+      }
+      i_3 = 0;
+      while ((i_3 < indentFor)) {
+        {
+          decal_3 = (decal_3 + "\t");
+          i_3 = (i_3 + 1);
+        }
+      }
+      EObject _command_7 = c.getCommand();
+      Expr _expr_1 = ((For) _command_7).getExpr();
+      Object _compile_3 = this.compile(_expr_1);
+      String _plus_5 = ((decal_3 + "for ") + _compile_3);
+      String _plus_6 = (_plus_5 + " do\n");
+      EObject _command_8 = c.getCommand();
+      Commands _commands_1 = ((For) _command_8).getCommands();
+      Object _compile_4 = this.compile(_commands_1, indentBase, ((indentAll + indentBase) + indentFor), indentFor, indentWhile, indentIf, indentForeach, indentAff);
+      String _plus_7 = (_plus_6 + _compile_4);
+      String _plus_8 = (_plus_7 + decal_3);
+      return (_plus_8 + "od\n");
+    }
+    EObject _command_9 = c.getCommand();
+    if ((_command_9 instanceof Foreach)) {
+      String decal_4 = "";
+      int i_4 = 0;
+      while ((i_4 < indentAll)) {
+        {
+          decal_4 = (decal_4 + "\t");
+          i_4 = (i_4 + 1);
+        }
+      }
+      i_4 = 0;
+      while ((i_4 < indentForeach)) {
+        {
+          decal_4 = (decal_4 + "\t");
+          i_4 = (i_4 + 1);
+        }
+      }
+      EObject _command_10 = c.getCommand();
+      Expr _expr1 = ((Foreach) _command_10).getExpr1();
+      Object _compile_5 = this.compile(_expr1);
+      String _plus_9 = ((decal_4 + "foreach ") + _compile_5);
+      String _plus_10 = (_plus_9 + " in ");
+      EObject _command_11 = c.getCommand();
+      Expr _expr2 = ((Foreach) _command_11).getExpr2();
+      Object _compile_6 = this.compile(_expr2);
+      String _plus_11 = (_plus_10 + _compile_6);
+      String _plus_12 = (_plus_11 + " do\n");
+      EObject _command_12 = c.getCommand();
+      Commands _commands_2 = ((Foreach) _command_12).getCommands();
+      Object _compile_7 = this.compile(_commands_2, indentBase, ((indentAll + indentBase) + indentForeach), indentFor, indentWhile, indentIf, indentForeach, indentAff);
+      String _plus_13 = (_plus_12 + _compile_7);
+      String _plus_14 = (_plus_13 + decal_4);
+      return (_plus_14 + "od\n");
+    }
+    EObject _command_13 = c.getCommand();
+    if ((_command_13 instanceof If)) {
+      String decal_5 = "";
+      int i_5 = 0;
+      while ((i_5 < indentAll)) {
+        {
+          decal_5 = (decal_5 + "\t");
+          i_5 = (i_5 + 1);
+        }
+      }
+      i_5 = 0;
+      while ((i_5 < indentIf)) {
+        {
+          decal_5 = (decal_5 + "\t");
+          i_5 = (i_5 + 1);
+        }
+      }
+      EObject _command_14 = c.getCommand();
+      Commands _commands2 = ((If) _command_14).getCommands2();
+      boolean _notEquals = (!Objects.equal(_commands2, null));
+      if (_notEquals) {
+        EObject _command_15 = c.getCommand();
+        Expr _expr_2 = ((If) _command_15).getExpr();
+        Object _compile_8 = this.compile(_expr_2);
+        String _plus_15 = ((decal_5 + "if ") + _compile_8);
+        String _plus_16 = (_plus_15 + " then \n");
+        EObject _command_16 = c.getCommand();
+        Commands _commands1 = ((If) _command_16).getCommands1();
+        Object _compile_9 = this.compile(_commands1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
+        String _plus_17 = (_plus_16 + _compile_9);
+        String _plus_18 = (_plus_17 + decal_5);
+        String _plus_19 = (_plus_18 + "else \n");
+        EObject _command_17 = c.getCommand();
+        Commands _commands2_1 = ((If) _command_17).getCommands2();
+        Object _compile_10 = this.compile(_commands2_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
+        String _plus_20 = (_plus_19 + _compile_10);
+        String _plus_21 = (_plus_20 + decal_5);
+        return (_plus_21 + "fi\n");
+      } else {
+        EObject _command_18 = c.getCommand();
+        Expr _expr_3 = ((If) _command_18).getExpr();
+        Object _compile_11 = this.compile(_expr_3);
+        String _plus_22 = ((decal_5 + "if ") + _compile_11);
+        String _plus_23 = (_plus_22 + " then \n");
+        EObject _command_19 = c.getCommand();
+        Commands _commands1_1 = ((If) _command_19).getCommands1();
+        Object _compile_12 = this.compile(_commands1_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
+        String _plus_24 = (_plus_23 + _compile_12);
+        String _plus_25 = (_plus_24 + decal_5);
+        return (_plus_25 + "fi\n");
       }
     }
-    return _builder;
+    return null;
   }
   
-  public CharSequence compile(final Affectation aff) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<String> _affectations = aff.getAffectations();
-      boolean _hasElements = false;
-      for(final String v : _affectations) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(" ,", "");
-        }
-        _builder.append(v, "");
-      }
-    }
-    _builder.append(" := ");
-    {
+  public String compile(final Affectation aff) {
+    EList<String> _affectations = aff.getAffectations();
+    int _size = _affectations.size();
+    boolean _equals = (_size == 1);
+    if (_equals) {
+      EList<String> _affectations_1 = aff.getAffectations();
+      String _get = _affectations_1.get(0);
+      String _plus = ("" + _get);
+      String _plus_1 = (_plus + " := ");
       EList<String> _valeurs = aff.getValeurs();
-      boolean _hasElements_1 = false;
-      for(final String v_1 : _valeurs) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
-        } else {
-          _builder.appendImmediate(" ,", "");
+      String _get_1 = _valeurs.get(0);
+      return (_plus_1 + _get_1);
+    } else {
+      EList<String> _affectations_2 = aff.getAffectations();
+      final int size = _affectations_2.size();
+      int i = 0;
+      String res = "";
+      while ((i < (size - 1))) {
+        {
+          EList<String> _affectations_3 = aff.getAffectations();
+          String _get_2 = _affectations_3.get(i);
+          String _plus_2 = (res + _get_2);
+          String _plus_3 = (_plus_2 + ",");
+          res = _plus_3;
+          i = (i + 1);
         }
-        _builder.append(v_1, "");
       }
+      EList<String> _affectations_3 = aff.getAffectations();
+      String _get_2 = _affectations_3.get(i);
+      String _plus_2 = (res + _get_2);
+      String _plus_3 = (_plus_2 + " := ");
+      res = _plus_3;
+      i = 0;
+      while ((i < (size - 1))) {
+        {
+          EList<String> _valeurs_1 = aff.getValeurs();
+          String _get_3 = _valeurs_1.get(i);
+          String _plus_4 = (res + _get_3);
+          String _plus_5 = (_plus_4 + ",");
+          res = _plus_5;
+          i = (i + 1);
+        }
+      }
+      EList<String> _valeurs_1 = aff.getValeurs();
+      String _get_3 = _valeurs_1.get(i);
+      String _plus_4 = (res + _get_3);
+      String _plus_5 = (_plus_4 + "");
+      res = _plus_5;
+      return res;
     }
-    _builder.newLineIfNotEmpty();
-    return _builder;
   }
   
   public Object compile(final Expr expr) {

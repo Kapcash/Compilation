@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
-		main.runGenerator(args[0],args[1]);
+		main.runGenerator(args[0],args[1],args[2]);
 	}
 
 	@Inject
@@ -41,10 +41,14 @@ public class Main {
 	@Inject 
 	private JavaIoFileSystemAccess fileAccess;
 
-	protected void runGenerator(String string,String sortie) {
+	protected void runGenerator(String string,String sortie,String indentAll) {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
+		int idenAll = 1;
+		if(!indentAll.equals(null)){
+			idenAll = Integer.parseInt(indentAll);
+		}
 
 		// Validate the resource
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
@@ -59,7 +63,7 @@ public class Main {
 		fileAccess.setOutputPath("./");
 		GeneratorContext context = new GeneratorContext();
 		context.setCancelIndicator(CancelIndicator.NullImpl);
-		generator.doGenerate(resource, fileAccess, context, sortie);
+		generator.doGenerate(resource, fileAccess, context, sortie,idenAll,0,0,0,0,0);
 
 		System.out.println("Code generation finished.");
 	}

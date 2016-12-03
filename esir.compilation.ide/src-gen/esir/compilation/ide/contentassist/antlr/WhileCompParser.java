@@ -134,13 +134,13 @@ public class WhileCompParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_0(), "rule__ExprSimple__ValeurAssignment_0");
 					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_1(), "rule__ExprSimple__ValeurAssignment_1");
 					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_2(), "rule__ExprSimple__ValeurAssignment_2");
-					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_3_1(), "rule__ExprSimple__ValeurAssignment_3_1");
+					put(grammarAccess.getExprSimpleAccess().getOpeAssignment_3_1(), "rule__ExprSimple__OpeAssignment_3_1");
 					put(grammarAccess.getExprSimpleAccess().getLexprAssignment_3_2(), "rule__ExprSimple__LexprAssignment_3_2");
-					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_4_1(), "rule__ExprSimple__ValeurAssignment_4_1");
+					put(grammarAccess.getExprSimpleAccess().getOpeAssignment_4_1(), "rule__ExprSimple__OpeAssignment_4_1");
 					put(grammarAccess.getExprSimpleAccess().getLexprAssignment_4_2(), "rule__ExprSimple__LexprAssignment_4_2");
-					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_5_1(), "rule__ExprSimple__ValeurAssignment_5_1");
+					put(grammarAccess.getExprSimpleAccess().getOpeAssignment_5_1(), "rule__ExprSimple__OpeAssignment_5_1");
 					put(grammarAccess.getExprSimpleAccess().getExprAssignment_5_2(), "rule__ExprSimple__ExprAssignment_5_2");
-					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_6_1(), "rule__ExprSimple__ValeurAssignment_6_1");
+					put(grammarAccess.getExprSimpleAccess().getOpeAssignment_6_1(), "rule__ExprSimple__OpeAssignment_6_1");
 					put(grammarAccess.getExprSimpleAccess().getExprAssignment_6_2(), "rule__ExprSimple__ExprAssignment_6_2");
 					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_7_1(), "rule__ExprSimple__ValeurAssignment_7_1");
 					put(grammarAccess.getExprSimpleAccess().getLexprAssignment_7_2(), "rule__ExprSimple__LexprAssignment_7_2");

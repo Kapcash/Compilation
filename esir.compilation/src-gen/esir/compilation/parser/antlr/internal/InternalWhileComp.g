@@ -1730,15 +1730,15 @@ ruleExprSimple returns [EObject current=null]
 			}
 			(
 				(
-					lv_valeur_4_0='cons'
+					lv_ope_4_0='cons'
 					{
-						newLeafNode(lv_valeur_4_0, grammarAccess.getExprSimpleAccess().getValeurConsKeyword_3_1_0());
+						newLeafNode(lv_ope_4_0, grammarAccess.getExprSimpleAccess().getOpeConsKeyword_3_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getExprSimpleRule());
 						}
-						setWithLastConsumed($current, "valeur", lv_valeur_4_0, "cons");
+						setWithLastConsumed($current, "ope", lv_ope_4_0, "cons");
 					}
 				)
 			)
@@ -1774,15 +1774,15 @@ ruleExprSimple returns [EObject current=null]
 			}
 			(
 				(
-					lv_valeur_8_0='list'
+					lv_ope_8_0='list'
 					{
-						newLeafNode(lv_valeur_8_0, grammarAccess.getExprSimpleAccess().getValeurListKeyword_4_1_0());
+						newLeafNode(lv_ope_8_0, grammarAccess.getExprSimpleAccess().getOpeListKeyword_4_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getExprSimpleRule());
 						}
-						setWithLastConsumed($current, "valeur", lv_valeur_8_0, "list");
+						setWithLastConsumed($current, "ope", lv_ope_8_0, "list");
 					}
 				)
 			)
@@ -1818,15 +1818,15 @@ ruleExprSimple returns [EObject current=null]
 			}
 			(
 				(
-					lv_valeur_12_0='hd'
+					lv_ope_12_0='hd'
 					{
-						newLeafNode(lv_valeur_12_0, grammarAccess.getExprSimpleAccess().getValeurHdKeyword_5_1_0());
+						newLeafNode(lv_ope_12_0, grammarAccess.getExprSimpleAccess().getOpeHdKeyword_5_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getExprSimpleRule());
 						}
-						setWithLastConsumed($current, "valeur", lv_valeur_12_0, "hd");
+						setWithLastConsumed($current, "ope", lv_ope_12_0, "hd");
 					}
 				)
 			)
@@ -1862,15 +1862,15 @@ ruleExprSimple returns [EObject current=null]
 			}
 			(
 				(
-					lv_valeur_16_0='tl'
+					lv_ope_16_0='tl'
 					{
-						newLeafNode(lv_valeur_16_0, grammarAccess.getExprSimpleAccess().getValeurTlKeyword_6_1_0());
+						newLeafNode(lv_ope_16_0, grammarAccess.getExprSimpleAccess().getOpeTlKeyword_6_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getExprSimpleRule());
 						}
-						setWithLastConsumed($current, "valeur", lv_valeur_16_0, "tl");
+						setWithLastConsumed($current, "ope", lv_ope_16_0, "tl");
 					}
 				)
 			)

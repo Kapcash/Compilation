@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getValeur <em>Valeur</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getExpr <em>Expr</em>}</li>
  * </ul>
@@ -53,6 +54,26 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * @ordered
    */
   protected String valeur = VALEUR_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getOpe() <em>Ope</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOpe()
+   * @generated
+   * @ordered
+   */
+  protected static final String OPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getOpe() <em>Ope</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOpe()
+   * @generated
+   * @ordered
+   */
+  protected String ope = OPE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getLexpr() <em>Lexpr</em>}' containment reference.
@@ -116,6 +137,29 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     valeur = newValeur;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__VALEUR, oldValeur, valeur));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getOpe()
+  {
+    return ope;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOpe(String newOpe)
+  {
+    String oldOpe = ope;
+    ope = newOpe;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__OPE, oldOpe, ope));
   }
 
   /**
@@ -244,6 +288,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     {
       case WhileCompPackage.EXPR_SIMPLE__VALEUR:
         return getValeur();
+      case WhileCompPackage.EXPR_SIMPLE__OPE:
+        return getOpe();
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         return getLexpr();
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
@@ -264,6 +310,9 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     {
       case WhileCompPackage.EXPR_SIMPLE__VALEUR:
         setValeur((String)newValue);
+        return;
+      case WhileCompPackage.EXPR_SIMPLE__OPE:
+        setOpe((String)newValue);
         return;
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         setLexpr((Lexpr)newValue);
@@ -288,6 +337,9 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
       case WhileCompPackage.EXPR_SIMPLE__VALEUR:
         setValeur(VALEUR_EDEFAULT);
         return;
+      case WhileCompPackage.EXPR_SIMPLE__OPE:
+        setOpe(OPE_EDEFAULT);
+        return;
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         setLexpr((Lexpr)null);
         return;
@@ -310,6 +362,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     {
       case WhileCompPackage.EXPR_SIMPLE__VALEUR:
         return VALEUR_EDEFAULT == null ? valeur != null : !VALEUR_EDEFAULT.equals(valeur);
+      case WhileCompPackage.EXPR_SIMPLE__OPE:
+        return OPE_EDEFAULT == null ? ope != null : !OPE_EDEFAULT.equals(ope);
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         return lexpr != null;
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
@@ -331,6 +385,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (valeur: ");
     result.append(valeur);
+    result.append(", ope: ");
+    result.append(ope);
     result.append(')');
     return result.toString();
   }

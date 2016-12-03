@@ -33,6 +33,7 @@ import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
 import esir.compilation.whileComp.If;
+import esir.compilation.whileComp.Lexpr;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
@@ -69,6 +70,14 @@ public class GeneratorAddr {
 	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
 	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
+	
+	/**
+	 * Starting the symbols table generation
+	 * @param string File path to examinate
+	 * @param sortie Output file path
+	 * @throws SymTableException Error when creating the symbols table 
+	 * @throws ThreeAddressCodeException Error when creating the code generator
+	 */
 	private void createSymTable(String string, String sortie) throws SymTableException, ThreeAddressCodeException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
@@ -89,7 +98,10 @@ public class GeneratorAddr {
 			if (next instanceof Program)
 				iterateAST((Program) next); // Parcours l'AST du 'Program'
 		}
-
+		
+		checkSymbolsUsage();	//Check all the symbols usage (undeclared function for example)
+		displaySymTable();		//Print the symbols table
+		System.out.println(code3Addresses);
 		System.out.println("Symboles Table correctly generated.");
 	}
 
@@ -101,8 +113,6 @@ public class GeneratorAddr {
 		for (Function f : prog.getFunctions()) {
 			iterateAST(f);
 		}
-		displaySymTable();
-		System.out.println(code3Addresses);
 	}
 	
 	// Function
@@ -200,7 +210,8 @@ public class GeneratorAddr {
 		String var;
 
 		while (itVal.hasNext()) {
-			//TODO: iterateAST(itVal.next()); // For Expr
+			iterateAST(itVal.next(), f); // For Expr
+			//TODO : Update val because now it is 'Expr', not only Variable
 			val = "nil";
 			var = PREFIXE + i++;
 
@@ -217,18 +228,44 @@ public class GeneratorAddr {
 		}
 	}
 	
-	//TODO : Expressions
+	//Expr
 	private void iterateAST(Expr exp, DefFun f){
 		ExprSimple expSimp = exp.getExprsimple();
 		iterateAST(expSimp, f);
 		//TODO: ExprAnd
 	}
 	
-	private void iterateAST(ExprSimple exp, DefFun f){
-		//ExprSimple expSimp = exp.getExprsimple();
-		//iterateAST(expSimp);
+	//ExprSimple
+	private void iterateAST(ExprSimple ex, DefFun f){
+		String val = ex.getValeur();
+		Expr exp = ex.getExpr();
+		Lexpr exprs = ex.getLexpr();
+		if(isSymbole(val)){		//Symbole
+			f.updateSyms(val);
+		}
+		if(isVariable(val)){	//Variable
+			f.updateVar(val, null);
+		}
+		if(exp != null){		//Expr
+			iterateAST(exp, f);
+		}
+		if(exprs != null){		//Lexpr
+			iterateAST(exprs, f);
+		}
 	}
 
+	//Lexpr
+	private void iterateAST(Lexpr lexp, DefFun f){
+		Expr exp = lexp.getExpr();
+		Lexpr exprs = lexp.getLexpr();
+		if(exp!= null){
+			iterateAST(exp, f);
+		}
+		if(exprs != null){
+			iterateAST(exprs, f);
+		}
+	}
+		
 	// While
 	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, ""), "", "", ""));
@@ -275,6 +312,27 @@ public class GeneratorAddr {
 		for (String f : funList.keySet()) {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
+	}
+	
+	private void checkSymbolsUsage() throws SymTableException{
+		for(DefFun f : funList.values()){
+			//Checking symbols usage after generating all the symbols table
+			for(String symbol : f.getSymbs()){
+				if(!funList.containsKey(symbol)) throw new SymTableException("Symbol '"+symbol+"' used but not corresponding to any declared function !");
+			}
+		}
+	}
+	
+	private boolean isSymbole(String str){
+		if(str == null || str.equals("nil")) return false;
+		String firstChar = str.substring(0,1);
+		return firstChar.equals(firstChar.toLowerCase()); //Is lowercase -> Symbole
+	}
+	
+	private boolean isVariable(String str){
+		if(str == null) return false;
+		String firstChar = str.substring(0,1);
+		return firstChar.equals(firstChar.toUpperCase()); //Is uppercase -> Variable
 	}
 
 	

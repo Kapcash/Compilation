@@ -10716,26 +10716,26 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ExprSimple__Group_3__1__Impl"
-    // InternalWhileComp.g:3097:1: rule__ExprSimple__Group_3__1__Impl : ( ( rule__ExprSimple__ValeurAssignment_3_1 ) ) ;
+    // InternalWhileComp.g:3097:1: rule__ExprSimple__Group_3__1__Impl : ( ( rule__ExprSimple__OpeAssignment_3_1 ) ) ;
     public final void rule__ExprSimple__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWhileComp.g:3101:1: ( ( ( rule__ExprSimple__ValeurAssignment_3_1 ) ) )
-            // InternalWhileComp.g:3102:1: ( ( rule__ExprSimple__ValeurAssignment_3_1 ) )
+            // InternalWhileComp.g:3101:1: ( ( ( rule__ExprSimple__OpeAssignment_3_1 ) ) )
+            // InternalWhileComp.g:3102:1: ( ( rule__ExprSimple__OpeAssignment_3_1 ) )
             {
-            // InternalWhileComp.g:3102:1: ( ( rule__ExprSimple__ValeurAssignment_3_1 ) )
-            // InternalWhileComp.g:3103:2: ( rule__ExprSimple__ValeurAssignment_3_1 )
+            // InternalWhileComp.g:3102:1: ( ( rule__ExprSimple__OpeAssignment_3_1 ) )
+            // InternalWhileComp.g:3103:2: ( rule__ExprSimple__OpeAssignment_3_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurAssignment_3_1()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeAssignment_3_1()); 
             }
-            // InternalWhileComp.g:3104:2: ( rule__ExprSimple__ValeurAssignment_3_1 )
-            // InternalWhileComp.g:3104:3: rule__ExprSimple__ValeurAssignment_3_1
+            // InternalWhileComp.g:3104:2: ( rule__ExprSimple__OpeAssignment_3_1 )
+            // InternalWhileComp.g:3104:3: rule__ExprSimple__OpeAssignment_3_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExprSimple__ValeurAssignment_3_1();
+            rule__ExprSimple__OpeAssignment_3_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -10743,7 +10743,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurAssignment_3_1()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeAssignment_3_1()); 
             }
 
             }
@@ -11047,26 +11047,26 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ExprSimple__Group_4__1__Impl"
-    // InternalWhileComp.g:3205:1: rule__ExprSimple__Group_4__1__Impl : ( ( rule__ExprSimple__ValeurAssignment_4_1 ) ) ;
+    // InternalWhileComp.g:3205:1: rule__ExprSimple__Group_4__1__Impl : ( ( rule__ExprSimple__OpeAssignment_4_1 ) ) ;
     public final void rule__ExprSimple__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWhileComp.g:3209:1: ( ( ( rule__ExprSimple__ValeurAssignment_4_1 ) ) )
-            // InternalWhileComp.g:3210:1: ( ( rule__ExprSimple__ValeurAssignment_4_1 ) )
+            // InternalWhileComp.g:3209:1: ( ( ( rule__ExprSimple__OpeAssignment_4_1 ) ) )
+            // InternalWhileComp.g:3210:1: ( ( rule__ExprSimple__OpeAssignment_4_1 ) )
             {
-            // InternalWhileComp.g:3210:1: ( ( rule__ExprSimple__ValeurAssignment_4_1 ) )
-            // InternalWhileComp.g:3211:2: ( rule__ExprSimple__ValeurAssignment_4_1 )
+            // InternalWhileComp.g:3210:1: ( ( rule__ExprSimple__OpeAssignment_4_1 ) )
+            // InternalWhileComp.g:3211:2: ( rule__ExprSimple__OpeAssignment_4_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurAssignment_4_1()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeAssignment_4_1()); 
             }
-            // InternalWhileComp.g:3212:2: ( rule__ExprSimple__ValeurAssignment_4_1 )
-            // InternalWhileComp.g:3212:3: rule__ExprSimple__ValeurAssignment_4_1
+            // InternalWhileComp.g:3212:2: ( rule__ExprSimple__OpeAssignment_4_1 )
+            // InternalWhileComp.g:3212:3: rule__ExprSimple__OpeAssignment_4_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExprSimple__ValeurAssignment_4_1();
+            rule__ExprSimple__OpeAssignment_4_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -11074,7 +11074,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurAssignment_4_1()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeAssignment_4_1()); 
             }
 
             }
@@ -11378,26 +11378,26 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ExprSimple__Group_5__1__Impl"
-    // InternalWhileComp.g:3313:1: rule__ExprSimple__Group_5__1__Impl : ( ( rule__ExprSimple__ValeurAssignment_5_1 ) ) ;
+    // InternalWhileComp.g:3313:1: rule__ExprSimple__Group_5__1__Impl : ( ( rule__ExprSimple__OpeAssignment_5_1 ) ) ;
     public final void rule__ExprSimple__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWhileComp.g:3317:1: ( ( ( rule__ExprSimple__ValeurAssignment_5_1 ) ) )
-            // InternalWhileComp.g:3318:1: ( ( rule__ExprSimple__ValeurAssignment_5_1 ) )
+            // InternalWhileComp.g:3317:1: ( ( ( rule__ExprSimple__OpeAssignment_5_1 ) ) )
+            // InternalWhileComp.g:3318:1: ( ( rule__ExprSimple__OpeAssignment_5_1 ) )
             {
-            // InternalWhileComp.g:3318:1: ( ( rule__ExprSimple__ValeurAssignment_5_1 ) )
-            // InternalWhileComp.g:3319:2: ( rule__ExprSimple__ValeurAssignment_5_1 )
+            // InternalWhileComp.g:3318:1: ( ( rule__ExprSimple__OpeAssignment_5_1 ) )
+            // InternalWhileComp.g:3319:2: ( rule__ExprSimple__OpeAssignment_5_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurAssignment_5_1()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeAssignment_5_1()); 
             }
-            // InternalWhileComp.g:3320:2: ( rule__ExprSimple__ValeurAssignment_5_1 )
-            // InternalWhileComp.g:3320:3: rule__ExprSimple__ValeurAssignment_5_1
+            // InternalWhileComp.g:3320:2: ( rule__ExprSimple__OpeAssignment_5_1 )
+            // InternalWhileComp.g:3320:3: rule__ExprSimple__OpeAssignment_5_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExprSimple__ValeurAssignment_5_1();
+            rule__ExprSimple__OpeAssignment_5_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -11405,7 +11405,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurAssignment_5_1()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeAssignment_5_1()); 
             }
 
             }
@@ -11709,26 +11709,26 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ExprSimple__Group_6__1__Impl"
-    // InternalWhileComp.g:3421:1: rule__ExprSimple__Group_6__1__Impl : ( ( rule__ExprSimple__ValeurAssignment_6_1 ) ) ;
+    // InternalWhileComp.g:3421:1: rule__ExprSimple__Group_6__1__Impl : ( ( rule__ExprSimple__OpeAssignment_6_1 ) ) ;
     public final void rule__ExprSimple__Group_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWhileComp.g:3425:1: ( ( ( rule__ExprSimple__ValeurAssignment_6_1 ) ) )
-            // InternalWhileComp.g:3426:1: ( ( rule__ExprSimple__ValeurAssignment_6_1 ) )
+            // InternalWhileComp.g:3425:1: ( ( ( rule__ExprSimple__OpeAssignment_6_1 ) ) )
+            // InternalWhileComp.g:3426:1: ( ( rule__ExprSimple__OpeAssignment_6_1 ) )
             {
-            // InternalWhileComp.g:3426:1: ( ( rule__ExprSimple__ValeurAssignment_6_1 ) )
-            // InternalWhileComp.g:3427:2: ( rule__ExprSimple__ValeurAssignment_6_1 )
+            // InternalWhileComp.g:3426:1: ( ( rule__ExprSimple__OpeAssignment_6_1 ) )
+            // InternalWhileComp.g:3427:2: ( rule__ExprSimple__OpeAssignment_6_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurAssignment_6_1()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeAssignment_6_1()); 
             }
-            // InternalWhileComp.g:3428:2: ( rule__ExprSimple__ValeurAssignment_6_1 )
-            // InternalWhileComp.g:3428:3: rule__ExprSimple__ValeurAssignment_6_1
+            // InternalWhileComp.g:3428:2: ( rule__ExprSimple__OpeAssignment_6_1 )
+            // InternalWhileComp.g:3428:3: rule__ExprSimple__OpeAssignment_6_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExprSimple__ValeurAssignment_6_1();
+            rule__ExprSimple__OpeAssignment_6_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -11736,7 +11736,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurAssignment_6_1()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeAssignment_6_1()); 
             }
 
             }
@@ -15002,9 +15002,9 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__ExprSimple__ValeurAssignment_2"
 
 
-    // $ANTLR start "rule__ExprSimple__ValeurAssignment_3_1"
-    // InternalWhileComp.g:4527:1: rule__ExprSimple__ValeurAssignment_3_1 : ( ( 'cons' ) ) ;
-    public final void rule__ExprSimple__ValeurAssignment_3_1() throws RecognitionException {
+    // $ANTLR start "rule__ExprSimple__OpeAssignment_3_1"
+    // InternalWhileComp.g:4527:1: rule__ExprSimple__OpeAssignment_3_1 : ( ( 'cons' ) ) ;
+    public final void rule__ExprSimple__OpeAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -15016,23 +15016,23 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             // InternalWhileComp.g:4533:3: ( 'cons' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurConsKeyword_3_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeConsKeyword_3_1_0()); 
             }
             // InternalWhileComp.g:4534:3: ( 'cons' )
             // InternalWhileComp.g:4535:4: 'cons'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurConsKeyword_3_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeConsKeyword_3_1_0()); 
             }
             match(input,39,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurConsKeyword_3_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeConsKeyword_3_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurConsKeyword_3_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeConsKeyword_3_1_0()); 
             }
 
             }
@@ -15052,7 +15052,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ExprSimple__ValeurAssignment_3_1"
+    // $ANTLR end "rule__ExprSimple__OpeAssignment_3_1"
 
 
     // $ANTLR start "rule__ExprSimple__LexprAssignment_3_2"
@@ -15100,9 +15100,9 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__ExprSimple__LexprAssignment_3_2"
 
 
-    // $ANTLR start "rule__ExprSimple__ValeurAssignment_4_1"
-    // InternalWhileComp.g:4561:1: rule__ExprSimple__ValeurAssignment_4_1 : ( ( 'list' ) ) ;
-    public final void rule__ExprSimple__ValeurAssignment_4_1() throws RecognitionException {
+    // $ANTLR start "rule__ExprSimple__OpeAssignment_4_1"
+    // InternalWhileComp.g:4561:1: rule__ExprSimple__OpeAssignment_4_1 : ( ( 'list' ) ) ;
+    public final void rule__ExprSimple__OpeAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -15114,23 +15114,23 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             // InternalWhileComp.g:4567:3: ( 'list' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurListKeyword_4_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeListKeyword_4_1_0()); 
             }
             // InternalWhileComp.g:4568:3: ( 'list' )
             // InternalWhileComp.g:4569:4: 'list'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurListKeyword_4_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeListKeyword_4_1_0()); 
             }
             match(input,40,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurListKeyword_4_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeListKeyword_4_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurListKeyword_4_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeListKeyword_4_1_0()); 
             }
 
             }
@@ -15150,7 +15150,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ExprSimple__ValeurAssignment_4_1"
+    // $ANTLR end "rule__ExprSimple__OpeAssignment_4_1"
 
 
     // $ANTLR start "rule__ExprSimple__LexprAssignment_4_2"
@@ -15198,9 +15198,9 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__ExprSimple__LexprAssignment_4_2"
 
 
-    // $ANTLR start "rule__ExprSimple__ValeurAssignment_5_1"
-    // InternalWhileComp.g:4595:1: rule__ExprSimple__ValeurAssignment_5_1 : ( ( 'hd' ) ) ;
-    public final void rule__ExprSimple__ValeurAssignment_5_1() throws RecognitionException {
+    // $ANTLR start "rule__ExprSimple__OpeAssignment_5_1"
+    // InternalWhileComp.g:4595:1: rule__ExprSimple__OpeAssignment_5_1 : ( ( 'hd' ) ) ;
+    public final void rule__ExprSimple__OpeAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -15212,23 +15212,23 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             // InternalWhileComp.g:4601:3: ( 'hd' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurHdKeyword_5_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeHdKeyword_5_1_0()); 
             }
             // InternalWhileComp.g:4602:3: ( 'hd' )
             // InternalWhileComp.g:4603:4: 'hd'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurHdKeyword_5_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeHdKeyword_5_1_0()); 
             }
             match(input,41,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurHdKeyword_5_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeHdKeyword_5_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurHdKeyword_5_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeHdKeyword_5_1_0()); 
             }
 
             }
@@ -15248,7 +15248,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ExprSimple__ValeurAssignment_5_1"
+    // $ANTLR end "rule__ExprSimple__OpeAssignment_5_1"
 
 
     // $ANTLR start "rule__ExprSimple__ExprAssignment_5_2"
@@ -15296,9 +15296,9 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__ExprSimple__ExprAssignment_5_2"
 
 
-    // $ANTLR start "rule__ExprSimple__ValeurAssignment_6_1"
-    // InternalWhileComp.g:4629:1: rule__ExprSimple__ValeurAssignment_6_1 : ( ( 'tl' ) ) ;
-    public final void rule__ExprSimple__ValeurAssignment_6_1() throws RecognitionException {
+    // $ANTLR start "rule__ExprSimple__OpeAssignment_6_1"
+    // InternalWhileComp.g:4629:1: rule__ExprSimple__OpeAssignment_6_1 : ( ( 'tl' ) ) ;
+    public final void rule__ExprSimple__OpeAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -15310,23 +15310,23 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             // InternalWhileComp.g:4635:3: ( 'tl' )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurTlKeyword_6_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeTlKeyword_6_1_0()); 
             }
             // InternalWhileComp.g:4636:3: ( 'tl' )
             // InternalWhileComp.g:4637:4: 'tl'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurTlKeyword_6_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getOpeTlKeyword_6_1_0()); 
             }
             match(input,42,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurTlKeyword_6_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeTlKeyword_6_1_0()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurTlKeyword_6_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getOpeTlKeyword_6_1_0()); 
             }
 
             }
@@ -15346,7 +15346,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ExprSimple__ValeurAssignment_6_1"
+    // $ANTLR end "rule__ExprSimple__OpeAssignment_6_1"
 
 
     // $ANTLR start "rule__ExprSimple__ExprAssignment_6_2"

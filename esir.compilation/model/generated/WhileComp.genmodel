@@ -87,6 +87,7 @@
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//ExprSimple">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/valeur"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/ope"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/lexpr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/expr"/>
     </genClasses>

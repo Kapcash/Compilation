@@ -143,6 +143,9 @@ public abstract class AbstractWhileCompProposalProvider extends TerminalsProposa
 			completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 		}
 	}
+	public void completeExprSimple_Ope(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
 	public void completeExprSimple_Lexpr(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}

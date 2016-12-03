@@ -870,29 +870,29 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValeurSYMBOLTerminalRuleCall_2_0 = (RuleCall)cValeurAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Keyword cLeftParenthesisKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cValeurAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final Keyword cValeurConsKeyword_3_1_0 = (Keyword)cValeurAssignment_3_1.eContents().get(0);
+		private final Assignment cOpeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final Keyword cOpeConsKeyword_3_1_0 = (Keyword)cOpeAssignment_3_1.eContents().get(0);
 		private final Assignment cLexprAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
 		private final RuleCall cLexprLexprParserRuleCall_3_2_0 = (RuleCall)cLexprAssignment_3_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Keyword cLeftParenthesisKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cValeurAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final Keyword cValeurListKeyword_4_1_0 = (Keyword)cValeurAssignment_4_1.eContents().get(0);
+		private final Assignment cOpeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final Keyword cOpeListKeyword_4_1_0 = (Keyword)cOpeAssignment_4_1.eContents().get(0);
 		private final Assignment cLexprAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cLexprLexprParserRuleCall_4_2_0 = (RuleCall)cLexprAssignment_4_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Keyword cLeftParenthesisKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cValeurAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final Keyword cValeurHdKeyword_5_1_0 = (Keyword)cValeurAssignment_5_1.eContents().get(0);
+		private final Assignment cOpeAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final Keyword cOpeHdKeyword_5_1_0 = (Keyword)cOpeAssignment_5_1.eContents().get(0);
 		private final Assignment cExprAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
 		private final RuleCall cExprExprParserRuleCall_5_2_0 = (RuleCall)cExprAssignment_5_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5_3 = (Keyword)cGroup_5.eContents().get(3);
 		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
 		private final Keyword cLeftParenthesisKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cValeurAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final Keyword cValeurTlKeyword_6_1_0 = (Keyword)cValeurAssignment_6_1.eContents().get(0);
+		private final Assignment cOpeAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final Keyword cOpeTlKeyword_6_1_0 = (Keyword)cOpeAssignment_6_1.eContents().get(0);
 		private final Assignment cExprAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
 		private final RuleCall cExprExprParserRuleCall_6_2_0 = (RuleCall)cExprAssignment_6_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6_3 = (Keyword)cGroup_6.eContents().get(3);
@@ -906,13 +906,15 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ExprSimple:
 		//	valeur='nil' | valeur=VARIABLE | valeur=SYMBOL |
-		//	'(' valeur='cons' lexpr=Lexpr ')' | '(' valeur='list' lexpr=Lexpr ')' |
-		//	'(' valeur='hd' expr=Expr ')' | '(' valeur='tl' expr=Expr ')' |
+		//	'(' ope='cons' lexpr=Lexpr ')' |
+		//	'(' ope='list' lexpr=Lexpr ')' |
+		//	'(' ope='hd' expr=Expr ')' |
+		//	'(' ope='tl' expr=Expr ')' |
 		//	'(' valeur=SYMBOL lexpr=Lexpr ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//valeur='nil' | valeur=VARIABLE | valeur=SYMBOL | '(' valeur='cons' lexpr=Lexpr ')' | '(' valeur='list' lexpr=Lexpr ')' |
-		//'(' valeur='hd' expr=Expr ')' | '(' valeur='tl' expr=Expr ')' | '(' valeur=SYMBOL lexpr=Lexpr ')'
+		//valeur='nil' | valeur=VARIABLE | valeur=SYMBOL | '(' ope='cons' lexpr=Lexpr ')' | '(' ope='list' lexpr=Lexpr ')' | '('
+		//ope='hd' expr=Expr ')' | '(' ope='tl' expr=Expr ')' | '(' valeur=SYMBOL lexpr=Lexpr ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//valeur='nil'
@@ -933,17 +935,17 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//SYMBOL
 		public RuleCall getValeurSYMBOLTerminalRuleCall_2_0() { return cValeurSYMBOLTerminalRuleCall_2_0; }
 		
-		//'(' valeur='cons' lexpr=Lexpr ')'
+		//'(' ope='cons' lexpr=Lexpr ')'
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_3_0() { return cLeftParenthesisKeyword_3_0; }
 		
-		//valeur='cons'
-		public Assignment getValeurAssignment_3_1() { return cValeurAssignment_3_1; }
+		//ope='cons'
+		public Assignment getOpeAssignment_3_1() { return cOpeAssignment_3_1; }
 		
 		//'cons'
-		public Keyword getValeurConsKeyword_3_1_0() { return cValeurConsKeyword_3_1_0; }
+		public Keyword getOpeConsKeyword_3_1_0() { return cOpeConsKeyword_3_1_0; }
 		
 		//lexpr=Lexpr
 		public Assignment getLexprAssignment_3_2() { return cLexprAssignment_3_2; }
@@ -954,17 +956,17 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_3_3() { return cRightParenthesisKeyword_3_3; }
 		
-		//'(' valeur='list' lexpr=Lexpr ')'
+		//'(' ope='list' lexpr=Lexpr ')'
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_4_0() { return cLeftParenthesisKeyword_4_0; }
 		
-		//valeur='list'
-		public Assignment getValeurAssignment_4_1() { return cValeurAssignment_4_1; }
+		//ope='list'
+		public Assignment getOpeAssignment_4_1() { return cOpeAssignment_4_1; }
 		
 		//'list'
-		public Keyword getValeurListKeyword_4_1_0() { return cValeurListKeyword_4_1_0; }
+		public Keyword getOpeListKeyword_4_1_0() { return cOpeListKeyword_4_1_0; }
 		
 		//lexpr=Lexpr
 		public Assignment getLexprAssignment_4_2() { return cLexprAssignment_4_2; }
@@ -975,17 +977,17 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_4_3() { return cRightParenthesisKeyword_4_3; }
 		
-		//'(' valeur='hd' expr=Expr ')'
+		//'(' ope='hd' expr=Expr ')'
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_5_0() { return cLeftParenthesisKeyword_5_0; }
 		
-		//valeur='hd'
-		public Assignment getValeurAssignment_5_1() { return cValeurAssignment_5_1; }
+		//ope='hd'
+		public Assignment getOpeAssignment_5_1() { return cOpeAssignment_5_1; }
 		
 		//'hd'
-		public Keyword getValeurHdKeyword_5_1_0() { return cValeurHdKeyword_5_1_0; }
+		public Keyword getOpeHdKeyword_5_1_0() { return cOpeHdKeyword_5_1_0; }
 		
 		//expr=Expr
 		public Assignment getExprAssignment_5_2() { return cExprAssignment_5_2; }
@@ -996,17 +998,17 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_5_3() { return cRightParenthesisKeyword_5_3; }
 		
-		//'(' valeur='tl' expr=Expr ')'
+		//'(' ope='tl' expr=Expr ')'
 		public Group getGroup_6() { return cGroup_6; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_6_0() { return cLeftParenthesisKeyword_6_0; }
 		
-		//valeur='tl'
-		public Assignment getValeurAssignment_6_1() { return cValeurAssignment_6_1; }
+		//ope='tl'
+		public Assignment getOpeAssignment_6_1() { return cOpeAssignment_6_1; }
 		
 		//'tl'
-		public Keyword getValeurTlKeyword_6_1_0() { return cValeurTlKeyword_6_1_0; }
+		public Keyword getOpeTlKeyword_6_1_0() { return cOpeTlKeyword_6_1_0; }
 		
 		//expr=Expr
 		public Assignment getExprAssignment_6_2() { return cExprAssignment_6_2; }
@@ -1481,8 +1483,10 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ExprSimple:
 	//	valeur='nil' | valeur=VARIABLE | valeur=SYMBOL |
-	//	'(' valeur='cons' lexpr=Lexpr ')' | '(' valeur='list' lexpr=Lexpr ')' |
-	//	'(' valeur='hd' expr=Expr ')' | '(' valeur='tl' expr=Expr ')' |
+	//	'(' ope='cons' lexpr=Lexpr ')' |
+	//	'(' ope='list' lexpr=Lexpr ')' |
+	//	'(' ope='hd' expr=Expr ')' |
+	//	'(' ope='tl' expr=Expr ')' |
 	//	'(' valeur=SYMBOL lexpr=Lexpr ')';
 	public ExprSimpleElements getExprSimpleAccess() {
 		return pExprSimple;

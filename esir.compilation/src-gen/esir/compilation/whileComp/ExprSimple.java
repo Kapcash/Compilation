@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getValeur <em>Valeur</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.ExprSimple#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getExpr <em>Expr</em>}</li>
  * </ul>
@@ -50,6 +51,32 @@ public interface ExprSimple extends EObject
    * @generated
    */
   void setValeur(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ope</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ope</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ope</em>' attribute.
+   * @see #setOpe(String)
+   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Ope()
+   * @model
+   * @generated
+   */
+  String getOpe();
+
+  /**
+   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getOpe <em>Ope</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ope</em>' attribute.
+   * @see #getOpe()
+   * @generated
+   */
+  void setOpe(String value);
 
   /**
    * Returns the value of the '<em><b>Lexpr</b></em>' containment reference.

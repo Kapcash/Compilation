@@ -290,10 +290,10 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         valeur='nil' | 
 	 *         valeur=VARIABLE | 
 	 *         valeur=SYMBOL | 
-	 *         (valeur='cons' lexpr=Lexpr) | 
-	 *         (valeur='list' lexpr=Lexpr) | 
-	 *         (valeur='hd' expr=Expr) | 
-	 *         (valeur='tl' expr=Expr) | 
+	 *         (ope='cons' lexpr=Lexpr) | 
+	 *         (ope='list' lexpr=Lexpr) | 
+	 *         (ope='hd' expr=Expr) | 
+	 *         (ope='tl' expr=Expr) | 
 	 *         (valeur=SYMBOL lexpr=Lexpr)
 	 *     )
 	 */

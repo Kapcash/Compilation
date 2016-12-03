@@ -808,13 +808,22 @@ public interface WhileCompPackage extends EPackage
   int EXPR_SIMPLE__VALEUR = 0;
 
   /**
+   * The feature id for the '<em><b>Ope</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__OPE = 1;
+
+  /**
    * The feature id for the '<em><b>Lexpr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__LEXPR = 1;
+  int EXPR_SIMPLE__LEXPR = 2;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -823,7 +832,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EXPR = 2;
+  int EXPR_SIMPLE__EXPR = 3;
 
   /**
    * The number of structural features of the '<em>Expr Simple</em>' class.
@@ -832,7 +841,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE_FEATURE_COUNT = 3;
+  int EXPR_SIMPLE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link esir.compilation.whileComp.impl.LexprImpl <em>Lexpr</em>}' class.
@@ -1691,6 +1700,17 @@ public interface WhileCompPackage extends EPackage
   EAttribute getExprSimple_Valeur();
 
   /**
+   * Returns the meta object for the attribute '{@link esir.compilation.whileComp.ExprSimple#getOpe <em>Ope</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ope</em>'.
+   * @see esir.compilation.whileComp.ExprSimple#getOpe()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EAttribute getExprSimple_Ope();
+
+  /**
    * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2422,6 +2442,14 @@ public interface WhileCompPackage extends EPackage
      * @generated
      */
     EAttribute EXPR_SIMPLE__VALEUR = eINSTANCE.getExprSimple_Valeur();
+
+    /**
+     * The meta object literal for the '<em><b>Ope</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPR_SIMPLE__OPE = eINSTANCE.getExprSimple_Ope();
 
     /**
      * The meta object literal for the '<em><b>Lexpr</b></em>' containment reference feature.

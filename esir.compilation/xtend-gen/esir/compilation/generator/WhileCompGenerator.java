@@ -360,9 +360,11 @@ public class WhileCompGenerator extends AbstractGenerator {
       String _get = _affectations_1.get(0);
       String _plus = ("" + _get);
       String _plus_1 = (_plus + " := ");
-      EList<String> _valeurs = aff.getValeurs();
-      String _get_1 = _valeurs.get(0);
-      return (_plus_1 + _get_1);
+      EList<Expr> _valeurs = aff.getValeurs();
+      Expr _get_1 = _valeurs.get(0);
+      Object _compile = this.compile(_get_1);
+      String _plus_2 = (_plus_1 + _compile);
+      return (_plus_2 + "\n");
     } else {
       EList<String> _affectations_2 = aff.getAffectations();
       final int size = _affectations_2.size();
@@ -370,35 +372,37 @@ public class WhileCompGenerator extends AbstractGenerator {
       String res = "";
       while ((i < (size - 1))) {
         {
+          String _res = res;
           EList<String> _affectations_3 = aff.getAffectations();
           String _get_2 = _affectations_3.get(i);
-          String _plus_2 = (res + _get_2);
-          String _plus_3 = (_plus_2 + ",");
-          res = _plus_3;
+          String _plus_3 = (_get_2 + ",");
+          res = (_res + _plus_3);
           i = (i + 1);
         }
       }
+      String _res = res;
       EList<String> _affectations_3 = aff.getAffectations();
       String _get_2 = _affectations_3.get(i);
-      String _plus_2 = (res + _get_2);
-      String _plus_3 = (_plus_2 + " := ");
-      res = _plus_3;
+      String _plus_3 = (_get_2 + " := ");
+      res = (_res + _plus_3);
       i = 0;
       while ((i < (size - 1))) {
         {
-          EList<String> _valeurs_1 = aff.getValeurs();
-          String _get_3 = _valeurs_1.get(i);
-          String _plus_4 = (res + _get_3);
-          String _plus_5 = (_plus_4 + ",");
-          res = _plus_5;
+          String _res_1 = res;
+          EList<Expr> _valeurs_1 = aff.getValeurs();
+          Expr _get_3 = _valeurs_1.get(i);
+          Object _compile_1 = this.compile(_get_3);
+          String _plus_4 = (_compile_1 + ",");
+          res = (_res_1 + _plus_4);
           i = (i + 1);
         }
       }
-      EList<String> _valeurs_1 = aff.getValeurs();
-      String _get_3 = _valeurs_1.get(i);
-      String _plus_4 = (res + _get_3);
-      String _plus_5 = (_plus_4 + "");
-      res = _plus_5;
+      String _res_1 = res;
+      EList<Expr> _valeurs_1 = aff.getValeurs();
+      Expr _get_3 = _valeurs_1.get(i);
+      Object _compile_1 = this.compile(_get_3);
+      String _plus_4 = (_compile_1 + "\n");
+      res = (_res_1 + _plus_4);
       return res;
     }
   }
@@ -477,62 +481,78 @@ public class WhileCompGenerator extends AbstractGenerator {
   }
   
   public String compile(final ExprSimple expr) {
+    String ret = "";
     Nil2 _nil = expr.getNil();
     boolean _notEquals = (!Objects.equal(_nil, null));
     if (_notEquals) {
-      return "nil";
+      String _ret = ret;
+      ret = (_ret + "nil");
     }
     String _variable = expr.getVariable();
     boolean _notEquals_1 = (!Objects.equal(_variable, null));
     if (_notEquals_1) {
-      return expr.getVariable();
+      String _ret_1 = ret;
+      String _variable_1 = expr.getVariable();
+      ret = (_ret_1 + _variable_1);
     }
     if (((!Objects.equal(expr.getSymbol(), null)) && Objects.equal(expr.getLexpr(), null))) {
-      return expr.getSymbol();
+      String _ret_2 = ret;
+      String _symbol = expr.getSymbol();
+      ret = (_ret_2 + _symbol);
     }
     Cons _cons = expr.getCons();
     boolean _notEquals_2 = (!Objects.equal(_cons, null));
     if (_notEquals_2) {
+      String _ret_3 = ret;
       Lexpr _lexpr = expr.getLexpr();
       Object _compile = this.compile(_lexpr);
       String _plus = ("(cons " + _compile);
-      return (_plus + ")");
+      String _plus_1 = (_plus + ")");
+      ret = (_ret_3 + _plus_1);
     }
     List _list = expr.getList();
     boolean _notEquals_3 = (!Objects.equal(_list, null));
     if (_notEquals_3) {
+      String _ret_4 = ret;
       Lexpr _lexpr_1 = expr.getLexpr();
       Object _compile_1 = this.compile(_lexpr_1);
-      String _plus_1 = ("(list " + _compile_1);
-      return (_plus_1 + ")");
+      String _plus_2 = ("(list " + _compile_1);
+      String _plus_3 = (_plus_2 + ")");
+      ret = (_ret_4 + _plus_3);
     }
     Hd _hd = expr.getHd();
     boolean _notEquals_4 = (!Objects.equal(_hd, null));
     if (_notEquals_4) {
+      String _ret_5 = ret;
       Expr _expr = expr.getExpr();
       Object _compile_2 = this.compile(_expr);
-      String _plus_2 = ("(hd " + _compile_2);
-      return (_plus_2 + ")");
+      String _plus_4 = ("(hd " + _compile_2);
+      String _plus_5 = (_plus_4 + ")");
+      ret = (_ret_5 + _plus_5);
     }
     Tl _tl = expr.getTl();
     boolean _notEquals_5 = (!Objects.equal(_tl, null));
     if (_notEquals_5) {
+      String _ret_6 = ret;
       Expr _expr_1 = expr.getExpr();
       Object _compile_3 = this.compile(_expr_1);
-      String _plus_3 = ("(tl " + _compile_3);
-      return (_plus_3 + ")");
+      String _plus_6 = ("(tl " + _compile_3);
+      String _plus_7 = (_plus_6 + ")");
+      ret = (_ret_6 + _plus_7);
     }
-    String _symbol = expr.getSymbol();
-    boolean _notEquals_6 = (!Objects.equal(_symbol, null));
+    String _symbol_1 = expr.getSymbol();
+    boolean _notEquals_6 = (!Objects.equal(_symbol_1, null));
     if (_notEquals_6) {
-      String _symbol_1 = expr.getSymbol();
-      String _plus_4 = ("( " + _symbol_1);
+      String _ret_7 = ret;
+      String _symbol_2 = expr.getSymbol();
+      String _plus_8 = ("(" + _symbol_2);
       Lexpr _lexpr_2 = expr.getLexpr();
       Object _compile_4 = this.compile(_lexpr_2);
-      String _plus_5 = (_plus_4 + _compile_4);
-      return (_plus_5 + ")");
+      String _plus_9 = (_plus_8 + _compile_4);
+      String _plus_10 = (_plus_9 + ")");
+      ret = (_ret_7 + _plus_10);
     }
-    return null;
+    return ret;
   }
   
   public Object compile(final Lexpr expr) {

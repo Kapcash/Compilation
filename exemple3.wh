@@ -9,7 +9,7 @@ read A ,B
 		od
 	else
 		for nil do
-			E := Z
+			E := consFun(C,D)
 		od
 	fi
 	
@@ -27,9 +27,9 @@ read A
 %
 write X
 
-function symbolesFunction:
-read A
+function consFun:
+read A,B
 %
-	X := A
+	Ret := (cons A B)
 %
-write X
+write Ret

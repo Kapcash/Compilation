@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getNil <em>Nil</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getVariable <em>Variable</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getTl <em>Tl</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -4,17 +4,23 @@
 package esir.compilation.whileComp.impl;
 
 import esir.compilation.whileComp.Affectation;
+import esir.compilation.whileComp.Expr;
 import esir.compilation.whileComp.WhileCompPackage;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,11 +28,11 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getAffectations <em>Affectations</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getValeurs <em>Valeurs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -43,14 +49,14 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
   protected EList<String> affectations;
 
   /**
-   * The cached value of the '{@link #getValeurs() <em>Valeurs</em>}' attribute list.
+   * The cached value of the '{@link #getValeurs() <em>Valeurs</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValeurs()
    * @generated
    * @ordered
    */
-  protected EList<String> valeurs;
+  protected EList<Expr> valeurs;
 
   /**
    * <!-- begin-user-doc -->
@@ -92,13 +98,29 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getValeurs()
+  public EList<Expr> getValeurs()
   {
     if (valeurs == null)
     {
-      valeurs = new EDataTypeEList<String>(String.class, this, WhileCompPackage.AFFECTATION__VALEURS);
+      valeurs = new EObjectContainmentEList<Expr>(Expr.class, this, WhileCompPackage.AFFECTATION__VALEURS);
     }
     return valeurs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case WhileCompPackage.AFFECTATION__VALEURS:
+        return ((InternalEList<?>)getValeurs()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -136,7 +158,7 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
         return;
       case WhileCompPackage.AFFECTATION__VALEURS:
         getValeurs().clear();
-        getValeurs().addAll((Collection<? extends String>)newValue);
+        getValeurs().addAll((Collection<? extends Expr>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -193,8 +215,6 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (affectations: ");
     result.append(affectations);
-    result.append(", valeurs: ");
-    result.append(valeurs);
     result.append(')');
     return result.toString();
   }

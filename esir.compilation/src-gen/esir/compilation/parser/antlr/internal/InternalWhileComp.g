@@ -438,33 +438,21 @@ ruleAffectation returns [EObject current=null]
 		}
 		(
 			(
-				(
-					lv_valeurs_4_1=RULE_VARIABLE
-					{
-						newLeafNode(lv_valeurs_4_1, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_3_0_0());
+				{
+					newCompositeNode(grammarAccess.getAffectationAccess().getValeursExprParserRuleCall_3_0());
+				}
+				lv_valeurs_4_0=ruleExpr
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAffectationRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAffectationRule());
-						}
-						addWithLastConsumed(
-							$current,
-							"valeurs",
-							lv_valeurs_4_1,
-							"esir.compilation.WhileComp.VARIABLE");
-					}
-					    |
-					lv_valeurs_4_2='nil'
-					{
-						newLeafNode(lv_valeurs_4_2, grammarAccess.getAffectationAccess().getValeursNilKeyword_3_0_1());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAffectationRule());
-						}
-						addWithLastConsumed($current, "valeurs", lv_valeurs_4_2, null);
-					}
-				)
+					add(
+						$current,
+						"valeurs",
+						lv_valeurs_4_0,
+						"esir.compilation.WhileComp.Expr");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
 		(
@@ -474,33 +462,21 @@ ruleAffectation returns [EObject current=null]
 			}
 			(
 				(
-					(
-						lv_valeurs_6_1=RULE_VARIABLE
-						{
-							newLeafNode(lv_valeurs_6_1, grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_4_1_0_0());
+					{
+						newCompositeNode(grammarAccess.getAffectationAccess().getValeursExprParserRuleCall_4_1_0());
+					}
+					lv_valeurs_6_0=ruleExpr
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAffectationRule());
 						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAffectationRule());
-							}
-							addWithLastConsumed(
-								$current,
-								"valeurs",
-								lv_valeurs_6_1,
-								"esir.compilation.WhileComp.VARIABLE");
-						}
-						    |
-						lv_valeurs_6_2='nil'
-						{
-							newLeafNode(lv_valeurs_6_2, grammarAccess.getAffectationAccess().getValeursNilKeyword_4_1_0_1());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAffectationRule());
-							}
-							addWithLastConsumed($current, "valeurs", lv_valeurs_6_2, null);
-						}
-					)
+						add(
+							$current,
+							"valeurs",
+							lv_valeurs_6_0,
+							"esir.compilation.WhileComp.Expr");
+						afterParserOrEnumRuleCall();
+					}
 				)
 			)
 		)*

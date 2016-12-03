@@ -27,6 +27,7 @@ import esir.compilation.whileComp.Affectation;
 import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Definition;
+import esir.compilation.whileComp.Expr;
 import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
@@ -185,20 +186,21 @@ public class GeneratorAddr {
 	// Affectation
 	private void iterateAST(Affectation affCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		EList<String> affs = affCmd.getAffectations();
-		EList<String> vals = affCmd.getValeurs();
+		EList<Expr> vals = affCmd.getValeurs();
 
 		if (vals.size() != affs.size())
-			throw new ThreeAddressCodeException("Affectation error !"); // TODO
+			throw new ThreeAddressCodeException("Affectation error !");
 
 		Iterator<String> itAff = affs.iterator();
-		Iterator<String> itVal = vals.iterator();
+		Iterator<Expr> itVal = vals.iterator();
 
 		int i = 0;
 		String val;
 		String var;
 
 		while (itVal.hasNext()) {
-			val = itVal.next();
+			//TODO: iterateAST(itVal.next());
+			val = "nil";
 			var = PREFIXE + i++;
 
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
@@ -213,6 +215,8 @@ public class GeneratorAddr {
 			f.updateVar(var, val);
 		}
 	}
+	
+	//TODO : Expressions
 
 	// While
 	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
@@ -240,12 +244,13 @@ public class GeneratorAddr {
 	private void iterateAST(If ifCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, ""), ifCmd.getExpr().toString(), code3Addresses.getFutureEtiquette(), "");
 		code3Addresses.addIn3Addr(q);
+		//Then
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
 		iterateAST(cmds1, f);
-
 		code3Addresses.finEtiquette();
 		q.setArg2(code3Addresses.getFutureEtiquette());
+		//Else
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds2 = ifCmd.getCommands2();
 		iterateAST(cmds2, f);

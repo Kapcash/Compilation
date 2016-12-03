@@ -750,48 +750,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Affectation__ValeursAlternatives_3_0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_3_0_0()); }
-		RULE_VARIABLE
-		{ after(grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_3_0_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getAffectationAccess().getValeursNilKeyword_3_0_1()); }
-		'nil'
-		{ after(grammarAccess.getAffectationAccess().getValeursNilKeyword_3_0_1()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Affectation__ValeursAlternatives_4_1_0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_4_1_0_0()); }
-		RULE_VARIABLE
-		{ after(grammarAccess.getAffectationAccess().getValeursVARIABLETerminalRuleCall_4_1_0_0()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getAffectationAccess().getValeursNilKeyword_4_1_0_1()); }
-		'nil'
-		{ after(grammarAccess.getAffectationAccess().getValeursNilKeyword_4_1_0_1()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__Command__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -4029,9 +3987,9 @@ rule__Affectation__ValeursAssignment_3
 	}
 :
 	(
-		{ before(grammarAccess.getAffectationAccess().getValeursAlternatives_3_0()); }
-		(rule__Affectation__ValeursAlternatives_3_0)
-		{ after(grammarAccess.getAffectationAccess().getValeursAlternatives_3_0()); }
+		{ before(grammarAccess.getAffectationAccess().getValeursExprParserRuleCall_3_0()); }
+		ruleExpr
+		{ after(grammarAccess.getAffectationAccess().getValeursExprParserRuleCall_3_0()); }
 	)
 ;
 finally {
@@ -4044,9 +4002,9 @@ rule__Affectation__ValeursAssignment_4_1
 	}
 :
 	(
-		{ before(grammarAccess.getAffectationAccess().getValeursAlternatives_4_1_0()); }
-		(rule__Affectation__ValeursAlternatives_4_1_0)
-		{ after(grammarAccess.getAffectationAccess().getValeursAlternatives_4_1_0()); }
+		{ before(grammarAccess.getAffectationAccess().getValeursExprParserRuleCall_4_1_0()); }
+		ruleExpr
+		{ after(grammarAccess.getAffectationAccess().getValeursExprParserRuleCall_4_1_0()); }
 	)
 ;
 finally {

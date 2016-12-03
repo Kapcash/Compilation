@@ -181,22 +181,22 @@ class WhileCompGenerator extends AbstractGenerator {
 //		«FOR v: aff.affectations SEPARATOR ' ,'»«v»«ENDFOR» := «FOR v: aff.valeurs SEPARATOR ' ,'»«v»«ENDFOR»
 //		'''	
 		if(aff.affectations.size == 1){
-			return ""+aff.affectations.get(0)+" := " + aff.valeurs.get(0); 
+			return ""+aff.affectations.get(0)+" := " + aff.valeurs.get(0).compile+"\n"; 
 		}else{
 			val size = aff.affectations.size;
 			var i = 0;
 			var res = "";
 			while (i < size-1){
-				res = res + aff.affectations.get(i) + ",";
+				res += aff.affectations.get(i) + ",";
 				i = i + 1;
 			}
-			res = res + aff.affectations.get(i) + " := ";
+			res += aff.affectations.get(i) + " := ";
 			i = 0;
 			while (i < size-1){
-				res = res + aff.valeurs.get(i) + ",";
+				res += aff.valeurs.get(i).compile + ",";
 				i = i + 1;
 			}
-			res = res + aff.valeurs.get(i) + "";
+			res += aff.valeurs.get(i).compile + "\n";
 			return res;
 		}
 	}
@@ -242,31 +242,33 @@ class WhileCompGenerator extends AbstractGenerator {
 	}
 	
 	def compile(ExprSimple expr){
+		var ret=""
 		if(expr.nil != null){
-			return "nil"
+			ret+= "nil"
 		}
 		if (expr.variable != null){
-			return (expr.variable)
+			ret+= (expr.variable)
 		}
 		if(expr.symbol != null && expr.lexpr == null){
-			return (expr.symbol)
+			ret+=  (expr.symbol)
 		}
 		if (expr.cons != null){
-			return ("(cons " + expr.lexpr.compile +")")
+			ret+=  ("(cons " + expr.lexpr.compile +")")
 		}
 		if (expr.list != null){
-			return ("(list " + expr.lexpr.compile +")")
+			ret+=  ("(list " + expr.lexpr.compile +")")
 		}
 		if (expr.hd != null){
-			return ("(hd " + expr.expr.compile +")")
+			ret+=  ("(hd " + expr.expr.compile +")")
 		}
 		if (expr.tl != null){
-			return ("(tl " + expr.expr.compile +")")
+			ret+=  ("(tl " + expr.expr.compile +")")
 		}
 		if (expr.symbol != null){
-			return ("( "+expr.symbol + expr.lexpr.compile +")")
+			ret+=  ("("+expr.symbol + expr.lexpr.compile +")")
 		}
-		}
+		return ret
+	}
 		 	
 		def compile(Lexpr expr){
 		if (expr.lexpr != null){

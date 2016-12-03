@@ -244,7 +244,7 @@ public interface WhileCompPackage extends EPackage
   int AFFECTATION__AFFECTATIONS = 0;
 
   /**
-   * The feature id for the '<em><b>Valeurs</b></em>' attribute list.
+   * The feature id for the '<em><b>Valeurs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1254,15 +1254,15 @@ public interface WhileCompPackage extends EPackage
   EAttribute getAffectation_Affectations();
 
   /**
-   * Returns the meta object for the attribute list '{@link esir.compilation.whileComp.Affectation#getValeurs <em>Valeurs</em>}'.
+   * Returns the meta object for the containment reference list '{@link esir.compilation.whileComp.Affectation#getValeurs <em>Valeurs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Valeurs</em>'.
+   * @return the meta object for the containment reference list '<em>Valeurs</em>'.
    * @see esir.compilation.whileComp.Affectation#getValeurs()
    * @see #getAffectation()
    * @generated
    */
-  EAttribute getAffectation_Valeurs();
+  EReference getAffectation_Valeurs();
 
   /**
    * Returns the meta object for class '{@link esir.compilation.whileComp.Nop <em>Nop</em>}'.
@@ -2146,12 +2146,12 @@ public interface WhileCompPackage extends EPackage
     EAttribute AFFECTATION__AFFECTATIONS = eINSTANCE.getAffectation_Affectations();
 
     /**
-     * The meta object literal for the '<em><b>Valeurs</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Valeurs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute AFFECTATION__VALEURS = eINSTANCE.getAffectation_Valeurs();
+    EReference AFFECTATION__VALEURS = eINSTANCE.getAffectation_Valeurs();
 
     /**
      * The meta object literal for the '{@link esir.compilation.whileComp.impl.NopImpl <em>Nop</em>}' class.

@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.Affectation#getAffectations <em>Affectations</em>}</li>
  *   <li>{@link esir.compilation.whileComp.Affectation#getValeurs <em>Valeurs</em>}</li>
  * </ul>
- * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getAffectation()
  * @model
@@ -43,19 +43,19 @@ public interface Affectation extends EObject
   EList<String> getAffectations();
 
   /**
-   * Returns the value of the '<em><b>Valeurs</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Valeurs</b></em>' containment reference list.
+   * The list contents are of type {@link esir.compilation.whileComp.Expr}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Valeurs</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Valeurs</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Valeurs</em>' attribute list.
+   * @return the value of the '<em>Valeurs</em>' containment reference list.
    * @see esir.compilation.whileComp.WhileCompPackage#getAffectation_Valeurs()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getValeurs();
+  EList<Expr> getValeurs();
 
 } // Affectation

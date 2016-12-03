@@ -35,8 +35,6 @@ public class WhileCompParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getAffectationAccess().getValeursAlternatives_3_0(), "rule__Affectation__ValeursAlternatives_3_0");
-					put(grammarAccess.getAffectationAccess().getValeursAlternatives_4_1_0(), "rule__Affectation__ValeursAlternatives_4_1_0");
 					put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
 					put(grammarAccess.getExprAccess().getAlternatives(), "rule__Expr__Alternatives");
 					put(grammarAccess.getExprAndAccess().getAlternatives(), "rule__ExprAnd__Alternatives");

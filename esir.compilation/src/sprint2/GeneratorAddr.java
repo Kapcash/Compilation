@@ -91,6 +91,9 @@ public class GeneratorAddr {
 		System.out.println("Symboles Table correctly generated.");
 	}
 
+	
+//ITERATE ON THE AST
+	
 	// Program
 	private void iterateAST(Program prog) throws SymTableException, ThreeAddressCodeException {
 		for (Function f : prog.getFunctions()) {
@@ -99,29 +102,21 @@ public class GeneratorAddr {
 		displaySymTable();
 		System.out.println(code3Addresses);
 	}
-
-	private void displaySymTable() {
-		System.out.println();
-		for (String f : funList.keySet()) {
-			System.out.println(f + " : " + funList.get(f) + "\n");
-		}
-
-	}
-
+	
 	// Function
 	private void iterateAST(Function f) throws SymTableException, ThreeAddressCodeException {
 		String fName = f.getFunction();
 		code3Addresses.nouvelleEtiquette();
 
-		boolean fun = funList.keySet().contains(f);
+		boolean fun = funList.containsKey(fName);
 		if (fun) { // Function already existing
-			throw new SymTableException("Function " + fName + " already declared !");
+			throw new SymTableException("Function '" + fName + "' already declared !");
 		} else {
-			DefFun function = new DefFun();
-			funList.put(fName, function); // Adding a new blank function
+			DefFun def = new DefFun(fName);
+			funList.put(fName, def); // Adding a new blank function
 											// (DefFun)
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FUN, ""), fName, "", ""));
-			iterateAST(f.getDefinition(), function);
+			iterateAST(f.getDefinition(), def);
 		}
 		code3Addresses.finEtiquette();
 	}
@@ -141,7 +136,7 @@ public class GeneratorAddr {
 		EList<String> varsR = read.getVariable();
 		f.setIn(varsR.size());
 		for (String v : varsR) {
-			if(f.alreadyExisting(v)) throw new SymTableException("Variable "+v+" already declared !");
+			if(f.alreadyExisting(v)) throw new SymTableException("Function '"+f.getFunName()+"', variable '"+v+"' already declared !");
 			f.updateVar(v, null);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
 		}
@@ -256,7 +251,15 @@ public class GeneratorAddr {
 		iterateAST(cmds2, f);
 	}
 	
-	
+	/**
+	 * Print the final symboles table
+	 */
+	private void displaySymTable() {
+		System.out.println();
+		for (String f : funList.keySet()) {
+			System.out.println(f + " : " + funList.get(f) + "\n");
+		}
+	}
 
 	
 }

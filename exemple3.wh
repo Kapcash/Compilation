@@ -1,5 +1,5 @@
 function symbolesFunction: 
-read A ,B ,A
+read A ,B
 %
 	A ,C := B ,nil ;
 	C := B ;
@@ -24,5 +24,12 @@ read A
 	while (cons A B) do
 		Y:=A
 	od
+%
+write X
+
+function symbolesFunction:
+read A
+%
+	X := A
 %
 write X

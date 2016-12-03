@@ -4,9 +4,11 @@ import java.util.HashMap;
 
 public class DefFun{
 	int in, out;
+	String funName;
 	HashMap<String,String> vars;
 	
-	public DefFun(){
+	public DefFun(String functionName){
+		funName = functionName;
 		in = 0;
 		out = 0;
 		vars = new HashMap<String,String>();
@@ -27,6 +29,14 @@ public class DefFun{
 	
 	/* GETTERS & SETTERS */
 	
+	public String getFunName() {
+		return funName;
+	}
+
+	public void setFunName(String funName) {
+		this.funName = funName;
+	}
+
 	public int getIn() {
 		return in;
 	}

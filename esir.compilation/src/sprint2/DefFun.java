@@ -13,7 +13,7 @@ public class DefFun{
 	}
 	
 	public void updateVar(String var,String val){
-		vars.put(var,(val ==null)? "nil" : val);
+		vars.put(var,(val == null)? "nil" : val);
 	}
 	
 	public boolean alreadyExisting(String var){

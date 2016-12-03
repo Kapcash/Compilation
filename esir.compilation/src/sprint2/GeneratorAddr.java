@@ -47,8 +47,10 @@ public class GeneratorAddr {
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
 			main.createSymTable("../exemple3.wh", "./");
-		} catch (SymTableException | ThreeAddressCodeException e) {
-			System.out.println("[ERROR] : " + e.getMessage());
+		} catch (SymTableException symEx) {
+			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
+		} catch (ThreeAddressCodeException codeEx){
+			System.out.println("[ADDRCODE ERROR] : " + codeEx.getMessage());
 		}
 	}
 	// ---- //
@@ -135,17 +137,18 @@ public class GeneratorAddr {
 	}
 
 	// Read
-	public void iterateAST(Read read, DefFun f) {
+	public void iterateAST(Read read, DefFun f) throws SymTableException{
 		EList<String> varsR = read.getVariable();
 		f.setIn(varsR.size());
 		for (String v : varsR) {
+			if(f.alreadyExisting(v)) throw new SymTableException("Variable "+v+" already declared !");
 			f.updateVar(v, null);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
 		}
 	}
 
 	// Write
-	private void iterateAST(Write write, DefFun f) {
+	private void iterateAST(Write write, DefFun f) throws SymTableException{
 		EList<String> varsW = write.getVariable();
 		f.setOut(varsW.size());
 		for (String v : varsW) {

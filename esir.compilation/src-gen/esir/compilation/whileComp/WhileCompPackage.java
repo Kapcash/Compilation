@@ -799,40 +799,13 @@ public interface WhileCompPackage extends EPackage
   int EXPR_SIMPLE = 20;
 
   /**
-   * The feature id for the '<em><b>Nil</b></em>' containment reference.
+   * The feature id for the '<em><b>Valeur</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__NIL = 0;
-
-  /**
-   * The feature id for the '<em><b>Variable</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__VARIABLE = 1;
-
-  /**
-   * The feature id for the '<em><b>Symbol</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__SYMBOL = 2;
-
-  /**
-   * The feature id for the '<em><b>Cons</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__CONS = 3;
+  int EXPR_SIMPLE__VALEUR = 0;
 
   /**
    * The feature id for the '<em><b>Lexpr</b></em>' containment reference.
@@ -841,25 +814,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__LEXPR = 4;
-
-  /**
-   * The feature id for the '<em><b>List</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__LIST = 5;
-
-  /**
-   * The feature id for the '<em><b>Hd</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__HD = 6;
+  int EXPR_SIMPLE__LEXPR = 1;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -868,16 +823,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EXPR = 7;
-
-  /**
-   * The feature id for the '<em><b>Tl</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__TL = 8;
+  int EXPR_SIMPLE__EXPR = 2;
 
   /**
    * The number of structural features of the '<em>Expr Simple</em>' class.
@@ -886,7 +832,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE_FEATURE_COUNT = 9;
+  int EXPR_SIMPLE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link esir.compilation.whileComp.impl.LexprImpl <em>Lexpr</em>}' class.
@@ -1734,48 +1680,15 @@ public interface WhileCompPackage extends EPackage
   EClass getExprSimple();
 
   /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}'.
+   * Returns the meta object for the attribute '{@link esir.compilation.whileComp.ExprSimple#getValeur <em>Valeur</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Nil</em>'.
-   * @see esir.compilation.whileComp.ExprSimple#getNil()
+   * @return the meta object for the attribute '<em>Valeur</em>'.
+   * @see esir.compilation.whileComp.ExprSimple#getValeur()
    * @see #getExprSimple()
    * @generated
    */
-  EReference getExprSimple_Nil();
-
-  /**
-   * Returns the meta object for the attribute '{@link esir.compilation.whileComp.ExprSimple#getVariable <em>Variable</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Variable</em>'.
-   * @see esir.compilation.whileComp.ExprSimple#getVariable()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EAttribute getExprSimple_Variable();
-
-  /**
-   * Returns the meta object for the attribute '{@link esir.compilation.whileComp.ExprSimple#getSymbol <em>Symbol</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Symbol</em>'.
-   * @see esir.compilation.whileComp.ExprSimple#getSymbol()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EAttribute getExprSimple_Symbol();
-
-  /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getCons <em>Cons</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Cons</em>'.
-   * @see esir.compilation.whileComp.ExprSimple#getCons()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_Cons();
+  EAttribute getExprSimple_Valeur();
 
   /**
    * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}'.
@@ -1789,28 +1702,6 @@ public interface WhileCompPackage extends EPackage
   EReference getExprSimple_Lexpr();
 
   /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getList <em>List</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>List</em>'.
-   * @see esir.compilation.whileComp.ExprSimple#getList()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_List();
-
-  /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getHd <em>Hd</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Hd</em>'.
-   * @see esir.compilation.whileComp.ExprSimple#getHd()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_Hd();
-
-  /**
    * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getExpr <em>Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1820,17 +1711,6 @@ public interface WhileCompPackage extends EPackage
    * @generated
    */
   EReference getExprSimple_Expr();
-
-  /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getTl <em>Tl</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Tl</em>'.
-   * @see esir.compilation.whileComp.ExprSimple#getTl()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_Tl();
 
   /**
    * Returns the meta object for class '{@link esir.compilation.whileComp.Lexpr <em>Lexpr</em>}'.
@@ -2536,36 +2416,12 @@ public interface WhileCompPackage extends EPackage
     EClass EXPR_SIMPLE = eINSTANCE.getExprSimple();
 
     /**
-     * The meta object literal for the '<em><b>Nil</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Valeur</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPR_SIMPLE__NIL = eINSTANCE.getExprSimple_Nil();
-
-    /**
-     * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXPR_SIMPLE__VARIABLE = eINSTANCE.getExprSimple_Variable();
-
-    /**
-     * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXPR_SIMPLE__SYMBOL = eINSTANCE.getExprSimple_Symbol();
-
-    /**
-     * The meta object literal for the '<em><b>Cons</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__CONS = eINSTANCE.getExprSimple_Cons();
+    EAttribute EXPR_SIMPLE__VALEUR = eINSTANCE.getExprSimple_Valeur();
 
     /**
      * The meta object literal for the '<em><b>Lexpr</b></em>' containment reference feature.
@@ -2576,36 +2432,12 @@ public interface WhileCompPackage extends EPackage
     EReference EXPR_SIMPLE__LEXPR = eINSTANCE.getExprSimple_Lexpr();
 
     /**
-     * The meta object literal for the '<em><b>List</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__LIST = eINSTANCE.getExprSimple_List();
-
-    /**
-     * The meta object literal for the '<em><b>Hd</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__HD = eINSTANCE.getExprSimple_Hd();
-
-    /**
      * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference EXPR_SIMPLE__EXPR = eINSTANCE.getExprSimple_Expr();
-
-    /**
-     * The meta object literal for the '<em><b>Tl</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__TL = eINSTANCE.getExprSimple_Tl();
 
     /**
      * The meta object literal for the '{@link esir.compilation.whileComp.impl.LexprImpl <em>Lexpr</em>}' class.

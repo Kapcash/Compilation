@@ -8,7 +8,6 @@ import com.google.common.collect.Iterables;
 import esir.compilation.whileComp.Affectation;
 import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
-import esir.compilation.whileComp.Cons;
 import esir.compilation.whileComp.Definition;
 import esir.compilation.whileComp.Expr;
 import esir.compilation.whileComp.ExprAnd;
@@ -19,16 +18,12 @@ import esir.compilation.whileComp.ExprSimple;
 import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
-import esir.compilation.whileComp.Hd;
 import esir.compilation.whileComp.If;
 import esir.compilation.whileComp.Lexpr;
-import esir.compilation.whileComp.List;
-import esir.compilation.whileComp.Nil2;
 import esir.compilation.whileComp.Nop;
 import esir.compilation.whileComp.Not;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
-import esir.compilation.whileComp.Tl;
 import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
 import org.eclipse.emf.common.util.EList;
@@ -231,7 +226,9 @@ public class WhileCompGenerator extends AbstractGenerator {
       Object _compile_2 = this.compile(_commands, indentBase, ((indentAll + indentBase) + indentWhile), indentFor, indentWhile, indentIf, indentForeach, indentAff);
       String _plus_3 = (_plus_2 + _compile_2);
       String _plus_4 = (_plus_3 + decal_2);
-      return (_plus_4 + "od\n");
+      String _plus_5 = (_plus_4 + "\n");
+      String _plus_6 = (_plus_5 + decal_2);
+      return (_plus_6 + "od\n");
     }
     EObject _command_6 = c.getCommand();
     if ((_command_6 instanceof For)) {
@@ -253,14 +250,16 @@ public class WhileCompGenerator extends AbstractGenerator {
       EObject _command_7 = c.getCommand();
       Expr _expr_1 = ((For) _command_7).getExpr();
       Object _compile_3 = this.compile(_expr_1);
-      String _plus_5 = ((decal_3 + "for ") + _compile_3);
-      String _plus_6 = (_plus_5 + " do\n");
+      String _plus_7 = ((decal_3 + "for ") + _compile_3);
+      String _plus_8 = (_plus_7 + " do\n");
       EObject _command_8 = c.getCommand();
       Commands _commands_1 = ((For) _command_8).getCommands();
       Object _compile_4 = this.compile(_commands_1, indentBase, ((indentAll + indentBase) + indentFor), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-      String _plus_7 = (_plus_6 + _compile_4);
-      String _plus_8 = (_plus_7 + decal_3);
-      return (_plus_8 + "od\n");
+      String _plus_9 = (_plus_8 + _compile_4);
+      String _plus_10 = (_plus_9 + decal_3);
+      String _plus_11 = (_plus_10 + "\n");
+      String _plus_12 = (_plus_11 + decal_3);
+      return (_plus_12 + "od\n");
     }
     EObject _command_9 = c.getCommand();
     if ((_command_9 instanceof Foreach)) {
@@ -282,19 +281,21 @@ public class WhileCompGenerator extends AbstractGenerator {
       EObject _command_10 = c.getCommand();
       Expr _expr1 = ((Foreach) _command_10).getExpr1();
       Object _compile_5 = this.compile(_expr1);
-      String _plus_9 = ((decal_4 + "foreach ") + _compile_5);
-      String _plus_10 = (_plus_9 + " in ");
+      String _plus_13 = ((decal_4 + "foreach ") + _compile_5);
+      String _plus_14 = (_plus_13 + " in ");
       EObject _command_11 = c.getCommand();
       Expr _expr2 = ((Foreach) _command_11).getExpr2();
       Object _compile_6 = this.compile(_expr2);
-      String _plus_11 = (_plus_10 + _compile_6);
-      String _plus_12 = (_plus_11 + " do\n");
+      String _plus_15 = (_plus_14 + _compile_6);
+      String _plus_16 = (_plus_15 + " do\n");
       EObject _command_12 = c.getCommand();
       Commands _commands_2 = ((Foreach) _command_12).getCommands();
       Object _compile_7 = this.compile(_commands_2, indentBase, ((indentAll + indentBase) + indentForeach), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-      String _plus_13 = (_plus_12 + _compile_7);
-      String _plus_14 = (_plus_13 + decal_4);
-      return (_plus_14 + "od\n");
+      String _plus_17 = (_plus_16 + _compile_7);
+      String _plus_18 = (_plus_17 + decal_4);
+      String _plus_19 = (_plus_18 + "\n");
+      String _plus_20 = (_plus_19 + decal_4);
+      return (_plus_20 + "od\n");
     }
     EObject _command_13 = c.getCommand();
     if ((_command_13 instanceof If)) {
@@ -320,32 +321,32 @@ public class WhileCompGenerator extends AbstractGenerator {
         EObject _command_15 = c.getCommand();
         Expr _expr_2 = ((If) _command_15).getExpr();
         Object _compile_8 = this.compile(_expr_2);
-        String _plus_15 = ((decal_5 + "if ") + _compile_8);
-        String _plus_16 = (_plus_15 + " then \n");
+        String _plus_21 = ((decal_5 + "if ") + _compile_8);
+        String _plus_22 = (_plus_21 + " then \n");
         EObject _command_16 = c.getCommand();
         Commands _commands1 = ((If) _command_16).getCommands1();
         Object _compile_9 = this.compile(_commands1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_17 = (_plus_16 + _compile_9);
-        String _plus_18 = (_plus_17 + decal_5);
-        String _plus_19 = (_plus_18 + "else \n");
+        String _plus_23 = (_plus_22 + _compile_9);
+        String _plus_24 = (_plus_23 + decal_5);
+        String _plus_25 = (_plus_24 + "else \n");
         EObject _command_17 = c.getCommand();
         Commands _commands2_1 = ((If) _command_17).getCommands2();
         Object _compile_10 = this.compile(_commands2_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_20 = (_plus_19 + _compile_10);
-        String _plus_21 = (_plus_20 + decal_5);
-        return (_plus_21 + "fi\n");
+        String _plus_26 = (_plus_25 + _compile_10);
+        String _plus_27 = (_plus_26 + decal_5);
+        return (_plus_27 + "fi\n");
       } else {
         EObject _command_18 = c.getCommand();
         Expr _expr_3 = ((If) _command_18).getExpr();
         Object _compile_11 = this.compile(_expr_3);
-        String _plus_22 = ((decal_5 + "if ") + _compile_11);
-        String _plus_23 = (_plus_22 + " then \n");
+        String _plus_28 = ((decal_5 + "if ") + _compile_11);
+        String _plus_29 = (_plus_28 + " then \n");
         EObject _command_19 = c.getCommand();
         Commands _commands1_1 = ((If) _command_19).getCommands1();
         Object _compile_12 = this.compile(_commands1_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_24 = (_plus_23 + _compile_12);
-        String _plus_25 = (_plus_24 + decal_5);
-        return (_plus_25 + "fi\n");
+        String _plus_30 = (_plus_29 + _compile_12);
+        String _plus_31 = (_plus_30 + decal_5);
+        return (_plus_31 + "fi\n");
       }
     }
     return null;
@@ -363,8 +364,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       EList<Expr> _valeurs = aff.getValeurs();
       Expr _get_1 = _valeurs.get(0);
       Object _compile = this.compile(_get_1);
-      String _plus_2 = (_plus_1 + _compile);
-      return (_plus_2 + "\n");
+      return (_plus_1 + _compile);
     } else {
       EList<String> _affectations_2 = aff.getAffectations();
       final int size = _affectations_2.size();
@@ -375,16 +375,16 @@ public class WhileCompGenerator extends AbstractGenerator {
           String _res = res;
           EList<String> _affectations_3 = aff.getAffectations();
           String _get_2 = _affectations_3.get(i);
-          String _plus_3 = (_get_2 + ",");
-          res = (_res + _plus_3);
+          String _plus_2 = (_get_2 + " ,");
+          res = (_res + _plus_2);
           i = (i + 1);
         }
       }
       String _res = res;
       EList<String> _affectations_3 = aff.getAffectations();
       String _get_2 = _affectations_3.get(i);
-      String _plus_3 = (_get_2 + " := ");
-      res = (_res + _plus_3);
+      String _plus_2 = (_get_2 + " := ");
+      res = (_res + _plus_2);
       i = 0;
       while ((i < (size - 1))) {
         {
@@ -392,8 +392,8 @@ public class WhileCompGenerator extends AbstractGenerator {
           EList<Expr> _valeurs_1 = aff.getValeurs();
           Expr _get_3 = _valeurs_1.get(i);
           Object _compile_1 = this.compile(_get_3);
-          String _plus_4 = (_compile_1 + ",");
-          res = (_res_1 + _plus_4);
+          String _plus_3 = (_compile_1 + " ,");
+          res = (_res_1 + _plus_3);
           i = (i + 1);
         }
       }
@@ -401,8 +401,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       EList<Expr> _valeurs_1 = aff.getValeurs();
       Expr _get_3 = _valeurs_1.get(i);
       Object _compile_1 = this.compile(_get_3);
-      String _plus_4 = (_compile_1 + "\n");
-      res = (_res_1 + _plus_4);
+      res = (_res_1 + _compile_1);
       return res;
     }
   }
@@ -482,75 +481,35 @@ public class WhileCompGenerator extends AbstractGenerator {
   
   public String compile(final ExprSimple expr) {
     String ret = "";
-    Nil2 _nil = expr.getNil();
-    boolean _notEquals = (!Objects.equal(_nil, null));
+    Lexpr _lexpr = expr.getLexpr();
+    boolean _notEquals = (!Objects.equal(_lexpr, null));
     if (_notEquals) {
       String _ret = ret;
-      ret = (_ret + "nil");
-    }
-    String _variable = expr.getVariable();
-    boolean _notEquals_1 = (!Objects.equal(_variable, null));
-    if (_notEquals_1) {
-      String _ret_1 = ret;
-      String _variable_1 = expr.getVariable();
-      ret = (_ret_1 + _variable_1);
-    }
-    if (((!Objects.equal(expr.getSymbol(), null)) && Objects.equal(expr.getLexpr(), null))) {
-      String _ret_2 = ret;
-      String _symbol = expr.getSymbol();
-      ret = (_ret_2 + _symbol);
-    }
-    Cons _cons = expr.getCons();
-    boolean _notEquals_2 = (!Objects.equal(_cons, null));
-    if (_notEquals_2) {
-      String _ret_3 = ret;
-      Lexpr _lexpr = expr.getLexpr();
-      Object _compile = this.compile(_lexpr);
-      String _plus = ("(cons " + _compile);
-      String _plus_1 = (_plus + ")");
-      ret = (_ret_3 + _plus_1);
-    }
-    List _list = expr.getList();
-    boolean _notEquals_3 = (!Objects.equal(_list, null));
-    if (_notEquals_3) {
-      String _ret_4 = ret;
+      String _valeur = expr.getValeur();
+      String _plus = ("(" + _valeur);
+      String _plus_1 = (_plus + " ");
       Lexpr _lexpr_1 = expr.getLexpr();
-      Object _compile_1 = this.compile(_lexpr_1);
-      String _plus_2 = ("(list " + _compile_1);
+      Object _compile = this.compile(_lexpr_1);
+      String _plus_2 = (_plus_1 + _compile);
       String _plus_3 = (_plus_2 + ")");
-      ret = (_ret_4 + _plus_3);
-    }
-    Hd _hd = expr.getHd();
-    boolean _notEquals_4 = (!Objects.equal(_hd, null));
-    if (_notEquals_4) {
-      String _ret_5 = ret;
+      ret = (_ret + _plus_3);
+    } else {
       Expr _expr = expr.getExpr();
-      Object _compile_2 = this.compile(_expr);
-      String _plus_4 = ("(hd " + _compile_2);
-      String _plus_5 = (_plus_4 + ")");
-      ret = (_ret_5 + _plus_5);
-    }
-    Tl _tl = expr.getTl();
-    boolean _notEquals_5 = (!Objects.equal(_tl, null));
-    if (_notEquals_5) {
-      String _ret_6 = ret;
-      Expr _expr_1 = expr.getExpr();
-      Object _compile_3 = this.compile(_expr_1);
-      String _plus_6 = ("(tl " + _compile_3);
-      String _plus_7 = (_plus_6 + ")");
-      ret = (_ret_6 + _plus_7);
-    }
-    String _symbol_1 = expr.getSymbol();
-    boolean _notEquals_6 = (!Objects.equal(_symbol_1, null));
-    if (_notEquals_6) {
-      String _ret_7 = ret;
-      String _symbol_2 = expr.getSymbol();
-      String _plus_8 = ("(" + _symbol_2);
-      Lexpr _lexpr_2 = expr.getLexpr();
-      Object _compile_4 = this.compile(_lexpr_2);
-      String _plus_9 = (_plus_8 + _compile_4);
-      String _plus_10 = (_plus_9 + ")");
-      ret = (_ret_7 + _plus_10);
+      boolean _notEquals_1 = (!Objects.equal(_expr, null));
+      if (_notEquals_1) {
+        String _ret_1 = ret;
+        String _valeur_1 = expr.getValeur();
+        String _plus_4 = ("(" + _valeur_1);
+        String _plus_5 = (_plus_4 + " ");
+        Expr _expr_1 = expr.getExpr();
+        Object _compile_1 = this.compile(_expr_1);
+        String _plus_6 = (_plus_5 + _compile_1);
+        String _plus_7 = (_plus_6 + ")");
+        ret = (_ret_1 + _plus_7);
+      } else {
+        String _valeur_2 = expr.getValeur();
+        ret = _valeur_2;
+      }
     }
     return ret;
   }

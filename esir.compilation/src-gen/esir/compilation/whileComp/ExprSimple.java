@@ -14,15 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link esir.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}</li>
- *   <li>{@link esir.compilation.whileComp.ExprSimple#getVariable <em>Variable</em>}</li>
- *   <li>{@link esir.compilation.whileComp.ExprSimple#getSymbol <em>Symbol</em>}</li>
- *   <li>{@link esir.compilation.whileComp.ExprSimple#getCons <em>Cons</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.ExprSimple#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}</li>
- *   <li>{@link esir.compilation.whileComp.ExprSimple#getList <em>List</em>}</li>
- *   <li>{@link esir.compilation.whileComp.ExprSimple#getHd <em>Hd</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getExpr <em>Expr</em>}</li>
- *   <li>{@link esir.compilation.whileComp.ExprSimple#getTl <em>Tl</em>}</li>
  * </ul>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple()
@@ -32,108 +26,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface ExprSimple extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Nil</b></em>' containment reference.
+   * Returns the value of the '<em><b>Valeur</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Nil</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Valeur</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Nil</em>' containment reference.
-   * @see #setNil(Nil2)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Nil()
-   * @model containment="true"
-   * @generated
-   */
-  Nil2 getNil();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getNil <em>Nil</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Nil</em>' containment reference.
-   * @see #getNil()
-   * @generated
-   */
-  void setNil(Nil2 value);
-
-  /**
-   * Returns the value of the '<em><b>Variable</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Variable</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Variable</em>' attribute.
-   * @see #setVariable(String)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Variable()
+   * @return the value of the '<em>Valeur</em>' attribute.
+   * @see #setValeur(String)
+   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Valeur()
    * @model
    * @generated
    */
-  String getVariable();
+  String getValeur();
 
   /**
-   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getVariable <em>Variable</em>}' attribute.
+   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getValeur <em>Valeur</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variable</em>' attribute.
-   * @see #getVariable()
+   * @param value the new value of the '<em>Valeur</em>' attribute.
+   * @see #getValeur()
    * @generated
    */
-  void setVariable(String value);
-
-  /**
-   * Returns the value of the '<em><b>Symbol</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Symbol</em>' attribute.
-   * @see #setSymbol(String)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Symbol()
-   * @model
-   * @generated
-   */
-  String getSymbol();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getSymbol <em>Symbol</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Symbol</em>' attribute.
-   * @see #getSymbol()
-   * @generated
-   */
-  void setSymbol(String value);
-
-  /**
-   * Returns the value of the '<em><b>Cons</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Cons</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Cons</em>' containment reference.
-   * @see #setCons(Cons)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Cons()
-   * @model containment="true"
-   * @generated
-   */
-  Cons getCons();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getCons <em>Cons</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Cons</em>' containment reference.
-   * @see #getCons()
-   * @generated
-   */
-  void setCons(Cons value);
+  void setValeur(String value);
 
   /**
    * Returns the value of the '<em><b>Lexpr</b></em>' containment reference.
@@ -162,58 +78,6 @@ public interface ExprSimple extends EObject
   void setLexpr(Lexpr value);
 
   /**
-   * Returns the value of the '<em><b>List</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>List</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>List</em>' containment reference.
-   * @see #setList(List)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_List()
-   * @model containment="true"
-   * @generated
-   */
-  List getList();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getList <em>List</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>List</em>' containment reference.
-   * @see #getList()
-   * @generated
-   */
-  void setList(List value);
-
-  /**
-   * Returns the value of the '<em><b>Hd</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Hd</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Hd</em>' containment reference.
-   * @see #setHd(Hd)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Hd()
-   * @model containment="true"
-   * @generated
-   */
-  Hd getHd();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getHd <em>Hd</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Hd</em>' containment reference.
-   * @see #getHd()
-   * @generated
-   */
-  void setHd(Hd value);
-
-  /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -238,31 +102,5 @@ public interface ExprSimple extends EObject
    * @generated
    */
   void setExpr(Expr value);
-
-  /**
-   * Returns the value of the '<em><b>Tl</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Tl</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Tl</em>' containment reference.
-   * @see #setTl(Tl)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Tl()
-   * @model containment="true"
-   * @generated
-   */
-  Tl getTl();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getTl <em>Tl</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Tl</em>' containment reference.
-   * @see #getTl()
-   * @generated
-   */
-  void setTl(Tl value);
 
 } // ExprSimple

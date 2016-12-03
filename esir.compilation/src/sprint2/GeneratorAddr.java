@@ -28,6 +28,7 @@ import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Definition;
 import esir.compilation.whileComp.Expr;
+import esir.compilation.whileComp.ExprSimple;
 import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
@@ -199,7 +200,7 @@ public class GeneratorAddr {
 		String var;
 
 		while (itVal.hasNext()) {
-			//TODO: iterateAST(itVal.next());
+			//TODO: iterateAST(itVal.next()); // For Expr
 			val = "nil";
 			var = PREFIXE + i++;
 
@@ -217,6 +218,16 @@ public class GeneratorAddr {
 	}
 	
 	//TODO : Expressions
+	private void iterateAST(Expr exp, DefFun f){
+		ExprSimple expSimp = exp.getExprsimple();
+		iterateAST(expSimp, f);
+		//TODO: ExprAnd
+	}
+	
+	private void iterateAST(ExprSimple exp, DefFun f){
+		//ExprSimple expSimp = exp.getExprsimple();
+		//iterateAST(expSimp);
+	}
 
 	// While
 	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {

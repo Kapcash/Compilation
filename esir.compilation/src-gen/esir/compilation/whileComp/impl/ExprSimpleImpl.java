@@ -3,14 +3,9 @@
  */
 package esir.compilation.whileComp.impl;
 
-import esir.compilation.whileComp.Cons;
 import esir.compilation.whileComp.Expr;
 import esir.compilation.whileComp.ExprSimple;
-import esir.compilation.whileComp.Hd;
 import esir.compilation.whileComp.Lexpr;
-import esir.compilation.whileComp.List;
-import esir.compilation.whileComp.Nil2;
-import esir.compilation.whileComp.Tl;
 import esir.compilation.whileComp.WhileCompPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,15 +25,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getNil <em>Nil</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getSymbol <em>Symbol</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getCons <em>Cons</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getLexpr <em>Lexpr</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getList <em>List</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getHd <em>Hd</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getExpr <em>Expr</em>}</li>
- *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getTl <em>Tl</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,64 +35,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements ExprSimple
 {
   /**
-   * The cached value of the '{@link #getNil() <em>Nil</em>}' containment reference.
+   * The default value of the '{@link #getValeur() <em>Valeur</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNil()
+   * @see #getValeur()
    * @generated
    * @ordered
    */
-  protected Nil2 nil;
+  protected static final String VALEUR_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getVariable() <em>Variable</em>}' attribute.
+   * The cached value of the '{@link #getValeur() <em>Valeur</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariable()
+   * @see #getValeur()
    * @generated
    * @ordered
    */
-  protected static final String VARIABLE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVariable() <em>Variable</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVariable()
-   * @generated
-   * @ordered
-   */
-  protected String variable = VARIABLE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSymbol()
-   * @generated
-   * @ordered
-   */
-  protected static final String SYMBOL_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSymbol()
-   * @generated
-   * @ordered
-   */
-  protected String symbol = SYMBOL_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getCons() <em>Cons</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCons()
-   * @generated
-   * @ordered
-   */
-  protected Cons cons;
+  protected String valeur = VALEUR_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getLexpr() <em>Lexpr</em>}' containment reference.
@@ -116,26 +65,6 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   protected Lexpr lexpr;
 
   /**
-   * The cached value of the '{@link #getList() <em>List</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getList()
-   * @generated
-   * @ordered
-   */
-  protected List list;
-
-  /**
-   * The cached value of the '{@link #getHd() <em>Hd</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getHd()
-   * @generated
-   * @ordered
-   */
-  protected Hd hd;
-
-  /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -144,16 +73,6 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * @ordered
    */
   protected Expr expr;
-
-  /**
-   * The cached value of the '{@link #getTl() <em>Tl</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTl()
-   * @generated
-   * @ordered
-   */
-  protected Tl tl;
 
   /**
    * <!-- begin-user-doc -->
@@ -181,9 +100,9 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public Nil2 getNil()
+  public String getValeur()
   {
-    return nil;
+    return valeur;
   }
 
   /**
@@ -191,131 +110,12 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetNil(Nil2 newNil, NotificationChain msgs)
+  public void setValeur(String newValeur)
   {
-    Nil2 oldNil = nil;
-    nil = newNil;
+    String oldValeur = valeur;
+    valeur = newValeur;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__NIL, oldNil, newNil);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNil(Nil2 newNil)
-  {
-    if (newNil != nil)
-    {
-      NotificationChain msgs = null;
-      if (nil != null)
-        msgs = ((InternalEObject)nil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__NIL, null, msgs);
-      if (newNil != null)
-        msgs = ((InternalEObject)newNil).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__NIL, null, msgs);
-      msgs = basicSetNil(newNil, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__NIL, newNil, newNil));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getVariable()
-  {
-    return variable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setVariable(String newVariable)
-  {
-    String oldVariable = variable;
-    variable = newVariable;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__VARIABLE, oldVariable, variable));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getSymbol()
-  {
-    return symbol;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSymbol(String newSymbol)
-  {
-    String oldSymbol = symbol;
-    symbol = newSymbol;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__SYMBOL, oldSymbol, symbol));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Cons getCons()
-  {
-    return cons;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetCons(Cons newCons, NotificationChain msgs)
-  {
-    Cons oldCons = cons;
-    cons = newCons;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__CONS, oldCons, newCons);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setCons(Cons newCons)
-  {
-    if (newCons != cons)
-    {
-      NotificationChain msgs = null;
-      if (cons != null)
-        msgs = ((InternalEObject)cons).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__CONS, null, msgs);
-      if (newCons != null)
-        msgs = ((InternalEObject)newCons).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__CONS, null, msgs);
-      msgs = basicSetCons(newCons, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__CONS, newCons, newCons));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__VALEUR, oldValeur, valeur));
   }
 
   /**
@@ -371,102 +171,6 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public List getList()
-  {
-    return list;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetList(List newList, NotificationChain msgs)
-  {
-    List oldList = list;
-    list = newList;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__LIST, oldList, newList);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setList(List newList)
-  {
-    if (newList != list)
-    {
-      NotificationChain msgs = null;
-      if (list != null)
-        msgs = ((InternalEObject)list).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__LIST, null, msgs);
-      if (newList != null)
-        msgs = ((InternalEObject)newList).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__LIST, null, msgs);
-      msgs = basicSetList(newList, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__LIST, newList, newList));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Hd getHd()
-  {
-    return hd;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetHd(Hd newHd, NotificationChain msgs)
-  {
-    Hd oldHd = hd;
-    hd = newHd;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__HD, oldHd, newHd);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setHd(Hd newHd)
-  {
-    if (newHd != hd)
-    {
-      NotificationChain msgs = null;
-      if (hd != null)
-        msgs = ((InternalEObject)hd).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__HD, null, msgs);
-      if (newHd != null)
-        msgs = ((InternalEObject)newHd).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__HD, null, msgs);
-      msgs = basicSetHd(newHd, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__HD, newHd, newHd));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Expr getExpr()
   {
     return expr;
@@ -515,73 +219,15 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public Tl getTl()
-  {
-    return tl;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetTl(Tl newTl, NotificationChain msgs)
-  {
-    Tl oldTl = tl;
-    tl = newTl;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__TL, oldTl, newTl);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTl(Tl newTl)
-  {
-    if (newTl != tl)
-    {
-      NotificationChain msgs = null;
-      if (tl != null)
-        msgs = ((InternalEObject)tl).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__TL, null, msgs);
-      if (newTl != null)
-        msgs = ((InternalEObject)newTl).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__TL, null, msgs);
-      msgs = basicSetTl(newTl, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__TL, newTl, newTl));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_SIMPLE__NIL:
-        return basicSetNil(null, msgs);
-      case WhileCompPackage.EXPR_SIMPLE__CONS:
-        return basicSetCons(null, msgs);
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         return basicSetLexpr(null, msgs);
-      case WhileCompPackage.EXPR_SIMPLE__LIST:
-        return basicSetList(null, msgs);
-      case WhileCompPackage.EXPR_SIMPLE__HD:
-        return basicSetHd(null, msgs);
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         return basicSetExpr(null, msgs);
-      case WhileCompPackage.EXPR_SIMPLE__TL:
-        return basicSetTl(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -596,24 +242,12 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_SIMPLE__NIL:
-        return getNil();
-      case WhileCompPackage.EXPR_SIMPLE__VARIABLE:
-        return getVariable();
-      case WhileCompPackage.EXPR_SIMPLE__SYMBOL:
-        return getSymbol();
-      case WhileCompPackage.EXPR_SIMPLE__CONS:
-        return getCons();
+      case WhileCompPackage.EXPR_SIMPLE__VALEUR:
+        return getValeur();
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         return getLexpr();
-      case WhileCompPackage.EXPR_SIMPLE__LIST:
-        return getList();
-      case WhileCompPackage.EXPR_SIMPLE__HD:
-        return getHd();
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         return getExpr();
-      case WhileCompPackage.EXPR_SIMPLE__TL:
-        return getTl();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -628,32 +262,14 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_SIMPLE__NIL:
-        setNil((Nil2)newValue);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__VARIABLE:
-        setVariable((String)newValue);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__SYMBOL:
-        setSymbol((String)newValue);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__CONS:
-        setCons((Cons)newValue);
+      case WhileCompPackage.EXPR_SIMPLE__VALEUR:
+        setValeur((String)newValue);
         return;
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         setLexpr((Lexpr)newValue);
         return;
-      case WhileCompPackage.EXPR_SIMPLE__LIST:
-        setList((List)newValue);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__HD:
-        setHd((Hd)newValue);
-        return;
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         setExpr((Expr)newValue);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__TL:
-        setTl((Tl)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -669,32 +285,14 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_SIMPLE__NIL:
-        setNil((Nil2)null);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__VARIABLE:
-        setVariable(VARIABLE_EDEFAULT);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__SYMBOL:
-        setSymbol(SYMBOL_EDEFAULT);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__CONS:
-        setCons((Cons)null);
+      case WhileCompPackage.EXPR_SIMPLE__VALEUR:
+        setValeur(VALEUR_EDEFAULT);
         return;
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         setLexpr((Lexpr)null);
         return;
-      case WhileCompPackage.EXPR_SIMPLE__LIST:
-        setList((List)null);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__HD:
-        setHd((Hd)null);
-        return;
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         setExpr((Expr)null);
-        return;
-      case WhileCompPackage.EXPR_SIMPLE__TL:
-        setTl((Tl)null);
         return;
     }
     super.eUnset(featureID);
@@ -710,24 +308,12 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR_SIMPLE__NIL:
-        return nil != null;
-      case WhileCompPackage.EXPR_SIMPLE__VARIABLE:
-        return VARIABLE_EDEFAULT == null ? variable != null : !VARIABLE_EDEFAULT.equals(variable);
-      case WhileCompPackage.EXPR_SIMPLE__SYMBOL:
-        return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
-      case WhileCompPackage.EXPR_SIMPLE__CONS:
-        return cons != null;
+      case WhileCompPackage.EXPR_SIMPLE__VALEUR:
+        return VALEUR_EDEFAULT == null ? valeur != null : !VALEUR_EDEFAULT.equals(valeur);
       case WhileCompPackage.EXPR_SIMPLE__LEXPR:
         return lexpr != null;
-      case WhileCompPackage.EXPR_SIMPLE__LIST:
-        return list != null;
-      case WhileCompPackage.EXPR_SIMPLE__HD:
-        return hd != null;
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         return expr != null;
-      case WhileCompPackage.EXPR_SIMPLE__TL:
-        return tl != null;
     }
     return super.eIsSet(featureID);
   }
@@ -743,10 +329,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (variable: ");
-    result.append(variable);
-    result.append(", symbol: ");
-    result.append(symbol);
+    result.append(" (valeur: ");
+    result.append(valeur);
     result.append(')');
     return result.toString();
   }

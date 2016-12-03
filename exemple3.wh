@@ -9,7 +9,7 @@ read A ,B
 		od
 	else
 		for nil do
-			E := consFun(C,D)
+			E := (consFun C D)
 		od
 	fi
 	

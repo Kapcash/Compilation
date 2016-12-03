@@ -287,14 +287,14 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         nil=Nil2 | 
-	 *         variable=VARIABLE | 
-	 *         symbol=SYMBOL | 
-	 *         (cons=Cons lexpr=Lexpr) | 
-	 *         (list=List lexpr=Lexpr) | 
-	 *         (hd=Hd expr=Expr) | 
-	 *         (tl=Tl expr=Expr) | 
-	 *         (symbol=SYMBOL lexpr=Lexpr)
+	 *         valeur='nil' | 
+	 *         valeur=VARIABLE | 
+	 *         valeur=SYMBOL | 
+	 *         (valeur='cons' lexpr=Lexpr) | 
+	 *         (valeur='list' lexpr=Lexpr) | 
+	 *         (valeur='hd' expr=Expr) | 
+	 *         (valeur='tl' expr=Expr) | 
+	 *         (valeur=SYMBOL lexpr=Lexpr)
 	 *     )
 	 */
 	protected void sequence_ExprSimple(ISerializationContext context, ExprSimple semanticObject) {

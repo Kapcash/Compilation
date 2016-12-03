@@ -126,7 +126,7 @@ class WhileCompGenerator extends AbstractGenerator {
 				decal = decal + "\t";
 				i = i + 1;
 			}
-			return (decal+"while "+ (c.command as While).expr.compile + " do\n"+(c.command as While).commands.compile(indentBase,indentAll+indentBase+indentWhile,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+"od\n")
+			return (decal+"while "+ (c.command as While).expr.compile + " do\n"+(c.command as While).commands.compile(indentBase,indentAll+indentBase+indentWhile,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+"\n"+decal+"od\n")
 		}
 		if(c.command instanceof For){
 			var decal ="";
@@ -140,7 +140,7 @@ class WhileCompGenerator extends AbstractGenerator {
 				decal = decal + "\t";
 				i = i + 1;
 			}
-			return (decal+"for "+ (c.command as For).expr.compile + " do\n"+(c.command as For).commands.compile(indentBase,indentAll+indentBase+indentFor,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+"od\n")
+			return (decal+"for "+ (c.command as For).expr.compile + " do\n"+(c.command as For).commands.compile(indentBase,indentAll+indentBase+indentFor,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+"\n"+decal+"od\n")
 		}
 		if(c.command instanceof Foreach){
 			var decal ="";
@@ -154,7 +154,7 @@ class WhileCompGenerator extends AbstractGenerator {
 				decal = decal + "\t";
 				i = i + 1;
 			}
-			return (decal+"foreach "+ (c.command as Foreach).expr1.compile +" in "+(c.command as Foreach).expr2.compile+ " do\n"+(c.command as Foreach).commands.compile(indentBase,indentAll+indentBase+indentForeach,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+ "od\n")
+			return (decal+"foreach "+ (c.command as Foreach).expr1.compile +" in "+(c.command as Foreach).expr2.compile+ " do\n"+(c.command as Foreach).commands.compile(indentBase,indentAll+indentBase+indentForeach,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+ "\n"+decal+"od\n")
 		}
 		if(c.command instanceof If){
 			var decal ="";
@@ -181,22 +181,22 @@ class WhileCompGenerator extends AbstractGenerator {
 //		«FOR v: aff.affectations SEPARATOR ' ,'»«v»«ENDFOR» := «FOR v: aff.valeurs SEPARATOR ' ,'»«v»«ENDFOR»
 //		'''	
 		if(aff.affectations.size == 1){
-			return ""+aff.affectations.get(0)+" := " + aff.valeurs.get(0).compile+"\n"; 
+			return ""+aff.affectations.get(0)+" := " + aff.valeurs.get(0).compile; 
 		}else{
 			val size = aff.affectations.size;
 			var i = 0;
 			var res = "";
 			while (i < size-1){
-				res += aff.affectations.get(i) + ",";
+				res += aff.affectations.get(i) + " ,";
 				i = i + 1;
 			}
 			res += aff.affectations.get(i) + " := ";
 			i = 0;
 			while (i < size-1){
-				res += aff.valeurs.get(i).compile + ",";
+				res += aff.valeurs.get(i).compile + " ,";
 				i = i + 1;
 			}
-			res += aff.valeurs.get(i).compile + "\n";
+			res += aff.valeurs.get(i).compile;
 			return res;
 		}
 	}
@@ -243,38 +243,48 @@ class WhileCompGenerator extends AbstractGenerator {
 	
 	def compile(ExprSimple expr){
 		var ret=""
-		if(expr.nil != null){
-			ret+= "nil"
+		if(expr.lexpr != null){
+			ret+= "("+expr.valeur+" "+expr.lexpr.compile+")"
 		}
-		if (expr.variable != null){
-			ret+= (expr.variable)
+		else if(expr.expr != null){
+			ret+= "("+expr.valeur+" "+expr.expr.compile+")"
 		}
-		if(expr.symbol != null && expr.lexpr == null){
-			ret+=  (expr.symbol)
+		else{
+			ret=expr.valeur
 		}
-		if (expr.cons != null){
-			ret+=  ("(cons " + expr.lexpr.compile +")")
-		}
-		if (expr.list != null){
-			ret+=  ("(list " + expr.lexpr.compile +")")
-		}
-		if (expr.hd != null){
-			ret+=  ("(hd " + expr.expr.compile +")")
-		}
-		if (expr.tl != null){
-			ret+=  ("(tl " + expr.expr.compile +")")
-		}
-		if (expr.symbol != null){
-			ret+=  ("("+expr.symbol + expr.lexpr.compile +")")
-		}
+		
+//		if(expr.nil != null){
+//			ret+= "nil"
+//		}
+//		if (expr.variable != null){
+//			ret+= (expr.variable)
+//		}
+//		if(expr.symbol != null && expr.lexpr == null){
+//			ret+=  (expr.symbol)
+//		}
+//		if (expr.cons != null){
+//			ret+=  ("(cons " + expr.lexpr.compile +")")
+//		}
+//		if (expr.list != null){
+//			ret+=  ("(list " + expr.lexpr.compile +")")
+//		}
+//		if (expr.hd != null){
+//			ret+=  ("(hd " + expr.expr.compile +")")
+//		}
+//		if (expr.tl != null){
+//			ret+=  ("(tl " + expr.expr.compile +")")
+//		}
+//		if (expr.symbol != null){
+//			ret+=  ("("+expr.symbol + expr.lexpr.compile +")")
+//		}
 		return ret
 	}
 		 	
-		def compile(Lexpr expr){
+	def compile(Lexpr expr){
 		if (expr.lexpr != null){
 			return (expr.expr.compile() +" " +expr.lexpr.compile())
 		}else{
 			return (expr.expr.compile())
 		}
-		}
+	}
 }

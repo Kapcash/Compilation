@@ -86,15 +86,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Exprs/exprs"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//ExprSimple">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/nil"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/variable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/symbol"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/cons"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//ExprSimple/valeur"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/lexpr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/list"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/hd"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/expr"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprSimple/tl"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Lexpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Lexpr/expr"/>

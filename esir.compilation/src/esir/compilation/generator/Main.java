@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
-		main.runGenerator(args[0],args[1],args[2]);
+		main.runGenerator(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
 	}
 
 	@Inject
@@ -41,13 +41,33 @@ public class Main {
 	@Inject 
 	private JavaIoFileSystemAccess fileAccess;
 
-	protected void runGenerator(String string,String sortie,String indentAll) {
+	protected void runGenerator(String string,String sortie,String indentAll,String indentFor,String indentWhile,String indentIf,String indentForeach,String indentAff) {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
 		int idenAll = 1;
 		if(!indentAll.equals(null)){
 			idenAll = Integer.parseInt(indentAll);
+		}
+		int idenFor = 0;
+		if(!indentFor.equals(null)){
+			idenFor = Integer.parseInt(indentFor);
+		}
+		int idenWhile = 0;
+		if(!indentWhile.equals(null)){
+			idenWhile = Integer.parseInt(indentWhile);
+		}
+		int idenIf = 0;
+		if(!indentIf.equals(null)){
+			idenIf = Integer.parseInt(indentIf);
+		}
+		int idenForeach = 0;
+		if(!indentForeach.equals(null)){
+			idenForeach = Integer.parseInt(indentForeach);
+		}
+		int idenAff = 1;
+		if(!indentAff.equals(null)){
+			idenAff = Integer.parseInt(indentAff);
 		}
 
 		// Validate the resource
@@ -63,7 +83,7 @@ public class Main {
 		fileAccess.setOutputPath("./");
 		GeneratorContext context = new GeneratorContext();
 		context.setCancelIndicator(CancelIndicator.NullImpl);
-		generator.doGenerate(resource, fileAccess, context, sortie,idenAll,0,0,0,0,0);
+		generator.doGenerate(resource, fileAccess, context, sortie,idenAll,idenFor,idenWhile,idenIf,idenForeach,idenAff);
 
 		System.out.println("Code generation finished.");
 	}

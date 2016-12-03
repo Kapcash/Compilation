@@ -5,10 +5,7 @@ package sprint2;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map.Entry;
-import java.util.Stack;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -50,7 +47,7 @@ public class GeneratorAddr {
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
 			main.createSymTable("../exemple3.wh", "./");
-		} catch (SymTableException e) {
+		} catch (SymTableException | ThreeAddressCodeException e) {
 			System.out.println("[ERROR] : " + e.getMessage());
 		}
 	}
@@ -65,13 +62,10 @@ public class GeneratorAddr {
 	/**
 	 * List of declared functions in the Program
 	 */
-	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();;
-	HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String,LinkedList<QuadImp>>();
+	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
-	private Stack<LinkedList> stack = new Stack<LinkedList>();
-	private LinkedList<LinkedList<QuadImp>> list3Addr = new LinkedList<LinkedList<QuadImp>>();
-
-	private void createSymTable(String string, String sortie) throws SymTableException {
+	private void createSymTable(String string, String sortie) throws SymTableException, ThreeAddressCodeException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
@@ -96,12 +90,12 @@ public class GeneratorAddr {
 	}
 
 	// Program
-	private void iterateAST(Program prog) throws SymTableException {
+	private void iterateAST(Program prog) throws SymTableException, ThreeAddressCodeException {
 		for (Function f : prog.getFunctions()) {
 			iterateAST(f);
 		}
 		displaySymTable();
-		display3Addr();
+		System.out.println(code3Addresses);
 	}
 
 	private void displaySymTable() {
@@ -113,9 +107,9 @@ public class GeneratorAddr {
 	}
 
 	// Function
-	private void iterateAST(Function f) throws SymTableException {
+	private void iterateAST(Function f) throws SymTableException, ThreeAddressCodeException {
 		String fName = f.getFunction();
-		empilerEtiquette();
+		code3Addresses.nouvelleEtiquette();
 
 		boolean fun = funList.keySet().contains(f);
 		if (fun) { // Function already existing
@@ -124,14 +118,14 @@ public class GeneratorAddr {
 			DefFun function = new DefFun();
 			funList.put(fName, function); // Adding a new blank function
 											// (DefFun)
-			addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FUN, ""), fName, "", ""));
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FUN, ""), fName, "", ""));
 			iterateAST(f.getDefinition(), function);
 		}
-		depilerEtiquette();
+		code3Addresses.finEtiquette();
 	}
 
 	// Definition
-	private void iterateAST(Definition def, DefFun f) throws SymTableException {
+	private void iterateAST(Definition def, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		// Inputs
 		iterateAST(def.getRead(), f);
 		// Commands
@@ -146,7 +140,7 @@ public class GeneratorAddr {
 		f.setIn(varsR.size());
 		for (String v : varsR) {
 			f.updateVar(v, null);
-			addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
 		}
 	}
 
@@ -155,13 +149,13 @@ public class GeneratorAddr {
 		EList<String> varsW = write.getVariable();
 		f.setOut(varsW.size());
 		for (String v : varsW) {
-			addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), v, "", ""));
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), v, "", ""));
 			f.updateVar(v, null);
 		}
 	}
 
 	// Commands
-	public void iterateAST(Commands coms, DefFun f) throws SymTableException {
+	public void iterateAST(Commands coms, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Command com = coms.getCommand();
 		iterateAST(com, f); // First command of definition
 		for (Command c : coms.getCommands()) { // Eventually other commands
@@ -170,7 +164,7 @@ public class GeneratorAddr {
 	}
 
 	// Command
-	private void iterateAST(Command com, DefFun f) throws SymTableException {
+	private void iterateAST(Command com, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		EObject obj = com.getCommand();
 		if (obj instanceof Affectation) { // Affectation
 			iterateAST((Affectation) obj, f);
@@ -186,17 +180,17 @@ public class GeneratorAddr {
 				iterateAST((If) obj, f);
 			} else {
 			}
-			depilerEtiquette();
+			code3Addresses.finEtiquette();
 		}
 	}
 
 	// Affectation
-	private void iterateAST(Affectation affCmd, DefFun f) throws SymTableException {
+	private void iterateAST(Affectation affCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		EList<String> affs = affCmd.getAffectations();
 		EList<String> vals = affCmd.getValeurs();
 
 		if (vals.size() != affs.size())
-			throw new SymTableException("Affectation error !"); // TODO
+			throw new ThreeAddressCodeException("Affectation error !"); // TODO
 
 		Iterator<String> itAff = affs.iterator();
 		Iterator<String> itVal = vals.iterator();
@@ -208,10 +202,8 @@ public class GeneratorAddr {
 		while (itVal.hasNext()) {
 			val = itVal.next();
 			var = PREFIXE + i++;
-			if (val.matches(PREFIXE + "[0-9]+")) {
-				throw new SymTableException("Variable name reserved by the compiler.");
-			}
-			addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
+
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			f.updateVar(var, val);
 		}
 
@@ -219,95 +211,49 @@ public class GeneratorAddr {
 		while (itAff.hasNext()) {
 			var = itAff.next();
 			val = PREFIXE + i++;
-			addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			f.updateVar(var, val);
 		}
 	}
 
 	// While
-	private void iterateAST(While whCmd, DefFun f) throws SymTableException {
-		addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, ""), "", "", ""));
-		empilerEtiquette();
+	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, ""), "", "", ""));
+		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds, f);
 	}
 
 	// For
-	private void iterateAST(For forCmd, DefFun f) throws SymTableException {
-		addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, ""), "", "", ""));
-		empilerEtiquette();
+	private void iterateAST(For forCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, ""), "", "", ""));
+		code3Addresses.nouvelleEtiquette();
 		Commands cmds = forCmd.getCommands();
 		iterateAST(cmds, f);
 	}
 
 	// Foreach
-	private void iterateAST(Foreach forEachCmd, DefFun f) throws SymTableException {
+	private void iterateAST(Foreach forEachCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Commands cmds = forEachCmd.getCommands();
 		iterateAST(cmds, f);
 	}
 
 	// If
-	private void iterateAST(If ifCmd, DefFun f) throws SymTableException {
-		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, ""), ifCmd.getExpr().toString(), getFutureEtiquette(), "");
-		addIn3Addr(q);
-		empilerEtiquette();
+	private void iterateAST(If ifCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, ""), ifCmd.getExpr().toString(), code3Addresses.getFutureEtiquette(), "");
+		code3Addresses.addIn3Addr(q);
+		code3Addresses.nouvelleEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
 		iterateAST(cmds1, f);
 
-		depilerEtiquette();
-		q.setArg2(getFutureEtiquette());
-		empilerEtiquette();
+		code3Addresses.finEtiquette();
+		q.setArg2(code3Addresses.getFutureEtiquette());
+		code3Addresses.nouvelleEtiquette();
 		Commands cmds2 = ifCmd.getCommands2();
 		iterateAST(cmds2, f);
 	}
 	
-	private String getEtiquetteName(int i){
-		return "L"+i;
-	}
 	
-	private String getEtiquette(){
-		return getEtiquetteName(code3Addr.size());
-	}
+
 	
-	private String getFutureEtiquette(){
-		return getEtiquetteName(code3Addr.size()+1);
-	}
-
-	private void addIn3Addr(QuadImp q) {
-		stack.lastElement().addLast(q);
-	}
-
-	private void empilerEtiquette() {
-		stack.push(new LinkedList<QuadImp>());
-	}
-
-	private void depilerEtiquette() {
-		//list3Addr.addFirst(stack.pop());
-		code3Addr.put(getEtiquette(), stack.pop());
-	}
-
-	private void display3Addr() {
-		StringBuilder sb = new StringBuilder();
-		//Iterator<LinkedList<QuadImp>> iter = list3Addr.iterator();
-		Iterator<Entry<String,LinkedList<QuadImp>>> iter = code3Addr.entrySet().iterator();
-		int i = 0;
-		while (iter.hasNext()) {
-			Entry<String,LinkedList<QuadImp>> entry = iter.next();
-			
-			sb.append(entry.getKey()+":\t");
-			Iterator<QuadImp> iter2 = entry.getValue().iterator();
-			if(iter2.hasNext()){
-				sb.append(iter2.next()+"\n");
-			}
-			while (iter2.hasNext()) {
-				sb.append("\t"+iter2.next().toString()+"\n");
-			}
-			
-			if (iter.hasNext()) {
-				sb.append('\n');
-			}
-			i++;
-		}
-		System.out.println(sb.toString());
-	}
 }

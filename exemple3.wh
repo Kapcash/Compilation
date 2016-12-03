@@ -15,3 +15,14 @@ read A ,B ,A
 	
 %
 write A ,B ,C
+
+function testAffect5:
+read A
+%
+	X := nil ;
+	Y := A ;
+	while (cons A B) do
+		Y:=A
+	od
+%
+write X

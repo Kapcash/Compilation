@@ -11,7 +11,7 @@ void manual() {
 	printf("\n");
 	printf("========== SYNOPSIS\n");
 	printf("\n");
-	printf("whpp fichier [-o file, -all x, -if x] \n");
+	printf("whpp fichier [-o file, -all x, -for x, -while x, -if x, -foreach x, -aff -x] \n");
 	printf("\n\n ou \n\n");
 	printf("whpp --help \n");
 	printf("\n");
@@ -25,7 +25,17 @@ void manual() {
 	printf("-o file\n");
 	printf("file : nom du fichier de sortie, par defaut (sth.whpp)\n\n");
 	printf("-all x\n");
-	printf("x : valeur par defaut de l'indentation, par defaut (x=2)\n\n");
+	printf("x : valeur par defaut de l'indentation, par defaut (x=1)\n\n");
+	printf("-for x\n");
+	printf("x : valeur par defaut de l'indentation du for, par defaut (x=0)\n\n");
+	printf("-while x\n");
+	printf("x : valeur par defaut de l'indentation du while, par defaut (x=0)\n\n");
+	printf("-if x\n");
+	printf("x : valeur par defaut de l'indentation du if, par defaut (x=0)\n\n");
+	printf("-foreach x\n");
+	printf("x : valeur par defaut de l'indentation du foreach, par defaut (x=0)\n\n");
+	printf("-aff x\n");
+	printf("x : valeur par defaut de l'indentation de l'affectation, par defaut (x=0)\n\n");
 	printf("\n");
 	printf("\n");
 	printf("========== SEE ALSO\n");
@@ -46,8 +56,12 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
-	int 		arg_all = 2,
+	int 		arg_all = 1,
+				arg_for = 0,
+				arg_while = 0,
 				arg_if = 0,
+				arg_foreach = 0,
+				arg_aff = 0,
 				debug = 0;
 	std::string	arg_fileSrc,
 				arg_fileDest = "sth.whpp";
@@ -67,6 +81,31 @@ int main(int argc, char *argv[]) {
 			continue;
 		}
 
+		if (strcmp("-for", argv[i]) == 0) {
+			arg_for = atoi(argv[i + 1]);
+			continue;
+		}
+
+		if (strcmp("-while", argv[i]) == 0) {
+			arg_while = atoi(argv[i + 1]);
+			continue;
+		}
+
+		if (strcmp("-if", argv[i]) == 0) {
+			arg_if = atoi(argv[i + 1]);
+			continue;
+		}
+
+		if (strcmp("-foreach", argv[i]) == 0) {
+			arg_foreach = atoi(argv[i + 1]);
+			continue;
+		}
+
+		if (strcmp("-aff", argv[i]) == 0) {
+			arg_aff = atoi(argv[i + 1]);
+			continue;
+		}
+
 		if (strcmp("-o", argv[i]) == 0) {
 			arg_fileDest = argv[i + 1];
 			continue;
@@ -79,22 +118,27 @@ int main(int argc, char *argv[]) {
 
 	}
 
-	std::string cmdLine = "java -jar whilepp2.jar " + arg_fileSrc + " " + arg_fileDest + " "+ std::to_string(arg_all);
+	std::string cmdLine = "java -jar whilepp2.jar " + arg_fileSrc;
+	cmdLine += " " + arg_fileDest;
+	cmdLine += " " + std::to_string(arg_all);
+	cmdLine += " " + std::to_string(arg_for);
+	cmdLine += " " + std::to_string(arg_while);
+	cmdLine += " " + std::to_string(arg_if);
+	cmdLine += " " + std::to_string(arg_foreach);
+	cmdLine += " " + std::to_string(arg_aff);
+
 	if (debug) {
 		std::cout << "CMD : " << cmdLine << std::endl;
 		std::cout << "ALL : " << arg_all << std::endl;
+		std::cout << "FOR : " << arg_all << std::endl;
+		std::cout << "WHILE : " << arg_all << std::endl;
+		std::cout << "IF : " << arg_all << std::endl;
+		std::cout << "FOREACH : " << arg_all << std::endl;
+		std::cout << "AFF : " << arg_all << std::endl;
 		std::cout << std::endl;
 	}
 	
 	int status = system(cmdLine.c_str());
-
-<<<<<<< .merge_file_a07068
-=======
-	int result;
-	char oldname[] = "Result_output.whpp";
-	result = rename(oldname, arg_fileDest.c_str());
-	if (result != 0)
-
->>>>>>> .merge_file_a07060
-	return 0;
+		
+	return status;
 }

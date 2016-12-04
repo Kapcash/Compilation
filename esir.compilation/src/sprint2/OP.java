@@ -6,6 +6,8 @@ public enum OP {
 	IF, ELSE, 
 	//Boucle
 	WHILE, FOR, 
+	//Declaration
+	DECL,
 	//Affectation
 	AFF,
 	//Definition fonction

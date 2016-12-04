@@ -159,6 +159,7 @@ public class GeneratorAddr {
 		EList<String> varsW = write.getVariable();
 		f.setOut(varsW.size());
 		for (String v : varsW) {
+			varDeclaration(f, v);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), v, "", ""));
 			f.updateVar(v, null);
 		}
@@ -214,7 +215,7 @@ public class GeneratorAddr {
 			//TODO : Update val because now it is 'Expr', not only Variable
 			val = "nil";
 			var = PREFIXE + i++;
-
+			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			f.updateVar(var, val);
 		}
@@ -223,6 +224,7 @@ public class GeneratorAddr {
 		while (itAff.hasNext()) {
 			var = itAff.next();
 			val = PREFIXE + i++;
+			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			f.updateVar(var, val);
 		}
@@ -335,5 +337,7 @@ public class GeneratorAddr {
 		return firstChar.equals(firstChar.toUpperCase()); //Is uppercase -> Variable
 	}
 
-	
+	private void varDeclaration(DefFun f, String v){
+		if(!f.alreadyExisting(v)) code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
+	}
 }

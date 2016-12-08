@@ -11,5 +11,7 @@ public enum OP {
 	//Affectation
 	AFF,
 	//Definition fonction
-	FUN, READ, WRITE
+	FUN, READ, WRITE,
+	//Expression
+	CONS, HD, TL, LIST
 }

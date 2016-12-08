@@ -54,7 +54,7 @@ public class GeneratorAddr {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable("../exemple3.wh", "./");
+			main.createSymTable("../exemple4.wh", "./");
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx){
@@ -218,6 +218,7 @@ public class GeneratorAddr {
 		while (itVal.hasNext()) {
 			iterateAST(itVal.next(), f); // For Expr
 			//TODO : Update val because now it is 'Expr', not only Variable
+			
 			val = "nil";
 			var = PREFIXE + i++;
 			varDeclaration(f, var);
@@ -248,6 +249,23 @@ public class GeneratorAddr {
 	//ExprSimple
 	private void iterateAST(ExprSimple ex, DefFun f){
 		String val = ex.getValeur();
+		String operator = ex.getOpe();
+		if(operator != null){
+			switch (operator) {
+			case "cons":
+				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", ""));
+				break;
+			case "hd":
+				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.HD, ""), "", "", ""));
+				break;
+			case "list":
+				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), "", "", ""));
+				break;
+			default:
+				break;
+			}
+		}
+		
 		Expr exp = ex.getExpr();
 		Lexpr exprs = ex.getLexpr();
 		if(isSymbole(val)){		//Symbole

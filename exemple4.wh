@@ -1,0 +1,6 @@
+function consFun:
+read A,B
+%
+	Y:=(cons A B)
+%
+write Y

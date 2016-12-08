@@ -28,12 +28,17 @@ import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Definition;
 import esir.compilation.whileComp.Expr;
+import esir.compilation.whileComp.ExprAnd;
+import esir.compilation.whileComp.ExprEq;
+import esir.compilation.whileComp.ExprNot;
+import esir.compilation.whileComp.ExprOr;
 import esir.compilation.whileComp.ExprSimple;
 import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
 import esir.compilation.whileComp.If;
 import esir.compilation.whileComp.Lexpr;
+import esir.compilation.whileComp.Not;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
@@ -234,7 +239,10 @@ public class GeneratorAddr {
 	private void iterateAST(Expr exp, DefFun f){
 		ExprSimple expSimp = exp.getExprsimple();
 		iterateAST(expSimp, f);
-		//TODO: ExprAnd
+		
+		ExprAnd exprAnd = exp.getExprAnd();
+		if(exprAnd != null)
+			iterateAST(exprAnd,f);
 	}
 	
 	//ExprSimple
@@ -255,6 +263,43 @@ public class GeneratorAddr {
 			iterateAST(exprs, f);
 		}
 	}
+	
+	private void iterateAST(ExprAnd ex, DefFun f){
+		ExprAnd exprAnd = ex.getExprAnd();
+		if(exprAnd != null)
+			iterateAST(exprAnd,f);
+		
+		ExprOr exprOr = ex.getExprOr();
+		if(exprOr != null)
+			iterateAST(exprOr,f);
+	}
+	
+	private void iterateAST(ExprOr ex, DefFun f){
+		
+		ExprOr exprOr = ex.getExprOr();
+		if(exprOr != null)
+			iterateAST(exprOr,f);
+		
+		ExprNot exprNot = ex.getExprNot();
+		if(exprNot != null)	
+			iterateAST(exprNot,f);
+	}
+	
+	private void iterateAST(ExprNot ex, DefFun f){
+		Not not = ex.getNot();
+		/*if(not != null)	
+			iterateAST(exprNot,f);
+			*/
+		
+		ExprEq exprEq = ex.getExprEq();
+		if(exprEq != null)	
+			iterateAST(exprEq,f);
+	}
+	
+	private void iterateAST(ExprEq ex, DefFun f){
+		iterateAST(ex.getExprSimple1(),f);
+		iterateAST(ex.getExprSimple2(),f);
+	}
 
 	//Lexpr
 	private void iterateAST(Lexpr lexp, DefFun f){
@@ -270,7 +315,7 @@ public class GeneratorAddr {
 		
 	// While
 	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, ""), "", "", ""));
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, code3Addresses.getFutureEtiquette()), "", whCmd.getExpr().toString(), ""));
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds, f);
@@ -278,7 +323,7 @@ public class GeneratorAddr {
 
 	// For
 	private void iterateAST(For forCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, ""), "", "", ""));
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, code3Addresses.getFutureEtiquette()), "", forCmd.getExpr().toString(), ""));
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = forCmd.getCommands();
 		iterateAST(cmds, f);

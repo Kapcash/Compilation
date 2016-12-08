@@ -45,6 +45,10 @@ public class Quadruplet<O, R, A1, A2> {
 	public void setArg2(A2 arg2) {
 		this.arg2 = arg2;
 	}
+	
+	public String getEtiquette(){
+		return ((String)((OPCode) operateur).getEtiquette());
+	}
 
 	@Override
 	public String toString() {

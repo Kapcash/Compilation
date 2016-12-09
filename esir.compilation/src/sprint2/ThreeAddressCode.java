@@ -18,12 +18,16 @@ public class ThreeAddressCode {
 		return "L"+i;
 	}
 	
-	private String getEtiquette(){
+	String getEtiquette(){
 		return getEtiquetteName(code3Addr.size());
 	}
 	
 	String getFutureEtiquette(){
 		return getEtiquetteName(code3Addr.size()+1);
+	}
+	
+	String getPreviousEtiquette(){
+		return getEtiquetteName(code3Addr.size()-1);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -61,5 +65,13 @@ public class ThreeAddressCode {
 			}
 		}
 		return sb.toString();
+	}
+	
+	public HashMap<String, LinkedList<QuadImp>> getCode3Addr() {
+		return code3Addr;
+	}
+
+	public void setCode3Addr(HashMap<String, LinkedList<QuadImp>> code3Addr) {
+		this.code3Addr = code3Addr;
 	}
 }

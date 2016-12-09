@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProjectCOMP
 {
-    class Program
-    {
-        static void Main(String[] args)
-        {
-            Console.WriteLine("Hello World !!");
+	class Program
+	{
+		static void Main(String[] args)
+		{
+            ((Action)(() => { }))();
         }
-    }
+
+		
+	}
 }
+

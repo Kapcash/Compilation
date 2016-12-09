@@ -59,6 +59,8 @@ public class GeneratorAddr {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx){
 			System.out.println("[ADDRCODE ERROR] : " + codeEx.getMessage());
+		} catch (CS_TranslatorException transEx){
+			System.out.println("[TRANSLATOR ERROR] : " + transEx.getMessage());
 		}
 	}
 	// ---- //
@@ -82,8 +84,9 @@ public class GeneratorAddr {
 	 * @param sortie Output file path
 	 * @throws SymTableException Error when creating the symbols table 
 	 * @throws ThreeAddressCodeException Error when creating the code generator
+	 * @throws CS_TranslatorException 
 	 */
-	private void createSymTable(String string, String sortie) throws SymTableException, ThreeAddressCodeException {
+	private void createSymTable(String string, String sortie) throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
@@ -108,6 +111,11 @@ public class GeneratorAddr {
 		displaySymTable();		//Print the symbols table
 		System.out.println(code3Addresses);
 		System.out.println("Symboles Table correctly generated.");
+		
+		//Translator
+		CS_Translator translator = new CS_Translator(code3Addresses);
+		translator.translate();
+		System.out.println(translator);
 	}
 
 	
@@ -257,6 +265,9 @@ public class GeneratorAddr {
 				break;
 			case "hd":
 				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.HD, ""), "", "", ""));
+				break;
+			case "tl":
+				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.TL, ""), "", "", ""));
 				break;
 			case "list":
 				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), "", "", ""));

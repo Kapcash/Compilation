@@ -56,12 +56,12 @@ public class GeneratorAddr {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable("../exemple3.wh", "./");
+			main.createSymTable("../exemple4.wh", "./");
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
-		} catch (ThreeAddressCodeException codeEx){
+		} catch (ThreeAddressCodeException codeEx) {
 			System.out.println("[ADDRCODE ERROR] : " + codeEx.getMessage());
-		} catch (CS_TranslatorException transEx){
+		} catch (CS_TranslatorException transEx) {
 			System.out.println("[TRANSLATOR ERROR] : " + transEx.getMessage());
 		}
 	}
@@ -79,16 +79,21 @@ public class GeneratorAddr {
 	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
 	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
-	
 	/**
 	 * Starting the symbols table generation
-	 * @param string File path to examinate
-	 * @param sortie Output file path
-	 * @throws SymTableException Error when creating the symbols table 
-	 * @throws ThreeAddressCodeException Error when creating the code generator
-	 * @throws CS_TranslatorException 
+	 * 
+	 * @param string
+	 *            File path to examinate
+	 * @param sortie
+	 *            Output file path
+	 * @throws SymTableException
+	 *             Error when creating the symbols table
+	 * @throws ThreeAddressCodeException
+	 *             Error when creating the code generator
+	 * @throws CS_TranslatorException
 	 */
-	private void createSymTable(String string, String sortie) throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
+	private void createSymTable(String string, String sortie)
+			throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
@@ -108,39 +113,38 @@ public class GeneratorAddr {
 			if (next instanceof Program)
 				iterateAST((Program) next); // Parcours l'AST du 'Program'
 		}
-		
-		checkSymbolsUsage();	//Check all the symbols usage (undeclared function for example)
-		displaySymTable();		//Print the symbols table
+
+		checkSymbolsUsage(); // Check all the symbols usage (undeclared function
+								// for example)
+		displaySymTable(); // Print the symbols table
 		System.out.println(code3Addresses);
 		System.out.println("Symboles Table correctly generated.");
-		
-		//Translator
+
+		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
 		System.out.println(translator);
-		/* 
+		/*
 		 * 
 		 * ACTIVER L'ECRITURE EN C#
 		 * 
 		 * 
-		try(  PrintWriter out = new PrintWriter( "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" )  ){
-		    out.println(translator.toString());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		*/
+		 * try( PrintWriter out = new PrintWriter(
+		 * "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" ) ){
+		 * out.println(translator.toString()); } catch (FileNotFoundException e)
+		 * { e.printStackTrace(); }
+		 */
 	}
 
-	
-//ITERATE ON THE AST
-	
+	// ITERATE ON THE AST
+
 	// Program
 	private void iterateAST(Program prog) throws SymTableException, ThreeAddressCodeException {
 		for (Function f : prog.getFunctions()) {
 			iterateAST(f);
 		}
 	}
-	
+
 	// Function
 	private void iterateAST(Function f) throws SymTableException, ThreeAddressCodeException {
 		String fName = f.getFunction();
@@ -152,7 +156,7 @@ public class GeneratorAddr {
 		} else {
 			DefFun def = new DefFun(fName);
 			funList.put(fName, def); // Adding a new blank function
-											// (DefFun)
+										// (DefFun)
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FUN, ""), fName, "", ""));
 			iterateAST(f.getDefinition(), def);
 		}
@@ -170,18 +174,20 @@ public class GeneratorAddr {
 	}
 
 	// Read
-	public void iterateAST(Read read, DefFun f) throws SymTableException{
+	public void iterateAST(Read read, DefFun f) throws SymTableException {
 		EList<String> varsR = read.getVariable();
 		f.setIn(varsR.size());
 		for (String v : varsR) {
-			if(f.alreadyExisting(v)) throw new SymTableException("Function '"+f.getFunName()+"', variable '"+v+"' already declared !");
+			if (f.alreadyExisting(v))
+				throw new SymTableException(
+						"Function '" + f.getFunName() + "', variable '" + v + "' already declared !");
 			f.updateVar(v, null);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
 		}
 	}
 
 	// Write
-	private void iterateAST(Write write, DefFun f) throws SymTableException{
+	private void iterateAST(Write write, DefFun f) throws SymTableException {
 		EList<String> varsW = write.getVariable();
 		f.setOut(varsW.size());
 		for (String v : varsW) {
@@ -238,8 +244,8 @@ public class GeneratorAddr {
 
 		while (itVal.hasNext()) {
 			iterateAST(itVal.next(), f); // For Expr
-			//TODO : Update val because now it is 'Expr', not only Variable
-			
+			// TODO : Update val because now it is 'Expr', not only Variable
+			code3Addresses.inlineExpression();
 			val = "nil";
 			var = PREFIXE + i++;
 			varDeclaration(f, var);
@@ -256,108 +262,112 @@ public class GeneratorAddr {
 			f.updateVar(var, val);
 		}
 	}
-	
-	//Expr
-	private void iterateAST(Expr exp, DefFun f){
+
+	// Expr
+	private void iterateAST(Expr exp, DefFun f) {
 		ExprSimple expSimp = exp.getExprsimple();
 		iterateAST(expSimp, f);
-		
+
 		ExprAnd exprAnd = exp.getExprAnd();
-		if(exprAnd != null)
-			iterateAST(exprAnd,f);
+		if (exprAnd != null)
+			iterateAST(exprAnd, f);
 	}
-	
-	//ExprSimple
-	private void iterateAST(ExprSimple ex, DefFun f){
+
+	// ExprSimple
+	private void iterateAST(ExprSimple ex, DefFun f) {
 		String val = ex.getValeur();
 		String operator = ex.getOpe();
-		if(operator != null){
+		if (operator != null) {
 			switch (operator) {
 			case "cons":
-				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", ""));
+				code3Addresses.addToExpression(OP.CONS.name());
 				break;
 			case "hd":
-				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.HD, ""), "", "", ""));
+				code3Addresses.addToExpression(OP.HD.name());
 				break;
 			case "tl":
-				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.TL, ""), "", "", ""));
+				code3Addresses.addToExpression(OP.TL.name());
 				break;
 			case "list":
-				code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), "", "", ""));
+				// TODO
 				break;
 			default:
 				break;
 			}
+		} else {
+			if (val != null) {
+				code3Addresses.addToExpression(val);
+			}
 		}
-		
 		Expr exp = ex.getExpr();
 		Lexpr exprs = ex.getLexpr();
-		if(isSymbole(val)){		//Symbole
+		if (isSymbole(val)) { // Symbole
 			f.updateSyms(val);
 		}
-		if(isVariable(val)){	//Variable
+		if (isVariable(val)) { // Variable
 			f.updateVar(val, null);
 		}
-		if(exp != null){		//Expr
+		if (exp != null) { // Expr
 			iterateAST(exp, f);
 		}
-		if(exprs != null){		//Lexpr
+		if (exprs != null) { // Lexpr
 			iterateAST(exprs, f);
 		}
-	}
-	
-	private void iterateAST(ExprAnd ex, DefFun f){
-		ExprAnd exprAnd = ex.getExprAnd();
-		if(exprAnd != null)
-			iterateAST(exprAnd,f);
-		
-		ExprOr exprOr = ex.getExprOr();
-		if(exprOr != null)
-			iterateAST(exprOr,f);
-	}
-	
-	private void iterateAST(ExprOr ex, DefFun f){
-		
-		ExprOr exprOr = ex.getExprOr();
-		if(exprOr != null)
-			iterateAST(exprOr,f);
-		
-		ExprNot exprNot = ex.getExprNot();
-		if(exprNot != null)	
-			iterateAST(exprNot,f);
-	}
-	
-	private void iterateAST(ExprNot ex, DefFun f){
-		Not not = ex.getNot();
-		/*if(not != null)	
-			iterateAST(exprNot,f);
-			*/
-		
-		ExprEq exprEq = ex.getExprEq();
-		if(exprEq != null)	
-			iterateAST(exprEq,f);
-	}
-	
-	private void iterateAST(ExprEq ex, DefFun f){
-		iterateAST(ex.getExprSimple1(),f);
-		iterateAST(ex.getExprSimple2(),f);
 	}
 
-	//Lexpr
-	private void iterateAST(Lexpr lexp, DefFun f){
+	private void iterateAST(ExprAnd ex, DefFun f) {
+		ExprAnd exprAnd = ex.getExprAnd();
+		if (exprAnd != null)
+			iterateAST(exprAnd, f);
+
+		ExprOr exprOr = ex.getExprOr();
+		if (exprOr != null)
+			iterateAST(exprOr, f);
+	}
+
+	private void iterateAST(ExprOr ex, DefFun f) {
+
+		ExprOr exprOr = ex.getExprOr();
+		if (exprOr != null)
+			iterateAST(exprOr, f);
+
+		ExprNot exprNot = ex.getExprNot();
+		if (exprNot != null)
+			iterateAST(exprNot, f);
+	}
+
+	private void iterateAST(ExprNot ex, DefFun f) {
+		Not not = ex.getNot();
+		/*
+		 * if(not != null) iterateAST(exprNot,f);
+		 */
+
+		ExprEq exprEq = ex.getExprEq();
+		if (exprEq != null)
+			iterateAST(exprEq, f);
+	}
+
+	private void iterateAST(ExprEq ex, DefFun f) {
+		iterateAST(ex.getExprSimple1(), f);
+		iterateAST(ex.getExprSimple2(), f);
+	}
+
+	// Lexpr
+	private void iterateAST(Lexpr lexp, DefFun f) {
 		Expr exp = lexp.getExpr();
 		Lexpr exprs = lexp.getLexpr();
-		if(exp!= null){
+		if (exp != null) {
 			iterateAST(exp, f);
 		}
-		if(exprs != null){
+		if (exprs != null) {
 			iterateAST(exprs, f);
 		}
 	}
-		
+
 	// While
 	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, code3Addresses.getEtiquette()), "", whCmd.getExpr().toString(), ""));
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, code3Addresses.getEtiquette()), "",
+				whCmd.getExpr().toString(), ""));
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds, f);
@@ -365,7 +375,8 @@ public class GeneratorAddr {
 
 	// For
 	private void iterateAST(For forCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, code3Addresses.getEtiquette()), "", forCmd.getExpr().toString(), ""));
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, code3Addresses.getEtiquette()), "",
+				forCmd.getExpr().toString(), ""));
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = forCmd.getCommands();
 		iterateAST(cmds, f);
@@ -379,20 +390,21 @@ public class GeneratorAddr {
 
 	// If
 	private void iterateAST(If ifCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, code3Addresses.getFutureEtiquette()), ifCmd.getExpr().toString(), "", "");
+		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, code3Addresses.getFutureEtiquette()),
+				ifCmd.getExpr().toString(), "", "");
 		code3Addresses.addIn3Addr(q);
-		//Then
+		// Then
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
 		iterateAST(cmds1, f);
 		code3Addresses.finEtiquette();
 		q.setArg2(code3Addresses.getFutureEtiquette());
-		//Else
+		// Else
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds2 = ifCmd.getCommands2();
 		iterateAST(cmds2, f);
 	}
-	
+
 	/**
 	 * Print the final symboles table
 	 */
@@ -402,29 +414,36 @@ public class GeneratorAddr {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
 	}
-	
-	private void checkSymbolsUsage() throws SymTableException{
-		for(DefFun f : funList.values()){
-			//Checking symbols usage after generating all the symbols table
-			for(String symbol : f.getSymbs()){
-				if(!funList.containsKey(symbol)) throw new SymTableException("Symbol '"+symbol+"' used but not corresponding to any declared function !");
+
+	private void checkSymbolsUsage() throws SymTableException {
+		for (DefFun f : funList.values()) {
+			// Checking symbols usage after generating all the symbols table
+			for (String symbol : f.getSymbs()) {
+				if (!funList.containsKey(symbol))
+					throw new SymTableException(
+							"Symbol '" + symbol + "' used but not corresponding to any declared function !");
 			}
 		}
 	}
-	
-	private boolean isSymbole(String str){
-		if(str == null || str.equals("nil")) return false;
-		String firstChar = str.substring(0,1);
-		return firstChar.equals(firstChar.toLowerCase()); //Is lowercase -> Symbole
-	}
-	
-	private boolean isVariable(String str){
-		if(str == null) return false;
-		String firstChar = str.substring(0,1);
-		return firstChar.equals(firstChar.toUpperCase()); //Is uppercase -> Variable
+
+	private boolean isSymbole(String str) {
+		if (str == null || str.equals("nil"))
+			return false;
+		String firstChar = str.substring(0, 1);
+		return firstChar.equals(firstChar.toLowerCase()); // Is lowercase ->
+															// Symbole
 	}
 
-	private void varDeclaration(DefFun f, String v){
-		if(!f.alreadyExisting(v)) code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
+	private boolean isVariable(String str) {
+		if (str == null)
+			return false;
+		String firstChar = str.substring(0, 1);
+		return firstChar.equals(firstChar.toUpperCase()); // Is uppercase ->
+															// Variable
+	}
+
+	private void varDeclaration(DefFun f, String v) {
+		if (!f.alreadyExisting(v))
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
 	}
 }

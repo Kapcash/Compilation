@@ -1,6 +1,8 @@
 function consFun:
 read A,B
 %
-	Y:=(cons A B)
+	Y:=(hd (hd A));
+	Y:=(cons (hd A) (cons B C));
+	Y:=(cons (cons B C) A)
 %
 write Y

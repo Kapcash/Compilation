@@ -51,7 +51,7 @@ public class GeneratorAddr {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable("../exemple3.wh", "./");
+			main.createSymTable("../exemple4.wh", "./");
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx) {
@@ -239,8 +239,9 @@ public class GeneratorAddr {
 		while (itVal.hasNext()) {
 			iterateAST(itVal.next(), f); // For Expr
 			// TODO : Update val because now it is 'Expr', not only Variable
-			code3Addresses.inlineExpression();
-			val = "nil";
+			// TODO : Declare vars used in temp (Y0, Y1 and co.)
+			int k =code3Addresses.inlineExpression();
+			val = "Y"+k;
 			var = PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));

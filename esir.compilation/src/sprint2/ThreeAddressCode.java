@@ -88,23 +88,24 @@ public class ThreeAddressCode {
 		}
 	}
 	
-	public void inlineExpression() throws ThreeAddressCodeException{
+	public int inlineExpression() throws ThreeAddressCodeException{
 		if(!tree.full)
 			throw new ThreeAddressCodeException("Probleme dans l'expression");
-		int k =0;
 		
 		while(tree.children.length!=0){
-			tree.iterate(k);
-			k++;
+			ExprTree.iterate(tree,this);
 		}
+		int k =ExprTree.nb;
+		ExprTree.nb=-1;
 		tree = null;
+		return k;
 	}
 	
-	private class ExprTree{
+	private static class ExprTree{
 		private String head;
 		private ExprTree[] children;
 		private boolean full;
-		private int nb = 0;
+		static int nb = -1;
 		
 		public ExprTree(String head) {
 			super();
@@ -138,34 +139,37 @@ public class ThreeAddressCode {
 			}		
 		}
 		
-		public boolean iterate(int k){
-			if(children.length==0){
-//				System.out.println(getHead());
-			}else{
-				if(simplify()){
+		public static void iterate(ExprTree tree, ThreeAddressCode threeAddressCode){
+			if(tree.children.length!=0){
+				if(tree.simplify()){
 					QuadImp q = null;
-					q = new QuadImp(new OPCode<OP, String>(OP.HD, ""), "", "", "");
 					
-					System.out.println(head);
-					for (int i = 0; i < children.length; i++) {
+					if(OP.HD.name().equals(tree.getHead()))
+						q = new QuadImp(new OPCode<OP, String>(OP.HD, ""), "", "", "");
+					if(OP.TL.name().equals(tree.getHead()))
+						q = new QuadImp(new OPCode<OP, String>(OP.TL, ""), "", "", "");
+					if(OP.CONS.name().equals(tree.getHead()))
+						q = new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", "");
+					
+					
+					for (int i = 0; i < tree.children.length; i++) {
 						if(i==0)
-							q.setArg1(children[i].getHead());
+							q.setArg1(tree.children[i].getHead());
 						if(i==1)
-							q.setArg2(children[i].getHead());
+							q.setArg2(tree.children[i].getHead());
 					}
-					String varName = "Y"+k;//TODO  name beuged
-					q.setReponse(varName);
-					addIn3Addr(q);
-					clear(varName);
 					nb++;
-					return true;
+					String varName = "Y"+nb;//TODO  name beuged
+					q.setReponse(varName);
+					threeAddressCode.addIn3Addr(q);
+					tree.clear(varName);
+					
 				}else{
-					for (int i = 0; i < children.length; i++) {
-						children[i].iterate(k);
+					for (int i = 0; i < tree.children.length; i++) {
+						iterate(tree.children[i],threeAddressCode);
 					}	
 				}			
 			}
-			return false;
 		}
 		
 		public boolean simplify(){

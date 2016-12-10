@@ -3,8 +3,8 @@ read A
 %
 	X := nil ;
 	Y := A ;
-	while (cons A B) do
-		Y:=A
+	while (cons X Y) do
+		Y:= (consFun C D)
 	od
 %
 write X

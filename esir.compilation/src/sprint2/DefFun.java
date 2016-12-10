@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import esir.compilation.whileComp.Lexpr;
+
 public class DefFun{
 	int in, out;
 	String funName;
 	HashMap<String,String> vars;
-	List<String> symbs;
+	HashMap<String,Lexpr> symbs;
 	boolean isParamVar;
 	
 	public DefFun(String functionName){
@@ -16,15 +18,15 @@ public class DefFun{
 		in = 0;
 		out = 0;
 		vars = new HashMap<String,String>();
-		symbs = new LinkedList<String>();
+		symbs = new HashMap<String,Lexpr>();
 	}
 	
 	public void updateVar(String var,String val){
 		vars.put(var,(val == null)? "nil" : val);
 	}
 	
-	public void updateSyms(String symb){
-		symbs.add(symb);
+	public void updateSyms(String symb, Lexpr exprs){
+		symbs.put(symb,exprs);
 	}
 	
 	public boolean alreadyExisting(String var){
@@ -33,7 +35,7 @@ public class DefFun{
 	
 	@Override
 	public String toString(){
-		return "Input: "+in+", Output: "+out+"\nVariables: "+vars.toString()+"\nSymbols: "+symbs.toString();
+		return "Input: "+in+", Output: "+out+"\nVariables: "+vars.toString()+"\nSymbols: "+symbs.keySet().toString();
 	}
 	
 	/* GETTERS & SETTERS */
@@ -66,7 +68,7 @@ public class DefFun{
 		return vars;
 	}
 	
-	public List<String> getSymbs() {
+	public HashMap<String,Lexpr> getSymbs() {
 		return symbs;
 	}
 

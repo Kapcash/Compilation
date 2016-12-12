@@ -135,7 +135,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     if (_notEquals) {
       Command _command = coms.getCommand();
       String _compile = this.compile(_command, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
-      String res = (_compile + ";\n");
+      String res = (_compile + " ;\n");
       EList<Command> _commands_1 = coms.getCommands();
       int size = _commands_1.size();
       InputOutput.<Integer>println(Integer.valueOf(size));
@@ -145,12 +145,13 @@ public class WhileCompGenerator extends AbstractGenerator {
         if ((i == (size - 1))) {
           String _compile_1 = this.compile(c, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
           String _plus = (res + _compile_1);
-          res = _plus;
+          String _plus_1 = (_plus + "");
+          res = _plus_1;
         } else {
           String _compile_2 = this.compile(c, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
-          String _plus_1 = (res + _compile_2);
-          String _plus_2 = (_plus_1 + ";\n");
-          res = _plus_2;
+          String _plus_2 = (res + _compile_2);
+          String _plus_3 = (_plus_2 + " ;\n");
+          res = _plus_3;
           i = (i + 1);
         }
       }
@@ -195,7 +196,7 @@ public class WhileCompGenerator extends AbstractGenerator {
           i_1 = (i_1 + 1);
         }
       }
-      return (decal_1 + "nop\n");
+      return (decal_1 + "nop");
     }
     EObject _command_3 = c.getCommand();
     if ((_command_3 instanceof While)) {
@@ -319,31 +320,34 @@ public class WhileCompGenerator extends AbstractGenerator {
         Expr _expr_2 = ((If) _command_15).getExpr();
         Object _compile_8 = this.compile(_expr_2);
         String _plus_18 = ((decal_5 + "if ") + _compile_8);
-        String _plus_19 = (_plus_18 + " then \n");
+        String _plus_19 = (_plus_18 + " then\n");
         EObject _command_16 = c.getCommand();
         Commands _commands1 = ((If) _command_16).getCommands1();
         Object _compile_9 = this.compile(_commands1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
         String _plus_20 = (_plus_19 + _compile_9);
-        String _plus_21 = (_plus_20 + decal_5);
-        String _plus_22 = (_plus_21 + "else \n");
+        String _plus_21 = (_plus_20 + "\n");
+        String _plus_22 = (_plus_21 + decal_5);
+        String _plus_23 = (_plus_22 + "else\n");
         EObject _command_17 = c.getCommand();
         Commands _commands2_1 = ((If) _command_17).getCommands2();
         Object _compile_10 = this.compile(_commands2_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_23 = (_plus_22 + _compile_10);
-        String _plus_24 = (_plus_23 + decal_5);
-        return (_plus_24 + "fi\n");
+        String _plus_24 = (_plus_23 + _compile_10);
+        String _plus_25 = (_plus_24 + "\n");
+        String _plus_26 = (_plus_25 + decal_5);
+        return (_plus_26 + "fi\n");
       } else {
         EObject _command_18 = c.getCommand();
         Expr _expr_3 = ((If) _command_18).getExpr();
         Object _compile_11 = this.compile(_expr_3);
-        String _plus_25 = ((decal_5 + "if ") + _compile_11);
-        String _plus_26 = (_plus_25 + " then \n");
+        String _plus_27 = ((decal_5 + "if ") + _compile_11);
+        String _plus_28 = (_plus_27 + " then\n");
         EObject _command_19 = c.getCommand();
         Commands _commands1_1 = ((If) _command_19).getCommands1();
         Object _compile_12 = this.compile(_commands1_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_27 = (_plus_26 + _compile_12);
-        String _plus_28 = (_plus_27 + decal_5);
-        return (_plus_28 + "fi\n");
+        String _plus_29 = (_plus_28 + _compile_12);
+        String _plus_30 = (_plus_29 + "\n");
+        String _plus_31 = (_plus_30 + decal_5);
+        return (_plus_31 + "fi\n");
       }
     }
     return null;

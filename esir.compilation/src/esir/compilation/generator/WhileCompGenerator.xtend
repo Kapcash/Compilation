@@ -70,15 +70,15 @@ class WhileCompGenerator extends AbstractGenerator {
 //		«FOR c: (coms.commands) SEPARATOR ' ;'»«("	")»«c.compile(indentAll)»«ENDFOR»
 //		'''
 		if(coms.commands.size != 0){
-			var res = coms.command.compile(indentBase,indentAll, indentFor,indentWhile,indentIf,indentForeach,indentAff)+";\n";
+			var res = coms.command.compile(indentBase,indentAll, indentFor,indentWhile,indentIf,indentForeach,indentAff)+" ;\n";
 			var size = coms.commands.size;
 			println(size);
 			var i = 0;
 			for(Command c : coms.commands){
 				if(i == size - 1){
-				res = res + c.compile(indentBase,indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff);
+				res = res + c.compile(indentBase,indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"";
 				}else{
-				res = res + c.compile(indentBase,indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff) + ";\n"
+				res = res + c.compile(indentBase,indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff) + " ;\n"
 				i = i + 1;	
 				}
 			}
@@ -111,7 +111,7 @@ class WhileCompGenerator extends AbstractGenerator {
 				decal = decal + "\t";
 				i = i + 1;
 			}
-			return (decal+"nop\n")
+			return (decal+"nop")
 		}
 		if(c.command instanceof While){
 			var decal ="";
@@ -169,9 +169,9 @@ class WhileCompGenerator extends AbstractGenerator {
 				i = i + 1;
 			}
 			if((c.command as If).commands2 != null){
-				return (decal+"if "+ (c.command as If).expr.compile +" then \n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+ decal + "else \n"+(c.command as If).commands2.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+ "fi\n")
+				return (decal+"if "+ (c.command as If).expr.compile +" then\n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+ decal + "else\n"+(c.command as If).commands2.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+ "fi\n")
 			}else{
-				return (decal+"if "+ (c.command as If).expr.compile +" then \n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+decal+"fi\n")
+				return (decal+"if "+ (c.command as If).expr.compile +" then\n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"fi\n")
 			}
 		}
 	}

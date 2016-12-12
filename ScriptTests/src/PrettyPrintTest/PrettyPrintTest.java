@@ -1,4 +1,4 @@
-package PrettyPrintTest;
+package prettyPrintTest;
 
 import static org.junit.Assert.*;
 

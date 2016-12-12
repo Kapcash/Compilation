@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +10,63 @@ namespace ProjectCOMP
 	{
 		static void Main(String[] args)
 		{
-            ((Action)(() => { }))();
-        }
+		}
 
-		
+		private null consFun(null)
+		{
+					
+
+			
+
+			BinTree Y0 = head(A);
+			
+
+			BinTree Y1 = head(Y0);
+			
+
+			BinTree X0 = new BinTree(null, null, null);
+			
+
+			
+
+			BinTree Y = new BinTree(null, null, null);
+			
+
+			
+
+			BinTree Y0 = head(A);
+			
+
+			BinTree Y1 = cons(B,C);
+			
+
+			BinTree Y2 = cons(Y0,Y1);
+			
+
+			BinTree X0 = new BinTree(null, null, null);
+			
+
+			
+
+			
+
+			BinTree Y0 = cons(B,C);
+			
+
+			BinTree Y1 = cons(Y0,A);
+			
+
+			BinTree X0 = new BinTree(null, null, null);
+			
+
+			
+
+			
+
+			
+
+
+		}
 	}
 }
 

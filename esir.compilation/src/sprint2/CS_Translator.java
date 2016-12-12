@@ -78,10 +78,10 @@ public class CS_Translator {
 				funcList.add(new CS_Function(quad.getReponse()));
 				break;
 			case READ:
-				funcList.getLast().addParams();
+				//
 				break;
 			case WRITE:
-				funcList.getLast().addParams();
+				//
 				break;
 			case NOP:
 				f.write("((Action)(() => { }))();");
@@ -102,9 +102,23 @@ public class CS_Translator {
 				f.leftShift();
 				f.write(rAccolade);
 				break;
+			case DECL:
+				f.write("BinTree "+quad.getReponse()+" = new BinTree(null, null, null);");
+				break;
+			case CONS:
+				f.write("BinTree "+quad.getReponse()+" = cons("+quad.getArg1()+","+quad.getArg2()+");");
+				break;
+			case HD:
+				f.write("BinTree "+quad.getReponse()+" = head("+quad.getArg1()+");");
+				break;
+			case TL:
+				f.write("BinTree "+quad.getReponse()+" = tail("+quad.getArg1()+");");
+				break;
 			default:
+				
 				break;
 			}
+			f.write(newLine);
 		}
 	}
 	

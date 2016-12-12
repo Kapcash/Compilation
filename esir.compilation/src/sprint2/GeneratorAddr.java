@@ -240,9 +240,8 @@ public class GeneratorAddr {
 		while (itVal.hasNext()) {
 			iterateAST(itVal.next(), f); // For Expr
 			// TODO : Update val because now it is 'Expr', not only Variable
-			// TODO : Declare vars used in temp (Y0, Y1 and co.)
-			int k =code3Addresses.inlineExpression();
-			val = "Y"+(k < 0 ? 0 : k);
+			int k =code3Addresses.inlineExpression(this,f);
+			val = "Y"+k;
 			var = PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
@@ -482,7 +481,7 @@ public class GeneratorAddr {
 															// Variable
 	}
 	
-	private void varDeclaration(DefFun f, String v) {
+	void varDeclaration(DefFun f, String v) {
 		if (!f.alreadyExisting(v))
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
 	}

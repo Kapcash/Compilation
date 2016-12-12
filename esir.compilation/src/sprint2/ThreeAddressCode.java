@@ -88,12 +88,12 @@ public class ThreeAddressCode {
 		}
 	}
 	
-	public int inlineExpression() throws ThreeAddressCodeException{
+	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
 		if(!tree.full)
 			throw new ThreeAddressCodeException("Probleme dans l'expression");
 		
 		while(tree.children.length!=0){
-			ExprTree.iterate(tree,this);
+			ExprTree.iterate(tree,this,generatorAddr,f);
 		}
 		int k =ExprTree.nb;
 		ExprTree.nb=-1;
@@ -139,7 +139,7 @@ public class ThreeAddressCode {
 			}		
 		}
 		
-		public static void iterate(ExprTree tree, ThreeAddressCode threeAddressCode){
+		public static void iterate(ExprTree tree, ThreeAddressCode threeAddressCode, GeneratorAddr generatorAddr, DefFun f){
 			if(tree.children.length!=0){
 				if(tree.simplify()){
 					QuadImp q = null;
@@ -159,14 +159,15 @@ public class ThreeAddressCode {
 							q.setArg2(tree.children[i].getHead());
 					}
 					nb++;
-					String varName = "Y"+nb;//TODO  name beuged
+					String varName = "Y"+nb;
+					generatorAddr.varDeclaration(f, varName);
 					q.setReponse(varName);
 					threeAddressCode.addIn3Addr(q);
 					tree.clear(varName);
 					
 				}else{
 					for (int i = 0; i < tree.children.length; i++) {
-						iterate(tree.children[i],threeAddressCode);
+						iterate(tree.children[i],threeAddressCode,generatorAddr,f );
 					}	
 				}			
 			}

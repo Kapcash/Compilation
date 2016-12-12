@@ -117,11 +117,10 @@ public class GeneratorAddr {
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
-		System.out.println(translator);
+		//System.out.println(translator);
+		
 		/*
-		 * 
 		 * ACTIVER L'ECRITURE EN C#
-		 * 
 		 * 
 		 * try( PrintWriter out = new PrintWriter(
 		 * "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" ) ){
@@ -241,11 +240,11 @@ public class GeneratorAddr {
 			// TODO : Update val because now it is 'Expr', not only Variable
 			// TODO : Declare vars used in temp (Y0, Y1 and co.)
 			int k =code3Addresses.inlineExpression();
-			val = "Y"+k;
+			val = "Y"+(k < 0 ? 0 : k);
 			var = PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
-			f.updateVar(var, val);
+			//f.updateVar(var, val);
 		}
 
 		i = 0;
@@ -310,6 +309,7 @@ public class GeneratorAddr {
 		}
 	}
 	
+	// ExprAnd
 	private void iterateAST(ExprAnd ex, DefFun f) throws SymTableException  {
 		ExprAnd exprAnd = ex.getExprAnd();
 		if (exprAnd != null)
@@ -320,6 +320,7 @@ public class GeneratorAddr {
 			iterateAST(exprOr, f);
 	}
 
+	// ExprOr
 	private void iterateAST(ExprOr ex, DefFun f) throws SymTableException {
 
 		ExprOr exprOr = ex.getExprOr();
@@ -331,6 +332,7 @@ public class GeneratorAddr {
 			iterateAST(exprNot, f);
 	}
 
+	// ExprNot
 	private void iterateAST(ExprNot ex, DefFun f) throws SymTableException {
 		Not not = ex.getNot();
 		/*
@@ -342,6 +344,7 @@ public class GeneratorAddr {
 			iterateAST(exprEq, f);
 	}
 
+	//ExprEq
 	private void iterateAST(ExprEq ex, DefFun f) throws SymTableException {
 		iterateAST(ex.getExprSimple1(), f);
 		iterateAST(ex.getExprSimple2(), f);
@@ -411,7 +414,13 @@ public class GeneratorAddr {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
 	}
-
+	
+	/**
+	 * Check the symbols usages :
+	 *  - if called symbols are declared functions
+	 *  - if they are called with correct input number
+	 * @throws SymTableException Throws a SymTable Error if the program is not correct according to the symbols
+	 */
 	private void checkSymbolsUsage() throws SymTableException {
 		for (DefFun f : funList.values()) {
 			// Checking symbols usage after generating all the symbols table
@@ -445,6 +454,11 @@ public class GeneratorAddr {
 		return ret;
 	}
 
+	/**
+	 * Checks if a string is considered as a Symbol (starts with a lowercase char)
+	 * @param str The string to check the type
+	 * @return Return true if the string is considered as a Symbol in WHILE
+	 */
 	private boolean isSymbole(String str) {
 		if (str == null || str.equals("nil"))
 			return false;
@@ -453,6 +467,11 @@ public class GeneratorAddr {
 															// Symbole
 	}
 
+	/**
+	 * Checks if a string is considered as a Variable (starts with an uppercase char)
+	 * @param str The string to check the type
+	 * @return Return true if the string is considered as a Variable in WHILE
+	 */
 	private boolean isVariable(String str) {
 		if (str == null)
 			return false;
@@ -460,7 +479,7 @@ public class GeneratorAddr {
 		return firstChar.equals(firstChar.toUpperCase()); // Is uppercase ->
 															// Variable
 	}
-
+	
 	private void varDeclaration(DefFun f, String v) {
 		if (!f.alreadyExisting(v))
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));

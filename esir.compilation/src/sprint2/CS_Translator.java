@@ -78,10 +78,10 @@ public class CS_Translator {
 				funcList.add(new CS_Function(quad.getReponse()));
 				break;
 			case READ:
-				funcList.getLast().addParams();
+				//
 				break;
 			case WRITE:
-				funcList.getLast().addParams();
+				//
 				break;
 			case NOP:
 				f.write("((Action)(() => { }))();");

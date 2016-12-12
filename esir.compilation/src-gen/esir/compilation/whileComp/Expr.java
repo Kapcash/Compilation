@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.Expr#getExprsimple <em>Exprsimple</em>}</li>
  *   <li>{@link esir.compilation.whileComp.Expr#getExprAnd <em>Expr And</em>}</li>
  * </ul>
+ * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getExpr()
  * @model

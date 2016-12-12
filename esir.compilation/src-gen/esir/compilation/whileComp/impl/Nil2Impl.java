@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.Nil2Impl#getNil <em>Nil</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

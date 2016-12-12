@@ -1,5 +1,7 @@
 package sprint2;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -117,16 +119,16 @@ public class GeneratorAddr {
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
-		//System.out.println(translator);
+		System.out.println(translator);
 		
-		/*
-		 * ACTIVER L'ECRITURE EN C#
-		 * 
-		 * try( PrintWriter out = new PrintWriter(
-		 * "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" ) ){
-		 * out.println(translator.toString()); } catch (FileNotFoundException e)
-		 * { e.printStackTrace(); }
-		 */
+		
+		  //ACTIVER L'ECRITURE EN C#
+		  
+		  try( PrintWriter out = new PrintWriter(
+		  "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" ) ){
+		  out.println(translator.toString()); } catch (FileNotFoundException e)
+		  { e.printStackTrace(); }
+		 
 	}
 
 	// ITERATE ON THE AST

@@ -1,0 +1,5 @@
+function testStructBase1:
+read A
+%
+%
+write X

@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -1127,7 +1127,7 @@ ruleExprAnd returns [EObject current=null]
 						ruleExprOr
 					)
 				)
-				'&&'
+				'and'
 				(
 					(
 						ruleExprAnd
@@ -1155,9 +1155,9 @@ ruleExprAnd returns [EObject current=null]
 						}
 					)
 				)
-				otherlv_1='&&'
+				otherlv_1='and'
 				{
-					newLeafNode(otherlv_1, grammarAccess.getExprAndAccess().getAmpersandAmpersandKeyword_0_0_1());
+					newLeafNode(otherlv_1, grammarAccess.getExprAndAccess().getAndKeyword_0_0_1());
 				}
 				(
 					(
@@ -1226,7 +1226,7 @@ ruleExprOr returns [EObject current=null]
 						ruleExprNot
 					)
 				)
-				'||'
+				'or'
 				(
 					(
 						ruleExprOr
@@ -1254,9 +1254,9 @@ ruleExprOr returns [EObject current=null]
 						}
 					)
 				)
-				otherlv_1='||'
+				otherlv_1='or'
 				{
-					newLeafNode(otherlv_1, grammarAccess.getExprOrAccess().getVerticalLineVerticalLineKeyword_0_0_1());
+					newLeafNode(otherlv_1, grammarAccess.getExprOrAccess().getOrKeyword_0_0_1());
 				}
 				(
 					(

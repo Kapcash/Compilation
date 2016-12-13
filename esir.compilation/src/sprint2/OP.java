@@ -13,5 +13,7 @@ public enum OP {
 	//Definition fonction
 	FUN, READ, WRITE,
 	//Expression
-	CONS, HD, TL, LIST
+	CONS, HD, TL, LIST,
+	//Appel de func
+	CALL
 }

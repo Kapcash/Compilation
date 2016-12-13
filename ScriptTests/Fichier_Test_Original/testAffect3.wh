@@ -1,5 +1,0 @@
-function 			testAffect3:
-read A%
-	X := nil ;Y := A ;
-				Z := symb
-	%		write X

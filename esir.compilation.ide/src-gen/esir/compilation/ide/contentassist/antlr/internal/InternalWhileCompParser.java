@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalWhileCompParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_SYMBOL", "RULE_VARIABLE", "RULE_NOMBRE", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'function'", "':'", "'%'", "'read'", "','", "'write'", "':='", "';'", "'foreach'", "'in'", "'do'", "'od'", "'if'", "'then'", "'fi'", "'else'", "'for'", "'while'", "'&&'", "'||'", "'=?'", "'('", "')'", "'nop'", "'nil'", "'cons'", "'list'", "'hd'", "'tl'", "'!'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_SYMBOL", "RULE_VARIABLE", "RULE_NOMBRE", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'function'", "':'", "'%'", "'read'", "','", "'write'", "':='", "';'", "'foreach'", "'in'", "'do'", "'od'", "'if'", "'then'", "'fi'", "'else'", "'for'", "'while'", "'and'", "'or'", "'=?'", "'('", "')'", "'nop'", "'nil'", "'cons'", "'list'", "'hd'", "'tl'", "'!'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -8883,24 +8883,24 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ExprAnd__Group_0_0__1__Impl"
-    // InternalWhileComp.g:2503:1: rule__ExprAnd__Group_0_0__1__Impl : ( '&&' ) ;
+    // InternalWhileComp.g:2503:1: rule__ExprAnd__Group_0_0__1__Impl : ( 'and' ) ;
     public final void rule__ExprAnd__Group_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWhileComp.g:2507:1: ( ( '&&' ) )
-            // InternalWhileComp.g:2508:1: ( '&&' )
+            // InternalWhileComp.g:2507:1: ( ( 'and' ) )
+            // InternalWhileComp.g:2508:1: ( 'and' )
             {
-            // InternalWhileComp.g:2508:1: ( '&&' )
-            // InternalWhileComp.g:2509:2: '&&'
+            // InternalWhileComp.g:2508:1: ( 'and' )
+            // InternalWhileComp.g:2509:2: 'and'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprAndAccess().getAmpersandAmpersandKeyword_0_0_1()); 
+               before(grammarAccess.getExprAndAccess().getAndKeyword_0_0_1()); 
             }
             match(input,32,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprAndAccess().getAmpersandAmpersandKeyword_0_0_1()); 
+               after(grammarAccess.getExprAndAccess().getAndKeyword_0_0_1()); 
             }
 
             }
@@ -9219,24 +9219,24 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ExprOr__Group_0_0__1__Impl"
-    // InternalWhileComp.g:2611:1: rule__ExprOr__Group_0_0__1__Impl : ( '||' ) ;
+    // InternalWhileComp.g:2611:1: rule__ExprOr__Group_0_0__1__Impl : ( 'or' ) ;
     public final void rule__ExprOr__Group_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWhileComp.g:2615:1: ( ( '||' ) )
-            // InternalWhileComp.g:2616:1: ( '||' )
+            // InternalWhileComp.g:2615:1: ( ( 'or' ) )
+            // InternalWhileComp.g:2616:1: ( 'or' )
             {
-            // InternalWhileComp.g:2616:1: ( '||' )
-            // InternalWhileComp.g:2617:2: '||'
+            // InternalWhileComp.g:2616:1: ( 'or' )
+            // InternalWhileComp.g:2617:2: 'or'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprOrAccess().getVerticalLineVerticalLineKeyword_0_0_1()); 
+               before(grammarAccess.getExprOrAccess().getOrKeyword_0_0_1()); 
             }
             match(input,33,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprOrAccess().getVerticalLineVerticalLineKeyword_0_0_1()); 
+               after(grammarAccess.getExprOrAccess().getOrKeyword_0_0_1()); 
             }
 
             }

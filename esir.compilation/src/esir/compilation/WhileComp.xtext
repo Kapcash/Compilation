@@ -73,11 +73,11 @@ Expr:
 ;	
 
 ExprAnd:
-	=>(exprOr=ExprOr '&&' exprAnd=ExprAnd) | exprOr=ExprOr
+	=>(exprOr=ExprOr 'and' exprAnd=ExprAnd) | exprOr=ExprOr
 ;
 
 ExprOr:
-	=>(exprNot=ExprNot '||' exprOr=ExprOr) | exprNot=ExprNot
+	=>(exprNot=ExprNot 'or' exprOr=ExprOr) | exprNot=ExprNot
 ;
 
 ExprNot:

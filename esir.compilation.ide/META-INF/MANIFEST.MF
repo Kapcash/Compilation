@@ -9,3 +9,5 @@ Require-Bundle: esir.compilation,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: esir.compilation.ide.contentassist.antlr,
+ esir.compilation.ide.contentassist.antlr.internal

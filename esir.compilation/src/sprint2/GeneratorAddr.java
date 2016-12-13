@@ -45,15 +45,31 @@ import esir.compilation.whileComp.Write;
 
 public class GeneratorAddr {
 
-	private static final String PREFIXE = "X";
+	//SETTINGS
+	private static final boolean DISPLAY_SYM_TABLE = true;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = false;
+	private static final boolean DISPLAY_TRANSLATION = false;
+	private static final boolean PRINT_TRANSLATION = false;
+		
+	private static final String INPUT_FILE = "../exemple3.wh"; //TODO Bug sur exemple3.wh pour l'instant
+	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
+	//CONST
+	private static final String VAR_PREFIXE = "X";
+	
+	/**
+	 * List of declared functions in the Program
+	 */
+	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	HashMap<String, String> symbs = new HashMap<String, String>();
+	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
 	// MAIN //
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		System.out.println("Constructing symbole table.");
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable("../exemple4.wh", "./");
+			main.createSymTable(INPUT_FILE, "./");
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx) {
@@ -69,12 +85,6 @@ public class GeneratorAddr {
 
 	@Inject
 	private IResourceValidator validator;
-
-	/**
-	 * List of declared functions in the Program
-	 */
-	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
-	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
 	/**
 	 * Starting the symbols table generation
@@ -106,29 +116,53 @@ public class GeneratorAddr {
 		TreeIterator<EObject> tree = resource.getAllContents();
 		while (tree.hasNext()) {
 			EObject next = tree.next();
-			if (next instanceof Program)
-				iterateAST((Program) next); // Parcours l'AST du 'Program'
+			if (next instanceof Program){
+				discoverFunctions((Program) next); // Just read the function's names
+				iterateAST((Program) next); // Start to discover all the program
+			}
 		}
 
-		checkSymbolsUsage(); 	// Check all the symbols usage (undeclared function
-								// for example)
-		displaySymTable(); 		// Print the symbols table
-		System.out.println(code3Addresses);
-		System.out.println("Symboles Table correctly generated.");
-
+		checkSymbolsUsage(); 	// Check all the symbols usage (undeclared function for example)
+		
+		if(DISPLAY_SYM_TABLE){
+			displaySymTable(); 		// Print the symbols table
+			System.out.println("Symboles Table correctly generated.");
+		}
+		if(DISPLAY_THREE_ADDR_CODE){
+			System.out.println(code3Addresses);
+		}
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
-		System.out.println(translator);
-		
-		
-		  //ACTIVER L'ECRITURE EN C#
-		  
-		  try( PrintWriter out = new PrintWriter(
-		  "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" ) ){
-		  out.println(translator.toString()); } catch (FileNotFoundException e)
-		  { e.printStackTrace(); }
-		 
+
+		if(DISPLAY_TRANSLATION){
+			System.out.println(translator);
+		}
+		if(PRINT_TRANSLATION){
+			try( PrintWriter out = new PrintWriter(OUTPUT_FILE) ){
+				out.println(translator.toString());
+			} catch (FileNotFoundException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Initialize the function list just with the name of declared functions
+	 * @param prog
+	 * @throws SymTableException
+	 */
+	private void discoverFunctions(Program prog) throws SymTableException{
+		for(Function f : prog.getFunctions()){
+			String fName = f.getFunction();
+			boolean fun = funList.containsKey(fName);
+			if (fun) { // Function already existing
+				throw new SymTableException("Function '" + fName + "' already declared !");
+			} else {
+				DefFun def = new DefFun(fName);
+				funList.put(fName, def); // Adding a new blank function
+			}
+		}
 	}
 
 	// ITERATE ON THE AST
@@ -145,16 +179,11 @@ public class GeneratorAddr {
 		String fName = f.getFunction();
 		code3Addresses.nouvelleEtiquette();
 
-		boolean fun = funList.containsKey(fName);
-		if (fun) { // Function already existing
-			throw new SymTableException("Function '" + fName + "' already declared !");
-		} else {
-			DefFun def = new DefFun(fName);
-			funList.put(fName, def); // Adding a new blank function
-										// (DefFun)
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FUN, ""), fName, "", ""));
-			iterateAST(f.getDefinition(), def);
-		}
+		DefFun def = new DefFun(fName);
+		funList.put(fName, def); // Adding a new blank function
+		// (DefFun)
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FUN, ""), fName, "", ""));
+		iterateAST(f.getDefinition(), def);
 		code3Addresses.finEtiquette();
 	}
 
@@ -176,7 +205,7 @@ public class GeneratorAddr {
 			if (f.alreadyExisting(v))
 				throw new SymTableException(
 						"Function '" + f.getFunName() + "', variable '" + v + "' already declared !");
-			f.updateVar(v, null);
+			f.updateVar(v);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
 		}
 	}
@@ -188,7 +217,7 @@ public class GeneratorAddr {
 		for (String v : varsW) {
 			varDeclaration(f, v);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), v, "", ""));
-			f.updateVar(v, null);
+			f.updateVar(v);
 		}
 	}
 
@@ -242,7 +271,7 @@ public class GeneratorAddr {
 			// TODO : Update val because now it is 'Expr', not only Variable
 			int k =code3Addresses.inlineExpression(this,f);
 			val = "Y"+k;
-			var = PREFIXE + i++;
+			var = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			//f.updateVar(var, val);
@@ -251,10 +280,10 @@ public class GeneratorAddr {
 		i = 0;
 		while (itAff.hasNext()) {
 			var = itAff.next();
-			val = PREFIXE + i++;
+			val = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
-			f.updateVar(var, val);
+			f.updateVar(var);
 		}
 	}
 
@@ -277,13 +306,13 @@ public class GeneratorAddr {
 		if (operator != null) {
 			switch (operator) {
 			case "cons":
-				code3Addresses.addToExpression(OP.CONS.name());
+				code3Addresses.addToExpression(OP.CONS.name(),funList);
 				break;
 			case "hd":
-				code3Addresses.addToExpression(OP.HD.name());
+				code3Addresses.addToExpression(OP.HD.name(),funList);
 				break;
 			case "tl":
-				code3Addresses.addToExpression(OP.TL.name());
+				code3Addresses.addToExpression(OP.TL.name(),funList);
 				break;
 			case "list":
 				// TODO
@@ -293,14 +322,18 @@ public class GeneratorAddr {
 			}
 		} else {
 			if (val != null) {
-				code3Addresses.addToExpression(val);
+				code3Addresses.addToExpression(val,funList);
 			}
 		}
 		if (isSymbole(val)) { // Symbole
-			f.updateSyms(val,exprs);
+			if(exprs != null){
+				f.updateCalls(val,exprs);
+			} else {
+				this.symbs.put(val, "");
+			}
 		}
 		if (isVariable(val)) { // Variable
-			f.updateVar(val, null);
+			f.updateVar(val);
 		}
 		if (exp != null) { // Expr
 			iterateAST(exp, f);
@@ -309,7 +342,7 @@ public class GeneratorAddr {
 			iterateAST(exprs, f);
 		}
 	}
-	
+
 	// ExprAnd
 	private void iterateAST(ExprAnd ex, DefFun f) throws SymTableException  {
 		ExprAnd exprAnd = ex.getExprAnd();
@@ -405,17 +438,26 @@ public class GeneratorAddr {
 	}
 
 	// TOOLS //
-	
+
 	/**
 	 * Print the final symboles table
 	 */
-	private void displaySymTable() {
+	private void displaySymTable(){
 		System.out.println();
+		System.out.println("Symboles globaux : \n"+symbs.keySet()+"\n");
 		for (String f : funList.keySet()) {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
 	}
-	
+
+	private boolean isFunction(String symb){
+		boolean ret = false;
+		if(funList.containsKey(symb)){
+			ret = true;
+		}
+		return ret;
+	}
+
 	/**
 	 * Check the symbols usages :
 	 *  - if called symbols are declared functions
@@ -423,24 +465,25 @@ public class GeneratorAddr {
 	 * @throws SymTableException Throws a SymTable Error if the program is not correct according to the symbols
 	 */
 	private void checkSymbolsUsage() throws SymTableException {
+		//Symbols as function (calls, declaration)
 		for (DefFun f : funList.values()) {
 			// Checking symbols usage after generating all the symbols table
-			for (String symbol : f.getSymbs().keySet()) {
-				Lexpr lexpr = f.getSymbs().get(symbol);
-				int expectedParameters = funList.get(symbol).getIn();
-				int nbOfParameters = ((lexpr!=null) ? countExprs(lexpr) : 0);
+			for (String symbol : f.getCalls().keySet()){
+				Lexpr lexpr = f.getCalls().get(symbol);
 				//Check if the function exists
 				if (!funList.containsKey(symbol)){
 					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function !");
 				}
+				int expectedParameters = funList.get(symbol).getIn();
+				int nbOfParameters = ((lexpr!=null) ? countExprs(lexpr) : 0);
 				//Check if the function is called with the correct parameters number
-				else if(nbOfParameters != expectedParameters){
+				if(nbOfParameters != expectedParameters){
 					throw new SymTableException("The function "+symbol+" is called with "+nbOfParameters+", expected "+expectedParameters);
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Count the number of Expr in an Lexpr
 	 * Used to count the number of parameter of a called function (symbol)
@@ -465,7 +508,7 @@ public class GeneratorAddr {
 			return false;
 		String firstChar = str.substring(0, 1);
 		return firstChar.equals(firstChar.toLowerCase()); // Is lowercase ->
-															// Symbole
+		// Symbole
 	}
 
 	/**
@@ -478,9 +521,9 @@ public class GeneratorAddr {
 			return false;
 		String firstChar = str.substring(0, 1);
 		return firstChar.equals(firstChar.toUpperCase()); // Is uppercase ->
-															// Variable
+		// Variable
 	}
-	
+
 	void varDeclaration(DefFun f, String v) {
 		if (!f.alreadyExisting(v))
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));

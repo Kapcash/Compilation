@@ -12,13 +12,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple()
  * @model

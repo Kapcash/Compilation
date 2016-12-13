@@ -46,26 +46,22 @@ import esir.compilation.whileComp.Write;
 public class GeneratorAddr {
 
 	//SETTINGS
-
 	private static final boolean DISPLAY_SYM_TABLE = true;
-	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = false;
 	private static final boolean DISPLAY_TRANSLATION = false;
 	private static final boolean PRINT_TRANSLATION = false;
-
-	private static final String INPUT_FILE = "../exemple3.wh";
+		
+	private static final String INPUT_FILE = "../exemple4.wh"; //TODO Bug sur exemple3.wh pour l'instant
 	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
-
 	//CONST
-
 	private static final String PREFIXE = "X";
 
 	// MAIN //
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		System.out.println("Constructing symbole table.");
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable("../exemple3.wh", "./");
 			main.createSymTable(INPUT_FILE, "./");
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
@@ -126,25 +122,29 @@ public class GeneratorAddr {
 			}
 		}
 
-		checkSymbolsUsage(); 	// Check all the symbols usage (undeclared function
-		// for example)
-		displaySymTable(); 		// Print the symbols table
-		System.out.println(code3Addresses);
-		System.out.println("Symboles Table correctly generated.");
-
+		checkSymbolsUsage(); 	// Check all the symbols usage (undeclared function for example)
+		
+		if(DISPLAY_SYM_TABLE){
+			displaySymTable(); 		// Print the symbols table
+			System.out.println("Symboles Table correctly generated.");
+		}
+		if(DISPLAY_THREE_ADDR_CODE){
+			System.out.println(code3Addresses);
+		}
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
-		System.out.println(translator);
 
-
-		//ACTIVER L'ECRITURE EN C#
-
-		try( PrintWriter out = new PrintWriter(
-				"../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" ) ){
-			out.println(translator.toString()); } catch (FileNotFoundException e)
-		{ e.printStackTrace(); }
-
+		if(DISPLAY_TRANSLATION){
+			System.out.println(translator);
+		}
+		if(PRINT_TRANSLATION){
+			try( PrintWriter out = new PrintWriter(OUTPUT_FILE) ){
+				out.println(translator.toString());
+			} catch (FileNotFoundException e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class GeneratorAddr {
 	 * @param prog
 	 * @throws SymTableException
 	 */
-	private void discoverFunctions(Program prog) throws SymTableException, CS_TranslatorException{
+	private void discoverFunctions(Program prog) throws SymTableException{
 		for(Function f : prog.getFunctions()){
 			String fName = f.getFunction();
 			boolean fun = funList.containsKey(fName);
@@ -163,32 +163,6 @@ public class GeneratorAddr {
 				funList.put(fName, def); // Adding a new blank function
 			}
 		}
-		// for example)
-		if(DISPLAY_SYM_TABLE){
-			displaySymTable(); 		// Print the symbols table
-			System.out.println("Symboles Table correctly generated.");
-		}
-
-
-		if(DISPLAY_THREE_ADDR_CODE){
-			System.out.println(code3Addresses);
-		}
-
-		// Translator
-		CS_Translator translator = new CS_Translator(code3Addresses);
-		translator.translate();
-
-		if(DISPLAY_TRANSLATION){
-			System.out.println(translator);
-		}
-
-		if(PRINT_TRANSLATION){
-			try( PrintWriter out = new PrintWriter(OUTPUT_FILE) ){
-				out.println(translator.toString()); } catch (FileNotFoundException e)
-			{ e.printStackTrace(); }
-		}
-
-
 	}
 
 	// ITERATE ON THE AST

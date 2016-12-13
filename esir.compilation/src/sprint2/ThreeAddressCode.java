@@ -4,11 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Stack;
-
-import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-
 import java.util.Map.Entry;
+import java.util.Stack;
 
 public class ThreeAddressCode {
 	
@@ -90,8 +87,9 @@ public class ThreeAddressCode {
 	}
 	
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
-		if(!tree.full)
+		if(!tree.full){
 			throw new ThreeAddressCodeException("Probleme dans l'expression");
+		}
 		
 		while(tree.children.length!=0){
 			ExprTree.iterate(tree,this,generatorAddr,f);
@@ -101,6 +99,8 @@ public class ThreeAddressCode {
 		tree = null;
 		return k;
 	}
+	
+//PRIVATE CLASS EXPRTREE	
 	
 	private static class ExprTree{
 		private String head;
@@ -117,8 +117,8 @@ public class ThreeAddressCode {
 			else if(isUnaryOperation(head))
 				children = new ExprTree[1];
 			else if(funList.containsKey(head)){
-				children = new ExprTree[funList.get(head).in];
-				System.out.println(funList.get(head).in);
+				children = new ExprTree[funList.get(head).getIn()];
+				System.out.println(funList.get(head).getIn());
 			}else{
 				children = new ExprTree[0];
 				full=true;

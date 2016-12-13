@@ -12,28 +12,27 @@ namespace ProjectCOMP
 		{
 		}
 
-		private null consFun(null)
+		private null symbolesFunction(null)
 		{
 					
 
 			
 
-			BinTree Y0 = new BinTree(null, null, null);
+			BinTree X0 = new BinTree(null, null, null);
 			
 
-			BinTree Y0 = head(A);
 			
 
-			BinTree Y1 = new BinTree(null, null, null);
+			BinTree X1 = new BinTree(null, null, null);
 			
 
-			BinTree Y1 = cons(B,C);
 			
 
-			BinTree Y2 = new BinTree(null, null, null);
 			
 
-			BinTree Y2 = cons(Y0,Y1);
+			BinTree C = new BinTree(null, null, null);
+			
+
 			
 
 			BinTree X0 = new BinTree(null, null, null);
@@ -41,24 +40,26 @@ namespace ProjectCOMP
 
 			
 
-			BinTree Y = new BinTree(null, null, null);
 			
 
-			
+			if(expr)
+			{
+				while(expr)
+				{
+					BinTree X0 = new BinTree(null, null, null);
+					
 
-			BinTree Y0 = new BinTree(null, null, null);
-			
+					
 
-			BinTree Y0 = cons(B,C);
-			
+					BinTree D = new BinTree(null, null, null);
+					
 
-			BinTree Y1 = new BinTree(null, null, null);
-			
+					
 
-			BinTree Y1 = cons(Y0,A);
-			
+				}
+				
 
-			BinTree X0 = new BinTree(null, null, null);
+			}
 			
 
 			

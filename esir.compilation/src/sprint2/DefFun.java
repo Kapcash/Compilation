@@ -7,7 +7,7 @@ import esir.compilation.whileComp.Lexpr;
 public class DefFun{
 	int in, out;
 	String funName;
-	HashMap<String,String> vars;
+	HashMap<String,Integer> vars;
 	HashMap<String,Lexpr> calls;
 	boolean isParamVar;
 
@@ -15,14 +15,18 @@ public class DefFun{
 		funName = functionName;
 		in = 0;
 		out = 0;
-		vars = new HashMap<String,String>();
+		vars = new HashMap<String,Integer>();
 		calls = new HashMap<String,Lexpr>();
 	}
-
-	public void updateVar(String var,String val){
-		vars.put(var,(val == null)? "nil" : val);
+	
+	public void updateVar(String var){
+		if(vars.containsKey(var)){
+			vars.put(var,vars.get(var)+1);
+		} else {
+			vars.put(var,1);
+		}
 	}
-
+	
 	public void updateCalls(String symb, Lexpr exprs){
 		calls.put(symb,exprs);
 	}
@@ -62,7 +66,7 @@ public class DefFun{
 		this.out = out;
 	}
 
-	public HashMap<String,String> getVars() {
+	public HashMap<String,Integer> getVars() {
 		return vars;
 	}
 

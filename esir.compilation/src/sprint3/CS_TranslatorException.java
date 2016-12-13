@@ -1,4 +1,4 @@
-package sprint2;
+package sprint3;
 
 public class CS_TranslatorException extends Exception {
 

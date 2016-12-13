@@ -45,6 +45,18 @@ import esir.compilation.whileComp.Write;
 
 public class GeneratorAddr {
 
+	//SETTINGS
+
+	private static final boolean DISPLAY_SYM_TABLE = true;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
+	private static final boolean DISPLAY_TRANSLATION = false;
+	private static final boolean PRINT_TRANSLATION = false;
+
+	private static final String INPUT_FILE = "../exemple3.wh";
+	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
+
+	//CONST
+
 	private static final String PREFIXE = "X";
 
 	// MAIN //
@@ -54,6 +66,7 @@ public class GeneratorAddr {
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
 			main.createSymTable("../exemple3.wh", "./");
+			main.createSymTable(INPUT_FILE, "./");
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx) {
@@ -139,7 +152,7 @@ public class GeneratorAddr {
 	 * @param prog
 	 * @throws SymTableException
 	 */
-	private void discoverFunctions(Program prog) throws SymTableException{
+	private void discoverFunctions(Program prog) throws SymTableException, CS_TranslatorException{
 		for(Function f : prog.getFunctions()){
 			String fName = f.getFunction();
 			boolean fun = funList.containsKey(fName);
@@ -150,6 +163,32 @@ public class GeneratorAddr {
 				funList.put(fName, def); // Adding a new blank function
 			}
 		}
+		// for example)
+		if(DISPLAY_SYM_TABLE){
+			displaySymTable(); 		// Print the symbols table
+			System.out.println("Symboles Table correctly generated.");
+		}
+
+
+		if(DISPLAY_THREE_ADDR_CODE){
+			System.out.println(code3Addresses);
+		}
+
+		// Translator
+		CS_Translator translator = new CS_Translator(code3Addresses);
+		translator.translate();
+
+		if(DISPLAY_TRANSLATION){
+			System.out.println(translator);
+		}
+
+		if(PRINT_TRANSLATION){
+			try( PrintWriter out = new PrintWriter(OUTPUT_FILE) ){
+				out.println(translator.toString()); } catch (FileNotFoundException e)
+			{ e.printStackTrace(); }
+		}
+
+
 	}
 
 	// ITERATE ON THE AST
@@ -293,13 +332,13 @@ public class GeneratorAddr {
 		if (operator != null) {
 			switch (operator) {
 			case "cons":
-				code3Addresses.addToExpression(OP.CONS.name());
+				code3Addresses.addToExpression(OP.CONS.name(),funList);
 				break;
 			case "hd":
-				code3Addresses.addToExpression(OP.HD.name());
+				code3Addresses.addToExpression(OP.HD.name(),funList);
 				break;
 			case "tl":
-				code3Addresses.addToExpression(OP.TL.name());
+				code3Addresses.addToExpression(OP.TL.name(),funList);
 				break;
 			case "list":
 				// TODO
@@ -309,7 +348,7 @@ public class GeneratorAddr {
 			}
 		} else {
 			if (val != null) {
-				code3Addresses.addToExpression(val);
+				code3Addresses.addToExpression(val,funList);
 			}
 		}
 		if (isSymbole(val)) { // Symbole

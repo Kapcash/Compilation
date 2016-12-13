@@ -1,7 +1,7 @@
-function testAffect5:
+function testAffect:
 read A
 %
-	X := nil ;
+	X := symbol;
 	Y := A ;
 	while (cons X Y) do
 		Y:= (consFun C D)
@@ -27,7 +27,7 @@ read A ,B
 		od
 	else
 		for nil do
-			E := (consFun C D)
+			E := (testAffect D)
 		od
 	fi
 	

@@ -10,7 +10,7 @@ public class DefFun{
 	int in, out;
 	String funName;
 	HashMap<String,String> vars;
-	HashMap<String,Lexpr> symbs;
+	HashMap<String,Lexpr> calls;
 	boolean isParamVar;
 
 	public DefFun(String functionName){
@@ -18,15 +18,15 @@ public class DefFun{
 		in = 0;
 		out = 0;
 		vars = new HashMap<String,String>();
-		symbs = new HashMap<String,Lexpr>();
+		calls = new HashMap<String,Lexpr>();
 	}
 
 	public void updateVar(String var,String val){
 		vars.put(var,(val == null)? "nil" : val);
 	}
 
-	public void updateSyms(String symb, Lexpr exprs){
-		symbs.put(symb,exprs);
+	public void updateCalls(String symb, Lexpr exprs){
+		calls.put(symb,exprs);
 	}
 
 	public boolean alreadyExisting(String var){
@@ -35,7 +35,7 @@ public class DefFun{
 
 	@Override
 	public String toString(){
-		return "Input: "+in+", Output: "+out+"\nVariables: "+vars.toString()+"\nSymbols: "+symbs.keySet().toString();
+		return "Input: "+in+", Output: "+out+"\nVariables: "+vars.toString()+"\nSymbols: "+calls.keySet().toString();
 	}
 
 	/* GETTERS & SETTERS */
@@ -69,7 +69,7 @@ public class DefFun{
 	}
 
 	public HashMap<String,Lexpr> getSymbs() {
-		return symbs;
+		return calls;
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class DefFun{
 		result = prime * result + in;
 		result = prime * result + (isParamVar ? 1231 : 1237);
 		result = prime * result + out;
-		result = prime * result + ((symbs == null) ? 0 : symbs.hashCode());
+		result = prime * result + ((calls == null) ? 0 : calls.hashCode());
 		result = prime * result + ((vars == null) ? 0 : vars.hashCode());
 		return result;
 	}
@@ -107,10 +107,10 @@ public class DefFun{
 				|| out != other.out)
 			return false;
 		
-		if (symbs == null) {
-			if (other.symbs != null)
+		if (calls == null) {
+			if (other.calls != null)
 				return false;
-		} else if (!symbs.equals(other.symbs))
+		} else if (!calls.equals(other.calls))
 			return false;
 		
 		if (vars == null) {

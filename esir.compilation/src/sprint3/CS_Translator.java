@@ -1,8 +1,11 @@
-package sprint2;
+package sprint3;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import sprint2.QuadImp;
+import sprint2.ThreeAddressCode;
 
 public class CS_Translator {
 
@@ -78,7 +81,11 @@ public class CS_Translator {
 				funcList.add(new CS_Function(quad.getReponse()));
 				break;
 			case READ:
-				//
+//				int i=0;
+//				while(i<Integer.parseInt(quad.getArg1())){
+//					f.write("BinTree r"+i+" = input["+i+"];");
+//					i++;
+//				}
 				break;
 			case WRITE:
 				//
@@ -102,8 +109,19 @@ public class CS_Translator {
 				f.leftShift();
 				f.write(rAccolade);
 				break;
+			case FOR:
+				f.write("for("+"expr"+")");
+				f.write(lAccolade);
+				f.rightShift();
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator());
+				f.leftShift();
+				f.write(rAccolade);
+				break;
 			case DECL:
-				f.write("BinTree "+quad.getReponse()+" = new BinTree(null, null, null);");
+				f.write("BinTree "+quad.getReponse()+";");
+				break;
+			case AFF:
+				f.write(quad.getReponse()+" = "+quad.getArg1()+";");
 				break;
 			case CONS:
 				f.write("BinTree "+quad.getReponse()+" = cons("+quad.getArg1()+","+quad.getArg2()+");");
@@ -118,7 +136,6 @@ public class CS_Translator {
 				
 				break;
 			}
-			f.write(newLine);
 		}
 	}
 	
@@ -173,6 +190,8 @@ public class CS_Translator {
 			super();
 			this.name = name;
 			body = new StringBuilder();
+			this.params = "BinTree[] input, BinTree[] output";
+			this.returns  = "void";
 		}
 		
 		private void write(String s) {

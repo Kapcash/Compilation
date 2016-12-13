@@ -7,7 +7,7 @@ read A
 
 , C
 %
-%
+nop%
 write X			, Y   
 
 , 		Z

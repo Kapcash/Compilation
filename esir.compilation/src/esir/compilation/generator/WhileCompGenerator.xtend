@@ -52,11 +52,11 @@ class WhileCompGenerator extends AbstractGenerator {
 	
 	def compile (Function c, int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){'''
 		function «c.function»:
-		read «FOR param: c.definition.read.variable SEPARATOR ' ,'»«param»«ENDFOR»
+		read «FOR param: c.definition.read.variable SEPARATOR ', '»«param»«ENDFOR»
 		%
 		«c.definition.commands.compile(indentAll,indentAll, indentFor,indentWhile,indentIf,indentForeach,indentAff)»
 		%
-		write «FOR param: c.definition.write.variable SEPARATOR ' ,'»«param»«ENDFOR»'''	
+		write «FOR param: c.definition.write.variable SEPARATOR ', '»«param»«ENDFOR»'''	
 	}
 	
 	def compile(Commands coms,int indentBase,int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){

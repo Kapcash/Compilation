@@ -1,5 +1,6 @@
 function testStructBase1:
 read A
 %
+	nop
 %
 write X

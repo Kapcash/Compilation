@@ -44,6 +44,18 @@ import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
 
 public class GeneratorAddr {
+	
+	//SETTINGS
+	
+	private static final boolean DISPLAY_SYM_TABLE = true;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
+	private static final boolean DISPLAY_TRANSLATION = false;
+	private static final boolean PRINT_TRANSLATION = false;
+	
+	private static final String INPUT_FILE = "../exemple3.wh";
+	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
+	
+	//CONST
 
 	private static final String PREFIXE = "X";
 
@@ -53,7 +65,7 @@ public class GeneratorAddr {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable("../exemple4.wh", "./");
+			main.createSymTable(INPUT_FILE, "./");
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx) {
@@ -112,22 +124,30 @@ public class GeneratorAddr {
 
 		checkSymbolsUsage(); 	// Check all the symbols usage (undeclared function
 								// for example)
-		displaySymTable(); 		// Print the symbols table
-		System.out.println(code3Addresses);
-		System.out.println("Symboles Table correctly generated.");
-
+		if(DISPLAY_SYM_TABLE){
+			displaySymTable(); 		// Print the symbols table
+			System.out.println("Symboles Table correctly generated.");
+		}
+		
+		
+		if(DISPLAY_THREE_ADDR_CODE){
+			System.out.println(code3Addresses);
+		}
+		
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
-		System.out.println(translator);
 		
-		
-		  //ACTIVER L'ECRITURE EN C#
+		if(DISPLAY_TRANSLATION){
+			System.out.println(translator);
+		}
+
+		if(PRINT_TRANSLATION){
+			  try( PrintWriter out = new PrintWriter(OUTPUT_FILE) ){
+			  out.println(translator.toString()); } catch (FileNotFoundException e)
+			  { e.printStackTrace(); }
+		}
 		  
-		  try( PrintWriter out = new PrintWriter(
-		  "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs" ) ){
-		  out.println(translator.toString()); } catch (FileNotFoundException e)
-		  { e.printStackTrace(); }
 		 
 	}
 
@@ -277,13 +297,13 @@ public class GeneratorAddr {
 		if (operator != null) {
 			switch (operator) {
 			case "cons":
-				code3Addresses.addToExpression(OP.CONS.name());
+				code3Addresses.addToExpression(OP.CONS.name(),funList);
 				break;
 			case "hd":
-				code3Addresses.addToExpression(OP.HD.name());
+				code3Addresses.addToExpression(OP.HD.name(),funList);
 				break;
 			case "tl":
-				code3Addresses.addToExpression(OP.TL.name());
+				code3Addresses.addToExpression(OP.TL.name(),funList);
 				break;
 			case "list":
 				// TODO
@@ -293,7 +313,7 @@ public class GeneratorAddr {
 			}
 		} else {
 			if (val != null) {
-				code3Addresses.addToExpression(val);
+				code3Addresses.addToExpression(val,funList);
 			}
 		}
 		if (isSymbole(val)) { // Symbole

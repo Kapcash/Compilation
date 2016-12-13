@@ -80,12 +80,13 @@ public class ThreeAddressCode {
 		this.code3Addr = code3Addr;
 	}
 	
-	public void addToExpression(String s){
+	public void addToExpression(String s,  HashMap<String, DefFun> funList){
 		if(tree==null){
-			tree = new ExprTree(s);
+			tree = new ExprTree(s,funList);
 		}else{
-			tree.add(s);
+			tree.add(s,funList);
 		}
+		System.out.println(tree);
 	}
 	
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
@@ -96,7 +97,7 @@ public class ThreeAddressCode {
 			ExprTree.iterate(tree,this,generatorAddr,f);
 		}
 		int k =ExprTree.nb;
-		ExprTree.nb=-1;
+		ExprTree.nb=0;
 		tree = null;
 		return k;
 	}
@@ -105,9 +106,9 @@ public class ThreeAddressCode {
 		private String head;
 		private ExprTree[] children;
 		private boolean full;
-		static int nb = -1;
+		static int nb = 0;
 		
-		public ExprTree(String head) {
+		public ExprTree(String head, HashMap<String, DefFun> funList) {
 			super();
 			setHead(head);
 			//TODO prendre en comptre les func
@@ -115,23 +116,26 @@ public class ThreeAddressCode {
 				children = new ExprTree[2];
 			else if(isUnaryOperation(head))
 				children = new ExprTree[1];
-			else{
+			else if(funList.containsKey(head)){
+				children = new ExprTree[funList.get(head).in];
+				System.out.println(funList.get(head).in);
+			}else{
 				children = new ExprTree[0];
 				full=true;
 			}
 				
 		}
 		
-		public void add(String s) {
+		public void add(String s, HashMap<String, DefFun> funList) {
 			for (int i = 0; i < children.length; i++) {
 				
 				if(children[i]==null){
-					children[i] = new ExprTree(s);
+					children[i] = new ExprTree(s, funList);
 					full = areChildrenFull();
 					return;
 				}else{
 					if(!children[i].full){
-						children[i].add(s);
+						children[i].add(s,funList);
 						full = areChildrenFull();
 						return;
 					}	
@@ -146,11 +150,12 @@ public class ThreeAddressCode {
 					
 					if(OP.HD.name().equals(tree.getHead()))
 						q = new QuadImp(new OPCode<OP, String>(OP.HD, ""), "", "", "");
-					if(OP.TL.name().equals(tree.getHead()))
+					else if(OP.TL.name().equals(tree.getHead()))
 						q = new QuadImp(new OPCode<OP, String>(OP.TL, ""), "", "", "");
-					if(OP.CONS.name().equals(tree.getHead()))
+					else if(OP.CONS.name().equals(tree.getHead()))
 						q = new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", "");
-					
+					else
+						q = new QuadImp(new OPCode<OP, String>(OP.CALL, ""), "", "", "");
 					
 					for (int i = 0; i < tree.children.length; i++) {
 						if(i==0)
@@ -158,8 +163,7 @@ public class ThreeAddressCode {
 						if(i==1)
 							q.setArg2(tree.children[i].getHead());
 					}
-					nb++;
-					String varName = "Y"+nb;
+					String varName = "Y"+nb++;
 					generatorAddr.varDeclaration(f, varName);
 					q.setReponse(varName);
 					threeAddressCode.addIn3Addr(q);

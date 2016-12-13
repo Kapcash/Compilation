@@ -18,10 +18,22 @@ namespace ProjectCOMP
 
 			
 
+			BinTree Y0 = new BinTree(null, null, null);
+			
+
 			BinTree Y0 = head(A);
 			
 
-			BinTree Y1 = head(Y0);
+			BinTree Y1 = new BinTree(null, null, null);
+			
+
+			BinTree Y1 = cons(B,C);
+			
+
+			BinTree Y2 = new BinTree(null, null, null);
+			
+
+			BinTree Y2 = cons(Y0,Y1);
 			
 
 			BinTree X0 = new BinTree(null, null, null);
@@ -34,23 +46,13 @@ namespace ProjectCOMP
 
 			
 
-			BinTree Y0 = head(A);
-			
-
-			BinTree Y1 = cons(B,C);
-			
-
-			BinTree Y2 = cons(Y0,Y1);
-			
-
-			BinTree X0 = new BinTree(null, null, null);
-			
-
-			
-
+			BinTree Y0 = new BinTree(null, null, null);
 			
 
 			BinTree Y0 = cons(B,C);
+			
+
+			BinTree Y1 = new BinTree(null, null, null);
 			
 
 			BinTree Y1 = cons(Y0,A);

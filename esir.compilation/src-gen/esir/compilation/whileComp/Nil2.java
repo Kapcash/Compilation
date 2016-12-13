@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.Nil2#getNil <em>Nil</em>}</li>
  * </ul>
- * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getNil2()
  * @model

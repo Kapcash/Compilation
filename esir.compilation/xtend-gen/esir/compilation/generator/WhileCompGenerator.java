@@ -228,7 +228,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       String _plus_3 = (_plus_2 + _compile_2);
       String _plus_4 = (_plus_3 + "\n");
       String _plus_5 = (_plus_4 + decal_2);
-      return (_plus_5 + "od\n");
+      return (_plus_5 + "od");
     }
     EObject _command_6 = c.getCommand();
     if ((_command_6 instanceof For)) {
@@ -258,7 +258,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       String _plus_8 = (_plus_7 + _compile_4);
       String _plus_9 = (_plus_8 + "\n");
       String _plus_10 = (_plus_9 + decal_3);
-      return (_plus_10 + "od\n");
+      return (_plus_10 + "od");
     }
     EObject _command_9 = c.getCommand();
     if ((_command_9 instanceof Foreach)) {
@@ -293,7 +293,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       String _plus_15 = (_plus_14 + _compile_7);
       String _plus_16 = (_plus_15 + "\n");
       String _plus_17 = (_plus_16 + decal_4);
-      return (_plus_17 + "od\n");
+      return (_plus_17 + "od");
     }
     EObject _command_13 = c.getCommand();
     if ((_command_13 instanceof If)) {
@@ -334,7 +334,7 @@ public class WhileCompGenerator extends AbstractGenerator {
         String _plus_24 = (_plus_23 + _compile_10);
         String _plus_25 = (_plus_24 + "\n");
         String _plus_26 = (_plus_25 + decal_5);
-        return (_plus_26 + "fi\n");
+        return (_plus_26 + "fi");
       } else {
         EObject _command_18 = c.getCommand();
         Expr _expr_3 = ((If) _command_18).getExpr();
@@ -347,7 +347,7 @@ public class WhileCompGenerator extends AbstractGenerator {
         String _plus_29 = (_plus_28 + _compile_12);
         String _plus_30 = (_plus_29 + "\n");
         String _plus_31 = (_plus_30 + decal_5);
-        return (_plus_31 + "fi\n");
+        return (_plus_31 + "fi");
       }
     }
     return null;
@@ -428,7 +428,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     } else {
       ExprOr _exprOr_1 = expr.getExprOr();
       Object _compile = this.compile(_exprOr_1);
-      String _plus = (_compile + " && ");
+      String _plus = (_compile + " and ");
       ExprAnd _exprAnd_1 = expr.getExprAnd();
       Object _compile_1 = this.compile(_exprAnd_1);
       return (_plus + _compile_1);
@@ -444,7 +444,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     } else {
       ExprNot _exprNot_1 = expr.getExprNot();
       Object _compile = this.compile(_exprNot_1);
-      String _plus = (_compile + " || ");
+      String _plus = (_compile + " or ");
       ExprOr _exprOr_1 = expr.getExprOr();
       Object _compile_1 = this.compile(_exprOr_1);
       return (_plus + _compile_1);
@@ -473,7 +473,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     } else {
       ExprSimple _exprSimple1 = expr.getExprSimple1();
       String _compile = this.compile(_exprSimple1);
-      String _plus = (_compile + "=?");
+      String _plus = (_compile + " =? ");
       ExprSimple _exprSimple2 = expr.getExprSimple2();
       String _compile_1 = this.compile(_exprSimple2);
       return (_plus + _compile_1);

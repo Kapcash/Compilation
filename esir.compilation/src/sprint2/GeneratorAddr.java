@@ -51,10 +51,17 @@ public class GeneratorAddr {
 	private static final boolean DISPLAY_TRANSLATION = false;
 	private static final boolean PRINT_TRANSLATION = false;
 		
-	private static final String INPUT_FILE = "../exemple4.wh"; //TODO Bug sur exemple3.wh pour l'instant
+	private static final String INPUT_FILE = "../exemple3.wh"; //TODO Bug sur exemple3.wh pour l'instant
 	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
 	//CONST
-	private static final String PREFIXE = "X";
+	private static final String VAR_PREFIXE = "X";
+	
+	/**
+	 * List of declared functions in the Program
+	 */
+	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	HashMap<String, String> symbs = new HashMap<String, String>();
+	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
 	// MAIN //
 	public static void main(String[] args){
@@ -78,13 +85,6 @@ public class GeneratorAddr {
 
 	@Inject
 	private IResourceValidator validator;
-
-	/**
-	 * List of declared functions in the Program
-	 */
-	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
-	ThreeAddressCode code3Addresses = new ThreeAddressCode();
-	HashMap<String, Lexpr> symbs = new HashMap<String, Lexpr>();
 
 	/**
 	 * Starting the symbols table generation
@@ -271,7 +271,7 @@ public class GeneratorAddr {
 			// TODO : Update val because now it is 'Expr', not only Variable
 			int k =code3Addresses.inlineExpression(this,f);
 			val = "Y"+k;
-			var = PREFIXE + i++;
+			var = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			//f.updateVar(var, val);
@@ -280,7 +280,7 @@ public class GeneratorAddr {
 		i = 0;
 		while (itAff.hasNext()) {
 			var = itAff.next();
-			val = PREFIXE + i++;
+			val = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
 			f.updateVar(var, val);
@@ -326,10 +326,10 @@ public class GeneratorAddr {
 			}
 		}
 		if (isSymbole(val)) { // Symbole
-			if(isFunction(val)){
+			if(exprs != null){
 				f.updateCalls(val,exprs);
 			} else {
-				this.symbs.put(val, exprs);
+				this.symbs.put(val, "");
 			}
 		}
 		if (isVariable(val)) { // Variable
@@ -468,25 +468,18 @@ public class GeneratorAddr {
 		//Symbols as function (calls, declaration)
 		for (DefFun f : funList.values()) {
 			// Checking symbols usage after generating all the symbols table
-			for (String symbol : f.getSymbs().keySet()) {
-				Lexpr lexpr = f.getSymbs().get(symbol);
-				int expectedParameters = funList.get(symbol).getIn();
-				int nbOfParameters = ((lexpr!=null) ? countExprs(lexpr) : 0);
-				//Check if the function exists
+			for (String symbol : f.getCalls().keySet()) {
+				Lexpr lexpr = f.getCalls().get(symbol);
 				if (!funList.containsKey(symbol)){
 					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function !");
 				}
+				int expectedParameters = funList.get(symbol).getIn();
+				int nbOfParameters = ((lexpr!=null) ? countExprs(lexpr) : 0);
+				//Check if the function exists
 				//Check if the function is called with the correct parameters number
-				else if(nbOfParameters != expectedParameters){
+				if(nbOfParameters != expectedParameters){
 					throw new SymTableException("The function "+symbol+" is called with "+nbOfParameters+", expected "+expectedParameters);
 				}
-			}
-		}
-		//Symbols not as function (static symbol)
-		for(String s : symbs.keySet()){
-			Lexpr exprs = symbs.get(s);
-			if(exprs != null){
-				throw new SymTableException("The symbol '"+s+"' is called with "+countExprs(exprs)+ " parameters but is not a known function");
 			}
 		}
 	}

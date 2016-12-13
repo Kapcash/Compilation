@@ -66,7 +66,7 @@ public class DefFun{
 		return vars;
 	}
 
-	public HashMap<String,Lexpr> getSymbs() {
+	public HashMap<String,Lexpr> getCalls() {
 		return calls;
 	}
 

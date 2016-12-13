@@ -10,9 +10,9 @@ import org.junit.Test;
 
 public class PrettyPrintTest{
 
-	private static final String origineFilePath = "Fichier_Test_Original/";
-	private static final String attendFilePath = "Fichier_Test_Attendu/";
-	private static final String resultFilePath = "Fichier_Test_Resultat/";
+	private static final String origineFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Original/";
+	private static final String attendFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Attendu/";
+	private static final String resultFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Resultat/";
 
 	@Test
 	public void testDoubleTraitement() {
@@ -141,7 +141,7 @@ public class PrettyPrintTest{
 			Process p1 = Runtime.getRuntime().exec("whpp "+pathFichierOriginal+" -o "+ pathFichierResultat);
 			p1.waitFor();
 			fichierResultat = new File(pathFichierResultat);
-			assertTrue("Le fichier "+ pathFichierResultat +"n'a pas ete creer !", fichierResultat.exists());
+			assertTrue("Le fichier "+ pathFichierResultat +" n'a pas ete cree !", fichierResultat.exists());
 
 		} catch (IOException e) {System.out.println(e.toString());
 		} catch (InterruptedException e) {System.out.println(e.toString());

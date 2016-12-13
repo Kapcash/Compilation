@@ -30,9 +30,9 @@ public class tableDesSymbolesTest {
 	public void test() {
 		restoreEnvir();
 		cheminFichierEntree = null;
-		cheminFichierSortie = null;
-		
+		cheminFichierSortie = null;	
 		Main.main(args);
+		
 		fail("Not yet implemented");
 	}
 	

@@ -205,7 +205,7 @@ public class GeneratorAddr {
 			if (f.alreadyExisting(v))
 				throw new SymTableException(
 						"Function '" + f.getFunName() + "', variable '" + v + "' already declared !");
-			f.updateVar(v, null);
+			f.updateVar(v);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
 		}
 	}
@@ -217,7 +217,7 @@ public class GeneratorAddr {
 		for (String v : varsW) {
 			varDeclaration(f, v);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), v, "", ""));
-			f.updateVar(v, null);
+			f.updateVar(v);
 		}
 	}
 
@@ -283,7 +283,7 @@ public class GeneratorAddr {
 			val = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
-			f.updateVar(var, val);
+			f.updateVar(var);
 		}
 	}
 
@@ -333,7 +333,7 @@ public class GeneratorAddr {
 			}
 		}
 		if (isVariable(val)) { // Variable
-			f.updateVar(val, null);
+			f.updateVar(val);
 		}
 		if (exp != null) { // Expr
 			iterateAST(exp, f);
@@ -442,12 +442,12 @@ public class GeneratorAddr {
 	/**
 	 * Print the final symboles table
 	 */
-	private void displaySymTable() {
+	private void displaySymTable(){
 		System.out.println();
+		System.out.println("Symboles globaux : \n"+symbs.keySet()+"\n");
 		for (String f : funList.keySet()) {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
-		System.out.println("Symboles globaux : \n"+symbs.keySet()+"\n");
 	}
 
 	private boolean isFunction(String symb){
@@ -468,14 +468,14 @@ public class GeneratorAddr {
 		//Symbols as function (calls, declaration)
 		for (DefFun f : funList.values()) {
 			// Checking symbols usage after generating all the symbols table
-			for (String symbol : f.getCalls().keySet()) {
+			for (String symbol : f.getCalls().keySet()){
 				Lexpr lexpr = f.getCalls().get(symbol);
+				//Check if the function exists
 				if (!funList.containsKey(symbol)){
 					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function !");
 				}
 				int expectedParameters = funList.get(symbol).getIn();
 				int nbOfParameters = ((lexpr!=null) ? countExprs(lexpr) : 0);
-				//Check if the function exists
 				//Check if the function is called with the correct parameters number
 				if(nbOfParameters != expectedParameters){
 					throw new SymTableException("The function "+symbol+" is called with "+nbOfParameters+", expected "+expectedParameters);

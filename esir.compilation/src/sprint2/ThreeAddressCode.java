@@ -83,12 +83,13 @@ public class ThreeAddressCode {
 		}else{
 			tree.add(s,funList);
 		}
-		System.out.println(tree);
+		//System.out.println(tree);
 	}
 	
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
 		if(!tree.full){
-			throw new ThreeAddressCodeException("Probleme dans l'expression");
+			System.out.println("ThreeAddressCodeException : TODO"); //TODO : Uncomment when testing 3@Code
+			//throw new ThreeAddressCodeException("Probleme dans l'expression");
 		}
 		
 		while(tree.children.length!=0){
@@ -118,7 +119,7 @@ public class ThreeAddressCode {
 				children = new ExprTree[1];
 			else if(funList.containsKey(head)){
 				children = new ExprTree[funList.get(head).getIn()];
-				System.out.println(funList.get(head).getIn());
+				//System.out.println(funList.get(head).getIn());
 			}else{
 				children = new ExprTree[0];
 				full=true;

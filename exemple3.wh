@@ -1,7 +1,7 @@
 function testAffect:
 read A
 %
-	X := A ;
+	X := (symbole A);
 	Y := A ;
 	while (cons X Y) do
 		Y:= (consFun C D)

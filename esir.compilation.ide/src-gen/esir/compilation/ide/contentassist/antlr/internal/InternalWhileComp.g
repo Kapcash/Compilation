@@ -2506,9 +2506,9 @@ rule__ExprAnd__Group_0_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getExprAndAccess().getAmpersandAmpersandKeyword_0_0_1()); }
-	'&&'
-	{ after(grammarAccess.getExprAndAccess().getAmpersandAmpersandKeyword_0_0_1()); }
+	{ before(grammarAccess.getExprAndAccess().getAndKeyword_0_0_1()); }
+	'and'
+	{ after(grammarAccess.getExprAndAccess().getAndKeyword_0_0_1()); }
 )
 ;
 finally {
@@ -2614,9 +2614,9 @@ rule__ExprOr__Group_0_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getExprOrAccess().getVerticalLineVerticalLineKeyword_0_0_1()); }
-	'||'
-	{ after(grammarAccess.getExprOrAccess().getVerticalLineVerticalLineKeyword_0_0_1()); }
+	{ before(grammarAccess.getExprOrAccess().getOrKeyword_0_0_1()); }
+	'or'
+	{ after(grammarAccess.getExprOrAccess().getOrKeyword_0_0_1()); }
 )
 ;
 finally {

@@ -126,7 +126,7 @@ class WhileCompGenerator extends AbstractGenerator {
 				decal = decal + "\t";
 				i = i + 1;
 			}
-			return (decal+"while "+ (c.command as While).expr.compile + " do\n"+(c.command as While).commands.compile(indentBase,indentAll+indentBase+indentWhile,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"od\n")
+			return (decal+"while "+ (c.command as While).expr.compile + " do\n"+(c.command as While).commands.compile(indentBase,indentAll+indentBase+indentWhile,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"od")
 		}
 		if(c.command instanceof For){
 			var decal ="";
@@ -140,7 +140,7 @@ class WhileCompGenerator extends AbstractGenerator {
 				decal = decal + "\t";
 				i = i + 1;
 			}
-			return (decal+"for "+ (c.command as For).expr.compile + " do\n"+(c.command as For).commands.compile(indentBase,indentAll+indentBase+indentFor,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"od\n")
+			return (decal+"for "+ (c.command as For).expr.compile + " do\n"+(c.command as For).commands.compile(indentBase,indentAll+indentBase+indentFor,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"od")
 		}
 		if(c.command instanceof Foreach){
 			var decal ="";
@@ -154,7 +154,7 @@ class WhileCompGenerator extends AbstractGenerator {
 				decal = decal + "\t";
 				i = i + 1;
 			}
-			return (decal+"foreach "+ (c.command as Foreach).expr1.compile +" in "+(c.command as Foreach).expr2.compile+ " do\n"+(c.command as Foreach).commands.compile(indentBase,indentAll+indentBase+indentForeach,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"od\n")
+			return (decal+"foreach "+ (c.command as Foreach).expr1.compile +" in "+(c.command as Foreach).expr2.compile+ " do\n"+(c.command as Foreach).commands.compile(indentBase,indentAll+indentBase+indentForeach,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"od")
 		}
 		if(c.command instanceof If){
 			var decal ="";
@@ -169,9 +169,9 @@ class WhileCompGenerator extends AbstractGenerator {
 				i = i + 1;
 			}
 			if((c.command as If).commands2 != null){
-				return (decal+"if "+ (c.command as If).expr.compile +" then\n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+ decal + "else\n"+(c.command as If).commands2.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+ "fi\n")
+				return (decal+"if "+ (c.command as If).expr.compile +" then\n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+ decal + "else\n"+(c.command as If).commands2.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+ "fi")
 			}else{
-				return (decal+"if "+ (c.command as If).expr.compile +" then\n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"fi\n")
+				return (decal+"if "+ (c.command as If).expr.compile +" then\n"+(c.command as If).commands1.compile(indentBase,indentAll+indentBase+indentIf,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"\n"+decal+"fi")
 			}
 		}
 	}
@@ -213,7 +213,7 @@ class WhileCompGenerator extends AbstractGenerator {
 	if (expr.exprAnd == null){
 			return (expr.exprOr.compile)
 		}else{
-			return (expr.exprOr.compile + " && " + expr.exprAnd.compile)
+			return (expr.exprOr.compile + " and " + expr.exprAnd.compile)
 		}
 	}
 	
@@ -221,7 +221,7 @@ class WhileCompGenerator extends AbstractGenerator {
 		if (expr.exprOr == null){
 			return (expr.exprNot.compile)
 		}else{
-			return (expr.exprNot.compile + " || " + expr.exprOr.compile)
+			return (expr.exprNot.compile + " or " + expr.exprOr.compile)
 		}
 	}
 	
@@ -237,7 +237,7 @@ class WhileCompGenerator extends AbstractGenerator {
 		if (expr.expr != null){
 			return (expr.expr.compile())
 		}else{
-			return (expr.exprSimple1.compile + "=?" +expr.exprSimple2.compile)
+			return (expr.exprSimple1.compile + " =? " +expr.exprSimple2.compile)
 		}
 	}
 	

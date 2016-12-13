@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.ExprNot#getNot <em>Not</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprNot#getExprEq <em>Expr Eq</em>}</li>
  * </ul>
- * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getExprNot()
  * @model

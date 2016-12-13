@@ -8,49 +8,77 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.Test;
 
+import esir.compilation.generator.Main;
+
 public class PrettyPrintTest{
 
 	private static final String origineFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Original/";
 	private static final String attendFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Attendu/";
 	private static final String resultFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Resultat/";
 
+	private String cheminFichierEntree;
+	private String cheminFichierSortie;
+	private String indentAll = "1";
+	private String indentFor = "0";
+	private String indentWhile = "0";
+	private String indentIf = "0";
+	private String indentForeach = "0";
+	private String indentAff = "0";
+
+	private String[] args = {
+			cheminFichierEntree,
+			cheminFichierSortie,
+			indentAll,
+			indentFor,
+			indentWhile,
+			indentIf,
+			indentForeach,
+			indentAff};
+
+	private void restoreEnvir(){
+		cheminFichierEntree = null;
+		cheminFichierSortie = null;
+		indentAll = "1";
+		indentFor = "0";
+		indentWhile = "0";
+		indentIf = "0";
+		indentForeach = "0";
+		indentAff = "0";
+	}
+
 	@Test
 	public void testDoubleTraitement() {
-
+		restoreEnvir();
 		File fileR1 = null;
 		File fileR2 = null;
 
-		try {
-			// Path
-			String fileO1Path = origineFilePath + "Test1.wh";
+		// Path
+		String fileO1Path = origineFilePath + "Test1.wh";
 
-			String fileR1Path = resultFilePath + "TestDT1.whpp";
-			String fileR1RenamePath = resultFilePath + "TestDT1.wh";
+		String fileR1Path = resultFilePath + "TestDT1.whpp";
+		String fileR1RenamePath = resultFilePath + "TestDT1.wh";
 
-			String fileR2Path = resultFilePath + "TestDT2.whpp";
+		String fileR2Path = resultFilePath + "TestDT2.whpp";
 
-			/*Premier traitement*/
-			// On execute le PrettyPrint sur le fichier original "Test1.wh"
-			Process p1 = Runtime.getRuntime().exec("whpp "+fileO1Path+" -o "+ fileR1Path);
+		/*Premier traitement*/
+		// On execute le PrettyPrint sur le fichier original "Test1.wh"
+		args[0] = fileO1Path;
+		args[1] = fileR1Path;
+		Main.main(args);
 
-			// On attend que le traitement soit réalisé
-			p1.waitFor();
-			// On renomme le fichier pour modifier l'extension et réeffectuer le traitement une deuxième fois
-			fileR1 = new File(fileR1Path);
-			File fileR1Rename = new File(fileR1RenamePath);
+		// On renomme le fichier pour modifier l'extension et réeffectuer le traitement une deuxième fois
+		fileR1 = new File(fileR1Path);
+		File fileR1Rename = new File(fileR1RenamePath);
 
-			boolean isRename = fileR1.renameTo(fileR1Rename);
-			assertTrue("Le renommage du fichier n'a pas fonctionne", isRename);
-			fileR1 = fileR1Rename;
+		boolean isRename = fileR1.renameTo(fileR1Rename);
+		assertTrue("Le renommage du fichier n'a pas fonctionne", isRename);
+		fileR1 = fileR1Rename;
 
-			/*Deuxieme traitement*/
-			Process p2 = Runtime.getRuntime().exec("whpp "+fileR1.getPath()+" -o "+fileR2Path);
-			p2.waitFor();
-			fileR2 = new File(fileR2Path);
-
-		} catch (IOException e) {System.out.println(e.toString());
-		} catch (InterruptedException e) {System.out.println(e.toString());
-		}	
+		/*Deuxieme traitement*/
+		args[0] = fileR1RenamePath;
+		args[1] = fileR2Path;
+		Main.main(args);
+		fileR2 = new File(fileR2Path);
 
 		assertTrue("Traitement non effectue", (!fileR1.equals(null) && !fileR2.equals(null)));
 		assertTrue("Le double traitement amène des fichiers differents", assertSameFileTest(fileR1.getPath(), fileR2.getPath()));
@@ -65,62 +93,62 @@ public class PrettyPrintTest{
 	public void testAffect1() {
 		testerPrettyPrint("testAffect1");
 	}
-	
+
 	@Test
 	public void testAffect2() {
 		testerPrettyPrint("testAffect2");
 	}
-	
+
 	@Test
 	public void testAffect3() {
 		testerPrettyPrint("testAffect3");
 	}
-	
+
 	@Test
 	public void testAffect4() {
 		testerPrettyPrint("testAffect4");
 	}
-	
+
 	@Test
 	public void testAffect5() {
 		testerPrettyPrint("testAffect5");
 	}
-	
+
 	@Test
 	public void testIf1() {
 		testerPrettyPrint("testIf1");
 	}
-	
+
 	@Test
 	public void testIf2() {
 		testerPrettyPrint("testIf2");
 	}
-	
+
 	@Test
 	public void testNop() {
 		testerPrettyPrint("testNop");
 	}
-	
+
 	@Test
 	public void testStructBase1() {
 		testerPrettyPrint("testStructBase1");
 	}
-	
+
 	@Test
 	public void testStructBase2() {
 		testerPrettyPrint("testStructBase2");
 	}
-	
+
 	@Test
 	public void testStructBase3() {
 		testerPrettyPrint("testStructBase3");
 	}
-	
+
 	@Test
 	public void testWhile1() {
 		testerPrettyPrint("testWhile1");
 	}
-	
+
 	@Test
 	public void testWhile2() {
 		testerPrettyPrint("testWhile2");
@@ -136,16 +164,12 @@ public class PrettyPrintTest{
 
 		File fichierResultat = null;
 
-		try {
-			/*PrettyPrint*/
-			Process p1 = Runtime.getRuntime().exec("whpp "+pathFichierOriginal+" -o "+ pathFichierResultat);
-			p1.waitFor();
-			fichierResultat = new File(pathFichierResultat);
-			assertTrue("Le fichier "+ pathFichierResultat +" n'a pas ete cree !", fichierResultat.exists());
-
-		} catch (IOException e) {System.out.println(e.toString());
-		} catch (InterruptedException e) {System.out.println(e.toString());
-		}	
+		/*PrettyPrint*/
+		args[0] = pathFichierOriginal;
+		args[1] = pathFichierResultat;
+		Main.main(args);
+		fichierResultat = new File(pathFichierResultat);
+		assertTrue("Le fichier "+ pathFichierResultat +" n'a pas ete cree !", fichierResultat.exists());
 
 		assertTrue("Traitement non effectue", (!fichierResultat.equals(null)));
 		assertTrue("Les fichiers "+ pathFichierOriginal +"et"+ fichierResultat.getPath() +" sont differents !", 

@@ -10,12 +10,12 @@ public class tableDesSymbolesTest {
 	
 	String cheminFichierEntree = null;
 	String cheminFichierSortie = null;
-	String indentAll = null;
-	String indentFor = null;
-	String indentWhile = null;
-	String indentIf = null;
-	String indentForeach = null;
-	String indentAff = null;
+	private String indentAll = "1";
+	private String indentFor = "0";
+	private String indentWhile = "0";
+	private String indentIf = "0";
+	private String indentForeach = "0";
+	private String indentAff = "0";
 	
 	String[] args = {cheminFichierEntree,
 			cheminFichierSortie,
@@ -39,13 +39,12 @@ public class tableDesSymbolesTest {
 	private void restoreEnvir(){
 		cheminFichierEntree = null;
 		cheminFichierSortie = null;
-		indentAll = null;
-		indentFor = null;
-		indentWhile = null;
-		indentIf = null;
-		indentForeach = null;
-		indentAff = null;
+		indentAll = "1";
+		indentFor = "0";
+		indentWhile = "0";
+		indentIf = "0";
+		indentForeach = "0";
+		indentAff = "0";
 	}
-
 }
 

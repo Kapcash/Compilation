@@ -229,28 +229,30 @@ public class ThreeAddressCode {
 						for (int i = 0; i < tree.children.length; i++) {
 							if(tree.children[i]==null)
 								break;
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), tree.children[i].getHead(), "", ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", tree.children[i].getHead(), ""));
 						}
 						
 						if(OP.CONS.name().equals(tree.getHead())){
 							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", ""));
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), varName, "", ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
 						}
 							
 						else if(OP.LIST.name().equals(tree.getHead())){
 							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), "", "", ""));
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), varName, "", ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
 						}
 						else if(generatorAddr.funList.containsKey(tree.getHead())){
 							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CALL, tree.getHead()), "", "", ""));
-							for (int i = 0; i < generatorAddr.funList.get(tree.getHead()).out; i++) {
-								threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), varName, "", ""));
+							int out = generatorAddr.funList.get(tree.getHead()).out;
+							for (int i = 0; i < out; i++) {
+								threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
 								generatorAddr.varDeclaration(f, varName);
-								varName = "Y"+nb++;
+								if(i<out-1)
+									varName = "Y"+nb++;
 							}
 						}
 						else{
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), tree.getHead(), "", ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", tree.getHead(), ""));
 						}
 							
 					}

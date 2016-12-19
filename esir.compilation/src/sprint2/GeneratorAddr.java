@@ -51,7 +51,7 @@ public class GeneratorAddr {
 	private static final boolean DISPLAY_SYM_TABLE = true;
 	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
 	private static final boolean DISPLAY_TRANSLATION = false;
-	private static final boolean PRINT_TRANSLATION = false;
+	private static final boolean PRINT_TRANSLATION = true;
 		
 	private static final String INPUT_FILE = "../exemple5.wh"; //TODO Bug sur exemple3.wh pour l'instant
 	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";

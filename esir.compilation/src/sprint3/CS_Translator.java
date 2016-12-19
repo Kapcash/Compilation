@@ -15,7 +15,7 @@ public class CS_Translator {
 	private LinkedList<CS_Function> funcList = new LinkedList<CS_Function>();
 
 	// C# GENERAL
-	private final static String imports = "using System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text;\nusing System.Threading.Tasks;";
+	private final static String imports = "using System;\nusing System.Collections;";
 	private final static String projectName = "namespace ProjectCOMP";
 	private final static String className = "class Program";
 	private final static String mainFunctionName = "static void Main(String[] args)";
@@ -81,6 +81,8 @@ public class CS_Translator {
 				funcList.add(new CS_Function(quad.getReponse()));
 				break;
 			case READ:
+				//TODO Choix de la queue expliquée => https://www.tutorialspoint.com/csharp/csharp_queue.htm
+				f.write("BinTree "+quad.getReponse()+" = input.Dequeue();");
 //				int i=0;
 //				while(i<Integer.parseInt(quad.getArg1())){
 //					f.write("BinTree r"+i+" = input["+i+"];");
@@ -88,13 +90,15 @@ public class CS_Translator {
 //				}
 				break;
 			case WRITE:
-				//
+				f.write("output.Enqueue("+quad.getReponse()+");");
 				break;
 			case NOP:
 				f.write("((Action)(() => { }))();");
 				break;
+				
+			// LOOPS
 			case IF:
-				f.write("if("+"expr"+")");
+				f.write("if("+"true"+")");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator());
@@ -102,7 +106,7 @@ public class CS_Translator {
 				f.write(rAccolade);
 				break;
 			case WHILE:
-				f.write("while("+"expr"+")");
+				f.write("while("+"true"+")");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator());
@@ -123,14 +127,25 @@ public class CS_Translator {
 			case AFF:
 				f.write(quad.getReponse()+" = "+quad.getArg1()+";");
 				break;
+			//FUNCTION USE
+			case PUSH:
+				f.write("inParams.Enqueue("+quad.getArg1()+");");
+				break;
+			case POP:
+				f.write(quad.getArg1()+" = outParams.Dequeue();");
+				break;	
+			//WHILE FUNCTION
 			case CONS:
-				f.write("BinTree "+quad.getReponse()+" = cons("+quad.getArg1()+","+quad.getArg2()+");");
+				f.write("cons(inParams,outParams);");
+				break;
+			case LIST:
+				f.write("list(inParams,outParams);");
 				break;
 			case HD:
-				f.write("BinTree "+quad.getReponse()+" = head("+quad.getArg1()+");");
+				f.write("hd(inParams,outParams);");
 				break;
 			case TL:
-				f.write("BinTree "+quad.getReponse()+" = tail("+quad.getArg1()+");");
+				f.write("tl(inParams,outParams);");
 				break;
 			default:
 				
@@ -150,6 +165,10 @@ public class CS_Translator {
 		tab(k);
 		stb.append(s);	
 		newLine();
+	}
+	
+	private void write2(String s) {
+		stb.append(s);	
 	}
 
 	private void newLine() {
@@ -190,8 +209,10 @@ public class CS_Translator {
 			super();
 			this.name = name;
 			body = new StringBuilder();
-			this.params = "BinTree[] input, BinTree[] output";
+			this.params = "Queue input, Queue output";
 			this.returns  = "void";
+			write("Queue inParams = new Queue();");
+			write("Queue outParams = new Queue();");
 		}
 		
 		private void write(String s) {
@@ -213,9 +234,7 @@ public class CS_Translator {
 		private void newLine() {
 			body.append(newLine);
 		}
-		public void addParams() {
-			//params = getParams();
-		}
+
 		public String getName() {
 			return name;
 		}
@@ -257,7 +276,7 @@ public class CS_Translator {
 			CS_Translator.this.newLine();
 			CS_Translator.this.write("private "+getReturns()+" "+getName()+"("+getParams()+")");
 			CS_Translator.this.write(lAccolade);
-			CS_Translator.this.write(body.toString());
+			CS_Translator.this.write2(body.toString());
 			CS_Translator.this.write(rAccolade);
 		}
 			

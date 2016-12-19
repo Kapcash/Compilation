@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 
 namespace ProjectCOMP
 {
@@ -12,63 +9,30 @@ namespace ProjectCOMP
 		{
 		}
 
-		private null symbolesFunction(null)
+		private void multiplecons(Queue input, Queue output)
 		{
-					
-
-			
-
-			BinTree X0 = new BinTree(null, null, null);
-			
-
-			
-
-			BinTree X1 = new BinTree(null, null, null);
-			
-
-			
-
-			
-
-			BinTree C = new BinTree(null, null, null);
-			
-
-			
-
-			BinTree X0 = new BinTree(null, null, null);
-			
-
-			
-
-			
-
-			if(expr)
-			{
-				while(expr)
-				{
-					BinTree X0 = new BinTree(null, null, null);
-					
-
-					
-
-					BinTree D = new BinTree(null, null, null);
-					
-
-					
-
-				}
-				
-
-			}
-			
-
-			
-
-			
-
-			
-
-
+			Queue inParams = new Queue();
+			Queue outParams = new Queue();
+			BinTree A = input.Dequeue();
+			BinTree B = input.Dequeue();
+			BinTree C = input.Dequeue();
+			BinTree D = input.Dequeue();
+			BinTree E = input.Dequeue();
+			BinTree Y0;
+			inParams.Enqueue(B);
+			cons(inParams,outParams);
+			Y0 = outParams.Dequeue();
+			BinTree Y1;
+			inParams.Enqueue(A);
+			inParams.Enqueue(Y0);
+			inParams.Enqueue(C);
+			cons(inParams,outParams);
+			Y1 = outParams.Dequeue();
+			BinTree X0;
+			X0 = Y2;
+			BinTree Ret;
+			Ret = X0;
+			output.Enqueue(Ret);
 		}
 	}
 }

@@ -11,6 +11,7 @@ public class ThreeAddressCode {
 	
 	private HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String,LinkedList<QuadImp>>();
 	private ExprTree tree = null;
+	private int treeLevel = 0;
 
 	@SuppressWarnings("rawtypes")
 	private Stack<LinkedList> stack = new Stack<LinkedList>();
@@ -77,13 +78,24 @@ public class ThreeAddressCode {
 		this.code3Addr = code3Addr;
 	}
 	
+	public void addLevel(){
+		treeLevel++;
+	}
+	
+	public void subLevel(){
+		tree.incIndex(treeLevel);
+		treeLevel--;
+	}
+	
 	public void addToExpression(String s,  HashMap<String, DefFun> funList){
+		System.out.println(treeLevel+":"+s);
+		
 		if(tree==null){
-			tree = new ExprTree(s,funList);
+			tree = new ExprTree(s,funList,1);
 		}else{
-			tree.add(s,funList);
+			tree.add(s,funList,treeLevel);
 		}
-		//System.out.println(tree);
+		System.out.println(tree);
 	}
 	
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
@@ -92,9 +104,17 @@ public class ThreeAddressCode {
 			//throw new ThreeAddressCodeException("Probleme dans l'expression");
 		}
 		
+		HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
+		
+		
+		ExprTree.treeToInline(tree,callOrder);
+		
+		System.out.println(callOrder);
+		
 		while(tree.children.length!=0){
 			ExprTree.iterate(tree,this,generatorAddr,f);
 		}
+		
 		int k =ExprTree.nb;
 		ExprTree.nb=0;
 		tree = null;
@@ -108,83 +128,156 @@ public class ThreeAddressCode {
 		private ExprTree[] children;
 		private boolean full;
 		static int nb = 0;
+		private int index = 0;
+		private int level = 1;
 		
-		public ExprTree(String head, HashMap<String, DefFun> funList) {
+		public ExprTree(String head, HashMap<String, DefFun> funList,int level) {
 			super();
 			setHead(head);
-			//TODO prendre en comptre les func
-			if(isBinaryOperation(head))
-				children = new ExprTree[2];
+			this.level = level;
+			if(isListOperation(head)){
+				children = new ExprTree[4];//max 4 elements dans un cons ou list
+			}
 			else if(isUnaryOperation(head))
 				children = new ExprTree[1];
 			else if(funList.containsKey(head)){
 				children = new ExprTree[funList.get(head).getIn()];
-				//System.out.println(funList.get(head).getIn());
 			}else{
 				children = new ExprTree[0];
 				full=true;
 			}
-				
 		}
 		
-		public void add(String s, HashMap<String, DefFun> funList) {
-			for (int i = 0; i < children.length; i++) {
-				
-				if(children[i]==null){
-					children[i] = new ExprTree(s, funList);
-					full = areChildrenFull();
-					return;
+		public void incIndex(int treeLevel) {
+			if(this.children[index]!=null)
+				if(this.children[index].level==treeLevel){
+					if(isListOperation(this.getHead()))
+						this.children[index].full=true;
+					this.index++;
 				}else{
-					if(!children[i].full){
-						children[i].add(s,funList);
-						full = areChildrenFull();
-						return;
-					}	
+					this.children[index].incIndex(treeLevel);
 				}
-			}		
+			
+		}
+
+		public void add(String s, HashMap<String, DefFun> funList, int level) {
+			if(level==this.level){
+				children[index] = new ExprTree(s, funList,level);
+			}else{
+				if(children[index]==null){
+					children[index]= new ExprTree(s, funList,level);
+					if(children[index].full)
+					index++;
+				}else{
+					children[index].add(s, funList,level);
+				}
+				
+				
+					
+			}
+			
+			
+			
+			
+//			for (int i = 0; i < children.length; i++) {
+//				
+//				if(children[i]==null){
+//					children[i] = new ExprTree(s, funList);
+//					full = areChildrenFull();
+//					return;
+//				}else{
+//					if(!children[i].full){
+//						children[i].add(s,funList);
+//						full = areChildrenFull();
+//						return;
+//					}	
+//				}
+//			}		
+		}
+		
+		public static void treeToInline(ExprTree tree, HashMap<Integer, LinkedList<ExprTree>> callOrder){
+			System.out.print(tree.level+":");
+			System.out.println(tree.getHead());
+			LinkedList<ExprTree> list = callOrder.get(tree.level);
+			if(list==null){
+				list = new LinkedList<ExprTree>();
+				callOrder.put(tree.level, list);
+			}
+			
+			list.add(tree);
+						
+			for (int i = 0; i < tree.children.length; i++) {
+				ExprTree e = tree.children[i];
+				if(e!=null){
+					treeToInline(e,callOrder);
+				}
+			}
 		}
 		
 		public static void iterate(ExprTree tree, ThreeAddressCode threeAddressCode, GeneratorAddr generatorAddr, DefFun f){
-			if(tree.children.length!=0){
 				if(tree.simplify()){
-					QuadImp q = null;
 					
-					if(OP.HD.name().equals(tree.getHead()))
-						q = new QuadImp(new OPCode<OP, String>(OP.HD, ""), "", "", "");
-					else if(OP.TL.name().equals(tree.getHead()))
-						q = new QuadImp(new OPCode<OP, String>(OP.TL, ""), "", "", "");
-					else if(OP.CONS.name().equals(tree.getHead()))
-						q = new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", "");
-					else
-						q = new QuadImp(new OPCode<OP, String>(OP.CALL, ""), "", "", "");
-					
-					for (int i = 0; i < tree.children.length; i++) {
-						if(i==0)
-							q.setArg1(tree.children[i].getHead());
-						if(i==1)
-							q.setArg2(tree.children[i].getHead());
-					}
 					String varName = "Y"+nb++;
 					generatorAddr.varDeclaration(f, varName);
-					q.setReponse(varName);
-					threeAddressCode.addIn3Addr(q);
+					
+					
+					if(OP.HD.name().equals(tree.getHead()))
+						threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.HD, ""), varName, tree.children[0].getHead(), ""));
+					else if(OP.TL.name().equals(tree.getHead()))
+						threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.TL, ""), varName, tree.children[0].getHead(), ""));
+					else{
+						for (int i = 0; i < tree.children.length; i++) {
+							if(tree.children[i]==null)
+								break;
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), tree.children[i].getHead(), "", ""));
+						}
+						
+						if(OP.CONS.name().equals(tree.getHead())){
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), varName, "", ""));
+						}
+							
+						else if(OP.LIST.name().equals(tree.getHead())){
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), "", "", ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), varName, "", ""));
+						}
+						else if(generatorAddr.funList.containsKey(tree.getHead())){
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CALL, tree.getHead()), "", "", ""));
+							for (int i = 0; i < generatorAddr.funList.get(tree.getHead()).out; i++) {
+								threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), varName, "", ""));
+								generatorAddr.varDeclaration(f, varName);
+								varName = "Y"+nb++;
+							}
+						}
+						else{
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), tree.getHead(), "", ""));
+						}
+							
+					}
+					
+
 					tree.clear(varName);
 					
 				}else{
 					for (int i = 0; i < tree.children.length; i++) {
-						iterate(tree.children[i],threeAddressCode,generatorAddr,f );
+						if(tree.children[i]!=null)
+							if(tree.isOperation(tree.children[i].getHead()))
+								iterate(tree.children[i],threeAddressCode,generatorAddr,f );
 					}	
 				}			
-			}
+			
 		}
 		
 		public boolean simplify(){
 			for (int i = 0; i < children.length; i++) {
-				if(children[i].children.length!=0)
+				if(children[i]==null)
+					continue;
+				if(isOperation(children[i].getHead()))
 					return false;
 			}
 			return true;
 		}
+	
 		
 		public void clear(String newVar){
 			setHead(newVar);
@@ -200,19 +293,19 @@ public class ThreeAddressCode {
 		}
 		
 		private boolean isOperation(String s){
-			//TODO
-			return isBinaryOperation(s)&&isUnaryOperation(s);
+			//TODO Ajouter funList pour les calls
+			return isListOperation(s)||isUnaryOperation(s);
 		}
 		
-		private boolean isBinaryOperation(String s){
-			//TODO
+		private boolean isListOperation(String s){
 			if(OP.CONS.name().equals(s))
+				return true;
+			if(OP.LIST.name().equals(s))
 				return true;
 			return false;
 		}
 		
 		private boolean isUnaryOperation(String s){
-			//TODO
 			if(OP.TL.name().equals(s))
 				return true;
 			if(OP.HD.name().equals(s))

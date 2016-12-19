@@ -95,7 +95,7 @@ public class WhileCompGenerator extends AbstractGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(" ,", "");
+          _builder.appendImmediate(", ", "");
         }
         _builder.append(param, "");
       }
@@ -120,7 +120,7 @@ public class WhileCompGenerator extends AbstractGenerator {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(" ,", "");
+          _builder.appendImmediate(", ", "");
         }
         _builder.append(param_1, "");
       }

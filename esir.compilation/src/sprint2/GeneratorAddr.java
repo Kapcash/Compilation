@@ -42,16 +42,18 @@ import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
+import sprint3.CS_Translator;
+import sprint3.CS_TranslatorException;
 
 public class GeneratorAddr {
 
 	//SETTINGS
 	private static final boolean DISPLAY_SYM_TABLE = true;
-	private static final boolean DISPLAY_THREE_ADDR_CODE = false;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
 	private static final boolean DISPLAY_TRANSLATION = false;
 	private static final boolean PRINT_TRANSLATION = false;
 		
-	private static final String INPUT_FILE = "../exemple3.wh"; //TODO Bug sur exemple3.wh pour l'instant
+	private static final String INPUT_FILE = "../exemple5.wh"; //TODO Bug sur exemple3.wh pour l'instant
 	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
 	//CONST
 	private static final String VAR_PREFIXE = "X";
@@ -289,9 +291,15 @@ public class GeneratorAddr {
 
 	// Expr
 	private void iterateAST(Expr exp, DefFun f) throws SymTableException{
+		//System.out.print("{");
+		code3Addresses.addLevel();
+		
 		ExprSimple expSimp = exp.getExprsimple();
 		iterateAST(expSimp, f);
 
+		code3Addresses.subLevel();
+		//System.out.print("}");
+		
 		ExprAnd exprAnd = exp.getExprAnd();
 		if (exprAnd != null)
 			iterateAST(exprAnd, f);
@@ -303,6 +311,13 @@ public class GeneratorAddr {
 		String operator = ex.getOpe();
 		Expr exp = ex.getExpr();
 		Lexpr exprs = ex.getLexpr();
+		
+//		if(val!=null)
+//			System.out.print(val);
+//		if(operator!=null)
+//			System.err.print(operator);
+//		
+		
 		if (operator != null) {
 			switch (operator) {
 			case "cons":

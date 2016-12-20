@@ -15,10 +15,11 @@ public class CS_Translator {
 	private LinkedList<CS_Function> funcList = new LinkedList<CS_Function>();
 
 	// C# GENERAL
-	private final static String imports = "using System;\nusing System.Collections;";
+	private final static String imports = "using System;\nusing System.Collections.Generic;";
 	private final static String projectName = "namespace ProjectCOMP";
 	private final static String className = "class Program";
 	private final static String mainFunctionName = "static void Main(String[] args)";
+	private final static String typeName = "Queue<BinTree>";
 
 	// Utils
 	private final static String lAccolade = "{";
@@ -209,10 +210,10 @@ public class CS_Translator {
 			super();
 			this.name = name;
 			body = new StringBuilder();
-			this.params = "Queue input, Queue output";
+			this.params = typeName+" input, "+typeName+" output";
 			this.returns  = "void";
-			write("Queue inParams = new Queue();");
-			write("Queue outParams = new Queue();");
+			write(typeName+" inParams = new "+typeName+"();");
+			write(typeName+" outParams = new "+typeName+"();");
 		}
 		
 		private void write(String s) {

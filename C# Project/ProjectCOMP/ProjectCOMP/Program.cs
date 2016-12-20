@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace ProjectCOMP
 {
@@ -9,10 +9,10 @@ namespace ProjectCOMP
 		{
 		}
 
-		private void multiplecons(Queue input, Queue output)
+		private void multiplecons(Queue<BinTree> input, Queue<BinTree> output)
 		{
-			Queue inParams = new Queue();
-			Queue outParams = new Queue();
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
 			BinTree A = input.Dequeue();
 			BinTree B = input.Dequeue();
 			BinTree C = input.Dequeue();

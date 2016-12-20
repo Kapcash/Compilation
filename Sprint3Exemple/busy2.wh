@@ -1,0 +1,4 @@
+function	busy2:			
+read	X	%	
+				for	X	do	for	X	do	X	:=	(incr	X)	od	od	
+%	write	X	

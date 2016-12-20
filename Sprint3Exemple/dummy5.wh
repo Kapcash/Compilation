@@ -1,0 +1,2 @@
+function	dummy5:																																		
+read	X,	Y	%	X,	Y	:=	Y,	X	%	write	X,	Y			

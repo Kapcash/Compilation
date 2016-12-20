@@ -1,0 +1,2 @@
+funcGon	iseqtoa:	
+read	X	%	Z	:=	X	=?	a	%	write	Z

@@ -1,0 +1,2 @@
+function	dummy3:																																		
+read	X	%	Y	:=	(cons	nil	X)	%	write	X,	Y

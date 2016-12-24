@@ -18,9 +18,10 @@ public class tableDesSymbolesTest {
 
 	@Test
 	public void test() {
-		args[0] = origineFilePath+"testIf1.whpp";
+		args[0] = origineFilePath+"testIf1.wh";
 		args[1] = resultFilePath+"testIf1.whpp";	
-		GeneratorAddr.main(args);
+		//GeneratorAddr.main(args);
+		GeneratorAddr.createSymTable(args[0], args[1]);
 		
 		assertTrue(true);
 	}

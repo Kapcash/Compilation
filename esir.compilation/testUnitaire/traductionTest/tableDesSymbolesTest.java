@@ -1,50 +1,29 @@
 package traductionTest;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import esir.compilation.generator.Main;
+import sprint2.GeneratorAddr;
 
 public class tableDesSymbolesTest {
 	
+	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_Test_Original/";
+	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_Test_Resultat/";
+	
 	String cheminFichierEntree = null;
 	String cheminFichierSortie = null;
-	private String indentAll = "1";
-	private String indentFor = "0";
-	private String indentWhile = "0";
-	private String indentIf = "0";
-	private String indentForeach = "0";
-	private String indentAff = "0";
 	
-	String[] args = {cheminFichierEntree,
-			cheminFichierSortie,
-			indentAll,
-			indentFor,
-			indentWhile,
-			indentIf,
-			indentForeach,
-			indentAff};
+	String[] args = {cheminFichierEntree, cheminFichierSortie};
 
 	@Test
 	public void test() {
-		restoreEnvir();
-		cheminFichierEntree = null;
-		cheminFichierSortie = null;	
-		Main.main(args);
+		args[0] = origineFilePath+"testIf1.whpp";
+		args[1] = resultFilePath+"testIf1.whpp";	
+		GeneratorAddr.main(args);
 		
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 	
-	private void restoreEnvir(){
-		cheminFichierEntree = null;
-		cheminFichierSortie = null;
-		indentAll = "1";
-		indentFor = "0";
-		indentWhile = "0";
-		indentIf = "0";
-		indentForeach = "0";
-		indentAff = "0";
-	}
 }
 

@@ -1,0 +1,6 @@
+function testStructBase3:
+read A, B, C
+%
+	nop
+%
+write X, Y, Z

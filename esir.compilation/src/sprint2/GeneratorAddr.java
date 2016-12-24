@@ -65,13 +65,17 @@ public class GeneratorAddr {
 	HashMap<String, String> symbs = new HashMap<String, String>();
 	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
-	// MAIN //
+	/** MAIN 
+	 * Input :
+	 * + args[0] = inputFilePath
+	 * + args[1] = outputFilePath
+	 * */
 	public static void main(String[] args){
 		System.out.println("Constructing symbole table.");
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable(INPUT_FILE, "./");
+			main.createSymTable(args[0], args[1]);
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx) {
@@ -90,9 +94,9 @@ public class GeneratorAddr {
 
 	/**
 	 * Starting the symbols table generation
-	 * @param string
+	 * @param inputFilePath
 	 *            File path to examinate
-	 * @param sortie
+	 * @param outputFilePath
 	 *            Output file path
 	 * @throws SymTableException
 	 *             Error when creating the symbols table
@@ -100,11 +104,11 @@ public class GeneratorAddr {
 	 *             Error when creating the code generator
 	 * @throws CS_TranslatorException
 	 */
-	private void createSymTable(String string, String sortie)
+	private void createSymTable(String inputFilePath, String outputFilePath)
 			throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
-		Resource resource = set.getResource(URI.createFileURI(string), true);
+		Resource resource = set.getResource(URI.createFileURI(inputFilePath), true);
 
 		// Validate the resource
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
@@ -141,7 +145,7 @@ public class GeneratorAddr {
 			System.out.println(translator);
 		}
 		if(PRINT_TRANSLATION){
-			try( PrintWriter out = new PrintWriter(OUTPUT_FILE) ){
+			try( PrintWriter out = new PrintWriter(outputFilePath) ){
 				out.println(translator.toString());
 			} catch (FileNotFoundException e){
 				e.printStackTrace();

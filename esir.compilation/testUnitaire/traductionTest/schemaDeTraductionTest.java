@@ -6,9 +6,9 @@ import org.junit.Test;
 
 import sprint2.GeneratorAddr;
 
-public class code3AdressesTests {
+public class schemaDeTraductionTest {
 
-	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestC3A_Original/";
+	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Original/";
 	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_Test_Resultat/";
 	
 	String cheminFichierEntree = null;
@@ -19,9 +19,10 @@ public class code3AdressesTests {
 	@Test
 	public void test() {
 		args[0] = origineFilePath+"test1.wh";
-		args[1] = resultFilePath+"test1.whc";
+		args[1] = resultFilePath+"test1.whc";	
 		GeneratorAddr.main(args);
 
 		assertTrue(true);
 	}
+
 }

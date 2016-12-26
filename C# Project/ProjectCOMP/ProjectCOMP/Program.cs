@@ -20,17 +20,23 @@ namespace ProjectCOMP
 			BinTree E = input.Dequeue();
 			BinTree Y0;
 			inParams.Enqueue(B);
+			inParams.Enqueue(C);
 			cons(inParams,outParams);
 			Y0 = outParams.Dequeue();
 			BinTree Y1;
 			inParams.Enqueue(A);
 			inParams.Enqueue(Y0);
-			inParams.Enqueue(C);
 			cons(inParams,outParams);
 			Y1 = outParams.Dequeue();
 			BinTree X0;
 			X0 = Y1;
 			BinTree Ret;
+			Ret = X0;
+			Y0 = hd(A);
+			X0 = Y0;
+			Ret = X0;
+			Y0 = A;
+			X0 = Y0;
 			Ret = X0;
 			output.Enqueue(Ret);
 		}

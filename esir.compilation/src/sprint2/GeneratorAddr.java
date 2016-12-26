@@ -53,7 +53,7 @@ public class GeneratorAddr {
 	private static final boolean DISPLAY_TRANSLATION = false;
 	private static final boolean PRINT_TRANSLATION = true;
 		
-	private static final String INPUT_FILE = "../exemple3.wh"; //TODO Bug sur exemple3.wh pour l'instant
+	private static final String INPUT_FILE = "../exemple5.wh"; //TODO Bug sur exemple3.wh pour l'instant
 	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
 	//CONST
 	private static final String VAR_PREFIXE = "X";
@@ -109,7 +109,7 @@ public class GeneratorAddr {
 	 *             Error when creating the code generator
 	 * @throws CS_TranslatorException
 	 */
-	private void createSymTable(String inputFilePath, String outputFilePath)
+	public void createSymTable(String inputFilePath, String outputFilePath)
 			throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
@@ -553,7 +553,10 @@ public class GeneratorAddr {
 	}
 
 	void varDeclaration(DefFun f, String v) {
-		if (!f.alreadyExisting(v))
+		if (!f.alreadyExisting(v)){
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
+			f.updateVar(v);
+		}
+			
 	}
 }

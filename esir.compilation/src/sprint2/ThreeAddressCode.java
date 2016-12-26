@@ -96,16 +96,20 @@ public class ThreeAddressCode {
 	}
 	
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
-		HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
-		
-		ExprTree.treeToInline(tree,callOrder);
-		
-		while(tree.children.length!=0){
-			ExprTree.iterate(tree,this,generatorAddr,f);
+		//HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
+		//ExprTree.treeToInline(tree,callOrder);
+		int k = 0;
+		if(tree.children.length==0){ //Simplification interdite
+			generatorAddr.code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "Y0",tree.getHead(), ""));
+		}else{
+			while(tree.children.length!=0){
+				ExprTree.iterate(tree,this,generatorAddr,f);
+			}
+			
+			k =ExprTree.nb;
+			k--;
 		}
 		
-		int k =ExprTree.nb;
-		k--;
 		ExprTree.nb=0;
 		tree = null;
 		return k;
@@ -139,6 +143,8 @@ public class ThreeAddressCode {
 		}
 		
 		public void incIndex(int treeLevel) {
+			if(this.children.length>=this.index)
+				return;
 			if(this.children[index]!=null)
 				if(this.children[index].level==treeLevel){
 					if(isListOperation(this.getHead()))

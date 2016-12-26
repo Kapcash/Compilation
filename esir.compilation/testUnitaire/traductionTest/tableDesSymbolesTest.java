@@ -8,7 +8,7 @@ import sprint2.GeneratorAddr;
 
 public class tableDesSymbolesTest {
 	
-	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_Test_Original/";
+	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Original/";
 	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_Test_Resultat/";
 	
 	String cheminFichierEntree = null;
@@ -18,11 +18,10 @@ public class tableDesSymbolesTest {
 
 	@Test
 	public void test() {
-		args[0] = origineFilePath+"testIf1.wh";
-		args[1] = resultFilePath+"testIf1.whpp";	
-		//GeneratorAddr.main(args);
-		GeneratorAddr.createSymTable(args[0], args[1]);
-		
+		args[0] = origineFilePath+"test1.wh";
+		args[1] = resultFilePath+"test1.whpp";	
+		GeneratorAddr.main(args);
+
 		assertTrue(true);
 	}
 	

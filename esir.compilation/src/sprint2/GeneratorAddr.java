@@ -55,6 +55,8 @@ public class GeneratorAddr {
 	
 	//CONST
 	private static final String VAR_PREFIXE = "X";
+	private static final String INPUT_FILE = "";
+	private static final String OUTPUT_FILE = "";
 	
 	/**
 	 * List of declared functions in the Program

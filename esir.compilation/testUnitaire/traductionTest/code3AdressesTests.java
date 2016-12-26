@@ -19,7 +19,7 @@ public class code3AdressesTests {
 	@Test
 	public void test() {
 		args[0] = origineFilePath+"test1.wh";
-		args[1] = resultFilePath+"test1.whpp";	
+		args[1] = resultFilePath+"test1.whc";	
 		GeneratorAddr.main(args);
 
 		assertTrue(true);

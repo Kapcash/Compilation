@@ -1,0 +1,20 @@
+function twoFunctions:
+read A,B
+%
+	nop
+%
+write B
+
+function test:
+read A
+%
+	nop
+%
+write A
+
+function main:
+read Var
+%
+	nop
+%
+write Var

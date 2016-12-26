@@ -6,24 +6,20 @@ import org.junit.Test;
 
 import sprint2.GeneratorAddr;
 
-public class tableDesSymbolesTest {
+public class TableDesSymbolesTest {
 	
 	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Original/";
-	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_Test_Resultat/";
+	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Resultat/";
 	
-	String cheminFichierEntree = null;
-	String cheminFichierSortie = null;
-	
-	String[] args = {cheminFichierEntree, cheminFichierSortie};
+	String[] args = new String[2];
 
 	@Test
 	public void test() {
-		args[0] = origineFilePath+"test1.wh";
-		args[1] = resultFilePath+"test1.whc";	
-		GeneratorAddr.main(args);
+		args[0] = origineFilePath+"affMultiple.wh";
+		args[1] = resultFilePath+"affMultiple.tds";
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		tds.launchGeneration(args);
 
 		assertTrue(true);
 	}
-	
 }
-

@@ -52,16 +52,23 @@ public class GeneratorAddr {
 	private static final boolean DISPLAY_THREE_ADDR_CODE = false;
 	private static final boolean DISPLAY_TRANSLATION = false;
 	private static final boolean PRINT_TRANSLATION = false;
-	
+
 	//CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "";
-	private static final String OUTPUT_FILE = "";
+	private static final String INPUT_FILE = "../exemple4.wh";
+	private static final String OUTPUT_FILE = "../result4.whc";
 	
+	private static GeneratorAddr instance;
+
 	/**
 	 * List of declared functions in the Program
+	 * <String, DefFun> = Name, (Symbs + Calls) 
 	 */
 	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	/**
+	 * List of global symbols, undeclared
+	 * <String, String> = symbole, null
+	 */
 	HashMap<String, String> symbs = new HashMap<String, String>();
 	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
@@ -71,16 +78,35 @@ public class GeneratorAddr {
 	 * + args[1] = outputFilePath
 	 * */
 	public static void main(String[] args){
-		System.out.println("Constructing symbole table.");
-		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
-		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
+		GeneratorAddr main = GeneratorAddr.getInstance();
+		main.launchGeneration(args);
+	}
+	
+	@Inject
+	private Provider<ResourceSet> resourceSetProvider;
+	
+	@Inject
+	private IResourceValidator validator;
+
+	// ---- //
+	
+	public static GeneratorAddr getInstance(){
+		if(instance == null){
+			return new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration().getInstance(GeneratorAddr.class);
+		} else {
+			return instance;
+		}
+	}
+
+	public void launchGeneration(String [] args){
+		System.out.println("Compiling program.");
+		
 		try {
 			if(args.length>0)
-				main.createSymTable(args[0], args[1]);
+				createSymTable(args[0], args[1]);
 			else
-				main.createSymTable(INPUT_FILE,  OUTPUT_FILE);	
-			
-			
+				createSymTable(INPUT_FILE,  OUTPUT_FILE);	
+
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx) {
@@ -89,13 +115,7 @@ public class GeneratorAddr {
 			System.out.println("[TRANSLATOR ERROR] : " + transEx.getMessage());
 		}
 	}
-	// ---- //
 
-	@Inject
-	private Provider<ResourceSet> resourceSetProvider;
-
-	@Inject
-	private IResourceValidator validator;
 
 	/**
 	 * Starting the symbols table generation
@@ -134,10 +154,11 @@ public class GeneratorAddr {
 		}
 
 		checkSymbolsUsage(); 	// Check all the symbols usage (undeclared function for example)
-		
+
 		if(DISPLAY_SYM_TABLE){
 			displaySymTable(); 		// Print the symbols table
 			System.out.println("Symboles Table correctly generated.");
+			System.out.println("\n"+writeSymTableXML());
 		}
 		if(DISPLAY_THREE_ADDR_CODE){
 			System.out.println(code3Addresses);
@@ -302,13 +323,13 @@ public class GeneratorAddr {
 	private void iterateAST(Expr exp, DefFun f) throws SymTableException{
 		//System.out.print("{");
 		code3Addresses.addLevel();
-		
+
 		ExprSimple expSimp = exp.getExprsimple();
 		iterateAST(expSimp, f);
 
 		code3Addresses.subLevel();
 		//System.out.print("}");
-		
+
 		ExprAnd exprAnd = exp.getExprAnd();
 		if (exprAnd != null)
 			iterateAST(exprAnd, f);
@@ -320,13 +341,7 @@ public class GeneratorAddr {
 		String operator = ex.getOpe();
 		Expr exp = ex.getExpr();
 		Lexpr exprs = ex.getLexpr();
-		
-//		if(val!=null)
-//			System.out.print(val);
-//		if(operator!=null)
-//			System.err.print(operator);
-//		
-		
+
 		if (operator != null) {
 			switch (operator) {
 			case "cons":
@@ -380,7 +395,6 @@ public class GeneratorAddr {
 
 	// ExprOr
 	private void iterateAST(ExprOr ex, DefFun f) throws SymTableException {
-
 		ExprOr exprOr = ex.getExprOr();
 		if (exprOr != null)
 			iterateAST(exprOr, f);
@@ -393,7 +407,7 @@ public class GeneratorAddr {
 	// ExprNot
 	private void iterateAST(ExprNot ex, DefFun f) throws SymTableException {
 		Not not = ex.getNot();
-		/*
+		/* TODO
 		 * if(not != null) iterateAST(exprNot,f);
 		 */
 
@@ -425,7 +439,7 @@ public class GeneratorAddr {
 		iterateAST(whCmd.getExpr(),f);
 		int k =code3Addresses.inlineExpression(this,f);
 		String expr = "Y"+k;
-		
+
 		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, code3Addresses.getEtiquette()), "",
 				expr, ""));
 		code3Addresses.nouvelleEtiquette();
@@ -477,12 +491,39 @@ public class GeneratorAddr {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
 	}
-
-	private boolean isFunction(String symb){
-		boolean ret = false;
-		if(funList.containsKey(symb)){
-			ret = true;
+	
+	public String writeSymTableXML(){
+		String ret = "";
+		ret += "<symboles>";
+		for(String s : symbs.keySet()){
+			ret += "\n\t<sym>"+s+"</sym>";
 		}
+		ret+="\n</symboles>\n<functions>";
+		for(String f : funList.keySet()){
+			DefFun deffun = funList.get(f);
+			ret += "\n\t<function>";
+			ret += "\n\t\t<name>"+f+"</name>";
+			HashMap<String,Integer> vars = deffun.getVars();
+			ret += "\n\t\t<vars>";
+			for(String var : vars.keySet()){
+				ret += "\n\t\t\t<var>\n\t\t\t\t<vname>"+var+"</vname>";
+				ret += "\n\t\t\t\t<value>"+vars.get(var)+"</value>";
+				ret += "\n\t\t\t</var>";
+			}
+			ret += "\n\t\t</vars>";
+			HashMap<String,Lexpr> calls = deffun.getCalls();
+			ret += "\n\t\t<calls>";
+			for(String call : calls.keySet()){
+				ret += "\n\t\t\t<f>"+call+"</f>";
+				ret += "\n\t\t\t<params>";
+				ret += "\n\t\t\t\t<Lexpr>"+writeLexpr(calls.get(call))+"</Lexpr>";
+				//TODO : Write Lexpr
+				ret += "\n\t\t\t</params>";
+			}
+			ret += "\n\t\t</calls>";
+			ret += "\n\t</function>";
+		}
+		ret+="\n</functions>";
 		return ret;
 	}
 
@@ -525,6 +566,22 @@ public class GeneratorAddr {
 		}
 		return ret;
 	}
+	
+	/**
+	 * Count the number of Expr in an Lexpr
+	 * Used to count the number of parameter of a called function (symbol)
+	 * @param exprs The Lexpr to count
+	 * @return Return the total number of Expr in the Lexpr
+	 */
+	private String writeLexpr(Lexpr exprs){
+		String ret = "";
+		if(exprs.getLexpr() != null){
+			ret += exprs.getExpr().toString()+","+writeLexpr(exprs.getLexpr());
+		} else {
+			ret += exprs.getExpr().toString()+",";
+		}
+		return ret;
+	}
 
 	/**
 	 * Checks if a string is considered as a Symbol (starts with a lowercase char)
@@ -535,8 +592,7 @@ public class GeneratorAddr {
 		if (str == null || str.equals("nil"))
 			return false;
 		String firstChar = str.substring(0, 1);
-		return firstChar.equals(firstChar.toLowerCase()); // Is lowercase ->
-		// Symbole
+		return firstChar.equals(firstChar.toLowerCase()); // Is lowercase -> Symbole
 	}
 
 	/**
@@ -557,6 +613,5 @@ public class GeneratorAddr {
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
 			f.updateVar(v);
 		}
-			
 	}
 }

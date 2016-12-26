@@ -9,7 +9,6 @@ public class DefFun{
 	String funName;
 	HashMap<String,Integer> vars;
 	HashMap<String,Lexpr> calls;
-	boolean isParamVar;
 
 	public DefFun(String functionName){
 		funName = functionName;
@@ -74,13 +73,14 @@ public class DefFun{
 		return calls;
 	}
 
+	/* Tests methods */
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((funName == null) ? 0 : funName.hashCode());
 		result = prime * result + in;
-		result = prime * result + (isParamVar ? 1231 : 1237);
 		result = prime * result + out;
 		result = prime * result + ((calls == null) ? 0 : calls.hashCode());
 		result = prime * result + ((vars == null) ? 0 : vars.hashCode());
@@ -88,7 +88,7 @@ public class DefFun{
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj){
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -105,7 +105,6 @@ public class DefFun{
 			return false;
 		
 		if (in != other.in
-				|| isParamVar != other.isParamVar
 				|| out != other.out)
 			return false;
 		
@@ -120,6 +119,7 @@ public class DefFun{
 				return false;
 		} else if (!vars.equals(other.vars))
 			return false;
+		
 		return true;
 	}
 

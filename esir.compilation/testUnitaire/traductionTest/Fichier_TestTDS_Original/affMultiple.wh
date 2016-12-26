@@ -1,0 +1,6 @@
+function affMultiple: 
+read A ,B, C, D
+%
+	A, B := C, D
+%
+write A

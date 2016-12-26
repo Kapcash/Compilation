@@ -1,0 +1,11 @@
+function simpleLoops: 
+read A ,B ,C, D ,E
+%
+	while nop do
+		A := B
+	od;
+	while nop do
+		C := D
+	od
+%
+write E

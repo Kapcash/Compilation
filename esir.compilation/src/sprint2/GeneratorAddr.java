@@ -53,7 +53,7 @@ public class GeneratorAddr {
 	private static final boolean DISPLAY_TRANSLATION = false;
 	private static final boolean PRINT_TRANSLATION = true;
 		
-	private static final String INPUT_FILE = "../exemple5.wh"; //TODO Bug sur exemple3.wh pour l'instant
+	private static final String INPUT_FILE = "../exemple3.wh"; //TODO Bug sur exemple3.wh pour l'instant
 	private static final String OUTPUT_FILE = "../C# Project/ProjectCOMP/ProjectCOMP/Program.cs";
 	//CONST
 	private static final String VAR_PREFIXE = "X";
@@ -75,7 +75,12 @@ public class GeneratorAddr {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		GeneratorAddr main = injector.getInstance(GeneratorAddr.class);
 		try {
-			main.createSymTable(args[0], args[1]);
+			if(args.length>0)
+				main.createSymTable(args[0], args[1]);
+			else
+				main.createSymTable(INPUT_FILE,  OUTPUT_FILE);	
+			
+			
 		} catch (SymTableException symEx) {
 			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
 		} catch (ThreeAddressCodeException codeEx) {
@@ -417,8 +422,12 @@ public class GeneratorAddr {
 
 	// While
 	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		iterateAST(whCmd.getExpr(),f);
+		int k =code3Addresses.inlineExpression(this,f);
+		String expr = "Y"+k;
+		
 		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, code3Addresses.getEtiquette()), "",
-				whCmd.getExpr().toString(), ""));
+				expr, ""));
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds, f);

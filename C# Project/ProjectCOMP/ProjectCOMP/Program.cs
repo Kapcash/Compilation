@@ -29,7 +29,7 @@ namespace ProjectCOMP
 			cons(inParams,outParams);
 			Y1 = outParams.Dequeue();
 			BinTree X0;
-			X0 = Y2;
+			X0 = Y1;
 			BinTree Ret;
 			Ret = X0;
 			output.Enqueue(Ret);

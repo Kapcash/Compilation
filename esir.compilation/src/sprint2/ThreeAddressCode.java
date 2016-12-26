@@ -88,34 +88,28 @@ public class ThreeAddressCode {
 	}
 	
 	public void addToExpression(String s,  HashMap<String, DefFun> funList){
-		System.out.println(treeLevel+":"+s);
-		
 		if(tree==null){
 			tree = new ExprTree(s,funList,1);
 		}else{
 			tree.add(s,funList,treeLevel);
 		}
-		System.out.println(tree);
 	}
 	
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
-		if(!tree.full){
-			System.out.println("ThreeAddressCodeException : TODO"); //TODO : Uncomment when testing 3@Code
-			//throw new ThreeAddressCodeException("Probleme dans l'expression");
+		//HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
+		//ExprTree.treeToInline(tree,callOrder);
+		int k = 0;
+		if(tree.children.length==0){ //Simplification interdite
+			generatorAddr.code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "Y0",tree.getHead(), ""));
+		}else{
+			while(tree.children.length!=0){
+				ExprTree.iterate(tree,this,generatorAddr,f);
+			}
+			
+			k =ExprTree.nb;
+			k--;
 		}
 		
-		HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
-		
-		
-		ExprTree.treeToInline(tree,callOrder);
-		
-		System.out.println(callOrder);
-		
-		while(tree.children.length!=0){
-			ExprTree.iterate(tree,this,generatorAddr,f);
-		}
-		
-		int k =ExprTree.nb;
 		ExprTree.nb=0;
 		tree = null;
 		return k;
@@ -149,6 +143,8 @@ public class ThreeAddressCode {
 		}
 		
 		public void incIndex(int treeLevel) {
+			if(this.children.length>=this.index)
+				return;
 			if(this.children[index]!=null)
 				if(this.children[index].level==treeLevel){
 					if(isListOperation(this.getHead()))
@@ -175,29 +171,9 @@ public class ThreeAddressCode {
 				
 					
 			}
-			
-			
-			
-			
-//			for (int i = 0; i < children.length; i++) {
-//				
-//				if(children[i]==null){
-//					children[i] = new ExprTree(s, funList);
-//					full = areChildrenFull();
-//					return;
-//				}else{
-//					if(!children[i].full){
-//						children[i].add(s,funList);
-//						full = areChildrenFull();
-//						return;
-//					}	
-//				}
-//			}		
 		}
 		
 		public static void treeToInline(ExprTree tree, HashMap<Integer, LinkedList<ExprTree>> callOrder){
-			System.out.print(tree.level+":");
-			System.out.println(tree.getHead());
 			LinkedList<ExprTree> list = callOrder.get(tree.level);
 			if(list==null){
 				list = new LinkedList<ExprTree>();

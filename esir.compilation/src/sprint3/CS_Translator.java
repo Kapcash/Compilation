@@ -143,10 +143,10 @@ public class CS_Translator {
 				f.write("list(inParams,outParams);");
 				break;
 			case HD:
-				f.write("hd(inParams,outParams);");
+				f.write(quad.getReponse()+" = hd("+quad.getArg1()+");");
 				break;
 			case TL:
-				f.write("tl(inParams,outParams);");
+				f.write(quad.getReponse()+" = tl("+quad.getArg1()+");");
 				break;
 			default:
 				

@@ -1,0 +1,6 @@
+function doubleOutputTest: 
+read A, B
+%
+	A:=B
+%
+write A, B, B

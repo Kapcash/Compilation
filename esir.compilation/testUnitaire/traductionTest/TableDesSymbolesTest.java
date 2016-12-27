@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
+import esir.compilation.whileComp.Lexpr;
 import sprint2.DefFun;
 import sprint2.GeneratorAddr;
 import utilitaires.Utilitaires;
@@ -66,9 +67,39 @@ public class TableDesSymbolesTest {
 	}
 	
 	@Test
+	public void doubleInputTest() { // TODO : regarder la pertinence du test et du message d'erreur
+		args[0] = origineFilePath+"2_doubleInputTest.wh";
+		args[1] = resultFilePath+"2_doubleInputTest.cs";
+		
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		tds.launchGeneration(args);
+		
+		HashMap<String, DefFun> funList = tds.getFunList();
+		DefFun funTest = funList.get("doubleInputTest");
+		int nbInput = funTest.getIn();
+
+		assertFalse(Utilitaires.printErr("Le test ne devrait pas passer"), true);
+	}
+	
+	@Test
+	public void doubleOutputTest() { // TODO : regarder la pertinence du test et du message d'erreur
+		args[0] = origineFilePath+"3_doubleOutputTest.wh";
+		args[1] = resultFilePath+"3_doubleOutputTest.cs";
+		
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		tds.launchGeneration(args);
+		
+		HashMap<String, DefFun> funList = tds.getFunList();
+		DefFun funTest = funList.get("doubleOutputTest");
+		int nbOutput = funTest.getOut();
+
+		assertFalse(Utilitaires.printErr("Le test ne devrait pas passer"), true);
+	}
+	
+	@Test
 	public void nbFunctionTest() {
-		args[0] = origineFilePath+"2_nbFunctionTest.wh";
-		args[1] = resultFilePath+"2_nbFunctionTest.cs";
+		args[0] = origineFilePath+"4_nbFunctionTest.wh";
+		args[1] = resultFilePath+"4_nbFunctionTest.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
@@ -81,8 +112,8 @@ public class TableDesSymbolesTest {
 	
 	@Test
 	public void valeurVariable1Test() {
-		args[0] = origineFilePath+"3_variableTest.wh";
-		args[1] = resultFilePath+"3_variableTest.cs";
+		args[0] = origineFilePath+"5_variableTest.wh";
+		args[1] = resultFilePath+"5_variableTest.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
@@ -97,8 +128,8 @@ public class TableDesSymbolesTest {
 	
 	@Test
 	public void valeurVariable2Test() {
-		args[0] = origineFilePath+"3_variableTest.wh";
-		args[1] = resultFilePath+"3_variableTest.cs";
+		args[0] = origineFilePath+"5_variableTest.wh";
+		args[1] = resultFilePath+"5_variableTest.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
@@ -117,8 +148,8 @@ public class TableDesSymbolesTest {
 	
 	@Test
 	public void valeurVariableWithAffectMultipleTest() {
-		args[0] = origineFilePath+"4_affMultipleTest.wh";
-		args[1] = resultFilePath+"4_affMultipleTest.cs";
+		args[0] = origineFilePath+"6_affMultipleTest.wh";
+		args[1] = resultFilePath+"6_affMultipleTest.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
@@ -139,8 +170,8 @@ public class TableDesSymbolesTest {
 	
 	@Test
 	public void valeurVariableWithBoucleWhileTest() {
-		args[0] = origineFilePath+"5_boucleWhileTest.wh";
-		args[1] = resultFilePath+"5_boucleWhileTest.cs";
+		args[0] = origineFilePath+"7_boucleWhileTest.wh";
+		args[1] = resultFilePath+"7_boucleWhileTest.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
@@ -161,8 +192,8 @@ public class TableDesSymbolesTest {
 	
 	@Test
 	public void symbolesGlobalTest() {
-		args[0] = origineFilePath+"6_symbolesTest.wh";
-		args[1] = resultFilePath+"6_symbolesTest.cs";
+		args[0] = origineFilePath+"8_symbolesTest.wh";
+		args[1] = resultFilePath+"8_symbolesTest.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
@@ -174,16 +205,18 @@ public class TableDesSymbolesTest {
 	}
 	
 	@Test
-	public void symbolesLocalTest() { // TODO : modifier symboleLocalTest pour transformer "symboleGlobalTest->B" en appel de fonction
-		args[0] = origineFilePath+"6_symbolesTest.wh";
-		args[1] = resultFilePath+"6_symbolesTest.cs";
+	public void symbolesLocalTest() {
+		args[0] = origineFilePath+"8_symbolesTest.wh";
+		args[1] = resultFilePath+"8_symbolesTest.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
 		
-		HashMap<String, String> symboles = tds.getSymbs();
-		String varGlobal = symboles.get("global");
+		HashMap<String, DefFun> funList = tds.getFunList();
+		DefFun funSymboleLocalTest = funList.get("symboleLocalTest");
+		HashMap<String, Lexpr> calls = funSymboleLocalTest.getCalls();
+		String varLocal = calls.get("symboleGlobalTest").toString();
 		
-		assertTrue(Utilitaires.printErr("La variable global \"global\" n'est pas presente dans la table des symboles"), varGlobal!=null);
+		assertTrue(Utilitaires.printErr("Le symbole local \"symboleGlobalTest\" n'est pas present dans la table des symboles"), varLocal!=null);
 	}
 }

@@ -8,6 +8,6 @@ write A
 function symboleLocalTest: 
 read A, B, C
 %
-	A:=symboleGlobalTest->B
+	A:=(symboleGlobalTest B)
 %
 write A, B

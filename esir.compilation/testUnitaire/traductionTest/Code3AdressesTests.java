@@ -9,7 +9,7 @@ import sprint2.GeneratorAddr;
 public class Code3AdressesTests {
 
 	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestC3A_Original/";
-	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_Test_Resultat/";
+	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_TestC3A_Resultat/";
 	
 	String cheminFichierEntree = null;
 	String cheminFichierSortie = null;
@@ -20,7 +20,8 @@ public class Code3AdressesTests {
 	public void test() {
 		args[0] = origineFilePath+"test1.wh";
 		args[1] = resultFilePath+"test1.whc";
-		GeneratorAddr.main(args);
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		tds.launchGeneration(args);
 
 		assertTrue(true);
 	}

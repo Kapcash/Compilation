@@ -1,0 +1,11 @@
+function boucleWhileTest: 
+read A ,B ,C, D
+%
+	while nil do
+		A := B
+	od;
+	while C do
+		C := D
+	od
+%
+write A

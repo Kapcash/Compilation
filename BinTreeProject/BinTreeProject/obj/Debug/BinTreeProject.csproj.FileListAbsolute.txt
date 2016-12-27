@@ -1,1 +1,3 @@
 C:\Users\yoann\Documents\Compilation\BinTreeProject\BinTreeProject\bin\Debug\BinTreeProject.exe.config
+D:\ProjetCompilation\BinTreeProject\BinTreeProject\bin\Debug\BinTreeProject.exe.config
+D:\ProjetCompilation\BinTreeProject\BinTreeProject\obj\Debug\BinTreeProject.csprojResolveAssemblyReference.cache

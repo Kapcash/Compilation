@@ -1,0 +1,6 @@
+function nopTest: 
+read A
+%
+	nop
+%
+write A

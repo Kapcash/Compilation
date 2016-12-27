@@ -1,0 +1,6 @@
+function nbInputOutputTest: 
+read A, B, C, D
+%
+	A:=B
+%
+write A, B, D

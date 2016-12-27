@@ -1,0 +1,15 @@
+function variable1Test: 
+read A
+%
+	A:=nil
+%
+write A
+
+function variable2Test: 
+read A, B, C
+%
+	A:=B ;
+	B:=A ;
+	C:=A
+%
+write A, B

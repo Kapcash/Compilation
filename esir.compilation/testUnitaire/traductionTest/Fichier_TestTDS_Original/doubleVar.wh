@@ -1,6 +1,0 @@
-function doubleVar: 
-read A ,B ,A
-%
-	A := B
-%
-write A

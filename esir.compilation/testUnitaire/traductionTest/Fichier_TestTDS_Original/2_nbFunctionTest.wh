@@ -1,0 +1,70 @@
+function nbFunction1Test: 
+read A
+%
+	A:=Nil
+%
+write A
+
+function nbFunction2Test: 
+read A, B
+%
+	A:=B
+%
+write A, B
+
+function nbFunction3Test: 
+read A, B, C
+%
+	A:=B ;
+	B:=C
+%
+write A, B, C
+
+function nbFunction4Test: 
+read A, B, C
+%
+	A:=B
+%
+write A, B
+
+function nbFunction5Test: 
+read A, B, C
+%
+	A:=B
+%
+write A, B
+
+function nbFunction6Test: 
+read A, B, C
+%
+	A:=B
+%
+write A, B
+
+function nbFunction7Test: 
+read A, B, C
+%
+	A:=B
+%
+write A, B
+
+function nbFunction8Test: 
+read A, B, C
+%
+	A:=B
+%
+write A, B
+
+function nbFunction9Test: 
+read A, B, C
+%
+	A:=B
+%
+write A, B
+
+function nbFunction10Test: 
+read A, B, C
+%
+	A:=B
+%
+write A, B

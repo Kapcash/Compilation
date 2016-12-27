@@ -18,7 +18,6 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Inject;
-import com.google.inject.Injector;
 import com.google.inject.Provider;
 
 import esir.compilation.WhileCompStandaloneSetup;
@@ -614,4 +613,30 @@ public class GeneratorAddr {
 			f.updateVar(v);
 		}
 	}
+
+	public HashMap<String, DefFun> getFunList() {
+		return funList;
+	}
+
+	public void setFunList(HashMap<String, DefFun> funList) {
+		this.funList = funList;
+	}
+
+	public HashMap<String, String> getSymbs() {
+		return symbs;
+	}
+
+	public void setSymbs(HashMap<String, String> symbs) {
+		this.symbs = symbs;
+	}
+
+	public ThreeAddressCode getCode3Addresses() {
+		return code3Addresses;
+	}
+
+	public void setCode3Addresses(ThreeAddressCode code3Addresses) {
+		this.code3Addresses = code3Addresses;
+	}
+	
+	
 }

@@ -1,0 +1,13 @@
+function symboleGlobalTest: 
+read A
+%
+	A:=global
+%
+write A
+
+function symboleLocalTest: 
+read A, B, C
+%
+	A:=symboleGlobalTest->B
+%
+write A, B

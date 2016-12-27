@@ -64,6 +64,7 @@ public class PrettyPrintTest{
 		// On execute le PrettyPrint sur le fichier original "Test1.wh"
 		args[0] = fileO1Path;
 		args[1] = fileR1Path;
+		args[5] = "2";
 		Main.main(args);
 
 		// On renomme le fichier pour modifier l'extension et réeffectuer le traitement une deuxième fois
@@ -77,6 +78,7 @@ public class PrettyPrintTest{
 		/*Deuxieme traitement*/
 		args[0] = fileR1RenamePath;
 		args[1] = fileR2Path;
+		args[5] = "2";
 		Main.main(args);
 		fileR2 = new File(fileR2Path);
 
@@ -148,14 +150,89 @@ public class PrettyPrintTest{
 	public void testWhile1() {
 		testerPrettyPrint("testWhile1");
 	}
-
+	
 	@Test
 	public void testWhile2() {
 		testerPrettyPrint("testWhile2");
 	}
+	
+	@Test
+	public void testFor1() {
+		testerPrettyPrint("testFor1");
+	}
+	
+	@Test
+	public void testFor2() {
+		testerPrettyPrint("testFor2");
+	}
+
+	@Test
+	public void testOptionAll() {
+		args[2] ="0" ;
+		testerPrettyPrint("AllIndentationTest");
+	}
+	
+	@Test
+	public void testOptionWhile1() {
+		args[4] ="2" ;
+		testerPrettyPrint("WhileIndentationTest1");
+	}
+	
+	@Test
+	public void testOptionWhile2() {
+		args[4] ="2" ;
+		testerPrettyPrint("WhileIndentationTest2");
+	}
+	
+	@Test
+	public void testOptionFor1() {
+		args[3] ="3" ;
+		testerPrettyPrint("ForIndentationTest1");
+	}
+	
+	@Test
+	public void testOptionFor2() {
+		args[3] ="1" ;
+		testerPrettyPrint("ForIndentationTest2");
+	}
+
+	@Test
+	public void testOptionIf1() {
+		args[5] ="1" ;
+		testerPrettyPrint("IfIndentationTest1");
+	}
+	
+	@Test
+	public void testOptionIf2() {
+		args[5] ="2" ;
+		testerPrettyPrint("IfIndentationTest2");
+	}
+	
+	@Test // TODO : Est-ce normal que ça ne marche pas, règle de grammaire si if imbriqué, est qu'on peut mettre un nop avant ou après un if.
+	public void testOptionIf3() {
+		args[5] ="2" ;
+		testerPrettyPrint("IfIndentationTest3");
+	}
+	
+	@Test
+	public void testOptionForeach1() {
+		args[6] ="3" ;
+		testerPrettyPrint("ForeachIndentationTest1");
+	}
+	
+	@Test
+	public void testOptionForeach2() {
+		args[6] ="1" ;
+		testerPrettyPrint("ForeachIndentationTest2");
+	}
+
+	@Test
+	public void testOptionAff() {
+		args[7] ="1" ;
+		testerPrettyPrint("AffIndentationTest");
+	}
 
 	/*Utilitaire*/
-
 	private void testerPrettyPrint(String nameWithoutExtension) {
 		String pathFichierOriginal = origineFilePath + nameWithoutExtension+ ".wh";
 
@@ -169,14 +246,14 @@ public class PrettyPrintTest{
 		args[1] = pathFichierResultat;
 		Main.main(args);
 		fichierResultat = new File(pathFichierResultat);
-		assertTrue("Le fichier "+ pathFichierResultat +" n'a pas ete cree !", fichierResultat.exists());
+		assertTrue("Le fichier "+ pathFichierResultat +" n'a pas ete cree ! \n (Regardez dans la console l'erreur genere !)", fichierResultat.exists());
 
 		assertTrue("Traitement non effectue", (!fichierResultat.equals(null)));
 		assertTrue("Les fichiers "+ pathFichierOriginal +"et"+ fichierResultat.getPath() +" sont differents !", 
 				assertSameFileTest(fichierResultat.getPath(), pathFichierAttendu));
 
-		boolean isDelete = fichierResultat.delete();
-		assertTrue(fichierResultat.getPath() +" n'a pas ete correctement supprime !", isDelete);
+//		boolean isDelete = fichierResultat.delete();
+//		assertTrue(fichierResultat.getPath() +" n'a pas ete correctement supprime !", isDelete);
 	}
 
 	public boolean assertSameFileTest(String filepath1, String filepath2) {

@@ -1,0 +1,7 @@
+function testAff:
+read A
+%
+X := nil ;
+						nop ;						Y := A
+%
+write X

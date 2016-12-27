@@ -1,0 +1,11 @@
+function testForeach1:
+read A
+%
+	foreach 
+	
+	
+	Elem in                          (list 
+	Elem) do		nop
+	od
+%
+write X

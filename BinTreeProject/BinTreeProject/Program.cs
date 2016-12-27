@@ -1,4 +1,10 @@
-﻿namespace ProjectCOMP
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BinTree
 {
     class BinTree
     {
@@ -22,14 +28,14 @@
 
         public static BinTree tail(BinTree tree)
         {
-            if(tree.rightSon != null)
+            if (tree.rightSon != null)
                 return tree.rightSon;
             return null;
         }
 
         public static BinTree cons(BinTree tree1, BinTree tree2)
         {
-            if(tree1 != null && tree2 != null)
+            if (tree1 != null && tree2 != null)
                 return new BinTree(null, tree1, tree2);
             return null;
         }

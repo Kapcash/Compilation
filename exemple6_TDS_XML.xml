@@ -1,0 +1,39 @@
+<symboles>
+</symboles>
+<functions>
+	<function>
+		<name>fun1</name>
+		<vars>
+			<var>
+				<vname>A</vname>
+				<value>3</value>
+			</var>
+			<var>
+				<vname>T</vname>
+				<value>2</value>
+			</var>
+			<var>
+				<vname>H</vname>
+				<value>2</value>
+			</var>
+		</vars>
+		<calls>
+		</calls>
+	</function>
+	<function>
+		<name>fun2</name>
+		<vars>
+			<var>
+				<vname>A</vname>
+				<value>2</value>
+			</var>
+			<var>
+				<vname>Result</vname>
+				<value>2</value>
+			</var>
+		</vars>
+		<calls>
+			<f>fun1</f>
+		</calls>
+	</function>
+</functions>

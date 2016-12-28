@@ -1,6 +1,7 @@
 package sprint2;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,10 +48,10 @@ import sprint3.CS_TranslatorException;
 public class GeneratorAddr {
 
 	//SETTINGS
-	private static final boolean DISPLAY_SYM_TABLE = false;
-	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
-	private static final boolean DISPLAY_TRANSLATION = true;
-	private static final boolean PRINT_TRANSLATION = true;
+	private static final boolean DISPLAY_SYM_TABLE = true;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = false;
+	private static final boolean DISPLAY_TRANSLATION = false;
+	private static final boolean PRINT_TRANSLATION = false;
 
 	//CONST
 	private static final String VAR_PREFIXE = "X";
@@ -157,7 +158,7 @@ public class GeneratorAddr {
 		if(DISPLAY_SYM_TABLE){
 			displaySymTable(); 		// Print the symbols table
 			System.out.println("Symboles Table correctly generated.");
-			System.out.println("\n"+writeSymTableXML());
+			System.out.println("\n"+writeSymTableXML(INPUT_FILE+"xml"));
 		}
 		if(DISPLAY_THREE_ADDR_CODE){
 			System.out.println(code3Addresses);
@@ -491,7 +492,7 @@ public class GeneratorAddr {
 		}
 	}
 	
-	public String writeSymTableXML(){
+	public String writeSymTableXML(String outputPath){
 		String ret = "";
 		ret += "<symboles>";
 		for(String s : symbs.keySet()){
@@ -514,17 +515,39 @@ public class GeneratorAddr {
 			ret += "\n\t\t<calls>";
 			for(String call : calls.keySet()){
 				ret += "\n\t\t\t<f>"+call+"</f>";
-				ret += "\n\t\t\t<params>";
-				ret += "\n\t\t\t\t<Lexpr>"+writeLexpr(calls.get(call))+"</Lexpr>";
-				//TODO : Write Lexpr
-				ret += "\n\t\t\t</params>";
 			}
 			ret += "\n\t\t</calls>";
 			ret += "\n\t</function>";
 		}
 		ret+="\n</functions>";
+		
+		if(outputPath != null && !outputPath.equals("")){
+			try{
+				PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
+				writer.println(ret);
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return ret;
 	}
+	
+	/**
+	 * Write the variables and symboles inside a Lexpr
+	 * @param exprs The Lexpr to write
+	 * @return Return a string representation of the Lexpr
+	 */
+//	private String writeLexpr(Lexpr exprs){
+//		String ret = "";
+//		if(exprs.getLexpr() != null){
+//			ret += exprs.getExpr().toString()+","+writeLexpr(exprs.getLexpr());
+//		} else {
+//			ret += exprs.getExpr().toString()+",";
+//		}
+//		return ret;
+//	}
 
 	/**
 	 * Check the symbols usages :
@@ -567,22 +590,6 @@ public class GeneratorAddr {
 	}
 	
 	/**
-	 * Count the number of Expr in an Lexpr
-	 * Used to count the number of parameter of a called function (symbol)
-	 * @param exprs The Lexpr to count
-	 * @return Return the total number of Expr in the Lexpr
-	 */
-	private String writeLexpr(Lexpr exprs){
-		String ret = "";
-		if(exprs.getLexpr() != null){
-			ret += exprs.getExpr().toString()+","+writeLexpr(exprs.getLexpr());
-		} else {
-			ret += exprs.getExpr().toString()+",";
-		}
-		return ret;
-	}
-
-	/**
 	 * Checks if a string is considered as a Symbol (starts with a lowercase char)
 	 * @param str The string to check the type
 	 * @return Return true if the string is considered as a Symbol in WHILE
@@ -610,7 +617,7 @@ public class GeneratorAddr {
 	void varDeclaration(DefFun f, String v) {
 		if (!f.alreadyExisting(v)){
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
-			f.updateVar(v);
+			//f.updateVar(v); // <-- Doublon dans le comptage de variables
 		}
 	}
 

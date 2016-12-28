@@ -19,7 +19,7 @@ public class DefFun{
 	}
 	
 	public void updateVar(String var){
-		if(vars.containsKey(var)){
+		if(alreadyExisting(var)){
 			vars.put(var,vars.get(var)+1);
 		} else {
 			vars.put(var,1);
@@ -31,7 +31,7 @@ public class DefFun{
 	}
 
 	public boolean alreadyExisting(String var){
-		return vars.keySet().contains(var);
+		return vars.containsKey(var);
 	}
 
 	@Override

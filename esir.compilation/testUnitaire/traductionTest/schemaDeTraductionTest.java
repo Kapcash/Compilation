@@ -9,7 +9,7 @@ import org.junit.Test;
 import sprint2.DefFun;
 import sprint2.GeneratorAddr;
 
-public class schemaDeTraductionTest {
+public class SchemaDeTraductionTest {
 
 	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestSDT_Original/";
 	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_TestSDT_Resultat/";

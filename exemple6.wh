@@ -1,0 +1,15 @@
+function fun1: 
+read A
+%
+	T := (tl A);
+	H := (hd A)
+%
+write T,H
+
+
+function fun2: 
+read A
+%
+	Result := (fun1 A)
+%
+write Result

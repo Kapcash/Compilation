@@ -221,8 +221,8 @@ public class ThreeAddressCode {
 							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CALL, tree.getHead()), "", "", ""));
 							int out = generatorAddr.funList.get(tree.getHead()).out;
 							for (int i = 0; i < out; i++) {
-								threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
 								generatorAddr.varDeclaration(f, varName);
+								threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
 								if(i<out-1)
 									varName = "Y"+nb++;
 							}

@@ -1,43 +1,50 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BinTree
+namespace BinTreeProject
 {
-    class BinTree
-    {
-        BinTree parent;
-        BinTree leftSon;
-        BinTree rightSon;
+	class Program
+	{
+		static void Main(String[] args)
+		{
+		}
 
-        public BinTree(BinTree pa, BinTree le, BinTree ri)
-        {
-            parent = pa;
-            leftSon = le;
-            rightSon = ri;
-        }
+		private void fun2(Queue<BinTree> input, Queue<BinTree> output)
+		{
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
+			BinTree A = input.Dequeue();
+			BinTree Y0;
+			inParams.Enqueue(A);
+			fun1(inParams,outParams);
+			Y0 = outParams.Dequeue();
+			BinTree Y1;
+			Y1 = outParams.Dequeue();
+			BinTree X0;
+			X0 = Y1;
+			BinTree Result;
+			Result = X0;
+			output.Enqueue(Result);
+		}
 
-        public static BinTree head(BinTree tree)
-        {
-            if (tree.leftSon != null)
-                return tree.leftSon;
-            return null;
-        }
-
-        public static BinTree tail(BinTree tree)
-        {
-            if (tree.rightSon != null)
-                return tree.rightSon;
-            return null;
-        }
-
-        public static BinTree cons(BinTree tree1, BinTree tree2)
-        {
-            if (tree1 != null && tree2 != null)
-                return new BinTree(null, tree1, tree2);
-            return null;
-        }
-    }
+		private void fun1(Queue<BinTree> input, Queue<BinTree> output)
+		{
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
+			BinTree A = input.Dequeue();
+			BinTree Y0;
+			Y0 = tl(A);
+			BinTree X0;
+			X0 = Y0;
+			BinTree T;
+			T = X0;
+			Y0 = hd(A);
+			X0 = Y0;
+			BinTree H;
+			H = X0;
+			output.Enqueue(T);
+			output.Enqueue(H);
+		}
+	}
 }
+

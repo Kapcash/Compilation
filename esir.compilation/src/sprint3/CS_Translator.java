@@ -3,6 +3,7 @@ package sprint3;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 
 import sprint2.QuadImp;
 import sprint2.ThreeAddressCode;
@@ -16,7 +17,7 @@ public class CS_Translator {
 
 	// C# GENERAL
 	private final static String imports = "using System;\nusing System.Collections.Generic;";
-	private final static String projectName = "namespace ProjectCOMP";
+	private final static String projectName = "namespace BinTreeProject";
 	private final static String className = "class Program";
 	private final static String mainFunctionName = "static void Main(String[] args)";
 	private final static String typeName = "Queue<BinTree>";
@@ -64,31 +65,42 @@ public class CS_Translator {
 	
 	public void iterateCode() throws CS_TranslatorException{
 		HashMap<String, LinkedList<QuadImp>> map = code.getCode3Addr();
-		LinkedList<QuadImp> list = map.get("L"+(map.size()-1));
+		iterateCode("L"+(map.size()-1));
+	}
+	
+	public void iterateCode(String E) throws CS_TranslatorException{
+		HashMap<String, LinkedList<QuadImp>> map = code.getCode3Addr();
+		LinkedList<QuadImp> list = map.get(E);
 		if(list==null)
 			throw new CS_TranslatorException("Erreur dans les étiquettes");
 		Iterator<QuadImp> it = list.iterator();
 		QuadImp quad = it.next();
-		funcList.add(new CS_Function(quad.getReponse()));
-		iterateList(it);
+		CS_Function f = new CS_Function(quad.getReponse());
+		funcList.add(f);
+		iterateList(it,f);
+	}
+	
+	public String findLabelOfThisFunction(String E) throws CS_TranslatorException{
+		HashMap<String, LinkedList<QuadImp>> map = code.getCode3Addr();
+		Iterator<Map.Entry<String, LinkedList<QuadImp>>> it = map.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry<String,LinkedList<QuadImp>> pair = it.next();
+	        if(pair.getValue().getFirst().getReponse().equals(E))
+	        	return (String) pair.getKey();
+	    }
+	    throw new CS_TranslatorException("Erreur dans les étiquettes");
 	}
 
-	private void iterateList(Iterator<QuadImp> it) {
+	private void iterateList(Iterator<QuadImp> it, CS_Function f) throws CS_TranslatorException {
 		while(it.hasNext()){
 			QuadImp quad = it.next();
-			CS_Function f = funcList.getLast();
 			switch (quad.getOperateur().getOpe()) {
 			case FUN:
 				funcList.add(new CS_Function(quad.getReponse()));
 				break;
 			case READ:
-				//TODO Choix de la queue expliquée => https://www.tutorialspoint.com/csharp/csharp_queue.htm
+				//Choix de la queue expliquée => https://www.tutorialspoint.com/csharp/csharp_queue.htm
 				f.write("BinTree "+quad.getReponse()+" = input.Dequeue();");
-//				int i=0;
-//				while(i<Integer.parseInt(quad.getArg1())){
-//					f.write("BinTree r"+i+" = input["+i+"];");
-//					i++;
-//				}
 				break;
 			case WRITE:
 				f.write("output.Enqueue("+quad.getReponse()+");");
@@ -102,7 +114,7 @@ public class CS_Translator {
 				f.write("if("+"true"+")");
 				f.write(lAccolade);
 				f.rightShift();
-				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator());
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(),f);
 				f.leftShift();
 				f.write(rAccolade);
 				break;
@@ -110,7 +122,7 @@ public class CS_Translator {
 				f.write("while("+"true"+")");
 				f.write(lAccolade);
 				f.rightShift();
-				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator());
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(),f);
 				f.leftShift();
 				f.write(rAccolade);
 				break;
@@ -118,7 +130,7 @@ public class CS_Translator {
 				f.write("for("+"expr"+")");
 				f.write(lAccolade);
 				f.rightShift();
-				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator());
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(),f);
 				f.leftShift();
 				f.write(rAccolade);
 				break;
@@ -131,6 +143,10 @@ public class CS_Translator {
 			//FUNCTION USE
 			case PUSH:
 				f.write("inParams.Enqueue("+quad.getArg1()+");");
+				break;
+			case CALL:
+				f.write(quad.getEtiquette()+"(inParams,outParams);");
+				iterateCode(findLabelOfThisFunction(quad.getEtiquette()));
 				break;
 			case POP:
 				f.write(quad.getArg1()+" = outParams.Dequeue();");

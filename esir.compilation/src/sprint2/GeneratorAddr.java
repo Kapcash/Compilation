@@ -47,15 +47,15 @@ import sprint3.CS_TranslatorException;
 public class GeneratorAddr {
 
 	//SETTINGS
-	private static final boolean DISPLAY_SYM_TABLE = true;
-	private static final boolean DISPLAY_THREE_ADDR_CODE = false;
-	private static final boolean DISPLAY_TRANSLATION = false;
-	private static final boolean PRINT_TRANSLATION = false;
+	private static final boolean DISPLAY_SYM_TABLE = false;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
+	private static final boolean DISPLAY_TRANSLATION = true;
+	private static final boolean PRINT_TRANSLATION = true;
 
 	//CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple4.wh";
-	private static final String OUTPUT_FILE = "../result4.whc";
+	private static final String INPUT_FILE = "../exemple6.wh";
+	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	
 	private static GeneratorAddr instance;
 
@@ -353,7 +353,7 @@ public class GeneratorAddr {
 				code3Addresses.addToExpression(OP.TL.name(),funList);
 				break;
 			case "list":
-				// TODO
+				code3Addresses.addToExpression(OP.LIST.name(),funList);
 				break;
 			default:
 				break;

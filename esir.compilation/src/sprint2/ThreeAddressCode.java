@@ -134,6 +134,8 @@ public class ThreeAddressCode {
 			}
 			else if(isUnaryOperation(head))
 				children = new ExprTree[1];
+			else if(isBinaryOperation(head))
+				children = new ExprTree[2];
 			else if(funList.containsKey(head)){
 				children = new ExprTree[funList.get(head).getIn()];
 			}else{
@@ -141,7 +143,6 @@ public class ThreeAddressCode {
 				full=true;
 			}
 		}
-		
 		public void incIndex(int treeLevel) {
 			if(this.children.length>=this.index)
 				return;
@@ -191,7 +192,7 @@ public class ThreeAddressCode {
 		}
 		
 		public static void iterate(ExprTree tree, ThreeAddressCode threeAddressCode, GeneratorAddr generatorAddr, DefFun f){
-				if(tree.simplify()){
+			if(tree.simplify()){
 					
 					String varName = "Y"+nb++;
 					generatorAddr.varDeclaration(f, varName);
@@ -201,6 +202,13 @@ public class ThreeAddressCode {
 						threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.HD, ""), varName, tree.children[0].getHead(), ""));
 					else if(OP.TL.name().equals(tree.getHead()))
 						threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.TL, ""), varName, tree.children[0].getHead(), ""));
+					else if(OP.AND.name().equals(tree.getHead())){
+						if(tree.children[1] == null){
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AND, ""), varName,tree.children[0].getHead(),""));
+						}else{
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AND, ""), varName,tree.children[1].getHead(),tree.children[0].getHead()));
+						}
+					}
 					else{
 						for (int i = 0; i < tree.children.length; i++) {
 							if(tree.children[i]==null)
@@ -272,7 +280,7 @@ public class ThreeAddressCode {
 		
 		private boolean isOperation(String s){
 			//TODO Ajouter funList pour les calls
-			return isListOperation(s)||isUnaryOperation(s);
+			return isListOperation(s)|| isUnaryOperation(s) || isBinaryOperation(s);
 		}
 		
 		private boolean isListOperation(String s){
@@ -289,6 +297,14 @@ public class ThreeAddressCode {
 			if(OP.HD.name().equals(s))
 				return true;
 			return false;
+		}
+		
+		public boolean isBinaryOperation(String s){
+			if ( OP.AND.name().equals(s) | OP.OR.name().equals(s)| OP.EQ.name().equals(s)){
+				return true;
+			}else{
+				return false;
+			}
 		}
 		
 		private boolean areChildrenFull(){

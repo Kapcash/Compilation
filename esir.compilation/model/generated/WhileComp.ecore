@@ -70,8 +70,6 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprsimple" eType="#//ExprSimple"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprAnd" eType="#//ExprAnd"
         containment="true"/>
   </eClassifiers>
@@ -97,7 +95,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprSimple2" eType="#//ExprSimple"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vars">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

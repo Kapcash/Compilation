@@ -21,7 +21,6 @@ import esir.compilation.whileComp.Function;
 import esir.compilation.whileComp.If;
 import esir.compilation.whileComp.Lexpr;
 import esir.compilation.whileComp.Nop;
-import esir.compilation.whileComp.Not;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
@@ -219,7 +218,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       }
       EObject _command_4 = c.getCommand();
       Expr _expr = ((While) _command_4).getExpr();
-      Object _compile_1 = this.compile(_expr);
+      String _compile_1 = this.compile(_expr);
       String _plus_1 = ((decal_2 + "while ") + _compile_1);
       String _plus_2 = (_plus_1 + " do\n");
       EObject _command_5 = c.getCommand();
@@ -249,7 +248,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       }
       EObject _command_7 = c.getCommand();
       Expr _expr_1 = ((For) _command_7).getExpr();
-      Object _compile_3 = this.compile(_expr_1);
+      String _compile_3 = this.compile(_expr_1);
       String _plus_6 = ((decal_3 + "for ") + _compile_3);
       String _plus_7 = (_plus_6 + " do\n");
       EObject _command_8 = c.getCommand();
@@ -279,12 +278,12 @@ public class WhileCompGenerator extends AbstractGenerator {
       }
       EObject _command_10 = c.getCommand();
       Expr _expr1 = ((Foreach) _command_10).getExpr1();
-      Object _compile_5 = this.compile(_expr1);
+      String _compile_5 = this.compile(_expr1);
       String _plus_11 = ((decal_4 + "foreach ") + _compile_5);
       String _plus_12 = (_plus_11 + " in ");
       EObject _command_11 = c.getCommand();
       Expr _expr2 = ((Foreach) _command_11).getExpr2();
-      Object _compile_6 = this.compile(_expr2);
+      String _compile_6 = this.compile(_expr2);
       String _plus_13 = (_plus_12 + _compile_6);
       String _plus_14 = (_plus_13 + " do\n");
       EObject _command_12 = c.getCommand();
@@ -318,7 +317,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       if (_notEquals) {
         EObject _command_15 = c.getCommand();
         Expr _expr_2 = ((If) _command_15).getExpr();
-        Object _compile_8 = this.compile(_expr_2);
+        String _compile_8 = this.compile(_expr_2);
         String _plus_18 = ((decal_5 + "if ") + _compile_8);
         String _plus_19 = (_plus_18 + " then\n");
         EObject _command_16 = c.getCommand();
@@ -338,7 +337,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       } else {
         EObject _command_18 = c.getCommand();
         Expr _expr_3 = ((If) _command_18).getExpr();
-        Object _compile_11 = this.compile(_expr_3);
+        String _compile_11 = this.compile(_expr_3);
         String _plus_27 = ((decal_5 + "if ") + _compile_11);
         String _plus_28 = (_plus_27 + " then\n");
         EObject _command_19 = c.getCommand();
@@ -364,7 +363,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       String _plus_1 = (_plus + " := ");
       EList<Expr> _valeurs = aff.getValeurs();
       Expr _get_1 = _valeurs.get(0);
-      Object _compile = this.compile(_get_1);
+      String _compile = this.compile(_get_1);
       return (_plus_1 + _compile);
     } else {
       EList<String> _affectations_2 = aff.getAffectations();
@@ -392,7 +391,7 @@ public class WhileCompGenerator extends AbstractGenerator {
           String _res_1 = res;
           EList<Expr> _valeurs_1 = aff.getValeurs();
           Expr _get_3 = _valeurs_1.get(i);
-          Object _compile_1 = this.compile(_get_3);
+          String _compile_1 = this.compile(_get_3);
           String _plus_3 = (_compile_1 + " ,");
           res = (_res_1 + _plus_3);
           i = (i + 1);
@@ -401,25 +400,19 @@ public class WhileCompGenerator extends AbstractGenerator {
       String _res_1 = res;
       EList<Expr> _valeurs_1 = aff.getValeurs();
       Expr _get_3 = _valeurs_1.get(i);
-      Object _compile_1 = this.compile(_get_3);
+      String _compile_1 = this.compile(_get_3);
       res = (_res_1 + _compile_1);
       return res;
     }
   }
   
-  public Object compile(final Expr expr) {
-    ExprAnd _exprAnd = expr.getExprAnd();
-    boolean _notEquals = (!Objects.equal(_exprAnd, null));
-    if (_notEquals) {
-      ExprAnd _exprAnd_1 = expr.getExprAnd();
-      return this.compile(_exprAnd_1);
-    } else {
-      ExprSimple _exprsimple = expr.getExprsimple();
-      return this.compile(_exprsimple);
-    }
+  public String compile(final Expr expr) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field exprsimple is undefined for the type Expr"
+      + "\ncompile cannot be resolved");
   }
   
-  public Object compile(final ExprAnd expr) {
+  public String compile(final ExprAnd expr) {
     ExprAnd _exprAnd = expr.getExprAnd();
     boolean _equals = Objects.equal(_exprAnd, null);
     if (_equals) {
@@ -427,7 +420,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       return this.compile(_exprOr);
     } else {
       ExprOr _exprOr_1 = expr.getExprOr();
-      Object _compile = this.compile(_exprOr_1);
+      String _compile = this.compile(_exprOr_1);
       String _plus = (_compile + " and ");
       ExprAnd _exprAnd_1 = expr.getExprAnd();
       Object _compile_1 = this.compile(_exprAnd_1);
@@ -435,7 +428,7 @@ public class WhileCompGenerator extends AbstractGenerator {
     }
   }
   
-  public Object compile(final ExprOr expr) {
+  public String compile(final ExprOr expr) {
     ExprOr _exprOr = expr.getExprOr();
     boolean _equals = Objects.equal(_exprOr, null);
     if (_equals) {
@@ -443,7 +436,7 @@ public class WhileCompGenerator extends AbstractGenerator {
       return this.compile(_exprNot);
     } else {
       ExprNot _exprNot_1 = expr.getExprNot();
-      Object _compile = this.compile(_exprNot_1);
+      String _compile = this.compile(_exprNot_1);
       String _plus = (_compile + " or ");
       ExprOr _exprOr_1 = expr.getExprOr();
       Object _compile_1 = this.compile(_exprOr_1);
@@ -451,33 +444,18 @@ public class WhileCompGenerator extends AbstractGenerator {
     }
   }
   
-  public Object compile(final ExprNot expr) {
-    Not _not = expr.getNot();
-    boolean _notEquals = (!Objects.equal(_not, null));
-    if (_notEquals) {
-      ExprEq _exprEq = expr.getExprEq();
-      Object _compile = this.compile(_exprEq);
-      return ("!" + _compile);
-    } else {
-      ExprEq _exprEq_1 = expr.getExprEq();
-      return this.compile(_exprEq_1);
-    }
+  public String compile(final ExprNot expr) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method compile(ExprEq) from the type WhileCompGenerator refers to the missing type Object"
+      + "\nThe method compile(ExprEq) from the type WhileCompGenerator refers to the missing type Object");
   }
   
   public Object compile(final ExprEq expr) {
-    Expr _expr = expr.getExpr();
-    boolean _notEquals = (!Objects.equal(_expr, null));
-    if (_notEquals) {
-      Expr _expr_1 = expr.getExpr();
-      return this.compile(_expr_1);
-    } else {
-      ExprSimple _exprSimple1 = expr.getExprSimple1();
-      String _compile = this.compile(_exprSimple1);
-      String _plus = (_compile + " =? ");
-      ExprSimple _exprSimple2 = expr.getExprSimple2();
-      String _compile_1 = this.compile(_exprSimple2);
-      return (_plus + _compile_1);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field expr is undefined for the type ExprEq"
+      + "\nThe method or field expr is undefined for the type ExprEq"
+      + "\n!= cannot be resolved"
+      + "\ncompile cannot be resolved");
   }
   
   public String compile(final ExprSimple expr) {

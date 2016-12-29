@@ -531,22 +531,13 @@ public interface WhileCompPackage extends EPackage
   int EXPR = 13;
 
   /**
-   * The feature id for the '<em><b>Exprsimple</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR__EXPRSIMPLE = 0;
-
-  /**
    * The feature id for the '<em><b>Expr And</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR__EXPR_AND = 1;
+  int EXPR__EXPR_AND = 0;
 
   /**
    * The number of structural features of the '<em>Expr</em>' class.
@@ -555,7 +546,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_FEATURE_COUNT = 2;
+  int EXPR_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link esir.compilation.whileComp.impl.ExprAndImpl <em>Expr And</em>}' class.
@@ -697,22 +688,13 @@ public interface WhileCompPackage extends EPackage
   int EXPR_EQ__EXPR_SIMPLE2 = 1;
 
   /**
-   * The feature id for the '<em><b>Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_EQ__EXPR = 2;
-
-  /**
    * The number of structural features of the '<em>Expr Eq</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_EQ_FEATURE_COUNT = 3;
+  int EXPR_EQ_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link esir.compilation.whileComp.impl.VarsImpl <em>Vars</em>}' class.
@@ -1454,17 +1436,6 @@ public interface WhileCompPackage extends EPackage
   EClass getExpr();
 
   /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.Expr#getExprsimple <em>Exprsimple</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Exprsimple</em>'.
-   * @see esir.compilation.whileComp.Expr#getExprsimple()
-   * @see #getExpr()
-   * @generated
-   */
-  EReference getExpr_Exprsimple();
-
-  /**
    * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.Expr#getExprAnd <em>Expr And</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1602,17 +1573,6 @@ public interface WhileCompPackage extends EPackage
    * @generated
    */
   EReference getExprEq_ExprSimple2();
-
-  /**
-   * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprEq#getExpr <em>Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr</em>'.
-   * @see esir.compilation.whileComp.ExprEq#getExpr()
-   * @see #getExprEq()
-   * @generated
-   */
-  EReference getExprEq_Expr();
 
   /**
    * Returns the meta object for class '{@link esir.compilation.whileComp.Vars <em>Vars</em>}'.
@@ -2246,14 +2206,6 @@ public interface WhileCompPackage extends EPackage
     EClass EXPR = eINSTANCE.getExpr();
 
     /**
-     * The meta object literal for the '<em><b>Exprsimple</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR__EXPRSIMPLE = eINSTANCE.getExpr_Exprsimple();
-
-    /**
      * The meta object literal for the '<em><b>Expr And</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2364,14 +2316,6 @@ public interface WhileCompPackage extends EPackage
      * @generated
      */
     EReference EXPR_EQ__EXPR_SIMPLE2 = eINSTANCE.getExprEq_ExprSimple2();
-
-    /**
-     * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_EQ__EXPR = eINSTANCE.getExprEq_Expr();
 
     /**
      * The meta object literal for the '{@link esir.compilation.whileComp.impl.VarsImpl <em>Vars</em>}' class.

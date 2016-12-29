@@ -693,19 +693,9 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExpr_Exprsimple()
-  {
-    return (EReference)exprEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getExpr_ExprAnd()
   {
-    return (EReference)exprEClass.getEStructuralFeatures().get(1);
+    return (EReference)exprEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -826,16 +816,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
   public EReference getExprEq_ExprSimple2()
   {
     return (EReference)exprEqEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprEq_Expr()
-  {
-    return (EReference)exprEqEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1179,7 +1159,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     createEReference(whileEClass, WHILE__COMMANDS);
 
     exprEClass = createEClass(EXPR);
-    createEReference(exprEClass, EXPR__EXPRSIMPLE);
     createEReference(exprEClass, EXPR__EXPR_AND);
 
     exprAndEClass = createEClass(EXPR_AND);
@@ -1197,7 +1176,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     exprEqEClass = createEClass(EXPR_EQ);
     createEReference(exprEqEClass, EXPR_EQ__EXPR_SIMPLE1);
     createEReference(exprEqEClass, EXPR_EQ__EXPR_SIMPLE2);
-    createEReference(exprEqEClass, EXPR_EQ__EXPR);
 
     varsEClass = createEClass(VARS);
     createEAttribute(varsEClass, VARS__VARIABLE);
@@ -1318,7 +1296,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEReference(getWhile_Commands(), this.getCommands(), null, "commands", null, 0, 1, While.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExpr_Exprsimple(), this.getExprSimple(), null, "exprsimple", null, 0, 1, Expr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExpr_ExprAnd(), this.getExprAnd(), null, "exprAnd", null, 0, 1, Expr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprAndEClass, ExprAnd.class, "ExprAnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1336,7 +1313,6 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEClass(exprEqEClass, ExprEq.class, "ExprEq", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExprEq_ExprSimple1(), this.getExprSimple(), null, "exprSimple1", null, 0, 1, ExprEq.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprEq_ExprSimple2(), this.getExprSimple(), null, "exprSimple2", null, 0, 1, ExprEq.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprEq_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprEq.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varsEClass, Vars.class, "Vars", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVars_Variable(), ecorePackage.getEString(), "variable", null, 0, 1, Vars.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

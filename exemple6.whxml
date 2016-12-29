@@ -10,19 +10,11 @@
 			</var>
 			<var>
 				<vname>T</vname>
-				<value>3</value>
-			</var>
-			<var>
-				<vname>Y0</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>X0</vname>
-				<value>1</value>
+				<value>2</value>
 			</var>
 			<var>
 				<vname>H</vname>
-				<value>3</value>
+				<value>2</value>
 			</var>
 		</vars>
 		<calls>
@@ -36,20 +28,8 @@
 				<value>2</value>
 			</var>
 			<var>
-				<vname>Y0</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>Y1</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>X0</vname>
-				<value>1</value>
-			</var>
-			<var>
 				<vname>Result</vname>
-				<value>3</value>
+				<value>2</value>
 			</var>
 		</vars>
 		<calls>

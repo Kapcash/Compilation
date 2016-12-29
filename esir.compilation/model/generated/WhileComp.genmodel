@@ -57,7 +57,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//While/commands"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Expr">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Expr/exprsimple"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//Expr/exprAnd"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//ExprAnd">
@@ -75,7 +74,6 @@
     <genClasses ecoreClass="WhileComp.ecore#//ExprEq">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprEq/exprSimple1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprEq/exprSimple2"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileComp.ecore#//ExprEq/expr"/>
     </genClasses>
     <genClasses ecoreClass="WhileComp.ecore#//Vars">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileComp.ecore#//Vars/variable"/>

@@ -1059,47 +1059,21 @@ ruleExpr returns [EObject current=null]
 }:
 	(
 		(
-			((
-				ruleExprSimple
-			)
-			)=>
-			(
-				{
-					newCompositeNode(grammarAccess.getExprAccess().getExprsimpleExprSimpleParserRuleCall_0_0());
+			{
+				newCompositeNode(grammarAccess.getExprAccess().getExprAndExprAndParserRuleCall_0());
+			}
+			lv_exprAnd_0_0=ruleExprAnd
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getExprRule());
 				}
-				lv_exprsimple_0_0=ruleExprSimple
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getExprRule());
-					}
-					set(
-						$current,
-						"exprsimple",
-						lv_exprsimple_0_0,
-						"esir.compilation.WhileComp.ExprSimple");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getExprAccess().getExprAndExprAndParserRuleCall_1_0());
-				}
-				lv_exprAnd_1_0=ruleExprAnd
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getExprRule());
-					}
-					set(
-						$current,
-						"exprAnd",
-						lv_exprAnd_1_0,
-						"esir.compilation.WhileComp.ExprAnd");
-					afterParserOrEnumRuleCall();
-				}
-			)
+				set(
+					$current,
+					"exprAnd",
+					lv_exprAnd_0_0,
+					"esir.compilation.WhileComp.ExprAnd");
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;
@@ -1121,72 +1095,11 @@ ruleExprAnd returns [EObject current=null]
 }:
 	(
 		(
-			((
-				(
-					(
-						ruleExprOr
-					)
-				)
-				'and'
-				(
-					(
-						ruleExprAnd
-					)
-				)
-			)
-			)=>
-			(
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getExprAndAccess().getExprOrExprOrParserRuleCall_0_0_0_0());
-						}
-						lv_exprOr_0_0=ruleExprOr
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getExprAndRule());
-							}
-							set(
-								$current,
-								"exprOr",
-								lv_exprOr_0_0,
-								"esir.compilation.WhileComp.ExprOr");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				otherlv_1='and'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getExprAndAccess().getAndKeyword_0_0_1());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getExprAndAccess().getExprAndExprAndParserRuleCall_0_0_2_0());
-						}
-						lv_exprAnd_2_0=ruleExprAnd
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getExprAndRule());
-							}
-							set(
-								$current,
-								"exprAnd",
-								lv_exprAnd_2_0,
-								"esir.compilation.WhileComp.ExprAnd");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-		)
-		    |
-		(
 			(
 				{
-					newCompositeNode(grammarAccess.getExprAndAccess().getExprOrExprOrParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getExprAndAccess().getExprOrExprOrParserRuleCall_0_0());
 				}
-				lv_exprOr_3_0=ruleExprOr
+				lv_exprOr_0_0=ruleExprOr
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getExprAndRule());
@@ -1194,12 +1107,37 @@ ruleExprAnd returns [EObject current=null]
 					set(
 						$current,
 						"exprOr",
-						lv_exprOr_3_0,
+						lv_exprOr_0_0,
 						"esir.compilation.WhileComp.ExprOr");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		(
+			otherlv_1='and'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getExprAndAccess().getAndKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getExprAndAccess().getExprAndExprAndParserRuleCall_1_1_0());
+					}
+					lv_exprAnd_2_0=ruleExprAnd
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getExprAndRule());
+						}
+						set(
+							$current,
+							"exprAnd",
+							lv_exprAnd_2_0,
+							"esir.compilation.WhileComp.ExprAnd");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
 	)
 ;
 
@@ -1220,72 +1158,11 @@ ruleExprOr returns [EObject current=null]
 }:
 	(
 		(
-			((
-				(
-					(
-						ruleExprNot
-					)
-				)
-				'or'
-				(
-					(
-						ruleExprOr
-					)
-				)
-			)
-			)=>
-			(
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getExprOrAccess().getExprNotExprNotParserRuleCall_0_0_0_0());
-						}
-						lv_exprNot_0_0=ruleExprNot
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getExprOrRule());
-							}
-							set(
-								$current,
-								"exprNot",
-								lv_exprNot_0_0,
-								"esir.compilation.WhileComp.ExprNot");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				otherlv_1='or'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getExprOrAccess().getOrKeyword_0_0_1());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getExprOrAccess().getExprOrExprOrParserRuleCall_0_0_2_0());
-						}
-						lv_exprOr_2_0=ruleExprOr
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getExprOrRule());
-							}
-							set(
-								$current,
-								"exprOr",
-								lv_exprOr_2_0,
-								"esir.compilation.WhileComp.ExprOr");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-		)
-		    |
-		(
 			(
 				{
-					newCompositeNode(grammarAccess.getExprOrAccess().getExprNotExprNotParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getExprOrAccess().getExprNotExprNotParserRuleCall_0_0());
 				}
-				lv_exprNot_3_0=ruleExprNot
+				lv_exprNot_0_0=ruleExprNot
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getExprOrRule());
@@ -1293,12 +1170,37 @@ ruleExprOr returns [EObject current=null]
 					set(
 						$current,
 						"exprNot",
-						lv_exprNot_3_0,
+						lv_exprNot_0_0,
 						"esir.compilation.WhileComp.ExprNot");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		(
+			otherlv_1='or'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getExprOrAccess().getOrKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getExprOrAccess().getExprOrExprOrParserRuleCall_1_1_0());
+					}
+					lv_exprOr_2_0=ruleExprOr
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getExprOrRule());
+						}
+						set(
+							$current,
+							"exprOr",
+							lv_exprOr_2_0,
+							"esir.compilation.WhileComp.ExprOr");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
 	)
 ;
 
@@ -1320,51 +1222,29 @@ ruleExprNot returns [EObject current=null]
 	(
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getExprNotAccess().getNotNotParserRuleCall_0_0_0());
+				{
+					newCompositeNode(grammarAccess.getExprNotAccess().getNotNotParserRuleCall_0_0());
+				}
+				lv_not_0_0=ruleNot
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getExprNotRule());
 					}
-					lv_not_0_0=ruleNot
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getExprNotRule());
-						}
-						set(
-							$current,
-							"not",
-							lv_not_0_0,
-							"esir.compilation.WhileComp.Not");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"not",
+						lv_not_0_0,
+						"esir.compilation.WhileComp.Not");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getExprNotAccess().getExprEqExprEqParserRuleCall_0_1_0());
-					}
-					lv_exprEq_1_0=ruleExprEq
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getExprNotRule());
-						}
-						set(
-							$current,
-							"exprEq",
-							lv_exprEq_1_0,
-							"esir.compilation.WhileComp.ExprEq");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)
-		    |
+		)?
 		(
 			(
 				{
 					newCompositeNode(grammarAccess.getExprNotAccess().getExprEqExprEqParserRuleCall_1_0());
 				}
-				lv_exprEq_2_0=ruleExprEq
+				lv_exprEq_1_0=ruleExprEq
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getExprNotRule());
@@ -1372,7 +1252,7 @@ ruleExprNot returns [EObject current=null]
 					set(
 						$current,
 						"exprEq",
-						lv_exprEq_2_0,
+						lv_exprEq_1_0,
 						"esir.compilation.WhileComp.ExprEq");
 					afterParserOrEnumRuleCall();
 				}
@@ -1399,32 +1279,32 @@ ruleExprEq returns [EObject current=null]
 	(
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getExprEqAccess().getExprSimple1ExprSimpleParserRuleCall_0_0_0());
+				{
+					newCompositeNode(grammarAccess.getExprEqAccess().getExprSimple1ExprSimpleParserRuleCall_0_0());
+				}
+				lv_exprSimple1_0_0=ruleExprSimple
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getExprEqRule());
 					}
-					lv_exprSimple1_0_0=ruleExprSimple
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getExprEqRule());
-						}
-						set(
-							$current,
-							"exprSimple1",
-							lv_exprSimple1_0_0,
-							"esir.compilation.WhileComp.ExprSimple");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"exprSimple1",
+						lv_exprSimple1_0_0,
+						"esir.compilation.WhileComp.ExprSimple");
+					afterParserOrEnumRuleCall();
+				}
 			)
+		)
+		(
 			otherlv_1='=?'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getExprEqAccess().getEqualsSignQuestionMarkKeyword_0_1());
+				newLeafNode(otherlv_1, grammarAccess.getExprEqAccess().getEqualsSignQuestionMarkKeyword_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getExprEqAccess().getExprSimple2ExprSimpleParserRuleCall_0_2_0());
+						newCompositeNode(grammarAccess.getExprEqAccess().getExprSimple2ExprSimpleParserRuleCall_1_1_0());
 					}
 					lv_exprSimple2_2_0=ruleExprSimple
 					{
@@ -1440,37 +1320,7 @@ ruleExprEq returns [EObject current=null]
 					}
 				)
 			)
-		)
-		    |
-		(
-			otherlv_3='('
-			{
-				newLeafNode(otherlv_3, grammarAccess.getExprEqAccess().getLeftParenthesisKeyword_1_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getExprEqAccess().getExprExprParserRuleCall_1_1_0());
-					}
-					lv_expr_4_0=ruleExpr
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getExprEqRule());
-						}
-						set(
-							$current,
-							"expr",
-							lv_expr_4_0,
-							"esir.compilation.WhileComp.Expr");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			otherlv_5=')'
-			{
-				newLeafNode(otherlv_5, grammarAccess.getExprEqAccess().getRightParenthesisKeyword_1_2());
-			}
-		)
+		)?
 	)
 ;
 
@@ -1966,67 +1816,11 @@ ruleLexpr returns [EObject current=null]
 }:
 	(
 		(
-			((
-				(
-					(
-						ruleExpr
-					)
-				)
-				(
-					(
-						ruleLexpr
-					)
-				)
-			)
-			)=>
-			(
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getLexprAccess().getExprExprParserRuleCall_0_0_0_0());
-						}
-						lv_expr_0_0=ruleExpr
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getLexprRule());
-							}
-							set(
-								$current,
-								"expr",
-								lv_expr_0_0,
-								"esir.compilation.WhileComp.Expr");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getLexprAccess().getLexprLexprParserRuleCall_0_0_1_0());
-						}
-						lv_lexpr_1_0=ruleLexpr
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getLexprRule());
-							}
-							set(
-								$current,
-								"lexpr",
-								lv_lexpr_1_0,
-								"esir.compilation.WhileComp.Lexpr");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-		)
-		    |
-		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLexprAccess().getExprExprParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getLexprAccess().getExprExprParserRuleCall_0_0());
 				}
-				lv_expr_2_0=ruleExpr
+				lv_expr_0_0=ruleExpr
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getLexprRule());
@@ -2034,12 +1828,31 @@ ruleLexpr returns [EObject current=null]
 					set(
 						$current,
 						"expr",
-						lv_expr_2_0,
+						lv_expr_0_0,
 						"esir.compilation.WhileComp.Expr");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLexprAccess().getLexprLexprParserRuleCall_1_0());
+				}
+				lv_lexpr_1_0=ruleLexpr
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLexprRule());
+					}
+					set(
+						$current,
+						"lexpr",
+						lv_lexpr_1_0,
+						"esir.compilation.WhileComp.Lexpr");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

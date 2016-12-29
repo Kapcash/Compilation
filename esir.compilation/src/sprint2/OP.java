@@ -14,6 +14,8 @@ public enum OP {
 	FUN, READ, WRITE,PUSH, POP,
 	//Expression
 	CONS, HD, TL, LIST,
+	//Expression booleennes
+	AND, OR, EQ, NOT,
 	//Appel de func
 	CALL
 }

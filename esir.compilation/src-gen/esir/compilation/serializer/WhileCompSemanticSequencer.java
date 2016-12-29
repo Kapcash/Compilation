@@ -238,7 +238,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ExprAnd returns ExprAnd
 	 *
 	 * Constraint:
-	 *     ((exprOr=ExprOr exprAnd=ExprAnd) | exprOr=ExprOr)
+	 *     (exprOr=ExprOr exprAnd=ExprAnd?)
 	 */
 	protected void sequence_ExprAnd(ISerializationContext context, ExprAnd semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -250,7 +250,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ExprEq returns ExprEq
 	 *
 	 * Constraint:
-	 *     ((exprSimple1=ExprSimple exprSimple2=ExprSimple) | expr=Expr)
+	 *     (exprSimple1=ExprSimple exprSimple2=ExprSimple?)
 	 */
 	protected void sequence_ExprEq(ISerializationContext context, ExprEq semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -262,7 +262,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ExprNot returns ExprNot
 	 *
 	 * Constraint:
-	 *     ((not=Not exprEq=ExprEq) | exprEq=ExprEq)
+	 *     (not=Not? exprEq=ExprEq)
 	 */
 	protected void sequence_ExprNot(ISerializationContext context, ExprNot semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -274,7 +274,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ExprOr returns ExprOr
 	 *
 	 * Constraint:
-	 *     ((exprNot=ExprNot exprOr=ExprOr) | exprNot=ExprNot)
+	 *     (exprNot=ExprNot exprOr=ExprOr?)
 	 */
 	protected void sequence_ExprOr(ISerializationContext context, ExprOr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -307,10 +307,16 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Expr returns Expr
 	 *
 	 * Constraint:
-	 *     (exprsimple=ExprSimple | exprAnd=ExprAnd)
+	 *     exprAnd=ExprAnd
 	 */
 	protected void sequence_Expr(ISerializationContext context, Expr semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.EXPR__EXPR_AND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.EXPR__EXPR_AND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExprAccess().getExprAndExprAndParserRuleCall_0(), semanticObject.getExprAnd());
+		feeder.finish();
 	}
 	
 	
@@ -427,7 +433,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Lexpr returns Lexpr
 	 *
 	 * Constraint:
-	 *     ((expr=Expr lexpr=Lexpr) | expr=Expr)
+	 *     (expr=Expr lexpr=Lexpr?)
 	 */
 	protected void sequence_Lexpr(ISerializationContext context, Lexpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

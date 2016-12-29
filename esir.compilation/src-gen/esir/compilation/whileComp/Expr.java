@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link esir.compilation.whileComp.Expr#getExprsimple <em>Exprsimple</em>}</li>
  *   <li>{@link esir.compilation.whileComp.Expr#getExprAnd <em>Expr And</em>}</li>
  * </ul>
  *
@@ -24,32 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Expr extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Exprsimple</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Exprsimple</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Exprsimple</em>' containment reference.
-   * @see #setExprsimple(ExprSimple)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExpr_Exprsimple()
-   * @model containment="true"
-   * @generated
-   */
-  ExprSimple getExprsimple();
-
-  /**
-   * Sets the value of the '{@link esir.compilation.whileComp.Expr#getExprsimple <em>Exprsimple</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exprsimple</em>' containment reference.
-   * @see #getExprsimple()
-   * @generated
-   */
-  void setExprsimple(ExprSimple value);
-
   /**
    * Returns the value of the '<em><b>Expr And</b></em>' containment reference.
    * <!-- begin-user-doc -->

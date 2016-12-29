@@ -49,13 +49,13 @@ public class GeneratorAddr {
 
 	//SETTINGS
 	private static final boolean DISPLAY_SYM_TABLE = true;
-	private static final boolean DISPLAY_THREE_ADDR_CODE = false;
+	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
 	private static final boolean DISPLAY_TRANSLATION = false;
 	private static final boolean PRINT_TRANSLATION = false;
 
 	//CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple6.wh";
+	private static final String INPUT_FILE = "../exemple.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	
 	private static GeneratorAddr instance;
@@ -322,14 +322,13 @@ public class GeneratorAddr {
 	// Expr
 	private void iterateAST(Expr exp, DefFun f) throws SymTableException{
 		//System.out.print("{");
-		code3Addresses.addLevel();
+		/*code3Addresses.addLevel();
 
 		ExprSimple expSimp = exp.getExprsimple();
 		iterateAST(expSimp, f);
 
-		code3Addresses.subLevel();
+		code3Addresses.subLevel();*/
 		//System.out.print("}");
-
 		ExprAnd exprAnd = exp.getExprAnd();
 		if (exprAnd != null)
 			iterateAST(exprAnd, f);
@@ -384,13 +383,17 @@ public class GeneratorAddr {
 
 	// ExprAnd
 	private void iterateAST(ExprAnd ex, DefFun f) throws SymTableException  {
+		code3Addresses.addLevel();
 		ExprAnd exprAnd = ex.getExprAnd();
-		if (exprAnd != null)
+		if (exprAnd != null){
+			System.out.println("on est là");
+			code3Addresses.addToExpression(OP.AND.name(),funList);
 			iterateAST(exprAnd, f);
-
-		ExprOr exprOr = ex.getExprOr();
-		if (exprOr != null)
-			iterateAST(exprOr, f);
+			iterateAST(ex.getExprOr(), f);
+		}else{
+			iterateAST(ex.getExprOr(), f);
+		}
+		code3Addresses.subLevel();
 	}
 
 	// ExprOr
@@ -419,7 +422,9 @@ public class GeneratorAddr {
 	//ExprEq
 	private void iterateAST(ExprEq ex, DefFun f) throws SymTableException {
 		iterateAST(ex.getExprSimple1(), f);
+		if(ex.getExprSimple2() != null){
 		iterateAST(ex.getExprSimple2(), f);
+		}
 	}
 
 	// Lexpr

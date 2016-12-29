@@ -76,7 +76,7 @@ public class GeneratorAddr {
 	 * Input :
 	 * + args[0] = inputFilePath
 	 * + args[1] = outputFilePath
-	 * */
+	 */
 	public static void main(String[] args){
 		GeneratorAddr main = GeneratorAddr.getInstance();
 		main.launchGeneration(args);
@@ -98,6 +98,11 @@ public class GeneratorAddr {
 		}
 	}
 
+	/** 
+	 * Input :
+	 * + args[0] = inputFilePath
+	 * + args[1] = outputFilePath
+	 */
 	public void launchGeneration(String [] args){
 		System.out.println("Compiling program.");
 		
@@ -288,28 +293,31 @@ public class GeneratorAddr {
 		EList<String> affs = affCmd.getAffectations();
 		EList<Expr> vals = affCmd.getValeurs();
 
-		if (vals.size() != affs.size())
-			throw new ThreeAddressCodeException("Affectation error !");
+		/* Todo : Count the number of given values at the right of the affectation
+		 * Could be called function with a return variable number.
+		 * Florent gave up
+		 */
+		//if (vals.size() != affs.size())
+		//	throw new ThreeAddressCodeException("Affectation error !");
 
 		Iterator<String> itAff = affs.iterator();
 		Iterator<Expr> itVal = vals.iterator();
 
 		int i = 0;
-		String val;
-		String var;
+		String val, var;
 
+		//Values to affect
 		while (itVal.hasNext()) {
 			iterateAST(itVal.next(), f); // For Expr
-			// TODO : Update val because now it is 'Expr', not only Variable
 			int k =code3Addresses.inlineExpression(this,f);
 			val = "Y"+k;
 			var = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
-			//f.updateVar(var, val);
 		}
 
 		i = 0;
+		//Affected variables
 		while (itAff.hasNext()) {
 			var = itAff.next();
 			val = VAR_PREFIXE + i++;
@@ -366,6 +374,7 @@ public class GeneratorAddr {
 		if (isSymbole(val)) { // Symbole
 			if(exprs != null){
 				f.updateCalls(val,exprs);
+				//TODO : Check return number
 			} else {
 				this.symbs.put(val, "");
 			}
@@ -497,6 +506,12 @@ public class GeneratorAddr {
 		}
 	}
 	
+	/**
+	 * Write in a file and a string an XML representation of the Symbole Table.
+	 * Used for tests
+	 * @param outputPath Output file where to write the XML format of the Symbole Table
+	 * @return An XML string representation of the Symbole table
+	 */
 	public String writeSymTableXML(String outputPath){
 		String ret = "";
 		ret += "<symboles>";
@@ -575,6 +590,15 @@ public class GeneratorAddr {
 		int ret = 1; //There is at least one Expr
 		if(exprs.getLexpr() != null){
 			ret += countExprs(exprs.getLexpr());
+		}
+		//TODO : Sale, tres sale. Mais c'est trop complique a faire propre. Tant pis. T_T
+		String fun = "";
+		try{
+			fun = exprs.getExpr().getExprAnd().getExprOr().getExprNot().getExprEq().getExprSimple1().getValeur();
+			System.out.println("FUN : "+ fun);
+		} catch (NullPointerException nullEx){/*Nothing*/}
+		if(funList.containsKey(fun)){ //
+			ret += funList.get(fun).getOut();
 		}
 		return ret;
 	}

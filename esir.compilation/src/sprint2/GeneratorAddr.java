@@ -540,21 +540,6 @@ public class GeneratorAddr {
 	}
 	
 	/**
-	 * Write the variables and symboles inside a Lexpr
-	 * @param exprs The Lexpr to write
-	 * @return Return a string representation of the Lexpr
-	 */
-//	private String writeLexpr(Lexpr exprs){
-//		String ret = "";
-//		if(exprs.getLexpr() != null){
-//			ret += exprs.getExpr().toString()+","+writeLexpr(exprs.getLexpr());
-//		} else {
-//			ret += exprs.getExpr().toString()+",";
-//		}
-//		return ret;
-//	}
-
-	/**
 	 * Check the symbols usages :
 	 *  - if called symbols are declared functions
 	 *  - if they are called with correct input number
@@ -622,7 +607,6 @@ public class GeneratorAddr {
 	void varDeclaration(DefFun f, String v) {
 		if (!f.alreadyExisting(v)){
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
-			//f.updateVar(v); // <-- Doublon dans le comptage de variables
 		}
 	}
 

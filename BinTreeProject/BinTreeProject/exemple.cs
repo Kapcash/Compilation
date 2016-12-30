@@ -21,6 +21,8 @@ namespace BinTreeProject
             input.Enqueue(D);
 
             multiplecons(input, output);
+            Console.WriteLine(output.Dequeue().DisplayTree());
+            Console.ReadLine();
         }
 
         private static void multiplecons(Queue<Tree.BinTree> input, Queue<Tree.BinTree> output)
@@ -36,8 +38,8 @@ namespace BinTreeProject
             inParams.Enqueue(C);
             inParams.Enqueue(D);
             Tree.BinTree test = list(inParams);
-            Console.WriteLine(test.DisplayTree());
-            Console.ReadLine();
+            output.Enqueue(test);
+            
         }
     }
 

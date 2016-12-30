@@ -98,6 +98,8 @@ public class ThreeAddressCode {
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException{
 		//HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
 		//ExprTree.treeToInline(tree,callOrder);
+		//System.out.println(callOrder);
+		
 		int k = 0;
 		if(tree.children.length==0){ //Simplification interdite
 			generatorAddr.code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "Y0",tree.getHead(), ""));
@@ -217,13 +219,11 @@ public class ThreeAddressCode {
 						}
 						
 						if(OP.CONS.name().equals(tree.getHead())){
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CONS, ""), "", "", ""));
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CONS, ""), varName, "", ""));
 						}
 							
 						else if(OP.LIST.name().equals(tree.getHead())){
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), "", "", ""));
-							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
+							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), varName, "", ""));
 						}
 						else if(generatorAddr.funList.containsKey(tree.getHead())){
 							threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CALL, tree.getHead()), "", "", ""));

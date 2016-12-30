@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.If#getExpr <em>Expr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.If#getCommands1 <em>Commands1</em>}</li>
  *   <li>{@link esir.compilation.whileComp.If#getCommands2 <em>Commands2</em>}</li>
  * </ul>
+ * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getIf()
  * @model

@@ -12,13 +12,16 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getExpr <em>Expr</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.ExprSimple#getN <em>N</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.ExprSimple#getEx1 <em>Ex1</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.ExprSimple#getEx2 <em>Ex2</em>}</li>
  * </ul>
+ * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple()
  * @model
@@ -129,5 +132,83 @@ public interface ExprSimple extends EObject
    * @generated
    */
   void setExpr(Expr value);
+
+  /**
+   * Returns the value of the '<em><b>N</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>N</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>N</em>' containment reference.
+   * @see #setN(Not)
+   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_N()
+   * @model containment="true"
+   * @generated
+   */
+  Not getN();
+
+  /**
+   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getN <em>N</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>N</em>' containment reference.
+   * @see #getN()
+   * @generated
+   */
+  void setN(Not value);
+
+  /**
+   * Returns the value of the '<em><b>Ex1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ex1</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ex1</em>' containment reference.
+   * @see #setEx1(Expr)
+   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Ex1()
+   * @model containment="true"
+   * @generated
+   */
+  Expr getEx1();
+
+  /**
+   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getEx1 <em>Ex1</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ex1</em>' containment reference.
+   * @see #getEx1()
+   * @generated
+   */
+  void setEx1(Expr value);
+
+  /**
+   * Returns the value of the '<em><b>Ex2</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Ex2</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ex2</em>' containment reference.
+   * @see #setEx2(Expr)
+   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Ex2()
+   * @model containment="true"
+   * @generated
+   */
+  Expr getEx2();
+
+  /**
+   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getEx2 <em>Ex2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ex2</em>' containment reference.
+   * @see #getEx2()
+   * @generated
+   */
+  void setEx2(Expr value);
 
 } // ExprSimple

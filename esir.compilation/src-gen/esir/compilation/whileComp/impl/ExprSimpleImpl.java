@@ -6,6 +6,7 @@ package esir.compilation.whileComp.impl;
 import esir.compilation.whileComp.Expr;
 import esir.compilation.whileComp.ExprSimple;
 import esir.compilation.whileComp.Lexpr;
+import esir.compilation.whileComp.Not;
 import esir.compilation.whileComp.WhileCompPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,13 +24,16 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getN <em>N</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getEx1 <em>Ex1</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getEx2 <em>Ex2</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -94,6 +98,36 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * @ordered
    */
   protected Expr expr;
+
+  /**
+   * The cached value of the '{@link #getN() <em>N</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getN()
+   * @generated
+   * @ordered
+   */
+  protected Not n;
+
+  /**
+   * The cached value of the '{@link #getEx1() <em>Ex1</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEx1()
+   * @generated
+   * @ordered
+   */
+  protected Expr ex1;
+
+  /**
+   * The cached value of the '{@link #getEx2() <em>Ex2</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEx2()
+   * @generated
+   * @ordered
+   */
+  protected Expr ex2;
 
   /**
    * <!-- begin-user-doc -->
@@ -263,6 +297,150 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
+  public Not getN()
+  {
+    return n;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetN(Not newN, NotificationChain msgs)
+  {
+    Not oldN = n;
+    n = newN;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__N, oldN, newN);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setN(Not newN)
+  {
+    if (newN != n)
+    {
+      NotificationChain msgs = null;
+      if (n != null)
+        msgs = ((InternalEObject)n).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__N, null, msgs);
+      if (newN != null)
+        msgs = ((InternalEObject)newN).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__N, null, msgs);
+      msgs = basicSetN(newN, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__N, newN, newN));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr getEx1()
+  {
+    return ex1;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetEx1(Expr newEx1, NotificationChain msgs)
+  {
+    Expr oldEx1 = ex1;
+    ex1 = newEx1;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__EX1, oldEx1, newEx1);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setEx1(Expr newEx1)
+  {
+    if (newEx1 != ex1)
+    {
+      NotificationChain msgs = null;
+      if (ex1 != null)
+        msgs = ((InternalEObject)ex1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__EX1, null, msgs);
+      if (newEx1 != null)
+        msgs = ((InternalEObject)newEx1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__EX1, null, msgs);
+      msgs = basicSetEx1(newEx1, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__EX1, newEx1, newEx1));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expr getEx2()
+  {
+    return ex2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetEx2(Expr newEx2, NotificationChain msgs)
+  {
+    Expr oldEx2 = ex2;
+    ex2 = newEx2;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__EX2, oldEx2, newEx2);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setEx2(Expr newEx2)
+  {
+    if (newEx2 != ex2)
+    {
+      NotificationChain msgs = null;
+      if (ex2 != null)
+        msgs = ((InternalEObject)ex2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__EX2, null, msgs);
+      if (newEx2 != null)
+        msgs = ((InternalEObject)newEx2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR_SIMPLE__EX2, null, msgs);
+      msgs = basicSetEx2(newEx2, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__EX2, newEx2, newEx2));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -272,6 +450,12 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return basicSetLexpr(null, msgs);
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         return basicSetExpr(null, msgs);
+      case WhileCompPackage.EXPR_SIMPLE__N:
+        return basicSetN(null, msgs);
+      case WhileCompPackage.EXPR_SIMPLE__EX1:
+        return basicSetEx1(null, msgs);
+      case WhileCompPackage.EXPR_SIMPLE__EX2:
+        return basicSetEx2(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -294,6 +478,12 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return getLexpr();
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         return getExpr();
+      case WhileCompPackage.EXPR_SIMPLE__N:
+        return getN();
+      case WhileCompPackage.EXPR_SIMPLE__EX1:
+        return getEx1();
+      case WhileCompPackage.EXPR_SIMPLE__EX2:
+        return getEx2();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -319,6 +509,15 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return;
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         setExpr((Expr)newValue);
+        return;
+      case WhileCompPackage.EXPR_SIMPLE__N:
+        setN((Not)newValue);
+        return;
+      case WhileCompPackage.EXPR_SIMPLE__EX1:
+        setEx1((Expr)newValue);
+        return;
+      case WhileCompPackage.EXPR_SIMPLE__EX2:
+        setEx2((Expr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -346,6 +545,15 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         setExpr((Expr)null);
         return;
+      case WhileCompPackage.EXPR_SIMPLE__N:
+        setN((Not)null);
+        return;
+      case WhileCompPackage.EXPR_SIMPLE__EX1:
+        setEx1((Expr)null);
+        return;
+      case WhileCompPackage.EXPR_SIMPLE__EX2:
+        setEx2((Expr)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -368,6 +576,12 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return lexpr != null;
       case WhileCompPackage.EXPR_SIMPLE__EXPR:
         return expr != null;
+      case WhileCompPackage.EXPR_SIMPLE__N:
+        return n != null;
+      case WhileCompPackage.EXPR_SIMPLE__EX1:
+        return ex1 != null;
+      case WhileCompPackage.EXPR_SIMPLE__EX2:
+        return ex2 != null;
     }
     return super.eIsSet(featureID);
   }

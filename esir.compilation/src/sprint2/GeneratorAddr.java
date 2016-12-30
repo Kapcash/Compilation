@@ -27,10 +27,10 @@ import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Definition;
 import esir.compilation.whileComp.Expr;
-import esir.compilation.whileComp.ExprAnd;
-import esir.compilation.whileComp.ExprEq;
-import esir.compilation.whileComp.ExprNot;
-import esir.compilation.whileComp.ExprOr;
+//import esir.compilation.whileComp.ExprAnd;
+//import esir.compilation.whileComp.ExprEq;
+//import esir.compilation.whileComp.ExprNot;
+//import esir.compilation.whileComp.ExprOr;
 import esir.compilation.whileComp.ExprSimple;
 import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
@@ -330,16 +330,18 @@ public class GeneratorAddr {
 	// Expr
 	private void iterateAST(Expr exp, DefFun f) throws SymTableException{
 		//System.out.print("{");
-		/*code3Addresses.addLevel();
+		/*
 
 		ExprSimple expSimp = exp.getExprsimple();
 		iterateAST(expSimp, f);
 
-		code3Addresses.subLevel();*/
+		*/
 		//System.out.print("}");
-		ExprAnd exprAnd = exp.getExprAnd();
-		if (exprAnd != null)
-			iterateAST(exprAnd, f);
+		code3Addresses.addLevel();
+		ExprSimple expS = exp.getExprsimple();
+		if (expS != null)
+			iterateAST(expS, f);
+		code3Addresses.subLevel();
 	}
 
 	// ExprSimple
@@ -348,6 +350,9 @@ public class GeneratorAddr {
 		String operator = ex.getOpe();
 		Expr exp = ex.getExpr();
 		Lexpr exprs = ex.getLexpr();
+		Expr ex1 = ex.getEx1();
+		Expr ex2 = ex.getEx2();
+		Not n = ex.getN();
 
 		if (operator != null) {
 			switch (operator) {
@@ -363,11 +368,24 @@ public class GeneratorAddr {
 			case "list":
 				code3Addresses.addToExpression(OP.LIST.name(),funList);
 				break;
+			case "and":
+				code3Addresses.addToExpression(OP.AND.name(),funList);
+				break;
+			case "or":
+				code3Addresses.addToExpression(OP.OR.name(),funList);
+				break;
+			case "=?":
+				code3Addresses.addToExpression(OP.EQ.name(),funList);
+				break;
 			default:
 				break;
 			}
 		} else {
+			if (n != null){
+				code3Addresses.addToExpression(OP.NOT.name(),funList);
+			}
 			if (val != null) {
+				System.out.println(val);
 				code3Addresses.addToExpression(val,funList);
 			}
 		}
@@ -388,53 +406,59 @@ public class GeneratorAddr {
 		if (exprs != null) { // Lexpr
 			iterateAST(exprs, f);
 		}
-	}
-
-	// ExprAnd
-	private void iterateAST(ExprAnd ex, DefFun f) throws SymTableException  {
-		code3Addresses.addLevel();
-		ExprAnd exprAnd = ex.getExprAnd();
-		if (exprAnd != null){
-			System.out.println("on est là");
-			code3Addresses.addToExpression(OP.AND.name(),funList);
-			iterateAST(exprAnd, f);
-			iterateAST(ex.getExprOr(), f);
-		}else{
-			iterateAST(ex.getExprOr(), f);
+		if (ex1 != null) { // Ex1
+			iterateAST(ex1, f);
 		}
-		code3Addresses.subLevel();
-	}
-
-	// ExprOr
-	private void iterateAST(ExprOr ex, DefFun f) throws SymTableException {
-		ExprOr exprOr = ex.getExprOr();
-		if (exprOr != null)
-			iterateAST(exprOr, f);
-
-		ExprNot exprNot = ex.getExprNot();
-		if (exprNot != null)
-			iterateAST(exprNot, f);
-	}
-
-	// ExprNot
-	private void iterateAST(ExprNot ex, DefFun f) throws SymTableException {
-		Not not = ex.getNot();
-		/* TODO
-		 * if(not != null) iterateAST(exprNot,f);
-		 */
-
-		ExprEq exprEq = ex.getExprEq();
-		if (exprEq != null)
-			iterateAST(exprEq, f);
-	}
-
-	//ExprEq
-	private void iterateAST(ExprEq ex, DefFun f) throws SymTableException {
-		iterateAST(ex.getExprSimple1(), f);
-		if(ex.getExprSimple2() != null){
-		iterateAST(ex.getExprSimple2(), f);
+		if (ex2 != null) { // Expr
+			iterateAST(ex2, f);
 		}
 	}
+
+//	// ExprAnd
+//	private void iterateAST(ExprAnd ex, DefFun f) throws SymTableException  {
+//		code3Addresses.addLevel();
+//		ExprAnd exprAnd = ex.getExprAnd();
+//		if (exprAnd != null){
+//			System.out.println("on est là");
+//			code3Addresses.addToExpression(OP.AND.name(),funList);
+//			iterateAST(exprAnd, f);
+//			iterateAST(ex.getExprOr(), f);
+//		}else{
+//			iterateAST(ex.getExprOr(), f);
+//		}
+//		code3Addresses.subLevel();
+//	}
+//
+//	// ExprOr
+//	private void iterateAST(ExprOr ex, DefFun f) throws SymTableException {
+//		ExprOr exprOr = ex.getExprOr();
+//		if (exprOr != null)
+//			iterateAST(exprOr, f);
+//
+//		ExprNot exprNot = ex.getExprNot();
+//		if (exprNot != null)
+//			iterateAST(exprNot, f);
+//	}
+//
+//	// ExprNot
+//	private void iterateAST(ExprNot ex, DefFun f) throws SymTableException {
+//		Not not = ex.getNot();
+//		/* TODO
+//		 * if(not != null) iterateAST(exprNot,f);
+//		 */
+//
+//		ExprEq exprEq = ex.getExprEq();
+//		if (exprEq != null)
+//			iterateAST(exprEq, f);
+//	}
+//
+//	//ExprEq
+//	private void iterateAST(ExprEq ex, DefFun f) throws SymTableException {
+//		iterateAST(ex.getExprSimple1(), f);
+//		if(ex.getExprSimple2() != null){
+//		iterateAST(ex.getExprSimple2(), f);
+//		}
+//	}
 
 	// Lexpr
 	private void iterateAST(Lexpr lexp, DefFun f) throws SymTableException {
@@ -594,7 +618,7 @@ public class GeneratorAddr {
 		//TODO : Sale, tres sale. Mais c'est trop complique a faire propre. Tant pis. T_T
 		String fun = "";
 		try{
-			fun = exprs.getExpr().getExprAnd().getExprOr().getExprNot().getExprEq().getExprSimple1().getValeur();
+			fun = exprs.getExpr().getExprsimple().getValeur();
 			System.out.println("FUN : "+ fun);
 		} catch (NullPointerException nullEx){/*Nothing*/}
 		if(funList.containsKey(fun)){ //

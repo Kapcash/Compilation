@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
- *   <li>{@link esir.compilation.whileComp.Expr#getExprAnd <em>Expr And</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.Expr#getExprsimple <em>Exprsimple</em>}</li>
  * </ul>
+ * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getExpr()
  * @model
@@ -24,29 +24,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface Expr extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Expr And</b></em>' containment reference.
+   * Returns the value of the '<em><b>Exprsimple</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Expr And</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Exprsimple</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr And</em>' containment reference.
-   * @see #setExprAnd(ExprAnd)
-   * @see esir.compilation.whileComp.WhileCompPackage#getExpr_ExprAnd()
+   * @return the value of the '<em>Exprsimple</em>' containment reference.
+   * @see #setExprsimple(ExprSimple)
+   * @see esir.compilation.whileComp.WhileCompPackage#getExpr_Exprsimple()
    * @model containment="true"
    * @generated
    */
-  ExprAnd getExprAnd();
+  ExprSimple getExprsimple();
 
   /**
-   * Sets the value of the '{@link esir.compilation.whileComp.Expr#getExprAnd <em>Expr And</em>}' containment reference.
+   * Sets the value of the '{@link esir.compilation.whileComp.Expr#getExprsimple <em>Exprsimple</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr And</em>' containment reference.
-   * @see #getExprAnd()
+   * @param value the new value of the '<em>Exprsimple</em>' containment reference.
+   * @see #getExprsimple()
    * @generated
    */
-  void setExprAnd(ExprAnd value);
+  void setExprsimple(ExprSimple value);
 
 } // Expr

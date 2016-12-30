@@ -7,10 +7,12 @@ import esir.compilation.whileComp.Affectation
 import esir.compilation.whileComp.Command
 import esir.compilation.whileComp.Commands
 import esir.compilation.whileComp.Expr
+/* 
 import esir.compilation.whileComp.ExprAnd
 import esir.compilation.whileComp.ExprEq
 import esir.compilation.whileComp.ExprNot
 import esir.compilation.whileComp.ExprOr
+*/
 import esir.compilation.whileComp.ExprSimple
 import esir.compilation.whileComp.For
 import esir.compilation.whileComp.Foreach
@@ -45,11 +47,11 @@ class WhileCompGenerator extends AbstractGenerator {
 	
 	def compile (Program p, int indentAll,int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){'''
 		«FOR f : p.functions»
-		«f.compile(indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff)»
+«««		«f.compile(indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff)»
 		«ENDFOR»
 		'''
 	}
-	
+	/* 
 	def compile (Function c, int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){'''
 		function «c.function»:
 		read «FOR param: c.definition.read.variable SEPARATOR ', '»«param»«ENDFOR»
@@ -254,4 +256,5 @@ class WhileCompGenerator extends AbstractGenerator {
 			return (expr.expr.compile())
 		}
 	}
+	* */
 }

@@ -69,31 +69,8 @@ While:
 ;
 
 Expr: 
-	exprAnd=ExprAnd
+	exprsimple=ExprSimple
 ;	
-
-ExprAnd:
-	exprOr=ExprOr ('and' exprAnd=ExprAnd)?
-;
-
-ExprOr:
-	exprNot=ExprNot ('or' exprOr=ExprOr)?
-;
-
-ExprNot:
-	(not=Not)? exprEq=ExprEq
-;
-
-ExprEq:
-	exprSimple1=ExprSimple ('=?' exprSimple2=ExprSimple)?
-;
-
-Vars:
-	(variable=VARIABLE ',' vars=Vars) | variable=VARIABLE
-;	
-Exprs:
-	=>(expr=Expr ',' exprs=Exprs) | expr=Expr
-;
 	
 ExprSimple:
 	valeur='nil' | valeur=VARIABLE | valeur=SYMBOL |
@@ -101,7 +78,9 @@ ExprSimple:
 	'(' ope='list' lexpr=Lexpr ')' |
 	'(' ope='hd' expr=Expr ')' |
 	'(' ope='tl' expr=Expr ')' |
-	'(' valeur=SYMBOL lexpr=Lexpr ')'
+	'(' n=Not expr=Expr ')' |
+	'(' valeur=SYMBOL lexpr=Lexpr ')'|
+	'(' ex1 = Expr ope= ('and' | 'or' | '=?') ex2=Expr ')'
 ;
 
 Lexpr:

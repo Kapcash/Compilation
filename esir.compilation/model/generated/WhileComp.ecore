@@ -70,39 +70,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprAnd" eType="#//ExprAnd"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprAnd">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprOr" eType="#//ExprOr"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprAnd" eType="#//ExprAnd"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprOr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprNot" eType="#//ExprNot"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprOr" eType="#//ExprOr"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprNot">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="not" eType="#//Not" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprEq" eType="#//ExprEq"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExprEq">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprSimple1" eType="#//ExprSimple"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprSimple2" eType="#//ExprSimple"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Vars">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vars" eType="#//Vars" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Exprs">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" eType="#//Exprs"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exprsimple" eType="#//ExprSimple"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprSimple">
@@ -111,6 +79,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="lexpr" eType="#//Lexpr"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="n" eType="#//Not" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ex1" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ex2" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Lexpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//Expr" containment="true"/>

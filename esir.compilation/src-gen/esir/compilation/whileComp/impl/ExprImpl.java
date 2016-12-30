@@ -4,7 +4,7 @@
 package esir.compilation.whileComp.impl;
 
 import esir.compilation.whileComp.Expr;
-import esir.compilation.whileComp.ExprAnd;
+import esir.compilation.whileComp.ExprSimple;
 import esir.compilation.whileComp.WhileCompPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -22,24 +22,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
- *   <li>{@link esir.compilation.whileComp.impl.ExprImpl#getExprAnd <em>Expr And</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.ExprImpl#getExprsimple <em>Exprsimple</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
 public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
 {
   /**
-   * The cached value of the '{@link #getExprAnd() <em>Expr And</em>}' containment reference.
+   * The cached value of the '{@link #getExprsimple() <em>Exprsimple</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExprAnd()
+   * @see #getExprsimple()
    * @generated
    * @ordered
    */
-  protected ExprAnd exprAnd;
+  protected ExprSimple exprsimple;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,9 +67,9 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExprAnd getExprAnd()
+  public ExprSimple getExprsimple()
   {
-    return exprAnd;
+    return exprsimple;
   }
 
   /**
@@ -77,13 +77,13 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExprAnd(ExprAnd newExprAnd, NotificationChain msgs)
+  public NotificationChain basicSetExprsimple(ExprSimple newExprsimple, NotificationChain msgs)
   {
-    ExprAnd oldExprAnd = exprAnd;
-    exprAnd = newExprAnd;
+    ExprSimple oldExprsimple = exprsimple;
+    exprsimple = newExprsimple;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR__EXPR_AND, oldExprAnd, newExprAnd);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR__EXPRSIMPLE, oldExprsimple, newExprsimple);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExprAnd(ExprAnd newExprAnd)
+  public void setExprsimple(ExprSimple newExprsimple)
   {
-    if (newExprAnd != exprAnd)
+    if (newExprsimple != exprsimple)
     {
       NotificationChain msgs = null;
-      if (exprAnd != null)
-        msgs = ((InternalEObject)exprAnd).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR__EXPR_AND, null, msgs);
-      if (newExprAnd != null)
-        msgs = ((InternalEObject)newExprAnd).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR__EXPR_AND, null, msgs);
-      msgs = basicSetExprAnd(newExprAnd, msgs);
+      if (exprsimple != null)
+        msgs = ((InternalEObject)exprsimple).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR__EXPRSIMPLE, null, msgs);
+      if (newExprsimple != null)
+        msgs = ((InternalEObject)newExprsimple).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCompPackage.EXPR__EXPRSIMPLE, null, msgs);
+      msgs = basicSetExprsimple(newExprsimple, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR__EXPR_AND, newExprAnd, newExprAnd));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR__EXPRSIMPLE, newExprsimple, newExprsimple));
   }
 
   /**
@@ -120,8 +120,8 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR__EXPR_AND:
-        return basicSetExprAnd(null, msgs);
+      case WhileCompPackage.EXPR__EXPRSIMPLE:
+        return basicSetExprsimple(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR__EXPR_AND:
-        return getExprAnd();
+      case WhileCompPackage.EXPR__EXPRSIMPLE:
+        return getExprsimple();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR__EXPR_AND:
-        setExprAnd((ExprAnd)newValue);
+      case WhileCompPackage.EXPR__EXPRSIMPLE:
+        setExprsimple((ExprSimple)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR__EXPR_AND:
-        setExprAnd((ExprAnd)null);
+      case WhileCompPackage.EXPR__EXPRSIMPLE:
+        setExprsimple((ExprSimple)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,8 +186,8 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCompPackage.EXPR__EXPR_AND:
-        return exprAnd != null;
+      case WhileCompPackage.EXPR__EXPRSIMPLE:
+        return exprsimple != null;
     }
     return super.eIsSet(featureID);
   }

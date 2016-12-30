@@ -11,12 +11,7 @@ import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Cons;
 import esir.compilation.whileComp.Definition;
 import esir.compilation.whileComp.Expr;
-import esir.compilation.whileComp.ExprAnd;
-import esir.compilation.whileComp.ExprEq;
-import esir.compilation.whileComp.ExprNot;
-import esir.compilation.whileComp.ExprOr;
 import esir.compilation.whileComp.ExprSimple;
-import esir.compilation.whileComp.Exprs;
 import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
 import esir.compilation.whileComp.Function;
@@ -30,7 +25,6 @@ import esir.compilation.whileComp.Not;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.Tl;
-import esir.compilation.whileComp.Vars;
 import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.WhileCompPackage;
 import esir.compilation.whileComp.Write;
@@ -77,23 +71,8 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case WhileCompPackage.EXPR:
 				sequence_Expr(context, (Expr) semanticObject); 
 				return; 
-			case WhileCompPackage.EXPR_AND:
-				sequence_ExprAnd(context, (ExprAnd) semanticObject); 
-				return; 
-			case WhileCompPackage.EXPR_EQ:
-				sequence_ExprEq(context, (ExprEq) semanticObject); 
-				return; 
-			case WhileCompPackage.EXPR_NOT:
-				sequence_ExprNot(context, (ExprNot) semanticObject); 
-				return; 
-			case WhileCompPackage.EXPR_OR:
-				sequence_ExprOr(context, (ExprOr) semanticObject); 
-				return; 
 			case WhileCompPackage.EXPR_SIMPLE:
 				sequence_ExprSimple(context, (ExprSimple) semanticObject); 
-				return; 
-			case WhileCompPackage.EXPRS:
-				sequence_Exprs(context, (Exprs) semanticObject); 
 				return; 
 			case WhileCompPackage.FOR:
 				sequence_For(context, (For) semanticObject); 
@@ -133,9 +112,6 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case WhileCompPackage.TL:
 				sequence_Tl(context, (Tl) semanticObject); 
-				return; 
-			case WhileCompPackage.VARS:
-				sequence_Vars(context, (Vars) semanticObject); 
 				return; 
 			case WhileCompPackage.WHILE:
 				sequence_While(context, (While) semanticObject); 
@@ -235,54 +211,6 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     ExprAnd returns ExprAnd
-	 *
-	 * Constraint:
-	 *     (exprOr=ExprOr exprAnd=ExprAnd?)
-	 */
-	protected void sequence_ExprAnd(ISerializationContext context, ExprAnd semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ExprEq returns ExprEq
-	 *
-	 * Constraint:
-	 *     (exprSimple1=ExprSimple exprSimple2=ExprSimple?)
-	 */
-	protected void sequence_ExprEq(ISerializationContext context, ExprEq semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ExprNot returns ExprNot
-	 *
-	 * Constraint:
-	 *     (not=Not? exprEq=ExprEq)
-	 */
-	protected void sequence_ExprNot(ISerializationContext context, ExprNot semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ExprOr returns ExprOr
-	 *
-	 * Constraint:
-	 *     (exprNot=ExprNot exprOr=ExprOr?)
-	 */
-	protected void sequence_ExprOr(ISerializationContext context, ExprOr semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     ExprSimple returns ExprSimple
 	 *
 	 * Constraint:
@@ -294,7 +222,9 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         (ope='list' lexpr=Lexpr) | 
 	 *         (ope='hd' expr=Expr) | 
 	 *         (ope='tl' expr=Expr) | 
-	 *         (valeur=SYMBOL lexpr=Lexpr)
+	 *         (n=Not expr=Expr) | 
+	 *         (valeur=SYMBOL lexpr=Lexpr) | 
+	 *         (ex1=Expr (ope='and' | ope='or' | ope='=?') ex2=Expr)
 	 *     )
 	 */
 	protected void sequence_ExprSimple(ISerializationContext context, ExprSimple semanticObject) {
@@ -307,28 +237,16 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Expr returns Expr
 	 *
 	 * Constraint:
-	 *     exprAnd=ExprAnd
+	 *     exprsimple=ExprSimple
 	 */
 	protected void sequence_Expr(ISerializationContext context, Expr semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.EXPR__EXPR_AND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.EXPR__EXPR_AND));
+			if (transientValues.isValueTransient(semanticObject, WhileCompPackage.Literals.EXPR__EXPRSIMPLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCompPackage.Literals.EXPR__EXPRSIMPLE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getExprAccess().getExprAndExprAndParserRuleCall_0(), semanticObject.getExprAnd());
+		feeder.accept(grammarAccess.getExprAccess().getExprsimpleExprSimpleParserRuleCall_0(), semanticObject.getExprsimple());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Exprs returns Exprs
-	 *
-	 * Constraint:
-	 *     ((expr=Expr exprs=Exprs) | expr=Expr)
-	 */
-	protected void sequence_Exprs(ISerializationContext context, Exprs semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -551,18 +469,6 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTlAccess().getTlTlKeyword_0(), semanticObject.getTl());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Vars returns Vars
-	 *
-	 * Constraint:
-	 *     ((variable=VARIABLE vars=Vars) | variable=VARIABLE)
-	 */
-	protected void sequence_Vars(ISerializationContext context, Vars semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

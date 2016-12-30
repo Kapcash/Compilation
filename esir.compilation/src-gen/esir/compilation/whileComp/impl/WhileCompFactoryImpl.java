@@ -79,12 +79,6 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
       case WhileCompPackage.FOR: return createFor();
       case WhileCompPackage.WHILE: return createWhile();
       case WhileCompPackage.EXPR: return createExpr();
-      case WhileCompPackage.EXPR_AND: return createExprAnd();
-      case WhileCompPackage.EXPR_OR: return createExprOr();
-      case WhileCompPackage.EXPR_NOT: return createExprNot();
-      case WhileCompPackage.EXPR_EQ: return createExprEq();
-      case WhileCompPackage.VARS: return createVars();
-      case WhileCompPackage.EXPRS: return createExprs();
       case WhileCompPackage.EXPR_SIMPLE: return createExprSimple();
       case WhileCompPackage.LEXPR: return createLexpr();
       case WhileCompPackage.NOT: return createNot();
@@ -250,72 +244,6 @@ public class WhileCompFactoryImpl extends EFactoryImpl implements WhileCompFacto
   {
     ExprImpl expr = new ExprImpl();
     return expr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprAnd createExprAnd()
-  {
-    ExprAndImpl exprAnd = new ExprAndImpl();
-    return exprAnd;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprOr createExprOr()
-  {
-    ExprOrImpl exprOr = new ExprOrImpl();
-    return exprOr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprNot createExprNot()
-  {
-    ExprNotImpl exprNot = new ExprNotImpl();
-    return exprNot;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ExprEq createExprEq()
-  {
-    ExprEqImpl exprEq = new ExprEqImpl();
-    return exprEq;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Vars createVars()
-  {
-    VarsImpl vars = new VarsImpl();
-    return vars;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Exprs createExprs()
-  {
-    ExprsImpl exprs = new ExprsImpl();
-    return exprs;
   }
 
   /**

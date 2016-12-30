@@ -146,36 +146,6 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
         return createExprAdapter();
       }
       @Override
-      public Adapter caseExprAnd(ExprAnd object)
-      {
-        return createExprAndAdapter();
-      }
-      @Override
-      public Adapter caseExprOr(ExprOr object)
-      {
-        return createExprOrAdapter();
-      }
-      @Override
-      public Adapter caseExprNot(ExprNot object)
-      {
-        return createExprNotAdapter();
-      }
-      @Override
-      public Adapter caseExprEq(ExprEq object)
-      {
-        return createExprEqAdapter();
-      }
-      @Override
-      public Adapter caseVars(Vars object)
-      {
-        return createVarsAdapter();
-      }
-      @Override
-      public Adapter caseExprs(Exprs object)
-      {
-        return createExprsAdapter();
-      }
-      @Override
       public Adapter caseExprSimple(ExprSimple object)
       {
         return createExprSimpleAdapter();
@@ -443,96 +413,6 @@ public class WhileCompAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link esir.compilation.whileComp.ExprAnd <em>Expr And</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see esir.compilation.whileComp.ExprAnd
-   * @generated
-   */
-  public Adapter createExprAndAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link esir.compilation.whileComp.ExprOr <em>Expr Or</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see esir.compilation.whileComp.ExprOr
-   * @generated
-   */
-  public Adapter createExprOrAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link esir.compilation.whileComp.ExprNot <em>Expr Not</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see esir.compilation.whileComp.ExprNot
-   * @generated
-   */
-  public Adapter createExprNotAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link esir.compilation.whileComp.ExprEq <em>Expr Eq</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see esir.compilation.whileComp.ExprEq
-   * @generated
-   */
-  public Adapter createExprEqAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link esir.compilation.whileComp.Vars <em>Vars</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see esir.compilation.whileComp.Vars
-   * @generated
-   */
-  public Adapter createVarsAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link esir.compilation.whileComp.Exprs <em>Exprs</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see esir.compilation.whileComp.Exprs
-   * @generated
-   */
-  public Adapter createExprsAdapter()
   {
     return null;
   }

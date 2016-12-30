@@ -1,7 +1,6 @@
 function symboles: 
 read A ,B ,C
 %
-	G := (A and (B and (C and (D or E))));
-	J := (! L)
+	nop
 %
 write A ,B

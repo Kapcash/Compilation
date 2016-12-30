@@ -6,34 +6,14 @@
 		<vars>
 			<var>
 				<vname>A</vname>
-				<value>3</value>
-			</var>
-			<var>
-				<vname>B</vname>
-				<value>3</value>
-			</var>
-			<var>
-				<vname>C</vname>
 				<value>2</value>
 			</var>
 			<var>
-				<vname>D</vname>
-				<value>1</value>
+				<vname>B</vname>
+				<value>2</value>
 			</var>
 			<var>
-				<vname>E</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>G</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>J</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>L</vname>
+				<vname>C</vname>
 				<value>1</value>
 			</var>
 		</vars>

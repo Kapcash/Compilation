@@ -2,35 +2,15 @@
 </symboles>
 <functions>
 	<function>
-		<name>symboles</name>
+		<name>affect1Test</name>
 		<vars>
 			<var>
 				<vname>A</vname>
-				<value>2</value>
+				<value>3</value>
 			</var>
 			<var>
 				<vname>B</vname>
 				<value>2</value>
-			</var>
-			<var>
-				<vname>C</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>G</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>M</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>N</vname>
-				<value>1</value>
-			</var>
-			<var>
-				<vname>O</vname>
-				<value>1</value>
 			</var>
 		</vars>
 		<calls>

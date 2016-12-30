@@ -55,4 +55,49 @@ public class Quadruplet<O, R, A1, A2> {
 		return "<" + operateur + ", " + reponse + ", " + arg1 + ", " + arg2 + ">";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((arg1 == null) ? 0 : arg1.hashCode());
+		result = prime * result + ((arg2 == null) ? 0 : arg2.hashCode());
+		result = prime * result + ((operateur == null) ? 0 : operateur.hashCode());
+		result = prime * result + ((reponse == null) ? 0 : reponse.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Quadruplet other = (Quadruplet) obj;
+		if (arg1 == null) {
+			if (other.arg1 != null)
+				return false;
+		} else if (!arg1.equals(other.arg1))
+			return false;
+		if (arg2 == null) {
+			if (other.arg2 != null)
+				return false;
+		} else if (!arg2.equals(other.arg2))
+			return false;
+		if (operateur == null) {
+			if (other.operateur != null)
+				return false;
+		} else if (!operateur.equals(other.operateur))
+			return false;
+		if (reponse == null) {
+			if (other.reponse != null)
+				return false;
+		} else if (!reponse.equals(other.reponse))
+			return false;
+		return true;
+	}
+	
+	
+
 }

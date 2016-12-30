@@ -1,0 +1,6 @@
+function affect1Test: 
+read A, B
+%
+	A:=B
+%
+write A

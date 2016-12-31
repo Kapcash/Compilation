@@ -2,12 +2,14 @@ package traductionTest;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.junit.Test;
 
 import sprint2.GeneratorAddr;
+import sprint2.OP;
 import sprint2.QuadImp;
 import sprint2.ThreeAddressCode;
 import utilitaires.Utilitaires;
@@ -49,16 +51,89 @@ public class Code3AdressesTests {
 		
 		ThreeAddressCode threeAddressCode = tds.getCode3Addresses();
 		HashMap<String, LinkedList<QuadImp>> quartet3Adresses = threeAddressCode.getCode3Addr();
-		
-
 
 		assertTrue(true);
 	}
 	
 	@Test
+	public void nbEtiquette0Test() {
+		verifNbEtiquette("0_NopTest");
+	}
+	
+	@Test
 	public void nbEtiquette1Test() {
-		args[0] = origineFilePath+"nomProg.wh";
-		args[1] = resultFilePath+"nomProg.cs";
+		verifNbEtiquette("1_Affectation1Test");
+	}
+	
+	@Test
+	public void nbEtiquette2Test() {
+		verifNbEtiquette("2_ConsTest");
+	}
+	
+	@Test
+	public void nbEtiquette3Test() {
+		verifNbEtiquette("3_ListTest");
+	}
+	
+	@Test
+	public void nbEtiquette4Test() {
+		verifNbEtiquette("4_HdTest");
+	}
+	
+	@Test
+	public void nbEtiquette5Test() {
+		verifNbEtiquette("5_TlTest");
+	}
+	
+	@Test
+	public void nbEtiquette6Test() {
+		verifNbEtiquette("6_IfTest");
+	}
+	
+	@Test
+	public void nbEtiquette7Test() {
+		verifNbEtiquette("7_WhileTest");
+	}
+	
+	@Test
+	public void nbEtiquette8Test() {
+		verifNbEtiquette("8_ForTest");
+	}
+	
+	@Test
+	public void nbEtiquette9Test() {
+		verifNbEtiquette("exemple");
+	}
+	
+	@Test
+	public void nbEtiquette10Test() {
+		verifNbEtiquette("exemple2");
+	}
+	
+	@Test
+	public void nbEtiquette11Test() {
+		verifNbEtiquette("exemple3");
+	}
+	
+	@Test
+	public void nbEtiquette12Test() {
+		verifNbEtiquette("exemple4");
+	}
+	
+	@Test
+	public void nbEtiquette13Test() {
+		verifNbEtiquette("exemple5");
+	}
+	
+	@Test
+	public void nbEtiquette14Test() {
+		verifNbEtiquette("exemple6");
+	}
+	
+	/*Utilitaires*/
+	public void verifNbEtiquette(String nomProgSansExtension) {
+		args[0] = origineFilePath+nomProgSansExtension+".wh";
+		args[1] = resultFilePath+nomProgSansExtension+".cs";
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
 		
@@ -66,7 +141,22 @@ public class Code3AdressesTests {
 		HashMap<String, LinkedList<QuadImp>> mapEtiquetteQuartet3Adresses = threeAddressCode.getCode3Addr();
 		int nbEtiquette = mapEtiquetteQuartet3Adresses.size();
 		
-		int nbEtiquetteAttendu = 1;
+		int nbEtiquetteAttendu = 0;
+		
+		Collection<LinkedList<QuadImp>> listDeQuadrupletList = mapEtiquetteQuartet3Adresses.values();
+		for (LinkedList<QuadImp> quadruplets : listDeQuadrupletList){
+			for (QuadImp quadImp : quadruplets){
+				if (quadImp.getOperateur().getOpe().equals(OP.FUN)){
+					nbEtiquetteAttendu++;
+					continue;
+				}
+				if (quadImp.getOperateur().getOpe().equals(OP.WHILE)){
+					nbEtiquetteAttendu++;
+					continue;
+				}
+			}
+		}
+		
 		assertTrue(Utilitaires.printErr("Le nombre d'étiquette généré est de "+nbEtiquette+" au lieu de "+nbEtiquetteAttendu),
 				nbEtiquette == nbEtiquetteAttendu);
 	}

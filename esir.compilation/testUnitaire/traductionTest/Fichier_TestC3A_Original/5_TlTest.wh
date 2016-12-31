@@ -1,0 +1,6 @@
+function nopTest: 
+read A
+%
+	B := (tl A)
+%
+write B

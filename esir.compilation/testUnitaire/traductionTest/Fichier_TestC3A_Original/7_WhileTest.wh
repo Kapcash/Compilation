@@ -1,0 +1,9 @@
+function nopTest: 
+read A
+%
+	while nil do
+		B := A
+		nop
+	od
+%
+write D

@@ -1,0 +1,6 @@
+function symboles: 
+read A ,B ,C
+%
+	nop
+%
+write A ,B

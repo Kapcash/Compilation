@@ -1,0 +1,6 @@
+function consTest: 
+read A, B, C
+%
+	A := (cons B C)
+%
+write A

@@ -2,10 +2,14 @@
 </symboles>
 <functions>
 	<function>
-		<name>nopTest</name>
+		<name>forTest</name>
 		<vars>
 			<var>
 				<vname>A</vname>
+				<value>2</value>
+			</var>
+			<var>
+				<vname>B</vname>
 				<value>2</value>
 			</var>
 		</vars>

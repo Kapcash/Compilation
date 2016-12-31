@@ -1,4 +1,4 @@
-function nopTest: 
+function hdTest: 
 read A
 %
 	B := (hd A)

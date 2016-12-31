@@ -1,0 +1,65 @@
+function affect1Test: 
+read A, B
+%
+	A:=B
+%
+write A
+
+function consTest: 
+read A, B, C
+%
+	A := (cons B C)
+%
+write A
+
+function listTest: 
+read A, B, C, D
+%
+	A := (list B C D)
+%
+write A
+
+function hdTest: 
+read A
+%
+	B := (hd A)
+%
+write B
+
+function tlTest: 
+read A
+%
+	B := (tl A)
+%
+write B
+
+function ifTest: 
+read A
+%
+	if nil then
+		nop
+	else
+		nop
+	fi
+%
+write A
+
+function whileTest: 
+read A
+%
+	while nil do
+		B := A
+		nop
+	od
+%
+write D
+
+function forTest: 
+read A
+%
+	for nil do
+		B := A
+		nop
+	od
+%
+write B

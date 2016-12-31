@@ -1,4 +1,4 @@
-function nopTest: 
+function ifTest: 
 read A
 %
 	if nil then

@@ -1,4 +1,4 @@
-function nopTest: 
+function listTest: 
 read A, B, C, D
 %
 	A := (list B C D)

@@ -1,8 +1,8 @@
-function nopTest: 
+function whileTest: 
 read A
 %
 	while nil do
-		B := A
+		B := A ;
 		nop
 	od
 %

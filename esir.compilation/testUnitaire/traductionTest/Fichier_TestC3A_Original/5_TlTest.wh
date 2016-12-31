@@ -1,4 +1,4 @@
-function nopTest: 
+function tlTest: 
 read A
 %
 	B := (tl A)

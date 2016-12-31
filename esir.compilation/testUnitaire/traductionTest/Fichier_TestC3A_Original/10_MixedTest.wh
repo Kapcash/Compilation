@@ -1,0 +1,18 @@
+function mixedTest: 
+read A
+%
+	if A then
+		while nil do
+			B := A ;
+			nop
+		od
+	else
+		for nil do
+			B := A ;
+			nop
+		od
+	fi ;
+	
+	A := (list (tl B) (hd C) D)
+%
+write B

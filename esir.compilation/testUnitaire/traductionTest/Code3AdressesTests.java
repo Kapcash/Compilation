@@ -66,6 +66,11 @@ public class Code3AdressesTests {
 	}
 	
 	@Test
+	public void nbEtiquette1BisTest() {
+		verifNbEtiquette("1_Affectation2Test");
+	}
+	
+	@Test
 	public void nbEtiquette2Test() {
 		verifNbEtiquette("2_ConsTest");
 	}
@@ -102,31 +107,41 @@ public class Code3AdressesTests {
 	
 	@Test
 	public void nbEtiquette9Test() {
-		verifNbEtiquette("exemple");
+		verifNbEtiquette("9_FunMultTest");
 	}
 	
 	@Test
 	public void nbEtiquette10Test() {
-		verifNbEtiquette("exemple2");
+		verifNbEtiquette("10_MixedTest");
 	}
 	
 	@Test
 	public void nbEtiquette11Test() {
-		verifNbEtiquette("exemple3");
+		verifNbEtiquette("exemple");
 	}
 	
 	@Test
 	public void nbEtiquette12Test() {
-		verifNbEtiquette("exemple4");
+		verifNbEtiquette("exemple2");
 	}
 	
 	@Test
 	public void nbEtiquette13Test() {
-		verifNbEtiquette("exemple5");
+		verifNbEtiquette("exemple3");
 	}
 	
 	@Test
 	public void nbEtiquette14Test() {
+		verifNbEtiquette("exemple4");
+	}
+	
+	@Test
+	public void nbEtiquette15Test() {
+		verifNbEtiquette("exemple5");
+	}
+	
+	@Test
+	public void nbEtiquette16Test() {
 		verifNbEtiquette("exemple6");
 	}
 	

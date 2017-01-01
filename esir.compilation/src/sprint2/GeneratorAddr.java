@@ -51,7 +51,7 @@ public class GeneratorAddr {
 	// SETTINGS
 	private static final boolean DISPLAY_SYM_TABLE = true;
 	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
-	private static final boolean DISPLAY_TRANSLATION = false;
+	private static final boolean DISPLAY_TRANSLATION = true;
 	private static final boolean PRINT_TRANSLATION = false;
 
 	// CONST
@@ -474,12 +474,14 @@ public class GeneratorAddr {
 
 	// While
 	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		String etiquetteCond = code3Addresses.getEtiquette();
+		code3Addresses.nouvelleEtiquette();
 		iterateAST(whCmd.getExpr(), f);
 		int k = code3Addresses.inlineExpression(this, f);
 		String expr = "Y" + k;
+		code3Addresses.finEtiquette();
 
-		code3Addresses
-				.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, code3Addresses.getEtiquette()), "", expr, ""));
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getEtiquette(), ""));
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds, f);
@@ -502,19 +504,27 @@ public class GeneratorAddr {
 
 	// If
 	private void iterateAST(If ifCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, code3Addresses.getFutureEtiquette()),
-				ifCmd.getExpr().toString(), "", "");
+		String etiquetteCond = code3Addresses.getEtiquette();
+		code3Addresses.nouvelleEtiquette();
+		iterateAST(ifCmd.getExpr(), f);
+		int k = code3Addresses.inlineExpression(this, f);
+		code3Addresses.finEtiquette();
+		
+		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond),
+				"", code3Addresses.getEtiquette(), code3Addresses.getFutureEtiquette());
 		code3Addresses.addIn3Addr(q);
 		// Then
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
 		iterateAST(cmds1, f);
-		code3Addresses.finEtiquette();
-		q.setArg2(code3Addresses.getFutureEtiquette());
+		//q.setArg2(code3Addresses.getFutureEtiquette());
 		// Else
-		code3Addresses.nouvelleEtiquette();
 		Commands cmds2 = ifCmd.getCommands2();
+		if(cmds2 != null){
+		code3Addresses.finEtiquette();
+		code3Addresses.nouvelleEtiquette();
 		iterateAST(cmds2, f);
+		}
 	}
 
 	// TOOLS //

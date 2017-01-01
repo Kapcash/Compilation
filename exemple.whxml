@@ -2,8 +2,12 @@
 </symboles>
 <functions>
 	<function>
-		<name>forTest</name>
+		<name>symboles</name>
 		<vars>
+			<var>
+				<vname>P</vname>
+				<value>1</value>
+			</var>
 			<var>
 				<vname>A</vname>
 				<value>2</value>
@@ -11,6 +15,38 @@
 			<var>
 				<vname>B</vname>
 				<value>2</value>
+			</var>
+			<var>
+				<vname>C</vname>
+				<value>1</value>
+			</var>
+			<var>
+				<vname>G</vname>
+				<value>2</value>
+			</var>
+			<var>
+				<vname>H</vname>
+				<value>1</value>
+			</var>
+			<var>
+				<vname>K</vname>
+				<value>1</value>
+			</var>
+			<var>
+				<vname>L</vname>
+				<value>1</value>
+			</var>
+			<var>
+				<vname>M</vname>
+				<value>1</value>
+			</var>
+			<var>
+				<vname>N</vname>
+				<value>1</value>
+			</var>
+			<var>
+				<vname>O</vname>
+				<value>1</value>
 			</var>
 		</vars>
 		<calls>

@@ -160,17 +160,26 @@ public class CS_Translator {
 				
 			// LOOPS
 			case IF:
-				f.write("if("+"true"+")");
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(),f);
+				f.write("if(Tree.isTrue("+code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()+"))");
 				f.write(lAccolade);
 				f.rightShift();
-				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(),f);
+				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(),f);
 				f.leftShift();
+				if(!code.getCode3Addr().get(quad.getArg2()).equals("")){
+					f.write(rAccolade+"else"+lAccolade);
+					f.rightShift();
+					iterateList(code.getCode3Addr().get(quad.getArg2()).iterator(),f);
+					f.leftShift();
+				}
 				f.write(rAccolade);
 				break;
 			case WHILE:
-				f.write("while("+"true"+")");
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(),f);
+				f.write("while(Tree.isTrue("+code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()+"))");
 				f.write(lAccolade);
 				f.rightShift();
+				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(),f);
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(),f);
 				f.leftShift();
 				f.write(rAccolade);
@@ -188,6 +197,15 @@ public class CS_Translator {
 				break;
 			case AFF:
 				f.write(quad.getReponse()+" = "+quad.getArg1()+";");
+				break;
+			case AND:
+				f.write(quad.getReponse() + " = Tree.evaluate(\"AND\","+quad.getArg1()+","+quad.getArg2()+");");
+				break;
+			case OR:
+				f.write(quad.getReponse() + " = Tree.evaluate(\"OR\","+quad.getArg1()+","+quad.getArg2()+");");
+				break;
+			case EQ:
+				f.write(quad.getReponse() + " = Tree.evaluate(\"EQ\","+quad.getArg1()+","+quad.getArg2()+");");
 				break;
 			//FUNCTION USE
 			case PUSH:

@@ -8,7 +8,9 @@ read A ,B ,C
 	nop
 	fi;
 	while (H and G) do
+		while Cond do
 		nop
+		od
 	od
 %
 write A ,B

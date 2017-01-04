@@ -47,11 +47,11 @@ class WhileCompGenerator extends AbstractGenerator {
 	
 	def compile (Program p, int indentAll,int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){'''
 		«FOR f : p.functions»
-«««		«f.compile(indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff)»
+		«f.compile(indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff)»
 		«ENDFOR»
 		'''
 	}
-	/* 
+	
 	def compile (Function c, int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){'''
 		function «c.function»:
 		read «FOR param: c.definition.read.variable SEPARATOR ', '»«param»«ENDFOR»
@@ -192,47 +192,14 @@ class WhileCompGenerator extends AbstractGenerator {
 	}
 	
 	def compile(Expr expr){
-	if (expr.exprAnd != null){
-			return (expr.exprAnd.compile)
-		}else{
-			return (expr.exprsimple.compile)
-		}
-	}
-	
-	def compile(ExprAnd expr){
-	if (expr.exprAnd == null){
-			return (expr.exprOr.compile)
-		}else{
-			return (expr.exprOr.compile + " and " + expr.exprAnd.compile)
-		}
-	}
-	
-	def compile(ExprOr expr){
-		if (expr.exprOr == null){
-			return (expr.exprNot.compile)
-		}else{
-			return (expr.exprNot.compile + " or " + expr.exprOr.compile)
-		}
-	}
-	
-	def compile(ExprNot expr){
-		if (expr.not != null){
-			return ("!" + expr.exprEq.compile)
-		}else{
-			return (expr.exprEq.compile)
-		}
-	}
-	
-	def compile(ExprEq expr){
-		if (expr.expr != null){
-			return (expr.expr.compile())
-		}else{
-			return (expr.exprSimple1.compile + " =? " +expr.exprSimple2.compile)
-		}
+			return (expr.exprsimple.compile);
 	}
 	
 	def compile(ExprSimple expr){
 		var ret=""
+		if(expr.ex1 != null){
+			ret += "(" + expr.ex1.compile + " "+ expr.ope + " "+ expr.ex2.compile +")";
+		}else{
 		if(expr.lexpr != null){
 			if(expr.valeur != null){
 				ret+= "("+expr.valeur+" "+expr.lexpr.compile+")"
@@ -245,6 +212,7 @@ class WhileCompGenerator extends AbstractGenerator {
 		}
 		else{
 			ret=expr.valeur
+			}
 		}
 		return ret
 	}
@@ -256,5 +224,5 @@ class WhileCompGenerator extends AbstractGenerator {
 			return (expr.expr.compile())
 		}
 	}
-	* */
+	
 }

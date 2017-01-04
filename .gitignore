@@ -178,3 +178,4 @@ org.xtext.compilation/xtend-gen/org/xtext/compilation/generator/.WhileCompGenera
 org.xtext.compilation/xtend-gen/org/xtext/compilation/scoping/.WhileCompScopeProvider.java._trace
 org.xtext.compilation/xtend-gen/org/xtext/compilation/validation/.WhileCompValidator.java._trace
 C# Project/ProjectCOMP/ProjectCOMP/obj/
+BinTreeProject/BinTreeProject/obj/Debug/BinTreeProject.csproj.FileListAbsolute.txt

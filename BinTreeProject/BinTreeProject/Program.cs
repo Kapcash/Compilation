@@ -1,154 +1,68 @@
 using System;
 using System.Collections.Generic;
 
-<<<<<<< HEAD
-namespace Tree
-{
-    class BinTree
-    {
-        String data;
-        BinTree leftSon;
-        BinTree rightSon;
 
-        public BinTree(String da, BinTree le, BinTree ri)
-        {
-            data = da;
-            leftSon = le;
-            rightSon = ri;
-        }
-
-        public BinTree getLeftSon()
-        {
-            return leftSon;
-        }
-
-        public BinTree getRightSon()
-        {
-            return rightSon;
-        }
-
-        public void setLeftSon(BinTree tree)
-        {
-            leftSon = tree;
-        }
-
-        public void setRightSon(BinTree tree)
-        {
-            rightSon = tree;
-        }
-
-        public static BinTree head(BinTree tree)
-        {
-            if (tree.leftSon != null)
-                return tree.leftSon;
-            return null;
-        }
-
-        public static BinTree tail(BinTree tree)
-        {
-            if (tree.rightSon != null)
-                return tree.rightSon;
-            return null;
-        }
-
-        public static BinTree cons(Queue<BinTree> inParams)
-        {
-            if (inParams != null)
-            {
-                BinTree tree = inParams.Dequeue();
-                if (inParams.Count() == 0)
-                {
-                    return tree;
-                }
-                else
-                {
-                    return new BinTree("noeud", tree, cons(inParams));
-                }
-                
-            }
-
-            return null;
-        }
-
-        public static BinTree list(Queue<BinTree> inParams)
-        {
-            if (inParams != null)
-            {
-                BinTree tree = inParams.Dequeue();
-                if (inParams.Count() == 0)
-                {
-                    Console.WriteLine("okay");
-                    return new BinTree("noeud", tree, new BinTree("nil", null, null));
-                }
-                else
-                {
-                    return new BinTree("noeud", tree, list(inParams));
-                }
-
-            }
-
-            return null;
-
-        }
-
-        public String DisplayTree()
-        { 
-            if(this.leftSon == null && this.rightSon == null)
-            {
-                return this.data;
-            }
-            else
-            {
-               return "("+this.data+" , "+this.leftSon.DisplayTree()+" , "+this.rightSon.DisplayTree()+")";
-            }
-        }
-    }
-=======
 namespace BinTreeProject
 {
 	class Program
 	{
-		static void Main(String[] args)
-		{
-		}
 
-		private void fun2(Queue<BinTree> input, Queue<BinTree> output)
+		private void symboles(Queue<Tree.BinTree> input, Queue<Tree.BinTree> output)
 		{
-			Queue<BinTree> inParams = new Queue<BinTree>();
-			Queue<BinTree> outParams = new Queue<BinTree>();
-			BinTree A = input.Dequeue();
-			BinTree Y0;
-			inParams.Enqueue(A);
-			fun1(inParams,outParams);
-			Y0 = outParams.Dequeue();
-			BinTree Y1;
-			Y1 = outParams.Dequeue();
-			BinTree X0;
-			X0 = Y1;
-			BinTree Result;
-			Result = X0;
-			output.Enqueue(Result);
+			Queue<Tree.BinTree> inParams = new Queue<Tree.BinTree>();
+			Queue<Tree.BinTree> outParams = new Queue<Tree.BinTree>();
+			Tree.BinTree A = input.Dequeue();
+			Tree.BinTree B = input.Dequeue();
+			Tree.BinTree C = input.Dequeue();
+			Tree.BinTree M;
+			Tree.BinTree N;
+			Tree.BinTree O;
+			Tree.BinTree P;
+			Tree.BinTree Y0;
+			Y0 = Tree.evaluate("AND",O,P);
+			Tree.BinTree Y1;
+			Y1 = Tree.evaluate("AND",N,Y0);
+			Tree.BinTree Y2;
+			Y2 = Tree.evaluate("AND",M,Y1);
+			Tree.BinTree X0;
+			X0 = Y2;
+			Tree.BinTree G;
+			G = X0;
+			Tree.BinTree K;
+			Tree.BinTree L;
+			Tree.BinTree Y0;
+			Y0 = Tree.evaluate("AND",K,L);
+			if(Tree.isTrue(K))
+			{
+				((Action)(() => { }))();
+			}else{
+				((Action)(() => { }))();
+			}
+			Tree.BinTree H;
+			Tree.BinTree Y0;
+			Y0 = Tree.evaluate("AND",H,G);
+			while(Tree.isTrue(H))
+			{
+				((Action)(() => { }))();
+				Tree.BinTree H;
+				Tree.BinTree Y0;
+				Y0 = Tree.evaluate("AND",H,G);
+			}
+			output.Enqueue(A);
+			output.Enqueue(B);
 		}
-
-		private void fun1(Queue<BinTree> input, Queue<BinTree> output)
+		static void Main()
 		{
-			Queue<BinTree> inParams = new Queue<BinTree>();
-			Queue<BinTree> outParams = new Queue<BinTree>();
-			BinTree A = input.Dequeue();
-			BinTree Y0;
-			Y0 = tl(A);
-			BinTree X0;
-			X0 = Y0;
-			BinTree T;
-			T = X0;
-			Y0 = hd(A);
-			X0 = Y0;
-			BinTree H;
-			H = X0;
-			output.Enqueue(T);
-			output.Enqueue(H);
+			Queue<Tree.BinTree> input = new Queue<Tree.BinTree>();
+			Queue<Tree.BinTree> output = new Queue<Tree.BinTree>();
+			Tree.BinTree A = new Tree.BinTree("A", null, null);
+			input.Enqueue(A);
+			Tree.BinTree B = new Tree.BinTree("B", null, null);
+			input.Enqueue(B);
+			Tree.BinTree C = new Tree.BinTree("C", null, null);
+			input.Enqueue(C);
+			symboles(input, output);
 		}
 	}
->>>>>>> 29074de7a1959c5508630dbda7734bb8dc8bb445
 }
 

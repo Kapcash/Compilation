@@ -49,10 +49,10 @@ import sprint3.CS_TranslatorException;
 public class GeneratorAddr {
 
 	// SETTINGS
-	private static final boolean DISPLAY_SYM_TABLE = true;
+	private static final boolean DISPLAY_SYM_TABLE = false;
 	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
-	private static final boolean DISPLAY_TRANSLATION = true;
-	private static final boolean PRINT_TRANSLATION = false;
+	private static final boolean DISPLAY_TRANSLATION = false;
+	private static final boolean PRINT_TRANSLATION = true;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
@@ -385,7 +385,7 @@ public class GeneratorAddr {
 				code3Addresses.addToExpression(OP.NOT.name(), funList);
 			}
 			if (val != null) {
-				System.out.println(val);
+				varDeclaration(f, val);
 				code3Addresses.addToExpression(val, funList);
 			}
 		}

@@ -19,7 +19,7 @@ public class CS_Translator {
 
 	// C# GENERAL
 
-	private final static String imports = "using System;\nusing System.Collections.Generic;\n";
+	private final static String imports = "using System;\nusing System.Collections.Generic;\nusing static Tree.BinTree;\n";
 	private final static String projectName = "namespace BinTreeProject";
 	private final static String className = "class Program";
 	private final static String mainFunctionName = "static void Main()";
@@ -191,19 +191,19 @@ public class CS_Translator {
 				f.write(rAccolade);
 				break;
 			case DECL:
-				f.write("Tree.BinTree " + quad.getReponse() + ";");
+				f.write("Tree.BinTree " + quad.getReponse() + " = new Tree.BinTree (\""+quad.getReponse()+"\", null, null);");
 				break;
 			case AFF:
 				f.write(quad.getReponse() + " = " + quad.getArg1() + ";");
 				break;
 			case AND:
-				f.write(quad.getReponse() + " = Tree.evaluate(\"AND\"," + quad.getArg1() + "," + quad.getArg2() + ");");
+				f.write(quad.getReponse() + " = evaluate(\"AND\"," + quad.getArg1() + "," + quad.getArg2() + ");");
 				break;
 			case OR:
-				f.write(quad.getReponse() + " = Tree.evaluate(\"OR\"," + quad.getArg1() + "," + quad.getArg2() + ");");
+				f.write(quad.getReponse() + " = evaluate(\"OR\"," + quad.getArg1() + "," + quad.getArg2() + ");");
 				break;
 			case EQ:
-				f.write(quad.getReponse() + " = Tree.evaluate(\"EQ\"," + quad.getArg1() + "," + quad.getArg2() + ");");
+				f.write(quad.getReponse() + " = evaluate(\"EQ\"," + quad.getArg1() + "," + quad.getArg2() + ");");
 				break;
 			// FUNCTION USE
 			case PUSH:

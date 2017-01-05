@@ -20,7 +20,8 @@ namespace BinTreeProject
             input.Enqueue(C);
             input.Enqueue(D);
 
-            multiplecons(input, output);
+             multiplecons(input, output);
+           
             Console.WriteLine(output.Dequeue().DisplayTree());
             Console.ReadLine();
         }

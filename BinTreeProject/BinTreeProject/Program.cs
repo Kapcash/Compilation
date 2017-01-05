@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using static Tree.BinTree;
 
 
 namespace BinTreeProject
@@ -14,39 +15,40 @@ namespace BinTreeProject
 			Tree.BinTree A = input.Dequeue();
 			Tree.BinTree B = input.Dequeue();
 			Tree.BinTree C = input.Dequeue();
-			Tree.BinTree M;
-			Tree.BinTree N;
-			Tree.BinTree O;
-			Tree.BinTree P;
-			Tree.BinTree Y0;
-			Y0 = Tree.evaluate("AND",O,P);
-			Tree.BinTree Y1;
-			Y1 = Tree.evaluate("AND",N,Y0);
-			Tree.BinTree Y2;
-			Y2 = Tree.evaluate("AND",M,Y1);
-			Tree.BinTree X0;
+			Tree.BinTree M = new Tree.BinTree ("M", null, null);
+			Tree.BinTree N = new Tree.BinTree ("N", null, null);
+			Tree.BinTree O = new Tree.BinTree ("O", null, null);
+			Tree.BinTree P = new Tree.BinTree ("P", null, null);
+			Tree.BinTree Y0 = new Tree.BinTree ("Y0", null, null);
+			Y0 = evaluate("AND",O,P);
+			Tree.BinTree Y1 = new Tree.BinTree ("Y1", null, null);
+			Y1 = evaluate("AND",N,Y0);
+			Tree.BinTree Y2 = new Tree.BinTree ("Y2", null, null);
+			Y2 = evaluate("AND",M,Y1);
+			Tree.BinTree X0 = new Tree.BinTree ("X0", null, null);
 			X0 = Y2;
-			Tree.BinTree G;
+			Tree.BinTree G = new Tree.BinTree ("G", null, null);
 			G = X0;
-			Tree.BinTree K;
-			Tree.BinTree L;
-			Tree.BinTree Y0;
-			Y0 = Tree.evaluate("AND",K,L);
+			Tree.BinTree K = new Tree.BinTree ("K", null, null);
+			Tree.BinTree L = new Tree.BinTree ("L", null, null);
+			Tree.BinTree Y0 = new Tree.BinTree ("Y0", null, null);
+			Y0 = evaluate("AND",K,L);
 			if(Tree.isTrue(K))
 			{
 				((Action)(() => { }))();
 			}else{
 				((Action)(() => { }))();
 			}
-			Tree.BinTree H;
-			Tree.BinTree Y0;
-			Y0 = Tree.evaluate("AND",H,G);
+			Tree.BinTree H = new Tree.BinTree ("H", null, null);
+			Tree.BinTree Y0 = new Tree.BinTree ("Y0", null, null);
+			Y0 = evaluate("AND",H,G);
 			while(Tree.isTrue(H))
 			{
-				((Action)(() => { }))();
-				Tree.BinTree H;
-				Tree.BinTree Y0;
-				Y0 = Tree.evaluate("AND",H,G);
+				Tree.BinTree Cond = new Tree.BinTree ("Cond", null, null);
+				Y0 = Cond;
+				Tree.BinTree H = new Tree.BinTree ("H", null, null);
+				Tree.BinTree Y0 = new Tree.BinTree ("Y0", null, null);
+				Y0 = evaluate("AND",H,G);
 			}
 			output.Enqueue(A);
 			output.Enqueue(B);

@@ -1,15 +1,14 @@
 function symboles: 
 read A ,B ,C
 %
-	G := (M and (N and ( O and P)));
-	if (K and L) then
-	nop
-	else
-	nop
-	fi;
-	while (H and G) do
-		while Cond do
-		nop
+	while condUn do
+		while CondDeux do
+			while CondTrois do
+					nop
+			od;
+			while CondQuatre do
+				nop
+			od
 		od
 	od
 %

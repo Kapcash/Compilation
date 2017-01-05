@@ -14,37 +14,16 @@ namespace BinTreeProject
 			Tree.BinTree A = input.Dequeue();
 			Tree.BinTree B = input.Dequeue();
 			Tree.BinTree C = input.Dequeue();
-			Tree.BinTree M;
-			Tree.BinTree N;
-			Tree.BinTree O;
-			Tree.BinTree P;
-			Tree.BinTree Y0;
-			Y0 = Tree.evaluate("AND",O,P);
-			Tree.BinTree Y1;
-			Y1 = Tree.evaluate("AND",N,Y0);
-			Tree.BinTree Y2;
-			Y2 = Tree.evaluate("AND",M,Y1);
-			Tree.BinTree X0;
-			X0 = Y2;
-			Tree.BinTree G;
-			G = X0;
-			Tree.BinTree K;
-			Tree.BinTree L;
-			Tree.BinTree Y0;
-			Y0 = Tree.evaluate("AND",K,L);
-			if(Tree.isTrue(K))
-			{
-				((Action)(() => { }))();
-			}else{
-				((Action)(() => { }))();
-			}
 			Tree.BinTree H;
+			Tree.BinTree G;
 			Tree.BinTree Y0;
 			Y0 = Tree.evaluate("AND",H,G);
 			while(Tree.isTrue(H))
 			{
-				((Action)(() => { }))();
+				Tree.BinTree Cond;
+				Y0 = Cond;
 				Tree.BinTree H;
+				Tree.BinTree G;
 				Tree.BinTree Y0;
 				Y0 = Tree.evaluate("AND",H,G);
 			}

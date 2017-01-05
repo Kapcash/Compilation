@@ -19,6 +19,10 @@ public class ThreeAddressCode {
 	private String getEtiquetteName(int i) {
 		return "L" + i;
 	}
+	
+	int getSize(){
+		return code3Addr.size();
+	}
 
 	String getEtiquette() {
 		return getEtiquetteName(code3Addr.size());

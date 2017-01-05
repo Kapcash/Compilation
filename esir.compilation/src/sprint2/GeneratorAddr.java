@@ -51,8 +51,8 @@ public class GeneratorAddr {
 	// SETTINGS
 	private static final boolean DISPLAY_SYM_TABLE = false;
 	private static final boolean DISPLAY_THREE_ADDR_CODE = true;
-	private static final boolean DISPLAY_TRANSLATION = false;
-	private static final boolean PRINT_TRANSLATION = true;
+	private static final boolean DISPLAY_TRANSLATION = true;
+	private static final boolean PRINT_TRANSLATION = false;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
@@ -228,7 +228,7 @@ public class GeneratorAddr {
 		// Inputs
 		iterateAST(def.getRead(), f);
 		// Commands
-		iterateAST(def.getCommands(), f);
+		iterateAST(def.getCommands(), f,0);
 		// Outputs
 		iterateAST(def.getWrite(), f);
 	}
@@ -258,16 +258,16 @@ public class GeneratorAddr {
 	}
 
 	// Commands
-	public void iterateAST(Commands coms, DefFun f) throws SymTableException, ThreeAddressCodeException {
+	public void iterateAST(Commands coms, DefFun f, int nbImbric) throws SymTableException, ThreeAddressCodeException {
 		Command com = coms.getCommand();
-		iterateAST(com, f); // First command of definition
+		iterateAST(com, f,nbImbric); // First command of definition
 		for (Command c : coms.getCommands()) { // Eventually other commands
-			iterateAST(c, f);
+			iterateAST(c, f,nbImbric);
 		}
 	}
 
 	// Command
-	private void iterateAST(Command com, DefFun f) throws SymTableException, ThreeAddressCodeException {
+	private void iterateAST(Command com, DefFun f, int nbImbric) throws SymTableException, ThreeAddressCodeException {
 		EObject obj = com.getCommand();
 		if (obj instanceof Affectation) { // Affectation
 			iterateAST((Affectation) obj, f);
@@ -275,7 +275,7 @@ public class GeneratorAddr {
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.NOP, ""), "", "", ""));
 		} else {
 			if (obj instanceof While) { // While
-				iterateAST((While) obj, f);
+				iterateAST((While) obj, f,nbImbric);
 			} else if (obj instanceof For) { // For
 				iterateAST((For) obj, f);
 			} else if (obj instanceof Foreach) { // Foreach
@@ -284,7 +284,7 @@ public class GeneratorAddr {
 				iterateAST((If) obj, f);
 			} else {
 			}
-			code3Addresses.finEtiquette();
+			//code3Addresses.finEtiquette();
 		}
 	}
 
@@ -471,20 +471,42 @@ public class GeneratorAddr {
 			iterateAST(exprs, f);
 		}
 	}
+	
+	//Permet de trouver le nombre d'imbrication d'une commande 
+	private int nbImbric (Command cmd){
+		if(cmd instanceof Nop){
+			return 0;
+		}
+		if(cmd instanceof Affectation){
+			return 0;
+		}
+		return 1 ;
+	}
+	
+	private int nbImbric (Commands cmds){
+		return 0;
+	}
 
 	// While
-	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+	private void iterateAST(While whCmd, DefFun f, int nbImbric) throws SymTableException, ThreeAddressCodeException {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette();
 		iterateAST(whCmd.getExpr(), f);
 		int k = code3Addresses.inlineExpression(this, f);
 		String expr = "Y" + k;
 		code3Addresses.finEtiquette();
-
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getEtiquette(), ""));
+		
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
-		iterateAST(cmds, f);
+		iterateAST(cmds, f,++nbImbric);
+		code3Addresses.finEtiquette();
+		//Fonction qui permet de trouver le nombre de boucle imbriqué.
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getPreviousEtiquette(), ""));
+		/*code3Addresses.nouvelleEtiquette();
+		Commands cmds = whCmd.getCommands();
+		iterateAST(cmds, f,++nbImbric);*/
+		iterateAST(whCmd.getExpr(), f);
+		code3Addresses.inlineExpression(this, f);
 	}
 
 	// For
@@ -493,13 +515,13 @@ public class GeneratorAddr {
 				forCmd.getExpr().toString(), ""));
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = forCmd.getCommands();
-		iterateAST(cmds, f);
+		iterateAST(cmds, f,0);
 	}
 
 	// Foreach
 	private void iterateAST(Foreach forEachCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Commands cmds = forEachCmd.getCommands();
-		iterateAST(cmds, f);
+		iterateAST(cmds, f,0);
 	}
 
 	// If
@@ -516,14 +538,14 @@ public class GeneratorAddr {
 		// Then
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
-		iterateAST(cmds1, f);
+		iterateAST(cmds1, f,0);
 		//q.setArg2(code3Addresses.getFutureEtiquette());
 		// Else
 		Commands cmds2 = ifCmd.getCommands2();
 		if(cmds2 != null){
 		code3Addresses.finEtiquette();
 		code3Addresses.nouvelleEtiquette();
-		iterateAST(cmds2, f);
+		iterateAST(cmds2, f,0);
 		}
 	}
 

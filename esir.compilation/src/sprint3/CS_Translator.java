@@ -157,7 +157,7 @@ public class CS_Translator {
 			// LOOPS
 			case IF:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("if(Tree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()
+				f.write("if(Tree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
 						+ "))");
 				f.write(lAccolade);
 				f.rightShift();
@@ -173,12 +173,12 @@ public class CS_Translator {
 				break;
 			case WHILE:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("while(Tree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()
+				f.write("while(Tree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
 						+ "))");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
-				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
+				//iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
 				f.leftShift();
 				f.write(rAccolade);
 				break;

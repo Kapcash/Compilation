@@ -615,8 +615,8 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
 		private final Keyword cLeftParenthesisKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
-		private final Assignment cValeurAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
-		private final RuleCall cValeurSYMBOLTerminalRuleCall_8_1_0 = (RuleCall)cValeurAssignment_8_1.eContents().get(0);
+		private final Assignment cCallAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cCallSYMBOLTerminalRuleCall_8_1_0 = (RuleCall)cCallAssignment_8_1.eContents().get(0);
 		private final Assignment cLexprAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
 		private final RuleCall cLexprLexprParserRuleCall_8_2_0 = (RuleCall)cLexprAssignment_8_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_8_3 = (Keyword)cGroup_8.eContents().get(3);
@@ -640,13 +640,13 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//	'(' ope='hd' expr=Expr ')' |
 		//	'(' ope='tl' expr=Expr ')' |
 		//	'(' n=Not expr=Expr ')' |
-		//	'(' valeur=SYMBOL lexpr=Lexpr ')' |
+		//	'(' call=SYMBOL lexpr=Lexpr ')' |
 		//	'(' ex1=Expr ope=('and' | 'or' | '=?') ex2=Expr ')';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//valeur='nil' | valeur=VARIABLE | valeur=SYMBOL | '(' ope='cons' lexpr=Lexpr ')' | '(' ope='list' lexpr=Lexpr ')' | '('
-		//ope='hd' expr=Expr ')' | '(' ope='tl' expr=Expr ')' | '(' n=Not expr=Expr ')' | '(' valeur=SYMBOL lexpr=Lexpr ')' |
-		//'(' ex1=Expr ope=('and' | 'or' | '=?') ex2=Expr ')'
+		//ope='hd' expr=Expr ')' | '(' ope='tl' expr=Expr ')' | '(' n=Not expr=Expr ')' | '(' call=SYMBOL lexpr=Lexpr ')' | '('
+		//ex1=Expr ope=('and' | 'or' | '=?') ex2=Expr ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//valeur='nil'
@@ -772,17 +772,17 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_7_3() { return cRightParenthesisKeyword_7_3; }
 		
-		//'(' valeur=SYMBOL lexpr=Lexpr ')'
+		//'(' call=SYMBOL lexpr=Lexpr ')'
 		public Group getGroup_8() { return cGroup_8; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_8_0() { return cLeftParenthesisKeyword_8_0; }
 		
-		//valeur=SYMBOL
-		public Assignment getValeurAssignment_8_1() { return cValeurAssignment_8_1; }
+		//call=SYMBOL
+		public Assignment getCallAssignment_8_1() { return cCallAssignment_8_1; }
 		
 		//SYMBOL
-		public RuleCall getValeurSYMBOLTerminalRuleCall_8_1_0() { return cValeurSYMBOLTerminalRuleCall_8_1_0; }
+		public RuleCall getCallSYMBOLTerminalRuleCall_8_1_0() { return cCallSYMBOLTerminalRuleCall_8_1_0; }
 		
 		//lexpr=Lexpr
 		public Assignment getLexprAssignment_8_2() { return cLexprAssignment_8_2; }
@@ -1189,7 +1189,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	//	'(' ope='hd' expr=Expr ')' |
 	//	'(' ope='tl' expr=Expr ')' |
 	//	'(' n=Not expr=Expr ')' |
-	//	'(' valeur=SYMBOL lexpr=Lexpr ')' |
+	//	'(' call=SYMBOL lexpr=Lexpr ')' |
 	//	'(' ex1=Expr ope=('and' | 'or' | '=?') ex2=Expr ')';
 	public ExprSimpleElements getExprSimpleAccess() {
 		return pExprSimple;

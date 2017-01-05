@@ -24,12 +24,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.DefinitionImpl#getRead <em>Read</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.DefinitionImpl#getCommands <em>Commands</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.DefinitionImpl#getWrite <em>Write</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

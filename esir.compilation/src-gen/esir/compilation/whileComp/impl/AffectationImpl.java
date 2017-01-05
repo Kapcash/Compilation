@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getAffectations <em>Affectations</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.AffectationImpl#getValeurs <em>Valeurs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

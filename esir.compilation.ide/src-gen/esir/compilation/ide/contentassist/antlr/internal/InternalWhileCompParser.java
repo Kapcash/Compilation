@@ -8844,26 +8844,26 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__ExprSimple__Group_8__1__Impl"
-    // InternalWhileComp.g:2737:1: rule__ExprSimple__Group_8__1__Impl : ( ( rule__ExprSimple__ValeurAssignment_8_1 ) ) ;
+    // InternalWhileComp.g:2737:1: rule__ExprSimple__Group_8__1__Impl : ( ( rule__ExprSimple__CallAssignment_8_1 ) ) ;
     public final void rule__ExprSimple__Group_8__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalWhileComp.g:2741:1: ( ( ( rule__ExprSimple__ValeurAssignment_8_1 ) ) )
-            // InternalWhileComp.g:2742:1: ( ( rule__ExprSimple__ValeurAssignment_8_1 ) )
+            // InternalWhileComp.g:2741:1: ( ( ( rule__ExprSimple__CallAssignment_8_1 ) ) )
+            // InternalWhileComp.g:2742:1: ( ( rule__ExprSimple__CallAssignment_8_1 ) )
             {
-            // InternalWhileComp.g:2742:1: ( ( rule__ExprSimple__ValeurAssignment_8_1 ) )
-            // InternalWhileComp.g:2743:2: ( rule__ExprSimple__ValeurAssignment_8_1 )
+            // InternalWhileComp.g:2742:1: ( ( rule__ExprSimple__CallAssignment_8_1 ) )
+            // InternalWhileComp.g:2743:2: ( rule__ExprSimple__CallAssignment_8_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurAssignment_8_1()); 
+               before(grammarAccess.getExprSimpleAccess().getCallAssignment_8_1()); 
             }
-            // InternalWhileComp.g:2744:2: ( rule__ExprSimple__ValeurAssignment_8_1 )
-            // InternalWhileComp.g:2744:3: rule__ExprSimple__ValeurAssignment_8_1
+            // InternalWhileComp.g:2744:2: ( rule__ExprSimple__CallAssignment_8_1 )
+            // InternalWhileComp.g:2744:3: rule__ExprSimple__CallAssignment_8_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExprSimple__ValeurAssignment_8_1();
+            rule__ExprSimple__CallAssignment_8_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -8871,7 +8871,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurAssignment_8_1()); 
+               after(grammarAccess.getExprSimpleAccess().getCallAssignment_8_1()); 
             }
 
             }
@@ -11788,9 +11788,9 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__ExprSimple__ExprAssignment_7_2"
 
 
-    // $ANTLR start "rule__ExprSimple__ValeurAssignment_8_1"
-    // InternalWhileComp.g:3724:1: rule__ExprSimple__ValeurAssignment_8_1 : ( RULE_SYMBOL ) ;
-    public final void rule__ExprSimple__ValeurAssignment_8_1() throws RecognitionException {
+    // $ANTLR start "rule__ExprSimple__CallAssignment_8_1"
+    // InternalWhileComp.g:3724:1: rule__ExprSimple__CallAssignment_8_1 : ( RULE_SYMBOL ) ;
+    public final void rule__ExprSimple__CallAssignment_8_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -11802,11 +11802,11 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
             // InternalWhileComp.g:3730:3: RULE_SYMBOL
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getValeurSYMBOLTerminalRuleCall_8_1_0()); 
+               before(grammarAccess.getExprSimpleAccess().getCallSYMBOLTerminalRuleCall_8_1_0()); 
             }
             match(input,RULE_SYMBOL,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getExprSimpleAccess().getValeurSYMBOLTerminalRuleCall_8_1_0()); 
+               after(grammarAccess.getExprSimpleAccess().getCallSYMBOLTerminalRuleCall_8_1_0()); 
             }
 
             }
@@ -11826,7 +11826,7 @@ public class InternalWhileCompParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__ExprSimple__ValeurAssignment_8_1"
+    // $ANTLR end "rule__ExprSimple__CallAssignment_8_1"
 
 
     // $ANTLR start "rule__ExprSimple__LexprAssignment_8_2"

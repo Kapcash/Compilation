@@ -604,13 +604,22 @@ public interface WhileCompPackage extends EPackage
   int EXPR_SIMPLE__N = 4;
 
   /**
+   * The feature id for the '<em><b>Call</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPR_SIMPLE__CALL = 5;
+
+  /**
    * The feature id for the '<em><b>Ex1</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EX1 = 5;
+  int EXPR_SIMPLE__EX1 = 6;
 
   /**
    * The feature id for the '<em><b>Ex2</b></em>' containment reference.
@@ -619,7 +628,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EX2 = 6;
+  int EXPR_SIMPLE__EX2 = 7;
 
   /**
    * The number of structural features of the '<em>Expr Simple</em>' class.
@@ -628,7 +637,7 @@ public interface WhileCompPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE_FEATURE_COUNT = 7;
+  int EXPR_SIMPLE_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link esir.compilation.whileComp.impl.LexprImpl <em>Lexpr</em>}' class.
@@ -1317,6 +1326,17 @@ public interface WhileCompPackage extends EPackage
   EReference getExprSimple_N();
 
   /**
+   * Returns the meta object for the attribute '{@link esir.compilation.whileComp.ExprSimple#getCall <em>Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Call</em>'.
+   * @see esir.compilation.whileComp.ExprSimple#getCall()
+   * @see #getExprSimple()
+   * @generated
+   */
+  EAttribute getExprSimple_Call();
+
+  /**
    * Returns the meta object for the containment reference '{@link esir.compilation.whileComp.ExprSimple#getEx1 <em>Ex1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1908,6 +1928,14 @@ public interface WhileCompPackage extends EPackage
      * @generated
      */
     EReference EXPR_SIMPLE__N = eINSTANCE.getExprSimple_N();
+
+    /**
+     * The meta object literal for the '<em><b>Call</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPR_SIMPLE__CALL = eINSTANCE.getExprSimple_Call();
 
     /**
      * The meta object literal for the '<em><b>Ex1</b></em>' containment reference feature.

@@ -2740,9 +2740,9 @@ rule__ExprSimple__Group_8__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getExprSimpleAccess().getValeurAssignment_8_1()); }
-	(rule__ExprSimple__ValeurAssignment_8_1)
-	{ after(grammarAccess.getExprSimpleAccess().getValeurAssignment_8_1()); }
+	{ before(grammarAccess.getExprSimpleAccess().getCallAssignment_8_1()); }
+	(rule__ExprSimple__CallAssignment_8_1)
+	{ after(grammarAccess.getExprSimpleAccess().getCallAssignment_8_1()); }
 )
 ;
 finally {
@@ -3721,15 +3721,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ExprSimple__ValeurAssignment_8_1
+rule__ExprSimple__CallAssignment_8_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getExprSimpleAccess().getValeurSYMBOLTerminalRuleCall_8_1_0()); }
+		{ before(grammarAccess.getExprSimpleAccess().getCallSYMBOLTerminalRuleCall_8_1_0()); }
 		RULE_SYMBOL
-		{ after(grammarAccess.getExprSimpleAccess().getValeurSYMBOLTerminalRuleCall_8_1_0()); }
+		{ after(grammarAccess.getExprSimpleAccess().getCallSYMBOLTerminalRuleCall_8_1_0()); }
 	)
 ;
 finally {

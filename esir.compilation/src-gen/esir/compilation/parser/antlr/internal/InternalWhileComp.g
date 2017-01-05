@@ -1379,9 +1379,9 @@ ruleExprSimple returns [EObject current=null]
 			}
 			(
 				(
-					lv_valeur_24_0=RULE_SYMBOL
+					lv_call_24_0=RULE_SYMBOL
 					{
-						newLeafNode(lv_valeur_24_0, grammarAccess.getExprSimpleAccess().getValeurSYMBOLTerminalRuleCall_8_1_0());
+						newLeafNode(lv_call_24_0, grammarAccess.getExprSimpleAccess().getCallSYMBOLTerminalRuleCall_8_1_0());
 					}
 					{
 						if ($current==null) {
@@ -1389,8 +1389,8 @@ ruleExprSimple returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"valeur",
-							lv_valeur_24_0,
+							"call",
+							lv_call_24_0,
 							"esir.compilation.WhileComp.SYMBOL");
 					}
 				)

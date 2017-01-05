@@ -79,7 +79,7 @@ ExprSimple:
 	'(' ope='hd' expr=Expr ')' |
 	'(' ope='tl' expr=Expr ')' |
 	'(' n=Not expr=Expr ')' |
-	'(' valeur=SYMBOL lexpr=Lexpr ')'|
+	'(' call=SYMBOL lexpr=Lexpr ')'|
 	'(' ex1 = Expr ope= ('and' | 'or' | '=?') ex2=Expr ')'
 ;
 

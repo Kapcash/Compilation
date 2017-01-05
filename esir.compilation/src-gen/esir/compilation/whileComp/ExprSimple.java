@@ -12,16 +12,17 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getExpr <em>Expr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getN <em>N</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.ExprSimple#getCall <em>Call</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getEx1 <em>Ex1</em>}</li>
  *   <li>{@link esir.compilation.whileComp.ExprSimple#getEx2 <em>Ex2</em>}</li>
  * </ul>
- * </p>
  *
  * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple()
  * @model
@@ -158,6 +159,32 @@ public interface ExprSimple extends EObject
    * @generated
    */
   void setN(Not value);
+
+  /**
+   * Returns the value of the '<em><b>Call</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Call</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Call</em>' attribute.
+   * @see #setCall(String)
+   * @see esir.compilation.whileComp.WhileCompPackage#getExprSimple_Call()
+   * @model
+   * @generated
+   */
+  String getCall();
+
+  /**
+   * Sets the value of the '{@link esir.compilation.whileComp.ExprSimple#getCall <em>Call</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Call</em>' attribute.
+   * @see #getCall()
+   * @generated
+   */
+  void setCall(String value);
 
   /**
    * Returns the value of the '<em><b>Ex1</b></em>' containment reference.

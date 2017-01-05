@@ -223,7 +223,7 @@ public class WhileCompSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         (ope='hd' expr=Expr) | 
 	 *         (ope='tl' expr=Expr) | 
 	 *         (n=Not expr=Expr) | 
-	 *         (valeur=SYMBOL lexpr=Lexpr) | 
+	 *         (call=SYMBOL lexpr=Lexpr) | 
 	 *         (ex1=Expr (ope='and' | ope='or' | ope='=?') ex2=Expr)
 	 *     )
 	 */

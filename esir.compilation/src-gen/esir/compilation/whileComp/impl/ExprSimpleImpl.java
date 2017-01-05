@@ -24,16 +24,17 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getValeur <em>Valeur</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getOpe <em>Ope</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getLexpr <em>Lexpr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getN <em>N</em>}</li>
+ *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getCall <em>Call</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getEx1 <em>Ex1</em>}</li>
  *   <li>{@link esir.compilation.whileComp.impl.ExprSimpleImpl#getEx2 <em>Ex2</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -108,6 +109,26 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * @ordered
    */
   protected Not n;
+
+  /**
+   * The default value of the '{@link #getCall() <em>Call</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCall()
+   * @generated
+   * @ordered
+   */
+  protected static final String CALL_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getCall() <em>Call</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCall()
+   * @generated
+   * @ordered
+   */
+  protected String call = CALL_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getEx1() <em>Ex1</em>}' containment reference.
@@ -345,6 +366,29 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getCall()
+  {
+    return call;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCall(String newCall)
+  {
+    String oldCall = call;
+    call = newCall;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCompPackage.EXPR_SIMPLE__CALL, oldCall, call));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Expr getEx1()
   {
     return ex1;
@@ -480,6 +524,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return getExpr();
       case WhileCompPackage.EXPR_SIMPLE__N:
         return getN();
+      case WhileCompPackage.EXPR_SIMPLE__CALL:
+        return getCall();
       case WhileCompPackage.EXPR_SIMPLE__EX1:
         return getEx1();
       case WhileCompPackage.EXPR_SIMPLE__EX2:
@@ -512,6 +558,9 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return;
       case WhileCompPackage.EXPR_SIMPLE__N:
         setN((Not)newValue);
+        return;
+      case WhileCompPackage.EXPR_SIMPLE__CALL:
+        setCall((String)newValue);
         return;
       case WhileCompPackage.EXPR_SIMPLE__EX1:
         setEx1((Expr)newValue);
@@ -548,6 +597,9 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
       case WhileCompPackage.EXPR_SIMPLE__N:
         setN((Not)null);
         return;
+      case WhileCompPackage.EXPR_SIMPLE__CALL:
+        setCall(CALL_EDEFAULT);
+        return;
       case WhileCompPackage.EXPR_SIMPLE__EX1:
         setEx1((Expr)null);
         return;
@@ -578,6 +630,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return expr != null;
       case WhileCompPackage.EXPR_SIMPLE__N:
         return n != null;
+      case WhileCompPackage.EXPR_SIMPLE__CALL:
+        return CALL_EDEFAULT == null ? call != null : !CALL_EDEFAULT.equals(call);
       case WhileCompPackage.EXPR_SIMPLE__EX1:
         return ex1 != null;
       case WhileCompPackage.EXPR_SIMPLE__EX2:
@@ -601,6 +655,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     result.append(valeur);
     result.append(", ope: ");
     result.append(ope);
+    result.append(", call: ");
+    result.append(call);
     result.append(')');
     return result.toString();
   }

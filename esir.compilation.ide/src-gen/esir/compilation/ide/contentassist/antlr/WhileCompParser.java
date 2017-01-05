@@ -109,7 +109,7 @@ public class WhileCompParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprSimpleAccess().getExprAssignment_6_2(), "rule__ExprSimple__ExprAssignment_6_2");
 					put(grammarAccess.getExprSimpleAccess().getNAssignment_7_1(), "rule__ExprSimple__NAssignment_7_1");
 					put(grammarAccess.getExprSimpleAccess().getExprAssignment_7_2(), "rule__ExprSimple__ExprAssignment_7_2");
-					put(grammarAccess.getExprSimpleAccess().getValeurAssignment_8_1(), "rule__ExprSimple__ValeurAssignment_8_1");
+					put(grammarAccess.getExprSimpleAccess().getCallAssignment_8_1(), "rule__ExprSimple__CallAssignment_8_1");
 					put(grammarAccess.getExprSimpleAccess().getLexprAssignment_8_2(), "rule__ExprSimple__LexprAssignment_8_2");
 					put(grammarAccess.getExprSimpleAccess().getEx1Assignment_9_1(), "rule__ExprSimple__Ex1Assignment_9_1");
 					put(grammarAccess.getExprSimpleAccess().getOpeAssignment_9_2(), "rule__ExprSimple__OpeAssignment_9_2");

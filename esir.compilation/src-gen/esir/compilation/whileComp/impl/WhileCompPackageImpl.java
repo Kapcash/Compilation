@@ -715,9 +715,19 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getExprSimple_Call()
+  {
+    return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getExprSimple_Ex1()
   {
-    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(5);
+    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -727,7 +737,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
    */
   public EReference getExprSimple_Ex2()
   {
-    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(6);
+    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -969,6 +979,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     createEReference(exprSimpleEClass, EXPR_SIMPLE__LEXPR);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__N);
+    createEAttribute(exprSimpleEClass, EXPR_SIMPLE__CALL);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__EX1);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__EX2);
 
@@ -1085,6 +1096,7 @@ public class WhileCompPackageImpl extends EPackageImpl implements WhileCompPacka
     initEReference(getExprSimple_Lexpr(), this.getLexpr(), null, "lexpr", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_Expr(), this.getExpr(), null, "expr", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_N(), this.getNot(), null, "n", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExprSimple_Call(), ecorePackage.getEString(), "call", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_Ex1(), this.getExpr(), null, "ex1", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_Ex2(), this.getExpr(), null, "ex2", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

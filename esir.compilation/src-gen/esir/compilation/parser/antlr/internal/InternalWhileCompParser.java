@@ -2872,7 +2872,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExprSimple"
-    // InternalWhileComp.g:1089:1: ruleExprSimple returns [EObject current=null] : ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) ) ;
+    // InternalWhileComp.g:1089:1: ruleExprSimple returns [EObject current=null] : ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) ) ;
     public final EObject ruleExprSimple() throws RecognitionException {
         EObject current = null;
 
@@ -2894,7 +2894,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         Token otherlv_19=null;
         Token otherlv_22=null;
         Token otherlv_23=null;
-        Token lv_valeur_24_0=null;
+        Token lv_call_24_0=null;
         Token otherlv_26=null;
         Token otherlv_27=null;
         Token lv_ope_29_1=null;
@@ -2924,10 +2924,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalWhileComp.g:1095:2: ( ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) ) )
-            // InternalWhileComp.g:1096:2: ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) )
+            // InternalWhileComp.g:1095:2: ( ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) ) )
+            // InternalWhileComp.g:1096:2: ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) )
             {
-            // InternalWhileComp.g:1096:2: ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) )
+            // InternalWhileComp.g:1096:2: ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) )
             int alt10=10;
             alt10 = dfa10.predict(input);
             switch (alt10) {
@@ -3470,10 +3470,10 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // InternalWhileComp.g:1375:3: (otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' )
+                    // InternalWhileComp.g:1375:3: (otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' )
                     {
-                    // InternalWhileComp.g:1375:3: (otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' )
-                    // InternalWhileComp.g:1376:4: otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')'
+                    // InternalWhileComp.g:1375:3: (otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' )
+                    // InternalWhileComp.g:1376:4: otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')'
                     {
                     otherlv_23=(Token)match(input,34,FOLLOW_4); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -3481,16 +3481,16 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_23, grammarAccess.getExprSimpleAccess().getLeftParenthesisKeyword_8_0());
                       			
                     }
-                    // InternalWhileComp.g:1380:4: ( (lv_valeur_24_0= RULE_SYMBOL ) )
-                    // InternalWhileComp.g:1381:5: (lv_valeur_24_0= RULE_SYMBOL )
+                    // InternalWhileComp.g:1380:4: ( (lv_call_24_0= RULE_SYMBOL ) )
+                    // InternalWhileComp.g:1381:5: (lv_call_24_0= RULE_SYMBOL )
                     {
-                    // InternalWhileComp.g:1381:5: (lv_valeur_24_0= RULE_SYMBOL )
-                    // InternalWhileComp.g:1382:6: lv_valeur_24_0= RULE_SYMBOL
+                    // InternalWhileComp.g:1381:5: (lv_call_24_0= RULE_SYMBOL )
+                    // InternalWhileComp.g:1382:6: lv_call_24_0= RULE_SYMBOL
                     {
-                    lv_valeur_24_0=(Token)match(input,RULE_SYMBOL,FOLLOW_13); if (state.failed) return current;
+                    lv_call_24_0=(Token)match(input,RULE_SYMBOL,FOLLOW_13); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      						newLeafNode(lv_valeur_24_0, grammarAccess.getExprSimpleAccess().getValeurSYMBOLTerminalRuleCall_8_1_0());
+                      						newLeafNode(lv_call_24_0, grammarAccess.getExprSimpleAccess().getCallSYMBOLTerminalRuleCall_8_1_0());
                       					
                     }
                     if ( state.backtracking==0 ) {
@@ -3500,8 +3500,8 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
                       						}
                       						setWithLastConsumed(
                       							current,
-                      							"valeur",
-                      							lv_valeur_24_0,
+                      							"call",
+                      							lv_call_24_0,
                       							"esir.compilation.WhileComp.SYMBOL");
                       					
                     }
@@ -4115,7 +4115,7 @@ public class InternalWhileCompParser extends AbstractInternalAntlrParser {
             this.transition = dfa_6;
         }
         public String getDescription() {
-            return "1096:2: ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_valeur_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) )";
+            return "1096:2: ( ( (lv_valeur_0_0= 'nil' ) ) | ( (lv_valeur_1_0= RULE_VARIABLE ) ) | ( (lv_valeur_2_0= RULE_SYMBOL ) ) | (otherlv_3= '(' ( (lv_ope_4_0= 'cons' ) ) ( (lv_lexpr_5_0= ruleLexpr ) ) otherlv_6= ')' ) | (otherlv_7= '(' ( (lv_ope_8_0= 'list' ) ) ( (lv_lexpr_9_0= ruleLexpr ) ) otherlv_10= ')' ) | (otherlv_11= '(' ( (lv_ope_12_0= 'hd' ) ) ( (lv_expr_13_0= ruleExpr ) ) otherlv_14= ')' ) | (otherlv_15= '(' ( (lv_ope_16_0= 'tl' ) ) ( (lv_expr_17_0= ruleExpr ) ) otherlv_18= ')' ) | (otherlv_19= '(' ( (lv_n_20_0= ruleNot ) ) ( (lv_expr_21_0= ruleExpr ) ) otherlv_22= ')' ) | (otherlv_23= '(' ( (lv_call_24_0= RULE_SYMBOL ) ) ( (lv_lexpr_25_0= ruleLexpr ) ) otherlv_26= ')' ) | (otherlv_27= '(' ( (lv_ex1_28_0= ruleExpr ) ) ( ( (lv_ope_29_1= 'and' | lv_ope_29_2= 'or' | lv_ope_29_3= '=?' ) ) ) ( (lv_ex2_30_0= ruleExpr ) ) otherlv_31= ')' ) )";
         }
     }
  

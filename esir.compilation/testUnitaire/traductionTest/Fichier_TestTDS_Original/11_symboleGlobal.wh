@@ -1,6 +1,6 @@
 function symbolNull: 
 read A
 %
-	Ret := test
+	Ret := global
 %
 write Ret

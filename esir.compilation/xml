@@ -3,35 +3,11 @@
 	</symboles>
 	<functions>
 		<function>
-			<name>callFunction</name>
+			<name>nopTest</name>
 			<vars>
 				<var>
-					<vname>Ret</vname>
+					<vname>A</vname>
 					<value>2</value>
-				</var>
-				<var>
-					<vname>A</vname>
-					<value>3</value>
-				</var>
-			</vars>
-			<calls>
-				<f>f1</f>
-			</calls>
-		</function>
-		<function>
-			<name>f1</name>
-			<vars>
-				<var>
-					<vname>Ret</vname>
-					<value>1</value>
-				</var>
-				<var>
-					<vname>A</vname>
-					<value>1</value>
-				</var>
-				<var>
-					<vname>B</vname>
-					<value>1</value>
 				</var>
 			</vars>
 			<calls>

@@ -19,6 +19,11 @@ namespace Tree
             rightSon = ri;
         }
 
+        public String getData()
+        {
+            return data;
+        }
+
         public BinTree getLeftSon()
         {
             return leftSon;
@@ -90,6 +95,25 @@ namespace Tree
 
             return null;
 
+        }
+
+        public static BinTree evaluate(String op, BinTree tree1, BinTree tree2)
+        {
+            return new BinTree(null, null, null);
+        }
+
+        public static Boolean operator !=(BinTree tree1, BinTree tree2)
+        {
+            if (tree1.getData().Equals(tree2.getData()))
+                return false;
+            return true;
+        }
+
+        public static Boolean operator ==(BinTree tree1, BinTree tree2)
+        {
+            if (tree1.getData().Equals(tree2.getData()))
+                return true;
+            return false;
         }
 
         public String DisplayTree()

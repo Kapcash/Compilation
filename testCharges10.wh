@@ -1,0 +1,10 @@
+function f0: read A ,B ,C%while condUn do nop	od%write A ,B
+function f1: read A ,B ,C%while condUn do nop	od%write A ,B
+function f2: read A ,B ,C%while condUn do nop	od%write A ,B
+function f3: read A ,B ,C%while condUn do nop	od%write A ,B
+function f4: read A ,B ,C%while condUn do nop	od%write A ,B
+function f5: read A ,B ,C%while condUn do nop	od%write A ,B
+function f6: read A ,B ,C%while condUn do nop	od%write A ,B
+function f7: read A ,B ,C%while condUn do nop	od%write A ,B
+function f8: read A ,B ,C%while condUn do nop	od%write A ,B
+function f9: read A ,B ,C%while condUn do nop	od%write A ,B

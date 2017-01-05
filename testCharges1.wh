@@ -1,0 +1,1 @@
+function f0: read A ,B ,C%while condUn do nop	od%write A ,B

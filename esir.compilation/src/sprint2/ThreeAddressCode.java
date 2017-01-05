@@ -96,7 +96,6 @@ public class ThreeAddressCode {
 		} else {
 			tree.add(s, funList, treeLevel);
 		}
-		System.out.println(tree);
 	}
 
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException {

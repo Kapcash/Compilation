@@ -100,9 +100,9 @@ public class ThreeAddressCode {
 	}
 
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException {
-		HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
-		ExprTree.treeToInline(tree, callOrder);
-		System.out.println(callOrder);
+//		HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
+//		ExprTree.treeToInline(tree, callOrder);
+//		System.out.println(callOrder);
 
 		int k = 0;
 		if (tree.children.length == 0) { // Simplification interdite

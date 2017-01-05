@@ -385,6 +385,9 @@ public class GeneratorAddr {
 				varDeclaration(f, val);
 				code3Addresses.addToExpression(val, funList);
 			}
+			if (call != null) {
+				code3Addresses.addToExpression(call, funList);
+			}
 		}
 		if (isSymbole(val)) { // Symbole
 			this.symbs.put(val, "");

@@ -163,7 +163,7 @@ public class CS_Translator {
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
 				f.leftShift();
-				if (!code.getCode3Addr().get(quad.getArg2()).equals("")) {
+				if (code.getCode3Addr().get(quad.getArg2())!= null) {
 					f.write(rAccolade + "else" + lAccolade);
 					f.rightShift();
 					iterateList(code.getCode3Addr().get(quad.getArg2()).iterator(), f);
@@ -178,7 +178,6 @@ public class CS_Translator {
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
-				//iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
 				f.leftShift();
 				f.write(rAccolade);
 				break;

@@ -45,6 +45,7 @@ import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
 import sprint3.CS_Translator;
 import sprint3.CS_TranslatorException;
+import traductionTest.Code3AdressesTests;
 
 public class GeneratorAddr {
 
@@ -228,7 +229,7 @@ public class GeneratorAddr {
 		// Inputs
 		iterateAST(def.getRead(), f);
 		// Commands
-		iterateAST(def.getCommands(), f,0);
+		iterateAST(def.getCommands(), f);
 		// Outputs
 		iterateAST(def.getWrite(), f);
 	}
@@ -258,16 +259,16 @@ public class GeneratorAddr {
 	}
 
 	// Commands
-	public void iterateAST(Commands coms, DefFun f, int nbImbric) throws SymTableException, ThreeAddressCodeException {
+	public void iterateAST(Commands coms, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Command com = coms.getCommand();
-		iterateAST(com, f,nbImbric); // First command of definition
+		iterateAST(com, f); // First command of definition
 		for (Command c : coms.getCommands()) { // Eventually other commands
-			iterateAST(c, f,nbImbric);
+			iterateAST(c, f);
 		}
 	}
 
 	// Command
-	private void iterateAST(Command com, DefFun f, int nbImbric) throws SymTableException, ThreeAddressCodeException {
+	private void iterateAST(Command com, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		EObject obj = com.getCommand();
 		if (obj instanceof Affectation) { // Affectation
 			iterateAST((Affectation) obj, f);
@@ -275,7 +276,7 @@ public class GeneratorAddr {
 			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.NOP, ""), "", "", ""));
 		} else {
 			if (obj instanceof While) { // While
-				iterateAST((While) obj, f,nbImbric);
+				iterateAST((While) obj, f);
 			} else if (obj instanceof For) { // For
 				iterateAST((For) obj, f);
 			} else if (obj instanceof Foreach) { // Foreach
@@ -414,52 +415,6 @@ public class GeneratorAddr {
 		}
 	}
 
-	// // ExprAnd
-	// private void iterateAST(ExprAnd ex, DefFun f) throws SymTableException {
-	// code3Addresses.addLevel();
-	// ExprAnd exprAnd = ex.getExprAnd();
-	// if (exprAnd != null){
-	// System.out.println("on est là");
-	// code3Addresses.addToExpression(OP.AND.name(),funList);
-	// iterateAST(exprAnd, f);
-	// iterateAST(ex.getExprOr(), f);
-	// }else{
-	// iterateAST(ex.getExprOr(), f);
-	// }
-	// code3Addresses.subLevel();
-	// }
-	//
-	// // ExprOr
-	// private void iterateAST(ExprOr ex, DefFun f) throws SymTableException {
-	// ExprOr exprOr = ex.getExprOr();
-	// if (exprOr != null)
-	// iterateAST(exprOr, f);
-	//
-	// ExprNot exprNot = ex.getExprNot();
-	// if (exprNot != null)
-	// iterateAST(exprNot, f);
-	// }
-	//
-	// // ExprNot
-	// private void iterateAST(ExprNot ex, DefFun f) throws SymTableException {
-	// Not not = ex.getNot();
-	// /* TODO
-	// * if(not != null) iterateAST(exprNot,f);
-	// */
-	//
-	// ExprEq exprEq = ex.getExprEq();
-	// if (exprEq != null)
-	// iterateAST(exprEq, f);
-	// }
-	//
-	// //ExprEq
-	// private void iterateAST(ExprEq ex, DefFun f) throws SymTableException {
-	// iterateAST(ex.getExprSimple1(), f);
-	// if(ex.getExprSimple2() != null){
-	// iterateAST(ex.getExprSimple2(), f);
-	// }
-	// }
-
 	// Lexpr
 	private void iterateAST(Lexpr lexp, DefFun f) throws SymTableException {
 		Expr exp = lexp.getExpr();
@@ -471,57 +426,47 @@ public class GeneratorAddr {
 			iterateAST(exprs, f);
 		}
 	}
-	
-	//Permet de trouver le nombre d'imbrication d'une commande 
-	private int nbImbric (Command cmd){
-		if(cmd instanceof Nop){
-			return 0;
-		}
-		if(cmd instanceof Affectation){
-			return 0;
-		}
-		return 1 ;
-	}
-	
-	private int nbImbric (Commands cmds){
-		return 0;
-	}
 
 	// While
-	private void iterateAST(While whCmd, DefFun f, int nbImbric) throws SymTableException, ThreeAddressCodeException {
+	private void iterateAST(While whCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette();
 		iterateAST(whCmd.getExpr(), f);
-		int k = code3Addresses.inlineExpression(this, f);
-		String expr = "Y" + k;
+		code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 		
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
-		iterateAST(cmds, f,++nbImbric);
+		iterateAST(cmds, f);
 		code3Addresses.finEtiquette();
-		//Fonction qui permet de trouver le nombre de boucle imbriqué.
 		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getPreviousEtiquette(), ""));
-		/*code3Addresses.nouvelleEtiquette();
-		Commands cmds = whCmd.getCommands();
-		iterateAST(cmds, f,++nbImbric);*/
 		iterateAST(whCmd.getExpr(), f);
 		code3Addresses.inlineExpression(this, f);
 	}
 
 	// For
 	private void iterateAST(For forCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, code3Addresses.getEtiquette()), "",
-				forCmd.getExpr().toString(), ""));
+		String etiquetteCond = code3Addresses.getEtiquette();
+		code3Addresses.nouvelleEtiquette();
+		iterateAST(forCmd.getExpr(), f);
+		code3Addresses.inlineExpression(this, f);
+		code3Addresses.finEtiquette();
+		
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = forCmd.getCommands();
-		iterateAST(cmds, f,0);
+		iterateAST(cmds, f);
+		code3Addresses.finEtiquette();
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, etiquetteCond), "",
+				code3Addresses.getPreviousEtiquette(), ""));
+		iterateAST(forCmd.getExpr(), f);
+		code3Addresses.inlineExpression(this, f);
+		/*TODO : demander au prof pour le for et le foreach*/
 	}
 
 	// Foreach
 	private void iterateAST(Foreach forEachCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Commands cmds = forEachCmd.getCommands();
-		iterateAST(cmds, f,0);
+		iterateAST(cmds, f);
 	}
 
 	// If
@@ -532,21 +477,27 @@ public class GeneratorAddr {
 		int k = code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 		
-		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond),
-				"", code3Addresses.getEtiquette(), code3Addresses.getFutureEtiquette());
-		code3Addresses.addIn3Addr(q);
 		// Then
+		
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
-		iterateAST(cmds1, f,0);
-		//q.setArg2(code3Addresses.getFutureEtiquette());
+		iterateAST(cmds1, f);
+		String etiquetteCode = code3Addresses.getEtiquette();
 		// Else
 		Commands cmds2 = ifCmd.getCommands2();
 		if(cmds2 != null){
 		code3Addresses.finEtiquette();
 		code3Addresses.nouvelleEtiquette();
-		iterateAST(cmds2, f,0);
+		iterateAST(cmds2, f);
+		code3Addresses.finEtiquette();
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond), "",
+				etiquetteCode, code3Addresses.getPreviousEtiquette()));
+		}else{
+			code3Addresses.finEtiquette();
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond), "",
+			code3Addresses.getPreviousEtiquette(), ""));
 		}
+		
 	}
 
 	// TOOLS //

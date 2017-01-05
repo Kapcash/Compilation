@@ -3,22 +3,6 @@
 	</symboles>
 	<functions>
 		<function>
-			<name>callFunction</name>
-			<vars>
-				<var>
-					<vname>A</vname>
-					<value>1</value>
-				</var>
-				<var>
-					<vname>Ret</vname>
-					<value>2</value>
-				</var>
-			</vars>
-			<calls>
-				<f>f1</f>
-			</calls>
-		</function>
-		<function>
 			<name>f1</name>
 			<vars>
 				<var>
@@ -35,6 +19,22 @@
 				</var>
 			</vars>
 			<calls>
+			</calls>
+		</function>
+		<function>
+			<name>callFunction</name>
+			<vars>
+				<var>
+					<vname>A</vname>
+					<value>3</value>
+				</var>
+				<var>
+					<vname>Ret</vname>
+					<value>2</value>
+				</var>
+			</vars>
+			<calls>
+				<f>f1</f>
 			</calls>
 		</function>
 	</functions>

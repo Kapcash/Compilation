@@ -298,9 +298,13 @@ public class TableDesSymbolesTest {
 			assertTrue("Les fichiers n'ont pas le meme nombre de symboles",symbs1.getLength() == symbs2.getLength());
 			
 			for(int symbIndex=0; symbIndex < symbs1.getLength();symbIndex++){
+				boolean sameSymb = false;
 				String sym1 = ((Element) symbs1.item(symbIndex)).getTextContent();
-				String sym2 = ((Element) symbs2.item(symbIndex)).getTextContent();
-				assertTrue("Les "+(symbIndex+1)+"eme symboles ne sont pas les memes : "+sym1+" | "+sym2,sym1.equals(sym2));
+				for(int symbIndex2=0; symbIndex2 < symbs2.getLength();symbIndex2++){
+					String sym2 = ((Element) symbs2.item(symbIndex2)).getTextContent();
+					if(sym1.equals(sym2)) sameSymb = true;
+				}
+				assertTrue("Les symboles ne sont pas les memes.",sameSymb);
 			}
 			
 			//Checking functions
@@ -310,40 +314,60 @@ public class TableDesSymbolesTest {
 				//Checking each function
 			for(int tmp = 0; tmp < functions1.getLength();tmp++){
 				Node node1 = functions1.item(tmp);
-				Node node2 = functions2.item(tmp);
-				
+				Node node2 = null;
 				//Checking function name
 				String funName1 = ((Element) node1).getElementsByTagName("name").item(0).getTextContent();
-				String funName2 = ((Element) node2).getElementsByTagName("name").item(0).getTextContent();
-				assertTrue("Deux fonctions n'ont pas le meme nom : "+funName1+" | "+funName2, funName1.equals(funName2));
+				String funName2 = null;
+				boolean sameFunName = false;
+				//Iterate over the second file to find (eventually) the same function node
+				for(int tmp2 = 0; (tmp2 < functions2.getLength()) && !sameFunName ;tmp2++){
+					node2 = functions2.item(tmp2);
+					funName2 = ((Element) node2).getElementsByTagName("name").item(0).getTextContent();
+					if(funName1.equals(funName2)) sameFunName = true;
+					//If a same node if found, the following tests will be with node1's function = node2's function
+				}
+				//If there is no node with the same function name -> fail
+				assertTrue("Deux fonctions n'ont pas le meme nom : "+funName1, sameFunName);
 				
 				NodeList vars1 = ((Element) node1).getElementsByTagName("var"); //Getting <var>
 				NodeList vars2 = ((Element) node2).getElementsByTagName("var");
-				assertTrue("Il n'y a pas le meme nombre de variables.",vars1.getLength() == vars2.getLength());
+				assertTrue("Il n'y a pas le meme nombre de variables pour la fonction "+funName1,vars1.getLength() == vars2.getLength());
 				for(int varIndex = 0; varIndex < vars1.getLength();varIndex++){
+					boolean sameVarsName = false;
 					Node varNode1 = vars1.item(varIndex);
-					Node varNode2 = vars2.item(varIndex);
 					//Checking vars name
 					String varName1 = ((Element) varNode1).getElementsByTagName("vname").item(0).getTextContent(); //Writing vars names
-					String varName2 = ((Element) varNode2).getElementsByTagName("vname").item(0).getTextContent(); //Writing vars names
-					assertTrue("Les "+(varIndex+1)+"eme variables n'ont pas le meme nom : "+varName1+" | "+varName2, varName1.equals(varName2));
+					//Iterate through the vars of the second file to see if there is a same as varName1
+					for(int varIndex2 = 0; varIndex2 < vars2.getLength();varIndex2++){
+						String varName2 = ((Element) vars2.item(varIndex2)).getElementsByTagName("vname").item(0).getTextContent(); //Writing vars names
+						if(varName1.equals(varName2)) sameVarsName = true;
+					}
+					assertTrue("Les variables n'ont pas le meme nom : "+varName1, sameVarsName);
 					//Checking vars value
+					boolean sameVarsValue = false;
+					//Iterate through the vars of the second file to see if there is a same as varValue1
 					String varValue1 = ((Element) varNode1).getElementsByTagName("value").item(0).getTextContent(); //Writing vars names
-					String varValue2 = ((Element) varNode2).getElementsByTagName("value").item(0).getTextContent(); //Writing vars names
-					assertTrue("Les "+(varIndex+1)+"eme variables n'ont pas la meme valeur : "+varValue1+" | "+varValue2, varValue1.equals(varValue2));
+					for(int varIndex2 = 0; varIndex2 < vars2.getLength();varIndex2++){
+						String varValue2 = ((Element) vars2.item(varIndex2)).getElementsByTagName("value").item(0).getTextContent(); //Writing vars names
+						if(varValue1.equals(varValue2)) sameVarsValue = true;
+					}
+					assertTrue("Les variables n'ont pas les mêmes valeurs : "+varValue1, sameVarsValue);
 				}
 				
 				//Checking calls
 				NodeList calls1 = ((Element) node1).getElementsByTagName("f");
 				NodeList calls2 = ((Element) node2).getElementsByTagName("f");
 				assertTrue("Le nombre d'appels de fonctions ne sont pas les memes.",calls1.getLength() == calls2.getLength());
+				
 				for(int callIndex = 0; callIndex < calls1.getLength(); callIndex++){
-					Node call1 = calls1.item(callIndex);
-					Node call2 = calls1.item(callIndex);
-					
-					String callValue1 = ((Element) call1).getTextContent();
-					String callValue2 = ((Element) call2).getTextContent();
-					assertTrue("Les functions appellees ne sont pas les memes : "+callValue1+" | "+callValue2, callValue1.equals(callValue2));
+					boolean sameCalls = false;
+					String callValue1 = ((Element) calls1.item(callIndex)).getTextContent();
+					//Iterate through the calls of the second file to see if there is a same as callValue1
+					for(int callIndex2 = 0; callIndex2 < calls2.getLength(); callIndex2++){
+						String callValue2 = ((Element) calls2.item(callIndex2)).getTextContent();
+						if(callValue1.equals(callValue2)) sameCalls = true;
+					}
+					assertTrue("Les functions appellees ne sont pas les memes : "+callValue1, sameCalls);
 				}
 			}
 			

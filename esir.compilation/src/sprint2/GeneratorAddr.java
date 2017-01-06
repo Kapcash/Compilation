@@ -51,14 +51,15 @@ public class GeneratorAddr {
 
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
-	public static boolean DISPLAY_THREE_ADDR_CODE = false;
-	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean DISPLAY_THREE_ADDR_CODE = true;
+	public static boolean DISPLAY_TRANSLATION = true;
 	public static boolean PRINT_TRANSLATION = true;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple5.wh";
+	private static final String INPUT_FILE = "../DEMO_CSharp.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
+	private static final String OUTPUT_XML_FILE = "";
 
 	private static GeneratorAddr instance;
 
@@ -162,7 +163,7 @@ public class GeneratorAddr {
 		if (DISPLAY_SYM_TABLE) {
 			displaySymTable(); // Print the symbols table
 			System.out.println("Symboles Table correctly generated.");
-			System.out.println("\n" + writeSymTableXML(INPUT_FILE + "xml"));
+			System.out.println("\n" + writeSymTableXML(OUTPUT_XML_FILE));
 		}
 		if (DISPLAY_THREE_ADDR_CODE) {
 			System.out.println(code3Addresses);

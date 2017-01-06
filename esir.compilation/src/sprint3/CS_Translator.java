@@ -16,14 +16,15 @@ public class CS_Translator {
 	private int k = 0;
 	private LinkedList<CS_Function> funcList = new LinkedList<CS_Function>();
 	private LinkedList<String> reads = new LinkedList<String>();
+	private LinkedList<String> allDecls = new LinkedList<String>();
 
 	// C# GENERAL
 
-	private final static String imports = "using System;\nusing System.Collections.Generic;\nusing static Tree.BinTree;\n";
+	private final static String imports = "using System;\nusing System.Collections.Generic;\nusing Tree;\nusing static Tree.BinTree;\n";
 	private final static String projectName = "namespace BinTreeProject";
 	private final static String className = "class Program";
-	private final static String mainFunctionName = "static void Main()";
-	private final static String typeName = "Queue<Tree.BinTree>";
+	private final static String mainFunctionName = "static void Main(string[] args)";
+	private final static String typeName = "Queue<BinTree>";
 
 	// Utils
 	private final static String lAccolade = "{";
@@ -101,19 +102,33 @@ public class CS_Translator {
 		ArrayList<String> readToBinTree = new ArrayList<String>();
 		String nameFonction = null;
 		String executerFonction = null;
+		int incrementArgs = 0;
 		while (ite.hasNext()) {
 			String it = ite.next();
 			if (it.contains("function")) {
 				if (readToBinTree.size() > 0) {
-
-					write("Queue<Tree.BinTree> input = new Queue<Tree.BinTree>();");
-					write("Queue<Tree.BinTree> output = new Queue<Tree.BinTree>();");
+					
+					write("Queue<BinTree> input = new Queue<BinTree>();");
+					write("Queue<BinTree> output = new Queue<BinTree>();");
+					
 					Iterator<String> ite2 = readToBinTree.iterator();
 					while (ite2.hasNext()) {
 						String it2 = ite2.next();
-						write("Tree.BinTree " + it2 + " = new Tree.BinTree(\"" + it2 + "\", null, null);");
+						write("if(args.Length > "+incrementArgs+"){");
+						rightShift();
+						write("BinTree " + it2 + " = new BinTree(args["+incrementArgs+"], null, null);");
 						write("input.Enqueue(" + it2 + ");");
+						leftShift();
+						write("}");
+						write("else{");
+						rightShift();
+						write("BinTree " + it2 + " = new BinTree(\""+it2+"\", null, null);");
+						write("input.Enqueue(" + it2 + ");");
+						leftShift();
+						write("}");
+						incrementArgs++;
 					}
+					write("}");
 					write(executerFonction);
 				}
 				nameFonction = it.split(" ")[1];
@@ -123,13 +138,25 @@ public class CS_Translator {
 			}
 		}
 		if (readToBinTree.size() > 0) {
-			write("Queue<Tree.BinTree> input = new Queue<Tree.BinTree>();");
-			write("Queue<Tree.BinTree> output = new Queue<Tree.BinTree>();");
+			write("Queue<BinTree> input = new Queue<BinTree>();");
+			write("Queue<BinTree> output = new Queue<BinTree>();");
 			Iterator<String> ite2 = readToBinTree.iterator();
 			while (ite2.hasNext()) {
 				String it2 = ite2.next();
-				write("Tree.BinTree " + it2 + " = new Tree.BinTree(\"" + it2 + "\", null, null);");
+				write("if(args.Length > "+incrementArgs+"){");
+				rightShift();
+				write("BinTree " + it2 + " = new BinTree(args["+incrementArgs+"], null, null);");
 				write("input.Enqueue(" + it2 + ");");
+				leftShift();
+				write("}");
+				write("else{");
+				rightShift();
+				write("BinTree " + it2 + " = new BinTree(\""+it2+"\", null, null);");
+				write("input.Enqueue(" + it2 + ");");
+				leftShift();
+				write("}");
+				
+				incrementArgs++;
 			}
 			write(executerFonction);
 		}
@@ -144,7 +171,7 @@ public class CS_Translator {
 				funcList.add(new CS_Function(quad.getReponse()));
 				break;
 			case READ:
-				f.write("Tree.BinTree " + quad.getReponse() + " = input.Dequeue();");
+				f.write("BinTree " + quad.getReponse() + " = input.Dequeue();");
 				reads.add(quad.getReponse());
 				break;
 			case WRITE:
@@ -157,13 +184,13 @@ public class CS_Translator {
 			// LOOPS
 			case IF:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("if(Tree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
+				f.write("if(isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()
 						+ "))");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
 				f.leftShift();
-				if (code.getCode3Addr().get(quad.getArg2())!= null) {
+				if (!code.getCode3Addr().get(quad.getArg2()).equals("")) {
 					f.write(rAccolade + "else" + lAccolade);
 					f.rightShift();
 					iterateList(code.getCode3Addr().get(quad.getArg2()).iterator(), f);
@@ -173,7 +200,7 @@ public class CS_Translator {
 				break;
 			case WHILE:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("while(Tree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
+				f.write("while(isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()
 						+ "))");
 				f.write(lAccolade);
 				f.rightShift();
@@ -191,7 +218,21 @@ public class CS_Translator {
 				f.write(rAccolade);
 				break;
 			case DECL:
-				f.write("Tree.BinTree " + quad.getReponse() + " = new Tree.BinTree (\""+quad.getReponse()+"\", null, null);");
+				Iterator<String> iteDecl = allDecls.iterator();
+				Boolean dontContains = true;
+				while(iteDecl.hasNext()){
+					String decl = iteDecl.next();
+					if(decl.equals(quad.getReponse()))
+						dontContains = false;
+				}
+				if(dontContains){
+					f.write("BinTree " + quad.getReponse() + " = new BinTree (\""+quad.getReponse()+"\", null, null);");
+					allDecls.add(quad.getReponse());
+				}
+				else{
+					f.write(quad.getReponse() + " = new BinTree (\""+quad.getReponse()+"\", null, null);");
+				}
+
 				break;
 			case AFF:
 				f.write(quad.getReponse() + " = " + quad.getArg1() + ";");
@@ -218,16 +259,16 @@ public class CS_Translator {
 				break;
 			// WHILE FUNCTION
 			case CONS:
-				f.write("outParams.Enqueue(Tree.cons(inParams));");
+				f.write("outParams.Enqueue(cons(inParams));");
 				break;
 			case LIST:
-				f.write("outParams.Enqueue(Tree.list(inParams));");
+				f.write("outParams.Enqueue(list(inParams));");
 				break;
 			case HD:
-				f.write(quad.getReponse() + " = Tree.head(" + quad.getArg1() + ");");
+				f.write(quad.getReponse() + " = head(" + quad.getArg1() + ");");
 				break;
 			case TL:
-				f.write(quad.getReponse() + " = Tree.tail(" + quad.getArg1() + ");");
+				f.write(quad.getReponse() + " = tail(" + quad.getArg1() + ");");
 				break;
 			default:
 				f.write("// "+quad.getOperateur().getOpe().name()+" not implemented yet.");
@@ -363,7 +404,7 @@ public class CS_Translator {
 				throw new CS_TranslatorException("Il manque un " + (k < 0 ? "à gauche" : "à droite"));
 			}
 			CS_Translator.this.newLine();
-			CS_Translator.this.write("private " + getReturns() + " " + getName() + "(" + getParams() + ")");
+			CS_Translator.this.write("private static " + getReturns() + " " + getName() + "(" + getParams() + ")");
 			CS_Translator.this.write(lAccolade);
 			CS_Translator.this.write2(body.toString());
 			CS_Translator.this.write(rAccolade);

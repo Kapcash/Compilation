@@ -1,0 +1,6 @@
+function testAffect1:
+read A
+%
+	X := nil
+%
+write X

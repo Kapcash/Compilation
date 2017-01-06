@@ -18,7 +18,7 @@ public class TestCharges {
 	boolean regenerateFiles = true;
 	
 	public void test(int n) {
-		args[0] ="../testCharges"+n+".wh";
+		args[0] ="testUnitaire/traductionTest//Fichier_TestCharge/testCharges"+n+".wh";
 		args[1] = "";
 		
 		if(regenerateFiles)

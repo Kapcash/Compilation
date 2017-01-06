@@ -1,0 +1,11 @@
+function testWhile2:
+read A
+%
+			while Cond do
+				nop ;
+						while Cond do
+							nop
+						od
+			od
+%
+write X

@@ -1,0 +1,13 @@
+function testIf3:
+read A
+%
+			if Cond then
+				nop ;
+						if nil then
+							nop
+						fi
+			else
+				nop
+			fi
+%
+write X

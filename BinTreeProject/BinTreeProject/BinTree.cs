@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tree
 {
     class BinTree
     {
-        String data;
+        string data;
         BinTree leftSon;
         BinTree rightSon;
 
-        public BinTree(String da, BinTree le, BinTree ri)
+        public BinTree(string da, BinTree le, BinTree ri)
         {
             data = da;
             leftSon = le;
             rightSon = ri;
         }
 
-        public String getData()
+        public string getData()
         {
             return data;
         }
@@ -97,24 +95,40 @@ namespace Tree
 
         }
 
-        public static BinTree evaluate(String op, BinTree tree1, BinTree tree2)
+        public static BinTree evaluate(string op, BinTree tree1, BinTree tree2)
         {
             return new BinTree(null, null, null);
         }
 
-        public static Boolean operator !=(BinTree tree1, BinTree tree2)
-        {
-            if (tree1.getData().Equals(tree2.getData()))
-                return false;
-            return true;
-        }
+        /* public static Boolean operator !=(BinTree tree1, BinTree tree2)
+         {
+             try {
+                 if (tree1.getData().Equals(tree2.getData()))
+                 {
+                     return false;
+                 }
 
-        public static Boolean operator ==(BinTree tree1, BinTree tree2)
-        {
-            if (tree1.getData().Equals(tree2.getData()))
-                return true;
-            return false;
-        }
+             }
+             catch(Exception e)
+             {
+                 Console.WriteLine();
+                 Console.ReadLine();
+             }
+             return true;
+         }
+
+         public static Boolean operator ==(BinTree tree1, BinTree tree2)
+         {
+             if (tree1 != null && tree2 != null)
+             {
+                 if (tree1.getData().Equals(tree2.getData()))
+                 {
+                     return true;
+                 }
+             }
+
+             return false;
+         }*/
 
         public String DisplayTree()
         {
@@ -126,6 +140,11 @@ namespace Tree
             {
                 return "(" + this.data + " , " + this.leftSon.DisplayTree() + " , " + this.rightSon.DisplayTree() + ")";
             }
+        }
+
+        public static bool isTrue(BinTree tree)
+        {
+            return true;
         }
 
     }

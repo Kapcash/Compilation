@@ -45,18 +45,19 @@ import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
 import sprint3.CS_Translator;
 import sprint3.CS_TranslatorException;
+import traductionTest.Code3AdressesTests;
 
 public class GeneratorAddr {
 
 	// SETTINGS
-	public static boolean DISPLAY_SYM_TABLE = true;
-	public static boolean DISPLAY_THREE_ADDR_CODE = false;
-	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean DISPLAY_SYM_TABLE = false;
+	public static boolean DISPLAY_THREE_ADDR_CODE = true;
+	public static boolean DISPLAY_TRANSLATION = true;
 	public static boolean PRINT_TRANSLATION = false;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exempleLourd.wh";
+	private static final String INPUT_FILE = "../exemple.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 
 	private static GeneratorAddr instance;
@@ -159,7 +160,9 @@ public class GeneratorAddr {
 								// for example)
 
 		if (DISPLAY_SYM_TABLE) {
-			displaySymTable(""); // Print the symbols table
+			displaySymTable(); // Print the symbols table
+			System.out.println("Symboles Table correctly generated.");
+			System.out.println("\n" + writeSymTableXML(INPUT_FILE + "xml"));
 		}
 		if (DISPLAY_THREE_ADDR_CODE) {
 			System.out.println(code3Addresses);
@@ -282,7 +285,7 @@ public class GeneratorAddr {
 				iterateAST((If) obj, f);
 			} else {
 			}
-			code3Addresses.finEtiquette();
+			//code3Addresses.finEtiquette();
 		}
 	}
 
@@ -330,7 +333,9 @@ public class GeneratorAddr {
 	private void iterateAST(Expr exp, DefFun f) throws SymTableException {
 		// System.out.print("{");
 		/*
+		 * 
 		 * ExprSimple expSimp = exp.getExprsimple(); iterateAST(expSimp, f);
+		 * 
 		 */
 		// System.out.print("}");
 		code3Addresses.addLevel();
@@ -349,7 +354,6 @@ public class GeneratorAddr {
 		Expr ex1 = ex.getEx1();
 		Expr ex2 = ex.getEx2();
 		Not n = ex.getN();
-		String call = ex.getCall();
 
 		if (operator != null) {
 			switch (operator) {
@@ -385,18 +389,17 @@ public class GeneratorAddr {
 				varDeclaration(f, val);
 				code3Addresses.addToExpression(val, funList);
 			}
-			if (call != null) {
-				code3Addresses.addToExpression(call, funList);
-			}
 		}
 		if (isSymbole(val)) { // Symbole
-			this.symbs.put(val, "");
+			if (exprs != null) {
+				f.updateCalls(val, exprs);
+				// TODO : Check return number
+			} else {
+				this.symbs.put(val, "");
+			}
 		}
 		if (isVariable(val)) { // Variable
 			f.updateVar(val);
-		}
-		if(call != null && exprs != null){ //Call function with Lexpr
-			f.updateCalls(call, exprs);
 		}
 		if (exp != null) { // Expr
 			iterateAST(exp, f);
@@ -412,56 +415,6 @@ public class GeneratorAddr {
 		}
 	}
 
-// OLD CODE //	
-	
-//	// ExprAnd
-//	private void iterateAST(ExprAnd ex, DefFun f) throws SymTableException {
-//		code3Addresses.addLevel();
-//		ExprAnd exprAnd = ex.getExprAnd();
-//		if (exprAnd != null){
-//			System.out.println("on est la");
-//			code3Addresses.addToExpression(OP.AND.name(),funList);
-//			iterateAST(exprAnd, f);
-//			iterateAST(ex.getExprOr(), f);
-//		}else{
-//			iterateAST(ex.getExprOr(), f);
-//		}
-//		code3Addresses.subLevel();
-//	}
-//
-//	// ExprOr
-//	private void iterateAST(ExprOr ex, DefFun f) throws SymTableException {
-//		ExprOr exprOr = ex.getExprOr();
-//		if (exprOr != null)
-//			iterateAST(exprOr, f);
-//
-//		ExprNot exprNot = ex.getExprNot();
-//		if (exprNot != null)
-//			iterateAST(exprNot, f);
-//	}
-//
-//	// ExprNot
-//	private void iterateAST(ExprNot ex, DefFun f) throws SymTableException {
-//		Not not = ex.getNot();
-//		/* TODO
-//		 * if(not != null) iterateAST(exprNot,f);
-//		 */
-//
-//		ExprEq exprEq = ex.getExprEq();
-//		if (exprEq != null)
-//			iterateAST(exprEq, f);
-//	}
-//	
-//	//ExprEq
-//	private void iterateAST(ExprEq ex, DefFun f) throws SymTableException {
-//		iterateAST(ex.getExprSimple1(), f);
-//		if(ex.getExprSimple2() != null){
-//			iterateAST(ex.getExprSimple2(), f);
-//		}
-//	}
-
-// OLD CODE //
-	
 	// Lexpr
 	private void iterateAST(Lexpr lexp, DefFun f) throws SymTableException {
 		Expr exp = lexp.getExpr();
@@ -479,23 +432,35 @@ public class GeneratorAddr {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette();
 		iterateAST(whCmd.getExpr(), f);
-		int k = code3Addresses.inlineExpression(this, f);
-		String expr = "Y" + k;
+		code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
-
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getEtiquette(), ""));
+		
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = whCmd.getCommands();
 		iterateAST(cmds, f);
+		code3Addresses.finEtiquette();
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getPreviousEtiquette(), ""));
+		iterateAST(whCmd.getExpr(), f);
+		code3Addresses.inlineExpression(this, f);
 	}
 
 	// For
 	private void iterateAST(For forCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, code3Addresses.getEtiquette()), "",
-				forCmd.getExpr().toString(), ""));
+		String etiquetteCond = code3Addresses.getEtiquette();
+		code3Addresses.nouvelleEtiquette();
+		iterateAST(forCmd.getExpr(), f);
+		code3Addresses.inlineExpression(this, f);
+		code3Addresses.finEtiquette();
+		
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = forCmd.getCommands();
 		iterateAST(cmds, f);
+		code3Addresses.finEtiquette();
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, etiquetteCond), "",
+				code3Addresses.getPreviousEtiquette(), ""));
+		iterateAST(forCmd.getExpr(), f);
+		code3Addresses.inlineExpression(this, f);
+		/*TODO : demander au prof pour le for et le foreach*/
 	}
 
 	// Foreach
@@ -512,21 +477,27 @@ public class GeneratorAddr {
 		int k = code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 		
-		QuadImp q = new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond),
-				"", code3Addresses.getEtiquette(), code3Addresses.getFutureEtiquette());
-		code3Addresses.addIn3Addr(q);
 		// Then
+		
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds1 = ifCmd.getCommands1();
 		iterateAST(cmds1, f);
-		//q.setArg2(code3Addresses.getFutureEtiquette());
+		String etiquetteCode = code3Addresses.getEtiquette();
 		// Else
 		Commands cmds2 = ifCmd.getCommands2();
 		if(cmds2 != null){
 		code3Addresses.finEtiquette();
 		code3Addresses.nouvelleEtiquette();
 		iterateAST(cmds2, f);
+		code3Addresses.finEtiquette();
+		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond), "",
+				etiquetteCode, code3Addresses.getPreviousEtiquette()));
+		}else{
+			code3Addresses.finEtiquette();
+			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond), "",
+			code3Addresses.getPreviousEtiquette(), ""));
 		}
+		
 	}
 
 	// TOOLS //
@@ -534,56 +505,55 @@ public class GeneratorAddr {
 	/**
 	 * Print the final symboles table
 	 */
-	private void displaySymTable(String outputXMLPath) {
+	private void displaySymTable() {
 		System.out.println();
 		System.out.println("Symboles globaux : \n" + symbs.keySet() + "\n");
 		for (String f : funList.keySet()) {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
-		System.out.println("Symboles Table correctly generated.");
-		System.out.print("\n" + writeSymTableXML(outputXMLPath + "xml"));
 	}
 
 	/**
 	 * Write in a file and a string an XML representation of the Symbole Table.
 	 * Used for tests
 	 * 
-	 * @param outputPath Output file where to write the XML format of the Symbole Table. Pass "" to disable file writing.
+	 * @param outputPath
+	 *            Output file where to write the XML format of the Symbole Table
 	 * @return An XML string representation of the Symbole table
 	 */
 	public String writeSymTableXML(String outputPath) {
 		String ret = "";
-		ret += "<tds>\n\t<symboles>";
+		ret += "<symboles>";
 		for (String s : symbs.keySet()) {
-			ret += "\n\t\t<sym>" + s + "</sym>";
+			ret += "\n\t<sym>" + s + "</sym>";
 		}
-		ret += "\n\t</symboles>\n\t<functions>";
+		ret += "\n</symboles>\n<functions>";
 		for (String f : funList.keySet()) {
 			DefFun deffun = funList.get(f);
-			ret += "\n\t\t<function>";
-			ret += "\n\t\t\t<name>" + f + "</name>";
+			ret += "\n\t<function>";
+			ret += "\n\t\t<name>" + f + "</name>";
 			HashMap<String, Integer> vars = deffun.getVars();
-			ret += "\n\t\t\t<vars>";
+			ret += "\n\t\t<vars>";
 			for (String var : vars.keySet()) {
-				ret += "\n\t\t\t\t<var>\n\t\t\t\t\t<vname>" + var + "</vname>";
-				ret += "\n\t\t\t\t\t<value>" + vars.get(var) + "</value>";
-				ret += "\n\t\t\t\t</var>";
+				ret += "\n\t\t\t<var>\n\t\t\t\t<vname>" + var + "</vname>";
+				ret += "\n\t\t\t\t<value>" + vars.get(var) + "</value>";
+				ret += "\n\t\t\t</var>";
 			}
-			ret += "\n\t\t\t</vars>";
+			ret += "\n\t\t</vars>";
 			HashMap<String, Lexpr> calls = deffun.getCalls();
-			ret += "\n\t\t\t<calls>";
+			ret += "\n\t\t<calls>";
 			for (String call : calls.keySet()) {
-				ret += "\n\t\t\t\t<f>" + call + "</f>";
+				ret += "\n\t\t\t<f>" + call + "</f>";
 			}
-			ret += "\n\t\t\t</calls>";
-			ret += "\n\t\t</function>";
+			ret += "\n\t\t</calls>";
+			ret += "\n\t</function>";
 		}
-		ret += "\n\t</functions>\n</tds>";
+		ret += "\n</functions>";
 
 		if (outputPath != null && !outputPath.equals("")) {
 			try {
 				PrintWriter writer = new PrintWriter(outputPath, "UTF-8");
-				writer.print(ret);
+				writer.println(ret);
 				writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -643,7 +613,8 @@ public class GeneratorAddr {
 		try {
 			fun = exprs.getExpr().getExprsimple().getValeur();
 			System.out.println("FUN : " + fun);
-		} catch (NullPointerException nullEx) { /* Nothing */ }
+		} catch (NullPointerException nullEx) {
+			/* Nothing */}
 		if (funList.containsKey(fun)) { //
 			ret += funList.get(fun).getOut();
 		}

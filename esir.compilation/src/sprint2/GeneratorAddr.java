@@ -51,13 +51,13 @@ public class GeneratorAddr {
 
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
-	public static boolean DISPLAY_THREE_ADDR_CODE = true;
-	public static boolean DISPLAY_TRANSLATION = true;
-	public static boolean PRINT_TRANSLATION = false;
+	public static boolean DISPLAY_THREE_ADDR_CODE = false;
+	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple.wh";
+	private static final String INPUT_FILE = "../exemple5.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 
 	private static GeneratorAddr instance;
@@ -440,8 +440,6 @@ public class GeneratorAddr {
 		iterateAST(cmds, f);
 		code3Addresses.finEtiquette();
 		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getPreviousEtiquette(), ""));
-		iterateAST(whCmd.getExpr(), f);
-		code3Addresses.inlineExpression(this, f);
 	}
 
 	// For

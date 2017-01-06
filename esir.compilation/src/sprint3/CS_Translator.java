@@ -178,6 +178,7 @@ public class CS_Translator {
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
 				f.leftShift();
 				f.write(rAccolade);
 				break;

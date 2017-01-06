@@ -1,7 +1,7 @@
 function symboles: 
 read A ,B ,C
 %
-	while condUn do
+	while (A and (cons B C (tl (D or E)))) do
 		while CondDeux do
 			while CondTrois do
 					nop

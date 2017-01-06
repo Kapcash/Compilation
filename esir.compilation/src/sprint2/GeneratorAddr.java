@@ -440,8 +440,6 @@ public class GeneratorAddr {
 		iterateAST(cmds, f);
 		code3Addresses.finEtiquette();
 		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getPreviousEtiquette(), ""));
-		iterateAST(whCmd.getExpr(), f);
-		code3Addresses.inlineExpression(this, f);
 	}
 
 	// For

@@ -21,11 +21,11 @@ namespace BinTreeProject
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			inParams.Enqueue(B);
 			inParams.Enqueue(C);
-			outParams.Enqueue(cons(inParams));
+			Y0 = (cons(inParams));
 			BinTree Y1 = new BinTree ("Y1", null, null);
 			inParams.Enqueue(A);
 			inParams.Enqueue(Y0);
-			outParams.Enqueue(cons(inParams));
+			Y1 = (cons(inParams));
 			BinTree X0 = new BinTree ("X0", null, null);
 			X0 = Y1;
 			BinTree Ret = new BinTree ("Ret", null, null);
@@ -86,6 +86,7 @@ namespace BinTreeProject
 				input.Enqueue(E);
 			}
 			multiplecons(input, output);
+            Console.WriteLine(output.Dequeue().DisplayTree());
 		}
 	}
 }

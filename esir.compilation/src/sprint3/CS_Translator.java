@@ -160,6 +160,9 @@ public class CS_Translator {
 			}
 			write(executerFonction);
 		}
+		write("Console.WriteLine(output.Dequeue().DisplayTree());");
+		
+		write("Console.ReadLine();");
 		leftShift();
 	}
 
@@ -259,10 +262,10 @@ public class CS_Translator {
 				break;
 			// WHILE FUNCTION
 			case CONS:
-				f.write("outParams.Enqueue(cons(inParams));");
+				f.write(quad.getReponse() + " = (cons(inParams));");
 				break;
 			case LIST:
-				f.write("outParams.Enqueue(list(inParams));");
+				f.write(quad.getReponse() + " = (list(inParams));");
 				break;
 			case HD:
 				f.write(quad.getReponse() + " = head(" + quad.getArg1() + ");");

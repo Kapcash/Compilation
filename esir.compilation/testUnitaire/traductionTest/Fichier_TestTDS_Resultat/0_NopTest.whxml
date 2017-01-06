@@ -1,17 +1,15 @@
-<tds>
-	<symboles>
-	</symboles>
-	<functions>
-		<function>
-			<name>nopTest</name>
-			<vars>
-				<var>
-					<vname>A</vname>
-					<value>2</value>
-				</var>
-			</vars>
-			<calls>
-			</calls>
-		</function>
-	</functions>
-</tds>
+<symboles>
+</symboles>
+<functions>
+	<function>
+		<name>nopTest</name>
+		<vars>
+			<var>
+				<vname>A</vname>
+				<value>2</value>
+			</var>
+		</vars>
+		<calls>
+		</calls>
+	</function>
+</functions>

@@ -56,92 +56,92 @@ public class Code3AdressesTests {
 	}
 	
 	@Test
-	public void nbEtiquette0Test() {
+	public void nbEtiquetteNopTest() {
 		verifNbEtiquette("0_NopTest");
 	}
 	
 	@Test
-	public void nbEtiquette1Test() {
+	public void nbEtiquetteAffectation1Test() {
 		verifNbEtiquette("1_Affectation1Test");
 	}
 	
 	@Test
-	public void nbEtiquette1BisTest() {
+	public void nbEtiquetteAffectation2Test() {
 		verifNbEtiquette("1_Affectation2Test");
 	}
 	
 	@Test
-	public void nbEtiquette2Test() {
+	public void nbEtiquetteConsTest() {
 		verifNbEtiquette("2_ConsTest");
 	}
 	
 	@Test
-	public void nbEtiquette3Test() {
+	public void nbEtiquetteListTestTest() {
 		verifNbEtiquette("3_ListTest");
 	}
 	
 	@Test
-	public void nbEtiquette4Test() {
+	public void nbEtiquetteHdTest() {
 		verifNbEtiquette("4_HdTest");
 	}
 	
 	@Test
-	public void nbEtiquette5Test() {
+	public void nbEtiquetteTlTest() {
 		verifNbEtiquette("5_TlTest");
 	}
 	
 	@Test
-	public void nbEtiquette6Test() {
+	public void nbEtiquetteIfTest() {
 		verifNbEtiquette("6_IfTest");
 	}
 	
 	@Test
-	public void nbEtiquette7Test() {
+	public void nbEtiquetteWhileTest() {
 		verifNbEtiquette("7_WhileTest");
 	}
 	
 	@Test
-	public void nbEtiquette8Test() {
+	public void nbEtiquetteForTest() {
 		verifNbEtiquette("8_ForTest");
 	}
 	
 	@Test
-	public void nbEtiquette9Test() {
+	public void nbEtiquetteFunMultTest() {
 		verifNbEtiquette("9_FunMultTest");
 	}
 	
 	@Test
-	public void nbEtiquette10Test() {
+	public void nbEtiquetteMixedTest() {
 		verifNbEtiquette("10_MixedTest");
 	}
 	
 	@Test
-	public void nbEtiquette11Test() {
+	public void nbEtiquetteExempleTest() {
 		verifNbEtiquette("exemple");
 	}
 	
 	@Test
-	public void nbEtiquette12Test() {
+	public void nbEtiquetteExemple2Test() {
 		verifNbEtiquette("exemple2");
 	}
 	
 	@Test
-	public void nbEtiquette13Test() {
+	public void nbEtiquetteExemple3Test() {
 		verifNbEtiquette("exemple3");
 	}
 	
 	@Test
-	public void nbEtiquette14Test() {
+	public void nbEtiquetteExemple4Test() {
 		verifNbEtiquette("exemple4");
 	}
 	
 	@Test
-	public void nbEtiquette15Test() {
+	public void nbEtiquetteExemple5Test() {
 		verifNbEtiquette("exemple5");
 	}
 	
 	@Test
-	public void nbEtiquette16Test() {
+	public void nbEtiquetteExemple6Test() {
 		verifNbEtiquette("exemple6");
 	}
 	

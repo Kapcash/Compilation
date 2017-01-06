@@ -1,29 +1,27 @@
-<tds>
-	<symboles>
-	</symboles>
-	<functions>
-		<function>
-			<name>affMultiple</name>
-			<vars>
-				<var>
-					<vname>A</vname>
-					<value>3</value>
-				</var>
-				<var>
-					<vname>B</vname>
-					<value>2</value>
-				</var>
-				<var>
-					<vname>C</vname>
-					<value>2</value>
-				</var>
-				<var>
-					<vname>D</vname>
-					<value>2</value>
-				</var>
-			</vars>
-			<calls>
-			</calls>
-		</function>
-	</functions>
-</tds>
+<symboles>
+</symboles>
+<functions>
+	<function>
+		<name>affMultiple</name>
+		<vars>
+			<var>
+				<vname>A</vname>
+				<value>3</value>
+			</var>
+			<var>
+				<vname>B</vname>
+				<value>2</value>
+			</var>
+			<var>
+				<vname>C</vname>
+				<value>2</value>
+			</var>
+			<var>
+				<vname>D</vname>
+				<value>2</value>
+			</var>
+		</vars>
+		<calls>
+		</calls>
+	</function>
+</functions>

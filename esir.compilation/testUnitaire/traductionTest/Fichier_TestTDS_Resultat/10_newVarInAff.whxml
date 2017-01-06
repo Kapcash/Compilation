@@ -1,25 +1,23 @@
-<tds>
-	<symboles>
-	</symboles>
-	<functions>
-		<function>
-			<name>newVarInAff</name>
-			<vars>
-				<var>
-					<vname>Ret</vname>
-					<value>2</value>
-				</var>
-				<var>
-					<vname>A</vname>
-					<value>1</value>
-				</var>
-				<var>
-					<vname>B</vname>
-					<value>1</value>
-				</var>
-			</vars>
-			<calls>
-			</calls>
-		</function>
-	</functions>
-</tds>
+<symboles>
+</symboles>
+<functions>
+	<function>
+		<name>newVarInAff</name>
+		<vars>
+			<var>
+				<vname>Ret</vname>
+				<value>2</value>
+			</var>
+			<var>
+				<vname>A</vname>
+				<value>1</value>
+			</var>
+			<var>
+				<vname>B</vname>
+				<value>1</value>
+			</var>
+		</vars>
+		<calls>
+		</calls>
+	</function>
+</functions>

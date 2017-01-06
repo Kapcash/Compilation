@@ -355,7 +355,8 @@ public class GeneratorAddr {
 		Expr ex1 = ex.getEx1();
 		Expr ex2 = ex.getEx2();
 		Not n = ex.getN();
-
+		String call = ex.getCall();
+		
 		if (operator != null) {
 			switch (operator) {
 			case "cons":
@@ -390,17 +391,18 @@ public class GeneratorAddr {
 				varDeclaration(f, val);
 				code3Addresses.addToExpression(val, funList);
 			}
+			if( call != null){
+				code3Addresses.addToExpression(call, funList);
+			}
 		}
 		if (isSymbole(val)) { // Symbole
-			if (exprs != null) {
-				f.updateCalls(val, exprs);
-				// TODO : Check return number
-			} else {
-				this.symbs.put(val, "");
-			}
+			this.symbs.put(val, "");
 		}
 		if (isVariable(val)) { // Variable
 			f.updateVar(val);
+		}
+		if(call != null && exprs != null){
+			f.updateCalls(call, exprs);
 		}
 		if (exp != null) { // Expr
 			iterateAST(exp, f);
@@ -522,32 +524,32 @@ public class GeneratorAddr {
 	 */
 	public String writeSymTableXML(String outputPath) {
 		String ret = "";
-		ret += "<symboles>";
+		ret += "<tds>\n\t<symboles>";
 		for (String s : symbs.keySet()) {
-			ret += "\n\t<sym>" + s + "</sym>";
+			ret += "\n\t\t<sym>" + s + "</sym>";
 		}
-		ret += "\n</symboles>\n<functions>";
+		ret += "\n\t</symboles>\n\t<functions>";
 		for (String f : funList.keySet()) {
 			DefFun deffun = funList.get(f);
-			ret += "\n\t<function>";
-			ret += "\n\t\t<name>" + f + "</name>";
+			ret += "\n\t\t<function>";
+			ret += "\n\t\t\t<name>" + f + "</name>";
 			HashMap<String, Integer> vars = deffun.getVars();
-			ret += "\n\t\t<vars>";
+			ret += "\n\t\t\t<vars>";
 			for (String var : vars.keySet()) {
-				ret += "\n\t\t\t<var>\n\t\t\t\t<vname>" + var + "</vname>";
-				ret += "\n\t\t\t\t<value>" + vars.get(var) + "</value>";
-				ret += "\n\t\t\t</var>";
+				ret += "\n\t\t\t\t<var>\n\t\t\t\t\t<vname>" + var + "</vname>";
+				ret += "\n\t\t\t\t\t<value>" + vars.get(var) + "</value>";
+				ret += "\n\t\t\t\t</var>";
 			}
-			ret += "\n\t\t</vars>";
+			ret += "\n\t\t\t</vars>";
 			HashMap<String, Lexpr> calls = deffun.getCalls();
-			ret += "\n\t\t<calls>";
+			ret += "\n\t\t\t<calls>";
 			for (String call : calls.keySet()) {
-				ret += "\n\t\t\t<f>" + call + "</f>";
+				ret += "\n\t\t\t\t<f>" + call + "</f>";
 			}
-			ret += "\n\t\t</calls>";
-			ret += "\n\t</function>";
+			ret += "\n\t\t\t</calls>";
+			ret += "\n\t\t</function>";
 		}
-		ret += "\n</functions>";
+		ret += "\n\t</functions>\n</tds>";
 
 		if (outputPath != null && !outputPath.equals("")) {
 			try {

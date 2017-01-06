@@ -1,8 +1,0 @@
-function multiplecons: 
-read A ,B ,C, D ,E
-%
-	Ret := (cons A (cons B) C);
-	Ret := (hd A);
-	Ret := A	
-%
-write Ret

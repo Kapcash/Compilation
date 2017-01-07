@@ -27,10 +27,6 @@ import esir.compilation.whileComp.Command;
 import esir.compilation.whileComp.Commands;
 import esir.compilation.whileComp.Definition;
 import esir.compilation.whileComp.Expr;
-//import esir.compilation.whileComp.ExprAnd;
-//import esir.compilation.whileComp.ExprEq;
-//import esir.compilation.whileComp.ExprNot;
-//import esir.compilation.whileComp.ExprOr;
 import esir.compilation.whileComp.ExprSimple;
 import esir.compilation.whileComp.For;
 import esir.compilation.whileComp.Foreach;
@@ -47,19 +43,27 @@ import esir.compilation.whileComp.impl.ExprImpl;
 import esir.compilation.whileComp.impl.ExprSimpleImpl;
 import sprint3.CS_Translator;
 import sprint3.CS_TranslatorException;
-import traductionTest.Code3AdressesTests;
 
 public class GeneratorAddr {
 
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = true;
+<<<<<<< HEAD
 	public static boolean DISPLAY_TRANSLATION = true;
 	public static boolean PRINT_TRANSLATION = false;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
 	private static final String INPUT_FILE = "../exemple7.wh";
+=======
+	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
+
+	// CONST
+	private static final String VAR_PREFIXE = "X";
+	private static final String INPUT_FILE = "../fib.wh";
+>>>>>>> 92c09f0bf589900809d6683bdacdadd5ebf655f2
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
@@ -276,7 +280,7 @@ public class GeneratorAddr {
 		if (obj instanceof Affectation) { // Affectation
 			iterateAST((Affectation) obj, f);
 		} else if (obj instanceof Nop) { // Nop
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.NOP, ""), "", "", ""));
+			code3Addresses.nop();
 		} else {
 			if (obj instanceof While) { // While
 				iterateAST((While) obj, f);
@@ -318,7 +322,7 @@ public class GeneratorAddr {
 			val = "Y" + k;
 			var = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
+			code3Addresses.aff(var, val);
 		}
 
 		i = 0;
@@ -327,7 +331,7 @@ public class GeneratorAddr {
 			var = itAff.next();
 			val = VAR_PREFIXE + i++;
 			varDeclaration(f, var);
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), var, val, ""));
+			code3Addresses.aff(var, val);
 			f.updateVar(var);
 		}
 	}
@@ -626,7 +630,7 @@ public class GeneratorAddr {
 		String fun = "";
 		try {
 			fun = exprs.getExpr().getExprsimple().getValeur();
-			System.out.println("FUN : " + fun);
+			//System.out.println("FUN : " + fun);
 		} catch (NullPointerException nullEx) {
 			/* Nothing */}
 		if (funList.containsKey(fun)) { //

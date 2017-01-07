@@ -23,6 +23,8 @@ public class ThreeAddressCode {
 	int getSize(){
 		return code3Addr.size();
 	}
+	
+	//TOUT SUR LES ETIQUETTES
 
 	String getEtiquette() {
 		return getEtiquetteName(code3Addr.size());
@@ -35,11 +37,7 @@ public class ThreeAddressCode {
 	String getPreviousEtiquette() {
 		return getEtiquetteName(code3Addr.size() - 1);
 	}
-
-	@SuppressWarnings("unchecked")
-	void addIn3Addr(QuadImp q) {
-		stack.lastElement().addLast(q);
-	}
+	
 
 	void nouvelleEtiquette() {
 		stack.push(new LinkedList<QuadImp>());
@@ -49,6 +47,71 @@ public class ThreeAddressCode {
 	void finEtiquette() {
 		code3Addr.put(getEtiquette(), stack.pop());
 	}
+	
+	//TOUT SUR LE CODE 3@
+
+	@SuppressWarnings("unchecked")
+	void addIn3Addr(QuadImp q) {
+		stack.lastElement().addLast(q);
+	}
+	
+	void addIn3Addr(OP op, String label, String writeAddr, String readAddr1, String readAddr2){
+		addIn3Addr(new QuadImp(new OPCode<OP, String>(op, label), writeAddr, readAddr1, readAddr2));
+	}
+	
+	void aff(String writeAddr, String readAddr){
+		addIn3Addr(OP.AFF, "", writeAddr, readAddr,"");
+	}
+	
+	void hd(String writeAddr, String readAddr){
+		addIn3Addr(OP.HD, "", writeAddr, readAddr,"");
+	}
+	
+	void tl(String writeAddr, String readAddr){
+		addIn3Addr(OP.TL, "", writeAddr, readAddr,"");
+	}
+	
+	void cons(String writeAddr){
+		addIn3Addr(OP.CONS, "", writeAddr, "","");
+	}
+	
+	void list(String writeAddr){
+		addIn3Addr(OP.LIST, "", writeAddr, "","");
+	}
+	
+	void not(String writeAddr, String readAddr){
+		addIn3Addr(OP.NOT, "", writeAddr, readAddr,"");
+	}
+	
+	void and(String writeAddr, String readAddr1, String readAddr2){
+		addIn3Addr(OP.AND, "", writeAddr, readAddr1, readAddr2);
+	}
+	
+	void or(String writeAddr, String readAddr1, String readAddr2){
+		addIn3Addr(OP.OR, "", writeAddr, readAddr1, readAddr2);
+	}
+	
+	void eq(String writeAddr, String readAddr1, String readAddr2){
+		addIn3Addr(OP.EQ, "", writeAddr, readAddr1, readAddr2);
+	}
+	
+	void call(String label){
+		addIn3Addr(OP.CALL, label, "","","");
+	}
+	
+	void push(String readAddr) {
+		addIn3Addr(OP.PUSH, "", "",readAddr,"");
+	}
+	
+	void pop(String writeAddr) {
+		addIn3Addr(OP.POP, "", writeAddr,"","");
+	}
+	
+	void nop() {
+		addIn3Addr(OP.NOP, "", "","","");
+	}
+	
+	//TOSTRING
 
 	@Override
 	public String toString() {
@@ -92,21 +155,22 @@ public class ThreeAddressCode {
 
 	public void addToExpression(String s, HashMap<String, DefFun> funList) {
 		if (tree == null) {
+//			tree = new ExprTree("root", funList, 1);
+//			treeLevel++;
+//			tree.add(s, funList, treeLevel);
 			tree = new ExprTree(s, funList, 1);
 		} else {
 			tree.add(s, funList, treeLevel);
 		}
+		
+		System.out.println(tree);
 	}
 
 	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException {
-//		HashMap<Integer, LinkedList<ExprTree>> callOrder = new HashMap<Integer, LinkedList<ExprTree>>();
-//		ExprTree.treeToInline(tree, callOrder);
-//		System.out.println(callOrder);
 
 		int k = 0;
 		if (tree.children.length == 0) { // Simplification interdite
-			generatorAddr.code3Addresses
-					.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "Y0", tree.getHead(), ""));
+			generatorAddr.code3Addresses.aff("Y0", tree.getHead());
 		} else {
 			while (tree.children.length != 0) {
 				ExprTree.iterate(tree, this, generatorAddr, f);
@@ -136,12 +200,13 @@ public class ThreeAddressCode {
 			setHead(head);
 			this.level = level;
 			if (isListOperation(head)) {
-				children = new ExprTree[4];// max 4 elements dans un cons ou
-											// list
+				children = new ExprTree[4];// max 4 elements dans un cons ou list
 			} else if (isUnaryOperation(head))
 				children = new ExprTree[1];
 			else if (isBinaryOperation(head))
 				children = new ExprTree[2];
+			else if (isRoot(head))
+				children = new ExprTree[1];
 			else if (funList.containsKey(head)) {
 				children = new ExprTree[funList.get(head).getIn()];
 			} else {
@@ -180,23 +245,6 @@ public class ThreeAddressCode {
 			}
 		}
 
-		public static void treeToInline(ExprTree tree, HashMap<Integer, LinkedList<ExprTree>> callOrder) {
-			LinkedList<ExprTree> list = callOrder.get(tree.level);
-			if (list == null) {
-				list = new LinkedList<ExprTree>();
-				callOrder.put(tree.level, list);
-			}
-
-			list.add(tree);
-
-			for (int i = 0; i < tree.children.length; i++) {
-				ExprTree e = tree.children[i];
-				if (e != null) {
-					treeToInline(e, callOrder);
-				}
-			}
-		}
-
 		public static void iterate(ExprTree tree, ThreeAddressCode threeAddressCode, GeneratorAddr generatorAddr,
 				DefFun f) {
 			if (tree.simplify()) {
@@ -205,51 +253,42 @@ public class ThreeAddressCode {
 				generatorAddr.varDeclaration(f, varName);
 
 				if (OP.HD.name().equals(tree.getHead()))
-					threeAddressCode.addIn3Addr(
-							new QuadImp(new OPCode<OP, String>(OP.HD, ""), varName, tree.children[0].getHead(), ""));
+					threeAddressCode.hd(varName, tree.children[0].getHead());
 				else if (OP.TL.name().equals(tree.getHead()))
-					threeAddressCode.addIn3Addr(
-							new QuadImp(new OPCode<OP, String>(OP.TL, ""), varName, tree.children[0].getHead(), ""));
+					threeAddressCode.tl(varName, tree.children[0].getHead());
 				else if (OP.NOT.name().equals(tree.getHead()))
-					threeAddressCode.addIn3Addr(
-							new QuadImp(new OPCode<OP, String>(OP.NOT, ""), varName, tree.children[0].getHead(), ""));
+					threeAddressCode.not(varName, tree.children[0].getHead());
 				else if (OP.AND.name().equals(tree.getHead())) {
-					threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.AND, ""), varName,
-							tree.children[0].getHead(), tree.children[1].getHead()));
+					threeAddressCode.and(varName, tree.children[0].getHead(), tree.children[1].getHead());
 				} else if (OP.OR.name().equals(tree.getHead())) {
-					threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.OR, ""), varName,
-							tree.children[0].getHead(), tree.children[1].getHead()));
+					threeAddressCode.or(varName,tree.children[0].getHead(), tree.children[1].getHead());
 				} else if (OP.EQ.name().equals(tree.getHead())) {
-					threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.EQ, ""), varName,
-							tree.children[0].getHead(), tree.children[1].getHead()));
+					threeAddressCode.eq(varName,tree.children[0].getHead(), tree.children[1].getHead());
 				} else {
 					for (int i = 0; i < tree.children.length; i++) {
 						if (tree.children[i] == null)
 							break;
-						threeAddressCode.addIn3Addr(
-								new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", tree.children[i].getHead(), ""));
+						threeAddressCode.push(tree.children[i].getHead());
 					}
 
 					if (OP.CONS.name().equals(tree.getHead())) {
-						threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CONS, ""), varName, "", ""));
+						threeAddressCode.cons(varName);
 					}
 
 					else if (OP.LIST.name().equals(tree.getHead())) {
-						threeAddressCode.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.LIST, ""), varName, "", ""));
+						threeAddressCode.list(varName);
 					} else if (generatorAddr.funList.containsKey(tree.getHead())) {
-						threeAddressCode
-								.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.CALL, tree.getHead()), "", "", ""));
+						threeAddressCode.call(tree.getHead());
 						int out = generatorAddr.funList.get(tree.getHead()).out;
 						for (int i = 0; i < out; i++) {
 							generatorAddr.varDeclaration(f, varName);
-							threeAddressCode
-									.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.POP, ""), "", varName, ""));
+							threeAddressCode.pop(varName);
+							System.out.println("faire remonter "+varName);
 							if (i < out - 1)
 								varName = "Y" + nb++;
 						}
 					} else {
-						threeAddressCode
-								.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", tree.getHead(), ""));
+						threeAddressCode.push(tree.getHead());
 					}
 
 				}
@@ -291,7 +330,7 @@ public class ThreeAddressCode {
 
 		private boolean isOperation(String s) {
 			// TODO Ajouter funList pour les calls
-			return isListOperation(s) || isUnaryOperation(s) || isBinaryOperation(s);
+			return isListOperation(s) || isUnaryOperation(s) || isBinaryOperation(s) || isRoot(s);
 		}
 
 		private boolean isListOperation(String s) {
@@ -319,15 +358,9 @@ public class ThreeAddressCode {
 				return false;
 			}
 		}
-
-		private boolean areChildrenFull() {
-			boolean b = true;
-			for (int i = 0; i < children.length; i++) {
-				if (children[i] == null)
-					return false;
-				b = b && children[i].full;
-			}
-			return b;
+		
+		private boolean isRoot(String head) {
+			return head.equals("root");
 		}
 
 		@Override

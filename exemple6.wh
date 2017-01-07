@@ -10,6 +10,6 @@ write T,H
 function fun2: 
 read A
 %
-	Result := (fun1 A)
+	T,H := (fun1 A)
 %
-write Result
+write T,H

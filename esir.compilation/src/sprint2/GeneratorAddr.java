@@ -49,21 +49,11 @@ public class GeneratorAddr {
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = true;
-<<<<<<< HEAD
 	public static boolean DISPLAY_TRANSLATION = true;
 	public static boolean PRINT_TRANSLATION = false;
-
-	// CONST
-	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple7.wh";
-=======
-	public static boolean DISPLAY_TRANSLATION = false;
-	public static boolean PRINT_TRANSLATION = true;
-
 	// CONST
 	private static final String VAR_PREFIXE = "X";
 	private static final String INPUT_FILE = "../fib.wh";
->>>>>>> 92c09f0bf589900809d6683bdacdadd5ebf655f2
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 

@@ -43,6 +43,8 @@ import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
+import esir.compilation.whileComp.impl.ExprImpl;
+import esir.compilation.whileComp.impl.ExprSimpleImpl;
 import sprint3.CS_Translator;
 import sprint3.CS_TranslatorException;
 import traductionTest.Code3AdressesTests;
@@ -53,11 +55,11 @@ public class GeneratorAddr {
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = true;
 	public static boolean DISPLAY_TRANSLATION = true;
-	public static boolean PRINT_TRANSLATION = true;
+	public static boolean PRINT_TRANSLATION = false;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../DEMO_CSharp.wh";
+	private static final String INPUT_FILE = "../exemple7.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
@@ -447,6 +449,12 @@ public class GeneratorAddr {
 
 	// For
 	private void iterateAST(For forCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		if(forCmd.getExpr().getExprsimple().getOpe() != null){
+			if(forCmd.getExpr().getExprsimple().getOpe() == "and" || forCmd.getExpr().getExprsimple().getOpe() == "or" || forCmd.getExpr().getExprsimple().getOpe() == "=?"){
+				System.out.println("Erreur d'expression dans la boucle for");
+				return;
+			}
+		}
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette();
 		iterateAST(forCmd.getExpr(), f);
@@ -456,11 +464,16 @@ public class GeneratorAddr {
 		code3Addresses.nouvelleEtiquette();
 		Commands cmds = forCmd.getCommands();
 		iterateAST(cmds, f);
+		Expr expression = new ExprImpl();
+		ExprSimple expre = new ExprSimpleImpl();
+		expre.setOpe("tl");
+		expre.setExpr(forCmd.getExpr());
+		expression.setExprsimple(expre);
+		iterateAST(expression, f);
+		code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, etiquetteCond), "",
 				code3Addresses.getPreviousEtiquette(), ""));
-		iterateAST(forCmd.getExpr(), f);
-		code3Addresses.inlineExpression(this, f);
 		/*TODO : demander au prof pour le for et le foreach*/
 	}
 

@@ -179,6 +179,7 @@ public class CS_Translator {
 				break;
 			case WRITE:
 				f.write("output.Enqueue(" + quad.getReponse() + ");");
+				System.out.println(allDecls);
 				break;
 			case NOP:
 				f.write("((Action)(() => { }))();");
@@ -203,7 +204,7 @@ public class CS_Translator {
 				break;
 			case WHILE:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("while(isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()
+				f.write("while(isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
 						+ "))");
 				f.write(lAccolade);
 				f.rightShift();
@@ -213,10 +214,15 @@ public class CS_Translator {
 				f.write(rAccolade);
 				break;
 			case FOR:
-				f.write("for(" + "expr" + ")");
+				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
+				f.write("while(isTrue(head(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
+						+ ")))");
 				f.write(lAccolade);
 				f.rightShift();
-				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
+				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
+				//iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
+				f.write(code.getCode3Addr().get(quad.getArg1()).getLast().getArg1() + " = " + code.getCode3Addr().get(quad.getArg1()).getLast().getReponse() + ";");
+				System.out.println(allDecls);
 				f.leftShift();
 				f.write(rAccolade);
 				break;

@@ -1,0 +1,9 @@
+function fun1: 
+read A
+%
+	for CondUn do
+	nop
+	od	
+%
+write T,H
+

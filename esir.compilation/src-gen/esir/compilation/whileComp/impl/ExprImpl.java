@@ -46,7 +46,7 @@ public class ExprImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExprImpl()
+  public ExprImpl()
   {
     super();
   }

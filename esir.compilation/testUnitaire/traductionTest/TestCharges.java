@@ -19,7 +19,7 @@ public class TestCharges {
 
 	String[] args = { cheminFichierEntree, cheminFichierSortie };
 
-	boolean regenerateFiles = true;
+	boolean regenerateFiles = false;
 	int nbEssai = 5;
 
 	public long testLargeur(int n) {
@@ -63,17 +63,11 @@ public class TestCharges {
 		return t;
 	}
 
-	@Test
-	public void mainTestProndeur() {	
-		testProfondeur2(1);
-		testProfondeur2(10);
-		testProfondeur2(100);
-		testProfondeur2(1000);
-		testProfondeur2(10000);
-	}
+	
 	
 	@Test
 	public void mainTestLargeur() {		
+		testLargeur2(1);
 		testLargeur2(1);
 		testLargeur2(10);
 		testLargeur2(100);
@@ -81,6 +75,16 @@ public class TestCharges {
 		testLargeur2(10000);
 	}
 
+	@Test
+	public void mainTestProndeur() {	
+		testProfondeur2(1);
+		testProfondeur2(1);
+		testProfondeur2(10);
+		testProfondeur2(100);
+		testProfondeur2(1000);
+		testProfondeur2(10000);
+	}
+	
 	private void testProfondeur2(int nb) {
 		List<Long> list = new ArrayList<Long>();
 		for (int i = 0; i < nbEssai; i++) {

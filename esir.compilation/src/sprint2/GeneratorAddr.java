@@ -48,11 +48,11 @@ public class GeneratorAddr {
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = true;
 	public static boolean DISPLAY_TRANSLATION = false;
-	public static boolean PRINT_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
 
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple6.wh";
+	private static final String INPUT_FILE = "../fib.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 

@@ -250,7 +250,7 @@ public class ThreeAddressCode {
 			if (tree.simplify()) {
 
 				String varName = "Y" + nb++;
-				generatorAddr.varDeclaration(f, varName);
+				generatorAddr.varDeclaration3Addr(f, varName);
 
 				if (OP.HD.name().equals(tree.getHead()))
 					threeAddressCode.hd(varName, tree.children[0].getHead());
@@ -281,7 +281,7 @@ public class ThreeAddressCode {
 						threeAddressCode.call(tree.getHead());
 						int out = generatorAddr.funList.get(tree.getHead()).out;
 						for (int i = 0; i < out; i++) {
-							generatorAddr.varDeclaration(f, varName);
+							generatorAddr.varDeclaration3Addr(f, varName);
 							threeAddressCode.pop(varName);
 							System.out.println("faire remonter "+varName);
 							if (i < out - 1)

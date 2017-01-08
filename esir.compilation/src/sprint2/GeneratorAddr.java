@@ -48,12 +48,12 @@ public class GeneratorAddr {
 
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
-	public static boolean DISPLAY_THREE_ADDR_CODE = false;
+	public static boolean DISPLAY_THREE_ADDR_CODE = true;
 	public static boolean DISPLAY_TRANSLATION = false;
-	public static boolean PRINT_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple7.wh";
+	private static final String INPUT_FILE = "../debug.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
@@ -212,7 +212,7 @@ public class GeneratorAddr {
 		DefFun def = new DefFun(fName);
 		funList.put(fName, def); // Adding a new blank function
 		// (DefFun)
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FUN, ""), fName, "", ""));
+		code3Addresses.fun(fName);
 		iterateAST(f.getDefinition(), def);
 		code3Addresses.finEtiquette();
 	}
@@ -237,7 +237,7 @@ public class GeneratorAddr {
 			}
 			f.updateVar(v); //Add the var to the SymTable
 			// New 3@ <READ, v, , >
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.READ, ""), v, "", ""));
+			code3Addresses.read(v);
 		}
 	}
 
@@ -248,7 +248,7 @@ public class GeneratorAddr {
 		for (String v : varsW) {
 			varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
 			//New 3@ <WRITE, v, , >
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), v, "", ""));
+			code3Addresses.write(v);
 			f.updateVar(v);
 		}
 	}
@@ -431,7 +431,7 @@ public class GeneratorAddr {
 		iterateAST(cmds, f); 	//While body
 		code3Addresses.finEtiquette();
 		// New 3@ <WHILE LC, , LB, >, LC = condition, LB = body
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.WHILE, etiquetteCond), "", code3Addresses.getPreviousEtiquette(), ""));
+		code3Addresses.whileLoop(etiquetteCond, code3Addresses.getPreviousEtiquette());
 	}
 
 	// For
@@ -464,8 +464,7 @@ public class GeneratorAddr {
 		code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 		// New 3@ <FOR LC, , LB, >
-		code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.FOR, etiquetteCond), "",
-				code3Addresses.getPreviousEtiquette(), ""));
+		code3Addresses.forLoop(etiquetteCond,code3Addresses.getPreviousEtiquette());
 	}
 
 	// Foreach
@@ -496,12 +495,10 @@ public class GeneratorAddr {
 			code3Addresses.nouvelleEtiquette(); //L2
 			iterateAST(cmds2, f);
 			code3Addresses.finEtiquette();
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond), "",
-					etiquetteCode, code3Addresses.getPreviousEtiquette()));
+			code3Addresses.ifElseCond(etiquetteCond,etiquetteCode, code3Addresses.getPreviousEtiquette());
 		}else{
 			code3Addresses.finEtiquette();
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.IF, etiquetteCond), "",
-					code3Addresses.getPreviousEtiquette(), ""));
+			code3Addresses.ifCond(etiquetteCond, code3Addresses.getPreviousEtiquette());
 		}
 
 	}
@@ -683,7 +680,7 @@ public class GeneratorAddr {
 
 	void varDeclaration3Addr(DefFun f, String v) {
 		if (!f.alreadyExisting(v)) {
-			code3Addresses.addIn3Addr(new QuadImp(new OPCode<OP, String>(OP.DECL, ""), v, "", ""));
+			code3Addresses.decl(v);
 		}
 	}
 

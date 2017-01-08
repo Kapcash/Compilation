@@ -31,7 +31,7 @@ namespace BinTreeProject
 			inParams.Enqueue(Y);
 			subs(inParams,outParams);
 			Y0 = new BinTree ("Y0", null, null);
-			 = outParams.Dequeue();
+			Y0 = outParams.Dequeue();
 			X0 = new BinTree ("X0", null, null);
 			X0 = Y0;
 			BinTree NextR = new BinTree ("NextR", null, null);
@@ -40,14 +40,14 @@ namespace BinTreeProject
 			inParams.Enqueue(NextR);
 			isNotZero(inParams,outParams);
 			Y0 = new BinTree ("Y0", null, null);
-			 = outParams.Dequeue();
+			Y0 = outParams.Dequeue();
 			while(isTrue(Y0))
 			{
 				Y0 = new BinTree ("Y0", null, null);
 				inParams.Enqueue(Q);
 				incr(inParams,outParams);
 				Y0 = new BinTree ("Y0", null, null);
-				 = outParams.Dequeue();
+				Y0 = outParams.Dequeue();
 				X0 = new BinTree ("X0", null, null);
 				X0 = Y0;
 				Y0 = NextR;
@@ -59,7 +59,7 @@ namespace BinTreeProject
 				inParams.Enqueue(NextR);
 				isNotZero(inParams,outParams);
 				Y0 = new BinTree ("Y0", null, null);
-				 = outParams.Dequeue();
+				Y0 = outParams.Dequeue();
 			}
 			output.Enqueue(Q);
 			output.Enqueue(R);
@@ -76,12 +76,35 @@ namespace BinTreeProject
 			X0 = Y0;
 			BinTree D = new BinTree ("D", null, null);
 			D = X0;
-			for(expr)
-			{
-				Y0 = Y;
-			}
 			Y0 = Y;
+			while(isTrue(head(Y0)))
+			{
+				Y0 = new BinTree ("Y0", null, null);
+				inParams.Enqueue(D);
+				decr(inParams,outParams);
+				Y0 = new BinTree ("Y0", null, null);
+				Y0 = outParams.Dequeue();
+				X0 = new BinTree ("X0", null, null);
+				X0 = Y0;
+				D = X0;
+				Y0 = new BinTree ("Y0", null, null);
+				Y0 = tail(Y);
+				Y = Y0;
+			}
 			output.Enqueue(D);
+		}
+
+		private static void decr(Queue<BinTree> input, Queue<BinTree> output)
+		{
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
+			BinTree X = input.Dequeue();
+			Y0 = new BinTree ("Y0", null, null);
+			Y0 = tail(X);
+			X0 = new BinTree ("X0", null, null);
+			X0 = Y0;
+			X = X0;
+			output.Enqueue(X);
 		}
 
 		private static void isNotZero(Queue<BinTree> input, Queue<BinTree> output)
@@ -175,199 +198,8 @@ namespace BinTreeProject
 				BinTree Y = new BinTree("Y", null, null);
 				input.Enqueue(Y);
 			}
-			}
 			div(input, output);
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
-			if(args.Length > 2){
-				BinTree X = new BinTree(args[2], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 3){
-				BinTree Y = new BinTree(args[3], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			if(args.Length > 4){
-				BinTree X = new BinTree(args[4], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 5){
-				BinTree Y = new BinTree(args[5], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			}
-			subs(input, output);
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
-			if(args.Length > 6){
-				BinTree X = new BinTree(args[6], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 7){
-				BinTree Y = new BinTree(args[7], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			if(args.Length > 8){
-				BinTree X = new BinTree(args[8], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 9){
-				BinTree Y = new BinTree(args[9], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			if(args.Length > 10){
-				BinTree X = new BinTree(args[10], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			}
-			isNotZero(input, output);
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
-			if(args.Length > 11){
-				BinTree X = new BinTree(args[11], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 12){
-				BinTree Y = new BinTree(args[12], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			if(args.Length > 13){
-				BinTree X = new BinTree(args[13], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 14){
-				BinTree Y = new BinTree(args[14], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			if(args.Length > 15){
-				BinTree X = new BinTree(args[15], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 16){
-				BinTree X = new BinTree(args[16], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			}
-			incr(input, output);
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
-			if(args.Length > 17){
-				BinTree X = new BinTree(args[17], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 18){
-				BinTree Y = new BinTree(args[18], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			if(args.Length > 19){
-				BinTree X = new BinTree(args[19], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 20){
-				BinTree Y = new BinTree(args[20], null, null);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			if(args.Length > 21){
-				BinTree X = new BinTree(args[21], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 22){
-				BinTree X = new BinTree(args[22], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			if(args.Length > 23){
-				BinTree X = new BinTree(args[23], null, null);
-				input.Enqueue(X);
-			}
-			else{
-				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
-			}
-			isNotZero(input, output);
+			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}

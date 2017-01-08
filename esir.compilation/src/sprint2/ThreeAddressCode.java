@@ -59,9 +59,29 @@ public class ThreeAddressCode {
 		addIn3Addr(new QuadImp(new OPCode<OP, String>(op, label), writeAddr, readAddr1, readAddr2));
 	}
 	
+	//GENERAL
+	
+	void fun(String writeAddr){
+		addIn3Addr(OP.FUN, "", writeAddr, "","");
+	}
+	
+	void read(String writeAddr){
+		addIn3Addr(OP.READ, "", writeAddr, "","");
+	}
+	
+	void write(String writeAddr){
+		addIn3Addr(OP.WRITE, "", writeAddr, "","");
+	}
+	
+	void decl(String writeAddr){
+		addIn3Addr(OP.DECL, "", writeAddr, "","");
+	}
+	
 	void aff(String writeAddr, String readAddr){
 		addIn3Addr(OP.AFF, "", writeAddr, readAddr,"");
 	}
+	
+	//NATIVE FUNCTION
 	
 	void hd(String writeAddr, String readAddr){
 		addIn3Addr(OP.HD, "", writeAddr, readAddr,"");
@@ -79,6 +99,8 @@ public class ThreeAddressCode {
 		addIn3Addr(OP.LIST, "", writeAddr, "","");
 	}
 	
+	//LOGIC
+	
 	void not(String writeAddr, String readAddr){
 		addIn3Addr(OP.NOT, "", writeAddr, readAddr,"");
 	}
@@ -95,6 +117,8 @@ public class ThreeAddressCode {
 		addIn3Addr(OP.EQ, "", writeAddr, readAddr1, readAddr2);
 	}
 	
+	//FUNCTION
+	
 	void call(String label){
 		addIn3Addr(OP.CALL, label, "","","");
 	}
@@ -110,6 +134,27 @@ public class ThreeAddressCode {
 	void nop() {
 		addIn3Addr(OP.NOP, "", "","","");
 	}
+	
+	//LOOPS
+	void whileLoop(String condition, String body){
+		addIn3Addr(OP.WHILE, condition, "", body, "");
+	}
+	
+	void forLoop(String condition, String body){
+		addIn3Addr(OP.FOR, condition, "", body, "");
+	}
+	
+	//TODO forEachLoop
+	
+	//CONDITION
+	void ifCond(String condition, String body){
+		ifElseCond(condition,body,"");
+	}
+	
+	void ifElseCond(String condition, String bodyIf, String bodyElse){
+		addIn3Addr(OP.IF, condition, "", bodyIf, bodyElse);
+	}
+	
 	
 	//TOSTRING
 

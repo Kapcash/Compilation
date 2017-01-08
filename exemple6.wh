@@ -1,15 +1,14 @@
-function fun1: 
-read A
+function permute: 
+read A,B
 %
-	T := (tl A);
-	H := (hd A)
+	nop
 %
-write T,H
+write B,A
 
 
 function fun2: 
-read A
+read A,B
 %
-	T,H := (fun1 A)
+	A,B := (permute A B)
 %
-write T,H
+write A,B

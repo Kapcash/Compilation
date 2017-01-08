@@ -17,6 +17,9 @@ public class CS_Translator {
 	private LinkedList<CS_Function> funcList = new LinkedList<CS_Function>();
 	private LinkedList<String> reads = new LinkedList<String>();
 	private LinkedList<String> allDecls = new LinkedList<String>();
+	private boolean inMainFunction = true;
+	private int nbWrites = 0;
+	private String nameMainFonction;
 
 	// C# GENERAL
 
@@ -82,6 +85,8 @@ public class CS_Translator {
 		QuadImp quad = it.next();
 		CS_Function f = new CS_Function(quad.getReponse());
 		funcList.add(f);
+		if(inMainFunction)
+			nameMainFonction = quad.getReponse();
 		iterateList(it, f);
 	}
 
@@ -96,71 +101,103 @@ public class CS_Translator {
 		throw new CS_TranslatorException("Erreur dans les étiquettes");
 	}
 
+/*	private void codeMain() {
+//		rightShift();
+//		Iterator<String> ite = reads.iterator();
+//		ArrayList<String> readToBinTree = new ArrayList<String>();
+//		String nameFonction = null;
+//		String executerFonction = null;
+//		int incrementArgs = 0;
+//		while (ite.hasNext()) {
+//			String it = ite.next();
+//			if (it.contains("function")) {
+//				if (readToBinTree.size() > 0) {
+//					
+//					write("Queue<BinTree> input = new Queue<BinTree>();");
+//					write("Queue<BinTree> output = new Queue<BinTree>();");
+//					
+//					Iterator<String> ite2 = readToBinTree.iterator();
+//					while (ite2.hasNext()) {
+//						String it2 = ite2.next();
+//						write("if(args.Length > "+incrementArgs+"){");
+//						rightShift();
+//						write("BinTree " + it2 + " = new BinTree(args["+incrementArgs+"], null, null);");
+//						write("input.Enqueue(" + it2 + ");");
+//						leftShift();
+//						write("}");
+//						write("else{");
+//						rightShift();
+//						write("BinTree " + it2 + " = new BinTree(\""+it2+"\", null, null);");
+//						write("input.Enqueue(" + it2 + ");");
+//						leftShift();
+//						write("}");
+//						incrementArgs++;
+//					}
+//					write("}");
+//					write(executerFonction);
+//				}
+//				nameFonction = it.split(" ")[1];
+//				executerFonction = nameFonction + "(input, output);";
+//			} else {
+//				readToBinTree.add(it);
+//			}
+//		}
+//		if (readToBinTree.size() > 0) {
+//			write("Queue<BinTree> input = new Queue<BinTree>();");
+//			write("Queue<BinTree> output = new Queue<BinTree>();");
+//			Iterator<String> ite2 = readToBinTree.iterator();
+//			while (ite2.hasNext()) {
+//				String it2 = ite2.next();
+//				write("if(args.Length > "+incrementArgs+"){");
+//				rightShift();
+//				write("BinTree " + it2 + " = new BinTree(args["+incrementArgs+"], null, null);");
+//				write("input.Enqueue(" + it2 + ");");
+//				leftShift();
+//				write("}");
+//				write("else{");
+//				rightShift();
+//				write("BinTree " + it2 + " = new BinTree(\""+it2+"\", null, null);");
+//				write("input.Enqueue(" + it2 + ");");
+//				leftShift();
+//				write("}");
+//				
+//				incrementArgs++;
+//			}
+//			write(executerFonction);
+//		}
+//		write("Console.WriteLine(output.Dequeue().DisplayTree());");
+//		
+//		write("Console.ReadLine();");
+//		leftShift();
+	}
+*/	
 	private void codeMain() {
 		rightShift();
-		Iterator<String> ite = reads.iterator();
-		ArrayList<String> readToBinTree = new ArrayList<String>();
-		String nameFonction = null;
-		String executerFonction = null;
+		Iterator<String> iteReads = reads.iterator();
 		int incrementArgs = 0;
-		while (ite.hasNext()) {
-			String it = ite.next();
-			if (it.contains("function")) {
-				if (readToBinTree.size() > 0) {
-					
-					write("Queue<BinTree> input = new Queue<BinTree>();");
-					write("Queue<BinTree> output = new Queue<BinTree>();");
-					
-					Iterator<String> ite2 = readToBinTree.iterator();
-					while (ite2.hasNext()) {
-						String it2 = ite2.next();
-						write("if(args.Length > "+incrementArgs+"){");
-						rightShift();
-						write("BinTree " + it2 + " = new BinTree(args["+incrementArgs+"], null, null);");
-						write("input.Enqueue(" + it2 + ");");
-						leftShift();
-						write("}");
-						write("else{");
-						rightShift();
-						write("BinTree " + it2 + " = new BinTree(\""+it2+"\", null, null);");
-						write("input.Enqueue(" + it2 + ");");
-						leftShift();
-						write("}");
-						incrementArgs++;
-					}
-					write("}");
-					write(executerFonction);
-				}
-				nameFonction = it.split(" ")[1];
-				executerFonction = nameFonction + "(input, output);";
-			} else {
-				readToBinTree.add(it);
-			}
+		write("Queue<BinTree> input = new Queue<BinTree>();");
+		write("Queue<BinTree> output = new Queue<BinTree>();");
+		while (iteReads.hasNext()) {
+			String it = iteReads.next();
+			write("if(args.Length > "+incrementArgs+"){");
+			rightShift();
+			write("BinTree " + it + " = new BinTree(args["+incrementArgs+"], null, null);");
+			write("input.Enqueue(" + it + ");");
+			leftShift();
+			write("}");
+			write("else{");
+			rightShift();
+			write("BinTree " + it + " = new BinTree(\""+it+"\", null, null);");
+			write("input.Enqueue(" + it + ");");
+			leftShift();
+			write("}");
+			incrementArgs++;
 		}
-		if (readToBinTree.size() > 0) {
-			write("Queue<BinTree> input = new Queue<BinTree>();");
-			write("Queue<BinTree> output = new Queue<BinTree>();");
-			Iterator<String> ite2 = readToBinTree.iterator();
-			while (ite2.hasNext()) {
-				String it2 = ite2.next();
-				write("if(args.Length > "+incrementArgs+"){");
-				rightShift();
-				write("BinTree " + it2 + " = new BinTree(args["+incrementArgs+"], null, null);");
-				write("input.Enqueue(" + it2 + ");");
-				leftShift();
-				write("}");
-				write("else{");
-				rightShift();
-				write("BinTree " + it2 + " = new BinTree(\""+it2+"\", null, null);");
-				write("input.Enqueue(" + it2 + ");");
-				leftShift();
-				write("}");
-				
-				incrementArgs++;
-			}
-			write(executerFonction);
+		write(nameMainFonction + "(input, output);");
+		for (int i = 0; i < nbWrites; i++) {
+			write("Console.WriteLine(output.Dequeue().DisplayTree());");
 		}
-		write("Console.WriteLine(output.Dequeue().DisplayTree());");
+		
 		
 		write("Console.ReadLine();");
 		leftShift();
@@ -175,11 +212,16 @@ public class CS_Translator {
 				break;
 			case READ:
 				f.write("BinTree " + quad.getReponse() + " = input.Dequeue();");
-				reads.add(quad.getReponse());
+				if(inMainFunction)
+					reads.add(quad.getReponse());
 				break;
 			case WRITE:
 				f.write("output.Enqueue(" + quad.getReponse() + ");");
-				System.out.println(allDecls);
+				if(inMainFunction || f.name.equals(nameMainFonction)){
+					nbWrites++;
+					inMainFunction=true;
+				}
+					
 				break;
 			case NOP:
 				f.write("((Action)(() => { }))();");
@@ -261,10 +303,11 @@ public class CS_Translator {
 				break;
 			case CALL:
 				f.write(quad.getEtiquette() + "(inParams,outParams);");
+				inMainFunction = false;
 				iterateCode(findLabelOfThisFunction(quad.getEtiquette()));
 				break;
 			case POP:
-				f.write(quad.getArg1() + " = outParams.Dequeue();");
+				f.write(quad.getReponse() + " = outParams.Dequeue();");
 				break;
 			// WHILE FUNCTION
 			case CONS:
@@ -340,7 +383,6 @@ public class CS_Translator {
 		public CS_Function(String name) {
 			super();
 			this.name = name;
-			reads.add("function " + name);
 			body = new StringBuilder();
 			this.params = typeName + " input, " + typeName + " output";
 			this.returns = "void";

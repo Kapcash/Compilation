@@ -727,12 +727,13 @@ public class GeneratorAddr {
 	}
 
 	void varDeclaration3Addr(DefFun f, String v) {
-		if (!f.alreadyExisting(v)) {
-			if (!f.tempAlreadyExisting(v)) {
-				code3Addresses.decl(v);
-				f.updateTempVars(v);
+		if(isVariable(v))
+			if (!f.alreadyExisting(v)) {
+				if (!f.tempAlreadyExisting(v)) {
+					code3Addresses.decl(v);
+					f.updateTempVars(v);
+				}
 			}
-		}
 	}
 
 	public HashMap<String, DefFun> getFunList() {

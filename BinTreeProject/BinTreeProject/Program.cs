@@ -19,7 +19,6 @@ namespace BinTreeProject
 			BinTree X = new BinTree ("X", null, null);
 			BinTree Z = new BinTree ("Z", null, null);
 			//Here the temp var used by the compiler
-			BinTree a = new BinTree ("a", null, null);
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
 			X = input.Dequeue();

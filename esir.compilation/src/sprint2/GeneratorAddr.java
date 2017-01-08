@@ -39,7 +39,6 @@ import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
-import esir.compilation.whileComp.impl.AffectationImpl;
 import esir.compilation.whileComp.impl.ExprImpl;
 import esir.compilation.whileComp.impl.ExprSimpleImpl;
 import sprint3.CS_Translator;
@@ -50,11 +49,11 @@ public class GeneratorAddr {
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = true;
-	public static boolean DISPLAY_TRANSLATION = true;
-	public static boolean PRINT_TRANSLATION = false;
+	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple8.wh";
+	private static final String INPUT_FILE = "../debug.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
@@ -247,7 +246,7 @@ public class GeneratorAddr {
 		EList<String> varsW = write.getVariable();
 		f.setOut(varsW.size()); //Get outputs
 		for (String v : varsW) {
-			varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
+			//varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
 			//New 3@ <WRITE, v, , >
 			code3Addresses.write(v);
 			f.updateVar(v);
@@ -312,10 +311,11 @@ public class GeneratorAddr {
 		while (itAff.hasNext()) {
 			var = itAff.next();
 			val = VAR_PREFIXE + (i++);
+			f.updateVar(var);
 			varDeclaration3Addr(f, val);
 			varDeclaration3Addr(f, var);
 			code3Addresses.aff(var, val);
-			f.updateVar(var);
+			
 		}
 	}
 
@@ -346,6 +346,10 @@ public class GeneratorAddr {
 		Expr ex2 = ex.getEx2();
 		Not n = ex.getN();
 		String call = ex.getCall();
+		
+		if (isVariable(val)) { // Variable
+			f.updateVar(val);
+		}
 
 		if (operator != null) {
 			switch (operator) {
@@ -386,10 +390,7 @@ public class GeneratorAddr {
 			}
 		}
 		if (isSymbole(val)) { // Symbole
-			this.symbs.put(val, "");
-		}
-		if (isVariable(val)) { // Variable
-			f.updateVar(val);
+			symbs.put(val, "");
 		}
 		if(call != null && exprs != null){ //Fun call
 			f.updateCalls(call, exprs);

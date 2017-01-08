@@ -10,28 +10,10 @@ namespace BinTreeProject
 	{
 		//Here the symbs used in the while code
 
-		private static void fun1(Queue<BinTree> input, Queue<BinTree> output)
+		private static void div(Queue<BinTree> input, Queue<BinTree> output)
 		{
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
-<<<<<<< HEAD
-			BinTree A = input.Dequeue();
-			BinTree B = new BinTree ("B", null, null);
-			BinTree C = new BinTree ("C", null, null);
-			BinTree D = new BinTree ("D", null, null);
-			BinTree Y0 = new BinTree ("Y0", null, null);
-			inParams.Enqueue(B);
-			inParams.Enqueue(C);
-			inParams.Enqueue(D);
-			Y0 = (cons(inParams));
-			while(isTrue(head(Y0)))
-			{
-				Y0 = head(A);
-				((Action)(() => { }))();
-				inParams.Enqueue(B);
-				inParams.Enqueue(C);
-				inParams.Enqueue(D);
-=======
 			//Here the var used in the while code
 			BinTree Q = new BinTree ("Q", null, null);
 			BinTree R = new BinTree ("R", null, null);
@@ -40,14 +22,11 @@ namespace BinTreeProject
 			BinTree Y = new BinTree ("Y", null, null);
 			//Here the temp var used by the compiler
 			BinTree nil = new BinTree ("nil", null, null);
-			BinTree Q = new BinTree ("Q", null, null);
-			BinTree R = new BinTree ("R", null, null);
-			BinTree NextR = new BinTree ("NextR", null, null);
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
 			BinTree X1 = new BinTree ("X1", null, null);
-			BinTree X = input.Dequeue();
-			BinTree Y = input.Dequeue();
+			X = input.Dequeue();
+			Y = input.Dequeue();
 			Y0 = nil;
 			X0 = Y0;
 			Y0 = X;
@@ -90,11 +69,10 @@ namespace BinTreeProject
 			BinTree X = new BinTree ("X", null, null);
 			BinTree Y = new BinTree ("Y", null, null);
 			//Here the temp var used by the compiler
-			BinTree D = new BinTree ("D", null, null);
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
-			BinTree X = input.Dequeue();
-			BinTree Y = input.Dequeue();
+			X = input.Dequeue();
+			Y = input.Dequeue();
 			Y0 = X;
 			X0 = Y0;
 			D = X0;
@@ -121,7 +99,7 @@ namespace BinTreeProject
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
-			BinTree X = input.Dequeue();
+			X = input.Dequeue();
 			Y0 = tail(X);
 			X0 = Y0;
 			X = X0;
@@ -137,10 +115,9 @@ namespace BinTreeProject
 			BinTree X = new BinTree ("X", null, null);
 			//Here the temp var used by the compiler
 			BinTree nil = new BinTree ("nil", null, null);
-			BinTree B = new BinTree ("B", null, null);
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
-			BinTree X = input.Dequeue();
+			X = input.Dequeue();
 			Y0 = X;
 			if(isTrue(Y0))
 			{
@@ -150,18 +127,10 @@ namespace BinTreeProject
 			}else{
 				inParams.Enqueue(nil);
 				inParams.Enqueue(nil);
->>>>>>> afd988abb236081ca17b5cad531cf66ed9cdd6c3
 				Y0 = (cons(inParams));
-				BinTree Y1 = new BinTree ("Y1", null, null);
-				Y1 = tail(Y0);
-				Y0 = Y1;
+				X0 = Y0;
+				B = X0;
 			}
-<<<<<<< HEAD
-			BinTree T = new BinTree ("T", null, null);
-			output.Enqueue(T);
-			BinTree H = new BinTree ("H", null, null);
-			output.Enqueue(H);
-=======
 			output.Enqueue(B);
 		}
 
@@ -175,28 +144,35 @@ namespace BinTreeProject
 			BinTree nil = new BinTree ("nil", null, null);
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
-			BinTree X = input.Dequeue();
+			X = input.Dequeue();
 			inParams.Enqueue(nil);
 			inParams.Enqueue(X);
 			Y0 = (cons(inParams));
 			X0 = Y0;
 			X = X0;
 			output.Enqueue(X);
->>>>>>> afd988abb236081ca17b5cad531cf66ed9cdd6c3
 		}
 		static void Main(string[] args)
 		{
 			Queue<BinTree> input = new Queue<BinTree>();
 			Queue<BinTree> output = new Queue<BinTree>();
 			if(args.Length > 0){
-				BinTree A = new BinTree(args[0], null, null);
-				input.Enqueue(A);
+				BinTree X = new BinTree(args[0], null, null);
+				input.Enqueue(X);
 			}
 			else{
-				BinTree A = new BinTree("A", null, null);
-				input.Enqueue(A);
+				BinTree X = new BinTree("X", null, null);
+				input.Enqueue(X);
 			}
-			fun1(input, output);
+			if(args.Length > 1){
+				BinTree Y = new BinTree(args[1], null, null);
+				input.Enqueue(Y);
+			}
+			else{
+				BinTree Y = new BinTree("Y", null, null);
+				input.Enqueue(Y);
+			}
+			div(input, output);
 			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.ReadLine();

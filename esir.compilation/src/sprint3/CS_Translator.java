@@ -233,7 +233,7 @@ public class CS_Translator {
 				funcList.add(new CS_Function(quad.getReponse()));
 				break;
 			case READ:
-				f.write("BinTree " + quad.getReponse() + " = input.Dequeue();");
+				f.write("" + quad.getReponse() + " = input.Dequeue();");
 				if(inMainFunction)
 					reads.add(quad.getReponse());
 				break;

@@ -1,6 +1,7 @@
 package sprint2;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import esir.compilation.whileComp.Lexpr;
 
@@ -9,6 +10,7 @@ public class DefFun{
 	String funName;
 	HashMap<String,Integer> vars;
 	HashMap<String,Lexpr> calls;
+	HashSet<String> tempVars; //Alexy
 
 	public DefFun(String functionName){
 		funName = functionName;
@@ -16,6 +18,7 @@ public class DefFun{
 		out = 0;
 		vars = new HashMap<String,Integer>();
 		calls = new HashMap<String,Lexpr>();
+		tempVars = new HashSet<String>();
 	}
 	
 	public void updateVar(String var){
@@ -32,6 +35,14 @@ public class DefFun{
 
 	public boolean alreadyExisting(String var){
 		return vars.containsKey(var);
+	}
+	
+	public boolean tempAlreadyExisting(String var){
+		return tempVars.contains(var);
+	}
+	
+	public void updateTempVars(String var){
+		tempVars.add(var);
 	}
 
 	@Override

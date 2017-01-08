@@ -22,43 +22,30 @@ namespace BinTreeProject
 			Y0 = X;
 			BinTree X1 = new BinTree ("X1", null, null);
 			X1 = Y0;
-			BinTree Q = new BinTree ("Q", null, null);
 			Q = X0;
-			BinTree R = new BinTree ("R", null, null);
 			R = X1;
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			inParams.Enqueue(R);
 			inParams.Enqueue(Y);
 			subs(inParams,outParams);
-			Y0 = new BinTree ("Y0", null, null);
 			Y0 = outParams.Dequeue();
-			X0 = new BinTree ("X0", null, null);
 			X0 = Y0;
-			BinTree NextR = new BinTree ("NextR", null, null);
 			NextR = X0;
-			Y0 = new BinTree ("Y0", null, null);
 			inParams.Enqueue(NextR);
 			isNotZero(inParams,outParams);
-			Y0 = new BinTree ("Y0", null, null);
 			Y0 = outParams.Dequeue();
 			while(isTrue(Y0))
 			{
-				Y0 = new BinTree ("Y0", null, null);
 				inParams.Enqueue(Q);
 				incr(inParams,outParams);
-				Y0 = new BinTree ("Y0", null, null);
 				Y0 = outParams.Dequeue();
-				X0 = new BinTree ("X0", null, null);
 				X0 = Y0;
 				Y0 = NextR;
-				X1 = new BinTree ("X1", null, null);
 				X1 = Y0;
 				Q = X0;
 				R = X1;
-				Y0 = new BinTree ("Y0", null, null);
 				inParams.Enqueue(NextR);
 				isNotZero(inParams,outParams);
-				Y0 = new BinTree ("Y0", null, null);
 				Y0 = outParams.Dequeue();
 			}
 			output.Enqueue(Q);
@@ -72,22 +59,18 @@ namespace BinTreeProject
 			BinTree X = input.Dequeue();
 			BinTree Y = input.Dequeue();
 			Y0 = X;
-			X0 = new BinTree ("X0", null, null);
+			BinTree X0 = new BinTree ("X0", null, null);
 			X0 = Y0;
-			BinTree D = new BinTree ("D", null, null);
 			D = X0;
 			Y0 = Y;
 			while(isTrue(head(Y0)))
 			{
-				Y0 = new BinTree ("Y0", null, null);
+				BinTree Y0 = new BinTree ("Y0", null, null);
 				inParams.Enqueue(D);
 				decr(inParams,outParams);
-				Y0 = new BinTree ("Y0", null, null);
 				Y0 = outParams.Dequeue();
-				X0 = new BinTree ("X0", null, null);
 				X0 = Y0;
 				D = X0;
-				Y0 = new BinTree ("Y0", null, null);
 				Y0 = tail(Y);
 				Y = Y0;
 			}
@@ -99,9 +82,9 @@ namespace BinTreeProject
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
 			BinTree X = input.Dequeue();
-			Y0 = new BinTree ("Y0", null, null);
+			BinTree Y0 = new BinTree ("Y0", null, null);
 			Y0 = tail(X);
-			X0 = new BinTree ("X0", null, null);
+			BinTree X0 = new BinTree ("X0", null, null);
 			X0 = Y0;
 			X = X0;
 			output.Enqueue(X);
@@ -115,20 +98,16 @@ namespace BinTreeProject
 			Y0 = X;
 			if(isTrue(Y0))
 			{
-				nil = new BinTree ("nil", null, null);
+				BinTree nil = new BinTree ("nil", null, null);
 				Y0 = nil;
-				X0 = new BinTree ("X0", null, null);
+				BinTree X0 = new BinTree ("X0", null, null);
 				X0 = Y0;
-				BinTree B = new BinTree ("B", null, null);
 				B = X0;
 			}else{
-				nil = new BinTree ("nil", null, null);
-				nil = new BinTree ("nil", null, null);
-				Y0 = new BinTree ("Y0", null, null);
+				BinTree Y0 = new BinTree ("Y0", null, null);
 				inParams.Enqueue(nil);
 				inParams.Enqueue(nil);
 				Y0 = (cons(inParams));
-				X0 = new BinTree ("X0", null, null);
 				X0 = Y0;
 				B = X0;
 			}
@@ -140,43 +119,15 @@ namespace BinTreeProject
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
 			BinTree X = input.Dequeue();
-			nil = new BinTree ("nil", null, null);
-			Y0 = new BinTree ("Y0", null, null);
+			BinTree nil = new BinTree ("nil", null, null);
+			BinTree Y0 = new BinTree ("Y0", null, null);
 			inParams.Enqueue(nil);
 			inParams.Enqueue(X);
 			Y0 = (cons(inParams));
-			X0 = new BinTree ("X0", null, null);
+			BinTree X0 = new BinTree ("X0", null, null);
 			X0 = Y0;
 			X = X0;
 			output.Enqueue(X);
-		}
-
-		private static void isNotZero(Queue<BinTree> input, Queue<BinTree> output)
-		{
-			Queue<BinTree> inParams = new Queue<BinTree>();
-			Queue<BinTree> outParams = new Queue<BinTree>();
-			BinTree X = input.Dequeue();
-			Y0 = X;
-			if(isTrue(Y0))
-			{
-				nil = new BinTree ("nil", null, null);
-				Y0 = nil;
-				X0 = new BinTree ("X0", null, null);
-				X0 = Y0;
-				B = new BinTree ("B", null, null);
-				B = X0;
-			}else{
-				nil = new BinTree ("nil", null, null);
-				nil = new BinTree ("nil", null, null);
-				Y0 = new BinTree ("Y0", null, null);
-				inParams.Enqueue(nil);
-				inParams.Enqueue(nil);
-				Y0 = (cons(inParams));
-				X0 = new BinTree ("X0", null, null);
-				X0 = Y0;
-				B = X0;
-			}
-			output.Enqueue(B);
 		}
 		static void Main(string[] args)
 		{

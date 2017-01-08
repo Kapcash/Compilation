@@ -83,11 +83,23 @@ public class CS_Translator {
 			throw new CS_TranslatorException("Erreur dans les étiquettes");
 		Iterator<QuadImp> it = list.iterator();
 		QuadImp quad = it.next();
+		String fName = quad.getReponse();
+		if(isFunctionAlreadyDeclared(fName))
+			return;
 		CS_Function f = new CS_Function(quad.getReponse());
 		funcList.add(f);
 		if(inMainFunction)
 			nameMainFonction = quad.getReponse();
 		iterateList(it, f);
+	}
+
+	private boolean isFunctionAlreadyDeclared(String fName) {
+		Iterator<CS_Function> it = funcList.iterator();
+		while (it.hasNext()) {
+			if(it.next().name.equals(fName))
+				return true;
+		}
+		return false;
 	}
 
 	public String findLabelOfThisFunction(String E) throws CS_TranslatorException {
@@ -269,6 +281,8 @@ public class CS_Translator {
 				f.write(rAccolade);
 				break;
 			case DECL:
+				f.write("BinTree " + quad.getReponse() + " = new BinTree (\""+quad.getReponse()+"\", null, null);");
+				/*
 				Iterator<String> iteDecl = allDecls.iterator();
 				Boolean dontContains = true;
 				while(iteDecl.hasNext()){
@@ -283,6 +297,7 @@ public class CS_Translator {
 				else{
 					f.write(quad.getReponse() + " = new BinTree (\""+quad.getReponse()+"\", null, null);");
 				}
+				*/
 
 				break;
 			case AFF:

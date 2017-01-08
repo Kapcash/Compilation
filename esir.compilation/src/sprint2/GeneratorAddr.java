@@ -311,7 +311,7 @@ public class GeneratorAddr {
 		while (itAff.hasNext()) {
 			var = itAff.next();
 			val = VAR_PREFIXE + (i++);
-			varDeclaration3Addr(f, var);
+			varDeclaration3Addr(f, val);
 			code3Addresses.aff(var, val);
 			f.updateVar(var);
 		}
@@ -616,7 +616,7 @@ public class GeneratorAddr {
 			}
 		}
 		//Final condition IN == OUT
-		System.out.println("CHECK AFF : IN="+nbIn+" OUT="+nbOut);
+		//System.out.println("CHECK AFF : IN="+nbIn+" OUT="+nbOut);
 		if(nbIn < nbOut){
 			throw new SymTableException("There is "+nbIn+" inputs but "+nbOut+" outputs in this affectation.");
 		}
@@ -680,7 +680,10 @@ public class GeneratorAddr {
 
 	void varDeclaration3Addr(DefFun f, String v) {
 		if (!f.alreadyExisting(v)) {
-			code3Addresses.decl(v);
+			if (!f.tempAlreadyExisting(v)) {
+				code3Addresses.decl(v);
+				f.updateTempVars(v);
+			}
 		}
 	}
 

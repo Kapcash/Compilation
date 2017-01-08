@@ -3,9 +3,12 @@ package sprint2;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -60,8 +63,7 @@ public class GeneratorAddr {
 	private static GeneratorAddr instance;
 
 	/**
-	 * List of declared functions in the Program <String, DefFun> = Name, (Symbs
-	 * + Calls)
+	 * List of declared functions in the Program <String, DefFun> = Name, (Symbs + Calls)
 	 */
 	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
 	/**
@@ -185,7 +187,7 @@ public class GeneratorAddr {
 			Definition def = f.getDefinition();
 			boolean existingFunction = funList.containsKey(fName);
 			if (existingFunction) { // Function already existing
-				throw new SymTableException("Function '" + fName + "' already declared !");
+				throw new SymTableException("Function '" + fName + "' already declared!");
 			} else {
 				DefFun defFun = new DefFun(fName);
 				defFun.setIn(def.getRead().getVariable().size()); 	//Set nb input
@@ -230,11 +232,12 @@ public class GeneratorAddr {
 	// Read
 	public void iterateAST(Read read, DefFun f) throws SymTableException {
 		EList<String> varsR = read.getVariable();
+		if(hasDuplicates(varsR)){
+			throw new SymTableException("Function '" + f.getFunName() + "' contains duplicates variables in Read statement!");
+		}
+		
 		f.setIn(varsR.size()); //Get inputs
 		for (String v : varsR) {
-			if (f.alreadyExisting(v)){ //If this var is declared twice in the Read statement
-				throw new SymTableException("Function '" + f.getFunName() + "', variable '" + v + "' already declared !");
-			}
 			f.updateVar(v); //Add the var to the SymTable
 			// New 3@ <READ, v, , >
 			code3Addresses.read(v);
@@ -244,15 +247,18 @@ public class GeneratorAddr {
 	// Write
 	private void iterateAST(Write write, DefFun f) throws SymTableException {
 		EList<String> varsW = write.getVariable();
+		if(hasDuplicates(varsW)){
+			throw new SymTableException("Function '" + f.getFunName() + "' contains duplicates variables in Write statement!");
+		}
+		
 		f.setOut(varsW.size()); //Get outputs
 		for (String v : varsW) {
-			varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
-			//New 3@ <WRITE, v, , >
-			code3Addresses.write(v);
+			varDeclaration3Addr(f, v);	// New 3@ <DECL, v, , >
+			code3Addresses.write(v);	//New 3@ <WRITE, v, , >
 			f.updateVar(v);
 		}
 	}
-
+	
 	// Commands
 	public void iterateAST(Commands coms, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Command com = coms.getCommand();
@@ -584,7 +590,7 @@ public class GeneratorAddr {
 				Lexpr lexpr = f.getCalls().get(symbol);
 				// Check if the function exists
 				if (!funList.containsKey(symbol)) {
-					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function !");
+					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function!");
 				}
 				int expectedParameters = funList.get(symbol).getIn();
 				int nbOfParameters = ((lexpr != null) ? countExprs(lexpr) : 0);
@@ -643,6 +649,20 @@ public class GeneratorAddr {
 		/* Nothing */}
 		if (funList.containsKey(fun)) { //
 			ret += funList.get(fun).getOut();
+		}
+		return ret;
+	}
+	
+	/**
+	 * Checks if there is duplicates in a collection
+	 * @param coll The collection to check
+	 * @return True if the collection contains duplicates, false else.
+	 */
+	private <T> boolean hasDuplicates(Collection<T> coll ){
+		boolean ret = false;
+		Set<T> set = new HashSet<T>(coll);
+		if(coll.size() > set.size()){
+			ret = true;
 		}
 		return ret;
 	}

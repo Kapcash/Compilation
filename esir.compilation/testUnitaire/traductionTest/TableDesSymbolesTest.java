@@ -102,39 +102,26 @@ public class TableDesSymbolesTest {
 	}
 
 	@Test
-	public void doubleInputTest() { // TODO : regarder la pertinence du test et du message d'erreur
+	public void doubleInputTest() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{
+		thrown.expect(SymTableException.class);
+		thrown.expectMessage("[SYMTABLE ERROR] : Function 'doubleInputTest' contains duplicates variables in Read statement!");
 		args[0] = origineFilePath+"2_doubleInputTest.wh";
 		args[1] = resultFilePath+"2_doubleInputTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		try{
-			tds.launchGeneration(args);
-		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
-		}
-
-		HashMap<String, DefFun> funList = tds.getFunList();
-		DefFun funTest = funList.get("doubleInputTest");
-		int nbInput = funTest.getIn();
-
-		assertFalse(Utilitaires.printErr("Le test ne devrait pas passer"), true);
+		tds.launchGeneration(args);
 	}
 
 	@Test
-	public void doubleOutputTest() { // TODO : regarder la pertinence du test et du message d'erreur
+	public void doubleOutputTest() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{ 
+		thrown.expect(SymTableException.class);
+		thrown.expectMessage("[SYMTABLE ERROR] : Function 'doubleOutputTest' contains duplicates variables in Write statement!");
+		
 		args[0] = origineFilePath+"3_doubleOutputTest.wh";
 		args[1] = resultFilePath+"3_doubleOutputTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		try{
-			tds.launchGeneration(args);
-		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
-		}
-
-		HashMap<String, DefFun> funList = tds.getFunList();
-		DefFun funTest = funList.get("doubleOutputTest");
-		int nbOutput = funTest.getOut();
+		tds.launchGeneration(args);
 
 		assertFalse(Utilitaires.printErr("Le test ne devrait pas passer"), true);
 	}

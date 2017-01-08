@@ -144,6 +144,10 @@ public class ThreeAddressCode {
 		addIn3Addr(OP.FOR, condition, "", body, "");
 	}
 	
+	void forEachLoop(String condition, String body){
+		addIn3Addr(OP.FOREACH, condition, "", body, "");
+	}
+	
 	//TODO forEachLoop
 	
 	//CONDITION

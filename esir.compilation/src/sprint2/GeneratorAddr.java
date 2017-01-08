@@ -39,6 +39,7 @@ import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
 import esir.compilation.whileComp.Write;
+import esir.compilation.whileComp.impl.AffectationImpl;
 import esir.compilation.whileComp.impl.ExprImpl;
 import esir.compilation.whileComp.impl.ExprSimpleImpl;
 import sprint3.CS_Translator;
@@ -49,11 +50,11 @@ public class GeneratorAddr {
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = true;
-	public static boolean DISPLAY_TRANSLATION = false;
-	public static boolean PRINT_TRANSLATION = true;
+	public static boolean DISPLAY_TRANSLATION = true;
+	public static boolean PRINT_TRANSLATION = false;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../debug.wh";
+	private static final String INPUT_FILE = "../exemple8.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
@@ -469,9 +470,48 @@ public class GeneratorAddr {
 
 	// Foreach
 	private void iterateAST(Foreach forEachCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		Expr var = forEachCmd.getExpr1();
+		String nomVar = var.getExprsimple().getValeur();
+		Expr Cond = forEachCmd.getExpr2();
+		String forCondOpe = Cond.getExprsimple().getOpe();
+		//Condition checking
+		if(forCondOpe != null){
+			if(forCondOpe == "and" || forCondOpe == "or" || forCondOpe == "=?"){
+				System.out.println("Erreur d'expression dans la boucle foreach");
+				return;
+			}
+		}
+		String etiquetteCond = code3Addresses.getEtiquette();
+		code3Addresses.nouvelleEtiquette(); //Condition LC
+		iterateAST(Cond, f);
+		code3Addresses.inlineExpression(this, f);
+		code3Addresses.finEtiquette();
+		
+		code3Addresses.nouvelleEtiquette();  //Body LB
+		Expr expression = new ExprImpl();
+		ExprSimple expre = new ExprSimpleImpl();
+		expre.setOpe("hd");
+		expre.setExpr(Cond);
+		expression.setExprsimple(expre);
+		iterateAST(expression, f);
+		int k = code3Addresses.inlineExpression(this, f);
+		code3Addresses.aff(nomVar, "Y"+k);
+		
 		Commands cmds = forEachCmd.getCommands();
-		//TODO : ForEach treatement
 		iterateAST(cmds, f);
+		
+		Expr expressionbis = new ExprImpl();
+		ExprSimple exprebis = new ExprSimpleImpl();
+		exprebis.setOpe("tl");
+		exprebis.setExpr(Cond);
+		expressionbis.setExprsimple(exprebis);
+		iterateAST(expressionbis, f);
+		code3Addresses.inlineExpression(this, f);
+		
+		code3Addresses.finEtiquette();
+		// New 3@ <FOR LC, , LB, >
+		code3Addresses.forEachLoop(etiquetteCond,code3Addresses.getPreviousEtiquette());
+
 	}
 
 	// If

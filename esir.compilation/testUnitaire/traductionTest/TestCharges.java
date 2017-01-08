@@ -11,6 +11,9 @@ import java.util.List;
 import org.junit.Test;
 
 import sprint2.GeneratorAddr;
+import sprint2.SymTableException;
+import sprint2.ThreeAddressCodeException;
+import sprint3.CS_TranslatorException;
 
 public class TestCharges {
 
@@ -22,7 +25,7 @@ public class TestCharges {
 	boolean regenerateFiles = false;
 	int nbEssai = 5;
 
-	public long testLargeur(int n) {
+	public long testLargeur(int n){
 		args[0] = "testUnitaire/traductionTest//Fichier_TestCharge/testChargesLargeur" + n + ".wh";
 		args[1] = "";
 
@@ -35,14 +38,18 @@ public class TestCharges {
 		GeneratorAddr.DISPLAY_THREE_ADDR_CODE = false;
 		GeneratorAddr.DISPLAY_TRANSLATION = false;
 		GeneratorAddr.PRINT_TRANSLATION = false;
-		generator.launchGeneration(args);
+		try{
+			generator.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		generator = null; // Free
 		t = System.currentTimeMillis() - t;
 
 		return t;
 	}
 	
-	public long testProfondeur(int n) {
+	public long testProfondeur(int n){
 		
 		args[0] = "testUnitaire/traductionTest//Fichier_TestCharge/testChargesProfondeur" + n + ".wh";
 		args[1] = "";
@@ -56,7 +63,11 @@ public class TestCharges {
 		GeneratorAddr.DISPLAY_THREE_ADDR_CODE = false;
 		GeneratorAddr.DISPLAY_TRANSLATION = false;
 		GeneratorAddr.PRINT_TRANSLATION = false;
-		generator.launchGeneration(args);
+		try{
+			generator.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		generator = null; // Free
 		t = System.currentTimeMillis() - t;
 

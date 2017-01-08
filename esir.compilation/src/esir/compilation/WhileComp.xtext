@@ -32,7 +32,7 @@ Write :
 /* Commandes */
 
 Affectation:
-	affectations += VARIABLE (',' affectations += VARIABLE)* ':=' valeurs += Expr (',' valeurs += Expr)* /* TODO Ajouter ExprSimple */
+	affectations += VARIABLE (',' affectations += VARIABLE)* ':=' valeurs += Expr (',' valeurs += Expr)*
 ;
 
 Nop:

@@ -1,0 +1,13 @@
+function affCall: 
+read A, B
+%
+	R, S := (reverse A B)
+%
+write R, S
+
+function reverse:
+read A, B
+%
+	nop
+%
+write B, A

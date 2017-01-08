@@ -47,9 +47,9 @@ import sprint3.CS_TranslatorException;
 public class GeneratorAddr {
 
 	// SETTINGS
-	public static boolean DISPLAY_SYM_TABLE = true;
-	public static boolean DISPLAY_THREE_ADDR_CODE = true;
-	public static boolean DISPLAY_TRANSLATION = true;
+	public static boolean DISPLAY_SYM_TABLE = false;
+	public static boolean DISPLAY_THREE_ADDR_CODE = false;
+	public static boolean DISPLAY_TRANSLATION = false;
 	public static boolean PRINT_TRANSLATION = false;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
@@ -73,7 +73,7 @@ public class GeneratorAddr {
 	/**
 	 * MAIN Input : + args[0] = inputFilePath + args[1] = outputFilePath
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
 		GeneratorAddr main = GeneratorAddr.getInstance();
 		main.launchGeneration(args);
 	}
@@ -102,22 +102,13 @@ public class GeneratorAddr {
 	 * Start the generation of SymTable + 3@ code + traduction
 	 * @param args args[0] = inputFilePath, args[1] = outputFilePath
 	 */
-	public void launchGeneration(String[] args) {
+	public void launchGeneration(String[] args) throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
 		System.out.println("Compiling program.");
 
-		try {
-			if (args.length > 0)
-				createSymTable(args[0], args[1]);
-			else
-				createSymTable(INPUT_FILE, OUTPUT_FILE);
-
-		} catch (SymTableException symEx) {
-			System.out.println("[SYMTABLE ERROR] : " + symEx.getMessage());
-		} catch (ThreeAddressCodeException codeEx) {
-			System.out.println("[ADDRCODE ERROR] : " + codeEx.getMessage());
-		} catch (CS_TranslatorException transEx) {
-			System.out.println("[TRANSLATOR ERROR] : " + transEx.getMessage());
-		}
+		if (args.length > 0)
+			createSymTable(args[0], args[1]);
+		else
+			createSymTable(INPUT_FILE, OUTPUT_FILE);
 	}
 
 	/**
@@ -191,12 +182,15 @@ public class GeneratorAddr {
 	private void discoverFunctions(Program prog) throws SymTableException {
 		for (Function f : prog.getFunctions()) { //Going through all functions of the Program
 			String fName = f.getFunction();
+			Definition def = f.getDefinition();
 			boolean existingFunction = funList.containsKey(fName);
 			if (existingFunction) { // Function already existing
 				throw new SymTableException("Function '" + fName + "' already declared !");
 			} else {
-				DefFun def = new DefFun(fName);
-				funList.put(fName, def); // Adding a new blank function
+				DefFun defFun = new DefFun(fName);
+				defFun.setIn(def.getRead().getVariable().size()); 	//Set nb input
+				defFun.setOut(def.getWrite().getVariable().size()); //Set nb output
+				funList.put(fName, defFun); // Adding a new blank function
 			}
 		}
 	}
@@ -294,13 +288,7 @@ public class GeneratorAddr {
 		EList<String> affs = affCmd.getAffectations(); 	//Left side
 		EList<Expr> vals = affCmd.getValeurs();			// Right side
 
-		/*
-		 * TODO : Count the number of given values at the right of the
-		 * affectation Could be called function with a return variable number.
-		 * Florent gave up
-		 */
-		// if (vals.size() != affs.size())
-		// throw new ThreeAddressCodeException("Affectation error !");
+		checkAffUsage(affCmd);
 
 		Iterator<String> itAff = affs.iterator();
 		Iterator<Expr> itVal = vals.iterator();
@@ -591,7 +579,7 @@ public class GeneratorAddr {
 	 *             Throws a SymTable Error if the program is not correct
 	 *             according to the symbols
 	 */
-	private void checkSymbolsUsage() throws SymTableException {
+	public void checkSymbolsUsage() throws SymTableException {
 		// Symbols as function (calls, declaration)
 		for (DefFun f : funList.values()) {
 			// Checking symbols usage after generating all the symbols table
@@ -599,18 +587,41 @@ public class GeneratorAddr {
 				Lexpr lexpr = f.getCalls().get(symbol);
 				// Check if the function exists
 				if (!funList.containsKey(symbol)) {
-					throw new SymTableException(
-							"Symbol '" + symbol + "' used but not corresponding to any declared function !");
+					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function !");
 				}
 				int expectedParameters = funList.get(symbol).getIn();
 				int nbOfParameters = ((lexpr != null) ? countExprs(lexpr) : 0);
-				// Check if the function is called with the correct parameters
-				// number
+				// Check if the function is called with the correct parameters number
 				if (nbOfParameters != expectedParameters) {
-					throw new SymTableException("The function " + symbol + " is called with " + nbOfParameters
-							+ ", expected " + expectedParameters);
+					throw new SymTableException("The function " + symbol + " is called with " + nbOfParameters + ", expected " + expectedParameters);
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Check if the multiple affectations are correctly used
+	 * @param aff The affectation to check
+	 * @throws SymTableException If there is to the same number of left variables and right values returned
+	 */
+	public void checkAffUsage(Affectation aff) throws SymTableException {
+		EList<String> affs = aff.getAffectations(); 	//Left side
+		EList<Expr> vals = aff.getValeurs();			// Right side
+		int nbIn = affs.size();
+		int nbOut = 0;
+		for(Expr val : vals){
+			ExprSimple simp = val.getExprsimple();
+			if(simp.getCall() != null){
+				nbOut += funList.get(simp.getCall()).getOut();
+			}
+			else{
+				nbOut++;
+			}
+		}
+		//Final condition IN == OUT
+		System.out.println("CHECK AFF : IN="+nbIn+" OUT="+nbOut);
+		if(nbIn != nbOut){
+			throw new SymTableException("There is "+nbIn+" inputs but "+nbOut+" outputs in this affectation.");
 		}
 	}
 
@@ -627,12 +638,10 @@ public class GeneratorAddr {
 		if (exprs.getLexpr() != null) {
 			ret += countExprs(exprs.getLexpr());
 		}
-		// TODO : Sale, tres sale. Mais c'est trop complique a faire propre.
-		// Tant pis. T_T
 		String fun = "";
+		//TODO
 		try {
 			fun = exprs.getExpr().getExprsimple().getValeur();
-			//System.out.println("FUN : " + fun);
 		} catch (NullPointerException nullEx) {
 		/* Nothing */}
 		if (funList.containsKey(fun)) { //

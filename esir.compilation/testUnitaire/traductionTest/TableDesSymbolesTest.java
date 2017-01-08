@@ -3,26 +3,36 @@ package traductionTest;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
-import org.w3c.dom.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.*;
-import java.io.*;
-
-import org.eclipse.core.runtime.AssertionFailedException;
-import org.junit.Test;
-
-import esir.compilation.whileComp.Lexpr;
-import prettyPrintTest.PrettyPrintTest;
 import sprint2.DefFun;
 import sprint2.GeneratorAddr;
+import sprint2.SymTableException;
+import sprint2.ThreeAddressCodeException;
+import sprint3.CS_TranslatorException;
 import utilitaires.Utilitaires;
 
 public class TableDesSymbolesTest {
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+	
 	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Original/";
 	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Resultat/";
 	private static final String awaitedFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Attendu/";
@@ -38,7 +48,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"0_NopTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		tds.writeSymTableXML(resultFilePath+"0_NopTest.whxml");
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -55,7 +69,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"1_nbInputNbOutputTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nbInputOutputTest");
@@ -70,7 +88,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"1_nbInputNbOutputTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nbInputOutputTest");
@@ -85,7 +107,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"2_doubleInputTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("doubleInputTest");
@@ -100,7 +126,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"3_doubleOutputTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("doubleOutputTest");
@@ -115,7 +145,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"4_nbFunctionTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		int nbFunction = funList.size();
@@ -129,7 +163,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"5_variableTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("variable1Test");
@@ -145,8 +183,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"5_variableTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
-
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("variable2Test");
 		HashMap<String, Integer> variables2 = funVariable1Test.getVars();
@@ -165,7 +206,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"6_affMultipleTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		tds.writeSymTableXML(resultFilePath+"6_affMultiple.whxml");
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -190,7 +235,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"7_boucleWhileTest.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("boucleWhileTest");
@@ -213,7 +262,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"8_multipleFunctions.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		tds.writeSymTableXML(resultFilePath+"8_multipleFunctions.whxml");
 		
 		int nbFunctions = tds.getFunList().size();
@@ -228,7 +281,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"9_callFunction.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		tds.writeSymTableXML(resultFilePath+"9_callFunction.whxml");
 		
 		DefFun def = tds.getFunList().get("callFunction");
@@ -243,7 +300,11 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"10_newVarInAff.cs";
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		tds.writeSymTableXML(resultFilePath+"10_newVarInAff.whxml");
 		
 		DefFun def = tds.getFunList().get("newVarInAff");
@@ -256,14 +317,68 @@ public class TableDesSymbolesTest {
 		args[1] = resultFilePath+"11_symboleGlobal.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		
 		HashMap<String, String> symboles = tds.getSymbs();
 		
 		assertTrue("La variable globale \"global\" n'est pas presente dans la table des symboles", symboles.containsKey("global"));
 	}
-
 	
+	@Test
+	public void checkAffectationsMethodTest1(){
+		args[0] = origineFilePath+"12_affCall2.wh";
+		args[1] = resultFilePath+"12_affCall2.cs";
+		
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
+		assertTrue(true); //Si aucune exception -> test OK
+	}
+	
+	@Test
+	public void checkAffectationsMethodTest2(){
+		args[0] = origineFilePath+"13_affCall.wh";
+		args[1] = resultFilePath+"13_affCall.cs";
+		
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
+		assertTrue(true); //Si aucune exception -> test OK
+	}
+
+	//BAD TESTS
+	
+	@Test
+	public void BADcheckAffectationMethodTest() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{
+		thrown.expect(SymTableException.class);
+		thrown.expectMessage("[SYMTABLE ERROR] : There is 3 inputs but 2 outputs in this affectation.");
+		args[0] = origineFilePath+"BAD_1_affCall.wh";
+		args[1] = resultFilePath+"BAD_1_affCall.cs";
+		
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		tds.launchGeneration(args);
+	}
+
+	@Test
+	public void BADcheckAffectationMethodTest2() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{
+		thrown.expect(SymTableException.class);
+		thrown.expectMessage("[SYMTABLE ERROR] : There is 1 inputs but 2 outputs in this affectation.");
+		args[0] = origineFilePath+"BAD_2_affCall.wh";
+		args[1] = resultFilePath+"BAD_2_affCall.cs";
+		
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		tds.launchGeneration(args);
+	}
 	
 	
 	

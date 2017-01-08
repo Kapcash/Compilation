@@ -11,7 +11,10 @@ import org.junit.Test;
 import sprint2.GeneratorAddr;
 import sprint2.OP;
 import sprint2.QuadImp;
+import sprint2.SymTableException;
 import sprint2.ThreeAddressCode;
+import sprint2.ThreeAddressCodeException;
+import sprint3.CS_TranslatorException;
 import utilitaires.Utilitaires;
 
 public class Code3AdressesTests {
@@ -29,7 +32,11 @@ public class Code3AdressesTests {
 		args[0] = origineFilePath+"0_NopTest.wh";
 		args[1] = resultFilePath+"0_NopTest.cs";
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		
 		ThreeAddressCode a = tds.getCode3Addresses();
 		System.out.println(a);
@@ -47,7 +54,11 @@ public class Code3AdressesTests {
 		args[0] = origineFilePath+"1_Affectation1Test.wh";
 		args[1] = resultFilePath+"1_Affectation1Test.cs";
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		
 		ThreeAddressCode threeAddressCode = tds.getCode3Addresses();
 		HashMap<String, LinkedList<QuadImp>> quartet3Adresses = threeAddressCode.getCode3Addr();
@@ -150,7 +161,11 @@ public class Code3AdressesTests {
 		args[0] = origineFilePath+nomProgSansExtension+".wh";
 		args[1] = resultFilePath+nomProgSansExtension+".cs";
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		
 		ThreeAddressCode threeAddressCode = tds.getCode3Addresses();
 		HashMap<String, LinkedList<QuadImp>> mapEtiquetteQuartet3Adresses = threeAddressCode.getCode3Addr();

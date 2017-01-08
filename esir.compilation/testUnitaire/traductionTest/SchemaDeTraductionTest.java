@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import sprint2.DefFun;
 import sprint2.GeneratorAddr;
+import sprint2.SymTableException;
+import sprint2.ThreeAddressCodeException;
+import sprint3.CS_TranslatorException;
 
 public class SchemaDeTraductionTest {
 
@@ -24,7 +27,11 @@ public class SchemaDeTraductionTest {
 		args[0] = origineFilePath+"test1.wh";
 		args[1] = resultFilePath+"test1.whc";	
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
+		try{
+			tds.launchGeneration(args);
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 		
 		assertTrue(true);
 	}

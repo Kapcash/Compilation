@@ -10,20 +10,14 @@ namespace BinTreeProject
 	{
 		//Here the symbs used in the while code
 
-		private static void affMultiple(Queue<BinTree> input, Queue<BinTree> output)
+		private static void reverse(Queue<BinTree> input, Queue<BinTree> output)
 		{
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
 			A = input.Dequeue();
 			B = input.Dequeue();
-			C = input.Dequeue();
-			D = input.Dequeue();
-			Y0 = C;
-			X0 = Y0;
-			Y0 = D;
-			X1 = Y0;
-			A = X0;
-			B = X1;
+			((Action)(() => { }))();
+			output.Enqueue(B);
 			output.Enqueue(A);
 		}
 		static void Main(string[] args)
@@ -46,23 +40,8 @@ namespace BinTreeProject
 				BinTree B = new BinTree("B", null, null);
 				input.Enqueue(B);
 			}
-			if(args.Length > 2){
-				BinTree C = new BinTree(args[2], null, null);
-				input.Enqueue(C);
-			}
-			else{
-				BinTree C = new BinTree("C", null, null);
-				input.Enqueue(C);
-			}
-			if(args.Length > 3){
-				BinTree D = new BinTree(args[3], null, null);
-				input.Enqueue(D);
-			}
-			else{
-				BinTree D = new BinTree("D", null, null);
-				input.Enqueue(D);
-			}
-			affMultiple(input, output);
+			reverse(input, output);
+			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}

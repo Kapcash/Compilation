@@ -65,11 +65,11 @@ public class GeneratorAddr {
 	/**
 	 * List of declared functions in the Program <String, DefFun> = Name, (Symbs + Calls)
 	 */
-	static HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
 	/**
 	 * List of global symbols, undeclared <String, String> = symbole, null
 	 */
-	static HashMap<String, String> symbs = new HashMap<String, String>();
+	HashMap<String, String> symbs = new HashMap<String, String>();
 	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
 	/**
@@ -690,7 +690,6 @@ public class GeneratorAddr {
 			ret += countExprs(exprs.getLexpr());
 		}
 		String fun = "";
-		//TODO
 		try {
 			fun = exprs.getExpr().getExprsimple().getValeur();
 		} catch (NullPointerException nullEx) {

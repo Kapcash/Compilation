@@ -483,6 +483,12 @@ public class GeneratorAddr {
 				return;
 			}
 		}
+		
+		if(nomVar == null){
+			System.out.println("Erreur d'expression dans la boucle foreach");
+			return;
+		}
+		
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(Cond, f);

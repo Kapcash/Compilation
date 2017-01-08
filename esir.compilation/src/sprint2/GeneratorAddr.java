@@ -56,7 +56,7 @@ public class GeneratorAddr {
 	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../esir.compilation/testUnitaire/traductionTest/Sprint3Exemple/iseqtoa.wh";
+	private static final String INPUT_FILE = "../debug.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
@@ -65,12 +65,12 @@ public class GeneratorAddr {
 	/**
 	 * List of declared functions in the Program <String, DefFun> = Name, (Symbs + Calls)
 	 */
-	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	private static HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
 	/**
 	 * List of global symbols, undeclared <String, String> = symbole, null
 	 */
-	HashMap<String, String> symbs = new HashMap<String, String>();
-	ThreeAddressCode code3Addresses = new ThreeAddressCode();
+	private static HashMap<String, String> symbs = new HashMap<String, String>();
+	private ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
 	/**
 	 * MAIN Input : + args[0] = inputFilePath + args[1] = outputFilePath
@@ -106,7 +106,7 @@ public class GeneratorAddr {
 	 */
 	public void launchGeneration(String[] args) throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
 		System.out.println("Compiling program.");
-
+		resetGenerator(); //Reseting the generator before starting another generation
 		if (args.length > 0)
 			createSymTable(args[0], args[1]);
 		else
@@ -155,6 +155,7 @@ public class GeneratorAddr {
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
+		
 
 		//Printing on console
 		if (DISPLAY_SYM_TABLE) {
@@ -174,7 +175,7 @@ public class GeneratorAddr {
 			}
 		}
 	}
-
+	
 	/**
 	 * Initialize the function list just with the name of declared functions
 	 * 
@@ -559,6 +560,14 @@ public class GeneratorAddr {
 
 	// TOOLS //
 
+	/**
+	 * Reset the static maps of the Generator
+	 */
+	private void resetGenerator(){
+		funList = new HashMap<String, DefFun>();
+		symbs = new HashMap<String, String>();
+	}
+	
 	/**
 	 * Print the final symbols table (Lists + XML)
 	 */

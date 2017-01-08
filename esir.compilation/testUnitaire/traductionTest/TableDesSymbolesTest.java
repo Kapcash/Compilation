@@ -58,6 +58,7 @@ public class TableDesSymbolesTest {
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nopTest");
 		int nbVar = funTest.getVars().size();
+		System.out.println("SIZE : "+tds.getFunList().size());
 
 		assertTrue(Utilitaires.printErr("Le nombre de variable est incorrect. Il est de "+nbVar+" au lieu de 1"), nbVar == 1);
 		assertCompareTwoXML(resultFilePath+"0_NopTest.whxml",awaitedFilePath+"0_NopTest_Attendu.whxml");
@@ -78,6 +79,7 @@ public class TableDesSymbolesTest {
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nbInputOutputTest");
 		int nbInput = funTest.getIn();
+		System.out.println("SIZE : "+tds.getFunList().size());
 
 		assertTrue(Utilitaires.printErr("Le nombre d'entrer est incorrect. Il est de "+nbInput+" au lieu de 4"), nbInput == 4);
 	}
@@ -97,6 +99,7 @@ public class TableDesSymbolesTest {
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nbInputOutputTest");
 		int nbOutput = funTest.getOut();
+		System.out.println("SIZE : "+tds.getFunList().size());
 
 		assertTrue(Utilitaires.printErr("Le nombre de sortie est incorrect. Il est de "+nbOutput+" au lieu de 3"), nbOutput == 3);
 	}
@@ -110,6 +113,8 @@ public class TableDesSymbolesTest {
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
+		System.out.println("SIZE : "+tds.getFunList().size());
+
 	}
 
 	@Test
@@ -122,6 +127,7 @@ public class TableDesSymbolesTest {
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
+		System.out.println("SIZE : "+tds.getFunList().size());
 
 		assertFalse(Utilitaires.printErr("Le test ne devrait pas passer"), true);
 	}
@@ -140,7 +146,7 @@ public class TableDesSymbolesTest {
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		int nbFunction = funList.size();
-
+		System.out.println("SIZE : "+tds.getFunList().size());
 		assertTrue(Utilitaires.printErr("Le nombre de function est incorrect. Il est de "+nbFunction+" au lieu de 10"), nbFunction == 10);
 	}
 

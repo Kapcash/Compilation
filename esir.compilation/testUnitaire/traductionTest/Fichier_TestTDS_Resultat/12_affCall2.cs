@@ -14,6 +14,10 @@ namespace BinTreeProject
 		{
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
+			//Here the var used in the while code
+			BinTree A = new BinTree ("A", null, null);
+			BinTree B = new BinTree ("B", null, null);
+			//Here the temp var used by the compiler
 			A = input.Dequeue();
 			B = input.Dequeue();
 			((Action)(() => { }))();

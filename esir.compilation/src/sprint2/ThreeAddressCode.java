@@ -220,7 +220,7 @@ public class ThreeAddressCode {
 		int k = 0;
 		if (tree.children.length == 0) { // Simplification interdite
 			generatorAddr.varDeclaration3Addr(f, "Y0");
-			generatorAddr.code3Addresses.aff("Y0", tree.getHead());
+			generatorAddr.getCode3Addresses().aff("Y0", tree.getHead());
 		} else {
 			while (tree.children.length != 0) {
 				ExprTree.iterate(tree, this, generatorAddr, f);
@@ -327,9 +327,9 @@ public class ThreeAddressCode {
 
 					else if (OP.LIST.name().equals(tree.getHead())) {
 						threeAddressCode.list(varName);
-					} else if (generatorAddr.funList.containsKey(tree.getHead())) {
+					} else if (generatorAddr.getFunList().containsKey(tree.getHead())) {
 						threeAddressCode.call(tree.getHead());
-						int out = generatorAddr.funList.get(tree.getHead()).out;
+						int out = generatorAddr.getFunList().get(tree.getHead()).out;
 						for (int i = 0; i < out; i++) {
 							generatorAddr.varDeclaration3Addr(f, varName);
 							threeAddressCode.pop(varName);

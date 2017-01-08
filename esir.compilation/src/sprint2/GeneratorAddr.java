@@ -620,7 +620,7 @@ public class GeneratorAddr {
 		}
 		//Final condition IN == OUT
 		System.out.println("CHECK AFF : IN="+nbIn+" OUT="+nbOut);
-		if(nbIn != nbOut){
+		if(nbIn < nbOut){
 			throw new SymTableException("There is "+nbIn+" inputs but "+nbOut+" outputs in this affectation.");
 		}
 	}

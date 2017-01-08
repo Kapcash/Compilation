@@ -336,10 +336,10 @@ public class TableDesSymbolesTest {
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		try{
 			tds.launchGeneration(args);
+			assertTrue(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
 			System.out.println(e.getMessage());
 		}
-		assertTrue(true); //Si aucune exception -> test OK
 	}
 	
 	@Test
@@ -350,24 +350,28 @@ public class TableDesSymbolesTest {
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		try{
 			tds.launchGeneration(args);
+			assertTrue(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
 			System.out.println(e.getMessage());
 		}
-		assertTrue(true); //Si aucune exception -> test OK
+	}
+
+	@Test
+	public void checkAffectationsMethodTestTooMuchLeft(){
+		args[0] = origineFilePath+"14_affCallTooMuchLeft.wh";
+		args[1] = resultFilePath+"14_affCallTooMuchLeft.cs";
+		
+		GeneratorAddr tds = GeneratorAddr.getInstance();
+		try{
+			tds.launchGeneration(args);
+			assertTrue(true); //Si aucune exception -> test OK
+		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	//BAD TESTS
 	
-	@Test
-	public void BADcheckAffectationMethodTest() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{
-		thrown.expect(SymTableException.class);
-		thrown.expectMessage("[SYMTABLE ERROR] : There is 3 inputs but 2 outputs in this affectation.");
-		args[0] = origineFilePath+"BAD_1_affCall.wh";
-		args[1] = resultFilePath+"BAD_1_affCall.cs";
-		
-		GeneratorAddr tds = GeneratorAddr.getInstance();
-		tds.launchGeneration(args);
-	}
 
 	@Test
 	public void BADcheckAffectationMethodTest2() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{

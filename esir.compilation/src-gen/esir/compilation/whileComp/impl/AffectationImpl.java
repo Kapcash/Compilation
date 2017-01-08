@@ -63,7 +63,7 @@ public class AffectationImpl extends MinimalEObjectImpl.Container implements Aff
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AffectationImpl()
+  public AffectationImpl()
   {
     super();
   }

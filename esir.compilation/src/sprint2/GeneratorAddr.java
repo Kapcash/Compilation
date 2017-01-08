@@ -56,7 +56,7 @@ public class GeneratorAddr {
 	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../debug.wh";
+	private static final String INPUT_FILE = "../esir.compilation/testUnitaire/traductionTest/Sprint3Exemple/iseqtoa.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
@@ -65,11 +65,11 @@ public class GeneratorAddr {
 	/**
 	 * List of declared functions in the Program <String, DefFun> = Name, (Symbs + Calls)
 	 */
-	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	static HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
 	/**
 	 * List of global symbols, undeclared <String, String> = symbole, null
 	 */
-	HashMap<String, String> symbs = new HashMap<String, String>();
+	static HashMap<String, String> symbs = new HashMap<String, String>();
 	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
 	/**
@@ -253,7 +253,7 @@ public class GeneratorAddr {
 		
 		f.setOut(varsW.size()); //Get outputs
 		for (String v : varsW) {
-			varDeclaration3Addr(f, v);	// New 3@ <DECL, v, , >
+			//varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
 			code3Addresses.write(v);	//New 3@ <WRITE, v, , >
 			f.updateVar(v);
 		}
@@ -317,9 +317,11 @@ public class GeneratorAddr {
 		while (itAff.hasNext()) {
 			var = itAff.next();
 			val = VAR_PREFIXE + (i++);
-			varDeclaration3Addr(f, val);
-			code3Addresses.aff(var, val);
 			f.updateVar(var);
+			varDeclaration3Addr(f, val);
+			varDeclaration3Addr(f, var);
+			code3Addresses.aff(var, val);
+			
 		}
 	}
 
@@ -350,6 +352,10 @@ public class GeneratorAddr {
 		Expr ex2 = ex.getEx2();
 		Not n = ex.getN();
 		String call = ex.getCall();
+		
+		if (isVariable(val)) { // Variable
+			f.updateVar(val);
+		}
 
 		if (operator != null) {
 			switch (operator) {
@@ -391,9 +397,6 @@ public class GeneratorAddr {
 		}
 		if (isSymbole(val)) { // Symbole
 			this.symbs.put(val, "");
-		}
-		if (isVariable(val)) { // Variable
-			f.updateVar(val);
 		}
 		if(call != null && exprs != null){ //Fun call
 			f.updateCalls(call, exprs);
@@ -475,9 +478,54 @@ public class GeneratorAddr {
 
 	// Foreach
 	private void iterateAST(Foreach forEachCmd, DefFun f) throws SymTableException, ThreeAddressCodeException {
+		Expr var = forEachCmd.getExpr1();
+		String nomVar = var.getExprsimple().getValeur();
+		Expr Cond = forEachCmd.getExpr2();
+		String forCondOpe = Cond.getExprsimple().getOpe();
+		//Condition checking
+		if(forCondOpe != null){
+			if(forCondOpe == "and" || forCondOpe == "or" || forCondOpe == "=?"){
+				System.out.println("Erreur d'expression dans la boucle foreach");
+				return;
+			}
+		}
+		
+		if(nomVar == null){
+			System.out.println("Erreur d'expression dans la boucle foreach");
+			return;
+		}
+		
+		String etiquetteCond = code3Addresses.getEtiquette();
+		code3Addresses.nouvelleEtiquette(); //Condition LC
+		iterateAST(Cond, f);
+		code3Addresses.inlineExpression(this, f);
+		code3Addresses.finEtiquette();
+		
+		code3Addresses.nouvelleEtiquette();  //Body LB
+		Expr expression = new ExprImpl();
+		ExprSimple expre = new ExprSimpleImpl();
+		expre.setOpe("hd");
+		expre.setExpr(Cond);
+		expression.setExprsimple(expre);
+		iterateAST(expression, f);
+		int k = code3Addresses.inlineExpression(this, f);
+		code3Addresses.aff(nomVar, "Y"+k);
+		
 		Commands cmds = forEachCmd.getCommands();
-		//TODO : ForEach treatement
 		iterateAST(cmds, f);
+		
+		Expr expressionbis = new ExprImpl();
+		ExprSimple exprebis = new ExprSimpleImpl();
+		exprebis.setOpe("tl");
+		exprebis.setExpr(Cond);
+		expressionbis.setExprsimple(exprebis);
+		iterateAST(expressionbis, f);
+		code3Addresses.inlineExpression(this, f);
+		
+		code3Addresses.finEtiquette();
+		// New 3@ <FOR LC, , LB, >
+		code3Addresses.forEachLoop(etiquetteCond,code3Addresses.getPreviousEtiquette());
+
 	}
 
 	// If
@@ -699,12 +747,13 @@ public class GeneratorAddr {
 	}
 
 	void varDeclaration3Addr(DefFun f, String v) {
-		if (!f.alreadyExisting(v)) {
-			if (!f.tempAlreadyExisting(v)) {
-				code3Addresses.decl(v);
-				f.updateTempVars(v);
+		if(isVariable(v))
+			if (!f.alreadyExisting(v)) {
+				if (!f.tempAlreadyExisting(v)) {
+					code3Addresses.decl(v);
+					f.updateTempVars(v);
+				}
 			}
-		}
 	}
 
 	public HashMap<String, DefFun> getFunList() {

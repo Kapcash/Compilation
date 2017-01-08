@@ -5,7 +5,7 @@ public enum OP {
 	//Structure de controle
 	IF, ELSE, 
 	//Boucle
-	WHILE, FOR, 
+	WHILE, FOR, FOREACH,
 	//Declaration
 	DECL,
 	//Affectation

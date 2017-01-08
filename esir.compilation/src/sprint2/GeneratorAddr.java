@@ -63,11 +63,11 @@ public class GeneratorAddr {
 	 * List of declared functions in the Program <String, DefFun> = Name, (Symbs
 	 * + Calls)
 	 */
-	HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
+	static HashMap<String, DefFun> funList = new HashMap<String, DefFun>();
 	/**
 	 * List of global symbols, undeclared <String, String> = symbole, null
 	 */
-	HashMap<String, String> symbs = new HashMap<String, String>();
+	static HashMap<String, String> symbs = new HashMap<String, String>();
 	ThreeAddressCode code3Addresses = new ThreeAddressCode();
 
 	/**
@@ -312,6 +312,7 @@ public class GeneratorAddr {
 			var = itAff.next();
 			val = VAR_PREFIXE + (i++);
 			varDeclaration3Addr(f, val);
+			varDeclaration3Addr(f, var);
 			code3Addresses.aff(var, val);
 			f.updateVar(var);
 		}

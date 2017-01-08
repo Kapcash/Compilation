@@ -79,6 +79,10 @@ public class DefFun{
 	public HashMap<String,Integer> getVars() {
 		return vars;
 	}
+	
+	public HashSet<String> getTempVars() {
+		return tempVars;
+	}
 
 	public HashMap<String,Lexpr> getCalls() {
 		return calls;

@@ -1,11 +1,12 @@
 package sprint3;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+import sprint2.DefFun;
+import sprint2.GeneratorAddr;
 import sprint2.QuadImp;
 import sprint2.ThreeAddressCode;
 
@@ -53,6 +54,8 @@ public class CS_Translator {
 		write(lAccolade); // Class BEGIN
 
 		rightShift();
+		
+		writeSymbs();
 
 		iterateCode();
 
@@ -183,6 +186,13 @@ public class CS_Translator {
 //		leftShift();
 	}
 */	
+	private void writeSymbs(){
+		write("//Here the symbs used in the while code");
+		GeneratorAddr.getInstance().getSymbs().forEach((key, value) -> {
+			write("private static BinTree " + key + " = new BinTree (\""+key+"\", null, null);");
+		});
+	}
+	
 	private void codeMain() {
 		rightShift();
 		Iterator<String> iteReads = reads.iterator();
@@ -281,7 +291,7 @@ public class CS_Translator {
 				f.write(rAccolade);
 				break;
 			case DECL:
-				f.write("BinTree " + quad.getReponse() + " = new BinTree (\""+quad.getReponse()+"\", null, null);");
+				//f.write("BinTree " + quad.getReponse() + " = new BinTree (\""+quad.getReponse()+"\", null, null);");
 				/*
 				Iterator<String> iteDecl = allDecls.iterator();
 				Boolean dontContains = true;
@@ -403,6 +413,21 @@ public class CS_Translator {
 			this.returns = "void";
 			write(typeName + " inParams = new " + typeName + "();");
 			write(typeName + " outParams = new " + typeName + "();");
+			varDeclaration();
+		}
+		
+		private void varDeclaration(){
+			DefFun def = GeneratorAddr.getInstance().getFunList().get(name);
+			if(def == null)
+				return;
+			write("//Here the var used in the while code");
+			def.getVars().forEach((key, value) -> {
+				write("BinTree " + key + " = new BinTree (\""+key+"\", null, null);");
+			});
+			write("//Here the temp var used by the compiler");
+			def.getTempVars().forEach((key) -> {
+				write("BinTree " + key + " = new BinTree (\""+key+"\", null, null);");
+			});
 		}
 
 		private void write(String s) {

@@ -219,6 +219,7 @@ public class ThreeAddressCode {
 
 		int k = 0;
 		if (tree.children.length == 0) { // Simplification interdite
+			generatorAddr.varDeclaration3Addr(f, "Y0");
 			generatorAddr.code3Addresses.aff("Y0", tree.getHead());
 		} else {
 			while (tree.children.length != 0) {

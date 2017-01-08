@@ -53,7 +53,7 @@ public class GeneratorAddr {
 	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../debug.wh";
+	private static final String INPUT_FILE = "../esir.compilation/testUnitaire/traductionTest/Sprint3Exemple/iseqtoa.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 

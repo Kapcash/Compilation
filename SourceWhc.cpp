@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <string>
+#include <string.h>
+#include <list>
 
 void manual() {
 	printf("\n");
@@ -32,7 +33,7 @@ void manual() {
 	printf("\n");
 	printf("========== AUTHORS\n");
 	printf("\n");
-	printf("Programme realise par Dylan BEHETRE, Yoann BOYERE, Alexis BRAULT, Mehidine CHUPEAU, Florent CATIAU, Quentin OLIVIER");
+	printf("Programme realise par Dylan BEHETRE, Yoann BOYERE, Alexis BRAULT, Mehidine CHUPEAU, Florent CATIAU-TRISTANT, Quentin OLIVIER");
 	printf("\n");
 	printf("\n");
 	printf("==================== \n");
@@ -40,34 +41,52 @@ void manual() {
 
 int main(int argc, char *argv[]) {
 
+	std::string	arg_fileSrc,
+				arg_fileDest = ".\\BinTreeProject\\BinTreeProject\\BinTree.cs";
+	std::list<std::string> mainArgs;
+	bool execute = false;
+				
 	if (argc<2 && argc % 2 != 0) {
 		manual();
-		return 0;
+		return 1;
 	}
 
-	std::string	arg_fileSrc,
-				arg_fileDest = "sth.whpp";
 
 	if (strcmp("--help", argv[1]) == 0) {
 		manual();
-		return 0;
+		return 1;
 	}
 
 	arg_fileSrc = argv[1];
 
-	int i = 0;
-	for (i = 2; i<argc; i = i + 2) {
+	for (int i = 2; i<argc; i++) {
 		if (strcmp("-o", argv[i]) == 0) {
 			arg_fileDest = argv[i + 1];
+			i++;
 			continue;
 		}
-
+		if(strcmp("-e",argv[i]) == 0){
+			execute = true;
+			continue;
+		}
+		mainArgs.push_back(argv[i]);
 	}
 
-	std::string cmdLine = "java -jar whilec.jar " + arg_fileSrc;
+	std::string cmdLine = "java -jar whc.jar " + arg_fileSrc;
 	cmdLine += " " + arg_fileDest;
+	std::string compileLine = "csc.exe /t:exe /out:./ProgramWHC.exe "+arg_fileDest;
+	std::string executeLine = ".\\ProgramWHC.exe";
 	
-	int status = system(cmdLine.c_str());
-		
+	for(std::list<std::string>::iterator itr = mainArgs.begin(); itr != mainArgs.end(); itr++){
+		executeLine += " " + *itr;
+	}
+
+	int status = system(cmdLine.c_str()); //Compiling .wh -> .cs
+	if(execute){
+		std::cout << "Compiling the C# program : " << compileLine.c_str();
+		system(compileLine.c_str()); //Compiling .cs -> .exe
+		std::cout << "Executing the C# program";
+		system(executeLine.c_str()); //Executing .exe args
+	}		
 	return status;
 }

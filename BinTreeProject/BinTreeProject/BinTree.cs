@@ -234,6 +234,10 @@ namespace Tree
             return ret;
         }
 
+        /**
+         * Used in convertStrToBinTree method.
+         * Seek the next opening parenthesis '(' from an indexPos into the string str
+         */
         private static int getNextOpeningParenthesis(string str, int indexPos)
         {
             while(str[indexPos] != '(')
@@ -243,6 +247,11 @@ namespace Tree
             return indexPos;
         }
 
+
+        /**
+         * Used in convertStrToBinTree method.
+         * Seek the next closing parenthesis '(' forming a pair with an opening parenthesis at indexOpenP place into the string str
+         */
         private static int getIndexClosingParenthesis(string str, int indexOpenP)
         {
             if (str[indexOpenP] != '(') return -1;

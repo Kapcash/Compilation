@@ -1,17 +1,24 @@
 package prettyPrintTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import org.junit.Test;
 
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import esir.compilation.ErrorException;
 import esir.compilation.generator.Main;
 
 public class PrettyPrintTest{
 
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
+	
 	private static final String origineFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Original/";
 	private static final String attendFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Attendu/";
 	private static final String resultFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Resultat/";
@@ -47,7 +54,7 @@ public class PrettyPrintTest{
 	}
 
 	@Test
-	public void testDoubleTraitement() {
+	public void testDoubleTraitement() throws ErrorException {
 		restoreEnvir();
 		File fileR1 = null;
 		File fileR2 = null;
@@ -92,148 +99,221 @@ public class PrettyPrintTest{
 	}
 
 	@Test
-	public void testAffect1() {
+	public void testAffect1() throws ErrorException {
 		testerPrettyPrint("testAffect1");
 	}
 
 	@Test
-	public void testAffect2() {
+	public void testAffect2() throws ErrorException{
 		testerPrettyPrint("testAffect2");
 	}
 
 	@Test
-	public void testAffect3() {
+	public void testAffect3() throws ErrorException{
 		testerPrettyPrint("testAffect3");
 	}
 
 	@Test
-	public void testAffect4() {
+	public void testAffect4() throws ErrorException{
 		testerPrettyPrint("testAffect4");
 	}
 
 	@Test
-	public void testAffect5() {
+	public void testAffect5() throws ErrorException{
 		testerPrettyPrint("testAffect5");
 	}
 
 	@Test
-	public void testIf1() {
+	public void testIf1() throws ErrorException{
 		testerPrettyPrint("testIf1");
 	}
 
 	@Test
-	public void testIf2() {
+	public void testIf2() throws ErrorException{
 		testerPrettyPrint("testIf2");
 	}
 
 	@Test
-	public void testNop() {
+	public void testNop() throws ErrorException{
 		testerPrettyPrint("testNop");
 	}
 
 	@Test
-	public void testStructBase1() {
+	public void testStructBase1() throws ErrorException{
 		testerPrettyPrint("testStructBase1");
 	}
 
 	@Test
-	public void testStructBase2() {
+	public void testStructBase2() throws ErrorException{
 		testerPrettyPrint("testStructBase2");
 	}
 
 	@Test
-	public void testStructBase3() {
+	public void testStructBase3() throws ErrorException{
 		testerPrettyPrint("testStructBase3");
 	}
 
 	@Test
-	public void testWhile1() {
+	public void testWhile1() throws ErrorException{
 		testerPrettyPrint("testWhile1");
 	}
 	
 	@Test
-	public void testWhile2() {
+	public void testWhile2() throws ErrorException{
 		testerPrettyPrint("testWhile2");
 	}
 	
 	@Test
-	public void testFor1() {
+	public void testFor1() throws ErrorException{
 		testerPrettyPrint("testFor1");
 	}
 	
 	@Test
-	public void testFor2() {
+	public void testFor2() throws ErrorException{
 		testerPrettyPrint("testFor2");
+	}
+	
+	@Test
+	public void testCond1() throws ErrorException{
+		testerPrettyPrint("testCond1");
+	}
+	
+	@Test
+	public void testCond2() throws ErrorException{
+		testerPrettyPrint("testCond2");
+	}
+	
+	@Test
+	public void testCond3() throws ErrorException{
+		testerPrettyPrint("testCond3");
+	}
+	
+	@Test
+	public void testCond4() throws ErrorException{
+		testerPrettyPrint("testCond4");
+	}
+	
+	@Test
+	public void testCond5() throws ErrorException{
+		testerPrettyPrint("testCond5");
+	}
+	
+	@Test
+	public void testCond6() throws ErrorException{
+		testerPrettyPrint("testCond6");
+	}
+	
+	@Test
+	public void testCond7() throws ErrorException{
+		testerPrettyPrint("testCond7");
 	}
 
 	@Test
-	public void testOptionAll() {
+	public void testOptionAll() throws ErrorException{
 		args[2] ="0" ;
 		testerPrettyPrint("AllIndentationTest");
 	}
 	
 	@Test
-	public void testOptionWhile1() {
+	public void testOptionWhile1() throws ErrorException{
 		args[4] ="2" ;
 		testerPrettyPrint("WhileIndentationTest1");
 	}
 	
 	@Test
-	public void testOptionWhile2() {
+	public void testOptionWhile2() throws ErrorException{
 		args[4] ="2" ;
 		testerPrettyPrint("WhileIndentationTest2");
 	}
 	
 	@Test
-	public void testOptionFor1() {
+	public void testOptionFor1() throws ErrorException{
 		args[3] ="3" ;
 		testerPrettyPrint("ForIndentationTest1");
 	}
 	
 	@Test
-	public void testOptionFor2() {
+	public void testOptionFor2() throws ErrorException{
 		args[3] ="1" ;
 		testerPrettyPrint("ForIndentationTest2");
 	}
 
 	@Test
-	public void testOptionIf1() {
+	public void testOptionIf1() throws ErrorException{
 		args[5] ="1" ;
 		testerPrettyPrint("IfIndentationTest1");
 	}
 	
 	@Test
-	public void testOptionIf2() {
+	public void testOptionIf2() throws ErrorException{
 		args[5] ="2" ;
 		testerPrettyPrint("IfIndentationTest2");
 	}
 	
 	@Test // TODO : Est-ce normal que ça ne marche pas, règle de grammaire si if imbriqué, est qu'on peut mettre un nop avant ou après un if.
-	public void testOptionIf3() {
+	public void testOptionIf3() throws ErrorException{
 		args[5] ="2" ;
 		testerPrettyPrint("IfIndentationTest3");
 	}
 	
 	@Test
-	public void testOptionForeach1() {
+	public void testOptionForeach1() throws ErrorException{
 		args[6] ="3" ;
 		testerPrettyPrint("ForeachIndentationTest1");
 	}
 	
 	@Test
-	public void testOptionForeach2() {
+	public void testOptionForeach2() throws ErrorException{
 		args[6] ="1" ;
 		testerPrettyPrint("ForeachIndentationTest2");
 	}
 
 	@Test
-	public void testOptionAff() {
+	public void testOptionAff() throws ErrorException{
 		args[7] ="1" ;
 		testerPrettyPrint("AffIndentationTest");
 	}
+	
+	//BAD TESTS
+	
+	@Test
+	public void testNoRead() throws ErrorException{
+		thrown.expect(ErrorException.class);
+		testerPrettyPrint("badTestNoRead1");
+	}
+	
+	@Test
+	public void testNoWrite() throws ErrorException{
+		thrown.expect(ErrorException.class);
+		testerPrettyPrint("badTestNoWrite1");
+	}
+	
+	@Test
+	public void testBadIf() throws ErrorException{
+		thrown.expect(ErrorException.class);
+		testerPrettyPrint("badTestIf1");
+	}
+	
+	@Test
+	public void testBadWhile() throws ErrorException{
+		thrown.expect(ErrorException.class);
+		testerPrettyPrint("badTestWhile1");
+	}
+	
+	@Test
+	public void testBadAffect() throws ErrorException{
+		thrown.expect(ErrorException.class);
+		testerPrettyPrint("badTestAffect1");
+	}
+	
+	@Test
+	public void testBadFor() throws ErrorException{
+		thrown.expect(ErrorException.class);
+		testerPrettyPrint("badTestFor1");
+	}
 
 	/*Utilitaire*/
-	private void testerPrettyPrint(String nameWithoutExtension) {
+	private void testerPrettyPrint(String nameWithoutExtension) throws ErrorException {
 		String pathFichierOriginal = origineFilePath + nameWithoutExtension+ ".wh";
 
 		String pathFichierAttendu = attendFilePath + nameWithoutExtension+ ".whpp";

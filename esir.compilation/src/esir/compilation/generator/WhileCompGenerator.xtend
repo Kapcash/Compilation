@@ -208,7 +208,7 @@ class WhileCompGenerator extends AbstractGenerator {
 			}
 		}
 		else if(expr.expr != null){
-			ret+= "("+expr.ope+" "+expr.expr.compile+")"
+			ret+= "("+expr.n.not+expr.expr.compile+")"
 		}
 		else{
 			ret=expr.valeur

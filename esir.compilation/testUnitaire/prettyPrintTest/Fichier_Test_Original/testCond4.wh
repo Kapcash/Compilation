@@ -1,0 +1,9 @@
+function testCond4:
+read A
+%
+	if ( !( A 
+	or B  )) then
+		nop
+	fi
+%
+write X

@@ -1,0 +1,8 @@
+function badTestIf1:
+read A
+%
+	if Cond then
+		nop
+	
+%
+write X

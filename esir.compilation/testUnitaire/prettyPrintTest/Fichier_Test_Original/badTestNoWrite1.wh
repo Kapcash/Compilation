@@ -1,0 +1,10 @@
+function badTestNoRead1:
+read
+A
+%
+
+	
+	X := nil
+%
+write 
+

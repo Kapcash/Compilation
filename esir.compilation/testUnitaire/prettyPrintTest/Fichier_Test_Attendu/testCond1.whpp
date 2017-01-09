@@ -1,0 +1,8 @@
+function testCond1:
+read A
+%
+	if (A and B) then
+		nop
+	fi
+%
+write X

@@ -19,14 +19,17 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
 
+import esir.compilation.ErrorException;
 import esir.compilation.WhileCompStandaloneSetup;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ErrorException {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
-		main.runGenerator(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
+		try{
+			main.runGenerator(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
+		}catch (ErrorException e){System.out.println(e.toString()); throw e;}
 	}
 
 	@Inject
@@ -41,7 +44,7 @@ public class Main {
 	@Inject 
 	private JavaIoFileSystemAccess fileAccess;
 
-	protected void runGenerator(String string,String sortie,String indentAll,String indentFor,String indentWhile,String indentIf,String indentForeach,String indentAff) {
+	protected void runGenerator(String string,String sortie,String indentAll,String indentFor,String indentWhile,String indentIf,String indentForeach,String indentAff) throws ErrorException {
 		// Load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createFileURI(string), true);
@@ -74,7 +77,8 @@ public class Main {
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 		if (!list.isEmpty()) {
 			for (Issue issue : list) {
-				System.err.println(issue);
+				//System.err.println(issue);
+				throw new ErrorException(issue.getMessage());
 			}
 			return;
 		}

@@ -1,0 +1,10 @@
+function testCond6:
+read A
+%
+	if ((A or B) 
+	and 
+	(C and D)) then
+		nop
+	fi
+%
+write X

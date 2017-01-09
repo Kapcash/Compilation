@@ -844,7 +844,7 @@ public class Code3AdressesTests {
 	}
 	
 	@Test
-	public void doubleFunctionTest() {
+	public void affectationMultRetFonctionTest() {
 		HashMap<String, LinkedList<QuadImp>> mapEtiquetteQuadruplet3Adresses = getMapEtiquetteQuadruplet3Adresses("11_DoubleFunction");
 
 		boolean isMatch = false;

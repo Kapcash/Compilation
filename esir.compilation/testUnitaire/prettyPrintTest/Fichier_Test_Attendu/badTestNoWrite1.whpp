@@ -1,0 +1,6 @@
+function badTestNoWrite1:
+read A
+%
+	X := nil
+%
+write

@@ -1,9 +1,11 @@
 package sprint2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Stack;
 
@@ -204,20 +206,21 @@ public class ThreeAddressCode {
 
 	public void addToExpression(String s, HashMap<String, DefFun> funList) {
 		if (tree == null) {
-//			tree = new ExprTree("root", funList, 1);
-//			treeLevel++;
-//			tree.add(s, funList, treeLevel);
-			tree = new ExprTree(s, funList, 1);
+			tree = new ExprTree("root", funList, 1);
+			addLevel();
+			tree.add(s, funList, treeLevel);
+//			tree = new ExprTree(s, funList, 1);
 		} else {
 			tree.add(s, funList, treeLevel);
 		}
 		
-		//System.out.println(tree);
+		System.out.println(tree);
 	}
 
-	public int inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException {
+	public List<String> inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException {
 
 		int k = 0;
+		/*
 		if (tree.children.length == 0) { // Simplification interdite
 			generatorAddr.varDeclaration3Addr(f, "Y0");
 			generatorAddr.getCode3Addresses().aff("Y0", tree.getHead());
@@ -229,10 +232,45 @@ public class ThreeAddressCode {
 			k = ExprTree.nb;
 			k--;
 		}
-
-		ExprTree.nb = 0;
+		*/
+		boolean ended = false;
+		int maxLoop = 100; //StackOverflow
+		int loopCounter = 0;
+		
+		while(!ended && maxLoop>loopCounter){
+			ExprTree.iterate(tree, this, generatorAddr, f);
+		
+			if(tree.children.length==0)
+				break;
+			for (int i = 0; i < tree.children.length; i++) {
+				ExprTree array_element = tree.children[i];		
+				if(array_element.children.length!=0){		//root's children
+					ended = false;
+					break;
+				}
+				ended = true;
+			}
+			loopCounter++;
+			
+		}
+		if(loopCounter==maxLoop)
+			throw new ThreeAddressCodeException("Expression simplication problem");
+		
+		ArrayList<String> vars = new ArrayList<String>();
+		if(tree.children.length==0)
+			vars.add(tree.getHead());
+		else
+			for (int i = 0; i < tree.children.length; i++) {
+				vars.add(tree.children[i].getHead());		
+			}
+		
+		return vars;
+		
+		/*
+		 * ExprTree.nb = 0;
 		tree = null;
 		return k;
+		*/
 	}
 
 	// PRIVATE CLASS EXPRTREE
@@ -244,6 +282,7 @@ public class ThreeAddressCode {
 		static int nb = 0;
 		private int index = 0;
 		private int level = 1;
+		private ExprTree parent;
 
 		public ExprTree(String head, HashMap<String, DefFun> funList, int level) {
 			super();
@@ -265,6 +304,11 @@ public class ThreeAddressCode {
 			}
 		}
 
+		public ExprTree(String head, HashMap<String, DefFun> funList, int level, ExprTree parent) {
+			this(head,funList,level);
+			this.parent= parent;
+		}
+
 		public void incIndex(int treeLevel) {
 			if (this.children.length >= this.index)
 				return;
@@ -281,11 +325,11 @@ public class ThreeAddressCode {
 
 		public void add(String s, HashMap<String, DefFun> funList, int level) {
 			if (level == this.level) {
-				children[index] = new ExprTree(s, funList, level);
+				children[index] = new ExprTree(s, funList, level,this);
 				index++;
 			} else {
 				if (children[index] == null) {
-					children[index] = new ExprTree(s, funList, level);
+					children[index] = new ExprTree(s, funList, level,this);
 					if (children[index].full)
 						index++;
 				} else {
@@ -297,11 +341,12 @@ public class ThreeAddressCode {
 
 		public static void iterate(ExprTree tree, ThreeAddressCode threeAddressCode, GeneratorAddr generatorAddr,
 				DefFun f) {
-			if (tree.simplify()) {
+			if (tree.simplify(generatorAddr.getFunList())) {
 
 				String varName = "Y" + nb++;
 				generatorAddr.varDeclaration3Addr(f, varName);
-
+				boolean isFunctionHas1Return = true;
+				
 				if (OP.HD.name().equals(tree.getHead()))
 					threeAddressCode.hd(varName, tree.children[0].getHead());
 				else if (OP.TL.name().equals(tree.getHead()))
@@ -315,6 +360,8 @@ public class ThreeAddressCode {
 				} else if (OP.EQ.name().equals(tree.getHead())) {
 					threeAddressCode.eq(varName,tree.children[0].getHead(), tree.children[1].getHead());
 				} else {
+					 
+					
 					for (int i = 0; i < tree.children.length; i++) {
 						if (tree.children[i] == null)
 							break;
@@ -330,44 +377,88 @@ public class ThreeAddressCode {
 					} else if (generatorAddr.getFunList().containsKey(tree.getHead())) {
 						threeAddressCode.call(tree.getHead());
 						int out = generatorAddr.getFunList().get(tree.getHead()).out;
+						String[] vars = new String[out];
 						for (int i = 0; i < out; i++) {
 							generatorAddr.varDeclaration3Addr(f, varName);
 							threeAddressCode.pop(varName);
-							System.out.println("faire remonter "+varName);
+							vars[i] = varName;
 							if (i < out - 1)
 								varName = "Y" + nb++;
 						}
+						if(out!=1){
+							isFunctionHas1Return = false;
+							tree.clear(vars,generatorAddr.getFunList());
+						}
+							
 					} else {
 						threeAddressCode.push(tree.getHead());
 					}
 
 				}
-
-				tree.clear(varName);
+				if(isFunctionHas1Return)
+					tree.clear(varName);
 
 			} else {
 				for (int i = 0; i < tree.children.length; i++) {
 					if (tree.children[i] != null)
-						if (tree.isOperation(tree.children[i].getHead()))
+						if (tree.isOperation(tree.children[i].getHead(),generatorAddr.getFunList()))
 							iterate(tree.children[i], threeAddressCode, generatorAddr, f);
 				}
 			}
 
 		}
 
-		public boolean simplify() {
+		public boolean simplify(HashMap<String, DefFun> funList) {
 			for (int i = 0; i < children.length; i++) {
 				if (children[i] == null)
 					continue;
-				if (isOperation(children[i].getHead()))
+				if (isOperation(children[i].getHead(),funList))
 					return false;
 			}
 			return true;
 		}
 
+		private boolean isOperation(String head, HashMap<String, DefFun> funList) {
+			return (funList.get(head)!=null)|| isOperation(head);
+		}
+
 		public void clear(String newVar) {
 			setHead(newVar);
 			children = new ExprTree[0];
+		}
+		
+		public void clear(String[] newVar, HashMap<String, DefFun> funList) {
+			//System.out.println(this.parent);
+			int i;
+			for (i = 0; i < parent.children.length; i++) {
+				if(parent.children[i].equals(this))
+					break;
+			}
+			parent.children = specialConcat(parent.children,newVar,i,funList);
+			//System.out.println(this.parent);
+		}
+		
+		public static ExprTree[] specialConcat(ExprTree[] a, String[] b, int index, HashMap<String, DefFun> funList) {
+		    int aLen = a.length;
+		    int bLen = b.length;
+
+		    ExprTree[] c = new ExprTree[aLen+bLen-1];
+		    int indexA = 0;
+		    for (int i = 0; i < c.length; i++) {
+				if(i!=index){
+					c[i]=a[indexA];
+					indexA++;
+				}else if(i==index){
+					for (int j = 0; j < b.length; j++) {
+						ExprTree t = new ExprTree(b[j], funList, a[0].level);
+						c[i]= t;
+						if(j <b.length-1)
+							i++;
+					}
+					indexA++;
+				}
+			}
+		    return c;
 		}
 
 		public String getHead() {
@@ -379,7 +470,6 @@ public class ThreeAddressCode {
 		}
 
 		private boolean isOperation(String s) {
-			// TODO Ajouter funList pour les calls
 			return isListOperation(s) || isUnaryOperation(s) || isBinaryOperation(s) || isRoot(s);
 		}
 
@@ -410,13 +500,15 @@ public class ThreeAddressCode {
 		}
 		
 		private boolean isRoot(String head) {
-			return head.equals("root");
+			if(head.equals("root"))
+				return true;
+			return false;
 		}
 
 		@Override
 		public String toString() {
 			StringBuilder builder = new StringBuilder();
-			builder.append("BinTree [head=");
+			builder.append("ExprTree [head=");
 			builder.append(head);
 			if (children.length > 0) {
 				builder.append(", children=");

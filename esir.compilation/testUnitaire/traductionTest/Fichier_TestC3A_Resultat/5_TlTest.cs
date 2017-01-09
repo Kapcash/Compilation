@@ -9,6 +9,7 @@ namespace BinTreeProject
 	class Program
 	{
 		//Here the symbs used in the while code
+		static BinTree nil = new BinTree("nil", null, null);
 
 		private static void tlTest(Queue<BinTree> input, Queue<BinTree> output)
 		{
@@ -18,11 +19,11 @@ namespace BinTreeProject
 			BinTree A = new BinTree ("A", null, null);
 			BinTree B = new BinTree ("B", null, null);
 			//Here the temp var used by the compiler
-			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree Y1211 = new BinTree ("Y1211", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
 			A = input.Dequeue();
-			Y0 = tail(A);
-			X0 = Y0;
+			Y1211 = tail(A);
+			X0 = Y1211;
 			B = X0;
 			output.Enqueue(B);
 		}

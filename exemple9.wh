@@ -1,0 +1,12 @@
+function add : 
+read A, B 
+%
+C := (cons nil (cons nil (cons nil nil)));
+D := (cons nil (cons nil (cons nil nil))) ;
+S := C ; 
+G := (C =? D);
+for D do 
+S := (cons nil S) 
+od 
+%
+write G

@@ -1,0 +1,8 @@
+function testCond7:
+read A
+%
+	if (((A or B) and (C and D)) or (!D)) then
+		nop
+	fi
+%
+write X

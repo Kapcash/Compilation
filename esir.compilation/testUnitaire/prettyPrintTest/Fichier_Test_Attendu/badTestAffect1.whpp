@@ -1,0 +1,6 @@
+function badTestAffect1:
+read A
+%
+	X :== nil
+%
+write X

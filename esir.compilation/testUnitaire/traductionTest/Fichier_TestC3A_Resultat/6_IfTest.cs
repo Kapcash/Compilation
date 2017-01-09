@@ -9,6 +9,7 @@ namespace BinTreeProject
 	class Program
 	{
 		//Here the symbs used in the while code
+		static BinTree nil = new BinTree("nil", null, null);
 
 		private static void ifTest(Queue<BinTree> input, Queue<BinTree> output)
 		{
@@ -17,10 +18,29 @@ namespace BinTreeProject
 			//Here the var used in the while code
 			BinTree A = new BinTree ("A", null, null);
 			//Here the temp var used by the compiler
-			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree Y123 = new BinTree ("Y123", null, null);
+			BinTree Y122 = new BinTree ("Y122", null, null);
+			BinTree Y125 = new BinTree ("Y125", null, null);
+			BinTree Y124 = new BinTree ("Y124", null, null);
+			BinTree Y127 = new BinTree ("Y127", null, null);
+			BinTree Y126 = new BinTree ("Y126", null, null);
+			BinTree Y128 = new BinTree ("Y128", null, null);
+			BinTree Y119 = new BinTree ("Y119", null, null);
+			BinTree Y121 = new BinTree ("Y121", null, null);
+			BinTree Y120 = new BinTree ("Y120", null, null);
 			A = input.Dequeue();
-			Y0 = nil;
-			if(isTrue(Y0))
+			inParams.Enqueue(nil);
+			inParams.Enqueue(root);
+			inParams.Enqueue(Y119);
+			inParams.Enqueue(Y120);
+			inParams.Enqueue(Y121);
+			inParams.Enqueue(Y122);
+			inParams.Enqueue(Y123);
+			inParams.Enqueue(Y124);
+			inParams.Enqueue(Y125);
+			inParams.Enqueue(Y126);
+			inParams.Enqueue(Y127);
+			if(isTrue())
 			{
 				((Action)(() => { }))();
 			}else{

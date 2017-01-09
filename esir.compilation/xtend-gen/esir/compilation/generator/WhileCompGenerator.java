@@ -17,6 +17,7 @@ import esir.compilation.whileComp.Function;
 import esir.compilation.whileComp.If;
 import esir.compilation.whileComp.Lexpr;
 import esir.compilation.whileComp.Nop;
+import esir.compilation.whileComp.Not;
 import esir.compilation.whileComp.Program;
 import esir.compilation.whileComp.Read;
 import esir.compilation.whileComp.While;
@@ -457,14 +458,14 @@ public class WhileCompGenerator extends AbstractGenerator {
         boolean _notEquals_3 = (!Objects.equal(_expr, null));
         if (_notEquals_3) {
           String _ret_3 = ret;
-          String _ope_2 = expr.getOpe();
-          String _plus_14 = ("(" + _ope_2);
-          String _plus_15 = (_plus_14 + " ");
+          Not _n = expr.getN();
+          String _not = _n.getNot();
+          String _plus_14 = ("(" + _not);
           Expr _expr_1 = expr.getExpr();
           Object _compile_4 = this.compile(_expr_1);
-          String _plus_16 = (_plus_15 + _compile_4);
-          String _plus_17 = (_plus_16 + ")");
-          ret = (_ret_3 + _plus_17);
+          String _plus_15 = (_plus_14 + _compile_4);
+          String _plus_16 = (_plus_15 + ")");
+          ret = (_ret_3 + _plus_16);
         } else {
           String _valeur_2 = expr.getValeur();
           ret = _valeur_2;

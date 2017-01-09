@@ -1,0 +1,8 @@
+function badTestWhile1:
+read A
+%
+	while Cond 
+		nop
+	od
+%
+write X

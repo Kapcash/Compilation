@@ -306,11 +306,14 @@ public class GeneratorAddr {
 		// Right side to evaluate before
 		while (itVal.hasNext()) {
 			iterateAST(itVal.next(), f); // For Expr
-			int k = code3Addresses.inlineExpression(this, f);
-			val = "Y" + k;
-			var = VAR_PREFIXE + (i++);
-			varDeclaration3Addr(f, var);
-			code3Addresses.aff(var, val);
+			List<String> list = code3Addresses.inlineExpression(this, f);
+			Iterator<String> it = list.iterator();
+			while (it.hasNext()) {
+				val = it.next();
+				var = VAR_PREFIXE + (i++);
+				varDeclaration3Addr(f, var);
+				code3Addresses.aff(var, val);
+			}
 		}
 
 		i = 0;
@@ -320,7 +323,6 @@ public class GeneratorAddr {
 			val = VAR_PREFIXE + (i++);
 			f.updateVar(var);
 			varDeclaration3Addr(f, val);
-			varDeclaration3Addr(f, var);
 			code3Addresses.aff(var, val);
 			
 		}
@@ -509,8 +511,8 @@ public class GeneratorAddr {
 		expre.setExpr(Cond);
 		expression.setExprsimple(expre);
 		iterateAST(expression, f);
-		int k = code3Addresses.inlineExpression(this, f);
-		code3Addresses.aff(nomVar, "Y"+k);
+		List<String> list = code3Addresses.inlineExpression(this, f);
+		code3Addresses.aff(nomVar, list.get(0));
 		
 		Commands cmds = forEachCmd.getCommands();
 		iterateAST(cmds, f);
@@ -535,7 +537,7 @@ public class GeneratorAddr {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(ifCmd.getExpr(), f);
-		int k = code3Addresses.inlineExpression(this, f);
+		List<String> list = code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 
 		// Then
@@ -758,7 +760,6 @@ public class GeneratorAddr {
 		if(isVariable(v))
 			if (!f.alreadyExisting(v)) {
 				if (!f.tempAlreadyExisting(v)) {
-					code3Addresses.decl(v);
 					f.updateTempVars(v);
 				}
 			}

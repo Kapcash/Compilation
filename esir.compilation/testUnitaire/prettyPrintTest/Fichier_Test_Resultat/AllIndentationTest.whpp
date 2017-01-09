@@ -1,0 +1,8 @@
+function tEST:
+read ABZ
+%
+if nil then
+nop
+fi
+%
+write ZBA

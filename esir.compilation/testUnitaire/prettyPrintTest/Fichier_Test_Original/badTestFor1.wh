@@ -1,0 +1,11 @@
+function badTestFor1:
+read A
+%
+	fo 
+	
+	Cond do
+		nop
+	od
+%
+
+write X

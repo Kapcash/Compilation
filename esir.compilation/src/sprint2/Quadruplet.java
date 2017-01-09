@@ -97,7 +97,4 @@ public class Quadruplet<O, R, A1, A2> {
 			return false;
 		return true;
 	}
-	
-	
-
 }

@@ -3,12 +3,12 @@ read A,B
 %
 	nop
 %
-write B,A
+write B
 
 
 function fun2: 
 read A,B
 %
-	A,B := (permute A B)
+	A := (permute A B)
 %
 write A,B

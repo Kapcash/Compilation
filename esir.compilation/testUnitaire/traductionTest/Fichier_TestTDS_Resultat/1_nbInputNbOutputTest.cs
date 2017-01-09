@@ -9,6 +9,7 @@ namespace BinTreeProject
 	class Program
 	{
 		//Here the symbs used in the while code
+		static BinTree nil = new BinTree("nil", null, null);
 
 		private static void nbInputOutputTest(Queue<BinTree> input, Queue<BinTree> output)
 		{
@@ -20,14 +21,32 @@ namespace BinTreeProject
 			BinTree C = new BinTree ("C", null, null);
 			BinTree D = new BinTree ("D", null, null);
 			//Here the temp var used by the compiler
-			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree Y101 = new BinTree ("Y101", null, null);
+			BinTree Y100 = new BinTree ("Y100", null, null);
+			BinTree Y103 = new BinTree ("Y103", null, null);
+			BinTree Y102 = new BinTree ("Y102", null, null);
+			BinTree Y105 = new BinTree ("Y105", null, null);
+			BinTree Y104 = new BinTree ("Y104", null, null);
+			BinTree Y97 = new BinTree ("Y97", null, null);
+			BinTree Y106 = new BinTree ("Y106", null, null);
+			BinTree Y99 = new BinTree ("Y99", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
+			BinTree Y98 = new BinTree ("Y98", null, null);
 			A = input.Dequeue();
 			B = input.Dequeue();
 			C = input.Dequeue();
 			D = input.Dequeue();
-			Y0 = B;
-			X0 = Y0;
+			inParams.Enqueue(B);
+			inParams.Enqueue(root);
+			inParams.Enqueue(Y97);
+			inParams.Enqueue(Y98);
+			inParams.Enqueue(Y99);
+			inParams.Enqueue(Y100);
+			inParams.Enqueue(Y101);
+			inParams.Enqueue(Y102);
+			inParams.Enqueue(Y103);
+			inParams.Enqueue(Y104);
+			inParams.Enqueue(Y105);
 			A = X0;
 			output.Enqueue(A);
 			output.Enqueue(B);

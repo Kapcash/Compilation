@@ -210,6 +210,7 @@ public class GeneratorAddr {
 	// Function
 	private void iterateAST(Function f) throws SymTableException, ThreeAddressCodeException {
 		String fName = f.getFunction();
+		System.out.println(fName);
 		code3Addresses.nouvelleEtiquette();
 
 		DefFun def = new DefFun(fName);
@@ -395,6 +396,7 @@ public class GeneratorAddr {
 				code3Addresses.addToExpression(val, funList);
 			}
 			if( call != null){
+				System.out.println(call);
 				code3Addresses.addToExpression(call, funList);
 			}
 		}

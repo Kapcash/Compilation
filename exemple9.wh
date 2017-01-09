@@ -1,12 +1,20 @@
-function add : 
-read A, B 
+function isNotZero : 
+read X 
 %
-C := (cons nil (cons nil (cons nil nil)));
-D := (cons nil (cons nil (cons nil nil))) ;
-S := C ; 
-G := (C =? D);
-for D do 
-S := (cons nil S) 
-od 
-%
-write G
+ if (cons nil (cons nil nil)) then 
+ B := nil 
+ else 
+ B := (cons nil nil) 
+ fi 
+ % 
+ write B
+ 
+ function isZero : read X % if X then B := (cons nil nil) else B := nil fi % write B
+ 
+ function subs : read X, Y % D := X ; for Y do D := (decr D) od % write D
+ 
+ function decr : read X % X := (tl X) % write X
+ 
+ function div : read X, Y % Q, R := nil, X ; NextR := (subs R Y) ; while (isNotZero NextR) do Q, R := (incr Q), NextR od % write Q, R
+ 
+ function incr : read X % X := (cons nil X) % write X

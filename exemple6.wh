@@ -1,14 +1,7 @@
-function permute: 
-read A,B
+function add : 
+read A, B 
 %
-	nop
+C := (cons nil (cons nil (cons nil nil)));
+D := (cons nil (cons nil (cons nil nil)))
 %
-write B
-
-
-function fun2: 
-read A,B
-%
-	A := (permute A B)
-%
-write A,B
+write S

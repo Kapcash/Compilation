@@ -264,6 +264,9 @@ public class ThreeAddressCode {
 				vars.add(tree.children[i].getHead());		
 			}
 		
+		ExprTree.nb = 0;
+		tree = null;
+		
 		return vars;
 		
 		/*

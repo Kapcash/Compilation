@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import sprint2.GeneratorAddr;
 import sprint2.OP;
+import sprint2.OPCode;
 import sprint2.QuadImp;
 import sprint2.SymTableException;
 import sprint2.ThreeAddressCode;
@@ -181,28 +182,30 @@ public class Code3AdressesTests {
 		Collection<LinkedList<QuadImp>> listDeQuadrupletList = mapEtiquetteQuartet3Adresses.values();
 		for (LinkedList<QuadImp> quadruplets : listDeQuadrupletList){
 			for (QuadImp quadImp : quadruplets){
-				if (quadImp.getOperateur().getOpe().equals(OP.FUN)){
+				OP codeOP = quadImp.getOperateur().getOpe();
+				if (codeOP.equals(OP.FUN)){
 					nbEtiquetteAttendu++;
 					continue;
 				}
-				if (quadImp.getOperateur().getOpe().equals(OP.WHILE)){
+				if (codeOP.equals(OP.WHILE)){
 					nbEtiquetteAttendu +=2;
 					continue;
 				}
-				if (quadImp.getOperateur().getOpe().equals(OP.FOR)){
+				if (codeOP.equals(OP.FOR)){
 					nbEtiquetteAttendu +=2;
 					continue;
 				}
-				if (quadImp.getOperateur().getOpe().equals(OP.FOREACH)){
+				if (codeOP.equals(OP.FOREACH)){
 					nbEtiquetteAttendu +=2;
 					continue;
 				}
-				if (quadImp.getOperateur().getOpe().equals(OP.IF)){
-					nbEtiquetteAttendu +=2;
-					continue;
-				}
-				if (quadImp.getOperateur().getOpe().equals(OP.ELSE)){
-					nbEtiquetteAttendu ++;
+				if (codeOP.equals(OP.IF)){
+					String arg2 = quadImp.getArg2();
+					if (arg2 != null && !arg2.equals("")){
+						nbEtiquetteAttendu +=3;
+					}else{
+						nbEtiquetteAttendu +=2;
+					}
 					continue;
 				}
 			}

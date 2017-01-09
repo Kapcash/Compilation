@@ -23,6 +23,8 @@ namespace BinTreeProject
 			if(isTrue(Y0))
 			{
 				((Action)(() => { }))();
+			}else{
+				((Action)(() => { }))();
 			}
 			output.Enqueue(A);
 		}

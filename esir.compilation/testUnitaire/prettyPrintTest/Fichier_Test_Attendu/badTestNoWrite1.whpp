@@ -1,4 +1,4 @@
-function badTestNoRead1:
+function badTestNoWrite1:
 read A
 %
 	X := nil

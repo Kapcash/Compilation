@@ -13,8 +13,16 @@ namespace Tree
         public BinTree(string da, BinTree le, BinTree ri)
         {
             data = da;
-            leftSon = le;
-            rightSon = ri;
+            if (!da.Equals("nil")) {
+                leftSon = le;
+                rightSon = ri;
+            }
+            else
+            {
+                leftSon = null;
+                rightSon = null;
+            }
+            
         }
 
         public string getData()
@@ -34,12 +42,14 @@ namespace Tree
 
         public void setLeftSon(BinTree tree)
         {
-            leftSon = tree;
+            if(!tree.data.Equals("nil"))
+                leftSon = tree;
         }
 
         public void setRightSon(BinTree tree)
         {
-            rightSon = tree;
+            if (!tree.data.Equals("nil"))
+                rightSon = tree;
         }
 
         public static BinTree head(BinTree tree)
@@ -67,7 +77,7 @@ namespace Tree
                 }
                 else
                 {
-                    return new BinTree("noeud", tree, cons(inParams));
+                    return new BinTree("cons", tree, cons(inParams));
                 }
 
             }
@@ -82,11 +92,11 @@ namespace Tree
                 BinTree tree = inParams.Dequeue();
                 if (inParams.Count() == 0)
                 {
-                    return new BinTree("noeud", tree, new BinTree("nil", null, null));
+                    return new BinTree("list", tree, new BinTree("nil", null, null));
                 }
                 else
                 {
-                    return new BinTree("noeud", tree, list(inParams));
+                    return new BinTree("list", tree, list(inParams));
                 }
 
             }
@@ -97,38 +107,39 @@ namespace Tree
 
         public static BinTree evaluate(string op, BinTree tree1, BinTree tree2)
         {
-            return new BinTree(null, null, null);
+            if (op.Equals("AND"))
+            {
+                if (tree1.data.Equals("nil") || (tree2.data.Equals("nil")))
+                    return new BinTree("nil", null, null);
+                else
+                    return new BinTree("cons", new BinTree("nil", null, null), new BinTree("nil", null, null));
+            }
+            else if (op.Equals("OR"))
+            {
+                if (tree1.data.Equals("nil") && (tree2.data.Equals("nil")))
+                    return new BinTree("nil", null, null);
+                else
+                    return new BinTree("cons", new BinTree("nil", null, null), new BinTree("nil", null, null));
+            }
+            else if (op.Equals("EQ"))
+            {
+                if (evaluateEQ(tree1, tree2)==false)
+                    return new BinTree("nil", null, null);
+                else
+                    return new BinTree("cons", new BinTree("nil", null, null), new BinTree("nil", null, null));
+            }
+            return null;
+
         }
 
-        /* public static Boolean operator !=(BinTree tree1, BinTree tree2)
-         {
-             try {
-                 if (tree1.getData().Equals(tree2.getData()))
-                 {
-                     return false;
-                 }
-
-             }
-             catch(Exception e)
-             {
-                 Console.WriteLine();
-                 Console.ReadLine();
-             }
-             return true;
-         }
-
-         public static Boolean operator ==(BinTree tree1, BinTree tree2)
-         {
-             if (tree1 != null && tree2 != null)
-             {
-                 if (tree1.getData().Equals(tree2.getData()))
-                 {
-                     return true;
-                 }
-             }
-
-             return false;
-         }*/
+        public static bool evaluateEQ(BinTree tree1, BinTree tree2)
+        {
+            if(tree1.data.Equals(tree2.data) && evaluateEQ(tree1.leftSon, tree2.leftSon) && evaluateEQ(tree1.rightSon, tree2.rightSon))
+            {
+                return true;
+            }
+            return false;
+        }
 
         public String DisplayTree()
         {
@@ -144,7 +155,9 @@ namespace Tree
 
         public static bool isTrue(BinTree tree)
         {
-            return true;
+            if (!tree.data.Equals("nil"))
+                return true;
+            return false;
         }
 
     }

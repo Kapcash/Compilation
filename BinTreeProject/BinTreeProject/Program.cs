@@ -122,12 +122,6 @@ namespace BinTreeProject
 				Y0 = nil;
 				X0 = Y0;
 				B = X0;
-			}else{
-				inParams.Enqueue(nil);
-				inParams.Enqueue(nil);
-				Y0 = (cons(inParams));
-				X0 = Y0;
-				B = X0;
 			}
 			output.Enqueue(B);
 		}

@@ -107,6 +107,11 @@ public class Code3AdressesTests {
 	}
 	
 	@Test
+	public void nbEtiquetteIfSimpleTest() {
+		verifNbEtiquette("6_IfTestSimple");
+	}
+	
+	@Test
 	public void nbEtiquetteWhileTest() {
 		verifNbEtiquette("7_WhileTest");
 	}
@@ -181,7 +186,23 @@ public class Code3AdressesTests {
 					continue;
 				}
 				if (quadImp.getOperateur().getOpe().equals(OP.WHILE)){
-					nbEtiquetteAttendu++;
+					nbEtiquetteAttendu +=2;
+					continue;
+				}
+				if (quadImp.getOperateur().getOpe().equals(OP.FOR)){
+					nbEtiquetteAttendu +=2;
+					continue;
+				}
+				if (quadImp.getOperateur().getOpe().equals(OP.FOREACH)){
+					nbEtiquetteAttendu +=2;
+					continue;
+				}
+				if (quadImp.getOperateur().getOpe().equals(OP.IF)){
+					nbEtiquetteAttendu +=2;
+					continue;
+				}
+				if (quadImp.getOperateur().getOpe().equals(OP.ELSE)){
+					nbEtiquetteAttendu ++;
 					continue;
 				}
 			}

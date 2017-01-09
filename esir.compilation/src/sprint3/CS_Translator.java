@@ -258,7 +258,8 @@ public class CS_Translator {
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
 				f.leftShift();
-				if (!code.getCode3Addr().get(quad.getArg2()).equals("")) {
+				LinkedList<QuadImp> arg2 = code.getCode3Addr().get(quad.getArg2());
+				if (arg2 != null && arg2.equals("")) {
 					f.write(rAccolade + "else" + lAccolade);
 					f.rightShift();
 					iterateList(code.getCode3Addr().get(quad.getArg2()).iterator(), f);

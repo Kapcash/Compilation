@@ -134,7 +134,35 @@ namespace Tree
 
         public static bool evaluateEQ(BinTree tree1, BinTree tree2)
         {
-            if(tree1.data.Equals(tree2.data) && evaluateEQ(tree1.leftSon, tree2.leftSon) && evaluateEQ(tree1.rightSon, tree2.rightSon))
+            if (tree1.leftSon != null && tree2.leftSon == null)
+            {
+                return false;
+            }
+            if (tree1.leftSon == null && tree2.leftSon != null)
+            {
+                return false;
+            }
+            if (tree1.rightSon != null && tree2.rightSon == null)
+            {
+                return false;
+            }
+            if (tree1.rightSon == null && tree2.rightSon != null)
+            {
+                return false;
+            }
+            if (tree1.rightSon == null && tree2.rightSon == null && tree1.leftSon != null)
+            {
+                return tree1.data.Equals(tree2.data) && evaluateEQ(tree1.leftSon, tree2.leftSon);
+            }
+            if (tree1.leftSon == null && tree2.leftSon == null && tree1.rightSon != null)
+            {
+                return tree1.data.Equals(tree2.data) && evaluateEQ(tree1.rightSon, tree2.rightSon);
+            }
+            if (tree1.leftSon == null && tree1.rightSon == null)
+            {
+                return tree1.data.Equals(tree2.data);
+            }
+            if (tree1.data.Equals(tree2.data) && evaluateEQ(tree1.leftSon, tree2.leftSon) && evaluateEQ(tree1.rightSon, tree2.rightSon))
             {
                 return true;
             }

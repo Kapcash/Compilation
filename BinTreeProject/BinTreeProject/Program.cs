@@ -43,7 +43,13 @@ namespace BinTreeProject
 			inParams.Enqueue(nil);
 			inParams.Enqueue(nil);
 			Y0 = (cons(inParams));
-			X0 = Y0;
+			inParams.Enqueue(nil);
+			inParams.Enqueue(Y0);
+			Y1 = (cons(inParams));
+			inParams.Enqueue(nil);
+			inParams.Enqueue(Y1);
+			Y2 = (cons(inParams));
+			X0 = Y2;
 			D = X0;
 			Y0 = C;
 			X0 = Y0;

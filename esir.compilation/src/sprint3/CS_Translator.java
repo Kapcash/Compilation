@@ -188,6 +188,7 @@ public class CS_Translator {
 */	
 	private void writeSymbs(){
 		write("//Here the symbs used in the while code");
+		write("static BinTree nil = new BinTree(\"nil\", null, null);");
 		GeneratorAddr.getInstance().getSymbs().forEach((key, value) -> {
 			write("private static BinTree " + key + " = new BinTree (\""+key+"\", null, null);");
 		});
@@ -280,8 +281,8 @@ public class CS_Translator {
 				break;
 			case FOR:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("while(isTrue(head(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
-						+ ")))");
+				f.write("while(isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
+						+ "))");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
@@ -294,14 +295,13 @@ public class CS_Translator {
 			
 			case FOREACH:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("while(isTrue(head(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
-						+ ")))");
+				f.write("while(isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
+						+ "))");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
 				//iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
 				f.write(code.getCode3Addr().get(quad.getArg1()).getLast().getArg1() + " = " + code.getCode3Addr().get(quad.getArg1()).getLast().getReponse() + ";");
-				System.out.println(allDecls);
 				f.leftShift();
 				f.write(rAccolade);
 				break;

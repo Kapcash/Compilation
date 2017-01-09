@@ -18,10 +18,29 @@ namespace BinTreeProject
 			//Here the var used in the while code
 			BinTree A = new BinTree ("A", null, null);
 			//Here the temp var used by the compiler
-			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree Y29 = new BinTree ("Y29", null, null);
+			BinTree Y31 = new BinTree ("Y31", null, null);
+			BinTree Y30 = new BinTree ("Y30", null, null);
+			BinTree Y22 = new BinTree ("Y22", null, null);
+			BinTree Y24 = new BinTree ("Y24", null, null);
+			BinTree Y23 = new BinTree ("Y23", null, null);
+			BinTree Y26 = new BinTree ("Y26", null, null);
+			BinTree Y25 = new BinTree ("Y25", null, null);
+			BinTree Y28 = new BinTree ("Y28", null, null);
+			BinTree Y27 = new BinTree ("Y27", null, null);
 			A = input.Dequeue();
-			Y0 = nil;
-			if(isTrue(Y0))
+			inParams.Enqueue(nil);
+			inParams.Enqueue(root);
+			inParams.Enqueue(Y22);
+			inParams.Enqueue(Y23);
+			inParams.Enqueue(Y24);
+			inParams.Enqueue(Y25);
+			inParams.Enqueue(Y26);
+			inParams.Enqueue(Y27);
+			inParams.Enqueue(Y28);
+			inParams.Enqueue(Y29);
+			inParams.Enqueue(Y30);
+			if(isTrue())
 			{
 				((Action)(() => { }))();
 			}

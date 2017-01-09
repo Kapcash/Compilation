@@ -20,15 +20,15 @@ namespace BinTreeProject
 			BinTree B = new BinTree ("B", null, null);
 			BinTree C = new BinTree ("C", null, null);
 			//Here the temp var used by the compiler
-			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
+			BinTree Y1209 = new BinTree ("Y1209", null, null);
 			A = input.Dequeue();
 			B = input.Dequeue();
 			C = input.Dequeue();
 			inParams.Enqueue(B);
 			inParams.Enqueue(C);
-			Y0 = (cons(inParams));
-			X0 = Y0;
+			Y1209 = (cons(inParams));
+			X0 = Y1209;
 			A = X0;
 			output.Enqueue(A);
 		}

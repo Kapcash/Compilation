@@ -192,6 +192,7 @@ public class CS_Translator {
 		GeneratorAddr.getInstance().getSymbs().forEach((key, value) -> {
 			write("private static BinTree " + key + " = new BinTree (\""+key+"\", null, null);");
 		});
+		write("");
 	}
 	
 	private void codeMain() {
@@ -441,10 +442,12 @@ public class CS_Translator {
 			def.getVars().forEach((key, value) -> {
 				write("BinTree " + key + " = new BinTree (\""+key+"\", null, null);");
 			});
+			write("");
 			write("//Here the temp var used by the compiler");
 			def.getTempVars().forEach((key) -> {
 				write("BinTree " + key + " = new BinTree (\""+key+"\", null, null);");
 			});
+			write("");
 		}
 
 		private void write(String s) {

@@ -207,14 +207,14 @@ public class ThreeAddressCode {
 	public void addToExpression(String s, HashMap<String, DefFun> funList) {
 		if (tree == null) {
 			tree = new ExprTree("root", funList, 1);
-			treeLevel++;
+			addLevel();
 			tree.add(s, funList, treeLevel);
 //			tree = new ExprTree(s, funList, 1);
 		} else {
 			tree.add(s, funList, treeLevel);
 		}
 		
-		//System.out.println(tree);
+		System.out.println(tree);
 	}
 
 	public List<String> inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException {
@@ -234,13 +234,14 @@ public class ThreeAddressCode {
 		}
 		*/
 		boolean ended = false;
-		int maxLoop = 10; //StackOverflow
+		int maxLoop = 100; //StackOverflow
 		int loopCounter = 0;
 		
 		while(!ended && maxLoop>loopCounter){
 			ExprTree.iterate(tree, this, generatorAddr, f);
 		
-		
+			if(tree.children.length==0)
+				break;
 			for (int i = 0; i < tree.children.length; i++) {
 				ExprTree array_element = tree.children[i];		
 				if(array_element.children.length!=0){		//root's children
@@ -250,12 +251,18 @@ public class ThreeAddressCode {
 				ended = true;
 			}
 			loopCounter++;
+			
 		}
+		if(loopCounter==maxLoop)
+			throw new ThreeAddressCodeException("Expression simplication problem");
 		
 		ArrayList<String> vars = new ArrayList<String>();
-		for (int i = 0; i < tree.children.length; i++) {
-			vars.add(tree.children[i].getHead());		
-		}
+		if(tree.children.length==0)
+			vars.add(tree.getHead());
+		else
+			for (int i = 0; i < tree.children.length; i++) {
+				vars.add(tree.children[i].getHead());		
+			}
 		
 		return vars;
 		
@@ -378,10 +385,11 @@ public class ThreeAddressCode {
 							if (i < out - 1)
 								varName = "Y" + nb++;
 						}
-						if(out<=1)
+						if(out!=1){
 							isFunctionHas1Return = false;
-						else
 							tree.clear(vars,generatorAddr.getFunList());
+						}
+							
 					} else {
 						threeAddressCode.push(tree.getHead());
 					}

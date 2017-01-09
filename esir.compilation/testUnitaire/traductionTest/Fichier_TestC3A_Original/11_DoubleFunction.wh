@@ -1,0 +1,17 @@
+function useTest: 
+read A
+%
+	C, B := (ifTest A)
+%
+write B
+
+function ifTest: 
+read A
+%
+	if nil then
+		nop
+	else
+		nop
+	fi
+%
+write A, B

@@ -9,6 +9,7 @@ namespace BinTreeProject
 	class Program
 	{
 		//Here the symbs used in the while code
+		static BinTree nil = new BinTree("nil", null, null);
 		private static BinTree symbole = new BinTree ("symbole", null, null);
 
 		private static void symbolesFunction(Queue<BinTree> input, Queue<BinTree> output)
@@ -50,7 +51,7 @@ namespace BinTreeProject
 				}
 			}else{
 				Y0 = nil;
-				while(isTrue(head(Y0)))
+				while(isTrue(Y0))
 				{
 					inParams.Enqueue(D);
 					testAffect(inParams,outParams);

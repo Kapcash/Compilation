@@ -9,6 +9,7 @@ namespace BinTreeProject
 	class Program
 	{
 		//Here the symbs used in the while code
+		static BinTree nil = new BinTree("nil", null, null);
 
 		private static void forTest(Queue<BinTree> input, Queue<BinTree> output)
 		{
@@ -22,7 +23,7 @@ namespace BinTreeProject
 			BinTree X0 = new BinTree ("X0", null, null);
 			A = input.Dequeue();
 			Y0 = nil;
-			while(isTrue(head(Y0)))
+			while(isTrue(Y0))
 			{
 				Y0 = A;
 				X0 = Y0;

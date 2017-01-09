@@ -17,6 +17,7 @@ namespace BinTreeProject
 			Queue<BinTree> outParams = new Queue<BinTree>();
 			//Here the var used in the while code
 			BinTree A = new BinTree ("A", null, null);
+			BinTree B = new BinTree ("B", null, null);
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			A = input.Dequeue();
@@ -24,8 +25,11 @@ namespace BinTreeProject
 			if(isTrue(Y0))
 			{
 				((Action)(() => { }))();
+			}else{
+				((Action)(() => { }))();
 			}
 			output.Enqueue(A);
+			output.Enqueue(B);
 		}
 		static void Main(string[] args)
 		{
@@ -40,6 +44,7 @@ namespace BinTreeProject
 				input.Enqueue(A);
 			}
 			ifTest(input, output);
+			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}

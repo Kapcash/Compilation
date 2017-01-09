@@ -11,7 +11,7 @@ namespace BinTreeProject
 		//Here the symbs used in the while code
 		static BinTree nil = new BinTree("nil", null, null);
 
-		private static void listTest(Queue<BinTree> input, Queue<BinTree> output)
+		private static void affect2Test(Queue<BinTree> input, Queue<BinTree> output)
 		{
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
@@ -23,17 +23,27 @@ namespace BinTreeProject
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
+			BinTree X1 = new BinTree ("X1", null, null);
 			A = input.Dequeue();
 			B = input.Dequeue();
 			C = input.Dequeue();
 			D = input.Dequeue();
-			inParams.Enqueue(B);
-			inParams.Enqueue(C);
-			inParams.Enqueue(D);
-			Y0 = (list(inParams));
+			Y0 = B;
 			X0 = Y0;
 			A = X0;
-			output.Enqueue(A);
+			Y0 = C;
+			X0 = Y0;
+			B = X0;
+			Y0 = D;
+			X0 = Y0;
+			C = X0;
+			Y0 = C;
+			X0 = Y0;
+			Y0 = D;
+			X1 = Y0;
+			A = X0;
+			B = X1;
+			output.Enqueue(B);
 		}
 		static void Main(string[] args)
 		{
@@ -71,7 +81,7 @@ namespace BinTreeProject
 				BinTree D = new BinTree("D", null, null);
 				input.Enqueue(D);
 			}
-			listTest(input, output);
+			affect2Test(input, output);
 			Console.WriteLine(output.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}

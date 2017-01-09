@@ -1,9 +1,9 @@
-function affect1Test: 
+function affect2Test: 
 read A, B, C, D
 %
 	A := B ;
 	B := C ;
 	C := D ;
-	A, B := C, D;
+	A, B := C, D
 %
 write B

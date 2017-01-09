@@ -758,7 +758,6 @@ public class GeneratorAddr {
 		if(isVariable(v))
 			if (!f.alreadyExisting(v)) {
 				if (!f.tempAlreadyExisting(v)) {
-					code3Addresses.decl(v);
 					f.updateTempVars(v);
 				}
 			}

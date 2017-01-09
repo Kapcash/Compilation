@@ -9,6 +9,7 @@ namespace BinTreeProject
 	class Program
 	{
 		//Here the symbs used in the while code
+		static BinTree nil = new BinTree("nil", null, null);
 
 		private static void hdTest(Queue<BinTree> input, Queue<BinTree> output)
 		{

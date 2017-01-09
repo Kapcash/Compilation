@@ -126,7 +126,9 @@ public class ThreeAddressCode {
 	}
 	
 	void push(String readAddr) {
-		addIn3Addr(OP.PUSH, "", "",readAddr,"");
+		if (!readAddr.equals("root")){
+			addIn3Addr(OP.PUSH, "", "",readAddr,"");
+		}
 	}
 	
 	void pop(String writeAddr) {

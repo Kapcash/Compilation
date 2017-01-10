@@ -1,6 +1,6 @@
 function multiplecons: 
-read A ,B ,C
+read A ,B
 %
-	Ret := (cons A (cons B C))
+	Ret := (cons A B)
 %
 write Ret

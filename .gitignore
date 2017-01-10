@@ -179,3 +179,7 @@ org.xtext.compilation/xtend-gen/org/xtext/compilation/scoping/.WhileCompScopePro
 org.xtext.compilation/xtend-gen/org/xtext/compilation/validation/.WhileCompValidator.java._trace
 C# Project/ProjectCOMP/ProjectCOMP/obj/
 BinTreeProject/BinTreeProject/obj/Debug/BinTreeProject.csproj.FileListAbsolute.txt
+esir.compilation.tests/bin/.gitignore
+esir.compilation.tests/bin/.project
+esir.compilation.ui.tests/bin/.gitignore
+esir.compilation.ui.tests/bin/.project

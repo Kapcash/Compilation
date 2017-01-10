@@ -65,7 +65,6 @@ class WhileCompGenerator extends AbstractGenerator {
 		if(coms.commands.size != 0){
 			var res = coms.command.compile(indentBase,indentAll, indentFor,indentWhile,indentIf,indentForeach,indentAff)+" ;\n";
 			var size = coms.commands.size;
-			println(size);
 			var i = 0;
 			for(Command c : coms.commands){
 				if(i == size - 1){
@@ -109,7 +108,6 @@ class WhileCompGenerator extends AbstractGenerator {
 		if(c.command instanceof While){
 			var decal ="";
 			var i = 0;
-			println(indentAll+" tab")
 			while(i < indentAll){
 				decal = decal + "\t";
 				i = i + 1;

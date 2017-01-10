@@ -89,6 +89,6 @@ public class Main {
 		context.setCancelIndicator(CancelIndicator.NullImpl);
 		generator.doGenerate(resource, fileAccess, context, sortie,idenAll,idenFor,idenWhile,idenIf,idenForeach,idenAff);
 
-		System.out.println("Code generation finished.");
+		System.out.println("OK");
 	}
 }

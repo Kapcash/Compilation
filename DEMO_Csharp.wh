@@ -1,6 +1,16 @@
-function multiplecons: 
-read A ,B
+function incr :
+read X
 %
-	Ret := (cons A B)
+	X := (cons nil X)
 %
-write Ret
+write X
+
+function add:
+read X, Y
+%
+	S := X ;
+	for Y do
+		S := (incr S)
+	od
+%
+write S

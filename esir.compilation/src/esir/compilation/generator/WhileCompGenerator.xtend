@@ -58,7 +58,9 @@ class WhileCompGenerator extends AbstractGenerator {
 		%
 		«c.definition.commands.compile(indentAll,indentAll, indentFor,indentWhile,indentIf,indentForeach,indentAff)»
 		%
-		write «FOR param: c.definition.write.variable SEPARATOR ', '»«param»«ENDFOR»'''	
+		write «FOR param: c.definition.write.variable SEPARATOR ', '»«param»«ENDFOR»
+		
+		'''	
 	}
 	
 	def compile(Commands coms,int indentBase,int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){
@@ -180,7 +182,8 @@ class WhileCompGenerator extends AbstractGenerator {
 			}
 			res += aff.affectations.get(i) + " := ";
 			i = 0;
-			while (i < size-1){
+			val valSize = aff.valeurs.size;
+			while (i < valSize-1){
 				res += aff.valeurs.get(i).compile + " ,";
 				i = i + 1;
 			}
@@ -195,21 +198,25 @@ class WhileCompGenerator extends AbstractGenerator {
 	
 	def compile(ExprSimple expr){
 		var ret=""
-		if(expr.ex1 != null){
+		if(expr.ex1 != null){ //and, or, =?
 			ret += "(" + expr.ex1.compile + " "+ expr.ope + " "+ expr.ex2.compile +")";
 		}else{
-		if(expr.lexpr != null){
-			if(expr.valeur != null){
-				ret+= "("+expr.valeur+" "+expr.lexpr.compile+")"
-			} else {
-				ret+= "("+expr.ope+" "+expr.lexpr.compile+")"
+			if(expr.lexpr != null){
+				if(expr.valeur != null){
+					ret+= "("+expr.valeur+" "+expr.lexpr.compile+")"
+				} else {
+					ret+= "("+expr.ope+" "+expr.lexpr.compile+")"
+				}
 			}
-		}
-		else if(expr.expr != null){
-			ret+= "("+expr.n.not+expr.expr.compile+")"
-		}
-		else{
-			ret=expr.valeur
+			else if(expr.expr != null){
+				if(expr.n != null){
+					ret+= "("+expr.n.not+expr.expr.compile+")"
+				}else{
+					ret += "("+expr.ope+" "+expr.expr.compile+")"
+				}
+			}
+			else{
+				ret=expr.valeur
 			}
 		}
 		return ret

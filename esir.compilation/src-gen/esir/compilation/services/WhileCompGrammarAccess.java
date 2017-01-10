@@ -215,8 +215,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValeursExprParserRuleCall_4_1_0 = (RuleCall)cValeursAssignment_4_1.eContents().get(0);
 		
 		/// * Commandes * / Affectation:
-		//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=Expr (',' valeurs+=Expr)*
-		//	/ * TODO Ajouter ExprSimple * /;
+		//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=Expr (',' valeurs+=Expr)*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=Expr (',' valeurs+=Expr)*
@@ -1092,8 +1091,7 @@ public class WhileCompGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	/// * Commandes * / Affectation:
-	//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=Expr (',' valeurs+=Expr)*
-	//	/ * TODO Ajouter ExprSimple * /;
+	//	affectations+=VARIABLE (',' affectations+=VARIABLE)* ':=' valeurs+=Expr (',' valeurs+=Expr)*;
 	public AffectationElements getAffectationAccess() {
 		return pAffectation;
 	}

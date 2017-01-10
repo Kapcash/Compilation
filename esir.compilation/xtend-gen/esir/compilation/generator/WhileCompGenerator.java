@@ -120,6 +120,8 @@ public class WhileCompGenerator extends AbstractGenerator {
         _builder.append(param_1, "");
       }
     }
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
     return _builder;
   }
   
@@ -379,11 +381,13 @@ public class WhileCompGenerator extends AbstractGenerator {
       String _plus_2 = (_get_2 + " := ");
       res = (_res + _plus_2);
       i = 0;
-      while ((i < (size - 1))) {
+      EList<Expr> _valeurs_1 = aff.getValeurs();
+      final int valSize = _valeurs_1.size();
+      while ((i < (valSize - 1))) {
         {
           String _res_1 = res;
-          EList<Expr> _valeurs_1 = aff.getValeurs();
-          Expr _get_3 = _valeurs_1.get(i);
+          EList<Expr> _valeurs_2 = aff.getValeurs();
+          Expr _get_3 = _valeurs_2.get(i);
           String _compile_1 = this.compile(_get_3);
           String _plus_3 = (_compile_1 + " ,");
           res = (_res_1 + _plus_3);
@@ -391,8 +395,8 @@ public class WhileCompGenerator extends AbstractGenerator {
         }
       }
       String _res_1 = res;
-      EList<Expr> _valeurs_1 = aff.getValeurs();
-      Expr _get_3 = _valeurs_1.get(i);
+      EList<Expr> _valeurs_2 = aff.getValeurs();
+      Expr _get_3 = _valeurs_2.get(i);
       String _compile_1 = this.compile(_get_3);
       res = (_res_1 + _compile_1);
       return res;
@@ -453,15 +457,29 @@ public class WhileCompGenerator extends AbstractGenerator {
         Expr _expr = expr.getExpr();
         boolean _notEquals_3 = (!Objects.equal(_expr, null));
         if (_notEquals_3) {
-          String _ret_3 = ret;
           Not _n = expr.getN();
-          String _not = _n.getNot();
-          String _plus_14 = ("(" + _not);
-          Expr _expr_1 = expr.getExpr();
-          Object _compile_4 = this.compile(_expr_1);
-          String _plus_15 = (_plus_14 + _compile_4);
-          String _plus_16 = (_plus_15 + ")");
-          ret = (_ret_3 + _plus_16);
+          boolean _notEquals_4 = (!Objects.equal(_n, null));
+          if (_notEquals_4) {
+            String _ret_3 = ret;
+            Not _n_1 = expr.getN();
+            String _not = _n_1.getNot();
+            String _plus_14 = ("(" + _not);
+            Expr _expr_1 = expr.getExpr();
+            Object _compile_4 = this.compile(_expr_1);
+            String _plus_15 = (_plus_14 + _compile_4);
+            String _plus_16 = (_plus_15 + ")");
+            ret = (_ret_3 + _plus_16);
+          } else {
+            String _ret_4 = ret;
+            String _ope_2 = expr.getOpe();
+            String _plus_17 = ("(" + _ope_2);
+            String _plus_18 = (_plus_17 + " ");
+            Expr _expr_2 = expr.getExpr();
+            Object _compile_5 = this.compile(_expr_2);
+            String _plus_19 = (_plus_18 + _compile_5);
+            String _plus_20 = (_plus_19 + ")");
+            ret = (_ret_4 + _plus_20);
+          }
         } else {
           String _valeur_2 = expr.getValeur();
           ret = _valeur_2;

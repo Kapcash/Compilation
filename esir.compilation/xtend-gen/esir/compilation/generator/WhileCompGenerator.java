@@ -30,7 +30,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 /**
@@ -134,7 +133,6 @@ public class WhileCompGenerator extends AbstractGenerator {
       String res = (_compile + " ;\n");
       EList<Command> _commands_1 = coms.getCommands();
       int size = _commands_1.size();
-      InputOutput.<Integer>println(Integer.valueOf(size));
       int i = 0;
       EList<Command> _commands_2 = coms.getCommands();
       for (final Command c : _commands_2) {
@@ -198,8 +196,6 @@ public class WhileCompGenerator extends AbstractGenerator {
     if ((_command_3 instanceof While)) {
       String decal_2 = "";
       int i_2 = 0;
-      String _plus = (Integer.valueOf(indentAll) + " tab");
-      InputOutput.<String>println(_plus);
       while ((i_2 < indentAll)) {
         {
           decal_2 = (decal_2 + "\t");
@@ -216,15 +212,15 @@ public class WhileCompGenerator extends AbstractGenerator {
       EObject _command_4 = c.getCommand();
       Expr _expr = ((While) _command_4).getExpr();
       String _compile_1 = this.compile(_expr);
-      String _plus_1 = ((decal_2 + "while ") + _compile_1);
-      String _plus_2 = (_plus_1 + " do\n");
+      String _plus = ((decal_2 + "while ") + _compile_1);
+      String _plus_1 = (_plus + " do\n");
       EObject _command_5 = c.getCommand();
       Commands _commands = ((While) _command_5).getCommands();
       Object _compile_2 = this.compile(_commands, indentBase, ((indentAll + indentBase) + indentWhile), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-      String _plus_3 = (_plus_2 + _compile_2);
-      String _plus_4 = (_plus_3 + "\n");
-      String _plus_5 = (_plus_4 + decal_2);
-      return (_plus_5 + "od");
+      String _plus_2 = (_plus_1 + _compile_2);
+      String _plus_3 = (_plus_2 + "\n");
+      String _plus_4 = (_plus_3 + decal_2);
+      return (_plus_4 + "od");
     }
     EObject _command_6 = c.getCommand();
     if ((_command_6 instanceof For)) {
@@ -246,15 +242,15 @@ public class WhileCompGenerator extends AbstractGenerator {
       EObject _command_7 = c.getCommand();
       Expr _expr_1 = ((For) _command_7).getExpr();
       String _compile_3 = this.compile(_expr_1);
-      String _plus_6 = ((decal_3 + "for ") + _compile_3);
-      String _plus_7 = (_plus_6 + " do\n");
+      String _plus_5 = ((decal_3 + "for ") + _compile_3);
+      String _plus_6 = (_plus_5 + " do\n");
       EObject _command_8 = c.getCommand();
       Commands _commands_1 = ((For) _command_8).getCommands();
       Object _compile_4 = this.compile(_commands_1, indentBase, ((indentAll + indentBase) + indentFor), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-      String _plus_8 = (_plus_7 + _compile_4);
-      String _plus_9 = (_plus_8 + "\n");
-      String _plus_10 = (_plus_9 + decal_3);
-      return (_plus_10 + "od");
+      String _plus_7 = (_plus_6 + _compile_4);
+      String _plus_8 = (_plus_7 + "\n");
+      String _plus_9 = (_plus_8 + decal_3);
+      return (_plus_9 + "od");
     }
     EObject _command_9 = c.getCommand();
     if ((_command_9 instanceof Foreach)) {
@@ -276,20 +272,20 @@ public class WhileCompGenerator extends AbstractGenerator {
       EObject _command_10 = c.getCommand();
       Expr _expr1 = ((Foreach) _command_10).getExpr1();
       String _compile_5 = this.compile(_expr1);
-      String _plus_11 = ((decal_4 + "foreach ") + _compile_5);
-      String _plus_12 = (_plus_11 + " in ");
+      String _plus_10 = ((decal_4 + "foreach ") + _compile_5);
+      String _plus_11 = (_plus_10 + " in ");
       EObject _command_11 = c.getCommand();
       Expr _expr2 = ((Foreach) _command_11).getExpr2();
       String _compile_6 = this.compile(_expr2);
-      String _plus_13 = (_plus_12 + _compile_6);
-      String _plus_14 = (_plus_13 + " do\n");
+      String _plus_12 = (_plus_11 + _compile_6);
+      String _plus_13 = (_plus_12 + " do\n");
       EObject _command_12 = c.getCommand();
       Commands _commands_2 = ((Foreach) _command_12).getCommands();
       Object _compile_7 = this.compile(_commands_2, indentBase, ((indentAll + indentBase) + indentForeach), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-      String _plus_15 = (_plus_14 + _compile_7);
-      String _plus_16 = (_plus_15 + "\n");
-      String _plus_17 = (_plus_16 + decal_4);
-      return (_plus_17 + "od");
+      String _plus_14 = (_plus_13 + _compile_7);
+      String _plus_15 = (_plus_14 + "\n");
+      String _plus_16 = (_plus_15 + decal_4);
+      return (_plus_16 + "od");
     }
     EObject _command_13 = c.getCommand();
     if ((_command_13 instanceof If)) {
@@ -315,35 +311,35 @@ public class WhileCompGenerator extends AbstractGenerator {
         EObject _command_15 = c.getCommand();
         Expr _expr_2 = ((If) _command_15).getExpr();
         String _compile_8 = this.compile(_expr_2);
-        String _plus_18 = ((decal_5 + "if ") + _compile_8);
-        String _plus_19 = (_plus_18 + " then\n");
+        String _plus_17 = ((decal_5 + "if ") + _compile_8);
+        String _plus_18 = (_plus_17 + " then\n");
         EObject _command_16 = c.getCommand();
         Commands _commands1 = ((If) _command_16).getCommands1();
         Object _compile_9 = this.compile(_commands1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_20 = (_plus_19 + _compile_9);
-        String _plus_21 = (_plus_20 + "\n");
-        String _plus_22 = (_plus_21 + decal_5);
-        String _plus_23 = (_plus_22 + "else\n");
+        String _plus_19 = (_plus_18 + _compile_9);
+        String _plus_20 = (_plus_19 + "\n");
+        String _plus_21 = (_plus_20 + decal_5);
+        String _plus_22 = (_plus_21 + "else\n");
         EObject _command_17 = c.getCommand();
         Commands _commands2_1 = ((If) _command_17).getCommands2();
         Object _compile_10 = this.compile(_commands2_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_24 = (_plus_23 + _compile_10);
-        String _plus_25 = (_plus_24 + "\n");
-        String _plus_26 = (_plus_25 + decal_5);
-        return (_plus_26 + "fi");
+        String _plus_23 = (_plus_22 + _compile_10);
+        String _plus_24 = (_plus_23 + "\n");
+        String _plus_25 = (_plus_24 + decal_5);
+        return (_plus_25 + "fi");
       } else {
         EObject _command_18 = c.getCommand();
         Expr _expr_3 = ((If) _command_18).getExpr();
         String _compile_11 = this.compile(_expr_3);
-        String _plus_27 = ((decal_5 + "if ") + _compile_11);
-        String _plus_28 = (_plus_27 + " then\n");
+        String _plus_26 = ((decal_5 + "if ") + _compile_11);
+        String _plus_27 = (_plus_26 + " then\n");
         EObject _command_19 = c.getCommand();
         Commands _commands1_1 = ((If) _command_19).getCommands1();
         Object _compile_12 = this.compile(_commands1_1, indentBase, ((indentAll + indentBase) + indentIf), indentFor, indentWhile, indentIf, indentForeach, indentAff);
-        String _plus_29 = (_plus_28 + _compile_12);
-        String _plus_30 = (_plus_29 + "\n");
-        String _plus_31 = (_plus_30 + decal_5);
-        return (_plus_31 + "fi");
+        String _plus_28 = (_plus_27 + _compile_12);
+        String _plus_29 = (_plus_28 + "\n");
+        String _plus_30 = (_plus_29 + decal_5);
+        return (_plus_30 + "fi");
       }
     }
     return null;

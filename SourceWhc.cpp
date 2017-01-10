@@ -42,7 +42,7 @@ void manual() {
 int main(int argc, char *argv[]) {
 
 	std::string	arg_fileSrc,
-				arg_fileDest = ".\\BinTreeProject\\BinTreeProject\\BinTree.cs";
+				arg_fileDest = "out.cs";
 	std::list<std::string> mainArgs;
 	bool execute = false;
 				
@@ -74,8 +74,8 @@ int main(int argc, char *argv[]) {
 
 	std::string cmdLine = "java -jar whc.jar " + arg_fileSrc;
 	cmdLine += " " + arg_fileDest;
-	std::string compileLine = "csc.exe /t:exe /out:./ProgramWHC.exe "+arg_fileDest;
-	std::string executeLine = ".\\ProgramWHC.exe";
+	std::string compileLine = "\"csc /t:exe /out:./outWHC.exe .\\BinTreeProject\\BinTreeProject\\BinTree.cs .\\out.cs\"";
+	std::string executeLine = ".\\outWHC.exe";
 	
 	for(std::list<std::string>::iterator itr = mainArgs.begin(); itr != mainArgs.end(); itr++){
 		executeLine += " " + *itr;
@@ -83,10 +83,10 @@ int main(int argc, char *argv[]) {
 
 	int status = system(cmdLine.c_str()); //Compiling .wh -> .cs
 	if(execute){
-		std::cout << "Compiling the C# program : " << compileLine.c_str();
+		std::cout << "Compiling the C# program : " << compileLine.c_str() << std::endl;
 		system(compileLine.c_str()); //Compiling .cs -> .exe
-		std::cout << "Executing the C# program";
+		std::cout << "Executing the C# program" << executeLine.c_str() << std::endl;
 		system(executeLine.c_str()); //Executing .exe args
 	}		
-	return status;
+	return 0;
 }

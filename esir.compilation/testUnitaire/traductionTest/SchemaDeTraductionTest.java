@@ -2,11 +2,8 @@ package traductionTest;
 
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-
 import org.junit.Test;
 
-import sprint2.DefFun;
 import sprint2.GeneratorAddr;
 import sprint2.SymTableException;
 import sprint2.ThreeAddressCodeException;

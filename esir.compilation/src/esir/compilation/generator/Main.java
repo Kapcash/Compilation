@@ -25,7 +25,7 @@ import utilitaires.Constante;
 
 public class Main {
 	
-	private static final boolean isDebugMode = false;
+	private static final boolean isDebugMode = Constante.DEBUG_TRACE;
 
 	public static void main(String[] args) throws ErrorException {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();

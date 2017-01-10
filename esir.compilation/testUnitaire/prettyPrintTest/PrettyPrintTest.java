@@ -81,7 +81,7 @@ public class PrettyPrintTest{
 		File fileR1Rename = new File(fileR1RenamePath);
 
 		boolean isRename = fileR1.renameTo(fileR1Rename);
-		Utilitaire.assertT("Le renommage du fichier n'a pas fonctionne", isRename);
+		assertTrue("Le renommage du fichier n'a pas fonctionne", isRename);
 		fileR1 = fileR1Rename;
 
 		/*Deuxieme traitement*/
@@ -91,8 +91,8 @@ public class PrettyPrintTest{
 		Main.main(args);
 		fileR2 = new File(fileR2Path);
 
-		Utilitaire.assertT("Traitement non effectue", (!fileR1.equals(null) && !fileR2.equals(null)));
-		Utilitaire.assertT("Le double traitement amène des fichiers differents", assertSameFileTest(fileR1.getPath(), fileR2.getPath()));
+		assertTrue("Traitement non effectue", (!fileR1.equals(null) && !fileR2.equals(null)));
+		assertTrue("Le double traitement amène des fichiers differents", assertSameFileTest(fileR1.getPath(), fileR2.getPath()));
 
 		boolean isDelete1 = fileR1.delete();
 		Utilitaire.assertT(fileR1.getPath() +" n'a pas ete correctement supprime !", isDelete1);
@@ -210,7 +210,7 @@ public class PrettyPrintTest{
 
 	@Test
 	public void testOptionAll() throws ErrorException{
-		args[2] ="2" ;
+		args[2] ="0" ;
 		testerPrettyPrint("AllIndentationTest");
 	}
 	

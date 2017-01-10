@@ -46,6 +46,7 @@ import esir.compilation.whileComp.impl.ExprImpl;
 import esir.compilation.whileComp.impl.ExprSimpleImpl;
 import sprint3.CS_Translator;
 import sprint3.CS_TranslatorException;
+import utilitaires.Constante;
 
 public class GeneratorAddr {
 
@@ -59,6 +60,9 @@ public class GeneratorAddr {
 	private static final String INPUT_FILE = "../exemple9.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
+	
+	private static final boolean isDebugMode = Constante.DEBUG_TRACE;
+
 
 	private static GeneratorAddr instance;
 
@@ -105,7 +109,7 @@ public class GeneratorAddr {
 	 * @param args args[0] = inputFilePath, args[1] = outputFilePath
 	 */
 	public void launchGeneration(String[] args) throws SymTableException, ThreeAddressCodeException, CS_TranslatorException {
-		System.out.println("Compiling program.");
+		if(isDebugMode){System.out.println("Compiling program.");}
 		resetGenerator(); //Reseting the generator before starting another generation
 		if (args.length > 0)
 			createSymTable(args[0], args[1]);
@@ -210,7 +214,7 @@ public class GeneratorAddr {
 	// Function
 	private void iterateAST(Function f) throws SymTableException, ThreeAddressCodeException {
 		String fName = f.getFunction();
-		System.out.println(fName);
+		//System.out.println(fName);
 		code3Addresses.nouvelleEtiquette();
 
 		DefFun def = new DefFun(fName);
@@ -396,7 +400,7 @@ public class GeneratorAddr {
 				code3Addresses.addToExpression(val, funList);
 			}
 			if( call != null){
-				System.out.println(call);
+				//System.out.println(call);
 				code3Addresses.addToExpression(call, funList);
 			}
 		}

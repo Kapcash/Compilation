@@ -1,7 +1,5 @@
 package traductionTest;
 
-import static org.junit.Assert.*;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1011,7 +1009,7 @@ public class Code3AdressesTests {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 
 		ThreeAddressCode threeAddressCode = tds.getCode3Addresses();

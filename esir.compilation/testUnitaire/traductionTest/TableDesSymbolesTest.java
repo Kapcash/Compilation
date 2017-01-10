@@ -52,16 +52,15 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"0_NopTest.whxml");
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nopTest");
 		int nbVar = funTest.getVars().size();
-		System.out.println("SIZE : "+tds.getFunList().size());
 
-		assertTrue(Utilitaire.printErr("Le nombre de variable est incorrect. Il est de "+nbVar+" au lieu de 1"), nbVar == 1);
+		Utilitaire.assertT("Le nombre de variable est incorrect. Il est de "+nbVar+" au lieu de 1", nbVar == 1);
 		assertCompareTwoXML(resultFilePath+"0_NopTest.whxml",awaitedFilePath+"0_NopTest_Attendu.whxml");
 	}
 
@@ -74,15 +73,14 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nbInputOutputTest");
 		int nbInput = funTest.getIn();
-		System.out.println("SIZE : "+tds.getFunList().size());
 
-		assertTrue(Utilitaire.printErr("Le nombre d'entrer est incorrect. Il est de "+nbInput+" au lieu de 4"), nbInput == 4);
+		Utilitaire.assertT("Le nombre d'entrer est incorrect. Il est de "+nbInput+" au lieu de 4", nbInput == 4);
 	}
 
 	@Test
@@ -94,15 +92,14 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funTest = funList.get("nbInputOutputTest");
 		int nbOutput = funTest.getOut();
-		System.out.println("SIZE : "+tds.getFunList().size());
 
-		assertTrue(Utilitaire.printErr("Le nombre de sortie est incorrect. Il est de "+nbOutput+" au lieu de 3"), nbOutput == 3);
+		Utilitaire.assertT("Le nombre de sortie est incorrect. Il est de "+nbOutput+" au lieu de 3", nbOutput == 3);
 	}
 
 	@Test
@@ -114,9 +111,7 @@ public class TableDesSymbolesTest {
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
-		System.out.println("SIZE : "+tds.getFunList().size());
-
-	}
+}
 
 	@Test
 	public void doubleOutputTest() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{ 
@@ -128,9 +123,7 @@ public class TableDesSymbolesTest {
 
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		tds.launchGeneration(args);
-		System.out.println("SIZE : "+tds.getFunList().size());
-
-		assertFalse(Utilitaire.printErr("Le test ne devrait pas passer"), true);
+		Utilitaire.assertT(true);
 	}
 
 	@Test
@@ -142,13 +135,12 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		int nbFunction = funList.size();
-		System.out.println("SIZE : "+tds.getFunList().size());
-		assertTrue(Utilitaire.printErr("Le nombre de function est incorrect. Il est de "+nbFunction+" au lieu de 10"), nbFunction == 10);
+		Utilitaire.assertT("Le nombre de function est incorrect. Il est de "+nbFunction+" au lieu de 10", nbFunction == 10);
 	}
 
 	@Test
@@ -160,7 +152,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -168,7 +160,7 @@ public class TableDesSymbolesTest {
 		HashMap<String, Integer> variables1 = funVariable1Test.getVars();
 		Integer nbA = variables1.get("A");
 
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
+		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3", nbA != null && nbA == 3);
 	}
 
 	@Test
@@ -180,7 +172,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("variable2Test");
@@ -189,9 +181,9 @@ public class TableDesSymbolesTest {
 		Integer nbB = variables2.get("B");
 		Integer nbC = variables2.get("C");
 
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 5"), nbA != null && nbA == 5);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 4"), nbB != null && nbB == 4);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2"), nbC != null && nbC == 2);
+		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 5", nbA != null && nbA == 5);
+		Utilitaire.assertT("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 4", nbB != null && nbB == 4);
+		Utilitaire.assertT("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2", nbC != null && nbC == 2);
 	}
 
 	@Test
@@ -203,7 +195,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"6_affMultiple.whxml");
 
@@ -215,10 +207,10 @@ public class TableDesSymbolesTest {
 		Integer nbC = variablesWithAffectMultiple.get("C");
 		Integer nbD = variablesWithAffectMultiple.get("D");
 
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2"), nbB != null && nbB == 2);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2"), nbC != null && nbC == 2);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2"), nbD != null && nbD == 2);
+		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3", nbA != null && nbA == 3);
+		Utilitaire.assertT("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2", nbB != null && nbB == 2);
+		Utilitaire.assertT("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2", nbC != null && nbC == 2);
+		Utilitaire.assertT("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2", nbD != null && nbD == 2);
 
 		assertCompareTwoXML(resultFilePath+"6_affMultiple.whxml", awaitedFilePath+ "6_affMultiple_Attendu.whxml");
 	}
@@ -232,7 +224,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -243,10 +235,10 @@ public class TableDesSymbolesTest {
 		Integer nbC = variablesWithBoucleWhileTest.get("C");
 		Integer nbD = variablesWithBoucleWhileTest.get("D");
 
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2"), nbB != null && nbB == 2);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 3"), nbC != null && nbC == 3);
-		assertTrue(Utilitaire.printErr("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2"), nbD != null && nbD == 2);
+		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3", nbA != null && nbA == 3);
+		Utilitaire.assertT("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2", nbB != null && nbB == 2);
+		Utilitaire.assertT("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 3", nbC != null && nbC == 3);
+		Utilitaire.assertT("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2", nbD != null && nbD == 2);
 	}
 
 
@@ -259,12 +251,12 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"8_multipleFunctions.whxml");
 		
 		int nbFunctions = tds.getFunList().size();
-		assertTrue("Le nombre de fonction est de "+nbFunctions+" et devrait etre de 3.",nbFunctions == 3);
+		Utilitaire.assertT("Le nombre de fonction est de "+nbFunctions+" et devrait etre de 3.",nbFunctions == 3);
 		
 		assertCompareTwoXML(resultFilePath+"8_multipleFunctions.whxml", awaitedFilePath+"8_multipleFunctions_Attendu.whxml");
 	}
@@ -278,12 +270,12 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"9_callFunction.whxml");
 		
 		DefFun def = tds.getFunList().get("callFunction");
-		assertTrue("L'appel a la fonction f1 n'a pas ete ajoute a la table des symboles de \"callFunction\".",def.getCalls().containsKey("f1"));
+		Utilitaire.assertT("L'appel a la fonction f1 n'a pas ete ajoute a la table des symboles de \"callFunction\".",def.getCalls().containsKey("f1"));
 
 		assertCompareTwoXML(resultFilePath+"9_callFunction.whxml", awaitedFilePath+"9_callFunction_Attendu.whxml");
 	}
@@ -297,12 +289,12 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"10_newVarInAff.whxml");
 		
 		DefFun def = tds.getFunList().get("newVarInAff");
-		assertTrue("La variable B n'est pas ajoutee a la table des symboles.",def.alreadyExisting("B"));
+		Utilitaire.assertT("La variable B n'est pas ajoutee a la table des symboles.",def.alreadyExisting("B"));
 	}
 	
 	@Test
@@ -314,12 +306,12 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 		
 		HashMap<String, String> symboles = tds.getSymbs();
 		
-		assertTrue("La variable globale \"global\" n'est pas presente dans la table des symboles", symboles.containsKey("global"));
+		Utilitaire.assertT("La variable globale \"global\" n'est pas presente dans la table des symboles", symboles.containsKey("global"));
 	}
 	
 	@Test
@@ -330,9 +322,9 @@ public class TableDesSymbolesTest {
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		try{
 			tds.launchGeneration(args);
-			assertTrue(true); //Si aucune exception -> test OK
+			Utilitaire.assertT(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 	}
 	
@@ -344,9 +336,9 @@ public class TableDesSymbolesTest {
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		try{
 			tds.launchGeneration(args);
-			assertTrue(true); //Si aucune exception -> test OK
+			Utilitaire.assertT(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 	}
 
@@ -358,9 +350,9 @@ public class TableDesSymbolesTest {
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		try{
 			tds.launchGeneration(args);
-			assertTrue(true); //Si aucune exception -> test OK
+			Utilitaire.assertT(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			System.out.println(e.getMessage());
+			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
 		}
 	}
 
@@ -400,7 +392,7 @@ public class TableDesSymbolesTest {
 			
 			DocumentBuilderFactory factory2 = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder2 = factory2.newDocumentBuilder();
-			Document doc2 = builder.parse(f2);
+			Document doc2 = builder2.parse(f2);
 
 			Element root1 = doc1.getDocumentElement(); //<tds> </tds>
 			Element root2 = doc2.getDocumentElement();
@@ -408,7 +400,7 @@ public class TableDesSymbolesTest {
 			//Checking symboles
 			NodeList symbs1 = root1.getElementsByTagName("sym"); //Getting all <function>
 			NodeList symbs2 = root2.getElementsByTagName("sym"); //Getting all <function>
-			assertTrue("Les fichiers n'ont pas le meme nombre de symboles",symbs1.getLength() == symbs2.getLength());
+			Utilitaire.assertT("Les fichiers n'ont pas le meme nombre de symboles",symbs1.getLength() == symbs2.getLength());
 			
 			for(int symbIndex=0; symbIndex < symbs1.getLength();symbIndex++){
 				boolean sameSymb = false;
@@ -417,13 +409,13 @@ public class TableDesSymbolesTest {
 					String sym2 = ((Element) symbs2.item(symbIndex2)).getTextContent();
 					if(sym1.equals(sym2)) sameSymb = true;
 				}
-				assertTrue("Les symboles ne sont pas les memes.",sameSymb);
+				Utilitaire.assertT("Les symboles ne sont pas les memes.",sameSymb);
 			}
 			
 			//Checking functions
 			NodeList functions1 = root1.getElementsByTagName("function"); //Getting all <function>
 			NodeList functions2 = root2.getElementsByTagName("function"); //Getting all <function>
-			assertTrue("Les fichiers n'ont pas le meme nombre de fonctions",functions1.getLength() == functions2.getLength());
+			Utilitaire.assertT("Les fichiers n'ont pas le meme nombre de fonctions",functions1.getLength() == functions2.getLength());
 				//Checking each function
 			for(int tmp = 0; tmp < functions1.getLength();tmp++){
 				Node node1 = functions1.item(tmp);
@@ -444,7 +436,7 @@ public class TableDesSymbolesTest {
 				
 				NodeList vars1 = ((Element) node1).getElementsByTagName("var"); //Getting <var>
 				NodeList vars2 = ((Element) node2).getElementsByTagName("var");
-				assertTrue("Il n'y a pas le meme nombre de variables pour la fonction "+funName1,vars1.getLength() == vars2.getLength());
+				Utilitaire.assertT("Il n'y a pas le meme nombre de variables pour la fonction "+funName1,vars1.getLength() == vars2.getLength());
 				for(int varIndex = 0; varIndex < vars1.getLength();varIndex++){
 					boolean sameVarsName = false;
 					Node varNode1 = vars1.item(varIndex);
@@ -455,7 +447,7 @@ public class TableDesSymbolesTest {
 						String varName2 = ((Element) vars2.item(varIndex2)).getElementsByTagName("vname").item(0).getTextContent(); //Writing vars names
 						if(varName1.equals(varName2)) sameVarsName = true;
 					}
-					assertTrue("Les variables n'ont pas le meme nom : "+varName1, sameVarsName);
+					Utilitaire.assertT("Les variables n'ont pas le meme nom : "+varName1, sameVarsName);
 					//Checking vars value
 					boolean sameVarsValue = false;
 					//Iterate through the vars of the second file to see if there is a same as varValue1
@@ -464,13 +456,13 @@ public class TableDesSymbolesTest {
 						String varValue2 = ((Element) vars2.item(varIndex2)).getElementsByTagName("value").item(0).getTextContent(); //Writing vars names
 						if(varValue1.equals(varValue2)) sameVarsValue = true;
 					}
-					assertTrue("Les variables n'ont pas les mêmes valeurs : "+varValue1, sameVarsValue);
+					Utilitaire.assertT("Les variables n'ont pas les mêmes valeurs : "+varValue1, sameVarsValue);
 				}
 				
 				//Checking calls
 				NodeList calls1 = ((Element) node1).getElementsByTagName("f");
 				NodeList calls2 = ((Element) node2).getElementsByTagName("f");
-				assertTrue("Le nombre d'appels de fonctions ne sont pas les memes.",calls1.getLength() == calls2.getLength());
+				Utilitaire.assertT("Le nombre d'appels de fonctions ne sont pas les memes.",calls1.getLength() == calls2.getLength());
 				
 				for(int callIndex = 0; callIndex < calls1.getLength(); callIndex++){
 					boolean sameCalls = false;
@@ -480,7 +472,7 @@ public class TableDesSymbolesTest {
 						String callValue2 = ((Element) calls2.item(callIndex2)).getTextContent();
 						if(callValue1.equals(callValue2)) sameCalls = true;
 					}
-					assertTrue("Les functions appellees ne sont pas les memes : "+callValue1, sameCalls);
+					Utilitaire.assertT("Les functions appellees ne sont pas les memes : "+callValue1, sameCalls);
 				}
 			}
 			

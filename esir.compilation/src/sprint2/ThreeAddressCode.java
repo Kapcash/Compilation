@@ -14,6 +14,7 @@ public class ThreeAddressCode {
 	private HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String, LinkedList<QuadImp>>();
 	private ExprTree tree = null;
 	private int treeLevel = 0;
+	private static boolean incr = true;
 
 	@SuppressWarnings("rawtypes")
 	private Stack<LinkedList> stack = new Stack<LinkedList>();
@@ -202,7 +203,7 @@ public class ThreeAddressCode {
 	}
 
 	public void subLevel() {
-		tree.incIndex(treeLevel);
+		//tree.incIndex(treeLevel);
 		treeLevel--;
 	}
 
@@ -211,12 +212,14 @@ public class ThreeAddressCode {
 			tree = new ExprTree("root", funList, 1);
 			addLevel();
 			tree.add(s, funList, treeLevel);
+			tree.isFull();
 //			tree = new ExprTree(s, funList, 1);
 		} else {
 			tree.add(s, funList, treeLevel);
+			tree.isFull();
 		}
-		
-		//System.out.println(tree);
+		incr = true;
+		System.out.println(tree);
 	}
 
 	public List<String> inlineExpression(GeneratorAddr generatorAddr, DefFun f) throws ThreeAddressCodeException {
@@ -313,6 +316,29 @@ public class ThreeAddressCode {
 			this(head,funList,level);
 			this.parent= parent;
 		}
+		
+		public void isFull(){
+			full = true;
+			for (int i =0 ;i < children.length ; i++){
+				if(children[i] == null){
+					full = false;
+				}else{
+					children[i].isFull();
+					if(!children[i].full){
+						full = false;
+					}
+				}
+			}
+			if(head.equals("root")){
+				full = false;
+			}
+			if(full && !parent.head.equals("root")&& incr){
+				if(parent.children.length - 1 != parent.index){
+					parent.index++;
+					incr = false;
+				}
+			}
+		}
 
 		public void incIndex(int treeLevel) {
 			if (this.children.length >= this.index)
@@ -330,21 +356,20 @@ public class ThreeAddressCode {
 
 		public void add(String s, HashMap<String, DefFun> funList, int level) throws ThreeAddressCodeException {
 			try{
-			
+				
 			if (level == this.level) {
 				children[index] = new ExprTree(s, funList, level,this);
 				index++;
 			} else {
 				if (children[index] == null) {
 					children[index] = new ExprTree(s, funList, level,this);
-					if (children[index].full)
-						index++;
 				} else {
 					children[index].add(s, funList, level);
 				}
 
 			}
 			}catch (Exception e) {
+				e.printStackTrace();
 				throw new ThreeAddressCodeException("Impossible to add : " + s);
 			}
 		}

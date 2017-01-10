@@ -24,7 +24,7 @@ public class CS_Translator {
 
 	// C# GENERAL
 
-	private final static String imports = "using System;\nusing System.Collections.Generic;\nusing Tree;\nusing static Tree.BinTree;\n";
+	private final static String imports = "using System;\nusing System.Collections.Generic;\n";
 	private final static String projectName = "namespace BinTreeProject";
 	private final static String className = "class Program";
 	private final static String mainFunctionName = "static void Main(string[] args)";
@@ -205,7 +205,7 @@ public class CS_Translator {
 			String it = iteReads.next();
 			write("if(args.Length > "+incrementArgs+"){");
 			rightShift();
-			write("BinTree " + it + " = new BinTree(args["+incrementArgs+"], null, null);");
+			write("BinTree " + it + " = BinTree.convertStrToBinTree(args["+incrementArgs+"]);");
 			write("input.Enqueue(" + it + ");");
 			leftShift();
 			write("}");
@@ -312,7 +312,6 @@ public class CS_Translator {
 				f.write(rAccolade);
 				break;
 				
-				
 			case DECL:
 				//f.write("BinTree " + quad.getReponse() + " = new BinTree (\""+quad.getReponse()+"\", null, null);");
 				/*
@@ -337,13 +336,13 @@ public class CS_Translator {
 				f.write(quad.getReponse() + " = " + quad.getArg1() + ";");
 				break;
 			case AND:
-				f.write(quad.getReponse() + " = evaluate(\"AND\"," + quad.getArg1() + "," + quad.getArg2() + ");");
+				f.write(quad.getReponse() + " = BinTree.evaluate(\"AND\"," + quad.getArg1() + "," + quad.getArg2() + ");");
 				break;
 			case OR:
-				f.write(quad.getReponse() + " = evaluate(\"OR\"," + quad.getArg1() + "," + quad.getArg2() + ");");
+				f.write(quad.getReponse() + " = BinTree.evaluate(\"OR\"," + quad.getArg1() + "," + quad.getArg2() + ");");
 				break;
 			case EQ:
-				f.write(quad.getReponse() + " = evaluate(\"EQ\"," + quad.getArg1() + "," + quad.getArg2() + ");");
+				f.write(quad.getReponse() + " = BinTree.evaluate(\"EQ\"," + quad.getArg1() + "," + quad.getArg2() + ");");
 				break;
 			// FUNCTION USE
 			case PUSH:
@@ -359,16 +358,16 @@ public class CS_Translator {
 				break;
 			// WHILE FUNCTION
 			case CONS:
-				f.write(quad.getReponse() + " = (cons(inParams));");
+				f.write(quad.getReponse() + " = (BinTree.cons(inParams));");
 				break;
 			case LIST:
-				f.write(quad.getReponse() + " = (list(inParams));");
+				f.write(quad.getReponse() + " = (BinTree.list(inParams));");
 				break;
 			case HD:
-				f.write(quad.getReponse() + " = head(" + quad.getArg1() + ");");
+				f.write(quad.getReponse() + " = BinTree.head(" + quad.getArg1() + ");");
 				break;
 			case TL:
-				f.write(quad.getReponse() + " = tail(" + quad.getArg1() + ");");
+				f.write(quad.getReponse() + " = BinTree.tail(" + quad.getArg1() + ");");
 				break;
 			default:
 				f.write("// "+quad.getOperateur().getOpe().name()+" not implemented yet.");

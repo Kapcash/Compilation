@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Tree;
-using static Tree.BinTree;
 
 
 namespace BinTreeProject
@@ -29,7 +27,7 @@ namespace BinTreeProject
 			B = input.Dequeue();
 			inParams.Enqueue(A);
 			inParams.Enqueue(B);
-			Y0 = (cons(inParams));
+			Y0 = (BinTree.cons(inParams));
 			X0 = Y0;
 			Ret = X0;
 			output.Enqueue(Ret);
@@ -39,7 +37,7 @@ namespace BinTreeProject
 			Queue<BinTree> input = new Queue<BinTree>();
 			Queue<BinTree> output = new Queue<BinTree>();
 			if(args.Length > 0){
-				BinTree A = new BinTree(args[0], null, null);
+				BinTree A = BinTree.convertStrToBinTree(args[0]);
 				input.Enqueue(A);
 			}
 			else{
@@ -47,7 +45,7 @@ namespace BinTreeProject
 				input.Enqueue(A);
 			}
 			if(args.Length > 1){
-				BinTree B = new BinTree(args[1], null, null);
+				BinTree B = BinTree.convertStrToBinTree(args[1]);
 				input.Enqueue(B);
 			}
 			else{

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tree
+namespace BinTreeProject
 {
     class BinTree
     {

@@ -11,11 +11,12 @@ import sprint2.GeneratorAddr;
 import sprint2.SymTableException;
 import sprint2.ThreeAddressCodeException;
 import sprint3.CS_TranslatorException;
+import utilitaires.Constante;
 
 public class SchemaDeTraductionTest {
 
-	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestSDT_Original/";
-	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_TestSDT_Resultat/";
+	private static final String origineFilePath = Constante.PATH+ "traductionTest/Fichier_TestSDT_Original/";
+	private static final String resultFilePath =  Constante.PATH+ "traductionTest/Fichier_TestSDT_Resultat/";
 	
 	String cheminFichierEntree = null;
 	String cheminFichierSortie = null;

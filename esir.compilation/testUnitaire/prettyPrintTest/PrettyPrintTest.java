@@ -13,16 +13,17 @@ import org.junit.rules.ExpectedException;
 
 import esir.compilation.ErrorException;
 import esir.compilation.generator.Main;
+import utilitaires.Constante;
 
 public class PrettyPrintTest{
 
 	@Rule
     public ExpectedException thrown = ExpectedException.none();
 	
-	private static final String origineFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Original/";
-	private static final String attendFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Attendu/";
-	private static final String resultFilePath = "testUnitaire/prettyPrintTest/Fichier_Test_Resultat/";
-
+	private static final String origineFilePath = Constante.PATH+ "prettyPrintTest/Fichier_Test_Original/";
+	private static final String attendFilePath =  Constante.PATH+ "prettyPrintTest/Fichier_Test_Attendu/";
+	private static final String resultFilePath =  Constante.PATH+ "prettyPrintTest/Fichier_Test_Resultat/";
+	
 	private String cheminFichierEntree;
 	private String cheminFichierSortie;
 	private String indentAll = "1";

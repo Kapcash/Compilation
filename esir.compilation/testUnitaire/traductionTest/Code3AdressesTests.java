@@ -18,12 +18,13 @@ import sprint2.SymTableException;
 import sprint2.ThreeAddressCode;
 import sprint2.ThreeAddressCodeException;
 import sprint3.CS_TranslatorException;
+import utilitaires.Constante;
 import utilitaires.Utilitaires;
 
 public class Code3AdressesTests {
-
-	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestC3A_Original/";
-	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_TestC3A_Resultat/";
+	
+	private static final String origineFilePath = Constante.PATH+ "traductionTest/Fichier_TestC3A_Original/";
+	private static final String resultFilePath =  Constante.PATH+ "traductionTest/Fichier_TestC3A_Resultat/";
 
 	String cheminFichierEntree = null;
 	String cheminFichierSortie = null;

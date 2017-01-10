@@ -26,16 +26,17 @@ import sprint2.GeneratorAddr;
 import sprint2.SymTableException;
 import sprint2.ThreeAddressCodeException;
 import sprint3.CS_TranslatorException;
+import utilitaires.Constante;
 import utilitaires.Utilitaires;
 
 public class TableDesSymbolesTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-	
-	private static final String origineFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Original/";
-	private static final String resultFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Resultat/";
-	private static final String awaitedFilePath = "testUnitaire/traductionTest/Fichier_TestTDS_Attendu/";
+    
+	private static final String origineFilePath = Constante.PATH+ "traductionTest/Fichier_TestTDS_Original/";
+	private static final String resultFilePath =  Constante.PATH+ "traductionTest/Fichier_TestTDS_Resultat/";
+	private static final String awaitedFilePath = Constante.PATH+ "traductionTest/Fichier_TestTDS_Attendu/";
 
 	String cheminFichierEntree = null;
 	String cheminFichierSortie = null;

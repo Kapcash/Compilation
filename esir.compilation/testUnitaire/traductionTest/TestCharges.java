@@ -14,6 +14,7 @@ import sprint2.GeneratorAddr;
 import sprint2.SymTableException;
 import sprint2.ThreeAddressCodeException;
 import sprint3.CS_TranslatorException;
+import utilitaires.Constante;
 
 public class TestCharges {
 
@@ -26,7 +27,7 @@ public class TestCharges {
 	int nbEssai = 5;
 
 	public long testLargeur(int n){
-		args[0] = "testUnitaire/traductionTest//Fichier_TestCharge/testChargesLargeur" + n + ".wh";
+		args[0] = Constante.PATH+ "traductionTest//Fichier_TestCharge/testChargesLargeur" + n + ".wh";
 		args[1] = "";
 
 		if (regenerateFiles)

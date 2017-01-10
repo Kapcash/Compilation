@@ -1,0 +1,7 @@
+function add : 
+read A, B 
+%
+C := (cons nil (cons nil (cons nil nil)));
+D := (cons nil (cons nil (cons nil nil)))
+%
+write S

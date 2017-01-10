@@ -1,0 +1,21 @@
+function symboles: 
+read A ,B ,C
+%
+	while (A and (cons B C (tl (D or E)))) do
+		while CondDeux do
+			while CondTrois do
+					nop
+			od;
+			if CondQuatre then
+				while CondCinq do
+					if CondSix then
+					nop
+					fi
+				od
+			else
+				nop
+			fi
+		od
+	od
+%
+write A ,B

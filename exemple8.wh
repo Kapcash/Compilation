@@ -1,9 +1,0 @@
-function fun1: 
-read A
-%
-	foreach A in (cons B C D) do
-	nop
-	od	
-%
-write T,H
-

@@ -1,7 +1,0 @@
-function consFun:
-read A,B
-%
-	Y:=(cons (hd A) (cons B C));
-	Y:=(cons (cons B C) A)
-%
-write Y

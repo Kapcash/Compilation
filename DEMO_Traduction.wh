@@ -1,9 +1,0 @@
-function loop: 
-read B
-%
-	A := B ;
-	while (hd A) do
-		nop
-	od
-%
-write A

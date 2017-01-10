@@ -1,6 +1,5 @@
 package traductionTest;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -52,7 +51,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"0_NopTest.whxml");
 
@@ -73,7 +72,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -92,7 +91,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -135,7 +134,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -152,7 +151,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -172,7 +171,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("variable2Test");
@@ -195,7 +194,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"6_affMultiple.whxml");
 
@@ -224,7 +223,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 
 		HashMap<String, DefFun> funList = tds.getFunList();
@@ -251,7 +250,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"8_multipleFunctions.whxml");
 		
@@ -270,7 +269,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"9_callFunction.whxml");
 		
@@ -289,7 +288,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 		tds.writeSymTableXML(resultFilePath+"10_newVarInAff.whxml");
 		
@@ -306,7 +305,7 @@ public class TableDesSymbolesTest {
 		try{
 			tds.launchGeneration(args);
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 		
 		HashMap<String, String> symboles = tds.getSymbs();
@@ -324,7 +323,7 @@ public class TableDesSymbolesTest {
 			tds.launchGeneration(args);
 			Utilitaire.assertT(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 	}
 	
@@ -338,7 +337,7 @@ public class TableDesSymbolesTest {
 			tds.launchGeneration(args);
 			Utilitaire.assertT(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 	}
 
@@ -352,7 +351,7 @@ public class TableDesSymbolesTest {
 			tds.launchGeneration(args);
 			Utilitaire.assertT(true); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.out.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
 		}
 	}
 

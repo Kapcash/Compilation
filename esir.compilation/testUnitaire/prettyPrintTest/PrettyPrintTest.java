@@ -11,7 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import esir.compilation.ErrorException;
+import esir.compilation.generator.ErrorException;
 import esir.compilation.generator.Main;
 import utilitaires.Constante;
 import utilitaires.Utilitaire;

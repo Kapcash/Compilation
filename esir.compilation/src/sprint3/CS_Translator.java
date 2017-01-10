@@ -17,7 +17,7 @@ public class CS_Translator {
 	private int k = 0;
 	private LinkedList<CS_Function> funcList = new LinkedList<CS_Function>();
 	private LinkedList<String> reads = new LinkedList<String>();
-	private LinkedList<String> allDecls = new LinkedList<String>();
+//	private LinkedList<String> allDecls = new LinkedList<String>();
 	private boolean inMainFunction = true;
 	private int nbWrites = 0;
 	private String nameMainFonction;
@@ -255,10 +255,10 @@ public class CS_Translator {
 			case IF:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
 				if(code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse().equals("")){
-					f.write("if(BinTree.BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getArg1()
+					f.write("if(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getArg1()
 							+ "))");
 				}else{
-					f.write("if(BinTree.BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
+					f.write("if(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
 							+ "))");
 				}
 				f.write(lAccolade);

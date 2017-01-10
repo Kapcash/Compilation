@@ -19,7 +19,6 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provider;
 
-import esir.compilation.ErrorException;
 import esir.compilation.WhileCompStandaloneSetup;
 import utilitaires.Constante;
 
@@ -92,6 +91,6 @@ public class Main {
 		context.setCancelIndicator(CancelIndicator.NullImpl);
 		generator.doGenerate(resource, fileAccess, context, sortie,idenAll,idenFor,idenWhile,idenIf,idenForeach,idenAff);
 
-		if (isDebugMode){System.out.println("Code Generation finish !");}
+		if (isDebugMode){System.out.println("Pretty printing finished !");}
 	}
 }

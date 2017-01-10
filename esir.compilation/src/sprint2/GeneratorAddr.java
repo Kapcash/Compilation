@@ -53,14 +53,14 @@ public class GeneratorAddr {
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = false;
-	public static boolean DISPLAY_TRANSLATION = true;
-	public static boolean PRINT_TRANSLATION = false;
+	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemple2.wh";
+	private static final String INPUT_FILE = "../fib.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
-	
+
 	private static final boolean isDebugMode = Constante.DEBUG_TRACE;
 
 
@@ -149,29 +149,28 @@ public class GeneratorAddr {
 		while (tree.hasNext()) {
 			EObject next = tree.next(); //AST
 			if (next instanceof Program) {
-				discoverFunctions((Program) next); // Just read the function's names
+				discoverFunctions((Program) next); // Just read the function's names and inputs / outputs
 				iterateAST((Program) next); // Start to discover all the program
 			}
 		}
 
-		checkSymbolsUsage(); // Check all the symbols usage (undeclared function for example)
+		checkSymbolsUsage(); // Check all the symbols usage
 
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
-		
 
 		//Printing on console
 		if (DISPLAY_SYM_TABLE) {
-			displaySymTable(); // Print the symbols table
+			displaySymTable(); 		// Print the symbols table
 		}
 		if (DISPLAY_THREE_ADDR_CODE) {
-			System.out.println(code3Addresses);
+			System.out.println(code3Addresses); // Print the 3@ code
 		}
-		if (DISPLAY_TRANSLATION) {
+		if (DISPLAY_TRANSLATION) {	// Print C# code generated
 			System.out.println(translator);
 		}
-		if (PRINT_TRANSLATION) {
+		if (PRINT_TRANSLATION) { 	// Write C# code generated in a file
 			try (PrintWriter out = new PrintWriter(outputFilePath)) {
 				out.println(translator.toString());
 			} catch (FileNotFoundException e) {
@@ -179,7 +178,7 @@ public class GeneratorAddr {
 			}
 		}
 	}
-	
+
 	/**
 	 * Initialize the function list just with the name of declared functions
 	 * 
@@ -241,7 +240,7 @@ public class GeneratorAddr {
 		if(hasDuplicates(varsR)){
 			throw new SymTableException("Function '" + f.getFunName() + "' contains duplicates variables in Read statement!");
 		}
-		
+
 		f.setIn(varsR.size()); //Get inputs
 		for (String v : varsR) {
 			f.updateVar(v); //Add the var to the SymTable
@@ -256,7 +255,7 @@ public class GeneratorAddr {
 		if(hasDuplicates(varsW)){
 			throw new SymTableException("Function '" + f.getFunName() + "' contains duplicates variables in Write statement!");
 		}
-		
+
 		f.setOut(varsW.size()); //Get outputs
 		for (String v : varsW) {
 			//varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
@@ -264,7 +263,7 @@ public class GeneratorAddr {
 			f.updateVar(v);
 		}
 	}
-	
+
 	// Commands
 	public void iterateAST(Commands coms, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Command com = coms.getCommand();
@@ -329,7 +328,7 @@ public class GeneratorAddr {
 			f.updateVar(var);
 			varDeclaration3Addr(f, val);
 			code3Addresses.aff(var, val);
-			
+
 		}
 	}
 
@@ -360,7 +359,7 @@ public class GeneratorAddr {
 		Expr ex2 = ex.getEx2();
 		Not n = ex.getN();
 		String call = ex.getCall();
-		
+
 		if (isVariable(val)) { // Variable
 			f.updateVar(val);
 		}
@@ -405,7 +404,7 @@ public class GeneratorAddr {
 			}
 		}
 		if (isSymbole(val)) { // Symbole
-			this.symbs.put(val, "");
+			symbs.put(val, "");
 		}
 		if(call != null && exprs != null){ //Fun call
 			f.updateCalls(call, exprs);
@@ -463,7 +462,7 @@ public class GeneratorAddr {
 				return;
 			}
 		}
-		
+
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(forCond, f);
@@ -498,18 +497,18 @@ public class GeneratorAddr {
 				return;
 			}
 		}
-		
+
 		if(nomVar == null){
 			System.out.println("Erreur d'expression dans la boucle foreach");
 			return;
 		}
-		
+
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(Cond, f);
 		code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
-		
+
 		code3Addresses.nouvelleEtiquette();  //Body LB
 		Expr expression = new ExprImpl();
 		ExprSimple expre = new ExprSimpleImpl();
@@ -519,10 +518,10 @@ public class GeneratorAddr {
 		iterateAST(expression, f);
 		List<String> list = code3Addresses.inlineExpression(this, f);
 		code3Addresses.aff(nomVar, list.get(0));
-		
+
 		Commands cmds = forEachCmd.getCommands();
 		iterateAST(cmds, f);
-		
+
 		Expr expressionbis = new ExprImpl();
 		ExprSimple exprebis = new ExprSimpleImpl();
 		exprebis.setOpe("tl");
@@ -530,7 +529,7 @@ public class GeneratorAddr {
 		expressionbis.setExprsimple(exprebis);
 		iterateAST(expressionbis, f);
 		code3Addresses.inlineExpression(this, f);
-		
+
 		code3Addresses.finEtiquette();
 		// New 3@ <FOR LC, , LB, >
 		code3Addresses.forEachLoop(etiquetteCond,code3Addresses.getPreviousEtiquette());
@@ -543,7 +542,7 @@ public class GeneratorAddr {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(ifCmd.getExpr(), f);
-		List<String> list = code3Addresses.inlineExpression(this, f);
+//		List<String> list = code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 
 		// Then
@@ -575,7 +574,151 @@ public class GeneratorAddr {
 		funList = new HashMap<String, DefFun>();
 		symbs = new HashMap<String, String>();
 	}
-	
+
+	/**
+	 * Check the symbols usages : - if called symbols are declared functions -
+	 * if they are called with correct input number
+	 * 
+	 * @throws SymTableException
+	 *             Throws a SymTable Error if the program is not correct
+	 *             according to the symbols
+	 */
+	public void checkSymbolsUsage() throws SymTableException {
+		// Symbols as function (calls, declaration)
+		for (DefFun f : funList.values()) {
+			// Checking symbols usage after generating all the symbols table
+			for (String symbol : f.getCalls().keySet()) {
+				Lexpr lexpr = f.getCalls().get(symbol);
+				// Check if the function exists
+				if (!funList.containsKey(symbol)) {
+					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function!");
+				}
+				int expectedParameters = funList.get(symbol).getIn();
+				int nbOfParameters = ((lexpr != null) ? countExprs(lexpr) : 0);
+				// Check if the function is called with the correct parameters number
+				if (nbOfParameters != expectedParameters) {
+					throw new SymTableException("The function " + symbol + " is called with " + nbOfParameters + ", expected " + expectedParameters);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Check if the multiple affectations are correctly used
+	 * @param aff The affectation to check
+	 * @throws SymTableException If there is to the same number of left variables and right values returned
+	 */
+	public void checkAffUsage(Affectation aff) throws SymTableException {
+		EList<String> affs = aff.getAffectations(); 	//Left side
+		EList<Expr> vals = aff.getValeurs();			// Right side
+		int nbIn = affs.size();
+		int nbOut = 0;
+		for(Expr val : vals){
+			ExprSimple simp = val.getExprsimple();
+			if(simp.getCall() != null){
+				nbOut += funList.get(simp.getCall()).getOut();
+			}
+			else{
+				nbOut++;
+			}
+		}
+		//Final condition IN == OUT
+		//System.out.println("CHECK AFF : IN="+nbIn+" OUT="+nbOut);
+		if(nbIn != nbOut){
+			throw new SymTableException("There is "+nbIn+" inputs but "+nbOut+" outputs in this affectation.");
+		}
+	}
+
+	/**
+	 * Count the number of Expr in an Lexpr Used to count the number of
+	 * parameter of a called function (symbol)
+	 * 
+	 * @param exprs
+	 *            The Lexpr to count
+	 * @return Return the total number of Expr in the Lexpr
+	 */
+	private int countExprs(Lexpr exprs) {
+		int ret = 1; // There is at least one Expr
+		if (exprs.getLexpr() != null) {
+			ret += countExprs(exprs.getLexpr());
+		}
+		String fun = "";
+		try {
+			fun = exprs.getExpr().getExprsimple().getValeur();
+		} catch (NullPointerException nullEx){ /* Nothing */ }
+		if (funList.containsKey(fun)) {
+			ret += funList.get(fun).getOut();
+		}
+		return ret;
+	}
+
+	/**
+	 * Checks if there is duplicates in a collection
+	 * @param coll The collection to check
+	 * @return True if the collection contains duplicates, false else.
+	 */
+	private <T> boolean hasDuplicates(Collection<T> coll ){
+		boolean ret = false;
+		Set<T> set = new HashSet<T>(coll);
+		if(coll.size() > set.size()){
+			ret = true;
+		}
+		return ret;
+	}
+
+	/**
+	 * Checks if a string is considered as a Symbol (starts with a lowercase
+	 * char)
+	 * 
+	 * @param str
+	 *            The string to check the type
+	 * @return Return true if the string is considered as a Symbol in WHILE
+	 */
+	private boolean isSymbole(String str) {
+		if (str == null || str.equals("nil")){ return false; }
+		String firstChar = str.substring(0, 1);
+		return firstChar.equals(firstChar.toLowerCase()); // Is lowercase ->
+		// Symbole
+	}
+
+	/**
+	 * Checks if a string is considered as a Variable (starts with an uppercase
+	 * char)
+	 * 
+	 * @param str
+	 *            The string to check the type
+	 * @return Return true if the string is considered as a Variable in WHILE
+	 */
+	private boolean isVariable(String str) {
+		if (str == null){ return false;	}
+		String firstChar = str.substring(0, 1);
+		return firstChar.equals(firstChar.toUpperCase()); // Is uppercase -> Variable
+	}
+
+	public void varDeclaration3Addr(DefFun f, String v) {
+		if(isVariable(v)){
+			if (!f.alreadyExisting(v)) {
+				if (!f.tempAlreadyExisting(v)) {
+					f.updateTempVars(v);
+				}
+			}
+		}
+	}
+
+	// GETTERS //
+	public HashMap<String, DefFun> getFunList() {
+		return funList;
+	}
+
+	public HashMap<String, String> getSymbs() {
+		return symbs;
+	}
+
+	public ThreeAddressCode getCode3Addresses() {
+		return code3Addresses;
+	}
+	// ------- //
+
 	/**
 	 * Print the final symbols table (Lists + XML)
 	 */
@@ -588,7 +731,7 @@ public class GeneratorAddr {
 		System.out.println("Symboles Table correctly generated.");
 		System.out.println("\n" + writeSymTableXML(OUTPUT_XML_FILE));
 	}
-
+	
 	/**
 	 * Write in a file and a string an XML representation of the Symbole Table.
 	 * Used espacially for tests
@@ -635,152 +778,6 @@ public class GeneratorAddr {
 				e.printStackTrace();
 			}
 		}
-
 		return ret;
 	}
-
-	/**
-	 * Check the symbols usages : - if called symbols are declared functions -
-	 * if they are called with correct input number
-	 * 
-	 * @throws SymTableException
-	 *             Throws a SymTable Error if the program is not correct
-	 *             according to the symbols
-	 */
-	public void checkSymbolsUsage() throws SymTableException {
-		// Symbols as function (calls, declaration)
-		for (DefFun f : funList.values()) {
-			// Checking symbols usage after generating all the symbols table
-			for (String symbol : f.getCalls().keySet()) {
-				Lexpr lexpr = f.getCalls().get(symbol);
-				// Check if the function exists
-				if (!funList.containsKey(symbol)) {
-					throw new SymTableException("Symbol '" + symbol + "' used but not corresponding to any declared function!");
-				}
-				int expectedParameters = funList.get(symbol).getIn();
-				int nbOfParameters = ((lexpr != null) ? countExprs(lexpr) : 0);
-				// Check if the function is called with the correct parameters number
-				if (nbOfParameters != expectedParameters) {
-					throw new SymTableException("The function " + symbol + " is called with " + nbOfParameters + ", expected " + expectedParameters);
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Check if the multiple affectations are correctly used
-	 * @param aff The affectation to check
-	 * @throws SymTableException If there is to the same number of left variables and right values returned
-	 */
-	public void checkAffUsage(Affectation aff) throws SymTableException {
-		EList<String> affs = aff.getAffectations(); 	//Left side
-		EList<Expr> vals = aff.getValeurs();			// Right side
-		int nbIn = affs.size();
-		int nbOut = 0;
-		for(Expr val : vals){
-			ExprSimple simp = val.getExprsimple();
-			if(simp.getCall() != null){
-				nbOut += funList.get(simp.getCall()).getOut();
-			}
-			else{
-				nbOut++;
-			}
-		}
-		//Final condition IN == OUT
-		//System.out.println("CHECK AFF : IN="+nbIn+" OUT="+nbOut);
-		if(nbIn < nbOut){
-			throw new SymTableException("There is "+nbIn+" inputs but "+nbOut+" outputs in this affectation.");
-		}
-	}
-
-	/**
-	 * Count the number of Expr in an Lexpr Used to count the number of
-	 * parameter of a called function (symbol)
-	 * 
-	 * @param exprs
-	 *            The Lexpr to count
-	 * @return Return the total number of Expr in the Lexpr
-	 */
-	private int countExprs(Lexpr exprs) {
-		int ret = 1; // There is at least one Expr
-		if (exprs.getLexpr() != null) {
-			ret += countExprs(exprs.getLexpr());
-		}
-		String fun = "";
-		try {
-			fun = exprs.getExpr().getExprsimple().getValeur();
-		} catch (NullPointerException nullEx) {
-		/* Nothing */}
-		if (funList.containsKey(fun)) { //
-			ret += funList.get(fun).getOut();
-		}
-		return ret;
-	}
-	
-	/**
-	 * Checks if there is duplicates in a collection
-	 * @param coll The collection to check
-	 * @return True if the collection contains duplicates, false else.
-	 */
-	private <T> boolean hasDuplicates(Collection<T> coll ){
-		boolean ret = false;
-		Set<T> set = new HashSet<T>(coll);
-		if(coll.size() > set.size()){
-			ret = true;
-		}
-		return ret;
-	}
-
-	/**
-	 * Checks if a string is considered as a Symbol (starts with a lowercase
-	 * char)
-	 * 
-	 * @param str
-	 *            The string to check the type
-	 * @return Return true if the string is considered as a Symbol in WHILE
-	 */
-	private boolean isSymbole(String str) {
-		if (str == null || str.equals("nil"))
-			return false;
-		String firstChar = str.substring(0, 1);
-		return firstChar.equals(firstChar.toLowerCase()); // Is lowercase ->
-		// Symbole
-	}
-
-	/**
-	 * Checks if a string is considered as a Variable (starts with an uppercase
-	 * char)
-	 * 
-	 * @param str
-	 *            The string to check the type
-	 * @return Return true if the string is considered as a Variable in WHILE
-	 */
-	private boolean isVariable(String str) {
-		if (str == null)
-			return false;
-		String firstChar = str.substring(0, 1);
-		return firstChar.equals(firstChar.toUpperCase()); // Is uppercase -> Variable
-	}
-
-	void varDeclaration3Addr(DefFun f, String v) {
-		if(isVariable(v))
-			if (!f.alreadyExisting(v)) {
-				if (!f.tempAlreadyExisting(v)) {
-					f.updateTempVars(v);
-				}
-			}
-	}
-
-	public HashMap<String, DefFun> getFunList() {
-		return funList;
-	}
-
-	public HashMap<String, String> getSymbs() {
-		return symbs;
-	}
-
-	public ThreeAddressCode getCode3Addresses() {
-		return code3Addresses;
-	}
-
 }

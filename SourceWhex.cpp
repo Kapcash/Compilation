@@ -8,28 +8,26 @@ void manual() {
 	printf("\n");
 	printf("========== NAME\n");
 	printf("\n");
-	printf("The WHILE compiler\n");
+	printf("The WHILE executer\n");
 	printf("\n");
 	printf("========== SYNOPSIS\n");
 	printf("\n");
-	printf("whc fichier [-o file] \n");
+	printf("whex fichier [-o file] \n");
 	printf("\n\n ou \n\n");
-	printf("whc --help \n");
+	printf("whex --help \n");
 	printf("\n");
 	printf("\n");
 	printf("========== DESCRIPTION\n");
 	printf("\n");
-	printf("Compile un fichier d'entrée WHILE en fichier de sortie C#.\n");
+	printf("Execute un fichier executable C#.\n");
 	printf("\n");
 	printf("========== OPTIONS\n");
-	printf("\n");
-	printf("-o file\n");
-	printf("file : nom du fichier de sortie\n\n");
-	printf("\n");
 	printf("\n");
 	printf("========== SEE ALSO\n");
 	printf("\n");
 	printf("whpp\n");
+	printf("\n");
+	printf("whc\n");
 	printf("\n");
 	printf("========== AUTHORS\n");
 	printf("\n");
@@ -41,8 +39,8 @@ void manual() {
 
 int main(int argc, char *argv[]) {
 
-	std::string	arg_fileSrc,
-				arg_fileDest = "out.cs";
+	std::string	arg_fileSrc;
+	std::list<std::string> mainArgs;
 				
 	if (argc<2 && argc % 2 != 0) {
 		manual();
@@ -57,21 +55,19 @@ int main(int argc, char *argv[]) {
 
 	arg_fileSrc = argv[1];
 
-	for (int i = 2; i<argc; i=i+2) {
-		if (strcmp("-o", argv[i]) == 0) {
-			arg_fileDest = argv[i + 1];
-			i++;
-			continue;
-		}
+	for (int i = 2; i<argc; i++) {
+		mainArgs.push_back(argv[i]);
 	}
 
-	std::string cmdLine = "java -jar whc.jar " + arg_fileSrc;
-	cmdLine += " " + arg_fileDest;
-	std::string compileLine = "csc /t:exe /out:outWHC.exe BinTree.cs "+arg_fileDest;
+	std::string executeLine = "\""+arg_fileSrc;
+	executeLine = "\"C:/Users/Florent/Dropbox/Cours/ESIR/2A/Comp/outWHC.exe\"";
+	
+	for(std::list<std::string>::iterator itr = mainArgs.begin(); itr != mainArgs.end(); itr++){
+		executeLine += " \"" + *itr+"\"";
+	}
+	executeLine += "";
 
-	int status = system(cmdLine.c_str()); //Compiling .wh -> .cs
-	std::cout << "Compiling the C# program : " << compileLine.c_str() << std::endl;
-	system(compileLine.c_str()); //Compiling .cs -> .exe
-
-	return status;
+	std::cout << "Executing the C# program " << executeLine.c_str() << std::endl;
+	system(executeLine.c_str()); //Executing .exe args
+	return 0;
 }

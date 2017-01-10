@@ -27,7 +27,7 @@ import sprint2.SymTableException;
 import sprint2.ThreeAddressCodeException;
 import sprint3.CS_TranslatorException;
 import utilitaires.Constante;
-import utilitaires.Utilitaires;
+import utilitaires.Utilitaire;
 
 public class TableDesSymbolesTest {
 
@@ -61,7 +61,7 @@ public class TableDesSymbolesTest {
 		int nbVar = funTest.getVars().size();
 		System.out.println("SIZE : "+tds.getFunList().size());
 
-		assertTrue(Utilitaires.printErr("Le nombre de variable est incorrect. Il est de "+nbVar+" au lieu de 1"), nbVar == 1);
+		assertTrue(Utilitaire.printErr("Le nombre de variable est incorrect. Il est de "+nbVar+" au lieu de 1"), nbVar == 1);
 		assertCompareTwoXML(resultFilePath+"0_NopTest.whxml",awaitedFilePath+"0_NopTest_Attendu.whxml");
 	}
 
@@ -82,7 +82,7 @@ public class TableDesSymbolesTest {
 		int nbInput = funTest.getIn();
 		System.out.println("SIZE : "+tds.getFunList().size());
 
-		assertTrue(Utilitaires.printErr("Le nombre d'entrer est incorrect. Il est de "+nbInput+" au lieu de 4"), nbInput == 4);
+		assertTrue(Utilitaire.printErr("Le nombre d'entrer est incorrect. Il est de "+nbInput+" au lieu de 4"), nbInput == 4);
 	}
 
 	@Test
@@ -102,7 +102,7 @@ public class TableDesSymbolesTest {
 		int nbOutput = funTest.getOut();
 		System.out.println("SIZE : "+tds.getFunList().size());
 
-		assertTrue(Utilitaires.printErr("Le nombre de sortie est incorrect. Il est de "+nbOutput+" au lieu de 3"), nbOutput == 3);
+		assertTrue(Utilitaire.printErr("Le nombre de sortie est incorrect. Il est de "+nbOutput+" au lieu de 3"), nbOutput == 3);
 	}
 
 	@Test
@@ -130,7 +130,7 @@ public class TableDesSymbolesTest {
 		tds.launchGeneration(args);
 		System.out.println("SIZE : "+tds.getFunList().size());
 
-		assertFalse(Utilitaires.printErr("Le test ne devrait pas passer"), true);
+		assertFalse(Utilitaire.printErr("Le test ne devrait pas passer"), true);
 	}
 
 	@Test
@@ -148,7 +148,7 @@ public class TableDesSymbolesTest {
 		HashMap<String, DefFun> funList = tds.getFunList();
 		int nbFunction = funList.size();
 		System.out.println("SIZE : "+tds.getFunList().size());
-		assertTrue(Utilitaires.printErr("Le nombre de function est incorrect. Il est de "+nbFunction+" au lieu de 10"), nbFunction == 10);
+		assertTrue(Utilitaire.printErr("Le nombre de function est incorrect. Il est de "+nbFunction+" au lieu de 10"), nbFunction == 10);
 	}
 
 	@Test
@@ -168,7 +168,7 @@ public class TableDesSymbolesTest {
 		HashMap<String, Integer> variables1 = funVariable1Test.getVars();
 		Integer nbA = variables1.get("A");
 
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
 	}
 
 	@Test
@@ -189,9 +189,9 @@ public class TableDesSymbolesTest {
 		Integer nbB = variables2.get("B");
 		Integer nbC = variables2.get("C");
 
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 5"), nbA != null && nbA == 5);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 4"), nbB != null && nbB == 4);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2"), nbC != null && nbC == 2);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 5"), nbA != null && nbA == 5);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 4"), nbB != null && nbB == 4);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2"), nbC != null && nbC == 2);
 	}
 
 	@Test
@@ -215,10 +215,10 @@ public class TableDesSymbolesTest {
 		Integer nbC = variablesWithAffectMultiple.get("C");
 		Integer nbD = variablesWithAffectMultiple.get("D");
 
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2"), nbB != null && nbB == 2);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2"), nbC != null && nbC == 2);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2"), nbD != null && nbD == 2);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2"), nbB != null && nbB == 2);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 2"), nbC != null && nbC == 2);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2"), nbD != null && nbD == 2);
 
 		assertCompareTwoXML(resultFilePath+"6_affMultiple.whxml", awaitedFilePath+ "6_affMultiple_Attendu.whxml");
 	}
@@ -243,10 +243,10 @@ public class TableDesSymbolesTest {
 		Integer nbC = variablesWithBoucleWhileTest.get("C");
 		Integer nbD = variablesWithBoucleWhileTest.get("D");
 
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2"), nbB != null && nbB == 2);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 3"), nbC != null && nbC == 3);
-		assertTrue(Utilitaires.printErr("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2"), nbD != null && nbD == 2);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3"), nbA != null && nbA == 3);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2"), nbB != null && nbB == 2);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de C est incorrect. Il est de "+nbC+" au lieu de 3"), nbC != null && nbC == 3);
+		assertTrue(Utilitaire.printErr("Le nombre d'occurence de D est incorrect. Il est de "+nbD+" au lieu de 2"), nbD != null && nbD == 2);
 	}
 
 

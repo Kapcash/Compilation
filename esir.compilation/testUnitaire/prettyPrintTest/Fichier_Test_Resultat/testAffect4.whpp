@@ -1,9 +1,0 @@
-function testAffect4:
-read A
-%
-	X := nil ;
-	Y := A ;
-	Z := symb ;
-	Xa := (cons A B)
-%
-write X

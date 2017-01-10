@@ -14,6 +14,7 @@ import org.junit.rules.ExpectedException;
 import esir.compilation.ErrorException;
 import esir.compilation.generator.Main;
 import utilitaires.Constante;
+import utilitaires.Utilitaire;
 
 public class PrettyPrintTest{
 
@@ -80,7 +81,7 @@ public class PrettyPrintTest{
 		File fileR1Rename = new File(fileR1RenamePath);
 
 		boolean isRename = fileR1.renameTo(fileR1Rename);
-		assertTrue("Le renommage du fichier n'a pas fonctionne", isRename);
+		Utilitaire.assertT("Le renommage du fichier n'a pas fonctionne", isRename);
 		fileR1 = fileR1Rename;
 
 		/*Deuxieme traitement*/
@@ -90,13 +91,11 @@ public class PrettyPrintTest{
 		Main.main(args);
 		fileR2 = new File(fileR2Path);
 
-		assertTrue("Traitement non effectue", (!fileR1.equals(null) && !fileR2.equals(null)));
-		assertTrue("Le double traitement amène des fichiers differents", assertSameFileTest(fileR1.getPath(), fileR2.getPath()));
+		Utilitaire.assertT("Traitement non effectue", (!fileR1.equals(null) && !fileR2.equals(null)));
+		Utilitaire.assertT("Le double traitement amène des fichiers differents", assertSameFileTest(fileR1.getPath(), fileR2.getPath()));
 
 		boolean isDelete1 = fileR1.delete();
-		assertTrue(fileR1.getPath() +" n'a pas ete correctement supprime !", isDelete1);
-		boolean isDelete2 = fileR2.delete();
-		assertTrue(fileR2.getPath() +" n'a pas ete correctement supprime !", isDelete2);
+		Utilitaire.assertT(fileR1.getPath() +" n'a pas ete correctement supprime !", isDelete1);
 	}
 
 	@Test
@@ -211,7 +210,7 @@ public class PrettyPrintTest{
 
 	@Test
 	public void testOptionAll() throws ErrorException{
-		args[2] ="0" ;
+		args[2] ="2" ;
 		testerPrettyPrint("AllIndentationTest");
 	}
 	
@@ -251,7 +250,7 @@ public class PrettyPrintTest{
 		testerPrettyPrint("IfIndentationTest2");
 	}
 	
-	@Test // TODO : Est-ce normal que ça ne marche pas, règle de grammaire si if imbriqué, est qu'on peut mettre un nop avant ou après un if.
+	@Test 
 	public void testOptionIf3() throws ErrorException{
 		args[5] ="2" ;
 		testerPrettyPrint("IfIndentationTest3");
@@ -333,8 +332,8 @@ public class PrettyPrintTest{
 		assertTrue("Les fichiers "+ pathFichierOriginal +"et"+ fichierResultat.getPath() +" sont differents !", 
 				assertSameFileTest(fichierResultat.getPath(), pathFichierAttendu));
 
-//		boolean isDelete = fichierResultat.delete();
-//		assertTrue(fichierResultat.getPath() +" n'a pas ete correctement supprime !", isDelete);
+		boolean isDelete = fichierResultat.delete();
+		Utilitaire.assertT(fichierResultat.getPath() +" n'a pas ete correctement supprime !", isDelete);
 	}
 
 	public boolean assertSameFileTest(String filepath1, String filepath2) {
@@ -361,7 +360,7 @@ public class PrettyPrintTest{
 					&& ((resultRead2 = fIS2.read(buff2)) >= 0)) {
 
 				for (int i = 0 ; i<BUFF_SIZE ; i++){
-					assertTrue("Les deux fichier sont differents", buff1[i] == buff2[i]);
+					Utilitaire.assertT("Les deux fichier sont differents", buff1[i] == buff2[i]);
 				}
 
 				buff1 = new byte[BUFF_SIZE];
@@ -371,7 +370,7 @@ public class PrettyPrintTest{
 			fIS1.close();
 			fIS2.close();
 
-			assertTrue("Les deux fichier n'ont pas la meme taille", ((resultRead1 != -1) || (resultRead2 != -1)));			
+			Utilitaire.assertT("Les deux fichier n'ont pas la meme taille", ((resultRead1 != -1) || (resultRead2 != -1)));			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

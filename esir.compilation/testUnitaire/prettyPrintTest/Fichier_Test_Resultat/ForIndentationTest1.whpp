@@ -1,8 +1,0 @@
-function testFor1:
-read A
-%
-				for Cond do
-					nop
-				od
-%
-write X

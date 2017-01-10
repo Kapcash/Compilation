@@ -1,8 +1,0 @@
-function testCond2:
-read A
-%
-	if (A =? B) then
-		nop
-	fi
-%
-write X

@@ -19,7 +19,7 @@ import sprint2.ThreeAddressCode;
 import sprint2.ThreeAddressCodeException;
 import sprint3.CS_TranslatorException;
 import utilitaires.Constante;
-import utilitaires.Utilitaires;
+import utilitaires.Utilitaire;
 
 public class Code3AdressesTests {
 	
@@ -161,7 +161,7 @@ public class Code3AdressesTests {
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		}
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -211,7 +211,7 @@ public class Code3AdressesTests {
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		}
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -331,7 +331,7 @@ public class Code3AdressesTests {
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		}
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -395,7 +395,7 @@ public class Code3AdressesTests {
 			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), "A", "", "");
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		}
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -470,7 +470,7 @@ public class Code3AdressesTests {
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		}
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -515,7 +515,7 @@ public class Code3AdressesTests {
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		}
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -560,7 +560,7 @@ public class Code3AdressesTests {
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		}
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -630,7 +630,7 @@ public class Code3AdressesTests {
 		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), "A", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 
 	@Test
@@ -690,7 +690,7 @@ public class Code3AdressesTests {
 		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), "A", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 	
 	@Test
@@ -765,7 +765,7 @@ public class Code3AdressesTests {
 		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), "D", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 	
 	@Test
@@ -840,7 +840,7 @@ public class Code3AdressesTests {
 		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), "B", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 	
 	@Test
@@ -975,20 +975,20 @@ public class Code3AdressesTests {
 		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.WRITE, ""), "B", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
-		assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect"), isMatch);
+		Utilitaire.assertT("Le code 3 adresses genere est incorrect", isMatch);
 	}
 	
 	/*Utilitaires*/
 	private void checkIt(ListIterator<QuadImp> quadrupletIt){
 		if(!quadrupletIt.hasNext()){
-			assertTrue(Utilitaires.printErr("Il manque un quadruplet en C3A"), false);
+			Utilitaire.assertT("Il manque un quadruplet en C3A", false);
 			return;
 		}
 	}
 
 	private void checkIt(Iterator<LinkedList<QuadImp>> listeQuadruplets) {
 		if(!listeQuadruplets.hasNext()){
-			assertTrue(Utilitaires.printErr("Il manque une etiquette C3A"), false);
+			Utilitaire.assertT("Il manque une etiquette C3A", false);
 			return;
 		}
 	}
@@ -998,8 +998,8 @@ public class Code3AdressesTests {
 		if (isMatch){
 			return true;
 		}else{
-			assertTrue(Utilitaires.printErr("Le code 3 adresses genere est incorrect :\n"+
-					"\""+originalQuadruplet+"\" au lieu de \""+oracleQuadruplet+"\""), isMatch);
+			Utilitaire.assertT("Le code 3 adresses genere est incorrect :\n"+
+		"\""+originalQuadruplet+"\" au lieu de \""+oracleQuadruplet+"\"", isMatch);
 			return false;
 		}
 	}
@@ -1057,7 +1057,6 @@ public class Code3AdressesTests {
 			}
 		}
 
-		assertTrue(Utilitaires.printErr("Le nombre d'étiquette généré est de "+nbEtiquette+" au lieu de "+nbEtiquetteAttendu),
-				nbEtiquette == nbEtiquetteAttendu);
+		Utilitaire.assertT("Le nombre d'étiquette généré est de "+nbEtiquette+" au lieu de "+nbEtiquetteAttendu, nbEtiquette == nbEtiquetteAttendu);
 	}
 }

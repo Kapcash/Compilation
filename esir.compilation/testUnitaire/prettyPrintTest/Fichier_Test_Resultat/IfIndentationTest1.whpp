@@ -1,8 +1,0 @@
-function testIf1:
-read A
-%
-		if Cond then
-			nop
-		fi
-%
-write X

@@ -1,8 +1,8 @@
 function tEST:
 read ABZ
 %
-		if nil then
+			if nil then
 				nop
-		fi
+			fi
 %
 write ZBA

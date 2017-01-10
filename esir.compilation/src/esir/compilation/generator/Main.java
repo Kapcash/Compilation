@@ -21,15 +21,18 @@ import com.google.inject.Provider;
 
 import esir.compilation.ErrorException;
 import esir.compilation.WhileCompStandaloneSetup;
+import utilitaires.Constante;
 
 public class Main {
+	
+	private static final boolean isDebugMode = false;
 
 	public static void main(String[] args) throws ErrorException {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
 		try{
 			main.runGenerator(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
-		}catch (ErrorException e){System.out.println(e.toString()); throw e;}
+		}catch (ErrorException e){throw e;}
 	}
 
 	@Inject
@@ -89,6 +92,6 @@ public class Main {
 		context.setCancelIndicator(CancelIndicator.NullImpl);
 		generator.doGenerate(resource, fileAccess, context, sortie,idenAll,idenFor,idenWhile,idenIf,idenForeach,idenAff);
 
-		System.out.println("OK");
+		if (isDebugMode){System.out.println("Code Generation finish !");}
 	}
 }

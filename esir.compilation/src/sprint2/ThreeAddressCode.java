@@ -204,7 +204,7 @@ public class ThreeAddressCode {
 		treeLevel--;
 	}
 
-	public void addToExpression(String s, HashMap<String, DefFun> funList) {
+	public void addToExpression(String s, HashMap<String, DefFun> funList) throws ThreeAddressCodeException {
 		if (tree == null) {
 			tree = new ExprTree("root", funList, 1);
 			addLevel();
@@ -326,7 +326,9 @@ public class ThreeAddressCode {
 
 		}
 
-		public void add(String s, HashMap<String, DefFun> funList, int level) {
+		public void add(String s, HashMap<String, DefFun> funList, int level) throws ThreeAddressCodeException {
+			try{
+			
 			if (level == this.level) {
 				children[index] = new ExprTree(s, funList, level,this);
 				index++;
@@ -339,6 +341,9 @@ public class ThreeAddressCode {
 					children[index].add(s, funList, level);
 				}
 
+			}
+			}catch (Exception e) {
+				throw new ThreeAddressCodeException("Impossible to add : " + s);
 			}
 		}
 

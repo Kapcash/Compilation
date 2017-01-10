@@ -329,7 +329,7 @@ public class GeneratorAddr {
 	}
 
 	// Expr
-	private void iterateAST(Expr exp, DefFun f) throws SymTableException {
+	private void iterateAST(Expr exp, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		// System.out.print("{");
 		/*
 		 * 
@@ -346,7 +346,7 @@ public class GeneratorAddr {
 
 	// ExprSimple
 	// @see WhileComp.xtext ExprSimple
-	private void iterateAST(ExprSimple ex, DefFun f) throws SymTableException {
+	private void iterateAST(ExprSimple ex, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		String val = ex.getValeur();
 		String operator = ex.getOpe();
 		Expr exp = ex.getExpr();
@@ -419,7 +419,7 @@ public class GeneratorAddr {
 	}
 
 	// Lexpr (Recursive)
-	private void iterateAST(Lexpr lexp, DefFun f) throws SymTableException {
+	private void iterateAST(Lexpr lexp, DefFun f) throws SymTableException, ThreeAddressCodeException {
 		Expr exp = lexp.getExpr();
 		Lexpr exprs = lexp.getLexpr();
 		if (exp != null) { 

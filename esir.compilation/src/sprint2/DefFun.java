@@ -6,11 +6,11 @@ import java.util.HashSet;
 import esir.compilation.whileComp.Lexpr;
 
 public class DefFun{
-	int in, out;
+	private int in, out;
 	String funName;
 	HashMap<String,Integer> vars;
 	HashMap<String,Lexpr> calls;
-	HashSet<String> tempVars; //Alexy
+	HashSet<String> tempVars;
 
 	public DefFun(String functionName){
 		funName = functionName;
@@ -72,7 +72,8 @@ public class DefFun{
 		return out;
 	}
 
-	public void setOut(int out) {
+	public void setOut(int out) throws SymTableException {
+		if(out<=0){throw new SymTableException("A function can't have no return!");}
 		this.out = out;
 	}
 

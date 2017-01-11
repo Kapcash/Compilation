@@ -51,10 +51,11 @@ import utilitaires.Constante;
 public class GeneratorAddr {
 
 	// SETTINGS
-	public static boolean DISPLAY_SYM_TABLE = true;
+	public static boolean DISPLAY_SYM_TABLE = false;
+	public static boolean DISPLAY_XML_TABLE = false;
 	public static boolean DISPLAY_THREE_ADDR_CODE = false;
-	public static boolean DISPLAY_TRANSLATION = true;
-	public static boolean PRINT_TRANSLATION = false;
+	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
 	private static final String INPUT_FILE = "../exemples/fib.wh";
@@ -62,7 +63,6 @@ public class GeneratorAddr {
 	private static final String OUTPUT_XML_FILE = "";
 
 	private static final boolean isDebugMode = Constante.DEBUG_TRACE;
-
 
 	private static GeneratorAddr instance;
 
@@ -194,8 +194,16 @@ public class GeneratorAddr {
 				throw new SymTableException("Function '" + fName + "' already declared!");
 			} else {
 				DefFun defFun = new DefFun(fName);
-				defFun.setIn(def.getRead().getVariable().size()); 	//Set nb input
-				defFun.setOut(def.getWrite().getVariable().size()); //Set nb output
+				if(hasDuplicates(def.getRead().getVariable())){
+					throw new SymTableException("Function '" + defFun.getFunName() + "' contains duplicates variables in Read statement!");
+				}else {
+					defFun.setIn(def.getRead().getVariable().size()); 	//Set nb input
+				}
+				if(hasDuplicates(def.getWrite().getVariable())){
+					throw new SymTableException("Function '" + defFun.getFunName() + "' contains duplicates variables in Write statement!");
+				}else {
+					defFun.setOut(def.getWrite().getVariable().size()); //Set nb output
+				}
 				funList.put(fName, defFun); // Adding a new blank function
 			}
 		}
@@ -216,11 +224,9 @@ public class GeneratorAddr {
 		System.out.println(fName);
 		code3Addresses.nouvelleEtiquette();
 
-		DefFun def = new DefFun(fName);
-		funList.put(fName, def); // Adding a new blank function
 		// (DefFun)
 		code3Addresses.fun(fName);
-		iterateAST(f.getDefinition(), def);
+		iterateAST(f.getDefinition(), funList.get(fName));
 		code3Addresses.finEtiquette();
 	}
 
@@ -237,11 +243,8 @@ public class GeneratorAddr {
 	// Read
 	public void iterateAST(Read read, DefFun f) throws SymTableException {
 		EList<String> varsR = read.getVariable();
-		if(hasDuplicates(varsR)){
-			throw new SymTableException("Function '" + f.getFunName() + "' contains duplicates variables in Read statement!");
-		}
 
-		f.setIn(varsR.size()); //Get inputs
+		
 		for (String v : varsR) {
 			f.updateVar(v); //Add the var to the SymTable
 			// New 3@ <READ, v, , >
@@ -252,11 +255,6 @@ public class GeneratorAddr {
 	// Write
 	private void iterateAST(Write write, DefFun f) throws SymTableException {
 		EList<String> varsW = write.getVariable();
-		if(hasDuplicates(varsW)){
-			throw new SymTableException("Function '" + f.getFunName() + "' contains duplicates variables in Write statement!");
-		}
-
-		f.setOut(varsW.size()); //Get outputs
 		for (String v : varsW) {
 			//varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
 			code3Addresses.write(v);	//New 3@ <WRITE, v, , >
@@ -613,10 +611,10 @@ public class GeneratorAddr {
 		EList<Expr> vals = aff.getValeurs();			// Right side
 		int nbIn = affs.size();
 		int nbOut = 0;
-		for(Expr val : vals){
+		for(Expr val : vals){ //All EXPR in right side
 			ExprSimple simp = val.getExprsimple();
-			if(simp.getCall() != null){
-				nbOut += funList.get(simp.getCall()).getOut();
+			if(simp.getCall() != null){ //If it is a calling function
+				nbOut += funList.get(simp.getCall()).getOut(); //Getting output nb
 			}
 			else{
 				nbOut++;
@@ -729,7 +727,9 @@ public class GeneratorAddr {
 			System.out.println(f + " : " + funList.get(f) + "\n");
 		}
 		System.out.println("Symboles Table correctly generated.");
-		System.out.println("\n" + writeSymTableXML(OUTPUT_XML_FILE));
+		if(DISPLAY_XML_TABLE){
+			System.out.println("\n" + writeSymTableXML(OUTPUT_XML_FILE));
+		}
 	}
 	
 	/**

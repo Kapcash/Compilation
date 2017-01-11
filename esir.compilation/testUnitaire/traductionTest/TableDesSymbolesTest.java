@@ -317,13 +317,13 @@ public class TableDesSymbolesTest {
 	public void checkAffectationsMethodTest1(){
 		args[0] = origineFilePath+"12_affCall2.wh";
 		args[1] = resultFilePath+"12_affCall2.cs";
-		
+		boolean exception = false;
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		try{
 			tds.launchGeneration(args);
-			Utilitaire.assertT(true); //Si aucune exception -> test OK
+			Utilitaire.assertT(!exception); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){exception = true;System.err.println(e.getMessage());}
 		}
 	}
 	
@@ -331,32 +331,28 @@ public class TableDesSymbolesTest {
 	public void checkAffectationsMethodTest2(){
 		args[0] = origineFilePath+"13_affCall.wh";
 		args[1] = resultFilePath+"13_affCall.cs";
-		
+		boolean exception = false;
 		GeneratorAddr tds = GeneratorAddr.getInstance();
 		try{
 			tds.launchGeneration(args);
-			Utilitaire.assertT(true); //Si aucune exception -> test OK
+			Utilitaire.assertT(!exception); //Si aucune exception -> test OK
 		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
+			if(Constante.DEBUG_TRACE){ exception = true; System.err.println(e.getMessage());}
 		}
 	}
 
+
+	//BAD TESTS
+	
 	@Test
-	public void checkAffectationsMethodTestTooMuchLeft(){
+	public void checkAffectationsMethodTestTooMuchLeft() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{
+		thrown.expect(SymTableException.class);
 		args[0] = origineFilePath+"14_affCallTooMuchLeft.wh";
 		args[1] = resultFilePath+"14_affCallTooMuchLeft.cs";
 		
 		GeneratorAddr tds = GeneratorAddr.getInstance();
-		try{
-			tds.launchGeneration(args);
-			Utilitaire.assertT(true); //Si aucune exception -> test OK
-		}catch(SymTableException | ThreeAddressCodeException | CS_TranslatorException e){
-			if(Constante.DEBUG_TRACE){System.err.println(e.getMessage());}
-		}
+		tds.launchGeneration(args);
 	}
-
-	//BAD TESTS
-	
 
 	@Test
 	public void BADcheckAffectationMethodTest2() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{

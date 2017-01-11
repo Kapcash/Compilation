@@ -1,6 +1,11 @@
-function isZero : read X % if X then B := (cons nil nil) else B := nil fi % write B
+function incr : read X % X := (cons nil X) % write X
 
 function isNotZero : read X % if X then B := nil else B := (cons nil nil) fi % write B
 
-function isZeroBis : read X % if ((isZero X) and (isNotZero X)) then B := (cons nil (cons nil (cons nil nil))) else B := nil fi % write B
+function decr : read X % X := (tl X) % write X
 
+function subs : read X, Y % D := X ; for Y do D := (decr D) od % write D
+
+function div : read X, Y % Q, R := nil, X ; NextR := (subs R Y) ; while (isNotZero NextR) do Q, R := (incr Q), NextR od % write Q, R
+
+function gcd : read X, Y % Q, R := (div X Y) ; if (isNotZero R) then nop else GCD := Y fi % write GCD

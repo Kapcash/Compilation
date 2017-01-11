@@ -14,7 +14,7 @@ public class ThreeAddressCode {
 	private HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String, LinkedList<QuadImp>>();
 	private ExprTree tree = null;
 	private int treeLevel = 0;
-	private static final boolean DISPLAY_EXPR_TREE = true;
+	private static final boolean DISPLAY_EXPR_TREE = false;
 
 	private Stack<LinkedList<QuadImp>> stack = new Stack<LinkedList<QuadImp>>();
 
@@ -387,7 +387,7 @@ public class ThreeAddressCode {
 						threeAddressCode.list(varName);
 					} else if (generatorAddr.getFunList().containsKey(tree.getHead())) {
 						threeAddressCode.call(tree.getHead());
-						int out = generatorAddr.getFunList().get(tree.getHead()).out;
+						int out = generatorAddr.getFunList().get(tree.getHead()).getOut();
 						String[] vars = new String[out];
 						for (int i = 0; i < out; i++) {
 							generatorAddr.varDeclaration3Addr(f, varName);

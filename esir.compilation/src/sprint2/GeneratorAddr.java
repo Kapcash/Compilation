@@ -221,7 +221,6 @@ public class GeneratorAddr {
 	// Function
 	private void iterateAST(Function f) throws SymTableException, ThreeAddressCodeException {
 		String fName = f.getFunction();
-		System.out.println(fName);
 		code3Addresses.nouvelleEtiquette();
 
 		// (DefFun)

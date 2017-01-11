@@ -95,8 +95,9 @@ int main(int argc, char *argv[]) {
 
 	std::string cmdLine = "java -jar whc.jar " + arg_fileSrc;
 	cmdLine += " " + arg_fileDest;
-	std::string compileLine = "csc /t:exe /out:"+arg_fileExeDest+" BinTree.cs "+arg_fileDest;
+	std::string compileLine = "csc /t:exe /out:"+arg_fileExeDest+" \".\\BinTreeProject\\BinTreeProject\\BinTree.cs\" "+arg_fileDest;
 
+	std::cout << "Compiling the WH program into C# : " << cmdLine.c_str() << std::endl;
 	int status = system(cmdLine.c_str()); //Compiling .wh -> .cs
 	std::cout << "Compiling the C# program : " << compileLine.c_str() << std::endl;
 	system(compileLine.c_str()); //Compiling .cs -> .exe

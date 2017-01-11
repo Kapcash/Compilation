@@ -199,27 +199,27 @@ public class CS_Translator {
 		rightShift();
 		Iterator<String> iteReads = reads.iterator();
 		int incrementArgs = 0;
-		write("Queue<BinTree> input = new Queue<BinTree>();");
-		write("Queue<BinTree> output = new Queue<BinTree>();");
+		write("Queue<BinTree> inParams = new Queue<BinTree>();");
+		write("Queue<BinTree> outParams = new Queue<BinTree>();");
 		while (iteReads.hasNext()) {
 			String it = iteReads.next();
 			write("if(args.Length > "+incrementArgs+"){");
 			rightShift();
 			write("BinTree " + it + " = BinTree.convertStrToBinTree(args["+incrementArgs+"]);");
-			write("input.Enqueue(" + it + ");");
+			write("inParams.Enqueue(" + it + ");");
 			leftShift();
 			write("}");
 			write("else{");
 			rightShift();
 			write("BinTree " + it + " = new BinTree(\""+it+"\", null, null);");
-			write("input.Enqueue(" + it + ");");
+			write("inParams.Enqueue(" + it + ");");
 			leftShift();
 			write("}");
 			incrementArgs++;
 		}
-		write(nameMainFonction + "(input, output);");
+		write(nameMainFonction + "(inParams, outParams);");
 		for (int i = 0; i < nbWrites; i++) {
-			write("Console.WriteLine(output.Dequeue().DisplayTree());");
+			write("Console.WriteLine(outParams.Dequeue().DisplayTree());");
 		}
 		
 		

@@ -10,6 +10,139 @@ namespace BinTreeProject
 		static BinTree nil = new BinTree("nil", null, null);
 		
 
+		private static void fib(Queue<BinTree> input, Queue<BinTree> output)
+		{
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
+			//Here the var used in the while code
+			BinTree F = new BinTree ("F", null, null);
+			BinTree X = new BinTree ("X", null, null);
+			
+			//Here the temp var used by the compiler
+			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree Y1 = new BinTree ("Y1", null, null);
+			BinTree X0 = new BinTree ("X0", null, null);
+			BinTree Y2 = new BinTree ("Y2", null, null);
+			BinTree Y3 = new BinTree ("Y3", null, null);
+			BinTree Y4 = new BinTree ("Y4", null, null);
+			
+			X = input.Dequeue();
+			inParams.Enqueue(X);
+			isZero(inParams,outParams);
+			Y0 = outParams.Dequeue();
+			inParams.Enqueue(X);
+			isOne(inParams,outParams);
+			Y1 = outParams.Dequeue();
+			Y2 = BinTree.evaluate("OR",Y0,Y1);
+			if(BinTree.isTrue(Y2))
+			{
+				inParams.Enqueue(nil);
+				inParams.Enqueue(nil);
+				Y0 = (BinTree.cons(inParams));
+				X0 = Y0;
+				F = X0;
+			}else{
+				fib(inParams,outParams);
+				Y0 = outParams.Dequeue();
+				inParams.Enqueue(X);
+				decr(inParams,outParams);
+				Y1 = outParams.Dequeue();
+				inParams.Enqueue(Y0);
+				fib(inParams,outParams);
+				Y2 = outParams.Dequeue();
+				inParams.Enqueue(Y1);
+				decr(inParams,outParams);
+				Y3 = outParams.Dequeue();
+				inParams.Enqueue(Y2);
+				inParams.Enqueue(Y3);
+				add(inParams,outParams);
+				Y4 = outParams.Dequeue();
+				X0 = Y4;
+				F = X0;
+			}
+			output.Enqueue(F);
+		}
+
+		private static void isZero(Queue<BinTree> input, Queue<BinTree> output)
+		{
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
+			//Here the var used in the while code
+			BinTree B = new BinTree ("B", null, null);
+			BinTree X = new BinTree ("X", null, null);
+			
+			//Here the temp var used by the compiler
+			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree X0 = new BinTree ("X0", null, null);
+			
+			X = input.Dequeue();
+			inParams.Enqueue(X);
+			if(BinTree.isTrue(X))
+			{
+				inParams.Enqueue(nil);
+				inParams.Enqueue(nil);
+				Y0 = (BinTree.cons(inParams));
+				X0 = Y0;
+				B = X0;
+			}else{
+				inParams.Enqueue(nil);
+				X0 = Y0;
+				B = X0;
+			}
+			output.Enqueue(B);
+		}
+
+		private static void isOne(Queue<BinTree> input, Queue<BinTree> output)
+		{
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
+			//Here the var used in the while code
+			BinTree B = new BinTree ("B", null, null);
+			BinTree X = new BinTree ("X", null, null);
+			
+			//Here the temp var used by the compiler
+			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree Y1 = new BinTree ("Y1", null, null);
+			BinTree X0 = new BinTree ("X0", null, null);
+			
+			X = input.Dequeue();
+			inParams.Enqueue(nil);
+			inParams.Enqueue(nil);
+			Y0 = (BinTree.cons(inParams));
+			Y1 = BinTree.evaluate("EQ",X,Y0);
+			if(BinTree.isTrue(Y1))
+			{
+				inParams.Enqueue(nil);
+				inParams.Enqueue(nil);
+				Y0 = (BinTree.cons(inParams));
+				X0 = Y0;
+				B = X0;
+			}else{
+				inParams.Enqueue(nil);
+				X0 = Y0;
+				B = X0;
+			}
+			output.Enqueue(B);
+		}
+
+		private static void decr(Queue<BinTree> input, Queue<BinTree> output)
+		{
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
+			//Here the var used in the while code
+			BinTree X = new BinTree ("X", null, null);
+			
+			//Here the temp var used by the compiler
+			BinTree Y0 = new BinTree ("Y0", null, null);
+			BinTree X0 = new BinTree ("X0", null, null);
+			
+			X = input.Dequeue();
+			Y0 = BinTree.tail(X);
+			X0 = Y0;
+			X = X0;
+			output.Enqueue(X);
+		}
+
 		private static void add(Queue<BinTree> input, Queue<BinTree> output)
 		{
 			Queue<BinTree> inParams = new Queue<BinTree>();
@@ -63,26 +196,18 @@ namespace BinTreeProject
 		}
 		static void Main(string[] args)
 		{
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
 			if(args.Length > 0){
 				BinTree X = BinTree.convertStrToBinTree(args[0]);
-				input.Enqueue(X);
+				inParams.Enqueue(X);
 			}
 			else{
 				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
+				inParams.Enqueue(X);
 			}
-			if(args.Length > 1){
-				BinTree Y = BinTree.convertStrToBinTree(args[1]);
-				input.Enqueue(Y);
-			}
-			else{
-				BinTree Y = new BinTree("Y", null, null);
-				input.Enqueue(Y);
-			}
-			add(input, output);
-			Console.WriteLine(output.Dequeue().DisplayTree());
+			fib(inParams, outParams);
+			Console.WriteLine(outParams.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}
 	}

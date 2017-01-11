@@ -52,9 +52,9 @@ public class GeneratorAddr {
 
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
-	public static boolean DISPLAY_THREE_ADDR_CODE = false;
-	public static boolean DISPLAY_TRANSLATION = false;
-	public static boolean PRINT_TRANSLATION = true;
+	public static boolean DISPLAY_THREE_ADDR_CODE = true;
+	public static boolean DISPLAY_TRANSLATION = true;
+	public static boolean PRINT_TRANSLATION = false;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
 	private static final String INPUT_FILE = "../fib.wh";
@@ -213,7 +213,7 @@ public class GeneratorAddr {
 	// Function
 	private void iterateAST(Function f) throws SymTableException, ThreeAddressCodeException {
 		String fName = f.getFunction();
-		//System.out.println(fName);
+		System.out.println(fName);
 		code3Addresses.nouvelleEtiquette();
 
 		DefFun def = new DefFun(fName);
@@ -542,7 +542,7 @@ public class GeneratorAddr {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(ifCmd.getExpr(), f);
-//		List<String> list = code3Addresses.inlineExpression(this, f);
+		List<String> list = code3Addresses.inlineExpression(this, f);
 		code3Addresses.finEtiquette();
 
 		// Then

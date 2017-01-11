@@ -14,8 +14,7 @@ public class ThreeAddressCode {
 	private HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String, LinkedList<QuadImp>>();
 	private ExprTree tree = null;
 	private int treeLevel = 0;
-	private static boolean incr = true;
-	private static final boolean DISPLAY_EXPR_TREE = false;
+	private static final boolean DISPLAY_EXPR_TREE = true;
 
 	private Stack<LinkedList<QuadImp>> stack = new Stack<LinkedList<QuadImp>>();
 
@@ -173,22 +172,19 @@ public class ThreeAddressCode {
 	}
 
 	public void subLevel() {
-		//tree.incIndex(treeLevel);
+		tree.incIndex(treeLevel);
 		treeLevel--;
 	}
 
-	public void addToExpression(String s, HashMap<String, DefFun> funList) throws ThreeAddressCodeException {
+	public void addToExpression(String s, HashMap<String, DefFun> funList)throws ThreeAddressCodeException {
 		if (tree == null) {
 			tree = new ExprTree("root", funList, 1);
-			addLevel();
+			treeLevel++;
 			tree.add(s, funList, treeLevel);
-			tree.isFull();
-			//			tree = new ExprTree(s, funList, 1);
+			//tree = new ExprTree(s, funList, 1);
 		} else {
 			tree.add(s, funList, treeLevel);
-			tree.isFull();
 		}
-		incr = true;
 		if(DISPLAY_EXPR_TREE){
 			System.out.println(tree);
 		}
@@ -298,28 +294,7 @@ public class ThreeAddressCode {
 			this.parent= parent;
 		}
 
-		public void isFull(){
-			full = true;
-			for (int i =0 ;i < children.length ; i++){
-				if(children[i] == null){
-					full = false;
-				}else{
-					children[i].isFull();
-					if(!children[i].full){
-						full = false;
-					}
-				}
-			}
-			if(head.equals("root")){
-				full = false;
-			}
-			if(full && !parent.head.equals("root")&& incr){
-				if(parent.children.length - 1 != parent.index){
-					parent.index++;
-					incr = false;
-				}
-			}
-		}
+		
 
 		public void incIndex(int treeLevel) {
 			if (this.children.length >= this.index)
@@ -338,16 +313,36 @@ public class ThreeAddressCode {
 		public void add(String s, HashMap<String, DefFun> funList, int level) throws ThreeAddressCodeException {
 			try{
 
-				if (level == this.level) {
+				if (level == this.level && !full) {
 					children[index] = new ExprTree(s, funList, level,this);
+					if(index == children.length-1){
+						full = true;
+					}
 					index++;
 				} else {
 					if (children[index] == null) {
 						children[index] = new ExprTree(s, funList, level,this);
+						if(index == children.length-1 && children[index].full){
+							full = true;
+						}
+						if (children[index].full){
+							index++;
+						}
+							
 					} else {
-						children[index].add(s, funList, level);
+						if(children[index].full){
+							index++;
+							children[index] = new ExprTree(s, funList, level);
+							if(index == children.length-1 && children[index].full){
+								full = true;
+							}
+							if (children[index].full){
+								index++;
+							}
+						}else{
+							children[index].add(s, funList, level);
+						}
 					}
-
 				}
 			}catch (Exception e) {
 				e.printStackTrace();

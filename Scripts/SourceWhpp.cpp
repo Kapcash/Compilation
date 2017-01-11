@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string.h>
 
+//Compiling command : g++ -std=c++11 [source.cpp] -o [dest.exe]
+
 void manual() {
 	printf("\n");
 	printf("========== NAME\n");
@@ -24,6 +26,8 @@ void manual() {
 	printf("\n");
 	printf("-o file\n");
 	printf("file : nom du fichier de sortie, par defaut (sth.whpp)\n\n");
+	printf("-test\n");
+	printf("\n");
 	printf("-all x\n");
 	printf("x : valeur par defaut de l'indentation, par defaut (x=1)\n\n");
 	printf("-for x\n");
@@ -65,6 +69,7 @@ int main(int argc, char *argv[]) {
 				debug = 0;
 	std::string	arg_fileSrc,
 				arg_fileDest = "sth.whpp";
+	bool test = false;
 
 	if (strcmp("--help", argv[1]) == 0) {
 		manual();
@@ -72,50 +77,62 @@ int main(int argc, char *argv[]) {
 	}
 
 	arg_fileSrc = argv[1];
+	std::string testLine = "\"java -cp .;\\whpp_lib\\junit.jar;whpp.jar org.junit.runner.JUnitCore prettyPrintTest.PrettyPrintTest\"";
 
 	int i = 0;
-	for (i = 2; i<argc; i = i + 2) {
+	for (i = 2; i<argc; i++) {
 
 		if (strcmp("-all", argv[i]) == 0) {
 			arg_all = atoi(argv[i + 1]);
+			i++;
 			continue;
 		}
 
 		if (strcmp("-for", argv[i]) == 0) {
 			arg_for = atoi(argv[i + 1]);
+			i++;
 			continue;
 		}
 
 		if (strcmp("-while", argv[i]) == 0) {
 			arg_while = atoi(argv[i + 1]);
+			i++;
 			continue;
 		}
 
 		if (strcmp("-if", argv[i]) == 0) {
 			arg_if = atoi(argv[i + 1]);
+			i++;
 			continue;
 		}
 
 		if (strcmp("-foreach", argv[i]) == 0) {
 			arg_foreach = atoi(argv[i + 1]);
+			i++;
 			continue;
 		}
 
 		if (strcmp("-aff", argv[i]) == 0) {
 			arg_aff = atoi(argv[i + 1]);
+			i++;
 			continue;
 		}
 
 		if (strcmp("-o", argv[i]) == 0) {
 			arg_fileDest = argv[i + 1];
+			i++;
 			continue;
 		}
 
 		if (strcmp("-debug", argv[i]) == 0) {
 			debug = atoi(argv[i + 1]);
+			i++;
 			continue;
 		}
-
+		if (strcmp("-test", argv[i]) == 0) {
+			test = true;
+			continue;
+		}
 	}
 
 	std::string cmdLine = "java -jar whpp.jar " + arg_fileSrc;
@@ -136,6 +153,12 @@ int main(int argc, char *argv[]) {
 		std::cout << "FOREACH : " << arg_all << std::endl;
 		std::cout << "AFF : " << arg_all << std::endl;
 		std::cout << std::endl;
+	}
+
+	if(test){
+		std::cout << "Running pretty print tests."<< std::endl;
+		int statusTest = system(testLine.c_str());
+		return statusTest;
 	}
 	
 	int status = system(cmdLine.c_str());

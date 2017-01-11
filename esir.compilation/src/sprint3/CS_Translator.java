@@ -419,7 +419,11 @@ public class CS_Translator {
 	public String toString() {
 		return stb.toString();
 	}
-
+	
+	// ----------------------- //
+	// ---- PRIVATE CLASS ---- //
+	// ----------------------- //
+	
 	private class CS_Function {
 		private String name;
 		private String params;

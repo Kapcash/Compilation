@@ -51,13 +51,13 @@ import utilitaires.Constante;
 public class GeneratorAddr {
 
 	// SETTINGS
-	public static boolean DISPLAY_SYM_TABLE = false;
-	public static boolean DISPLAY_THREE_ADDR_CODE = true;
+	public static boolean DISPLAY_SYM_TABLE = true;
+	public static boolean DISPLAY_THREE_ADDR_CODE = false;
 	public static boolean DISPLAY_TRANSLATION = true;
 	public static boolean PRINT_TRANSLATION = false;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../fib.wh";
+	private static final String INPUT_FILE = "../exemples/fib.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
 	private static final String OUTPUT_XML_FILE = "";
 

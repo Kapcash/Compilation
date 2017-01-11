@@ -4,6 +4,8 @@
 #include <string.h>
 #include <list>
 
+//Compiling command : g++ -std=c++11 [source.cpp] -o [dest.exe]
+
 void manual() {
 	printf("\n");
 	printf("========== NAME\n");

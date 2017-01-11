@@ -61,8 +61,7 @@ int main(int argc, char *argv[]) {
 		mainArgs.push_back(argv[i]);
 	}
 
-	std::string executeLine = "\""+arg_fileSrc;
-	executeLine = "\"C:/Users/Florent/Dropbox/Cours/ESIR/2A/Comp/outWHC.exe\"";
+	std::string executeLine = "\""+arg_fileSrc+"\"";
 	
 	for(std::list<std::string>::iterator itr = mainArgs.begin(); itr != mainArgs.end(); itr++){
 		executeLine += " \"" + *itr+"\"";

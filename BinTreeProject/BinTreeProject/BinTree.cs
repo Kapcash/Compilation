@@ -193,45 +193,70 @@ namespace BinTreeProject
          * The string must be writen a particular way : 
          * It can contains "(cons X Y)", "(list X Y)" or "(nil)" 
          * where X and Y are arguments in the same form.
+         * or with an integer, precising the size of the tree.
          * /!\ This converter doesn't work for more than 3 parameters commands (cons nil nil nil) for example /!\ 
          */
         public static BinTree convertStrToBinTree(string str)
         {
             BinTree ret = new BinTree("nil",null,null);
-            int i = 0;
-            if(str[i] == '(') //CONS OR LIST
+
+            int nb;
+            //If param is a integer
+            if (Int32.TryParse(str, out nb))
             {
-                if (str.Substring(i + 1, 3).Equals("nil"))
+                ret = convertIntToBinTree(nb);
+            } //Else, parsing manually the string
+            else
+            {
+                int i = 0;
+                if (str[i] == '(') //CONS OR LIST
                 {
-                    return ret; //Return BinTree("nil",null,null)
-                } else if(str.Substring(i + 1, 4).Equals("cons") || str.Substring(i + 1, 4).Equals("list"))
-                {
-                    string cmd = str.Substring(i + 1, 4);
-
-                    i += getNextOpeningParenthesis(str, i+5); //i+5 = char juste après "cons", recup place prochaine '('
-                    int closing = getIndexClosingParenthesis(str, i); //recup ')' associee
-                    BinTree arg1 = convertStrToBinTree(str.Substring((i), closing - i)); //string contenant tout le premier param du cons
-                    int nextOpening = getNextOpeningParenthesis(str,closing); //recup '(' suivant la ')' du premier param -> ouverture second param
-                    BinTree arg2 = convertStrToBinTree(str.Substring(nextOpening, getIndexClosingParenthesis(str, nextOpening) - (nextOpening))); //string contenant tout le second param
-                    Queue<BinTree> queue = new Queue<BinTree>();
-                    queue.Enqueue(arg1); queue.Enqueue(arg2);
-
-                    if (cmd.Equals("cons")) //CONS
+                    if (str.Substring(i + 1, 3).Equals("nil"))
                     {
-                        ret = cons(queue); //creation du BinTree avec les deux param (cons)
-                    } else if (cmd.Equals("list")) //LIST
+                        return ret; //Return BinTree("nil",null,null)
+                    }
+                    else if (str.Substring(i + 1, 4).Equals("cons") || str.Substring(i + 1, 4).Equals("list"))
                     {
-                        ret = list(queue); // creation du BinTree avec les deux param (list)
-                    } else
+                        string cmd = str.Substring(i + 1, 4);
+
+                        i += getNextOpeningParenthesis(str, i + 5); //i+5 = char juste après "cons", recup place prochaine '('
+                        int closing = getIndexClosingParenthesis(str, i); //recup ')' associee
+                        BinTree arg1 = convertStrToBinTree(str.Substring((i), closing - i)); //string contenant tout le premier param du cons
+                        int nextOpening = getNextOpeningParenthesis(str, closing); //recup '(' suivant la ')' du premier param -> ouverture second param
+                        BinTree arg2 = convertStrToBinTree(str.Substring(nextOpening, getIndexClosingParenthesis(str, nextOpening) - (nextOpening))); //string contenant tout le second param
+                        Queue<BinTree> queue = new Queue<BinTree>();
+                        queue.Enqueue(arg1); queue.Enqueue(arg2);
+
+                        if (cmd.Equals("cons")) //CONS
+                        {
+                            ret = cons(queue); //creation du BinTree avec les deux param (cons)
+                        }
+                        else if (cmd.Equals("list")) //LIST
+                        {
+                            ret = list(queue); // creation du BinTree avec les deux param (list)
+                        }
+                        else
+                        {
+                            throw new Exception("Parsing de la chaine impossible !");
+                        }
+                    }
+                    else
                     {
                         throw new Exception("Parsing de la chaine impossible !");
                     }
-                } else
-                {
-                    throw new Exception("Parsing de la chaine impossible !");
                 }
             }
             return ret;
+        }
+
+        private static BinTree convertIntToBinTree(int nb)
+        {
+            Queue<BinTree> paramList = new Queue<BinTree>();
+            for(int i=0;i< nb; i++)
+            {
+                paramList.Enqueue(new BinTree("nil",null, null));
+            }
+            return list(paramList);
         }
 
         /**

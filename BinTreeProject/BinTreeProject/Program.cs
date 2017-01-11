@@ -24,6 +24,7 @@ namespace BinTreeProject
 			BinTree X0 = new BinTree ("X0", null, null);
 			BinTree Y2 = new BinTree ("Y2", null, null);
 			BinTree Y3 = new BinTree ("Y3", null, null);
+			BinTree Y4 = new BinTree ("Y4", null, null);
 			
 			X = input.Dequeue();
 			inParams.Enqueue(X);
@@ -41,17 +42,22 @@ namespace BinTreeProject
 				X0 = Y0;
 				F = X0;
 			}else{
-				inParams.Enqueue(X);
-				decr(inParams,outParams);
+				fib(inParams,outParams);
 				Y0 = outParams.Dequeue();
 				inParams.Enqueue(X);
 				decr(inParams,outParams);
 				Y1 = outParams.Dequeue();
 				inParams.Enqueue(Y0);
 				fib(inParams,outParams);
-				add(inParams,outParams);
+				Y2 = outParams.Dequeue();
+				inParams.Enqueue(Y1);
+				decr(inParams,outParams);
 				Y3 = outParams.Dequeue();
-				X0 = Y3;
+				inParams.Enqueue(Y2);
+				inParams.Enqueue(Y3);
+				add(inParams,outParams);
+				Y4 = outParams.Dequeue();
+				X0 = Y4;
 				F = X0;
 			}
 			output.Enqueue(F);
@@ -190,18 +196,18 @@ namespace BinTreeProject
 		}
 		static void Main(string[] args)
 		{
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
 			if(args.Length > 0){
 				BinTree X = BinTree.convertStrToBinTree(args[0]);
-				input.Enqueue(X);
+				inParams.Enqueue(X);
 			}
 			else{
 				BinTree X = new BinTree("X", null, null);
-				input.Enqueue(X);
+				inParams.Enqueue(X);
 			}
-			fib(input, output);
-			Console.WriteLine(output.Dequeue().DisplayTree());
+			fib(inParams, outParams);
+			Console.WriteLine(outParams.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}
 	}

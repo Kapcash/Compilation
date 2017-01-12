@@ -200,10 +200,11 @@ namespace BinTreeProject
         {
             BinTree ret = new BinTree("nil",null,null);
 
-            int nb;
+            int nb=0;
             //If param is a integer
             if (Int32.TryParse(str, out nb))
             {
+                Console.WriteLine("IT IS A NUMBER");
                 ret = convertIntToBinTree(nb);
             } //Else, parsing manually the string
             else
@@ -252,11 +253,24 @@ namespace BinTreeProject
         private static BinTree convertIntToBinTree(int nb)
         {
             Queue<BinTree> paramList = new Queue<BinTree>();
-            for(int i=0;i< nb; i++)
+            BinTree ret = null;
+            if (nb == 0)
             {
-                paramList.Enqueue(new BinTree("nil",null, null));
+                ret = new BinTree("nil", null, null);
+            } else
+            {
+                BinTree tmp = new BinTree("nil", null, null);
+                for(int i=0;i< nb; i++)
+                {
+                    BinTree nil = new BinTree("nil", null, null);
+                    BinTree cons = new BinTree("cons", nil, tmp);
+                    tmp = cons;
+                    //paramList.Enqueue(new BinTree("nil",null, null));
+                }
+                //ret = list(paramList);
+                ret = tmp;
             }
-            return list(paramList);
+            return ret;
         }
 
         /**

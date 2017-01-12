@@ -27,7 +27,8 @@ namespace BinTreeProject
 			BinTree Y4 = new BinTree ("Y4", null, null);
 			
 			X = input.Dequeue();
-			inParams.Enqueue(X);
+            Console.WriteLine("Input 0 :" + X.DisplayTree());
+            inParams.Enqueue(X);
 			isZero(inParams,outParams);
 			Y0 = outParams.Dequeue();
 			inParams.Enqueue(X);

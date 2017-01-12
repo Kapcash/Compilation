@@ -1,6 +1,6 @@
-function isZero : read X % if X then B := (cons nil nil) else B := nil fi % write B
+function isNotZero : read X % if X then B := (cons nil nil) else B := nil fi % write B
 
-function isNotZero : read X % if X then B := nil else B := (cons nil nil) fi % write B
+function isZero : read X % if X then B := nil else B := (cons nil nil) fi % write B
 
 function isOne : read X % if (X =? (cons nil nil)) then B := (cons nil nil) else B := nil fi % write B
 

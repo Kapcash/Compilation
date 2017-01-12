@@ -277,37 +277,37 @@ public class PrettyPrintTest{
 	//BAD TESTS
 	
 	@Test
-	public void testNoRead() throws ErrorException{
+	public void badTestNoRead() throws ErrorException{
 		thrown.expect(ErrorException.class);
 		testerPrettyPrint("badTestNoRead1");
 	}
 	
 	@Test
-	public void testNoWrite() throws ErrorException{
+	public void badTestNoWrite() throws ErrorException{
 		thrown.expect(ErrorException.class);
 		testerPrettyPrint("badTestNoWrite1");
 	}
 	
 	@Test
-	public void testBadIf() throws ErrorException{
+	public void badTestBadIf() throws ErrorException{
 		thrown.expect(ErrorException.class);
 		testerPrettyPrint("badTestIf1");
 	}
 	
 	@Test
-	public void testBadWhile() throws ErrorException{
+	public void badTestBadWhile() throws ErrorException{
 		thrown.expect(ErrorException.class);
 		testerPrettyPrint("badTestWhile1");
 	}
 	
 	@Test
-	public void testBadAffect() throws ErrorException{
+	public void badTestBadAffect() throws ErrorException{
 		thrown.expect(ErrorException.class);
 		testerPrettyPrint("badTestAffect1");
 	}
 	
 	@Test
-	public void testBadFor() throws ErrorException{
+	public void badTestBadFor() throws ErrorException{
 		thrown.expect(ErrorException.class);
 		testerPrettyPrint("badTestFor1");
 	}

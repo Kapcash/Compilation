@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Tree;
-using static Tree.BinTree;
 
 
 namespace BinTreeProject
@@ -10,6 +8,7 @@ namespace BinTreeProject
 	{
 		//Here the symbs used in the while code
 		static BinTree nil = new BinTree("nil", null, null);
+		
 
 		private static void multiplecons(Queue<BinTree> input, Queue<BinTree> output)
 		{
@@ -22,10 +21,12 @@ namespace BinTreeProject
 			BinTree C = new BinTree ("C", null, null);
 			BinTree D = new BinTree ("D", null, null);
 			BinTree E = new BinTree ("E", null, null);
+			
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree Y1 = new BinTree ("Y1", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
+			
 			A = input.Dequeue();
 			B = input.Dequeue();
 			C = input.Dequeue();
@@ -33,66 +34,66 @@ namespace BinTreeProject
 			E = input.Dequeue();
 			inParams.Enqueue(B);
 			inParams.Enqueue(C);
-			Y0 = (cons(inParams));
+			Y0 = (BinTree.cons(inParams));
 			inParams.Enqueue(A);
 			inParams.Enqueue(Y0);
-			Y1 = (cons(inParams));
+			Y1 = (BinTree.cons(inParams));
 			X0 = Y1;
 			Ret = X0;
-			Y0 = head(A);
+			Y0 = BinTree.head(A);
 			X0 = Y0;
 			Ret = X0;
-			Y0 = A;
+			inParams.Enqueue(A);
 			X0 = Y0;
 			Ret = X0;
 			output.Enqueue(Ret);
 		}
 		static void Main(string[] args)
 		{
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
 			if(args.Length > 0){
-				BinTree A = new BinTree(args[0], null, null);
-				input.Enqueue(A);
+				BinTree A = BinTree.convertStrToBinTree(args[0]);
+				inParams.Enqueue(A);
 			}
 			else{
 				BinTree A = new BinTree("A", null, null);
-				input.Enqueue(A);
+				inParams.Enqueue(A);
 			}
 			if(args.Length > 1){
-				BinTree B = new BinTree(args[1], null, null);
-				input.Enqueue(B);
+				BinTree B = BinTree.convertStrToBinTree(args[1]);
+				inParams.Enqueue(B);
 			}
 			else{
 				BinTree B = new BinTree("B", null, null);
-				input.Enqueue(B);
+				inParams.Enqueue(B);
 			}
 			if(args.Length > 2){
-				BinTree C = new BinTree(args[2], null, null);
-				input.Enqueue(C);
+				BinTree C = BinTree.convertStrToBinTree(args[2]);
+				inParams.Enqueue(C);
 			}
 			else{
 				BinTree C = new BinTree("C", null, null);
-				input.Enqueue(C);
+				inParams.Enqueue(C);
 			}
 			if(args.Length > 3){
-				BinTree D = new BinTree(args[3], null, null);
-				input.Enqueue(D);
+				BinTree D = BinTree.convertStrToBinTree(args[3]);
+				inParams.Enqueue(D);
 			}
 			else{
 				BinTree D = new BinTree("D", null, null);
-				input.Enqueue(D);
+				inParams.Enqueue(D);
 			}
 			if(args.Length > 4){
-				BinTree E = new BinTree(args[4], null, null);
-				input.Enqueue(E);
+				BinTree E = BinTree.convertStrToBinTree(args[4]);
+				inParams.Enqueue(E);
 			}
 			else{
 				BinTree E = new BinTree("E", null, null);
-				input.Enqueue(E);
+				inParams.Enqueue(E);
 			}
-			multiplecons(input, output);
-			Console.WriteLine(output.Dequeue().DisplayTree());
+			multiplecons(inParams, outParams);
+			Console.WriteLine(outParams.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}
 	}

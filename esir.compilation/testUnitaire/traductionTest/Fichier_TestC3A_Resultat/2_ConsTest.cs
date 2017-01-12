@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Tree;
-using static Tree.BinTree;
 
 
 namespace BinTreeProject
@@ -10,6 +8,7 @@ namespace BinTreeProject
 	{
 		//Here the symbs used in the while code
 		static BinTree nil = new BinTree("nil", null, null);
+		
 
 		private static void consTest(Queue<BinTree> input, Queue<BinTree> output)
 		{
@@ -19,49 +18,51 @@ namespace BinTreeProject
 			BinTree A = new BinTree ("A", null, null);
 			BinTree B = new BinTree ("B", null, null);
 			BinTree C = new BinTree ("C", null, null);
+			
 			//Here the temp var used by the compiler
+			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
-			BinTree Y1209 = new BinTree ("Y1209", null, null);
+			
 			A = input.Dequeue();
 			B = input.Dequeue();
 			C = input.Dequeue();
 			inParams.Enqueue(B);
 			inParams.Enqueue(C);
-			Y1209 = (cons(inParams));
-			X0 = Y1209;
+			Y0 = (BinTree.cons(inParams));
+			X0 = Y0;
 			A = X0;
 			output.Enqueue(A);
 		}
 		static void Main(string[] args)
 		{
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
 			if(args.Length > 0){
-				BinTree A = new BinTree(args[0], null, null);
-				input.Enqueue(A);
+				BinTree A = BinTree.convertStrToBinTree(args[0]);
+				inParams.Enqueue(A);
 			}
 			else{
 				BinTree A = new BinTree("A", null, null);
-				input.Enqueue(A);
+				inParams.Enqueue(A);
 			}
 			if(args.Length > 1){
-				BinTree B = new BinTree(args[1], null, null);
-				input.Enqueue(B);
+				BinTree B = BinTree.convertStrToBinTree(args[1]);
+				inParams.Enqueue(B);
 			}
 			else{
 				BinTree B = new BinTree("B", null, null);
-				input.Enqueue(B);
+				inParams.Enqueue(B);
 			}
 			if(args.Length > 2){
-				BinTree C = new BinTree(args[2], null, null);
-				input.Enqueue(C);
+				BinTree C = BinTree.convertStrToBinTree(args[2]);
+				inParams.Enqueue(C);
 			}
 			else{
 				BinTree C = new BinTree("C", null, null);
-				input.Enqueue(C);
+				inParams.Enqueue(C);
 			}
-			consTest(input, output);
-			Console.WriteLine(output.Dequeue().DisplayTree());
+			consTest(inParams, outParams);
+			Console.WriteLine(outParams.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}
 	}

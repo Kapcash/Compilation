@@ -33,6 +33,8 @@ import org.eclipse.xtext.generator.IGeneratorContext
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class WhileCompGenerator extends AbstractGenerator {
+	
+	private static int nbFun =0;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (e : resource.allContents.toIterable.filter(typeof(Program))){
@@ -52,15 +54,28 @@ class WhileCompGenerator extends AbstractGenerator {
 		'''
 	}
 	
-	def compile (Function c, int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){'''
+	def compile (Function c, int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){
+		if(nbFun == 0){
+		'''
 		function «c.function»:
 		read «FOR param: c.definition.read.variable SEPARATOR ', '»«param»«ENDFOR»
 		%
 		«c.definition.commands.compile(indentAll,indentAll, indentFor,indentWhile,indentIf,indentForeach,indentAff)»
 		%
 		write «FOR param: c.definition.write.variable SEPARATOR ', '»«param»«ENDFOR»
-		
 		'''	
+		}else{
+		'''
+		
+		function «c.function»:
+		read «FOR param: c.definition.read.variable SEPARATOR ', '»«param»«ENDFOR»
+		%
+		«c.definition.commands.compile(indentAll,indentAll, indentFor,indentWhile,indentIf,indentForeach,indentAff)»
+		%
+		write «FOR param: c.definition.write.variable SEPARATOR ', '»«param»«ENDFOR»
+		'''			
+			
+		}
 	}
 	
 	def compile(Commands coms,int indentBase,int indentAll, int indentFor, int indentWhile, int indentIf, int indentForeach, int indentAff){

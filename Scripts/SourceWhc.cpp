@@ -102,5 +102,5 @@ int main(int argc, char *argv[]) {
 	std::cout << "Compiling the C# program : " << compileLine.c_str() << std::endl;
 	system(compileLine.c_str()); //Compiling .cs -> .exe
 
-	return status;
+	return 0;
 }

@@ -1,0 +1,8 @@
+function isZero :
+read X
+%
+	for X do 
+		nop 
+	od 
+%
+write B

@@ -39,6 +39,8 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
  */
 @SuppressWarnings("all")
 public class WhileCompGenerator extends AbstractGenerator {
+  private static int nbFun = 0;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
@@ -74,55 +76,108 @@ public class WhileCompGenerator extends AbstractGenerator {
   }
   
   public CharSequence compile(final Function c, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("function ");
-    String _function = c.getFunction();
-    _builder.append(_function, "");
-    _builder.append(":");
-    _builder.newLineIfNotEmpty();
-    _builder.append("read ");
-    {
-      Definition _definition = c.getDefinition();
-      Read _read = _definition.getRead();
-      EList<String> _variable = _read.getVariable();
-      boolean _hasElements = false;
-      for(final String param : _variable) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "");
+    CharSequence _xifexpression = null;
+    if ((WhileCompGenerator.nbFun == 0)) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("function ");
+      String _function = c.getFunction();
+      _builder.append(_function, "");
+      _builder.append(":");
+      _builder.newLineIfNotEmpty();
+      _builder.append("read ");
+      {
+        Definition _definition = c.getDefinition();
+        Read _read = _definition.getRead();
+        EList<String> _variable = _read.getVariable();
+        boolean _hasElements = false;
+        for(final String param : _variable) {
+          if (!_hasElements) {
+            _hasElements = true;
+          } else {
+            _builder.appendImmediate(", ", "");
+          }
+          _builder.append(param, "");
         }
-        _builder.append(param, "");
       }
-    }
-    _builder.newLineIfNotEmpty();
-    _builder.append("%");
-    _builder.newLine();
-    Definition _definition_1 = c.getDefinition();
-    Commands _commands = _definition_1.getCommands();
-    String _compile = this.compile(_commands, indentAll, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
-    _builder.append(_compile, "");
-    _builder.newLineIfNotEmpty();
-    _builder.append("%");
-    _builder.newLine();
-    _builder.append("write ");
-    {
-      Definition _definition_2 = c.getDefinition();
-      Write _write = _definition_2.getWrite();
-      EList<String> _variable_1 = _write.getVariable();
-      boolean _hasElements_1 = false;
-      for(final String param_1 : _variable_1) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
-        } else {
-          _builder.appendImmediate(", ", "");
+      _builder.newLineIfNotEmpty();
+      _builder.append("%");
+      _builder.newLine();
+      Definition _definition_1 = c.getDefinition();
+      Commands _commands = _definition_1.getCommands();
+      String _compile = this.compile(_commands, indentAll, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
+      _builder.append(_compile, "");
+      _builder.newLineIfNotEmpty();
+      _builder.append("%");
+      _builder.newLine();
+      _builder.append("write ");
+      {
+        Definition _definition_2 = c.getDefinition();
+        Write _write = _definition_2.getWrite();
+        EList<String> _variable_1 = _write.getVariable();
+        boolean _hasElements_1 = false;
+        for(final String param_1 : _variable_1) {
+          if (!_hasElements_1) {
+            _hasElements_1 = true;
+          } else {
+            _builder.appendImmediate(", ", "");
+          }
+          _builder.append(param_1, "");
         }
-        _builder.append(param_1, "");
       }
+      _builder.newLineIfNotEmpty();
+      _xifexpression = _builder;
+    } else {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.newLine();
+      _builder_1.append("function ");
+      String _function_1 = c.getFunction();
+      _builder_1.append(_function_1, "");
+      _builder_1.append(":");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("read ");
+      {
+        Definition _definition_3 = c.getDefinition();
+        Read _read_1 = _definition_3.getRead();
+        EList<String> _variable_2 = _read_1.getVariable();
+        boolean _hasElements_2 = false;
+        for(final String param_2 : _variable_2) {
+          if (!_hasElements_2) {
+            _hasElements_2 = true;
+          } else {
+            _builder_1.appendImmediate(", ", "");
+          }
+          _builder_1.append(param_2, "");
+        }
+      }
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      Definition _definition_4 = c.getDefinition();
+      Commands _commands_1 = _definition_4.getCommands();
+      String _compile_1 = this.compile(_commands_1, indentAll, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
+      _builder_1.append(_compile_1, "");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      _builder_1.append("write ");
+      {
+        Definition _definition_5 = c.getDefinition();
+        Write _write_1 = _definition_5.getWrite();
+        EList<String> _variable_3 = _write_1.getVariable();
+        boolean _hasElements_3 = false;
+        for(final String param_3 : _variable_3) {
+          if (!_hasElements_3) {
+            _hasElements_3 = true;
+          } else {
+            _builder_1.appendImmediate(", ", "");
+          }
+          _builder_1.append(param_3, "");
+        }
+      }
+      _builder_1.newLineIfNotEmpty();
+      _xifexpression = _builder_1;
     }
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    return _builder;
+    return _xifexpression;
   }
   
   public String compile(final Commands coms, final int indentBase, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {

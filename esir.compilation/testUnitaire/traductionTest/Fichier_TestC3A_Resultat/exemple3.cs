@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Tree;
-using static Tree.BinTree;
 
 
 namespace BinTreeProject
@@ -11,6 +9,7 @@ namespace BinTreeProject
 		//Here the symbs used in the while code
 		static BinTree nil = new BinTree("nil", null, null);
 		private static BinTree symbole = new BinTree ("symbole", null, null);
+		
 
 		private static void symbolesFunction(Queue<BinTree> input, Queue<BinTree> output)
 		{
@@ -23,42 +22,44 @@ namespace BinTreeProject
 			BinTree C = new BinTree ("C", null, null);
 			BinTree D = new BinTree ("D", null, null);
 			BinTree E = new BinTree ("E", null, null);
+			
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
 			BinTree X1 = new BinTree ("X1", null, null);
+			
 			A = input.Dequeue();
 			B = input.Dequeue();
-			Y0 = B;
+			inParams.Enqueue(B);
 			X0 = Y0;
-			Y0 = nil;
+			inParams.Enqueue(nil);
 			X1 = Y0;
 			A = X0;
 			C = X1;
-			Y0 = B;
+			inParams.Enqueue(B);
 			X0 = Y0;
 			C = X0;
-			Y0 = Cond;
-			if(isTrue(Y0))
+			inParams.Enqueue(Cond);
+			if(BinTree.isTrue(Cond))
 			{
-				Y0 = nil;
-				while(isTrue(Y0))
+				inParams.Enqueue(nil);
+				while(BinTree.isTrue())
 				{
-					Y0 = A;
+					inParams.Enqueue(A);
 					X0 = Y0;
 					D = X0;
-					Y0 = nil;
+					inParams.Enqueue(nil);
 				}
 			}else{
-				Y0 = nil;
-				while(isTrue(Y0))
+				inParams.Enqueue(nil);
+				while(BinTree.isTrue(nil))
 				{
 					inParams.Enqueue(D);
 					testAffect(inParams,outParams);
 					Y0 = outParams.Dequeue();
 					X0 = Y0;
 					E = X0;
-					Y0 = tail(nil);
+					Y0 = BinTree.tail(nil);
 					nil = Y0;
 				}
 			}
@@ -77,20 +78,22 @@ namespace BinTreeProject
 			BinTree D = new BinTree ("D", null, null);
 			BinTree X = new BinTree ("X", null, null);
 			BinTree Y = new BinTree ("Y", null, null);
+			
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
+			
 			A = input.Dequeue();
-			Y0 = symbole;
+			inParams.Enqueue(symbole);
 			X0 = Y0;
 			X = X0;
-			Y0 = A;
+			inParams.Enqueue(A);
 			X0 = Y0;
 			Y = X0;
 			inParams.Enqueue(X);
 			inParams.Enqueue(Y);
-			Y0 = (cons(inParams));
-			while(isTrue(Y0))
+			Y0 = (BinTree.cons(inParams));
+			while(BinTree.isTrue(Y0))
 			{
 				inParams.Enqueue(C);
 				inParams.Enqueue(D);
@@ -100,7 +103,7 @@ namespace BinTreeProject
 				Y = X0;
 				inParams.Enqueue(X);
 				inParams.Enqueue(Y);
-				Y0 = (cons(inParams));
+				Y0 = (BinTree.cons(inParams));
 			}
 			output.Enqueue(X);
 		}
@@ -113,42 +116,44 @@ namespace BinTreeProject
 			BinTree Ret = new BinTree ("Ret", null, null);
 			BinTree A = new BinTree ("A", null, null);
 			BinTree B = new BinTree ("B", null, null);
+			
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
+			
 			A = input.Dequeue();
 			B = input.Dequeue();
 			inParams.Enqueue(A);
 			inParams.Enqueue(B);
-			Y0 = (cons(inParams));
+			Y0 = (BinTree.cons(inParams));
 			X0 = Y0;
 			Ret = X0;
 			output.Enqueue(Ret);
 		}
 		static void Main(string[] args)
 		{
-			Queue<BinTree> input = new Queue<BinTree>();
-			Queue<BinTree> output = new Queue<BinTree>();
+			Queue<BinTree> inParams = new Queue<BinTree>();
+			Queue<BinTree> outParams = new Queue<BinTree>();
 			if(args.Length > 0){
-				BinTree A = new BinTree(args[0], null, null);
-				input.Enqueue(A);
+				BinTree A = BinTree.convertStrToBinTree(args[0]);
+				inParams.Enqueue(A);
 			}
 			else{
 				BinTree A = new BinTree("A", null, null);
-				input.Enqueue(A);
+				inParams.Enqueue(A);
 			}
 			if(args.Length > 1){
-				BinTree B = new BinTree(args[1], null, null);
-				input.Enqueue(B);
+				BinTree B = BinTree.convertStrToBinTree(args[1]);
+				inParams.Enqueue(B);
 			}
 			else{
 				BinTree B = new BinTree("B", null, null);
-				input.Enqueue(B);
+				inParams.Enqueue(B);
 			}
-			symbolesFunction(input, output);
-			Console.WriteLine(output.Dequeue().DisplayTree());
-			Console.WriteLine(output.Dequeue().DisplayTree());
-			Console.WriteLine(output.Dequeue().DisplayTree());
+			symbolesFunction(inParams, outParams);
+			Console.WriteLine(outParams.Dequeue().DisplayTree());
+			Console.WriteLine(outParams.Dequeue().DisplayTree());
+			Console.WriteLine(outParams.Dequeue().DisplayTree());
 			Console.ReadLine();
 		}
 	}

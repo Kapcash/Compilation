@@ -355,7 +355,7 @@ public class TableDesSymbolesTest {
 	}
 
 	@Test
-	public void BADcheckAffectationMethodTest2() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{
+	public void badCheckAffectationMethodTest2() throws SymTableException, ThreeAddressCodeException, CS_TranslatorException{
 		thrown.expect(SymTableException.class);
 		thrown.expectMessage("[SYMTABLE ERROR] : There is 1 inputs but 2 outputs in this affectation.");
 		args[0] = origineFilePath+"BAD_2_affCall.wh";

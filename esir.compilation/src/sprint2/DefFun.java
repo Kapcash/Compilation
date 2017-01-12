@@ -47,7 +47,7 @@ public class DefFun{
 
 	@Override
 	public String toString(){
-		return "Input: "+in+", Output: "+out+"\nVariables: "+vars.toString()+"\nSymbols: "+calls.keySet().toString();
+		return "Input: "+in+", Output: "+out+"\nVariables: "+vars.toString()+"\nCalls: "+calls.keySet().toString();
 	}
 
 	/* GETTERS & SETTERS */

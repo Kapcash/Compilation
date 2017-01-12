@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	arg_fileSrc = argv[1];
-	std::string testLine = "\"java -cp .;\\whpp_lib\\junit.jar;whpp.jar org.junit.runner.JUnitCore prettyPrintTest.PrettyPrintTest\"";
+	std::string testLine = "java -cp \".;\\whpp_lib\\junit.jar;whpp.jar\" org.junit.runner.JUnitCore prettyPrintTest.PrettyPrintTest";
 
 	int i = 0;
 	for (i = 2; i<argc; i++) {
@@ -154,14 +154,15 @@ int main(int argc, char *argv[]) {
 		std::cout << "AFF : " << arg_all << std::endl;
 		std::cout << std::endl;
 	}
+	int status = 1;
 
 	if(test){
 		std::cout << "Running pretty print tests."<< std::endl;
-		int statusTest = system(testLine.c_str());
-		return statusTest;
+		std::cout << testLine.c_str()<< std::endl;
+		status = system(testLine.c_str());
+	}else{
+		status = system(cmdLine.c_str());
 	}
-	
-	int status = system(cmdLine.c_str());
 		
 	return status;
 }

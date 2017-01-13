@@ -310,16 +310,30 @@ public class ThreeAddressCode {
 				}
 
 		}
+		
+		public void updateFull(){
+			for (int i = 0; i < children.length; i++) {
+				if(children[i] == null ){
+					return;
+				}
+				if(!children[i].full ){
+					return;
+				}
+			}
+			this.full = true;
+			if(parent != null)
+				parent.updateFull();
+		}
 
 		public void add(String s, HashMap<String, DefFun> funList, int level) throws ThreeAddressCodeException {
 			try{
-
 				if (level == this.level && !full) {
 					children[index] = new ExprTree(s, funList, level,this);
 					if(index == children.length-1){
 						full = true;
 					}
 					index++;
+					updateFull();
 				} else {
 					if (children[index] == null) {
 						children[index] = new ExprTree(s, funList, level,this);
@@ -328,6 +342,7 @@ public class ThreeAddressCode {
 						}
 						if (children[index].full){
 							index++;
+							updateFull();
 						}
 							
 					} else {
@@ -339,6 +354,7 @@ public class ThreeAddressCode {
 							}
 							if (children[index].full){
 								index++;
+								updateFull();
 							}
 						}else{
 							children[index].add(s, funList, level);

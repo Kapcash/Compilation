@@ -43,8 +43,7 @@ namespace BinTreeProject
 			Y0 = BinTree.head(A);
 			X0 = Y0;
 			Ret = X0;
-			inParams.Enqueue(A);
-			X0 = Y0;
+			X0 = A;
 			Ret = X0;
 			output.Enqueue(Ret);
 		}

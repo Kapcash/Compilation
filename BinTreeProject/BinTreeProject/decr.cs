@@ -15,17 +15,17 @@ namespace BinTreeProject
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
 			//Here the var used in the while code
-			BinTree Dec = new BinTree ("Dec", null, null);
 			BinTree F = new BinTree ("F", null, null);
 			BinTree X = new BinTree ("X", null, null);
-			BinTree Y = new BinTree ("Y", null, null);
-			BinTree Z = new BinTree ("Z", null, null);
 			
 			//Here the temp var used by the compiler
 			BinTree Y0 = new BinTree ("Y0", null, null);
 			BinTree Y1 = new BinTree ("Y1", null, null);
 			BinTree X0 = new BinTree ("X0", null, null);
 			BinTree Y2 = new BinTree ("Y2", null, null);
+			BinTree Y3 = new BinTree ("Y3", null, null);
+			BinTree Y4 = new BinTree ("Y4", null, null);
+			BinTree Y5 = new BinTree ("Y5", null, null);
 			
 			X = input.Dequeue();
 			inParams.Enqueue(X);
@@ -35,7 +35,6 @@ namespace BinTreeProject
 			isOne(inParams,outParams);
 			Y1 = outParams.Dequeue();
 			Y2 = BinTree.evaluate("OR",Y0,Y1);
-			Y2 = Y2;
 			if(BinTree.isTrue(Y2))
 			{
 				inParams.Enqueue(nil);
@@ -47,29 +46,23 @@ namespace BinTreeProject
 				inParams.Enqueue(X);
 				decr(inParams,outParams);
 				Y0 = outParams.Dequeue();
-				inParams.Enqueue(Y0);
-				fib(inParams,outParams);
-				Y1 = outParams.Dequeue();
-				X0 = Y1;
-				Z = X0;
 				inParams.Enqueue(X);
 				decr(inParams,outParams);
-				Y0 = outParams.Dequeue();
-				inParams.Enqueue(Y0);
-				decr(inParams,outParams);
 				Y1 = outParams.Dequeue();
-				X0 = Y1;
-				Dec = X0;
-				inParams.Enqueue(Dec);
+				inParams.Enqueue(Y0);
 				fib(inParams,outParams);
-				Y0 = outParams.Dequeue();
-				X0 = Y0;
-				Y = X0;
-				inParams.Enqueue(Z);
-				inParams.Enqueue(Y);
+				Y2 = outParams.Dequeue();
+				inParams.Enqueue(Y1);
+				decr(inParams,outParams);
+				Y3 = outParams.Dequeue();
+				inParams.Enqueue(Y3);
+				fib(inParams,outParams);
+				Y4 = outParams.Dequeue();
+				inParams.Enqueue(Y2);
+				inParams.Enqueue(Y4);
 				add(inParams,outParams);
-				Y0 = outParams.Dequeue();
-				X0 = Y0;
+				Y5 = outParams.Dequeue();
+				X0 = Y5;
 				F = X0;
 			}
 			output.Enqueue(F);
@@ -88,7 +81,6 @@ namespace BinTreeProject
 			BinTree X0 = new BinTree ("X0", null, null);
 			
 			X = input.Dequeue();
-			X = X;
 			if(BinTree.isTrue(X))
 			{
 				X0 = nil;
@@ -121,7 +113,6 @@ namespace BinTreeProject
 			inParams.Enqueue(nil);
 			Y0 = (BinTree.cons(inParams));
 			Y1 = BinTree.evaluate("EQ",X,Y0);
-			Y1 = Y1;
 			if(BinTree.isTrue(Y1))
 			{
 				inParams.Enqueue(nil);
@@ -171,7 +162,6 @@ namespace BinTreeProject
 			Y = input.Dequeue();
 			X0 = X;
 			S = X0;
-			Y = Y;
 			while(BinTree.isTrue(Y))
 			{
 				inParams.Enqueue(S);

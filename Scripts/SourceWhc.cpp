@@ -58,6 +58,7 @@ int main(int argc, char *argv[]) {
 	std::string testLine = "java -cp \".;\\whc_lib\\junit.jar;whc.jar\" org.junit.runner.JUnitCore";
 				testLine += " traductionTest.Code3AdressesTests";
 				testLine += " traductionTest.TableDesSymbolesTest";
+				testLine += " traductionTest.SchemaDeTraductionTest"
 
 				
 	if (argc<2 && argc % 2 != 0) {

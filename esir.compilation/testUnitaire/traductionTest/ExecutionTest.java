@@ -1,15 +1,28 @@
 package traductionTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import esir.compilation.generator.ErrorException;
+import sprint2.DefFun;
 import sprint2.GeneratorAddr;
 import sprint2.SymTableException;
 import sprint2.ThreeAddressCodeException;
@@ -17,11 +30,14 @@ import sprint3.CS_TranslatorException;
 import utilitaires.Constante;
 import utilitaires.Utilitaire;
 
-public class SchemaDeTraductionTest {
-	private static final String origineFilePath = Constante.PATH+ "traductionTest/Fichier_TestSDT_Original/";
-	private static final String resultFilePath =  Constante.PATH+ "traductionTest/Fichier_TestSDT_Resultat/";
-	private static final String attendFilePath =  Constante.PATH+ "traductionTest/Fichier_TestSDT_Attendu/";
-	
+public class ExecutionTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+    
+	private static final String origineFilePath = Constante.PATH+ "traductionTest/Fichier_TestE_Original/";
+	private static final String resultFilePath =  Constante.PATH+ "traductionTest/Fichier_TestE_Resultat/";
+
 	String cheminFichierEntree = null;
 	String cheminFichierSortie = null;
 	
@@ -29,15 +45,15 @@ public class SchemaDeTraductionTest {
 
 	@Test
 	public void testExemple() throws ErrorException {
-		testerWHC("0_DoubleTest");
+		testerExecWHC("0_isNotZero");
 	}
 	
 	
 	/*Utilitaire*/
-	private void testerWHC(String nameWithoutExtension) throws ErrorException {
+	private void testerExecWHC(String nameWithoutExtension) throws ErrorException {
 		String pathFichierOriginal = origineFilePath + nameWithoutExtension+ ".wh";
 
-		String pathFichierAttendu = attendFilePath + nameWithoutExtension+ ".cs";
+		//String pathFichierAttendu = attendFilePath + nameWithoutExtension+ ".cs"; TODO : A SUPPRIMER OU DECOMMENTER
 		String pathFichierResultat = resultFilePath + nameWithoutExtension+ ".cs";
 
 		File fichierResultat = null;
@@ -56,9 +72,17 @@ public class SchemaDeTraductionTest {
 		assertTrue("Le fichier "+ pathFichierResultat +" n'a pas ete cree ! \n (Regardez dans la console l'erreur genere !)", fichierResultat.exists());
 
 		assertTrue("Traitement non effectue", (!fichierResultat.equals(null)));
-		assertTrue("Les fichiers "+ pathFichierOriginal +"et"+ fichierResultat.getPath() +" sont differents !", 
-				assertSameFileTest(fichierResultat.getPath(), pathFichierAttendu));
+//		assertTrue("Les fichiers "+ pathFichierOriginal +"et"+ fichierResultat.getPath() +" sont differents !", //TODO : A SUPPRIMER OU DECOMMENTER
+//				assertSameFileTest(fichierResultat.getPath(), pathFichierAttendu));
 
+		try {
+			Runtime.getRuntime().exec("java -jar whc.jar "+ pathFichierOriginal + " " + pathFichierResultat);
+		} catch (IOException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		
+		//Utilitaire.assertT("", );
 		boolean isDelete = fichierResultat.delete();
 		Utilitaire.assertT(fichierResultat.getPath() +" n'a pas ete correctement supprime !", isDelete);
 	}
@@ -107,5 +131,11 @@ public class SchemaDeTraductionTest {
 		}
 		return true;
 	}
+	
+	public static int fib(int n) 
+    {
+      if (n < 2) return(n);
+      return( fib(n-2) + fib(n-1) );
+    }
 
 }

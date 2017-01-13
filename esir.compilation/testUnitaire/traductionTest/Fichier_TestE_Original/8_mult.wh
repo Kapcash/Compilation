@@ -1,0 +1,1 @@
+function mult : read X, Y % P := nil ; for Y do P := (add X P) od % write P

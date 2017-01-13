@@ -1,0 +1,1 @@
+function addR : read X, Y % if (isZero Y) then S := X else S := (incr (addR X (decr Y))) fi % write S

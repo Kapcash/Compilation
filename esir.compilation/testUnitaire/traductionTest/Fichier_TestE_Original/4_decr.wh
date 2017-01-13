@@ -1,0 +1,1 @@
+function decr : read X % X := (tl X) % write X

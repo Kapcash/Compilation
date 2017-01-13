@@ -1,0 +1,1 @@
+function isNotZero : read X % if X then B := (cons nil nil) else B := nil fi % write B

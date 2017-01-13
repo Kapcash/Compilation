@@ -1,0 +1,1 @@
+function pow : read X, Y % P := (cons nil nil) ; for Y do P := (mult X P) od % write P

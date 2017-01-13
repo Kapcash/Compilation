@@ -14,7 +14,7 @@ public class ThreeAddressCode {
 	private HashMap<String, LinkedList<QuadImp>> code3Addr = new HashMap<String, LinkedList<QuadImp>>();
 	private ExprTree tree = null;
 	private int treeLevel = 0;
-	private static final boolean DISPLAY_EXPR_TREE = true;
+	private static final boolean DISPLAY_EXPR_TREE = false;
 
 	private Stack<LinkedList<QuadImp>> stack = new Stack<LinkedList<QuadImp>>();
 

@@ -24,7 +24,7 @@ public class TestCharges {
 	String[] args = { cheminFichierEntree, cheminFichierSortie };
 
 	boolean regenerateFiles = false;
-	int nbEssai = 5;
+	int nbEssai = 10;
 
 	public long testLargeur(int n){
 		args[0] = Constante.PATH+ "traductionTest//Fichier_TestCharge/testChargesLargeur" + n + ".wh";
@@ -85,6 +85,7 @@ public class TestCharges {
 		testLargeur2(100);
 		testLargeur2(1000);
 		testLargeur2(10000);
+		testLargeur2(100000);
 	}
 
 	@Test

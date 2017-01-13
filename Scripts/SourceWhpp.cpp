@@ -20,14 +20,12 @@ void manual() {
 	printf("\n");
 	printf("========== DESCRIPTION\n");
 	printf("\n");
-	printf("Lit un fichier while syntaxiquement correct et rend le même fichier mais joliment composé.\n");
+	printf("Lit un fichier while syntaxiquement correct et rend le même fichier mais joliment compose.\n");
 	printf("\n");
 	printf("========== OPTIONS\n");
 	printf("\n");
 	printf("-o file\n");
 	printf("file : nom du fichier de sortie, par defaut (sth.whpp)\n\n");
-	printf("-test\n");
-	printf("\n");
 	printf("-all x\n");
 	printf("x : valeur par defaut de l'indentation, par defaut (x=1)\n\n");
 	printf("-for x\n");
@@ -40,6 +38,8 @@ void manual() {
 	printf("x : valeur par defaut de l'indentation du foreach, par defaut (x=0)\n\n");
 	printf("-aff x\n");
 	printf("x : valeur par defaut de l'indentation de l'affectation, par defaut (x=0)\n\n");
+	printf("-test \n");
+	printf("Lance uniquement les tests unitaires du pretty printer\n");
 	printf("\n");
 	printf("\n");
 	printf("========== SEE ALSO\n");

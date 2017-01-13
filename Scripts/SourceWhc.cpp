@@ -34,6 +34,7 @@ void manual() {
 	printf("\n");
 	printf("\n");
 	printf("-test\n");
+	printf("Lance uniquement les tests unitaires du compilateur (code 3@) \n");
 	printf("\n");
 	printf("\n");
 	printf("========== SEE ALSO\n");

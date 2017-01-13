@@ -1,0 +1,3 @@
+function incr : read X % X := (cons nil X) % write X
+
+function add : read X, Y % S := X ; for Y do S := (incr S) od % write S

@@ -56,8 +56,8 @@ int main(int argc, char *argv[]) {
 				arg_fileExeDest = "out.exe";
 	bool test = false;
 	std::string testLine = "java -cp \".;\\whc_lib\\junit.jar;whc.jar\" org.junit.runner.JUnitCore";
-				testLine += " traductionTest.Code3AdressesTests"
-				testLine += " traductionTest.TableDesSymbolesTest"
+				testLine += " traductionTest.Code3AdressesTests";
+				testLine += " traductionTest.TableDesSymbolesTest";
 
 				
 	if (argc<2 && argc % 2 != 0) {

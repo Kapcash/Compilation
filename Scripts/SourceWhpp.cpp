@@ -158,7 +158,6 @@ int main(int argc, char *argv[]) {
 
 	if(test){
 		std::cout << "Running pretty print tests."<< std::endl;
-		std::cout << testLine.c_str()<< std::endl;
 		status = system(testLine.c_str());
 	}else{
 		status = system(cmdLine.c_str());

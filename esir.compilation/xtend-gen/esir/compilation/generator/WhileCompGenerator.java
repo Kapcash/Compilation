@@ -39,7 +39,7 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
  */
 @SuppressWarnings("all")
 public class WhileCompGenerator extends AbstractGenerator {
-  private static int nbFun = 0;
+  private int nbFun = 0;
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
@@ -77,7 +77,7 @@ public class WhileCompGenerator extends AbstractGenerator {
   
   public CharSequence compile(final Function c, final int indentAll, final int indentFor, final int indentWhile, final int indentIf, final int indentForeach, final int indentAff) {
     CharSequence _xifexpression = null;
-    if ((WhileCompGenerator.nbFun == 0)) {
+    if ((this.nbFun == 0)) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("function ");
       String _function = c.getFunction();
@@ -206,10 +206,10 @@ public class WhileCompGenerator extends AbstractGenerator {
           i = (i + 1);
         }
       }
-      WhileCompGenerator.nbFun++;
+      this.nbFun++;
       return res;
     } else {
-      WhileCompGenerator.nbFun++;
+      this.nbFun++;
       Command _command_1 = coms.getCommand();
       String _compile_3 = this.compile(_command_1, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
       String res_1 = (_compile_3 + "");
@@ -487,12 +487,12 @@ public class WhileCompGenerator extends AbstractGenerator {
       Lexpr _lexpr = expr.getLexpr();
       boolean _notEquals_1 = (!Objects.equal(_lexpr, null));
       if (_notEquals_1) {
-        String _valeur = expr.getValeur();
-        boolean _notEquals_2 = (!Objects.equal(_valeur, null));
+        String _call = expr.getCall();
+        boolean _notEquals_2 = (!Objects.equal(_call, null));
         if (_notEquals_2) {
           String _ret_1 = ret;
-          String _valeur_1 = expr.getValeur();
-          String _plus_6 = ("(" + _valeur_1);
+          String _call_1 = expr.getCall();
+          String _plus_6 = ("(" + _call_1);
           String _plus_7 = (_plus_6 + " ");
           Lexpr _lexpr_1 = expr.getLexpr();
           Object _compile_2 = this.compile(_lexpr_1);
@@ -538,8 +538,8 @@ public class WhileCompGenerator extends AbstractGenerator {
             ret = (_ret_4 + _plus_20);
           }
         } else {
-          String _valeur_2 = expr.getValeur();
-          ret = _valeur_2;
+          String _valeur = expr.getValeur();
+          ret = _valeur;
         }
       }
     }

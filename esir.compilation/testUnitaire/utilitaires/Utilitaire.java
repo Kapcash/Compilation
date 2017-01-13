@@ -12,6 +12,10 @@ public class Utilitaire {
 		System.out.print(".");
 	}
 	
+	public static void sayInvalid(){
+		System.out.print("|");
+	}
+	
 	public static void assertT(String message, boolean condition){
 		assertTrue(printErr(message), condition);
 		if(Constante.TEST_TRACE){

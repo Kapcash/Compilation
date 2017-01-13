@@ -204,11 +204,12 @@ namespace BinTreeProject
             //If param is a integer
             if (Int32.TryParse(str, out nb))
             {
-                Console.WriteLine("IT IS A NUMBER");
+                //Console.WriteLine("IT IS A NUMBER");
                 ret = convertIntToBinTree(nb);
             } //Else, parsing manually the string
-            else
+            else if(str[0].Equals('('))
             {
+                //Console.WriteLine("It's a while form (...): " + str);
                 int i = 0;
                 if (str[i] == '(') //CONS OR LIST
                 {
@@ -246,6 +247,11 @@ namespace BinTreeProject
                         throw new Exception("Parsing de la chaine impossible !");
                     }
                 }
+            }
+            else
+            {
+                //Console.WriteLine("It's a symbole: "+str);
+                ret = new BinTree(str, null, null);
             }
             return ret;
         }

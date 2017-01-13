@@ -1,0 +1,85 @@
+function incr:
+read X
+%
+	X := (cons nil X)
+%
+write X
+
+function decr:
+read X
+%
+	X := (tl X)
+%
+write X
+
+function add:
+read X, Y
+%
+	S := X ;
+	for Y do
+		S := (incr S)
+	od
+%
+write S
+
+function mult:
+read X, Y
+%
+	P := nil ;
+	for Y do
+		P := (add X P)
+	od
+%
+write P
+
+function subs:
+read X, Y
+%
+	D := X ;
+	for Y do
+		D := (decr D)
+	od
+%
+write D
+
+function isNotZero:
+read X
+%
+	if X then
+		B := (cons nil nil)
+	else
+		B := nil
+	fi
+%
+write B
+
+function divis:
+read X, Y
+%
+	Q ,R := nil ,X ;
+	NextR := (subs R Y) ;
+	while (isNotZero NextR) do
+		Q ,R := (incr Q) ,NextR
+	od
+%
+write Q, R
+
+function calc:
+read Op, X, Y
+%
+	if (Op =? plus) then
+		Res := (add X Y)
+	else
+		if (Op =? fois) then
+			Res := (mult X Y)
+		else
+			if (Op =? div) then
+				Q ,R := (divis X Y) ;
+				Res := (cons Q R)
+			else
+				Res := erreur
+			fi
+		fi
+	fi
+%
+write Res

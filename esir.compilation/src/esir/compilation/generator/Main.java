@@ -29,9 +29,8 @@ public class Main {
 	public static void main(String[] args) throws ErrorException {
 		Injector injector = new WhileCompStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
-		try{
-			main.runGenerator(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
-		}catch (ErrorException e){throw e;}
+		main.runGenerator(args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7]);
+		// /\ It throws an ErrorException if it fails /\
 	}
 
 	@Inject
@@ -79,7 +78,6 @@ public class Main {
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 		if (!list.isEmpty()) {
 			for (Issue issue : list) {
-				//System.err.println(issue);
 				throw new ErrorException(issue.getMessage());
 			}
 			return;

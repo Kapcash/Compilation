@@ -9,6 +9,7 @@ import sprint2.DefFun;
 import sprint2.GeneratorAddr;
 import sprint2.QuadImp;
 import sprint2.ThreeAddressCode;
+import utilitaires.Constante;
 
 public class CS_Translator {
 
@@ -222,8 +223,9 @@ public class CS_Translator {
 			write("Console.WriteLine(outParams.Dequeue().DisplayTree());");
 		}
 		
-		
-		write("Console.ReadLine();");
+		if(Constante.DEBUG_TRACE){ 			//Only for visual studio running
+			write("Console.ReadLine();"); 	//Useless for command line running
+		}
 		leftShift();
 	}
 

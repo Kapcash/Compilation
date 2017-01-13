@@ -94,8 +94,8 @@ public class PrettyPrintTest{
 		assertTrue("Traitement non effectue", (!fileR1.equals(null) && !fileR2.equals(null)));
 		assertTrue("Le double traitement amène des fichiers differents", assertSameFileTest(fileR1.getPath(), fileR2.getPath()));
 
-		boolean isDelete1 = fileR1.delete();
-		Utilitaire.assertT(fileR1.getPath() +" n'a pas ete correctement supprime !", isDelete1);
+		boolean isDelete = fileR1.delete();
+		Utilitaire.assertT(fileR1.getPath() +" n'a pas ete correctement supprime !", isDelete);
 	}
 
 	@Test
@@ -315,7 +315,6 @@ public class PrettyPrintTest{
 	/*Utilitaire*/
 	private void testerPrettyPrint(String nameWithoutExtension) throws ErrorException {
 		String pathFichierOriginal = origineFilePath + nameWithoutExtension+ ".wh";
-
 		String pathFichierAttendu = attendFilePath + nameWithoutExtension+ ".whpp";
 		String pathFichierResultat = resultFilePath + nameWithoutExtension+ ".whpp";
 
@@ -372,10 +371,8 @@ public class PrettyPrintTest{
 
 			Utilitaire.assertT("Les deux fichier n'ont pas la meme taille", ((resultRead1 != -1) || (resultRead2 != -1)));			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;

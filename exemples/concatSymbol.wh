@@ -1,0 +1,9 @@
+function symb:
+read S, Nb
+%
+	F := nil ;
+	for Nb do
+		F := (cons S F)
+	od
+%
+write F

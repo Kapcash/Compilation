@@ -1,3 +1,46 @@
-function incr : read X % X := (cons nil X) % write X
+function 
+				isNotZero 
+				:
+		read 
+	X % 
+	
+	if 		
+						X
+	then B 
+	
+	:= (cons 
+	nil 		nil)  else 
+			B :=
+ nil fi 	
+			
+			
+% write
 
-function add : read X, Y % S := X ; for Y do S := (incr S) od % write S
+ B
+
+function 
+incr : 			read 
+X % X :=
+ (cons  
+						nil X) % write X
+
+function subs 
+: read X, 
+Y % 				D := 
+X 			; for Y 
+do 					D := (decr
+ D) 				od % 
+ write D
+
+function 
+div : 			read X
+, Y %
+ Q, R := 
+	nil, X ; 
+ NextR 				:= (
+ subs R 			Y) 			; while 
+ (isNotZero 			NextR) 		do 		Q, R 
+ := 			(incr Q), NextR 
+ od 
+ % 				write 
+ Q, R

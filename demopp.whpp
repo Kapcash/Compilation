@@ -1,15 +1,35 @@
+function isNotZero:
+read X
+%
+	if X then
+		B := (cons nil nil)
+	else
+		B := nil
+	fi
+%
+write B
 function incr:
 read X
 %
 	X := (cons nil X)
 %
 write X
-function add:
+function subs:
 read X, Y
 %
-	S := X ;
+	D := X ;
 	for Y do
-		S := (null S)
+		D := (null D)
 	od
 %
-write S
+write D
+function div:
+read X, Y
+%
+	Q ,R := nil ,X ;
+	NextR := (null R Y) ;
+	while (null NextR) do
+		Q ,R := (null Q) ,NextR
+	od
+%
+write Q, R

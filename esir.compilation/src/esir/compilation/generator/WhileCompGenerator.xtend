@@ -34,7 +34,7 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class WhileCompGenerator extends AbstractGenerator {
 	
-	private static int nbFun = 0;
+	private int nbFun = 0;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (e : resource.allContents.toIterable.filter(typeof(Program))){
@@ -219,8 +219,8 @@ class WhileCompGenerator extends AbstractGenerator {
 			ret += "(" + expr.ex1.compile + " "+ expr.ope + " "+ expr.ex2.compile +")";
 		}else{
 			if(expr.lexpr != null){
-				if(expr.valeur != null){
-					ret+= "("+expr.valeur+" "+expr.lexpr.compile+")"
+				if(expr.call != null){
+					ret+= "("+expr.call+" "+expr.lexpr.compile+")"
 				} else {
 					ret+= "("+expr.ope+" "+expr.lexpr.compile+")"
 				}

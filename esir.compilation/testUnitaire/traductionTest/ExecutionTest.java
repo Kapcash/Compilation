@@ -76,7 +76,7 @@ public class ExecutionTest {
 //				assertSameFileTest(fichierResultat.getPath(), pathFichierAttendu));
 
 		try {
-			Runtime.getRuntime().exec("java -jar whc.jar "+ pathFichierOriginal + " " + pathFichierResultat);
+			System.out.println(Runtime.getRuntime().exec("java -jar whc.jar "+ pathFichierOriginal + " " + pathFichierResultat));
 		} catch (IOException e) {
 			System.out.println(e);
 			e.printStackTrace();

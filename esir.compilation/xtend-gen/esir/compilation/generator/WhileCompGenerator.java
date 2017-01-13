@@ -206,8 +206,10 @@ public class WhileCompGenerator extends AbstractGenerator {
           i = (i + 1);
         }
       }
+      WhileCompGenerator.nbFun++;
       return res;
     } else {
+      WhileCompGenerator.nbFun++;
       Command _command_1 = coms.getCommand();
       String _compile_3 = this.compile(_command_1, indentBase, indentAll, indentFor, indentWhile, indentIf, indentForeach, indentAff);
       String res_1 = (_compile_3 + "");

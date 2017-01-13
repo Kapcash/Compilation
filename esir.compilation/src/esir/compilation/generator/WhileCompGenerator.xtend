@@ -34,7 +34,7 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class WhileCompGenerator extends AbstractGenerator {
 	
-	private static int nbFun =0;
+	private static int nbFun = 0;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (e : resource.allContents.toIterable.filter(typeof(Program))){
@@ -91,8 +91,10 @@ class WhileCompGenerator extends AbstractGenerator {
 				i = i + 1;	
 				}
 			}
+			nbFun++;
 			return res;
 		}else{
+			nbFun++;
 			var res = coms.command.compile(indentBase,indentAll,indentFor,indentWhile,indentIf,indentForeach,indentAff)+"";
 			return res;
 		}

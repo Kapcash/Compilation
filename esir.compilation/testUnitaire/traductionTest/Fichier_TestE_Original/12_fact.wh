@@ -1,0 +1,1 @@
+function fact : read X % F := (cons nil nil) ; while (isNotZero X) do X, F := (decr X), (mult F X) od % write F

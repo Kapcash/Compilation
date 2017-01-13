@@ -1,0 +1,1 @@
+function div : read X, Y % Q, R := nil, X ; NextR := (subs R Y) ; while (isNotZero NextR) do Q, R := (incr Q), NextR od % write Q, R

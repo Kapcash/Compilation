@@ -95,6 +95,7 @@ public class TestCharges {
 		testProfondeur2(100);
 		testProfondeur2(1000);
 		testProfondeur2(10000);
+		
 	}
 	
 	private void testProfondeur2(int nb) {

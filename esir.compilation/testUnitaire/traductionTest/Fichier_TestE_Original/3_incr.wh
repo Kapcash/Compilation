@@ -1,0 +1,1 @@
+function incr : read X % X := (cons nil X) % write X

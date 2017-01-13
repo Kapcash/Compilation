@@ -18,10 +18,8 @@ namespace BinTreeProject
 			BinTree A = new BinTree ("A", null, null);
 			
 			//Here the temp var used by the compiler
-			BinTree Y0 = new BinTree ("Y0", null, null);
 			
 			A = input.Dequeue();
-			inParams.Enqueue(nil);
 			if(BinTree.isTrue(nil))
 			{
 				((Action)(() => { }))();

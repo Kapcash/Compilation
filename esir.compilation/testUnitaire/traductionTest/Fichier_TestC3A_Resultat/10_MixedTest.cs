@@ -27,24 +27,18 @@ namespace BinTreeProject
 			BinTree Y2 = new BinTree ("Y2", null, null);
 			
 			A = input.Dequeue();
-			inParams.Enqueue(A);
 			if(BinTree.isTrue(A))
 			{
-				inParams.Enqueue(nil);
-				while(BinTree.isTrue())
-				{
-					inParams.Enqueue(A);
-					X0 = Y0;
-					B = X0;
-					((Action)(() => { }))();
-					inParams.Enqueue(nil);
-				}
-			}else{
-				inParams.Enqueue(nil);
 				while(BinTree.isTrue(nil))
 				{
-					inParams.Enqueue(A);
-					X0 = Y0;
+					X0 = A;
+					B = X0;
+					((Action)(() => { }))();
+				}
+			}else{
+				while(BinTree.isTrue(nil))
+				{
+					X0 = A;
 					B = X0;
 					((Action)(() => { }))();
 					Y0 = BinTree.tail(nil);

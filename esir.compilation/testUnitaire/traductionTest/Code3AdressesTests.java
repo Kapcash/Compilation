@@ -190,12 +190,7 @@ public class Code3AdressesTests {
 
 			checkIt(quadrupletIt);
 			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "B", "");
-			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
-
-			checkIt(quadrupletIt);
-			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "Y0", "");
+			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "B", "");
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 			checkIt(quadrupletIt);
@@ -250,12 +245,7 @@ public class Code3AdressesTests {
 
 			checkIt(quadrupletIt);
 			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "B", "");
-			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
-
-			checkIt(quadrupletIt);
-			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "Y0", "");
+			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "B", "");
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 			checkIt(quadrupletIt);
@@ -265,12 +255,7 @@ public class Code3AdressesTests {
 
 			checkIt(quadrupletIt);
 			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "C", "");
-			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
-
-			checkIt(quadrupletIt);
-			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "Y0", "");
+			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "C", "");
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 			checkIt(quadrupletIt);
@@ -280,12 +265,7 @@ public class Code3AdressesTests {
 
 			checkIt(quadrupletIt);
 			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "D", "");
-			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
-
-			checkIt(quadrupletIt);
-			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "Y0", "");
+			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "D", "");
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 			checkIt(quadrupletIt);
@@ -295,22 +275,12 @@ public class Code3AdressesTests {
 
 			checkIt(quadrupletIt);
 			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "C", "");
+			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "C", "");
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 			checkIt(quadrupletIt);
 			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "Y0", "");
-			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
-
-			checkIt(quadrupletIt);
-			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "D", "");
-			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
-
-			checkIt(quadrupletIt);
-			originalQuadruplet = quadrupletIt.next();
-			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X1", "Y0", "");
+			oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X1", "D", "");
 			isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 			checkIt(quadrupletIt);
@@ -580,7 +550,7 @@ public class Code3AdressesTests {
 
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "nil", "");
+		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.DECL, ""), "nil", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 		/*Etiquette L1*/
@@ -650,7 +620,7 @@ public class Code3AdressesTests {
 
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "nil", "");
+		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.DECL, ""), "nil", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 		/*Etiquette L1*/
@@ -710,7 +680,7 @@ public class Code3AdressesTests {
 
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "nil", "");
+		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.DECL, ""), "nil", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 		/*Etiquette L1*/
@@ -720,13 +690,9 @@ public class Code3AdressesTests {
 		
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "A", "");
+		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "A", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		
-		checkIt(quadrupletIt);
-		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "Y0", "");
-		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
@@ -785,7 +751,7 @@ public class Code3AdressesTests {
 
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "nil", "");
+		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.DECL, ""), "nil", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 		/*Etiquette L1*/
@@ -795,12 +761,7 @@ public class Code3AdressesTests {
 		
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "A", "");
-		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
-		
-		checkIt(quadrupletIt);
-		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "Y0", "");
+		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.AFF, ""), "X0", "A", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 		
 		checkIt(quadrupletIt);
@@ -920,7 +881,7 @@ public class Code3AdressesTests {
 		
 		checkIt(quadrupletIt);
 		originalQuadruplet = quadrupletIt.next();
-		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.PUSH, ""), "", "nil", "");
+		oracleQuadruplet = new QuadImp(new OPCode<OP, String>(OP.DECL, ""), "nil", "", "");
 		isMatch = isMatch(originalQuadruplet, oracleQuadruplet);
 
 		/*Etiquette L2*/

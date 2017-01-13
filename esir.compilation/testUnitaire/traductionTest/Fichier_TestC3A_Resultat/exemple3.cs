@@ -30,28 +30,20 @@ namespace BinTreeProject
 			
 			A = input.Dequeue();
 			B = input.Dequeue();
-			inParams.Enqueue(B);
-			X0 = Y0;
-			inParams.Enqueue(nil);
-			X1 = Y0;
+			X0 = B;
+			X1 = nil;
 			A = X0;
 			C = X1;
-			inParams.Enqueue(B);
-			X0 = Y0;
+			X0 = B;
 			C = X0;
-			inParams.Enqueue(Cond);
 			if(BinTree.isTrue(Cond))
 			{
-				inParams.Enqueue(nil);
-				while(BinTree.isTrue())
+				while(BinTree.isTrue(nil))
 				{
-					inParams.Enqueue(A);
-					X0 = Y0;
+					X0 = A;
 					D = X0;
-					inParams.Enqueue(nil);
 				}
 			}else{
-				inParams.Enqueue(nil);
 				while(BinTree.isTrue(nil))
 				{
 					inParams.Enqueue(D);
@@ -84,11 +76,9 @@ namespace BinTreeProject
 			BinTree X0 = new BinTree ("X0", null, null);
 			
 			A = input.Dequeue();
-			inParams.Enqueue(symbole);
-			X0 = Y0;
+			X0 = symbole;
 			X = X0;
-			inParams.Enqueue(A);
-			X0 = Y0;
+			X0 = A;
 			Y = X0;
 			inParams.Enqueue(X);
 			inParams.Enqueue(Y);

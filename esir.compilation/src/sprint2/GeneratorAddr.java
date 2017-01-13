@@ -53,9 +53,9 @@ public class GeneratorAddr {
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_XML_TABLE = false;
-	public static boolean DISPLAY_THREE_ADDR_CODE = true;
-	public static boolean DISPLAY_TRANSLATION = true;
-	public static boolean PRINT_TRANSLATION = false;
+	public static boolean DISPLAY_THREE_ADDR_CODE = false;
+	public static boolean DISPLAY_TRANSLATION = false;
+	public static boolean PRINT_TRANSLATION = true;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
 	private static final String INPUT_FILE = "../exemples/incr.wh";
@@ -432,7 +432,7 @@ public class GeneratorAddr {
 		List<String> list = code3Addresses.inlineExpression(this, f);
 		if(list.size() == 1){
 			code3Addresses.decl(list.get(0));
-			code3Addresses.aff(list.get(0), list.get(0));
+			//code3Addresses.aff(list.get(0), list.get(0));
 		}
 		code3Addresses.finEtiquette();
 
@@ -462,7 +462,7 @@ public class GeneratorAddr {
 		List<String> list = code3Addresses.inlineExpression(this, f);
 		if(list.size() == 1){
 			code3Addresses.decl(list.get(0));
-			code3Addresses.aff(list.get(0), list.get(0));
+			//code3Addresses.aff(list.get(0), list.get(0));
 		}
 		code3Addresses.finEtiquette();
 
@@ -542,7 +542,7 @@ public class GeneratorAddr {
 		List<String> list = code3Addresses.inlineExpression(this, f);
 		if(list.size() == 1){
 			code3Addresses.decl(list.get(0));
-			code3Addresses.aff(list.get(0), list.get(0));
+			//code3Addresses.aff(list.get(0), list.get(0));
 		}
 		code3Addresses.finEtiquette();
 

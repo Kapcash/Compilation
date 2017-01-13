@@ -20,14 +20,12 @@ void manual() {
 	printf("\n");
 	printf("========== DESCRIPTION\n");
 	printf("\n");
-	printf("Lit un fichier while syntaxiquement correct et rend le même fichier mais joliment composé.\n");
+	printf("Lit un fichier while syntaxiquement correct et rend le même fichier mais joliment compose.\n");
 	printf("\n");
 	printf("========== OPTIONS\n");
 	printf("\n");
 	printf("-o file\n");
 	printf("file : nom du fichier de sortie, par defaut (sth.whpp)\n\n");
-	printf("-test\n");
-	printf("\n");
 	printf("-all x\n");
 	printf("x : valeur par defaut de l'indentation, par defaut (x=1)\n\n");
 	printf("-for x\n");
@@ -40,6 +38,8 @@ void manual() {
 	printf("x : valeur par defaut de l'indentation du foreach, par defaut (x=0)\n\n");
 	printf("-aff x\n");
 	printf("x : valeur par defaut de l'indentation de l'affectation, par defaut (x=0)\n\n");
+	printf("-test \n");
+	printf("Lance uniquement les tests unitaires du pretty printer\n");
 	printf("\n");
 	printf("\n");
 	printf("========== SEE ALSO\n");
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	arg_fileSrc = argv[1];
-	std::string testLine = "\"java -cp .;\\whpp_lib\\junit.jar;whpp.jar org.junit.runner.JUnitCore prettyPrintTest.PrettyPrintTest\"";
+	std::string testLine = "java -cp \".;\\whpp_lib\\junit.jar;whpp.jar\" org.junit.runner.JUnitCore prettyPrintTest.PrettyPrintTest";
 
 	int i = 0;
 	for (i = 2; i<argc; i++) {
@@ -154,14 +154,15 @@ int main(int argc, char *argv[]) {
 		std::cout << "AFF : " << arg_all << std::endl;
 		std::cout << std::endl;
 	}
+	int status = 1;
 
 	if(test){
 		std::cout << "Running pretty print tests."<< std::endl;
-		int statusTest = system(testLine.c_str());
-		return statusTest;
+		std::cout << testLine.c_str()<< std::endl;
+		status = system(testLine.c_str());
+	}else{
+		status = system(cmdLine.c_str());
 	}
-	
-	int status = system(cmdLine.c_str());
 		
 	return status;
 }

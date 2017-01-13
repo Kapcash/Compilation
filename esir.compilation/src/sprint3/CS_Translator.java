@@ -254,13 +254,7 @@ public class CS_Translator {
 			// LOOPS
 			case IF:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				if(code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse().equals("")){
-					f.write("if(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getArg1()
-							+ "))");
-				}else{
-					f.write("if(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
-							+ "))");
-				}
+				f.write("if(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()+ "))");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
@@ -287,8 +281,7 @@ public class CS_Translator {
 				break;
 			case FOR:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("while(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getFirst().getArg1()
-						+ "))");
+				f.write("while(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getFirst().getReponse()+ "))");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);
@@ -301,8 +294,7 @@ public class CS_Translator {
 			
 			case FOREACH:
 				iterateList(code.getCode3Addr().get(quad.getEtiquette()).iterator(), f);
-				f.write("while(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()
-						+ "))");
+				f.write("while(BinTree.isTrue(" + code.getCode3Addr().get(quad.getEtiquette()).getLast().getReponse()+ "))");
 				f.write(lAccolade);
 				f.rightShift();
 				iterateList(code.getCode3Addr().get(quad.getArg1()).iterator(), f);

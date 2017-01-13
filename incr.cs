@@ -27,14 +27,14 @@ namespace BinTreeProject
 			BinTree Y4 = new BinTree ("Y4", null, null);
 			
 			X = input.Dequeue();
-            Console.WriteLine("Input 0 :" + X.DisplayTree());
-            inParams.Enqueue(X);
+			inParams.Enqueue(X);
 			isZero(inParams,outParams);
 			Y0 = outParams.Dequeue();
 			inParams.Enqueue(X);
 			isOne(inParams,outParams);
 			Y1 = outParams.Dequeue();
 			Y2 = BinTree.evaluate("OR",Y0,Y1);
+			Y2 = Y2;
 			if(BinTree.isTrue(Y2))
 			{
 				inParams.Enqueue(nil);
@@ -77,16 +77,15 @@ namespace BinTreeProject
 			BinTree X0 = new BinTree ("X0", null, null);
 			
 			X = input.Dequeue();
-			inParams.Enqueue(X);
+			X = X;
 			if(BinTree.isTrue(X))
 			{
-				inParams.Enqueue(nil);
-				inParams.Enqueue(nil);
-				Y0 = (BinTree.cons(inParams));
-				X0 = Y0;
+				X0 = nil;
 				B = X0;
 			}else{
 				inParams.Enqueue(nil);
+				inParams.Enqueue(nil);
+				Y0 = (BinTree.cons(inParams));
 				X0 = Y0;
 				B = X0;
 			}
@@ -111,6 +110,7 @@ namespace BinTreeProject
 			inParams.Enqueue(nil);
 			Y0 = (BinTree.cons(inParams));
 			Y1 = BinTree.evaluate("EQ",X,Y0);
+			Y1 = Y1;
 			if(BinTree.isTrue(Y1))
 			{
 				inParams.Enqueue(nil);
@@ -119,8 +119,7 @@ namespace BinTreeProject
 				X0 = Y0;
 				B = X0;
 			}else{
-				inParams.Enqueue(nil);
-				X0 = Y0;
+				X0 = nil;
 				B = X0;
 			}
 			output.Enqueue(B);
@@ -159,10 +158,9 @@ namespace BinTreeProject
 			
 			X = input.Dequeue();
 			Y = input.Dequeue();
-			inParams.Enqueue(X);
-			X0 = Y0;
+			X0 = X;
 			S = X0;
-			inParams.Enqueue(Y);
+			Y = Y;
 			while(BinTree.isTrue(Y))
 			{
 				inParams.Enqueue(S);
@@ -199,12 +197,15 @@ namespace BinTreeProject
 		{
 			Queue<BinTree> inParams = new Queue<BinTree>();
 			Queue<BinTree> outParams = new Queue<BinTree>();
+            BinTree X = new BinTree("nil", null, null);
 			if(args.Length > 0){
-				BinTree X = BinTree.convertStrToBinTree(args[0]);
+
+				X = BinTree.convertStrToBinTree(args[0]);
+                Console.WriteLine(X.DisplayTree());
 				inParams.Enqueue(X);
 			}
 			else{
-				BinTree X = new BinTree("X", null, null);
+				X = new BinTree("X", null, null);
 				inParams.Enqueue(X);
 			}
 			fib(inParams, outParams);

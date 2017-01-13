@@ -199,9 +199,11 @@ public class ThreeAddressCode {
 		while(!ended && maxLoop>loopCounter){
 			ExprTree.iterate(tree, this, generatorAddr, f);
 
-			if(tree.children.length==0){
+//			System.out.println("TREE:"+tree);
+			if(tree.children!=null && tree.children.length==0){ //Si pas de petit-fils (variable seule)
 				break;
 			}
+
 			for (int i = 0; i < tree.children.length; i++) {
 				ExprTree array_element = tree.children[i];		
 				if(array_element.children.length!=0){		//root's children
@@ -211,7 +213,6 @@ public class ThreeAddressCode {
 				ended = true;
 			}
 			loopCounter++;
-
 		}
 		if(loopCounter==maxLoop){
 			throw new ThreeAddressCodeException("Expression simplication problem");
@@ -420,6 +421,11 @@ public class ThreeAddressCode {
 		}
 
 		public boolean simplify(HashMap<String, DefFun> funList) {
+			if(head.equals("root")){ //If trop simple
+				if(children[0].full){
+					return false;
+				}
+			}
 			for (int i = 0; i < children.length; i++) {
 				if (children[i] == null)
 					continue;

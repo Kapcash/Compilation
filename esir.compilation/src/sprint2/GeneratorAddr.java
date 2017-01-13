@@ -58,8 +58,8 @@ public class GeneratorAddr {
 	public static boolean PRINT_TRANSLATION = false;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemples/fib.wh";
-	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/Program.cs";
+	private static final String INPUT_FILE = "../exemples/incr.wh";
+	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/decr.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
 	private static final boolean isDebugMode = Constante.DEBUG_TRACE;
@@ -155,6 +155,9 @@ public class GeneratorAddr {
 		}
 
 		checkSymbolsUsage(); // Check all the symbols usage
+		if (DISPLAY_THREE_ADDR_CODE) {
+			System.out.println(code3Addresses); // Print the 3@ code
+		}
 
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
@@ -163,9 +166,6 @@ public class GeneratorAddr {
 		//Printing on console
 		if (DISPLAY_SYM_TABLE) {
 			displaySymTable(); 		// Print the symbols table
-		}
-		if (DISPLAY_THREE_ADDR_CODE) {
-			System.out.println(code3Addresses); // Print the 3@ code
 		}
 		if (DISPLAY_TRANSLATION) {	// Print C# code generated
 			System.out.println(translator);
@@ -310,8 +310,8 @@ public class GeneratorAddr {
 			List<String> list = code3Addresses.inlineExpression(this, f);
 			Iterator<String> it = list.iterator();
 			while (it.hasNext()) {
-				val = it.next();
 				var = VAR_PREFIXE + (i++);
+				val = it.next();
 				varDeclaration3Addr(f, var);
 				code3Addresses.aff(var, val);
 			}
@@ -325,19 +325,11 @@ public class GeneratorAddr {
 			f.updateVar(var);
 			varDeclaration3Addr(f, val);
 			code3Addresses.aff(var, val);
-
 		}
 	}
 
 	// Expr
 	private void iterateAST(Expr exp, DefFun f) throws SymTableException, ThreeAddressCodeException {
-		// System.out.print("{");
-		/*
-		 * 
-		 * ExprSimple expSimp = exp.getExprsimple(); iterateAST(expSimp, f);
-		 * 
-		 */
-		// System.out.print("}");
 		code3Addresses.addLevel();
 		ExprSimple expS = exp.getExprsimple();
 		if (expS != null)
@@ -437,7 +429,11 @@ public class GeneratorAddr {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //LC
 		iterateAST(whCmd.getExpr(), f);	//Condition
-		code3Addresses.inlineExpression(this, f);
+		List<String> list = code3Addresses.inlineExpression(this, f);
+		if(list.size() == 1){
+			code3Addresses.decl(list.get(0));
+			code3Addresses.aff(list.get(0), list.get(0));
+		}
 		code3Addresses.finEtiquette();
 
 		code3Addresses.nouvelleEtiquette(); //LB
@@ -463,7 +459,11 @@ public class GeneratorAddr {
 		String etiquetteCond = code3Addresses.getEtiquette();
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(forCond, f);
-		code3Addresses.inlineExpression(this, f);
+		List<String> list = code3Addresses.inlineExpression(this, f);
+		if(list.size() == 1){
+			code3Addresses.decl(list.get(0));
+			code3Addresses.aff(list.get(0), list.get(0));
+		}
 		code3Addresses.finEtiquette();
 
 		code3Addresses.nouvelleEtiquette();  //Body LB
@@ -540,6 +540,10 @@ public class GeneratorAddr {
 		code3Addresses.nouvelleEtiquette(); //Condition LC
 		iterateAST(ifCmd.getExpr(), f);
 		List<String> list = code3Addresses.inlineExpression(this, f);
+		if(list.size() == 1){
+			code3Addresses.decl(list.get(0));
+			code3Addresses.aff(list.get(0), list.get(0));
+		}
 		code3Addresses.finEtiquette();
 
 		// Then

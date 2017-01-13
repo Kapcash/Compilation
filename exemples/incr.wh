@@ -1,0 +1,11 @@
+function incr : read X % X := (cons nil X) % write X
+
+function decr : read X % X := (tl X) % write X
+
+function isZero : read X % if X then B := nil else B := (cons nil nil) fi % write B
+
+function isOne : read X % if (X =? (cons nil nil)) then B := (cons nil nil) else B := nil fi % write B
+
+function add : read X, Y % S := X ; for Y do S := (incr S) od % write S
+
+function fib : read X % if ((isZero X) or (isOne X)) then F := (cons nil nil) else F := (add (fib (decr X)) (fib (decr (decr X)))) fi % write F

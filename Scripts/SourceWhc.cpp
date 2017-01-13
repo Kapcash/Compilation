@@ -34,6 +34,7 @@ void manual() {
 	printf("\n");
 	printf("\n");
 	printf("-test\n");
+	printf("Lance uniquement les tests unitaires du compilateur (code 3@) \n");
 	printf("\n");
 	printf("\n");
 	printf("========== SEE ALSO\n");
@@ -54,7 +55,7 @@ int main(int argc, char *argv[]) {
 				arg_fileDest = "out.cs",
 				arg_fileExeDest = "out.exe";
 	bool test = false;
-	std::string testLine = "\"java -cp .;\\whc_lib\\junit.jar;whc.jar org.junit.runner.JUnitCore traductionTest.Code3AdressesTests\"";
+	std::string testLine = "java -cp \".;\\whc_lib\\junit.jar;whc.jar\" org.junit.runner.JUnitCore traductionTest.Code3AdressesTests";
 
 				
 	if (argc<2 && argc % 2 != 0) {
@@ -87,20 +88,21 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	int status=1;
+
 	if(test){
-		std::cout << "Running pretty print tests."<< std::endl;
-		int statusTest = system(testLine.c_str());
-		return statusTest;
+		std::cout << "Running compiling tests."<< std::endl;
+		status = system(testLine.c_str());
+	}else{
+		std::string cmdLine = "java -jar whc.jar " + arg_fileSrc;
+		cmdLine += " " + arg_fileDest;
+		std::string compileLine = "csc /t:exe /out:"+arg_fileExeDest+" \".\\BinTreeProject\\BinTreeProject\\BinTree.cs\" "+arg_fileDest;
+
+		std::cout << "Compiling the WH program into C# : " << cmdLine.c_str() << std::endl;
+		status = system(cmdLine.c_str()); //Compiling .wh -> .cs
+		std::cout << "Compiling the C# program : " << compileLine.c_str() << std::endl;
+		status += system(compileLine.c_str()); //Compiling .cs -> .exe
 	}
-
-	std::string cmdLine = "java -jar whc.jar " + arg_fileSrc;
-	cmdLine += " " + arg_fileDest;
-	std::string compileLine = "csc /t:exe /out:"+arg_fileExeDest+" \".\\BinTreeProject\\BinTreeProject\\BinTree.cs\" "+arg_fileDest;
-
-	std::cout << "Compiling the WH program into C# : " << cmdLine.c_str() << std::endl;
-	int status = system(cmdLine.c_str()); //Compiling .wh -> .cs
-	std::cout << "Compiling the C# program : " << compileLine.c_str() << std::endl;
-	system(compileLine.c_str()); //Compiling .cs -> .exe
 
 	return status;
 }

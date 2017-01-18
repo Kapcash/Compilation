@@ -2,7 +2,7 @@ function loop:
 read B
 %
 	A := B ;
-	while (hd A) do
+	while ((hd A) or (tl B)) do
 		nop
 	od
 %

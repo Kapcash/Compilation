@@ -59,7 +59,7 @@ public class GeneratorAddr {
 	// CONST
 	private static final String VAR_PREFIXE = "X";
 	private static final String INPUT_FILE = "../exemples/incr.wh";
-	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/decr.cs";
+	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/incr.cs";
 	private static final String OUTPUT_XML_FILE = "";
 
 	private static final boolean isDebugMode = Constante.DEBUG_TRACE;

@@ -220,7 +220,9 @@ public class CS_Translator {
 		}
 		write(nameMainFonction + "(inParams, outParams);");
 		for (int i = 0; i < nbWrites; i++) {
-			write("Console.WriteLine(outParams.Dequeue().DisplayTree());");
+			write("BinTree resTree = outParams.Dequeue();");
+			write("Console.WriteLine(resTree.DisplayTree());");
+			write("Console.WriteLine(\"Equivalent en nombre : \"+BinTree.convertBinTreeToInt(resTree));");
 		}
 		
 		if(Constante.DEBUG_TRACE){ 			//Only for visual studio running

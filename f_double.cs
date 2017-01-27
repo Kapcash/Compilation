@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace BinTreeProject
 {
 	class Program
@@ -93,7 +94,9 @@ namespace BinTreeProject
 				inParams.Enqueue(X);
 			}
 			f(inParams, outParams);
-			Console.WriteLine(outParams.Dequeue().DisplayTree());
+			BinTree resTree = outParams.Dequeue();
+			Console.WriteLine(resTree.DisplayTree());
+			Console.WriteLine("Equivalent en nombre : "+BinTree.convertBinTreeToInt(resTree));
 		}
 	}
 }

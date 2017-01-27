@@ -279,6 +279,23 @@ namespace BinTreeProject
             return ret;
         }
 
+
+        public static int convertBinTreeToInt(BinTree tree)
+        {
+            int ret = 0;
+            if (tree != null)
+            {
+                if(tree.getData() == "cons" || tree.getData() == "list")
+                {
+                    ret++;
+                    ret += convertBinTreeToInt(tree.getLeftSon());
+                    ret += convertBinTreeToInt(tree.getRightSon());
+                }
+            }
+
+            return ret;
+        }
+
         /**
          * Used in convertStrToBinTree method.
          * Seek the next opening parenthesis '(' from an indexPos into the string str

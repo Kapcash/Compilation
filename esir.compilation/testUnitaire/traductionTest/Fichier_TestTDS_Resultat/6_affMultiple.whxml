@@ -7,19 +7,19 @@
 			<vars>
 				<var>
 					<vname>A</vname>
-					<value>3</value>
+					<value>(1, 2)</value>
 				</var>
 				<var>
 					<vname>B</vname>
-					<value>2</value>
+					<value>(1, 1)</value>
 				</var>
 				<var>
 					<vname>C</vname>
-					<value>2</value>
+					<value>(2, 0)</value>
 				</var>
 				<var>
 					<vname>D</vname>
-					<value>2</value>
+					<value>(2, 0)</value>
 				</var>
 			</vars>
 			<calls>

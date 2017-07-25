@@ -7,15 +7,15 @@
 			<vars>
 				<var>
 					<vname>Ret</vname>
-					<value>2</value>
+					<value>(0, 2)</value>
 				</var>
 				<var>
 					<vname>A</vname>
-					<value>1</value>
+					<value>(1, 0)</value>
 				</var>
 				<var>
 					<vname>B</vname>
-					<value>1</value>
+					<value>(1, 0)</value>
 				</var>
 			</vars>
 			<calls>

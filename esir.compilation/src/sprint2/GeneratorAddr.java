@@ -53,14 +53,16 @@ public class GeneratorAddr {
 	// SETTINGS
 	public static boolean DISPLAY_SYM_TABLE = false;
 	public static boolean DISPLAY_XML_TABLE = false;
-	public static boolean DISPLAY_THREE_ADDR_CODE = false;
+	public static boolean DISPLAY_THREE_ADDR_CODE = true;
 	public static boolean DISPLAY_TRANSLATION = false;
-	public static boolean PRINT_TRANSLATION = true;
+	public static boolean PRINT_TRANSLATION = false;
 	// CONST
 	private static final String VAR_PREFIXE = "X";
-	private static final String INPUT_FILE = "../exemples/incr.wh";
+	private static final String INPUT_FILE = "../exemples/alwaysWriteNeverRead.wh";
 	private static final String OUTPUT_FILE = "../BinTreeProject/BinTreeProject/incr.cs";
 	private static final String OUTPUT_XML_FILE = "";
+
+	private static final boolean WARNINGS = true;
 
 	private static final boolean isDebugMode = Constante.DEBUG_TRACE;
 
@@ -159,6 +161,10 @@ public class GeneratorAddr {
 			System.out.println(code3Addresses); // Print the 3@ code
 		}
 
+		if(WARNINGS){
+			System.out.println(checkVarUse());
+		}
+
 		// Translator
 		CS_Translator translator = new CS_Translator(code3Addresses);
 		translator.translate();
@@ -243,9 +249,9 @@ public class GeneratorAddr {
 	public void iterateAST(Read read, DefFun f) throws SymTableException {
 		EList<String> varsR = read.getVariable();
 
-		
+
 		for (String v : varsR) {
-			f.updateVar(v); //Add the var to the SymTable
+			f.updateReadVar(v); //Add the var to the SymTable
 			// New 3@ <READ, v, , >
 			code3Addresses.read(v);
 		}
@@ -257,7 +263,7 @@ public class GeneratorAddr {
 		for (String v : varsW) {
 			//varDeclaration3Addr(f, v); // New 3@ <DECL, v, , >
 			code3Addresses.write(v);	//New 3@ <WRITE, v, , >
-			f.updateVar(v);
+			f.updateWriteVar(v);
 		}
 	}
 
@@ -322,7 +328,7 @@ public class GeneratorAddr {
 		while (itAff.hasNext()) {
 			var = itAff.next();
 			val = VAR_PREFIXE + (i++);
-			f.updateVar(var);
+			f.updateWriteVar(var);
 			varDeclaration3Addr(f, val);
 			code3Addresses.aff(var, val);
 		}
@@ -350,7 +356,7 @@ public class GeneratorAddr {
 		String call = ex.getCall();
 
 		if (isVariable(val)) { // Variable
-			f.updateVar(val);
+			f.updateReadVar(val);
 		}
 
 		if (operator != null) {
@@ -734,7 +740,7 @@ public class GeneratorAddr {
 			System.out.println("\n" + writeSymTableXML(OUTPUT_XML_FILE));
 		}
 	}
-	
+
 	/**
 	 * Write in a file and a string an XML representation of the Symbole Table.
 	 * Used espacially for tests
@@ -754,7 +760,7 @@ public class GeneratorAddr {
 			DefFun deffun = funList.get(f);
 			ret += "\n\t\t<function>";
 			ret += "\n\t\t\t<name>" + f + "</name>";
-			HashMap<String, Integer> vars = deffun.getVars();
+			HashMap<String, VarCounter> vars = deffun.getVars();
 			ret += "\n\t\t\t<vars>";
 			for (String var : vars.keySet()) {
 				ret += "\n\t\t\t\t<var>\n\t\t\t\t\t<vname>" + var + "</vname>";
@@ -782,5 +788,22 @@ public class GeneratorAddr {
 			}
 		}
 		return ret;
+	}
+
+	private String checkVarUse() {
+		String ret = "";
+		for (String f : funList.keySet()) {
+			DefFun deffun = funList.get(f);
+			HashMap<String, VarCounter> vars = deffun.getVars();
+			for (String var : vars.keySet()) {
+				System.out.println(vars.get(var));
+				if(vars.get(var).getReadCounter()==0){
+					ret += var + " is never used in "+f;
+					code3Addresses.removeWhereVarIsWrite(var);
+				}
+			}
+		}
+		
+		return ret;		
 	}
 }

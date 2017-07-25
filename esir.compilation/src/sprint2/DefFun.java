@@ -8,7 +8,7 @@ import esir.compilation.whileComp.Lexpr;
 public class DefFun{
 	private int in, out;
 	String funName;
-	HashMap<String,Integer> vars;
+	HashMap<String, VarCounter> vars;
 	HashMap<String,Lexpr> calls;
 	HashSet<String> tempVars;
 
@@ -16,11 +16,27 @@ public class DefFun{
 		funName = functionName;
 		in = 0;
 		out = 0;
-		vars = new HashMap<String,Integer>();
+		vars = new HashMap<String,VarCounter>();
 		calls = new HashMap<String,Lexpr>();
 		tempVars = new HashSet<String>();
 	}
 	
+	public void updateReadVar(String var){
+		if(alreadyExisting(var)){
+			vars.put(var,vars.get(var).incrRC());
+		} else {
+			vars.put(var,new VarCounter(1, 0));
+		}
+	}
+	
+	public void updateWriteVar(String var){
+		if(alreadyExisting(var)){
+			vars.put(var,vars.get(var).incrWC());
+		} else {
+			vars.put(var,new VarCounter(0, 1));
+		}
+	}
+	/*
 	public void updateVar(String var){
 		if(alreadyExisting(var)){
 			vars.put(var,vars.get(var)+1);
@@ -28,7 +44,7 @@ public class DefFun{
 			vars.put(var,1);
 		}
 	}
-	
+	*/
 	public void updateCalls(String symb, Lexpr exprs){
 		calls.put(symb,exprs);
 	}
@@ -77,7 +93,7 @@ public class DefFun{
 		this.out = out;
 	}
 
-	public HashMap<String,Integer> getVars() {
+	public HashMap<String, VarCounter> getVars() {
 		return vars;
 	}
 	

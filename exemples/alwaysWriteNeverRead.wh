@@ -1,0 +1,7 @@
+function symboles: 
+read A ,B 
+%
+	A ,B := C ,nil ;
+	D := A
+%
+write A, B

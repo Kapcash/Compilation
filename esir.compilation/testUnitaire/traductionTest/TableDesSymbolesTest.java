@@ -24,6 +24,7 @@ import sprint2.DefFun;
 import sprint2.GeneratorAddr;
 import sprint2.SymTableException;
 import sprint2.ThreeAddressCodeException;
+import sprint2.VarCounter;
 import sprint3.CS_TranslatorException;
 import utilitaires.Constante;
 import utilitaires.Utilitaire;
@@ -156,8 +157,8 @@ public class TableDesSymbolesTest {
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("variable1Test");
-		HashMap<String, Integer> variables1 = funVariable1Test.getVars();
-		Integer nbA = variables1.get("A");
+		HashMap<String, VarCounter> variables1 = funVariable1Test.getVars();
+		Integer nbA = variables1.get("A").total();
 
 		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3", nbA != null && nbA == 3);
 	}
@@ -175,10 +176,10 @@ public class TableDesSymbolesTest {
 		}
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("variable2Test");
-		HashMap<String, Integer> variables2 = funVariable1Test.getVars();
-		Integer nbA = variables2.get("A");
-		Integer nbB = variables2.get("B");
-		Integer nbC = variables2.get("C");
+		HashMap<String, VarCounter> variables2 = funVariable1Test.getVars();
+		Integer nbA = variables2.get("A").total();
+		Integer nbB = variables2.get("B").total();
+		Integer nbC = variables2.get("C").total();
 
 		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 5", nbA != null && nbA == 5);
 		Utilitaire.assertT("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 4", nbB != null && nbB == 4);
@@ -200,11 +201,11 @@ public class TableDesSymbolesTest {
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("affMultiple");
-		HashMap<String, Integer> variablesWithAffectMultiple = funVariable1Test.getVars();
-		Integer nbA = variablesWithAffectMultiple.get("A");
-		Integer nbB = variablesWithAffectMultiple.get("B");
-		Integer nbC = variablesWithAffectMultiple.get("C");
-		Integer nbD = variablesWithAffectMultiple.get("D");
+		HashMap<String, VarCounter> variablesWithAffectMultiple = funVariable1Test.getVars();
+		Integer nbA = variablesWithAffectMultiple.get("A").total();
+		Integer nbB = variablesWithAffectMultiple.get("B").total();
+		Integer nbC = variablesWithAffectMultiple.get("C").total();
+		Integer nbD = variablesWithAffectMultiple.get("D").total();
 
 		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3", nbA != null && nbA == 3);
 		Utilitaire.assertT("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2", nbB != null && nbB == 2);
@@ -228,11 +229,11 @@ public class TableDesSymbolesTest {
 
 		HashMap<String, DefFun> funList = tds.getFunList();
 		DefFun funVariable1Test = funList.get("boucleWhileTest");
-		HashMap<String, Integer> variablesWithBoucleWhileTest = funVariable1Test.getVars();
-		Integer nbA = variablesWithBoucleWhileTest.get("A");
-		Integer nbB = variablesWithBoucleWhileTest.get("B");
-		Integer nbC = variablesWithBoucleWhileTest.get("C");
-		Integer nbD = variablesWithBoucleWhileTest.get("D");
+		HashMap<String, VarCounter> variablesWithBoucleWhileTest = funVariable1Test.getVars();
+		Integer nbA = variablesWithBoucleWhileTest.get("A").total();
+		Integer nbB = variablesWithBoucleWhileTest.get("B").total();
+		Integer nbC = variablesWithBoucleWhileTest.get("C").total();
+		Integer nbD = variablesWithBoucleWhileTest.get("D").total();
 
 		Utilitaire.assertT("Le nombre d'occurence de A est incorrect. Il est de "+nbA+" au lieu de 3", nbA != null && nbA == 3);
 		Utilitaire.assertT("Le nombre d'occurence de B est incorrect. Il est de "+nbB+" au lieu de 2", nbB != null && nbB == 2);

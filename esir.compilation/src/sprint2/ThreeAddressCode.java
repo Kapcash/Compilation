@@ -554,4 +554,9 @@ public class ThreeAddressCode {
 		}
 
 	}
+
+	public void removeWhereVarIsWrite(String var) {
+		
+		
+	}
 }

@@ -7,7 +7,7 @@
 			<vars>
 				<var>
 					<vname>A</vname>
-					<value>2</value>
+					<value>(1, 1)</value>
 				</var>
 			</vars>
 			<calls>
